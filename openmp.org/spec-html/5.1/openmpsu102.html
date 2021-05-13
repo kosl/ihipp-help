@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Implementation-Specific Barriers</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 385--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu103.html" >next</a>] [<a 
+href="openmpsu101.html" >prev</a>] [<a 
+href="openmpsu101.html#tailopenmpsu101.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu102.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu102.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.4</span>&#x00A0;&#x00A0;<a 
+ id="x135-1450002.19.4"></a>Implementation-Specific Barriers</h4>
+<p>An OpenMP implementation can execute implementation-specific barriers that are not implied by the
+OpenMP specification; therefore, no <span class="emph">execution model events</span> are bound to these barriers. The
+implementation can handle these barriers like implicit barriers and dispatch all events as for implicit
+barriers. These callbacks are dispatched with <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implementation</span></span> &#8212;
+or <span class="textbf"><span class="texttt">ompt_sync_region_barrier</span></span>, if the implementation cannot make a distinction &#8212; as the <span class="textit"><span class="textrm">kind</span></span>
+argument.
+</p> 
+<!--l. 399--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu103.html" >next</a>] [<a 
+href="openmpsu101.html" >prev</a>] [<a 
+href="openmpsu101.html#tailopenmpsu101.html" >prev-tail</a>] [<a 
+href="openmpsu102.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu102.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu102.html"></a> </p> 
+ 
+</body> 
+</html>

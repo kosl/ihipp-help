@@ -1,0 +1,233 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OpenMP Memory Consistency</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 380--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse5.html" >next</a>] [<a 
+href="openmpsu13.html" >prev</a>] [<a 
+href="openmpsu13.html#tailopenmpsu13.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu14.html">tail</a>] [<a 
+href="openmpse4.html#openmpsu14.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.4.6</span>&#x00A0;&#x00A0;<a 
+ id="x23-220001.4.6"></a>OpenMP Memory Consistency</h4>
+<p>The following rules guarantee an observable completion order for a given pair of memory operations in
+race-free programs, as seen by all affected threads. If both memory operations are strong flushes, the
+affected threads are all threads on devices in both of their respective device-sets. If exactly one of the
+memory operations is a strong flush, the affected threads are all threads on devices in its device-set.
+Otherwise, the affected threads are all threads.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  two
+  operations
+  performed
+  by
+  different
+  threads
+  are
+  sequentially
+  consistent
+  atomic
+  operations
+  or
+  they
+  are
+  strong
+  flushes
+  that
+  flush
+                                                                            
+                                                                            
+  the
+  same
+  variable,
+  then
+  they
+  must
+  be
+  completed
+  as
+  if
+  in
+  some
+  sequential
+  order,
+  seen
+  by
+  all
+  affected
+  threads.
+  </li>
+  <li class="itemize">
+  If
+  two
+  operations
+  performed
+  by
+  the
+  same
+  thread
+  are
+  sequentially
+  consistent
+  atomic
+  operations
+  or
+  they
+  access,
+  modify,
+  or,
+  with
+  a
+  strong
+                                                                            
+                                                                            
+  flush,
+  flush
+  the
+  same
+  variable,
+  then
+  they
+  must
+  be
+  completed
+  as
+  if
+  in
+  that
+  thread&#8217;s
+  program
+  order,
+  as
+  seen
+  by
+  all
+  affected
+  threads.
+  </li>
+  <li class="itemize">If two operations are performed by different threads and one happens before the other, then
+  they must be completed as if in that <span class="emph">happens before</span> order, as seen by all affected threads,
+  if:
+    <ul class="itemize2">
+    <li class="itemize">
+    both
+    operations
+    access
+    or
+    modify
+    the
+    same
+    variable;
+    </li>
+    <li class="itemize">
+    both
+                                                                            
+                                                                            
+    operations
+    are
+    strong
+    flushes
+    that
+    flush
+    the
+    same
+    variable;
+    or
+    </li>
+    <li class="itemize">
+    both
+    operations
+    are
+    sequentially
+    consistent
+    atomic
+    operations.</li></ul>
+  </li>
+  <li class="itemize">Any two atomic memory operations from different <span class="textbf"><span class="texttt">atomic</span></span> regions must be completed as if in the
+  same order as the strong flushes implied in their respective regions, as seen by all affected
+  threads.</li></ul>
+<p>The flush operation can be specified using the <span class="textbf"><span class="texttt">flush</span></span> directive, and is also implied at various locations in
+an OpenMP program: see Section&#x00A0;<a 
+href="openmpsu106.html#x139-1490002.19.8">2.19.8<!--tex4ht:ref: subsec:flush Construct --></a> for details.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Since flush operations by themselves cannot prevent data races, explicit flush
+operations are only useful in combination with non-sequentially consistent atomic directives.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>OpenMP programs that:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Do
+  not
+                                                                            
+                                                                            
+  use
+  non-sequentially
+  consistent
+  atomic
+  directives;
+  </li>
+  <li class="itemize">
+  Do
+  not
+  rely
+  on
+  the
+  accuracy
+  of
+  a
+  <span class="textit"><span class="textrm">false</span></span>
+  result
+  from
+  <span class="textbf"><span class="texttt">omp_test_lock</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_test_nest_lock</span></span>;
+  and
+  </li>
+  <li class="itemize">
+  Correctly
+  avoid
+  data
+  races
+  as
+  required
+  in
+  Section&#x00A0;<a 
+href="openmpsu9.html#x18-170001.4.1">1.4.1<!--tex4ht:ref: subsec:Structure of the OpenMP Memory Model --></a>,</li></ul>
+<p>behave as though operations on shared variables were simply interleaved in an order consistent with the
+order in which they are performed by each thread. The relaxed consistency model is invisible for such
+programs, and any explicit flush operations in such programs are redundant.
+</p> 
+<!--l. 45--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse5.html" >next</a>] [<a 
+href="openmpsu13.html" >prev</a>] [<a 
+href="openmpsu13.html#tailopenmpsu13.html" >prev-tail</a>] [<a 
+href="openmpsu14.html" >front</a>] [<a 
+href="openmpse4.html#openmpsu14.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu14.html"></a> </p> 
+ 
+</body> 
+</html>

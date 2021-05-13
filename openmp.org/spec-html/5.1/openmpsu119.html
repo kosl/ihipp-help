@@ -1,0 +1,3018 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Data-Mapping Attribute Rules, Clauses, and Directives</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2510--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse30.html" >next</a>] [<a 
+href="openmpsu118.html" >prev</a>] [<a 
+href="openmpsu118.html#tailopenmpsu118.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu119.html">tail</a>] [<a 
+href="openmpse29.html#openmpsu119.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.21.7</span>&#x00A0;&#x00A0;<a 
+ id="x154-1830002.21.7"></a>Data-Mapping Attribute Rules, Clauses, and Directives</h4>
+<a 
+ id="dx154-183001"></a>
+<a 
+ id="dx154-183002"></a>
+<p>This section describes how the data-mapping and data-sharing attributes of any variable referenced in a
+<span class="textbf"><span class="texttt">target</span></span> region are determined. When specified, explicit data-sharing attribute, <span class="textbf"><span class="texttt">map</span></span>, <span class="textbf"><span class="texttt">is_device_ptr</span></span> or
+<span class="textbf"><span class="texttt">has_device_addr</span></span> clauses on <span class="textbf"><span class="texttt">target</span></span> directives determine these attributes. Otherwise, the first
+matching rule from the following implicit data-mapping rules applies for variables referenced in a <span class="textbf"><span class="texttt">target</span></span>
+construct that are not declared in the construct and do not appear in one of the data-sharing attribute, <span class="textbf"><span class="texttt">map</span></span>,
+<span class="textbf"><span class="texttt">is_device_ptr</span></span> or <span class="textbf"><span class="texttt">has_device_addr</span></span> clauses.
+                                                                            
+                                                                            
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  a
+  variable
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">to</span></span>
+  or
+  <span class="textbf"><span class="texttt">link</span></span>
+  clause
+  on
+  a
+  declare
+  target
+  directive
+  that
+  does
+  not
+  have
+  a
+  <span class="textbf"><span class="texttt">device_type(nohost)</span></span>
+  clause
+  then
+  it
+  is
+  treated
+  as
+  if
+  it
+  had
+  appeared
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  with
+  a
+  <span class="textit"><span class="textrm">map-type</span></span>
+  of
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">tofrom</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>,
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  or
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause
+  on
+  a
+  combined
+  target
+  construct
+  then
+  it
+  is
+  treated
+  as
+  if
+  it
+  also
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  with
+  a
+  <span class="textit"><span class="textrm">map-type</span></span>
+  of
+  <span class="textbf"><span class="texttt">tofrom</span></span>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  If
+  a
+  list
+  item
+  appears
+  in
+  an
+  <span class="textbf"><span class="texttt">in_reduction</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  then
+  it
+  is
+  treated
+  as
+  if
+  it
+  also
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  with
+  a
+  <span class="textit"><span class="textrm">map-type</span></span>
+  of
+  <span class="textbf"><span class="texttt">tofrom</span></span>
+  and
+  a
+  <span class="textit"><span class="textrm">map-type-modifier</span></span>
+  of
+  <span class="textbf"><span class="texttt">always</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">defaultmap</span></span>
+  clause
+                                                                            
+                                                                            
+  is
+  present
+  for
+  the
+  category
+  of
+  the
+  variable
+  and
+  specifies
+  an
+  implicit
+  behavior
+  other
+  than
+  <span class="textbf"><span class="texttt">default</span></span>,
+  the
+  data-mapping
+  attribute
+  is
+  determined
+  by
+  that
+  clause.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textbf"><span class="texttt">target</span></span> construct is within a class non-static member function, and a variable is an accessible data
+  member of the object for which the non-static data member function is invoked, the variable is treated as
+  if the <span class="textbf"><span class="texttt">this[:1]</span></span> expression had appeared in a <span class="textbf"><span class="texttt">map</span></span> clause with a <span class="textit"><span class="textrm">map-type</span></span> of <span class="textbf"><span class="texttt">tofrom</span></span>. Additionally, if
+  the variable is of type pointer or reference to pointer, it is also treated as if it had appeared in a <span class="textbf"><span class="texttt">map</span></span> clause
+  as a zero-length array section.
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textbf"><span class="texttt">this</span></span> keyword is referenced inside a <span class="textbf"><span class="texttt">target</span></span> construct within a class non-static member function,
+  it is treated as if the <span class="textbf"><span class="texttt">this[:1]</span></span> expression had appeared in a <span class="textbf"><span class="texttt">map</span></span> clause with a <span class="textit"><span class="textrm">map-type</span></span> of
+  <span class="textbf"><span class="texttt">tofrom</span></span>.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is of type pointer, but not a function pointer or (for C++) a pointer to a member function,
+  is treated as if it is the base pointer of a zero-length array section that had appeared as a list item in a <span class="textbf"><span class="texttt">map</span></span>
+  clause.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is of type reference to pointer, but not a function pointer or a reference to a pointer to
+  a member function is treated as if it had appeared in a <span class="textbf"><span class="texttt">map</span></span> clause as a zero-length array
+  section.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li>
+  <li class="itemize">If a variable is not a scalar then it is treated as if it had appeared in a <span class="textbf"><span class="texttt">map</span></span> clause with a <span class="textit"><span class="textrm">map-type</span></span> of
+  <span class="textbf"><span class="texttt">tofrom</span></span>.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If a scalar variable has the <span class="textbf"><span class="texttt">TARGET</span></span>, <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> or <span class="textbf"><span class="texttt">POINTER</span></span> attribute then it is treated as if it had
+  appeared in a <span class="textbf"><span class="texttt">map</span></span> clause with a <span class="textit"><span class="textrm">map-type</span></span> of <span class="textbf"><span class="texttt">tofrom</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li>
+  <li class="itemize">If none of the above rules applies then a scalar variable is not mapped, but instead has an implicit
+  data-sharing attribute of firstprivate (see Section&#x00A0;<a 
+href="openmpsu113.html#x148-1610002.21.1.1">2.21.1.1<!--tex4ht:ref: subsubsec:Variables Referenced in a Construct --></a>).</li></ul>
+                                                                            
+                                                                            
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.7.1  </span> <a 
+ id="x154-1840002.21.7.1"></a><span class="textbf"><span class="texttt">map</span></span> Clause</h5>
+<a 
+ id="dx154-184001"></a>
+<a 
+ id="dx154-184002"></a>
+<p><p><a 
+ id="Q1-154-784"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">map</span></span> clause specifies how an original list item is mapped from the current task&#8217;s data environment to a
+corresponding list item in the device data environment of the device identified by the construct.
+<p><a 
+ id="Q1-154-785"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the map clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184003r1"></a></span></p> 
+<!--l. 2596--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184004r2"></a></span><span 
+class="pcrb8t-">map</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">map-type</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184006r1"></a></span></p> 
+<!--l. 2602--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184007r2"></a></span><span 
+class="pcrb8t-">to</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184008r3"></a></span><span 
+class="pcrb8t-">from</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184009r4"></a></span><span 
+class="pcrb8t-">tofrom</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184010r5"></a></span><span 
+class="pcrb8t-">alloc</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184011r6"></a></span><span 
+class="pcrb8t-">release</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184012r7"></a></span><span 
+class="pcrb8t-">delete</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184013r8"></a></span></pre>
+<p>and <span class="textit"><span class="textrm">map-type-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184014r1"></a></span></p> 
+<!--l. 2613--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184015r2"></a></span><span 
+class="pcrb8t-">always</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184016r3"></a></span><span 
+class="pcrb8t-">close</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184017r4"></a></span><span 
+class="pcrb8t-">mapper</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">mapper</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184018r5"></a></span><span 
+class="pcrb8t-">present</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184019r6"></a></span><span 
+class="pcrb8t-">iterator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-184020r7"></a></span></pre>
+<p><p><a 
+ id="Q1-154-786"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The list items that appear in a <span class="textbf"><span class="texttt">map</span></span> clause may include array sections and structure elements.
+</p> 
+<p>The <span class="textit"><span class="textrm">map-type</span></span> and <span class="textit"><span class="textrm">map-type-modifier</span></span> specify the effect of the <span class="textbf"><span class="texttt">map</span></span> clause, as described below.
+</p> 
+<p>For a given construct, the effect of a <span class="textbf"><span class="texttt">map</span></span> clause with the <span class="textbf"><span class="texttt">to</span></span>, <span class="textbf"><span class="texttt">from</span></span>, or <span class="textbf"><span class="texttt">tofrom</span></span><span class="textit"><span class="textrm">map-type</span></span> is ordered before
+the effect of a <span class="textbf"><span class="texttt">map</span></span> clause with the <span class="textbf"><span class="texttt">alloc</span></span>, <span class="textbf"><span class="texttt">release</span></span>, or <span class="textbf"><span class="texttt">delete</span></span><span class="textit"><span class="textrm">map-type</span></span>. If a <span class="textbf"><span class="texttt">map</span></span> clause with a
+<span class="textbf"><span class="texttt">present</span></span><span class="textit"><span class="textrm">map-type-modifier</span></span> appears in a <span class="textbf"><span class="texttt">map</span></span> clause, then the effect of the clause is ordered before all
+other <span class="textbf"><span class="texttt">map</span></span> clauses that do not have the <span class="textbf"><span class="texttt">present</span></span> modifier.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">mapper</span></span><span class="textit"><span class="textrm">map-type-modifier</span></span> is not present, the behavior is as if the <span class="textbf"><span class="texttt">mapper(default)</span></span> modifier
+was specified. The map behavior of a list item in a <span class="textbf"><span class="texttt">map</span></span> clause is modified by a visible user-defined mapper
+(see Section&#x00A0;<a 
+href="#x154-1870002.21.7.4">2.21.7.4<!--tex4ht:ref: subsubsec:declare mapper Directive --></a>) if the mapper has the same <span class="textit"><span class="textrm">mapper-identifier</span></span> as the <span class="textit"><span class="textrm">mapper-identifier</span></span> in the <span class="textbf"><span class="texttt">mapper</span></span>
+                                                                            
+                                                                            
+<span class="textit"><span class="textrm">map-type-modifier</span></span> and is specified for a type that matches the type of the list item. The effect of the mapper
+is to remove the list item from the <span class="textbf"><span class="texttt">map</span></span> clause, if the <span class="textbf"><span class="texttt">present</span></span> modifier does not also appear, and to apply
+the clauses specified in the declared mapper to the construct on which the <span class="textbf"><span class="texttt">map</span></span> clause appears. In the
+clauses applied by the mapper, references to <span class="textit"><span class="textrm">var</span></span> are replaced with references to the list item and the
+<span class="textit"><span class="textrm">map-type</span></span> is replaced with a final map type that is determined according to the rules of map-type decay (see
+Section&#x00A0;<a 
+href="#x154-1870002.21.7.4">2.21.7.4<!--tex4ht:ref: subsubsec:declare mapper Directive --></a>).
+</p> 
+<p>A list item that is an array or array section of a type for which a user-defined mapper exists
+is mapped as if the map type decays to <span class="textbf"><span class="texttt">alloc</span></span>, <span class="textbf"><span class="texttt">release</span></span>, or <span class="textbf"><span class="texttt">delete</span></span>, and then each array
+element is mapped with the original map type, as if by a separate construct, according to the
+mapper.
+</p> 
+<p>A list item in a <span class="textbf"><span class="texttt">map</span></span> clause may reference iterators defined by an <span class="textit"><span class="textrm">iterators-definition</span></span> of an <span class="textbf"><span class="texttt">iterator</span></span>
+modifier.
+</p> 
+<p>If a list item in a <span class="textbf"><span class="texttt">map</span></span> clause is a variable of structure type then it is treated as if each structure element
+contained in the variable is a list item in the clause.
+</p> 
+<p>If a list item in a <span class="textbf"><span class="texttt">map</span></span> clause is a structure element then all other structure elements of the containing
+structure variable form a <span class="textit"><span class="textrm">structure sibling list</span></span>. The <span class="textbf"><span class="texttt">map</span></span> clause and the structure sibling list are associated
+with the same construct. If a corresponding list item of the structure sibling list item is present in the device
+data environment when the construct is encountered then:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  structure
+  sibling
+  list
+  item
+  does
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  on
+  the
+  construct
+  then:
+    <ul class="itemize2">
+                                                                            
+                                                                            
+    <li class="itemize">
+    If
+    the
+    construct
+    is
+    a
+    <span class="textbf"><span class="texttt">target</span></span>,
+    <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+    or
+    <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+    construct
+    then
+    the
+    structure
+    sibling
+    list
+    item
+    is
+    treated
+    as
+    if
+    it
+    is
+    a
+    list
+    item
+    in
+    a
+    <span class="textbf"><span class="texttt">map</span></span>
+    clause
+    on
+    the
+    construct
+    with
+    a
+    <span class="textit"><span class="textrm">map-type</span></span>
+    of
+    <span class="textbf"><span class="texttt">alloc</span></span>.
+    </li>
+    <li class="itemize">
+    If
+                                                                            
+                                                                            
+    the
+    construct
+    is
+    <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+    construct,
+    then
+    the
+    structure
+    sibling
+    list
+    item
+    is
+    treated
+    as
+    if
+    it
+    is
+    a
+    list
+    item
+    in
+    a
+    <span class="textbf"><span class="texttt">map</span></span>
+    clause
+    on
+    the
+    construct
+    with
+    a
+    <span class="textit"><span class="textrm">map-type</span></span>
+    of
+    <span class="textbf"><span class="texttt">release</span></span>.</li></ul>
+  </li>
+  <li class="itemize">If the <span class="textbf"><span class="texttt">map</span></span> clause in which the structure element appears as a list item has a <span class="textit"><span class="textrm">map-type</span></span> of <span class="textbf"><span class="texttt">delete</span></span> and the
+  structure sibling list item does not appear as a list item in a <span class="textbf"><span class="texttt">map</span></span> clause on the construct with a <span class="textit"><span class="textrm">map-type</span></span>
+  of <span class="textbf"><span class="texttt">delete</span></span> then the structure sibling list item is treated as if it is a list item in a <span class="textbf"><span class="texttt">map</span></span> clause on the
+  construct with a <span class="textit"><span class="textrm">map-type</span></span> of <span class="textbf"><span class="texttt">delete</span></span>.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a component of a derived type variable is a list item that results from the above rules for mapped
+structures and mapped structure elements, and it does not explicitly appear as another list item or as the base
+expression of another list item in a <span class="textbf"><span class="texttt">map</span></span> clause on the construct, then:
+                                                                            
+                                                                            
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  it
+  has
+  the
+  <span class="textbf"><span class="texttt">POINTER</span></span>
+  attribute,
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  treats
+  its
+  association
+  status
+  as
+  if
+  it
+  is
+  undefined;
+  and
+  </li>
+  <li class="itemize">
+  If
+  it
+  has
+  the
+  <span class="textbf"><span class="texttt">ALLOCATABLE</span></span>
+  attribute
+  and
+  an
+  allocated
+  allocation
+  status,
+  and
+  it
+  is
+  present
+  in
+                                                                            
+                                                                            
+  the
+  device
+  data
+  environment
+  when
+  the
+  construct
+  is
+  encountered,
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  may
+  treat
+  its
+  allocation
+  status
+  as
+  if
+  it
+  is
+  unallocated
+  if
+  the
+  corresponding
+  component
+  does
+  not
+  have
+  allocated
+  storage.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>Given <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub> is a list item in a <span class="textbf"><span class="texttt">map</span></span> clause, and <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">2</span></sub> is another list item in a <span class="textbf"><span class="texttt">map</span></span> clause on the same
+construct, if <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">2</span></sub> has a base pointer that is, or is part of, <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>, then:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+                                                                            
+                                                                            
+  construct
+  is
+  a
+  <span class="textbf"><span class="texttt">target</span></span>,
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  or
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct,
+  then,
+  on
+  entry
+  to
+  the
+  corresponding
+  region,
+  the
+  effect
+  of
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  on
+  <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>
+  is
+  ordered
+  to
+  occur
+  before
+  the
+  effect
+  of
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  on
+  <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">2</span></sub>.
+  </li>
+  <li class="itemize">
+  If
+  the
+  construct
+  is
+                                                                            
+                                                                            
+  a
+  <span class="textbf"><span class="texttt">target</span></span>,
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  or
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct,
+  then,
+  on
+  exit
+  from
+  the
+  corresponding
+  region,
+  the
+  effect
+  of
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  on
+  <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">2</span></sub>
+  is
+  ordered
+  to
+  occur
+  before
+  the
+  effect
+  of
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  on
+  <span class="textit"><span class="textrm">item</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a list item in a <span class="textbf"><span class="texttt">map</span></span> clause is an associated pointer and the pointer is not the base pointer of another list
+item in a <span class="textbf"><span class="texttt">map</span></span> clause on the same construct, then it is treated as if its pointer target is implicitly mapped in
+the same clause. For the purposes of the <span class="textbf"><span class="texttt">map</span></span> clause, the mapped pointer target is treated as if its base
+pointer is the associated pointer.
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If a list item in a <span class="textbf"><span class="texttt">map</span></span> clause has a base pointer, a pointer variable is present in the device data environment
+that corresponds to the base pointer when the effect of the <span class="textbf"><span class="texttt">map</span></span> clause occurs, and the corresponding pointer
+or the corresponding list item is created in the device data environment on entry to the construct,
+then:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  The
+  corresponding
+  pointer
+  variable
+  is
+  assigned
+  an
+  address
+  such
+  that
+  the
+  corresponding
+  list
+  item
+  can
+  be
+  accessed
+  through
+  the
+  pointer
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region.</dd></dl>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  The
+  corresponding
+  pointer
+  variable
+  is
+  associated
+  with
+  a
+  pointer
+  target
+  that
+  has
+  the
+  same
+  rank
+  and
+  bounds
+  as
+  the
+  pointer
+  target
+  of
+  the
+  original
+  pointer,
+  such
+  that
+  the
+  corresponding
+  list
+  item
+  can
+  be
+  accessed
+  through
+  the
+  pointer
+  in
+  a
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">target</span></span>
+  region.</dd></dl>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  The
+  corresponding
+  pointer
+  variable
+  becomes
+  an
+  attached
+  pointer
+  for
+  the
+  corresponding
+  list
+  item.
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">
+  If
+  the
+  original
+  base
+  pointer
+  and
+  the
+  corresponding
+  attached
+  pointer
+  share
+  storage,
+  then
+  the
+  original
+  list
+  item
+  and
+                                                                            
+                                                                            
+  the
+  corresponding
+  list
+  item
+  must
+  share
+  storage.</dd></dl>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a <span class="textit"><span class="textrm">lambda</span></span> is mapped explicitly or implicitly, variables that are captured by the <span class="textit"><span class="textrm">lambda</span></span> behave as
+follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  variables
+  that
+  are
+  of
+  pointer
+  type
+  are
+  treated
+  as
+  if
+  they
+  had
+  appeared
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  as
+  zero-length
+  array
+  sections;
+  and
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  The
+  variables
+  that
+  are
+  of
+  reference
+  type
+  are
+  treated
+  as
+  if
+  they
+  had
+  appeared
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause.</li></ul>
+                                                                            
+                                                                            
+<p>If a member variable is captured by a <span class="textit"><span class="textrm">lambda</span></span> in class scope, and the <span class="textit"><span class="textrm">lambda</span></span> is later mapped explicitly or
+implicitly with its full static type, the <span class="textbf"><span class="texttt">this</span></span> pointer is treated as if it had appeared on a <span class="textbf"><span class="texttt">map</span></span>
+clause.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The original and corresponding list items may share storage such that writes to either item by one task
+followed by a read or write of the other item by another task without intervening synchronization can result
+in data races. They are guaranteed to share storage if the <span class="textbf"><span class="texttt">map</span></span> clause appears on a <span class="textbf"><span class="texttt">target</span></span> construct that
+corresponds to an inactive <span class="textbf"><span class="texttt">target</span></span> region, or if it appears on a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>, <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+or <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct that applies to the device data environment of the host
+device.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">map</span></span> clause appears on a <span class="textbf"><span class="texttt">target</span></span>, <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>, <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> or <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+construct with a <span class="textbf"><span class="texttt">present</span></span><span class="textit"><span class="textrm">map-type-modifier</span></span> then on entry to the region if the corresponding
+list item does not appear in the device data environment then an error occurs and the program
+terminates.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">map</span></span> clause appears on a <span class="textbf"><span class="texttt">target</span></span>, <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>, or <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct then on entry
+to the region the following sequence of steps occurs as if they are performed as a single atomic
+operation:
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  If
+  a
+  corresponding
+  list
+  item
+  of
+  the
+  original
+  list
+  item
+  is
+  not
+  present
+  in
+  the
+  device
+  data
+  environment,
+  then:
+                                                                            
+                                                                            
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     A
+     new
+     list
+     item
+     with
+     language-specific
+     attributes
+     is
+     derived
+     from
+     the
+     original
+     list
+     item
+     and
+     created
+     in
+     the
+     device
+     data
+     environment;
+     </dd><dt class="enumerate-enumitem">
+   b) </dt><dd 
+class="enumerate-enumitem">
+     The
+     new
+     list
+     item
+     becomes
+     the
+     corresponding
+     list
+     item
+     of
+     the
+     original
+     list
+     item
+     in
+     the
+                                                                            
+                                                                            
+     device
+     data
+     environment;
+     </dd><dt class="enumerate-enumitem">
+   c) </dt><dd 
+class="enumerate-enumitem">
+     The
+     corresponding
+     list
+     item
+     has
+     a
+     reference
+     count
+     that
+     is
+     initialized
+     to
+     zero;
+     and
+     </dd><dt class="enumerate-enumitem">
+   d) </dt><dd 
+class="enumerate-enumitem">
+     The
+     value
+     of
+     the
+     corresponding
+     list
+     item
+     is
+     undefined;</dd></dl>
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">If the reference count of the corresponding list item was not already incremented because of the effect of
+  a <span class="textbf"><span class="texttt">map</span></span> clause on the construct then:
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     The
+     reference
+     count
+                                                                            
+                                                                            
+     is
+     incremented
+     by
+     one;</dd></dl>
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">If the reference count of the corresponding list item is one or the <span class="textbf"><span class="texttt">always</span></span><span class="textit"><span class="textrm">map-type-modifier</span></span> is present,
+  and if the <span class="textit"><span class="textrm">map-type</span></span> is <span class="textbf"><span class="texttt">to</span></span> or <span class="textbf"><span class="texttt">tofrom</span></span>, then:
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+     </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     For
+     each
+     part
+     of
+     the
+     list
+     item
+     that
+     is
+     an
+     attached
+     pointer,
+     that
+     part
+     of
+     the
+     corresponding
+     list
+     item
+     will
+     have
+     the
+     value
+     that
+     it
+     had
+     at
+     the
+     point
+     immediately
+                                                                            
+                                                                            
+     prior
+     to
+     the
+     effect
+     of
+     the
+     <span class="textbf"><span class="texttt">map</span></span>
+     clause;
+     and</dd></dl><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  <p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+     </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     For
+     each
+     part
+     of
+     the
+     list
+     item
+     that
+     is
+     an
+     attached
+     pointer,
+     that
+     part
+     of
+     the
+     corresponding
+     list
+     item,
+     if
+     associated,
+     will
+     be
+     associated
+     with
+                                                                            
+                                                                            
+     the
+     same
+     pointer
+     target
+     that
+     it
+     was
+     associated
+     with
+     at
+     the
+     point
+     immediately
+     prior
+     to
+     the
+     effect
+     of
+     the
+     <span class="textbf"><span class="texttt">map</span></span>
+     clause.</dd></dl><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  <p></div></div>
+     </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   b) </dt><dd 
+class="enumerate-enumitem">
+     For
+     each
+     part
+     of
+     the
+     list
+     item
+     that
+     is
+     not
+     an
+     attached
+     pointer,
+     the
+     value
+     of
+                                                                            
+                                                                            
+     that
+     part
+     of
+     the
+     original
+     list
+     item
+     is
+     assigned
+     to
+     that
+     part
+     of
+     the
+     corresponding
+     list
+     item.</dd></dl>
+  </dd></dl>
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  If the effect of the <span class="textbf"><span class="texttt">map</span></span> clauses on a construct would assign the value of an
+original list item to a corresponding list item more than once, then an implementation is
+allowed to ignore additional assignments of the same value to the corresponding list item.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>In all cases on entry to the region, concurrent reads or updates of any part of the corresponding list item
+must be synchronized with any update of the corresponding list item that occurs as a result of the <span class="textbf"><span class="texttt">map</span></span>
+clause to avoid data races.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">map</span></span> clause appears on a <span class="textbf"><span class="texttt">target</span></span>, <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>, or <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct and a
+corresponding list item of the original list item is not present in the device data environment on exit from the
+region then the list item is ignored. Alternatively, if the <span class="textbf"><span class="texttt">map</span></span> clause appears on a <span class="textbf"><span class="texttt">target</span></span>, <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+or <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct and a corresponding list item of the original list item is present in the
+device data environment on exit from the region, then the following sequence of steps occurs as if
+performed as a single atomic operation:
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  If
+  the
+  <span class="textit"><span class="textrm">map-type</span></span>
+                                                                            
+                                                                            
+  is
+  not
+  <span class="textbf"><span class="texttt">delete</span></span>
+  and
+  the
+  reference
+  count
+  of
+  the
+  corresponding
+  list
+  item
+  is
+  finite
+  and
+  was
+  not
+  already
+  decremented
+  because
+  of
+  the
+  effect
+  of
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  on
+  the
+  construct
+  then:
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     The
+     reference
+     count
+     of
+     the
+     corresponding
+     list
+     item
+     is
+                                                                            
+                                                                            
+     decremented
+     by
+     one;</dd></dl>
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">If the <span class="textit"><span class="textrm">map-type</span></span> is <span class="textbf"><span class="texttt">delete</span></span> and the reference count of the corresponding list item is finite
+  then:
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     The
+     reference
+     count
+     of
+     the
+     corresponding
+     list
+     item
+     is
+     set
+     to
+     zero;</dd></dl>
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">If the <span class="textit"><span class="textrm">map-type</span></span> is <span class="textbf"><span class="texttt">from</span></span> or <span class="textbf"><span class="texttt">tofrom</span></span> and if the reference count of the corresponding list item is zero or
+  the <span class="textbf"><span class="texttt">always</span></span><span class="textit"><span class="textrm">map-type-modifier</span></span> is present then:
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+     </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     For
+     each
+     part
+     of
+     the
+     list
+     item
+     that
+     is
+     an
+     attached
+     pointer,
+                                                                            
+                                                                            
+     that
+     part
+     of
+     the
+     original
+     list
+     item
+     will
+     have
+     the
+     value
+     that
+     it
+     had
+     at
+     the
+     point
+     immediately
+     prior
+     to
+     the
+     effect
+     of
+     the
+     <span class="textbf"><span class="texttt">map</span></span>
+     clause;
+     and</dd></dl><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  <p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+     </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   a) </dt><dd 
+class="enumerate-enumitem">
+     For
+     each
+     part
+     of
+     the
+     list
+     item
+                                                                            
+                                                                            
+     that
+     is
+     an
+     attached
+     pointer,
+     that
+     part
+     of
+     the
+     original
+     list
+     item,
+     if
+     associated,
+     will
+     be
+     associated
+     with
+     the
+     same
+     pointer
+     target
+     with
+     which
+     it
+     was
+     associated
+     at
+     the
+     point
+     immediately
+     prior
+     to
+     the
+     effect
+     of
+     the
+     <span class="textbf"><span class="texttt">map</span></span>
+     clause;
+     and</dd></dl><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  <p></div></div>
+                                                                            
+                                                                            
+     </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   b) </dt><dd 
+class="enumerate-enumitem">
+     For
+     each
+     part
+     of
+     the
+     list
+     item
+     that
+     is
+     not
+     an
+     attached
+     pointer,
+     the
+     value
+     of
+     that
+     part
+     of
+     the
+     corresponding
+     list
+     item
+     is
+     assigned
+     to
+     that
+     part
+     of
+     the
+     original
+     list
+     item;
+     and</dd></dl>
+  </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">If the reference count of the corresponding list item is zero then the corresponding list item is removed
+  from the device data environment.</dd></dl>
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  If the effect of the <span class="textbf"><span class="texttt">map</span></span> clauses on a construct would assign the value of a
+                                                                            
+                                                                            
+corresponding list item to an original list item more than once, then an implementation
+is allowed to ignore additional assignments of the same value to the original list item.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>In all cases on exit from the region, concurrent reads or updates of any part of the original list item must be
+synchronized with any update of the original list item that occurs as a result of the <span class="textbf"><span class="texttt">map</span></span> clause to avoid data
+races.
+</p> 
+<p>If a single contiguous part of the original storage of a list item with an implicit data-mapping attribute has
+corresponding storage in the device data environment prior to a task encountering the construct that is
+associated with the <span class="textbf"><span class="texttt">map</span></span> clause, only that part of the original storage will have corresponding storage in the
+device data environment as a result of the <span class="textbf"><span class="texttt">map</span></span> clause.
+</p> 
+<p>If a list item with an implicit data-mapping attribute does not have any corresponding storage in the device
+data environment prior to a task encountering the construct associated with the <span class="textbf"><span class="texttt">map</span></span> clause, and one or
+more contiguous parts of the original storage are either list items or base pointers to list items
+that are explicitly mapped on the construct, only those parts of the original storage will have
+corresponding storage in the device data environment as a result of the <span class="textbf"><span class="texttt">map</span></span> clauses on the
+construct.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a new list item is created then a new list item of the same type, with automatic storage duration, is
+allocated for the construct. The size and alignment of the new list item are determined by the static type of
+the variable. This allocation occurs if the region references the list item in any statement. Initialization and
+assignment of the new list item are through bitwise copy.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a new list item is created then a new list item of the same type, type parameter, and rank is allocated. The
+new list item inherits all default values for the type parameters from the original list item. The
+value of the new list item becomes that of the original list item in the map initialization and
+assignment.
+</p> 
+<p>If the allocation status of an original list item that has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute is changed while a
+corresponding list item is present in the device data environment, the allocation status of the corresponding
+list item is unspecified until the list item is again mapped with an <span class="textbf"><span class="texttt">always</span></span> modifier on entry to a <span class="textbf"><span class="texttt">target</span></span>,
+<span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> or <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p></div></div>
+</p> 
+<p>The <span class="textit"><span class="textrm">map-type</span></span> determines how the new list item is initialized.
+</p> 
+<p>If a <span class="textit"><span class="textrm">map-type</span></span> is not specified, the <span class="textit"><span class="textrm">map-type</span></span> defaults to <span class="textbf"><span class="texttt">tofrom</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">close</span></span><span class="textit"><span class="textrm">map-type-modifier</span></span> is a hint to the runtime to allocate memory close to the target
+device.
+</p> 
+<p><p><a 
+ id="Q1-154-787"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">target-map</span></span> event occurs when a thread maps data to or from a target device.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-data-op-begin</span></span> event occurs before a thread initiates a data operation on a target device.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-data-op-end</span></span> event occurs after a thread initiates a data operation on a target device.
+</p> 
+<p><p><a 
+ id="Q1-154-788"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_map</span></span> or <span class="textbf"><span class="texttt">ompt_callback_target_map_emi</span></span>
+callback for each occurrence of a <span class="textit"><span class="textrm">target-map</span></span> event in that thread. The callback occurs in the
+context of the target task and has type signature <span class="textbf"><span class="texttt">ompt_callback_target_map_t</span></span> or
+<span class="textbf"><span class="texttt">ompt_callback_target_map_emi_t</span></span>, respectively.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-data-op-begin</span></span> event in that
+thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> callback
+with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-data-op-end</span></span> event in that
+thread. These callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">target-data-op-end</span></span> event in that thread. The callback occurs in the context of the target task and has type
+signature <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-154-789"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">map</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Each
+  of
+  the
+  <span class="textit"><span class="textrm">map-type-modifier</span></span>
+                                                                            
+                                                                            
+  modifiers
+  can
+  appear
+  at
+  most
+  once
+  in
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> List items of the <span class="textbf"><span class="texttt">map</span></span> clauses on the same construct must not share original storage unless they are the
+  same lvalue expression or array section.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li>
+  <li class="itemize">If a list item is an array section, it must specify contiguous storage.
+  </li>
+  <li class="itemize">If an expression that is used to form a list item in a <span class="textbf"><span class="texttt">map</span></span> clause contains an iterator identifier, the list item
+  instances that would result from different values of the iterator must not have the same containing array
+  and must not have base pointers that share original storage.
+  </li>
+  <li class="itemize">If multiple list items are explicitly mapped on the same construct and have the same containing array or
+  have base pointers that share original storage, and if any of the list items do not have corresponding list
+  items that are present in the device data environment prior to a task encountering the construct, then the
+  list items must refer to the same array elements of either the containing array or the implicit array of the
+  base pointers.
+  </li>
+  <li class="itemize">If any part of the original storage of a list item with an explicit data-mapping attribute has corresponding
+  storage in the device data environment prior to a task encountering the construct associated with the <span class="textbf"><span class="texttt">map</span></span>
+  clause, all of the original storage must have corresponding storage in the device data environment prior to
+  the task encountering the construct.
+  </li>
+  <li class="itemize">If an array appears as a list item in a <span class="textbf"><span class="texttt">map</span></span> clause, multiple parts of the array have corresponding storage in
+  the device data environment prior to a task encountering the construct associated with the <span class="textbf"><span class="texttt">map</span></span> clause,
+  and the corresponding storage for those parts was created by maps from more than one earlier construct,
+  the behavior is unspecified.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">If a list item is an element of a structure, and a different element of the structure has a corresponding list
+  item in the device data environment prior to a task encountering the construct associated with the <span class="textbf"><span class="texttt">map</span></span>
+  clause, then the list item must also have a corresponding list item in the device data environment prior to
+  the task encountering the construct.
+  </li>
+  <li class="itemize">A list item must have a mappable type.
+  </li>
+  <li class="itemize">Threadprivate variables cannot appear in a <span class="textbf"><span class="texttt">map</span></span> clause.
+  </li>
+  <li class="itemize">If a <span class="textbf"><span class="texttt">mapper</span></span><span class="textit"><span class="textrm">map-type-modifier</span></span> appears in a <span class="textbf"><span class="texttt">map</span></span> clause, the type on which the specified mapper
+  operates must match the type of the list items in the clause.
+  </li>
+  <li class="itemize">Memory spaces and memory allocators cannot appear as a list item in a <span class="textbf"><span class="texttt">map</span></span> clause.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the type of a list item is a reference to a type <span class="textit"><span class="textrm">T</span></span> then the reference in the device data environment is
+  initialized to refer to the object in the device data environment that corresponds to the object referenced
+  by the list item. If mapping occurs, it occurs as though the object were mapped through a pointer with an
+  array section of type <span class="textit"><span class="textrm">T</span></span> and length one.
+<span 
+class="cmsy-10">&#x2219;</span> No type mapped through a reference can contain a reference to its own type, or any references to types
+  that could produce a cycle of references.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item is a <span class="textit"><span class="textrm">lambda</span></span>, any pointers and references captured by the <span class="textit"><span class="textrm">lambda</span></span> must have the
+  corresponding list item in the device data environment prior to the task encountering the
+  construct.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A list item cannot be a variable that is a member of a structure of a union type.
+<span 
+class="cmsy-10">&#x2219;</span> A bit-field cannot appear in a <span class="textbf"><span class="texttt">map</span></span> clause.
+<span 
+class="cmsy-10">&#x2219;</span> A pointer that has a corresponding attached pointer must not be modified for the duration of the
+  lifetime of the list item to which the corresponding pointer is attached in the device data
+  environment.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  List
+  items
+  of
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clauses
+  on
+  the
+  same
+  construct
+  must
+  not
+  share
+  original
+  storage
+  unless
+  they
+  are
+  the
+  same
+  variable
+  or
+                                                                            
+                                                                            
+  array
+  section.
+  </li>
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  of
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  is
+  an
+  allocatable
+  variable
+  or
+  is
+  the
+  subobject
+  of
+  an
+  allocatable
+  variable,
+  the
+  original
+  allocatable
+  variable
+  may
+  not
+  be
+  allocated,
+  deallocated
+  or
+  reshaped
+  while
+  the
+  corresponding
+  allocatable
+  variable
+  has
+  allocated
+                                                                            
+                                                                            
+  storage.
+  </li>
+  <li class="itemize">
+  A
+  pointer
+  that
+  has
+  a
+  corresponding
+  attached
+  pointer
+  and
+  is
+  associated
+  with
+  a
+  given
+  pointer
+  target
+  must
+  not
+  become
+  associated
+  with
+  a
+  different
+  pointer
+  target
+  for
+  the
+  duration
+  of
+  the
+  lifetime
+  of
+  the
+  list
+  item
+  to
+  which
+  the
+  corresponding
+                                                                            
+                                                                            
+  pointer
+  is
+  attached
+  in
+  the
+  device
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  If
+  an
+  array
+  section
+  is
+  mapped
+  and
+  the
+  size
+  of
+  the
+  section
+  is
+  smaller
+  than
+  that
+  of
+  the
+  whole
+  array,
+  the
+  behavior
+  of
+  referencing
+  the
+  whole
+  array
+  in
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  is
+                                                                            
+                                                                            
+  unspecified.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  must
+  not
+  be
+  a
+  whole
+  array
+  of
+  an
+  assumed-size
+  array.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-154-790"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Array
+  sections,
+  see
+  Section&#x00A0;<a 
+href="openmpsu21.html#x36-350002.1.5">2.1.5<!--tex4ht:ref: subsec:Array Sections --></a>.
+  </li>
+  <li class="itemize">
+  Iterators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu22.html#x37-360002.1.6">2.1.6<!--tex4ht:ref: subsec:iterators --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span>
+                                                                            
+                                                                            
+  directive,
+  see
+  Section&#x00A0;<a 
+href="#x154-1870002.21.7.4">2.21.7.4<!--tex4ht:ref: subsubsec:declare mapper Directive --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3670004.5.2.25">4.5.2.25<!--tex4ht:ref: sec:ompt_callback_target_data_op_emi_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_map_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_map_emi_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3690004.5.2.27">4.5.2.27<!--tex4ht:ref: sec:ompt_callback_target_map_emi_t --></a>.
+  </li></ul>
+                                                                            
+                                                                            
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.7.2  </span> <a 
+ id="x154-1850002.21.7.2"></a>Pointer Initialization for Device Data Environments</h5>
+<p>This section describes how a pointer that is predetermined firstprivate for a <span class="textbf"><span class="texttt">target</span></span> construct may be
+assigned an initial value that is the address of an object that exists in a device data environment and
+corresponds to a <span class="emph">matching mapped list item</span>.
+</p> 
+<p>All previously mapped list items that have corresponding storage in a given device data environment
+constitute the set of currently mapped list items. If a currently mapped list item has a base pointer, the <span class="emph">base
+address</span> of the currently mapped list item is the value of its base pointer. Otherwise, the base address is
+determined by the following steps:
+</p> 
+<p>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  Let
+  <span class="textit"><span class="textrm">X</span></span>
+  refer
+  to
+  the
+  currently
+  mapped
+  list
+  item.
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  If
+  <span class="textit"><span class="textrm">X</span></span>
+  refers
+  to
+  an
+  array
+  section
+  or
+  array
+  element,
+                                                                            
+                                                                            
+  let
+  <span class="textit"><span class="textrm">X</span></span>
+  refer
+  to
+  its
+  base
+  array.
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">
+  If
+  <span class="textit"><span class="textrm">X</span></span>
+  refers
+  to
+  a
+  structure
+  element,
+  let
+  <span class="textit"><span class="textrm">X</span></span>
+  refer
+  to
+  its
+  containing
+  structure
+  and
+  return
+  to
+  step
+  2.
+  </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">
+  The
+  base
+  address
+  for
+  the
+  currently
+  mapped
+  list
+  item
+  is
+                                                                            
+                                                                            
+  the
+  address
+  of
+  <span class="textit"><span class="textrm">X</span></span>.</dd></dl>
+<p>Additionally, each currently mapped list item has a <span class="emph">starting address</span> and an <span class="emph">ending address</span>. The starting
+address is the address of the first storage location associated with the list item, and the <span class="emph">ending address</span> is the
+address of the storage location that immediately follows the last storage location associated with the list
+item.
+</p> 
+<p>The <span class="emph">mapped address range</span> of the currently mapped list item is the range of addresses that starts
+from the starting address and ends with the ending address. The <span class="emph">extended address range</span> of the
+currently mapped list item is the range of addresses that starts from the minimum of the starting
+address and the base address and that ends with the maximum of the ending address and the base
+address.
+</p> 
+<p>If the value of a given pointer is in the mapped address range of a currently mapped list item then that
+currently mapped list item is a matching mapped list item. Otherwise, if the value of the pointer is in the
+extended address range of a currently mapped list item then that currently mapped list item is a matching
+mapped list item.
+</p> 
+<p>If multiple matching mapped list items are found and they all appear as part of the same containing
+structure, the one that has the lowest starting address is treated as the sole matching mapped list item.
+Otherwise, if multiple matching mapped list items are found then the behavior is unspecified.
+</p> 
+<p>If a matching mapped list item is found, the initial value that is assigned to the pointer is a device address
+such that the corresponding list item in the device data environment can be accessed through the pointer in a
+<span class="textbf"><span class="texttt">target</span></span> region.
+</p> 
+<p>If a matching mapped list item is not found, the assigned initial value of the pointer is <span class="textit"><span class="textrm">NULL</span></span> unless
+otherwise specified (see Section&#x00A0;<a 
+href="openmpsu36.html#x55-550002.5.1">2.5.1<!--tex4ht:ref: subsec:requires Directive --></a>).
+</p> 
+<p><p><a 
+ id="Q1-154-792"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu36.html#x55-550002.5.1">2.5.1<!--tex4ht:ref: subsec:requires Directive --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>.</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.7.3  </span> <a 
+ id="x154-1860002.21.7.3"></a><span class="textbf"><span class="texttt">defaultmap</span></span> Clause</h5>
+<a 
+ id="dx154-186001"></a>
+<a 
+ id="dx154-186002"></a>
+<p><p><a 
+ id="Q1-154-794"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">defaultmap</span></span> clause explicitly determines the data-mapping attributes of variables that are referenced
+in a <span class="textbf"><span class="texttt">target</span></span> construct for which the data-mapping attributes would otherwise be implicitly determined (see
+Section&#x00A0;<a 
+href="#x154-1830002.21.7">2.21.7<!--tex4ht:ref: subsec:Data-Mapping Attribute Rules, Clauses, and Directives --></a>).
+<p><a 
+ id="Q1-154-795"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">defaultmap</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186003r1"></a></span></p> 
+<!--l. 3213--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186004r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">defaultmap</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">implicit</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">behavior</span><span 
+class="ec-qtmri-">[:</span><span 
+class="ec-qtmri-">variable</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">category</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186005r3"></a></span></pre>
+<p>Where <span class="textit"><span class="textrm">implicit-behavior</span></span> is one of:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186006r1"></a></span></p> 
+<!--l. 3218--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186007r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">alloc</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">to</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186009r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">from</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186010r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">tofrom</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186011r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186012r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">none</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186013r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186014r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">present</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186015r10"></a></span></pre>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>and <span class="textit"><span class="textrm">variable-category</span></span> is one of:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186016r1"></a></span></p> 
+<!--l. 3231--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186017r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scalar</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186018r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">aggregate</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186019r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">pointer</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186020r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>and <span class="textit"><span class="textrm">variable-category</span></span> is one of:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186021r1"></a></span></p> 
+<!--l. 3240--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186022r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scalar</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186023r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">aggregate</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186024r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">allocatable</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186025r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">pointer</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-186026r6"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-154-796"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">defaultmap</span></span> clause sets the implicit data-mapping attribute for all variables referenced in
+the construct. If <span class="textit"><span class="textrm">variable-category</span></span> is specified, the effect of the <span class="textbf"><span class="texttt">defaultmap</span></span> clause is as
+follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">variable-category</span></span>
+  is
+  <span class="textbf"><span class="texttt">scalar</span></span>,
+  all
+  scalar
+  variables
+  of
+  non-pointer
+  type
+  or
+  all
+  non-pointer
+                                                                            
+                                                                            
+  non-allocatable
+  scalar
+  variables
+  that
+  have
+  an
+  implicitly
+  determined
+  data-mapping
+  or
+  data-sharing
+  attribute
+  will
+  have
+  a
+  data-mapping
+  or
+  data-sharing
+  attribute
+  specified
+  by
+  <span class="textit"><span class="textrm">implicit-behavior</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">variable-category</span></span>
+  is
+  <span class="textbf"><span class="texttt">aggregate</span></span>
+  or
+  <span class="textbf"><span class="texttt">allocatable</span></span>,
+  all
+  aggregate
+  or
+  allocatable
+  variables
+  that
+  have
+  an
+  implicitly
+  determined
+  data-mapping
+  or
+                                                                            
+                                                                            
+  data-sharing
+  attribute
+  will
+  have
+  a
+  data-mapping
+  or
+  data-sharing
+  attribute
+  specified
+  by
+  <span class="textit"><span class="textrm">implicit-behavior</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">variable-category</span></span>
+  is
+  <span class="textbf"><span class="texttt">pointer</span></span>,
+  all
+  variables
+  of
+  pointer
+  type
+  or
+  with
+  the
+  <span class="textbf"><span class="texttt">POINTER</span></span>
+  attribute
+  that
+  have
+  implicitly
+  determined
+  data-mapping
+  or
+  data-sharing
+  attributes
+  will
+  have
+  a
+  data-mapping
+  or
+  data-sharing
+                                                                            
+                                                                            
+  attribute
+  specified
+  by
+  <span class="textit"><span class="textrm">implicit-behavior</span></span>.</li></ul>
+<p>If no <span class="textit"><span class="textrm">variable-category</span></span> is specified in the clause then <span class="textit"><span class="textrm">implicit-behavior</span></span> specifies the implicitly determined
+data-mapping or data-sharing attribute for all variables referenced in the construct. If <span class="textit"><span class="textrm">implicit-behavior</span></span> is
+<span class="textbf"><span class="texttt">none</span></span>, each variable referenced in the construct that does not have a predetermined data-sharing attribute
+and does not appear in a <span class="textbf"><span class="texttt">to</span></span> or <span class="textbf"><span class="texttt">link</span></span> clause on a declare target directive must be listed in a data-mapping
+attribute clause, a data-sharing attribute clause (including a data-sharing attribute clause on a combined
+construct where <span class="textbf"><span class="texttt">target</span></span> is one of the constituent constructs), an <span class="textbf"><span class="texttt">is_device_ptr</span></span> clause or a
+<span class="textbf"><span class="texttt">has_device_addr</span></span> clause. If <span class="textit"><span class="textrm">implicit-behavior</span></span> is <span class="textbf"><span class="texttt">default</span></span>, then the clause has no effect for the
+variables in the category specified by <span class="textit"><span class="textrm">variable-category</span></span>. If <span class="textit"><span class="textrm">implicit-behavior</span></span> is <span class="textbf"><span class="texttt">present</span></span>, each
+variable referenced in the construct in the category specified by <span class="textit"><span class="textrm">variable-category</span></span> is treated as
+if it had been listed in a <span class="textbf"><span class="texttt">map</span></span> clause with the <span class="textit"><span class="textrm">map-type</span></span> of <span class="textbf"><span class="texttt">alloc</span></span> and <span class="textit"><span class="textrm">map-type-modifier</span></span> of
+<span class="textbf"><span class="texttt">present</span></span>.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.7.4  </span> <a 
+ id="x154-1870002.21.7.4"></a><span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> Directive</h5>
+<a 
+ id="dx154-187001"></a>
+<a 
+ id="dx154-187002"></a>
+<a 
+ id="dx154-187003"></a>
+<a 
+ id="dx154-187004"></a>
+<p><p><a 
+ id="Q1-154-798"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive declares a user-defined mapper for a given type, and may define a
+<span class="textit"><span class="textrm">mapper-identifier</span></span> that can be used in a <span class="textbf"><span class="texttt">map</span></span> clause. The <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive is a declarative
+directive.
+<p><a 
+ id="Q1-154-799"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187005r1"></a></span></p> 
+<!--l. 3306--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187006r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">mapper</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">mapper</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">\</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187007r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187008r4"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187009r1"></a></span></p> 
+<!--l. 3316--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187010r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">mapper</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">mapper</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">::</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187011r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187012r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>where:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">mapper-identifier</span></span>
+  is
+  a
+  base
+  language
+  identifier
+  or
+  <span class="textbf"><span class="texttt">default</span></span>
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">type</span></span>
+  is
+  a
+  valid
+  type
+  in
+  scope
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">var</span></span>
+  is
+  a
+                                                                            
+                                                                            
+  valid
+  base
+  language
+  identifier
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">map(</span></span><span class="textit"><span class="textrm">[[map-type-modifier[</span></span><span class="textbf"><span class="texttt">,</span></span><span class="textit"><span class="textrm">]
+  [map-type-modifier[</span></span><span class="textbf"><span class="texttt">,</span></span><span class="textit"><span class="textrm">]
+  ...]]
+  map-type</span></span><span class="textbf"><span class="texttt">:</span></span><span class="textit"><span class="textrm">
+  ]
+  list</span></span><span class="textbf"><span class="texttt">)</span></span>,
+  where
+  <span class="textit"><span class="textrm">map-type</span></span>
+  is
+  one
+  of
+  the
+  following:
+    <ul class="itemize2">
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">alloc</span></span>
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">to</span></span>
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">from</span></span>
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">tofrom</span></span></li></ul>
+  <p>and where <span class="textit"><span class="textrm">map-type-modifier</span></span> is one of the following:
+  </p> 
+
+                                                                            
+                                                                            
+    <ul class="itemize2">
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">always</span></span>
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">close</span></span></li></ul>
+  </li></ul>
+<p><p><a 
+ id="Q1-154-800"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+User-defined mappers can be defined using the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive. The <span class="textit"><span class="textrm">type</span></span> and an optional
+<span class="textit"><span class="textrm">mapper-identifier</span></span> uniquely identify the mapper for use in a <span class="textbf"><span class="texttt">map</span></span> clause or motion clause later in the
+program. The visibility and accessibility of this declaration are the same as those of a variable declared at
+the same location in the program.
+</p> 
+<p>If <span class="textit"><span class="textrm">mapper-identifier</span></span> is not specified, the behavior is as if <span class="textit"><span class="textrm">mapper-identifier</span></span> is <span class="textbf"><span class="texttt">default</span></span>.
+</p> 
+<p>The variable declared by <span class="textit"><span class="textrm">var</span></span> is available for use in all <span class="textbf"><span class="texttt">map</span></span> clauses on the directive, and no part of the
+variable to be mapped is mapped by default.
+                                                                            
+                                                                            
+</p> 
+<p>The default mapper for all types <span class="textit"><span class="textrm">T</span></span>, designated by the predefined <span class="textit"><span class="textrm">mapper-identifier</span></span> <span class="textbf"><span class="texttt">default</span></span>,
+is defined as if by the following directive, unless a user-defined mapper is specified for that
+type.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187013r1"></a></span></p> 
+<!--l. 3368--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187014r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">mapper</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">T</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">map</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">tofrom</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187015r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187016r1"></a></span></p> 
+<!--l. 3374--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187017r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">mapper</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">T</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">map</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">tofrom</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x154-187018r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>A <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive that uses the <span class="textbf"><span class="texttt">default</span></span><span class="textit"><span class="textrm">mapper-identifier</span></span> overrides the predefined default
+mapper for the given type, making it the default mapper for variables of that type.
+</p> 
+<p>The effect that a user-defined mapper has on either a <span class="textbf"><span class="texttt">map</span></span> clause that maps a list item of the given type or a
+motion clause that invokes the mapper and updates a list item of the given type is to replace the map or
+update with a set of <span class="textbf"><span class="texttt">map</span></span> clauses or updates derived from the <span class="textbf"><span class="texttt">map</span></span> clauses specified by the mapper, as
+described in Section&#x00A0;<a 
+href="#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a> and Section&#x00A0;<a 
+href="openmpsu69.html#x97-1070002.14.6">2.14.6<!--tex4ht:ref: subsec:target update Construct --></a>.
+</p> 
+<p>The final map types that a mapper applies for a <span class="textbf"><span class="texttt">map</span></span> clause that maps a list item of the given type are
+determined according to the rules of map-type decay, defined according to Table&#x00A0;<a 
+href="#x154-18701913">2.13<!--tex4ht:ref: tab:map-type_decay --></a>. Table&#x00A0;<a 
+href="#x154-18701913">2.13<!--tex4ht:ref: tab:map-type_decay --></a> shows
+the final map type that is determined by the combination of two map types, where the rows represent the
+map type specified by the mapper and the columns represent the map type specified by a <span class="textbf"><span class="texttt">map</span></span> clause that
+invokes the mapper. For a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct that invokes a mapper with a <span class="textbf"><span class="texttt">map</span></span> clause that
+has the <span class="textbf"><span class="texttt">from</span></span> map type, if a <span class="textbf"><span class="texttt">map</span></span> clause in the mapper specifies an <span class="textbf"><span class="texttt">alloc</span></span> or <span class="textbf"><span class="texttt">to</span></span> map type then the result is
+a <span class="textbf"><span class="texttt">release</span></span> map type.
+</p> 
+<p>A list item in a <span class="textbf"><span class="texttt">map</span></span> clause that appears on a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive may include array
+sections.
+</p> 
+<p><a 
+ id="x154-18701913"></a></p> 
+<hr class="float" /><div class="float" 
+>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.13: </td><td  
+class="content">Map-Type Decay of Map Type Combinations</td></tr></table></div><!--tex4ht:label?: x154-18701913 -->
+<div class="tabular"> <table id="TBL-28" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-28-1g"><col 
+id="TBL-28-1" /></colgroup><colgroup id="TBL-28-2g"><col 
+id="TBL-28-2" /></colgroup><colgroup id="TBL-28-3g"><col 
+id="TBL-28-3" /></colgroup><colgroup id="TBL-28-4g"><col 
+id="TBL-28-4" /></colgroup><colgroup id="TBL-28-5g"><col 
+id="TBL-28-5" /></colgroup><colgroup id="TBL-28-6g"><col 
+id="TBL-28-6" /></colgroup><colgroup id="TBL-28-7g"><col 
+id="TBL-28-7" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-28-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-28-1-1"  
+class="td11">      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-1-2"  
+class="td11"> alloc  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-1-3"  
+class="td11">  to     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-1-4"  
+class="td11">    from          </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-1-5"  
+class="td11"> tofrom  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-1-6"  
+class="td11"> release  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-1-7"  
+class="td11"> delete  </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-28-2-1"  
+class="td11"> alloc </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-2-2"  
+class="td11"> alloc </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-2-3"  
+class="td11"> alloc </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-2-4"  
+class="td11"> alloc (release) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-2-5"  
+class="td11"> alloc </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-2-6"  
+class="td11"> release </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-2-7"  
+class="td11"> delete</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-28-3-1"  
+class="td11"> to          </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-3-2"  
+class="td11"> alloc  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-3-3"  
+class="td11">  to     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-3-4"  
+class="td11"> alloc (release)  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-3-5"  
+class="td11">   to      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-3-6"  
+class="td11"> release  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-3-7"  
+class="td11"> delete  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-28-4-1"  
+class="td11"> from      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-4-2"  
+class="td11"> alloc  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-4-3"  
+class="td11"> alloc  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-4-4"  
+class="td11">    from          </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-4-5"  
+class="td11">  from    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-4-6"  
+class="td11"> release  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-4-7"  
+class="td11"> delete  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-28-5-1"  
+class="td11"> tofrom  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-5-2"  
+class="td11"> alloc  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-5-3"  
+class="td11">  to     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-5-4"  
+class="td11">    from          </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-5-5"  
+class="td11"> tofrom  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-5-6"  
+class="td11"> release  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-28-5-7"  
+class="td11"> delete  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-28-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-28-6-1"  
+class="td11">       </td></tr></table></div></div><hr class="endfloat" />
+                                                                            
+                                                                            
+<p>All <span class="textbf"><span class="texttt">map</span></span> clauses that are introduced by a mapper are further subject to mappers that are in scope, except a
+<span class="textbf"><span class="texttt">map</span></span> clause with list item <span class="textit"><span class="textrm">var</span></span> maps <span class="textit"><span class="textrm">var</span></span> without invoking a mapper.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive can also appear at locations in the program at which a static data member
+could be declared. In this case, the visibility and accessibility of the declaration are the same as those of a
+static data member declared at the same location in the program.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-154-802"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  No
+  instance
+  of
+  <span class="textit"><span class="textrm">type</span></span>
+  can
+  be
+  mapped
+  as
+  part
+  of
+  the
+  mapper,
+  either
+  directly
+  or
+  indirectly
+  through
+  another
+  type,
+  except
+  the
+  instance
+  <span class="textit"><span class="textrm">var</span></span>
+                                                                            
+                                                                            
+  that
+  is
+  passed
+  as
+  the
+  list
+  item.
+  If
+  a
+  set
+  of
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span>
+  directives
+  results
+  in
+  a
+  cyclic
+  definition
+  then
+  the
+  behavior
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">type</span></span>
+  must
+  not
+  declare
+  a
+  new
+  type.
+  </li>
+  <li class="itemize">
+  At
+  least
+  one
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+                                                                            
+                                                                            
+  that
+  maps
+  <span class="textit"><span class="textrm">var</span></span>
+  or
+  at
+  least
+  one
+  element
+  of
+  <span class="textit"><span class="textrm">var</span></span>
+  is
+  required.
+  </li>
+  <li class="itemize">
+  List
+  items
+  in
+  <span class="textbf"><span class="texttt">map</span></span>
+  clauses
+  on
+  the
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span>
+  directive
+  may
+  only
+  refer
+  to
+  the
+  declared
+  variable
+  <span class="textit"><span class="textrm">var</span></span>
+  and
+  entities
+  that
+  could
+  be
+  referenced
+  by
+  a
+  procedure
+  defined
+  at
+                                                                            
+                                                                            
+  the
+  same
+  location.
+  </li>
+  <li class="itemize">
+  Each
+  <span class="textit"><span class="textrm">map-type-modifier</span></span>
+  can
+  appear
+  at
+  most
+  once
+  on
+  the
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  Multiple
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span>
+  directives
+  that
+  specify
+  the
+  same
+  <span class="textit"><span class="textrm">mapper-identifier</span></span>
+  for
+  the
+  same
+  type
+  or
+  for
+  compatible
+  types,
+  according
+  to
+  the
+  base
+  language
+  rules,
+                                                                            
+                                                                            
+  may
+  not
+  appear
+  in
+  the
+  same
+  scope.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">type</span></span>
+  must
+  be
+  a
+  <span class="textbf"><span class="texttt">struct</span></span>
+  or
+  <span class="textbf"><span class="texttt">union</span></span>
+  type.</li></ul>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">type</span></span>
+  must
+  be
+  a
+  <span class="textbf"><span class="texttt">struct</span></span>,
+  <span class="textbf"><span class="texttt">union</span></span>,
+  or
+  <span class="textbf"><span class="texttt">class</span></span>
+  type.</li></ul>
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">type</span></span>
+  must
+  not
+  be
+  an
+  intrinsic
+  type
+  or
+  an
+  abstract
+  type.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-154-803"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu69.html#x97-1070002.14.6">2.14.6<!--tex4ht:ref: subsec:target update Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse30.html" >next</a>] [<a 
+href="openmpsu118.html" >prev</a>] [<a 
+href="openmpsu118.html#tailopenmpsu118.html" >prev-tail</a>] [<a 
+href="openmpsu119.html" >front</a>] [<a 
+href="openmpse29.html#openmpsu119.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu119.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,2240 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>atomic Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 691--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu106.html" >next</a>] [<a 
+href="openmpsu104.html" >prev</a>] [<a 
+href="openmpsu104.html#tailopenmpsu104.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu105.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu105.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.7</span>&#x00A0;&#x00A0;<a 
+ id="x138-1480002.19.7"></a><span class="textbf"><span class="texttt">atomic</span></span> Construct</h4>
+<a 
+ id="dx138-148001"></a>
+<a 
+ id="dx138-148002"></a>
+<a 
+ id="dx138-148003"></a>
+<a 
+ id="dx138-148004"></a>
+<a 
+ id="dx138-148005"></a>
+<a 
+ id="dx138-148006"></a>
+<a 
+ id="dx138-148007"></a>
+<a 
+ id="dx138-148008"></a>
+<p><p><a 
+ id="Q1-138-626"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">atomic</span></span> construct ensures that a specific storage location is accessed atomically, rather than exposing
+it to the possibility of multiple, simultaneous reading and writing threads that may result in indeterminate
+values.
+<p><a 
+ id="Q1-138-627"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+In the following syntax, <span class="textit"><span class="textrm">atomic-clause</span></span> is a clause that indicates the semantics for which atomicity is
+enforced, and <span class="textit"><span class="textrm">memory-order-clause</span></span> is a clause that indicates the memory ordering behavior of the construct.
+Specifically, <span class="textit"><span class="textrm">atomic-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148009r1"></a></span></p> 
+<!--l. 712--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148010r2"></a></span><span 
+class="pcrb8t-">read</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148011r3"></a></span><span 
+class="pcrb8t-">write</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148012r4"></a></span><span 
+class="pcrb8t-">update</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148013r5"></a></span></pre>
+<p><span class="textit"><span class="textrm">memory-order-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148014r1"></a></span></p> 
+<!--l. 720--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148015r2"></a></span><span 
+class="pcrb8t-">seq_cst</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148016r3"></a></span><span 
+class="pcrb8t-">acq_rel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148017r4"></a></span><span 
+class="pcrb8t-">release</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148018r5"></a></span><span 
+class="pcrb8t-">acquire</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148019r6"></a></span><span 
+class="pcrb8t-">relaxed</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148020r7"></a></span></pre>
+<p>and <span class="textit"><span class="textrm">clause</span></span> is either <span class="textit"><span class="textrm">atomic-clause</span></span>, <span class="textit"><span class="textrm">memory-order-clause</span></span> or one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148021r1"></a></span></p> 
+<!--l. 731--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148022r2"></a></span><span 
+class="pcrb8t-">capture</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148023r3"></a></span><span 
+class="pcrb8t-">compare</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148024r4"></a></span><span 
+class="pcrb8t-">hint</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">hint</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148025r5"></a></span><span 
+class="pcrb8t-">fail</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">seq_cst</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">acquire</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">relaxed</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148026r6"></a></span><span 
+class="pcrb8t-">weak</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148027r7"></a></span></pre>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">atomic</span></span> construct is:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148028r1"></a></span></p> 
+<!--l. 745--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148029r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">atomic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148030r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">statement</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148031r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">statement</span></span> is a statement with one of the following forms:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">If <span class="textit"><span class="textrm">atomic-clause</span></span> is <span class="textbf"><span class="texttt">read</span></span> then <span class="textit"><span class="textrm">statement</span></span> is <span class="textit"><span class="textrm">read-expr-stmt</span></span>, a read expression statement that has the
+  following form:
+   <!--l. 756--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148032r1"></a></span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span>
+   <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148033r2"></a></span></pre>
+  </li>
+  <li class="itemize">If <span class="textit"><span class="textrm">atomic-clause</span></span> is <span class="textbf"><span class="texttt">write</span></span> then <span class="textit"><span class="textrm">statement</span></span> is <span class="textit"><span class="textrm">write-expr-stmt</span></span>, a write expression statement that has the
+  following form:
+   <!--l. 763--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148034r1"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">;</span>
+   <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148035r2"></a></span></pre>
+  </li>
+  <li class="itemize">If <span class="textit"><span class="textrm">atomic-clause</span></span> is <span class="textbf"><span class="texttt">update</span></span> then <span class="textit"><span class="textrm">statement</span></span> can be <span class="textit"><span class="textrm">update-expr-stmt</span></span>, an update expression statement that
+  has one of the following forms:
+   <!--l. 770--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148036r1"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">++;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148037r2"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">--;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148038r3"></a></span><span 
+class="pcrb8t-">++</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148039r4"></a></span><span 
+class="pcrb8t-">--</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148040r5"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">binop</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148041r6"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">binop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148042r7"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">binop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span>
+   <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148043r8"></a></span></pre>
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">If the <span class="textbf"><span class="texttt">compare</span></span> clause is present then either <span class="textit"><span class="textrm">statement</span></span> is:
+    <ul class="itemize2">
+    <li class="itemize"><span class="textit"><span class="textrm">cond-expr-stmt</span></span>, a conditional expression statement that has one of the following forms:
+     <!--l. 786--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148044r1"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ordop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">?</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148045r2"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ordop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">?</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148046r3"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">?</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span>
+     <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148047r4"></a></span></pre>
+    </li>
+    <li class="itemize">or <span class="textit"><span class="textrm">cond-update-stmt</span></span>, a conditional update statement that has one of the following forms:
+     <!--l. 793--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148048r1"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ordop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148049r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ordop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148050r3"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span>
+     <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148051r4"></a></span></pre>
+    </li></ul>
+  </li>
+  <li class="itemize">If the <span class="textbf"><span class="texttt">capture</span></span> clause is present, <span class="textit"><span class="textrm">statement</span></span> can have one of the following forms:
+   <!--l. 801--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148052r1"></a></span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">stmt</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148053r2"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">stmt</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148054r3"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">stmt</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span>
+   <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148055r4"></a></span></pre>
+  <p>where <span class="textit"><span class="textrm">expr-stmt</span></span> is either <span class="textit"><span class="textrm">write-expr-stmt</span></span>, <span class="textit"><span class="textrm">update-expr-stmt</span></span> or <span class="textit"><span class="textrm">cond-expr-stmt</span></span>.
+  </p> 
+</li>
+  <li class="itemize">If both the <span class="textbf"><span class="texttt">compare</span></span> and <span class="textbf"><span class="texttt">capture</span></span> clauses are present then the following forms are also
+  valid:
+   <!--l. 811--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148056r1"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">cond</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">update</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">stmt</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148057r2"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">cond</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">update</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">stmt</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148058r3"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">else</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148059r4"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">r</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">r</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148060r5"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">r</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">r</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">else</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span>
+   <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148061r6"></a></span></pre>
+  </li></ul>
+<p>In the preceding expressions:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">x</span></span>,
+  <span class="textit"><span class="textrm">r</span></span>&#x00A0;(result),
+  and
+  <span class="textit"><span class="textrm">v</span></span>
+  (as
+  applicable)
+  are
+  <span class="textit"><span class="textrm">lvalue</span></span>
+  expressions
+  with
+                                                                            
+                                                                            
+  scalar
+  type.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">e</span></span>&#x00A0;(expected)
+  is
+  an
+  expression
+  with
+  scalar
+  type,
+  in
+  forms
+  where
+  <span class="textit"><span class="textrm">e</span></span>
+  is
+  assigned
+  it
+  must
+  be
+  an
+  lvalue.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">d</span></span>&#x00A0;(desired)
+  is
+  an
+  expression
+  with
+  scalar
+  type.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">r</span></span>
+  must
+  be
+  of
+  integral
+  type.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  During
+  the
+  execution
+  of
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  region,
+  multiple
+  syntactic
+  occurrences
+  of
+  <span class="textit"><span class="textrm">x</span></span>
+  must
+  designate
+  the
+  same
+  storage
+  location.
+  </li>
+  <li class="itemize">
+  None
+  of
+  <span class="textit"><span class="textrm">v</span></span>,
+  <span class="textit"><span class="textrm">x</span></span>,
+  <span class="textit"><span class="textrm">r</span></span>,
+  <span class="textit"><span class="textrm">d</span></span>
+  and
+  <span class="textit"><span class="textrm">expr</span></span>
+  (as
+  applicable)
+  may
+  access
+  the
+  storage
+  location
+  designated
+  by
+  any
+  other
+                                                                            
+                                                                            
+  in
+  the
+  list.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">e</span></span>
+  and
+  <span class="textit"><span class="textrm">v</span></span>
+  may
+  refer
+  to,
+  or
+  access,
+  the
+  same
+  storage
+  location.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">expr</span></span>
+  is
+  an
+  expression
+  with
+  scalar
+  type.
+  </li>
+  <li class="itemize">
+  The
+  order
+  operation,
+  <span class="textit"><span class="textrm">ordop</span></span>,
+  is
+  one
+  of
+  <span class="textbf"><span class="texttt">&#x003C;</span></span>,
+  or
+  <span class="textbf"><span class="texttt">&#x003E;</span></span>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">binop</span></span>
+  is
+  one
+  of
+  <span class="textbf"><span class="texttt">+</span></span>,
+  <span class="textbf"><span class="texttt">*</span></span>,
+  <span class="textbf"><span class="texttt">-</span></span>,
+  <span class="textbf"><span class="texttt">/</span></span>,
+  <span class="textbf"><span class="texttt">&amp;</span></span>,
+  <span class="textbf"><span class="texttt">^</span></span>,
+  <span class="textbf"><span class="texttt">|</span></span>,
+  <span class="textbf"><span class="texttt">&#x003C;</span></span><span class="textbf"><span class="texttt">&#x003C;</span></span>,
+  or
+  <span class="textbf"><span class="texttt">&#x003E;</span></span><span class="textbf"><span class="texttt">&#x003E;</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">binop</span></span>,
+  <span class="textit"><span class="textrm">binop</span></span><span class="textbf"><span class="texttt">=</span></span>,
+  <span class="textit"><span class="textrm">ordop</span></span>,
+  <span class="textbf"><span class="texttt">==</span></span>,
+  <span class="textbf"><span class="texttt">++</span></span>,
+  and
+  <span class="textbf"><span class="texttt">-</span></span><span class="textbf"><span class="texttt">-</span></span>
+  are
+  not
+  overloaded
+  operators.
+  </li>
+  <li class="itemize">
+  The
+  expression
+  <span class="textit"><span class="textrm">x</span></span>
+  <span class="textit"><span class="textrm">binop</span></span>
+  <span class="textit"><span class="textrm">expr</span></span>
+  must
+  be
+  numerically
+                                                                            
+                                                                            
+  equivalent
+  to
+  <span class="textit"><span class="textrm">x</span></span>
+  <span class="textit"><span class="textrm">binop</span></span>
+  <span class="textit"><span class="textrm">(expr)</span></span>.
+  This
+  requirement
+  is
+  satisfied
+  if
+  the
+  operators
+  in
+  <span class="textit"><span class="textrm">expr</span></span>
+  have
+  precedence
+  greater
+  than
+  <span class="textit"><span class="textrm">binop</span></span>,
+  or
+  by
+  using
+  parentheses
+  around
+  <span class="textit"><span class="textrm">expr</span></span>
+  or
+  subexpressions
+  of
+  <span class="textit"><span class="textrm">expr</span></span>.
+  </li>
+  <li class="itemize">
+  The
+  expression
+  <span class="textit"><span class="textrm">expr</span></span>
+  <span class="textit"><span class="textrm">binop</span></span>
+  <span class="textit"><span class="textrm">x</span></span>
+  must
+  be
+  numerically
+  equivalent
+  to
+  <span class="textit"><span class="textrm">(expr)</span></span>
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">binop</span></span>
+  <span class="textit"><span class="textrm">x</span></span>.
+  This
+  requirement
+  is
+  satisfied
+  if
+  the
+  operators
+  in
+  <span class="textit"><span class="textrm">expr</span></span>
+  have
+  precedence
+  equal
+  to
+  or
+  greater
+  than
+  <span class="textit"><span class="textrm">binop</span></span>,
+  or
+  by
+  using
+  parentheses
+  around
+  <span class="textit"><span class="textrm">expr</span></span>
+  or
+  subexpressions
+  of
+  <span class="textit"><span class="textrm">expr</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">==</span></span>
+  comparisons
+  are
+  performed
+  by
+  comparing
+  the
+  bits
+  that
+  comprise
+  each
+                                                                            
+                                                                            
+  object
+  as
+  with
+  <span class="textbf"><span class="texttt">memcmp</span></span>.
+  </li>
+  <li class="itemize">
+  For
+  forms
+  that
+  allow
+  multiple
+  occurrences
+  of
+  <span class="textit"><span class="textrm">x</span></span>,
+  the
+  number
+  of
+  times
+  that
+  <span class="textit"><span class="textrm">x</span></span>
+  is
+  evaluated
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">hint-expression</span></span>
+  is
+  a
+  constant
+  integer
+  expression
+  that
+  evaluates
+  to
+  a
+  valid
+  synchronization
+  hint.</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">atomic</span></span> construct takes any of the following forms:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148062r1"></a></span></p> 
+<!--l. 868--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148063r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">atomic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148064r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">statement</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148065r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">atomic</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148066r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148067r1"></a></span></p> 
+<!--l. 876--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148068r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">atomic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">capture</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148069r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">statement</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148070r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">capture</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">statement</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148071r5"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">atomic</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148072r6"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148073r1"></a></span></p> 
+<!--l. 885--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148074r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">atomic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">capture</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148075r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">capture</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">statement</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148076r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">statement</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148077r5"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">atomic</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148078r6"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">capture-statement</span></span> has the following form:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148079r1"></a></span></p> 
+<!--l. 894--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148080r2"></a></span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148081r3"></a></span></pre>
+<p>and <span class="textit"><span class="textrm">statement</span></span> is a statement with one of the following forms:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">If <span class="textit"><span class="textrm">atomic-clause</span></span> is <span class="textbf"><span class="texttt">read</span></span> then <span class="textit"><span class="textrm">statement</span></span> is:
+   <!--l. 903--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148082r1"></a></span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">;</span>
+   <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148083r2"></a></span></pre>
+  </li>
+  <li class="itemize">If <span class="textit"><span class="textrm">atomic-clause</span></span> is <span class="textbf"><span class="texttt">write</span></span> then <span class="textit"><span class="textrm">statement</span></span> is:
+   <!--l. 908--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148084r1"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span>
+   <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148085r2"></a></span></pre>
+  </li>
+  <li class="itemize">If <span class="textit"><span class="textrm">atomic-clause</span></span> is <span class="textbf"><span class="texttt">update</span></span> then:
+    <ul class="itemize2">
+    <li class="itemize"><span class="textit"><span class="textrm">statement</span></span> can have one of the following forms:
+     <!--l. 915--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148086r1"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">operator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148087r2"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">operator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148088r3"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">intrinsic</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">procedure</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148089r4"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">intrinsic</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">procedure</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">expr</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">)</span>
+     <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148090r5"></a></span></pre>
+    </li>
+    <li class="itemize">or, if the <span class="textbf"><span class="texttt">capture</span></span> clause is present and <span class="textit"><span class="textrm">statement</span></span> is preceded or followed by <span class="textit"><span class="textrm">capture-statement</span></span>,
+    <span class="textit"><span class="textrm">statement</span></span> can also have this form:
+                                                                            
+                                                                            
+     <!--l. 924--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148091r1"></a></span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">expr</span>
+     <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148092r2"></a></span></pre>
+    </li></ul>
+  </li>
+  <li class="itemize">If the <span class="textbf"><span class="texttt">compare</span></span> clause is present then:
+    <ul class="itemize2">
+    <li class="itemize"><span class="textit"><span class="textrm">statement</span></span> has one of these forms:
+     <!--l. 932--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148093r1"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">then</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148094r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148095r3"></a></span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">if</span>
+     <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148096r4"></a></span></pre>
+     <!--l. 937--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148097r1"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span>
+     <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148098r2"></a></span></pre>
+    </li>
+    <li class="itemize">or, if the <span class="textbf"><span class="texttt">capture</span></span> clause is also present and <span class="textit"><span class="textrm">statement</span></span> is not preceded or followed by
+    <span class="textit"><span class="textrm">capture-statement</span></span>, <span class="textit"><span class="textrm">statement</span></span> has this form:
+     <!--l. 943--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148099r1"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">==</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">e</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">then</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148100r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">d</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148101r3"></a></span><span 
+class="pcrb8t-">else</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148102r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">v</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148103r5"></a></span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">if</span>
+     <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x138-148104r6"></a></span></pre>
+    </li></ul>
+  </li></ul>
+<p>In the preceding statements:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">x</span></span>,
+  <span class="textit"><span class="textrm">v</span></span>,
+  <span class="textit"><span class="textrm">d</span></span>
+  and
+  <span class="textit"><span class="textrm">e</span></span>
+  (as
+  applicable)
+  are
+  scalar
+  variables
+  of
+  intrinsic
+  type.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">x</span></span>
+  must
+  not
+  have
+  the
+  <span class="textbf"><span class="texttt">ALLOCATABLE</span></span>
+  attribute.
+  </li>
+  <li class="itemize">
+  During
+  the
+  execution
+  of
+  an
+  atomic
+  region,
+  multiple
+  syntactic
+  occurrences
+  of
+  <span class="textit"><span class="textrm">x</span></span>
+  must
+  designate
+  the
+  same
+  storage
+  location.
+  </li>
+  <li class="itemize">
+  None
+  of
+  <span class="textit"><span class="textrm">v</span></span>,
+  <span class="textit"><span class="textrm">expr</span></span>,
+  and
+  <span class="textit"><span class="textrm">expr-list</span></span>
+  (as
+  applicable)
+                                                                            
+                                                                            
+  may
+  access
+  the
+  same
+  storage
+  location
+  as
+  <span class="textit"><span class="textrm">x</span></span>.
+  </li>
+  <li class="itemize">
+  None
+  of
+  <span class="textit"><span class="textrm">x</span></span>,
+  <span class="textit"><span class="textrm">expr</span></span>,
+  and
+  <span class="textit"><span class="textrm">expr-list</span></span>
+  (as
+  applicable)
+  may
+  access
+  the
+  same
+  storage
+  location
+  as
+  <span class="textit"><span class="textrm">v</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">expr</span></span>
+  is
+  a
+  scalar
+  expression.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">expr-list</span></span>
+  is
+  a
+  comma-separated,
+                                                                            
+                                                                            
+  non-empty
+  list
+  of
+  scalar
+  expressions.
+  If
+  <span class="textit"><span class="textrm">intrinsic-procedure-name</span></span>
+  refers
+  to
+  <span class="textbf"><span class="texttt">IAND</span></span>,
+  <span class="textbf"><span class="texttt">IOR</span></span>,
+  or
+  <span class="textbf"><span class="texttt">IEOR</span></span>,
+  exactly
+  one
+  expression
+  must
+  appear
+  in
+  <span class="textit"><span class="textrm">expr-list</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">intrinsic-procedure-name</span></span>
+  is
+  one
+  of
+  <span class="textbf"><span class="texttt">MAX</span></span>,
+  <span class="textbf"><span class="texttt">MIN</span></span>,
+  <span class="textbf"><span class="texttt">IAND</span></span>,
+  <span class="textbf"><span class="texttt">IOR</span></span>,
+  or
+  <span class="textbf"><span class="texttt">IEOR</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">operator</span></span>
+  is
+  one
+  of
+  <span class="textbf"><span class="texttt">+</span></span>,
+  <span class="textbf"><span class="texttt">*</span></span>,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">-</span></span>,
+  <span class="textbf"><span class="texttt">/</span></span>,
+  <span class="textbf"><span class="texttt">.AND.</span></span>,
+  <span class="textbf"><span class="texttt">.OR.</span></span>,
+  <span class="textbf"><span class="texttt">.EQV.</span></span>,
+  or
+  <span class="textbf"><span class="texttt">.NEQV.</span></span>.
+  </li>
+  <li class="itemize">
+  The
+  expression
+  <span class="textit"><span class="textrm">x
+  operator
+  expr</span></span>
+  must
+  be
+  numerically
+  equivalent
+  to
+  <span class="textit"><span class="textrm">x
+  operator
+  (expr)</span></span>.
+  This
+  requirement
+  is
+  satisfied
+  if
+  the
+  operators
+  in
+  <span class="textit"><span class="textrm">expr</span></span>
+  have
+  precedence
+  greater
+  than
+  <span class="textit"><span class="textrm">operator</span></span>,
+  or
+  by
+  using
+  parentheses
+  around
+  <span class="textit"><span class="textrm">expr</span></span>
+                                                                            
+                                                                            
+  or
+  subexpressions
+  of
+  <span class="textit"><span class="textrm">expr</span></span>.
+  </li>
+  <li class="itemize">
+  The
+  expression
+  <span class="textit"><span class="textrm">expr
+  operator
+  x</span></span>
+  must
+  be
+  numerically
+  equivalent
+  to
+  <span class="textit"><span class="textrm">(expr)
+  operator
+  x</span></span>.
+  This
+  requirement
+  is
+  satisfied
+  if
+  the
+  operators
+  in
+  <span class="textit"><span class="textrm">expr</span></span>
+  have
+  precedence
+  equal
+  to
+  or
+  greater
+  than
+  <span class="textit"><span class="textrm">operator</span></span>,
+  or
+  by
+  using
+  parentheses
+  around
+  <span class="textit"><span class="textrm">expr</span></span>
+                                                                            
+                                                                            
+  or
+  subexpressions
+  of
+  <span class="textit"><span class="textrm">expr</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">intrinsic-procedure-name</span></span>
+  must
+  refer
+  to
+  the
+  intrinsic
+  procedure
+  name
+  and
+  not
+  to
+  other
+  program
+  entities.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">operator</span></span>
+  must
+  refer
+  to
+  the
+  intrinsic
+  operator
+  and
+  not
+  to
+  a
+  user-defined
+  operator.
+  </li>
+  <li class="itemize">
+  All
+  assignments
+                                                                            
+                                                                            
+  must
+  be
+  intrinsic
+  assignments.
+  </li>
+  <li class="itemize">
+  For
+  forms
+  that
+  allow
+  multiple
+  occurrences
+  of
+  <span class="textit"><span class="textrm">x</span></span>,
+  the
+  number
+  of
+  times
+  that
+  <span class="textit"><span class="textrm">x</span></span>
+  is
+  evaluated
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">hint-expression</span></span>
+  is
+  a
+  constant
+  expression
+  that
+  evaluates
+  to
+  a
+  scalar
+  value
+  with
+  kind
+  <span class="textbf"><span class="texttt">omp_sync_hint_kind</span></span>
+                                                                            
+                                                                            
+  and
+  a
+  value
+  that
+  is
+  a
+  valid
+  synchronization
+  hint.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-138-628"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+If the size of <span class="textit"><span class="textrm">x</span></span> is 8, 16, 32, or 64 bits and <span class="textit"><span class="textrm">x</span></span> is aligned to a multiple of its size, the binding thread set for the
+<span class="textbf"><span class="texttt">atomic</span></span> region is all threads on the device. Otherwise, the binding thread set for the <span class="textbf"><span class="texttt">atomic</span></span> region is all
+threads in the contention group. <span class="textbf"><span class="texttt">atomic</span></span> regions enforce exclusive access with respect to other <span class="textbf"><span class="texttt">atomic</span></span>
+regions that access the same storage location <span class="textit"><span class="textrm">x</span></span> among all threads in the binding thread set without regard to
+the teams to which the threads belong.
+</p> 
+<p><p><a 
+ id="Q1-138-629"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+If <span class="textit"><span class="textrm">atomic-clause</span></span> is not present on the construct, the behavior is as if the <span class="textbf"><span class="texttt">update</span></span> clause is
+specified.
+</p> 
+<p>The <span class="textbf"><span class="texttt">atomic</span></span> construct with the <span class="textbf"><span class="texttt">read</span></span> clause results in an atomic read of the location designated by
+<span class="textit"><span class="textrm">x</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">atomic</span></span> construct with the <span class="textbf"><span class="texttt">write</span></span> clause results in an atomic write of the location designated by
+<span class="textit"><span class="textrm">x</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">atomic</span></span> construct with the <span class="textbf"><span class="texttt">update</span></span> clause results in an atomic update of the location designated by <span class="textit"><span class="textrm">x</span></span>
+using the designated operator or intrinsic. Only the read and write of the location designated by <span class="textit"><span class="textrm">x</span></span> are
+performed mutually atomically. The evaluation of <span class="textit"><span class="textrm">expr</span></span> or <span class="textit"><span class="textrm">expr-list</span></span> need not be atomic with respect to the
+read or write of the location designated by <span class="textit"><span class="textrm">x</span></span>. No task scheduling points are allowed between the read and the
+write of the location designated by <span class="textit"><span class="textrm">x</span></span>.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">capture</span></span> clause is present, the atomic update is an atomic captured update &#8212; an atomic update to
+the location designated by <span class="textit"><span class="textrm">x</span></span> using the designated operator or intrinsic while also capturing the original or
+final value of the location designated by <span class="textit"><span class="textrm">x</span></span> with respect to the atomic update. The original or final value of
+the location designated by <span class="textit"><span class="textrm">x</span></span> is written in the location designated by <span class="textit"><span class="textrm">v</span></span> based on the base language semantics
+of structured block or statements of the <span class="textbf"><span class="texttt">atomic</span></span> construct. Only the read and write of the location
+designated by <span class="textit"><span class="textrm">x</span></span> are performed mutually atomically. Neither the evaluation of <span class="textit"><span class="textrm">expr</span></span> or <span class="textit"><span class="textrm">expr-list</span></span>, nor the write
+to the location designated by <span class="textit"><span class="textrm">v</span></span>, need be atomic with respect to the read or write of the location designated
+                                                                            
+                                                                            
+by <span class="textit"><span class="textrm">x</span></span>.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">compare</span></span> clause is present, the atomic update is an atomic conditional update. For forms that use an
+equality comparison, the operation is an atomic compare-and-swap &#8212; it atomically compares the value of <span class="textit"><span class="textrm">x</span></span>
+to <span class="textit"><span class="textrm">e</span></span> and if they are equal writes the value of <span class="textit"><span class="textrm">d</span></span> into the location designated by <span class="textit"><span class="textrm">x</span></span>. Based on the base
+language semantics of the associated structured block of the <span class="textbf"><span class="texttt">atomic</span></span> construct, the original or
+final value of the location designated by <span class="textit"><span class="textrm">x</span></span> is written to the location designated by <span class="textit"><span class="textrm">v</span></span>, which is
+allowed to be the same location as designated by <span class="textit"><span class="textrm">e</span></span>, or the result of the comparison is written
+to the location designated by <span class="textit"><span class="textrm">r</span></span>. Only the read and write of the location designated by <span class="textit"><span class="textrm">x</span></span> are
+performed mutually atomically. Neither the evaluation of either <span class="textit"><span class="textrm">e</span></span> or <span class="textit"><span class="textrm">d</span></span> nor writes to the locations
+designated by <span class="textit"><span class="textrm">v</span></span> and <span class="textit"><span class="textrm">r</span></span> need be atomic with respect to the read or write of the location designated by
+<span class="textit"><span class="textrm">x</span></span>.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the <span class="textbf"><span class="texttt">compare</span></span> clause is present, forms that use <span class="textit"><span class="textrm">ordop</span></span> are logically an atomic maximum or minimum, but
+they may be implemented with a compare-and-swap loop with short-circuiting. For forms where <span class="textit"><span class="textrm">statement</span></span>
+is <span class="textit"><span class="textrm">cond-expr-stmt</span></span>, if the result of the condition implies that the value of <span class="textit"><span class="textrm">x</span></span> does not change then the update
+may not occur.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If the <span class="textbf"><span class="texttt">weak</span></span> clause is present, the comparison performed by an atomic compare-and-swap operation may
+spuriously fail, evaluating to not equal even when the values are equal.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Allowing for spurious failure by specifying a <span class="textbf"><span class="texttt">weak</span></span> clause can result in performance gains on some
+systems when using compare-and-swap in a loop. For cases where a single compare-and-swap would
+otherwise be sufficient, using a loop over a <span class="textbf"><span class="texttt">weak</span></span> compare-and-swap is unlikely to improve performance.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If <span class="textit"><span class="textrm">memory-order-clause</span></span> is present, or implicitly provided by a <span class="textbf"><span class="texttt">requires</span></span> directive, it specifies the effective
+memory ordering and otherwise the effective memory ordering is <span class="textbf"><span class="texttt">relaxed</span></span>. If the <span class="textbf"><span class="texttt">fail</span></span> clause is present,
+its parameter overrides the effective memory ordering used if the comparison for an atomic conditional
+update fails.
+</p> 
+<p>The <span class="textbf"><span class="texttt">atomic</span></span> construct may be used to enforce memory consistency between threads, based on the
+guarantees provided by Section&#x00A0;<a 
+href="openmpsu14.html#x23-220001.4.6">1.4.6<!--tex4ht:ref: subsec:OpenMP Memory Consistency --></a>. A strong flush on the location designated by <span class="textit"><span class="textrm">x</span></span> is performed
+on entry to and exit from the atomic operation, ensuring that the set of all atomic operations
+applied to the same location in a race-free program has a total completion order. If the <span class="textbf"><span class="texttt">write</span></span> or
+<span class="textbf"><span class="texttt">update</span></span> clause is specified, the atomic operation is not an atomic conditional update for which the
+                                                                            
+                                                                            
+comparison fails, and the effective memory ordering is <span class="textbf"><span class="texttt">release</span></span>, <span class="textbf"><span class="texttt">acq_rel</span></span>, or <span class="textbf"><span class="texttt">seq_cst</span></span>, the
+strong flush on entry to the atomic operation is also a release flush. If the <span class="textbf"><span class="texttt">read</span></span> or <span class="textbf"><span class="texttt">update</span></span>
+clause is specified and the effective memory ordering is <span class="textbf"><span class="texttt">acquire</span></span>, <span class="textbf"><span class="texttt">acq_rel</span></span>, or <span class="textbf"><span class="texttt">seq_cst</span></span>
+then the strong flush on exit from the atomic operation is also an acquire flush. Therefore, if
+the effective memory ordering is not <span class="textbf"><span class="texttt">relaxed</span></span>, release and/or acquire flush operations are
+implied and permit synchronization between the threads without the use of explicit <span class="textbf"><span class="texttt">flush</span></span>
+directives.
+</p> 
+<p>For all forms of the <span class="textbf"><span class="texttt">atomic</span></span> construct, any combination of two or more of these <span class="textbf"><span class="texttt">atomic</span></span> constructs
+enforces mutually exclusive access to the locations designated by <span class="textit"><span class="textrm">x</span></span> among threads in the binding thread set.
+To avoid data races, all accesses of the locations designated by <span class="textit"><span class="textrm">x</span></span> that could potentially occur in parallel must
+be protected with an <span class="textbf"><span class="texttt">atomic</span></span> construct.
+</p> 
+<p><span class="textbf"><span class="texttt">atomic</span></span> regions do not guarantee exclusive access with respect to any accesses outside of <span class="textbf"><span class="texttt">atomic</span></span> regions
+to the same storage location <span class="textit"><span class="textrm">x</span></span> even if those accesses occur during a <span class="textbf"><span class="texttt">critical</span></span> or <span class="textbf"><span class="texttt">ordered</span></span> region, while
+an OpenMP lock is owned by the executing task, or during the execution of a <span class="textbf"><span class="texttt">reduction</span></span>
+clause.
+</p> 
+<p>However, other OpenMP synchronization can ensure the desired exclusive access. For example, a barrier
+that follows a series of atomic updates to <span class="textit"><span class="textrm">x</span></span> guarantees that subsequent accesses do not form a race with the
+atomic accesses.
+</p> 
+<p>A compliant implementation may enforce exclusive access between <span class="textbf"><span class="texttt">atomic</span></span> regions that update different
+storage locations. The circumstances under which this occurs are implementation defined.
+</p> 
+<p>If the storage location designated by <span class="textit"><span class="textrm">x</span></span> is not size-aligned (that is, if the byte alignment of <span class="textit"><span class="textrm">x</span></span> is
+not a multiple of the size of <span class="textit"><span class="textrm">x</span></span>), then the behavior of the <span class="textbf"><span class="texttt">atomic</span></span> region is implementation
+defined.
+</p> 
+<p>If present, the <span class="textbf"><span class="texttt">hint</span></span> clause gives the implementation additional information about the expected properties
+of the atomic operation that can optionally be used to optimize the implementation. The presence of a <span class="textbf"><span class="texttt">hint</span></span>
+clause does not affect the semantics of the <span class="textbf"><span class="texttt">atomic</span></span> construct, and all hints may be ignored. If
+no <span class="textbf"><span class="texttt">hint</span></span> clause is specified, the effect is as if <span class="textbf"><span class="texttt">hint(omp_sync_hint_none)</span></span> had been
+specified.
+</p> 
+<p><p><a 
+ id="Q1-138-630"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">atomic-acquiring</span></span> event occurs in the thread that encounters the <span class="textbf"><span class="texttt">atomic</span></span> construct on entry to the
+atomic region before initiating synchronization for the region.
+</p> 
+<p>The <span class="textit"><span class="textrm">atomic-acquired</span></span> event occurs in the thread that encounters the <span class="textbf"><span class="texttt">atomic</span></span> construct after it enters the
+region, but before it executes the structured block of the <span class="textbf"><span class="texttt">atomic</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">atomic-released</span></span> event occurs in the thread that encounters the <span class="textbf"><span class="texttt">atomic</span></span> construct after it completes any
+synchronization on exit from the <span class="textbf"><span class="texttt">atomic</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-138-631"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire</span></span> callback for each
+occurrence of an <span class="textit"><span class="textrm">atomic-acquiring</span></span> event in that thread. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_mutex_acquire_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_mutex_acquired</span></span> callback for each
+occurrence of an <span class="textit"><span class="textrm">atomic-acquired</span></span> event in that thread. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_mutex_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_mutex_released</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_mutex_atomic</span></span> as the <span class="textit"><span class="textrm">kind</span></span> argument if practical, although a less specific <span class="textit"><span class="textrm">kind</span></span> may be
+used, for each occurrence of an <span class="textit"><span class="textrm">atomic-released</span></span> event in that thread. This callback has the type
+signature <span class="textbf"><span class="texttt">ompt_callback_mutex_t</span></span> and occurs in the task that encounters the atomic
+construct.
+</p> 
+<p><p><a 
+ id="Q1-138-632"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">atomic</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  OpenMP
+  constructs
+  may
+  not
+  be
+  encountered
+  during
+  execution
+  of
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textit"><span class="textrm">atomic-clause</span></span>
+  may
+  appear
+                                                                            
+                                                                            
+  on
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textit"><span class="textrm">memory-order-clause</span></span>
+  may
+  appear
+  on
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">hint</span></span>
+  clause
+  may
+  appear
+  on
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">capture</span></span>
+  clause
+  may
+  appear
+  on
+  the
+  construct.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">compare</span></span>
+  clause
+  may
+  appear
+  on
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">capture</span></span>
+  or
+  <span class="textbf"><span class="texttt">compare</span></span>
+  clause
+  appears
+  on
+  the
+  construct
+  then
+  <span class="textit"><span class="textrm">atomic-clause</span></span>
+  must
+  be
+  <span class="textbf"><span class="texttt">update</span></span>.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">fail</span></span>
+  clause
+  may
+  appear
+  on
+                                                                            
+                                                                            
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">weak</span></span>
+  clause
+  may
+  appear
+  on
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">atomic-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">read</span></span>
+  then
+  <span class="textit"><span class="textrm">memory-order-clause</span></span>
+  must
+  not
+  be
+  <span class="textbf"><span class="texttt">release</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">atomic-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">write</span></span>
+  then
+  <span class="textit"><span class="textrm">memory-order-clause</span></span>
+  must
+  not
+  be
+  <span class="textbf"><span class="texttt">acquire</span></span>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">weak</span></span>
+  clause
+  may
+  only
+  appear
+  if
+  the
+  resulting
+  atomic
+  operation
+  is
+  an
+  atomic
+  conditional
+  update
+  for
+  which
+  the
+  comparison
+  tests
+  for
+  equality.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+  atomic
+  accesses
+  to
+  the
+  storage
+  locations
+  designated
+  by
+  <span class="textit"><span class="textrm">x</span></span>
+                                                                            
+                                                                            
+  throughout
+  the
+  program
+  are
+  required
+  to
+  have
+  a
+  compatible
+  type.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">fail</span></span>
+  clause
+  may
+  only
+  appear
+  if
+  the
+  resulting
+  atomic
+  operation
+  is
+  an
+  atomic
+  conditional
+  update.</li></ul>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+  atomic
+  accesses
+                                                                            
+                                                                            
+  to
+  the
+  storage
+  locations
+  designated
+  by
+  <span class="textit"><span class="textrm">x</span></span>
+  throughout
+  the
+  program
+  are
+  required
+  to
+  have
+  the
+  same
+  type
+  and
+  type
+  parameters.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">fail</span></span>
+  clause
+  may
+  only
+  appear
+  if
+  the
+  resulting
+  atomic
+  operation
+  is
+  an
+  atomic
+  conditional
+  update
+  or
+  an
+  atomic
+  update
+                                                                            
+                                                                            
+  where
+  <span class="textit"><span class="textrm">intrinsic-procedure-name</span></span>
+  is
+  either
+  <span class="textbf"><span class="texttt">MAX</span></span>
+  or
+  <span class="textbf"><span class="texttt">MIN</span></span>.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-138-633"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu36.html#x55-550002.5.1">2.5.1<!--tex4ht:ref: subsec:requires Directive --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">critical</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu99.html#x132-1420002.19.1">2.19.1<!--tex4ht:ref: subsec:critical Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">barrier</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu100.html#x133-1430002.19.2">2.19.2<!--tex4ht:ref: subsec:barrier Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">flush</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu106.html#x139-1490002.19.8">2.19.8<!--tex4ht:ref: subsec:flush Construct --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu107.html#x140-1510002.19.9">2.19.9<!--tex4ht:ref: subsec:ordered Construct --></a>.
+  </li>
+  <li class="itemize">
+  Synchronization
+  hints,
+  see
+  Section&#x00A0;<a 
+href="openmpsu110.html#x143-1550002.19.12">2.19.12<!--tex4ht:ref: subsec:Synchronization Hints --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu117.html#x152-1760002.21.5.4">2.21.5.4<!--tex4ht:ref: subsubsec:reduction clause --></a>.
+  </li>
+  <li class="itemize">
+  lock
+  routines,
+  see
+  Section&#x00A0;<a 
+href="openmpse39.html#x224-2570003.9">3.9<!--tex4ht:ref: sec:Lock Routines --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_mutex_atomic</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3230004.4.4.16">4.4.4.16<!--tex4ht:ref: sec:ompt_mutex_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3560004.5.2.14">4.5.2.14<!--tex4ht:ref: sec:ompt_callback_mutex_acquire_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3570004.5.2.15">4.5.2.15<!--tex4ht:ref: sec:ompt_callback_mutex_t --></a>.
+  </li></ul>
+<!--l. 1237--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu106.html" >next</a>] [<a 
+href="openmpsu104.html" >prev</a>] [<a 
+href="openmpsu104.html#tailopenmpsu104.html" >prev-tail</a>] [<a 
+href="openmpsu105.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu105.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu105.html"></a> </p> 
+ 
+</body> 
+</html>

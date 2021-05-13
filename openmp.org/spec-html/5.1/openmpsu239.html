@@ -1,0 +1,279 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>The Callback Interface</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 721--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse56.html" >next</a>] [<a 
+href="openmpsu238.html" >prev</a>] [<a 
+href="openmpsu238.html#tailopenmpsu238.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu239.html">tail</a>] [<a 
+href="openmpse55.html#openmpsu239.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.4.6</span>&#x00A0;&#x00A0;<a 
+ id="x303-4430005.4.6"></a>The Callback Interface</h4>
+<a 
+ id="dx303-443001"></a>
+<p><p><a 
+ id="Q1-303-2139"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+All OMPD library interactions with the OpenMP program must be through a set of callbacks that the
+third-party tool provides. These callbacks must also be used for allocating or releasing resources, such as
+memory, that the OMPD library needs.
+<p><a 
+ id="Q1-303-2140"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443002r1"></a></span></p> 
+<!--l. 733--><pre class="listings"><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443003r2"></a></span><span 
+class="pcrb8t-x-x-90">typedef</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">struct</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callbacks_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">{</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443004r3"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_memory_alloc_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">alloc_memory</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443005r4"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_memory_free_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">free_memory</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443006r5"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_print_string_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">print_string</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443007r6"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_sizeof_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">sizeof_type</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443008r7"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_symbol_addr_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">symbol_addr_lookup</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443009r8"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_memory_read_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">read_memory</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443010r9"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_memory_write_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">write_memory</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443011r10"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_memory_read_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">read_string</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443012r11"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_device_host_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">device_to_host</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443013r12"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_device_host_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">host_to_device</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443014r13"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callback_get_thread_context_for_thread_id_fn_t</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443015r14"></a></span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="ec-qtmri-x-x-90">get_thread_context_for_thread_id</span><span 
+class="pcrb8t-x-x-90">;</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443016r15"></a></span><span 
+class="pcrb8t-x-x-90">}</span><span 
+class="pcrb8t-x-x-90">&#x00A0;</span><span 
+class="pcrb8t-x-x-90">ompd_callbacks_t</span><span 
+class="pcrb8t-x-x-90">;</span>
+ <span 
+class="pcrb8t-x-x-90">&#x00A0;</span><br /><span class="label"><a 
+ id="x303-443017r16"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-303-2141"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The set of callbacks that the OMPD library must use is collected in the <span class="textbf"><span class="texttt">ompd_callbacks_t</span></span> structure.
+An instance of this type is passed to the OMPD library as a parameter to <span class="textbf"><span class="texttt">ompd_initialize</span></span>
+(see&#x00A0;Section&#x00A0;<a 
+href="openmpsu240.html#x305-4460005.5.1.1">5.5.1.1<!--tex4ht:ref: subsubsubsec:ompd_initialize --></a>). Each field points to a function that the OMPD library must use either to interact with
+the OpenMP program or for memory operations.
+</p> 
+<p>The <span class="textit"><span class="textrm">alloc_memory</span></span> and <span class="textit"><span class="textrm">free_memory</span></span> fields are pointers to functions the OMPD library uses to allocate and
+to release dynamic memory.
+</p> 
+<p>The <span class="textit"><span class="textrm">print_string</span></span> field points to a function that prints a string.
+</p> 
+<p>The architecture on which the OMPD library and third-party tool execute may be different from the
+architecture on which the OpenMP program that is being examined executes. The <span class="textit"><span class="textrm">sizeof_type</span></span> field
+points to a function that allows the OMPD library to determine the sizes of the basic integer
+and pointer types that the OpenMP program uses. Because of the potential differences in the
+targeted architectures, the conventions for representing data in the OMPD library and the OpenMP
+program may be different. The <span class="textit"><span class="textrm">device_to_host</span></span> field points to a function that translates data from
+the conventions that the OpenMP program uses to those that the third-party tool and OMPD
+library use. The reverse operation is performed by the function to which the <span class="textit"><span class="textrm">host_to_device</span></span> field
+points.
+</p> 
+<p>The <span class="textit"><span class="textrm">symbol_addr_lookup</span></span> field points to a callback that the OMPD library can use to find the address of a
+global or thread local storage symbol. The <span class="textit"><span class="textrm">read_memory</span></span>, <span class="textit"><span class="textrm">read_string</span></span> and <span class="textit"><span class="textrm">write_memory</span></span> fields are pointers
+to functions for reading from and writing to global memory or thread local storage in the OpenMP
+program.
+</p> 
+<p>The <span class="textit"><span class="textrm">get_thread_context_for_thread_id</span></span> field is a pointer to a function that the OMPD library can use to
+obtain a thread context that corresponds to a native thread identifier.
+</p> 
+<p><p><a 
+ id="Q1-303-2142"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu234.html#x298-4320005.4.1.1">5.4.1.1<!--tex4ht:ref: subsubsubsec:ompd_callback_memory_alloc_fn_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_memory_free_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu234.html#x298-4330005.4.1.2">5.4.1.2<!--tex4ht:ref: subsubsubsec:ompd_callback_memory_free_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_get_thread_context_for_thread_id_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu235.html#x299-4350005.4.2.1">5.4.2.1<!--tex4ht:ref: subsubsubsec:ompd_callback_get_thread_context_for_thread_id_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_sizeof_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu235.html#x299-4360005.4.2.2">5.4.2.2<!--tex4ht:ref: subsubsubsec:ompd_callback_sizeof_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_symbol_addr_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu236.html#x300-4380005.4.3.1">5.4.3.1<!--tex4ht:ref: subsubsubsec:ompd_callback_symbol_addr_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_memory_read_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu236.html#x300-4390005.4.3.2">5.4.3.2<!--tex4ht:ref: subsubsubsec:ompd_callback_memory_read_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_memory_write_fn_t</span></span>
+  type,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu236.html#x300-4400005.4.3.3">5.4.3.3<!--tex4ht:ref: subsubsubsec:ompd_callback_memory_write_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu237.html#x301-4410005.4.4">5.4.4<!--tex4ht:ref: subsubsubsec:ompd_callback_device_host_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu238.html#x302-4420005.4.5">5.4.5<!--tex4ht:ref: subsubsubsec:ompd_callback_print_string_fn_t --></a></li></ul>
+<!--l. 2--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse56.html" >next</a>] [<a 
+href="openmpsu238.html" >prev</a>] [<a 
+href="openmpsu238.html#tailopenmpsu238.html" >prev-tail</a>] [<a 
+href="openmpsu239.html" >front</a>] [<a 
+href="openmpse55.html#openmpsu239.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu239.html"></a> </p> 
+ 
+</body> 
+</html>

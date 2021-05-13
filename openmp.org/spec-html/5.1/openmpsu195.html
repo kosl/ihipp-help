@@ -1,0 +1,1164 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Memory Management Types</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 12--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu196.html" >next</a>] [<a 
+href="openmpse43.html" >prev</a>] [<a 
+href="openmpse43.html#tailopenmpse43.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu195.html">tail</a>] [<a 
+href="openmpse43.html#openmpsu195.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.13.1</span>&#x00A0;&#x00A0;<a 
+ id="x245-2780003.13.1"></a>Memory Management Types</h4>
+<p>The following type definitions are used by the memory management routines:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278001r1"></a></span></p> 
+<!--l. 18--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">enum</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_key_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_sync_hint</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_alignment</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_access</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_pool_size</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_fallback</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">5,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278008r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_fb_data</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">6,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278009r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_pinned</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">7,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278010r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_partition</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">8</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278011r11"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_key_t</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278012r12"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278013r13"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">enum</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_value_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278014r14"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_false</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">0,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278015r15"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_true</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278016r16"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_contended</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278017r17"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_uncontended</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278018r18"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_serialized</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">5,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278019r19"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_sequential</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_serialized</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">//</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">deprecated</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278020r20"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_private</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">6,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278021r21"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_all</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">7,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278022r22"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_thread</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">8,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278023r23"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_pteam</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">9,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278024r24"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_cgroup</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">10,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278025r25"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_default_mem_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">11,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278026r26"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_null_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">12,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278027r27"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_abort_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">13,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278028r28"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_allocator_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">14,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278029r29"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_environment</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">15,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278030r30"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_nearest</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">16,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278031r31"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_blocked</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">17,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278032r32"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_interleaved</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">18</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278033r33"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_value_t</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278034r34"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278035r35"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278036r36"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_key_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">key</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278037r37"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_uintptr_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278038r38"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278041r41"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278042r1"></a></span></p> 
+<!--l. 61--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278043r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278044r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278045r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_sync_hint</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278046r5"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278047r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_alignment</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278048r7"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278049r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_access</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278050r9"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278051r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_pool_size</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278052r11"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278053r12"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_fallback</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">5</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278054r13"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278055r14"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_fb_data</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">6</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278056r15"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278057r16"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_pinned</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">7</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278058r17"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278059r18"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atk_partition</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">8</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278060r19"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278061r20"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278062r21"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_default</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">-1</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278063r22"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278064r23"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_false</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">0</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278065r24"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278066r25"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_true</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278067r26"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278068r27"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_contended</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278069r28"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278070r29"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_uncontended</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278071r30"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278072r31"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_serialized</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">5</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278073r32"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278074r33"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_sequential</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278075r34"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_serialized</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">deprecated</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278076r35"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278077r36"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_private</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">6</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278078r37"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278079r38"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_all</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">7</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278080r39"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278081r40"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_thread</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">8</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278082r41"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278083r42"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_pteam</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">9</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278084r43"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278085r44"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_cgroup</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">10</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278086r45"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278087r46"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_default_mem_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">11</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278088r47"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278089r48"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_null_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">12</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278090r49"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278091r50"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_abort_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">13</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278092r51"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278093r52"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_allocator_fb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">14</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278094r53"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278095r54"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_environment</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">15</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278096r55"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278097r56"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_nearest</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">16</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278098r57"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278099r58"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_blocked</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">17</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278100r59"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278101r60"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_atv_interleaved</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">18</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278102r61"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278103r62"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">might</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">not</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">be</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">provided</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_lib</span><span 
+class="pcrb8t-">.</span><span 
+class="pcrb8t-">h</span><span 
+class="pcrb8t-">.</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278104r63"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278105r64"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_key_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">key</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278106r65"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_alloctrait_val_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278107r66"></a></span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278108r67"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278109r68"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_allocator_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278110r69"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_null_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">0</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x245-278113r72"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+<p></div></div>
+</p> 
+<!--l. 136--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu196.html" >next</a>] [<a 
+href="openmpse43.html" >prev</a>] [<a 
+href="openmpse43.html#tailopenmpse43.html" >prev-tail</a>] [<a 
+href="openmpsu195.html" >front</a>] [<a 
+href="openmpse43.html#openmpsu195.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu195.html"></a> </p> 
+ 
+</body> 
+</html>

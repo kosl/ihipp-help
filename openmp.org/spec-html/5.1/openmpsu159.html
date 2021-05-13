@@ -1,0 +1,387 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_pause_resource</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 9--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu160.html" >next</a>] [<a 
+href="openmpse36.html" >prev</a>] [<a 
+href="openmpse36.html#tailopenmpse36.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu159.html">tail</a>] [<a 
+href="openmpse36.html#openmpsu159.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.6.1</span>&#x00A0;&#x00A0;<a 
+ id="x202-2350003.6.1"></a><span class="textbf"><span class="texttt">omp_pause_resource</span></span></h4>
+<a 
+ id="dx202-235001"></a>
+<p><p><a 
+ id="Q1-202-1056"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_pause_resource</span></span> routine allows the runtime to relinquish resources used by OpenMP on the
+specified device.
+<p><a 
+ id="Q1-202-1057"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235002r1"></a></span></p> 
+<!--l. 20--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_resource</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_resource_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">kind</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">device_num</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235006r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235007r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents"><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <!--l. 30--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235008r1"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_resource</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">kind</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">device_num</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235009r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_pause_resource_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">kind</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235010r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">device_num</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235011r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-202-1058"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The first argument passed to this routine can be one of the valid OpenMP pause kind, or any
+implementation specific pause kind. The C/C++ header file (<span class="textbf"><span class="texttt">omp.h</span></span>) and the Fortran include file
+(<span class="textbf"><span class="texttt">omp_lib.h</span></span>) and/or Fortran module file (<span class="textbf"><span class="texttt">omp_lib</span></span>) define the valid constants. The valid
+constants must include the following, which can be extended with implementation-specific
+values:
+</p> 
+<p><p><a 
+ id="Q1-202-1059"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235012r1"></a></span></p> 
+<!--l. 50--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235013r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">enum</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_resource_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235014r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_soft</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235015r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_hard</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235016r5"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_resource_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235017r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235018r1"></a></span></p> 
+<!--l. 60--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235019r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_pause_resource_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235020r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_soft</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235021r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_pause_resource_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235022r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_pause_hard</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x202-235023r6"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>The second argument passed to this routine indicates the device that will be paused. The
+<span class="textbf"><span class="texttt">device_num</span></span> parameter must be greater than or equal to zero and less than or equal to the result of
+<span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-202-1060"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_pause_resource</span></span> region is the whole program.
+</p> 
+<p><p><a 
+ id="Q1-202-1061"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_pause_resource</span></span> routine allows the runtime to relinquish resources used by OpenMP on the
+specified device.
+</p> 
+<p>If successful, the <span class="textbf"><span class="texttt">omp_pause_hard</span></span> value results in a hard pause for which the OpenMP state is not
+guaranteed to persist across the <span class="textbf"><span class="texttt">omp_pause_resource</span></span> call. A hard pause may relinquish any data
+allocated by OpenMP on a given device, including data allocated by memory routines for that device as well
+as data present on the device as a result of a declare target directive or <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct. A hard
+pause may also relinquish any data associated with a <span class="textbf"><span class="texttt">threadprivate</span></span> directive. When relinquished and
+when applicable, base language appropriate deallocation/finalization is performed. When relinquished
+and when applicable, mapped data on a device will not be copied back from the device to the
+host.
+</p> 
+<p>If successful, the <span class="textbf"><span class="texttt">omp_pause_soft</span></span> value results in a soft pause for which the OpenMP state is
+guaranteed to persist across the call, with the exception of any data associated with a <span class="textbf"><span class="texttt">threadprivate</span></span>
+directive, which may be relinquished across the call. When relinquished and when applicable, base language
+appropriate deallocation/finalization is performed.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  A hard pause may relinquish more resources, but may resume processing OpenMP regions more
+slowly. A soft pause allows OpenMP regions to restart more quickly, but may relinquish fewer resources. An
+OpenMP implementation will reclaim resources as needed for OpenMP regions encountered after the
+<span class="textbf"><span class="texttt">omp_pause_resource</span></span> region. Since a hard pause may unmap data on the specified device, appropriate
+data mapping is required before using data on the specified device after the <span class="textbf"><span class="texttt">omp_pause_region</span></span> region.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p>The routine returns zero in case of success, and non-zero otherwise.
+</p> 
+<p><p><a 
+ id="Q1-202-1062"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+If the tool is not allowed to interact with the specified device after encountering this call, then the runtime
+must call the tool finalizer for that device.
+</p> 
+<p><p><a 
+ id="Q1-202-1063"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">omp_pause_resource</span></span> routine are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_pause_resource</span></span>
+  region
+  may
+  not
+  be
+  nested
+  in
+  any
+  explicit
+  OpenMP
+  region.
+  </li>
+  <li class="itemize">
+  The
+  routine
+  may
+  only
+  be
+  called
+  when
+  all
+  explicit
+  tasks
+  have
+  finalized
+  execution.</li></ul>
+                                                                            
+                                                                            
+<p><p><a 
+ id="Q1-202-1064"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  Declare
+  target
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu70.html#x98-1080002.14.7">2.14.7<!--tex4ht:ref: subsec:declare target Directive --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directives,
+  see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>.
+  </li>
+  <li class="itemize">
+  To
+  pause
+  resources
+  on
+  all
+  devices
+  at
+  once,
+  see
+  Section&#x00A0;<a 
+href="openmpsu160.html#x203-2360003.6.2">3.6.2<!--tex4ht:ref: subsec:omp_pause_resource_all --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4">3.7.4<!--tex4ht:ref: subsec:omp_get_num_devices --></a>.</li></ul>
+<!--l. 148--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu160.html" >next</a>] [<a 
+href="openmpse36.html" >prev</a>] [<a 
+href="openmpse36.html#tailopenmpse36.html" >prev-tail</a>] [<a 
+href="openmpsu159.html" >front</a>] [<a 
+href="openmpse36.html#openmpsu159.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu159.html"></a> </p> 
+ 
+</body> 
+</html>

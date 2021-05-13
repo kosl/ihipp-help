@@ -1,0 +1,431 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>cancellation point Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 277--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse29.html" >next</a>] [<a 
+href="openmpsu111.html" >prev</a>] [<a 
+href="openmpsu111.html#tailopenmpsu111.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu112.html">tail</a>] [<a 
+href="openmpse28.html#openmpsu112.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.20.2</span>&#x00A0;&#x00A0;<a 
+ id="x146-1580002.20.2"></a><span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> Construct</h4>
+<a 
+ id="dx146-158001"></a>
+<a 
+ id="dx146-158002"></a>
+<a 
+ id="dx146-158003"></a>
+<p><p><a 
+ id="Q1-146-683"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> construct introduces a user-defined cancellation point at which implicit or
+explicit tasks check if cancellation of the innermost enclosing region of the type specified has been
+activated. The <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> construct is a stand-alone directive.
+<p><a 
+ id="Q1-146-684"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158004r1"></a></span></p> 
+<!--l. 292--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">cancellation</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">point</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">construct</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158006r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">construct-type-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158007r1"></a></span></p> 
+<!--l. 298--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158008r2"></a></span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158009r3"></a></span><span 
+class="pcrb8t-">sections</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158010r4"></a></span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158011r5"></a></span><span 
+class="pcrb8t-">taskgroup</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158012r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158013r1"></a></span></p> 
+<!--l. 309--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158014r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">cancellation</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">point</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">construct</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158015r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">construct-type-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158016r1"></a></span></p> 
+<!--l. 315--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158017r2"></a></span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158018r3"></a></span><span 
+class="pcrb8t-">sections</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158019r4"></a></span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158020r5"></a></span><span 
+class="pcrb8t-">taskgroup</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x146-158021r6"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-146-685"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set of the <span class="textbf"><span class="texttt">cancellation point</span></span> construct is the current team. The binding region
+of the <span class="textbf"><span class="texttt">cancellation point</span></span> region is the innermost enclosing region of the type corresponding to the
+<span class="textit"><span class="textrm">construct-type-clause</span></span> specified in the directive (that is, the innermost <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">sections</span></span>,
+worksharing-loop, or <span class="textbf"><span class="texttt">taskgroup</span></span> region).
+</p> 
+<p><p><a 
+ id="Q1-146-686"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+This directive introduces a user-defined cancellation point at which an implicit or explicit task must
+check if cancellation of the innermost enclosing region of the type specified in the clause has
+been requested. This construct does not implement any synchronization between threads or
+tasks.
+</p> 
+<p>When an implicit or explicit task reaches a user-defined cancellation point and if the <span class="textit"><span class="textrm">cancel-var</span></span> ICV is <span class="textit"><span class="textrm">true</span></span>,
+then:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  of
+  the
+  encountered
+  <span class="textbf"><span class="texttt">cancellation
+  point</span></span>
+  construct
+                                                                            
+                                                                            
+  is
+  <span class="textbf"><span class="texttt">parallel</span></span>,
+  <span class="textbf"><span class="texttt">for</span></span>,
+  <span class="textbf"><span class="texttt">do</span></span>,
+  or
+  <span class="textbf"><span class="texttt">sections</span></span>,
+  the
+  thread
+  continues
+  execution
+  at
+  the
+  end
+  of
+  the
+  canceled
+  region
+  if
+  cancellation
+  has
+  been
+  activated
+  for
+  the
+  innermost
+  enclosing
+  region
+  of
+  the
+  type
+  specified.
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  of
+  the
+  encountered
+  <span class="textbf"><span class="texttt">cancellation
+  point</span></span>
+  construct
+                                                                            
+                                                                            
+  is
+  <span class="textbf"><span class="texttt">taskgroup</span></span>,
+  the
+  encountering
+  task
+  checks
+  for
+  active
+  cancellation
+  of
+  all
+  <span class="textit"><span class="textrm">taskgroup
+  sets</span></span>
+  to
+  which
+  the
+  encountering
+  task
+  belongs
+  and
+  continues
+  execution
+  at
+  the
+  end
+  of
+  the
+  current
+  task
+  region
+  if
+  cancellation
+  has
+  been
+  activated
+  for
+  any
+  of
+  them.</li></ul>
+<p><p><a 
+ id="Q1-146-687"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">cancellation</span></span> event occurs if a task encounters a cancellation point and detected the activation of
+cancellation.
+</p> 
+<p><p><a 
+ id="Q1-146-688"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_cancel</span></span> callback for each occurrence of
+a <span class="textit"><span class="textrm">cancel</span></span> event in the context of the encountering task. This callback has type signature
+<span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_detected)</span></span> always evaluates to <span class="textit"><span class="textrm">true</span></span>
+in the dispatched callback; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_parallel)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span> in the
+dispatched callback if <span class="textit"><span class="textrm">construct-type-clause</span></span> of the encountered <span class="textbf"><span class="texttt">cancellation point</span></span>
+construct is <span class="textbf"><span class="texttt">parallel</span></span>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_sections)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span> in the
+dispatched callback if <span class="textit"><span class="textrm">construct-type-clause</span></span> of the encountered <span class="textbf"><span class="texttt">cancellation point</span></span>
+construct is <span class="textbf"><span class="texttt">sections</span></span>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_loop)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched
+callback if <span class="textit"><span class="textrm">construct-type-clause</span></span> of the encountered <span class="textbf"><span class="texttt">cancellation point</span></span> construct is
+<span class="textbf"><span class="texttt">for</span></span> or <span class="textbf"><span class="texttt">do</span></span>; and <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_taskgroup)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched
+callback if <span class="textit"><span class="textrm">construct-type-clause</span></span> of the encountered <span class="textbf"><span class="texttt">cancellation point</span></span> construct is
+<span class="textbf"><span class="texttt">taskgroup</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-146-689"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  construct
+  for
+  which
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">task</span></span>
+  or
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct,
+  and
+  the
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  region
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  construct
+  for
+  which
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">sections</span></span>
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">sections</span></span>
+  or
+  <span class="textbf"><span class="texttt">section</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  construct
+  for
+                                                                            
+                                                                            
+  which
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  neither
+  <span class="textbf"><span class="texttt">sections</span></span>
+  nor
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  must
+  be
+  closely
+  nested
+  inside
+  an
+  OpenMP
+  construct
+  that
+  matches
+  the
+  type
+  specified
+  in
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-146-690"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">cancel-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu111.html#x145-1570002.20.1">2.20.1<!--tex4ht:ref: subsec:cancel Construct --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_cancellation</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu127.html#x166-1990003.2.8">3.2.8<!--tex4ht:ref: subsec:omp_get_cancellation --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3600004.5.2.18">4.5.2.18<!--tex4ht:ref: sec:ompt_callback_cancel_t --></a>.
+  </li></ul>
+<!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse29.html" >next</a>] [<a 
+href="openmpsu111.html" >prev</a>] [<a 
+href="openmpsu111.html#tailopenmpsu111.html" >prev-tail</a>] [<a 
+href="openmpsu112.html" >front</a>] [<a 
+href="openmpse28.html#openmpsu112.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu112.html"></a> </p> 
+ 
+</body> 
+</html>

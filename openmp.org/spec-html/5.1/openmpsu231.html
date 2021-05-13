@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Tool Context Types</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 485--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu232.html" >next</a>] [<a 
+href="openmpsu230.html" >prev</a>] [<a 
+href="openmpsu230.html#tailopenmpsu230.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu231.html">tail</a>] [<a 
+href="openmpse54.html#openmpsu231.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.3.11</span>&#x00A0;&#x00A0;<a 
+ id="x294-4270005.3.11"></a>Tool Context Types</h4>
+<p><p><a 
+ id="Q1-294-2055"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A third-party tool defines contexts to identify abstractions uniquely. The internal structure of these contexts
+are opaque to the OMPD library.
+<p><a 
+ id="Q1-294-2056"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x294-427001r1"></a></span></p> 
+<!--l. 495--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x294-427002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_ompd_aspace_cont</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_context_t</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x294-427003r3"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_ompd_thread_cont</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_context_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x294-427004r4"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-294-2057"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A third-party tool uniquely defines an <span class="emph">address space context</span> to identify the address space for the process
+that it is monitoring. Similarly, it uniquely defines a <span class="emph">thread context</span> to identify a native thread of the process
+that it is monitoring. These contexts are opaque to the OMPD library.
+</p> 
+<!--l. 508--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu232.html" >next</a>] [<a 
+href="openmpsu230.html" >prev</a>] [<a 
+href="openmpsu230.html#tailopenmpsu230.html" >prev-tail</a>] [<a 
+href="openmpsu231.html" >front</a>] [<a 
+href="openmpse54.html#openmpsu231.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu231.html"></a> </p> 
+ 
+</body> 
+</html>

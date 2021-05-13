@@ -1,0 +1,892 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Callbacks</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 776--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu211.html" >next</a>] [<a 
+href="openmpsu209.html" >prev</a>] [<a 
+href="openmpsu209.html#tailopenmpsu209.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu210.html">tail</a>] [<a 
+href="openmpse49.html#openmpsu210.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h4 class="subsectionHead"><span class="titlemark">4.4.2</span>&#x00A0;&#x00A0;<a 
+ id="x267-3010004.4.2"></a>Callbacks</h4>
+<p><p><a 
+ id="Q1-267-1454"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_callbacks_t</span></span> enumeration type indicates the integer codes used to identify OpenMP
+callbacks when registering or querying them.
+<p><a 
+ id="Q1-267-1455"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301001r1"></a></span></p> 
+<!--l. 785--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">enum</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callbacks_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_thread_begin</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_thread_end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_parallel_begin</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_parallel_end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_task_create</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">5,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301008r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_task_schedule</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">6,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301009r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_implicit_task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">7,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301010r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">8,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301011r11"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target_data_op</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">9,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301012r12"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target_submit</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">10,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301013r13"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_control_tool</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">11,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301014r14"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_device_initialize</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">12,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301015r15"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_device_finalize</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">13,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301016r16"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_device_load</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">14,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301017r17"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_device_unload</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">15,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301018r18"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_sync_region_wait</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">16,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301019r19"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_mutex_released</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">17,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301020r20"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_dependences</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">18,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301021r21"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_task_dependence</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">19,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301022r22"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_work</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">20,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301023r23"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_masked</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">21,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301024r24"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_master</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">/*(</span><span 
+class="pcrb8t-">deprecated</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">*/</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_masked</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301025r25"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target_map</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">22,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301026r26"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_sync_region</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">23,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301027r27"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_lock_init</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">24,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301028r28"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_lock_destroy</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">25,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301029r29"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_mutex_acquire</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">26,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301030r30"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_mutex_acquired</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">27,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301031r31"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_nest_lock</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">28,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301032r32"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_flush</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">29,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301033r33"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_cancel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">30,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301034r34"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_reduction</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">31,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301035r35"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_dispatch</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">32,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301036r36"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target_emi</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">33,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301037r37"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target_data_op_emi</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">34,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301038r38"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target_submit_emi</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">35,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301039r39"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_target_map_emi</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">36,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301040r40"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_error</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">37</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301041r41"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callbacks_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x267-301042r42"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<!--l. 829--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu211.html" >next</a>] [<a 
+href="openmpsu209.html" >prev</a>] [<a 
+href="openmpsu209.html#tailopenmpsu209.html" >prev-tail</a>] [<a 
+href="openmpsu210.html" >front</a>] [<a 
+href="openmpse49.html#openmpsu210.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu210.html"></a> </p> 
+ 
+</body> 
+</html>

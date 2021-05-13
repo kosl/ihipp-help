@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Interoperability Requirement Set</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 254--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse24.html" >next</a>] [<a 
+href="openmpsu71.html" >prev</a>] [<a 
+href="openmpsu71.html#tailopenmpsu71.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu72.html">tail</a>] [<a 
+href="openmpse23.html#openmpsu72.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.15.2</span>&#x00A0;&#x00A0;<a 
+ id="x101-1110002.15.2"></a>Interoperability Requirement Set</h4>
+<p>The <span class="textit"><span class="textrm">interoperability</span></span> <span class="textit"><span class="textrm">requirement</span></span> <span class="textit"><span class="textrm">set</span></span> of each task is a logical set of properties that can be added or removed
+by different directives. These properties can be queried by other constructs that have interoperability
+semantics.
+</p> 
+<p>A construct can add the following properties to the set:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">depend</span></span>,
+  which
+  specifies
+  that
+  the
+  construct
+  requires
+  enforcement
+  of
+  the
+  synchronization
+  relationship
+  expressed
+  by
+  the
+  <span class="textit"><span class="textrm">depend</span></span>
+  clause;
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">nowait</span></span>,
+  which
+  specifies
+  that
+  the
+  construct
+                                                                            
+                                                                            
+  is
+  asynchronous;
+  and
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">is_device_ptr(list-item)</span></span>,
+  which
+  specifies
+  that
+  the
+  <span class="textit"><span class="textrm">list-item</span></span>
+  is
+  a
+  device
+  pointer
+  in
+  the
+  construct.</li></ul>
+<p>The following directives may add properties to the set: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">dispatch</span></span>.</li></ul>
+<p>The following directives may remove properties from the set: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-101-421"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu29.html#x46-450002.3.5">2.3.5<!--tex4ht:ref: subsec:Declare Variant Directive --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">dispatch</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu30.html#x47-460002.3.6">2.3.6<!--tex4ht:ref: subsec:dispatch Construct --></a>.</li></ul>
+<!--l. 47--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse24.html" >next</a>] [<a 
+href="openmpsu71.html" >prev</a>] [<a 
+href="openmpsu71.html#tailopenmpsu71.html" >prev-tail</a>] [<a 
+href="openmpsu72.html" >front</a>] [<a 
+href="openmpse23.html#openmpsu72.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu72.html"></a> </p> 
+ 
+</body> 
+</html>

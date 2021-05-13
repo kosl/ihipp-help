@@ -1,0 +1,344 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Depend Objects</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1859--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu109.html" >next</a>] [<a 
+href="openmpsu107.html" >prev</a>] [<a 
+href="openmpsu107.html#tailopenmpsu107.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu108.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu108.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.10</span>&#x00A0;&#x00A0;<a 
+ id="x141-1520002.19.10"></a>Depend Objects</h4>
+<a 
+ id="dx141-152001"></a>
+<p>This section describes constructs that support OpenMP depend objects that can be used to supply
+user-computed dependences to <span class="textbf"><span class="texttt">depend</span></span> clauses. OpenMP depend objects must be accessed only through
+the <span class="textbf"><span class="texttt">depobj</span></span> construct or through the <span class="textbf"><span class="texttt">depend</span></span> clause; programs that otherwise access OpenMP depend
+objects are non-conforming.
+</p> 
+<p>An OpenMP depend object can be in one of the following states: <span class="textit"><span class="textrm">uninitialized</span></span> or <span class="textit"><span class="textrm">initialized</span></span>. Initially
+OpenMP depend objects are in the <span class="textit"><span class="textrm">uninitialized</span></span> state.
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.19.10.1  </span> <a 
+ id="x141-1530002.19.10.1"></a><span class="textbf"><span class="texttt">depobj</span></span> Construct</h5>
+<a 
+ id="dx141-153001"></a>
+<a 
+ id="dx141-153002"></a>
+<p><p><a 
+ id="Q1-141-655"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">depobj</span></span> construct initializes, updates or destroys an OpenMP depend object. The <span class="textbf"><span class="texttt">depobj</span></span> construct is
+a stand-alone directive.
+<p><a 
+ id="Q1-141-656"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">depobj</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153003r1"></a></span></p> 
+<!--l. 1887--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">depobj</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">depobj</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">depobj</span></span> is an lvalue expression of type <span class="textbf"><span class="texttt">omp_depend_t</span></span>.
+</p> 
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153006r1"></a></span></p> 
+<!--l. 1895--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153007r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153008r3"></a></span><span 
+class="pcrb8t-">destroy</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153009r4"></a></span><span 
+class="pcrb8t-">update</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153010r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">depobj</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153011r1"></a></span></p> 
+<!--l. 1905--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153012r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">depobj</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">depobj</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153013r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">depobj</span></span> is a scalar integer variable of the <span class="textbf"><span class="texttt">omp_depend_kind</span></span><span class="textit"><span class="textrm">kind</span></span>.
+</p> 
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153014r1"></a></span></p> 
+<!--l. 1912--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153015r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153016r3"></a></span><span 
+class="pcrb8t-">destroy</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153017r4"></a></span><span 
+class="pcrb8t-">update</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x141-153018r5"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-141-657"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">depobj</span></span> region is the encountering thread.
+</p> 
+<p><p><a 
+ id="Q1-141-658"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A <span class="textbf"><span class="texttt">depobj</span></span> construct with a <span class="textbf"><span class="texttt">depend</span></span> clause present sets the state of <span class="textit"><span class="textrm">depobj</span></span> to initialized. The <span class="textit"><span class="textrm">depobj</span></span> is
+initialized to represent the dependence that the <span class="textbf"><span class="texttt">depend</span></span> clause specifies.
+</p> 
+<p>A <span class="textbf"><span class="texttt">depobj</span></span> construct with a <span class="textbf"><span class="texttt">destroy</span></span> clause present changes the state of the <span class="textit"><span class="textrm">depobj</span></span> to uninitialized.
+</p> 
+<p>A <span class="textbf"><span class="texttt">depobj</span></span> construct with an <span class="textbf"><span class="texttt">update</span></span> clause present changes the dependence type of the dependence
+represented by <span class="textit"><span class="textrm">depobj</span></span> to the one specified by the <span class="textit"><span class="textrm">update</span></span> clause.
+</p> 
+<p><p><a 
+ id="Q1-141-659"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">depobj</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  construct
+  must
+  not
+  have
+  <span class="textbf"><span class="texttt">source</span></span>
+  or
+  <span class="textbf"><span class="texttt">sink</span></span>
+  as
+  <span class="textit"><span class="textrm">dependence-type</span></span>.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">update</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  construct
+  must
+  not
+  have
+  <span class="textbf"><span class="texttt">source</span></span>,
+  <span class="textbf"><span class="texttt">sink</span></span>
+  or
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  as
+  <span class="textit"><span class="textrm">dependence-type</span></span>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  construct
+  can
+  only
+  specify
+  one
+  locator.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">depobj</span></span>
+  of
+  a
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  present
+  must
+  be
+  in
+  the
+  uninitialized
+  state.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">depobj</span></span>
+  of
+  a
+  <span class="textbf"><span class="texttt">depobj</span></span>
+                                                                            
+                                                                            
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">destroy</span></span>
+  clause
+  present
+  must
+  be
+  in
+  the
+  initialized
+  state.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">depobj</span></span>
+  of
+  a
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">update</span></span>
+  clause
+  present
+  must
+  be
+  in
+  the
+  initialized
+  state.</li></ul>
+<p><p><a 
+ id="Q1-141-660"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>.</li></ul>
+<!--l. 1958--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu109.html" >next</a>] [<a 
+href="openmpsu107.html" >prev</a>] [<a 
+href="openmpsu107.html#tailopenmpsu107.html" >prev-tail</a>] [<a 
+href="openmpsu108.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu108.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu108.html"></a> </p> 
+ 
+</body> 
+</html>

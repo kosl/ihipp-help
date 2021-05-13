@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>4 OMPT Interface</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse46.html" >next</a>] [<a 
+href="openmpse45.html" >prev</a>] [<a 
+href="openmpse45.html#tailopenmpse45.html" >prev-tail</a>] [<a 
+href="#tailopenmpch4.html">tail</a>] [<a 
+href="openmp.html#openmpch4.html" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">4</span>&#x00A0;&#x00A0;<a 
+ id="x256-2890004"></a>OMPT Interface</h2>
+<p>This chapter describes OMPT, which is an interface for <span class="emph">first-party</span> tools. <span class="emph">First-party</span> tools are linked or
+loaded directly into the OpenMP program. OMPT defines mechanisms to initialize a tool, to
+examine OpenMP state associated with an OpenMP thread, to interpret the call stack of an
+OpenMP thread, to receive notification about OpenMP <span class="emph">events</span>, to trace activity on OpenMP target
+devices, to assess implementation-dependent details of an OpenMP implementation (such as
+supported states and mutual exclusion implementations), and to control a tool from an OpenMP
+application.
+</p> 
+<div class="sectionTOCS">
+&#x00A0;<span class="sectionToc" >4.1&#x00A0;&#x00A0;<a 
+href="openmpse46.html#x257-2900004.1">OMPT Interfaces Definitions</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.2&#x00A0;&#x00A0;<a 
+href="openmpse47.html#x258-2910004.2">Activating a First-Party Tool</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1"><span class="textbf"><span class="texttt">ompt_start_tool</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu205.html#x260-2930004.2.2">Determining Whether a First-Party Tool Should be Initialized</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu206.html#x261-2940004.2.3">Initializing a First-Party Tool</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu207.html#x262-2960004.2.4">Monitoring Activity on the Host with OMPT</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu208.html#x263-2970004.2.5">Tracing Activity on Target Devices with OMPT</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.3&#x00A0;&#x00A0;<a 
+href="openmpse48.html#x264-2980004.3">Finalizing a First-Party Tool</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.4&#x00A0;&#x00A0;<a 
+href="openmpse49.html#x265-2990004.4">OMPT Data Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1">Tool Initialization and Finalization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu210.html#x267-3010004.4.2">Callbacks</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu211.html#x268-3020004.4.3">Tracing</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3070004.4.4">Miscellaneous Type Definitions</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.5&#x00A0;&#x00A0;<a 
+href="openmpse50.html#x270-3380004.5">OMPT Tool Callback Signatures and Trace Records</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu213.html#x271-3390004.5.1">Initialization and Finalization Callback Signature</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3420004.5.2">Event Callback Signatures and Trace Records</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.6&#x00A0;&#x00A0;<a 
+href="openmpse51.html#x273-3730004.6">OMPT Runtime Entry Points for Tools</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3740004.6.1">Entry Points in the OMPT Callback Interface</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3940004.6.2">Entry Points in the OMPT Device Tracing Interface</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.3&#x00A0;&#x00A0;<a 
+href="openmpsu217.html#x276-4090004.6.3">Lookup Entry Points: <span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span></a></span>
+</div>
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse46.html" >next</a>] [<a 
+href="openmpse45.html" >prev</a>] [<a 
+href="openmpse45.html#tailopenmpse45.html" >prev-tail</a>] [<a 
+href="openmpch4.html" >front</a>] [<a 
+href="openmp.html#openmpch4.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpch4.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>taskwait Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 399--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu104.html" >next</a>] [<a 
+href="openmpsu102.html" >prev</a>] [<a 
+href="openmpsu102.html#tailopenmpsu102.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu103.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu103.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.5</span>&#x00A0;&#x00A0;<a 
+ id="x136-1460002.19.5"></a><span class="textbf"><span class="texttt">taskwait</span></span> Construct</h4>
+<a 
+ id="dx136-146001"></a>
+<a 
+ id="dx136-146002"></a>
+<p><p><a 
+ id="Q1-136-609"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">taskwait</span></span> construct specifies a wait on the completion of child tasks of the current task. The
+<span class="textbf"><span class="texttt">taskwait</span></span> construct is a stand-alone directive.
+<p><a 
+ id="Q1-136-610"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">taskwait</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146003r1"></a></span></p> 
+<!--l. 411--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">taskwait</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146006r1"></a></span></p> 
+<!--l. 419--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146007r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146008r3"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146009r4"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">taskwait</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146010r1"></a></span></p> 
+<!--l. 428--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146011r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">taskwait</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146012r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146013r1"></a></span></p> 
+<!--l. 434--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146014r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146015r3"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x136-146016r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-136-611"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The <span class="textbf"><span class="texttt">taskwait</span></span> region binds to the current task region. The binding thread set of the <span class="textbf"><span class="texttt">taskwait</span></span> region is
+the current team.
+</p> 
+<p><p><a 
+ id="Q1-136-612"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+If no <span class="textbf"><span class="texttt">depend</span></span> clause is present on the <span class="textbf"><span class="texttt">taskwait</span></span> construct, the current task region is suspended at an
+implicit task scheduling point associated with the construct. The current task region remains suspended
+until all child tasks that it generated before the <span class="textbf"><span class="texttt">taskwait</span></span> region complete execution.
+</p> 
+<p>If one or more <span class="textbf"><span class="texttt">depend</span></span> clauses are present on the <span class="textbf"><span class="texttt">taskwait</span></span> construct and the <span class="textbf"><span class="texttt">nowait</span></span> clause is not also
+present, the behavior is as if these clauses were applied to a <span class="textbf"><span class="texttt">task</span></span> construct with an empty associated
+structured block that generates a <span class="emph">mergeable</span> and <span class="emph">included task</span>. Thus, the current task region is suspended
+until the <span class="emph">predecessor tasks</span> of this task complete execution.
+</p> 
+<p>If one or more <span class="textbf"><span class="texttt">depend</span></span> clauses are present on the <span class="textbf"><span class="texttt">taskwait</span></span> construct and the <span class="textbf"><span class="texttt">nowait</span></span> clause is also
+present, the behavior is as if these clauses were applied to a <span class="textbf"><span class="texttt">task</span></span> construct with an empty associated
+structured block that generates a task for which execution may be deferred. Thus, all <span class="emph">predecessor tasks</span> of
+this task must complete execution before any subsequently generated task that depends on this task starts its
+execution.
+</p> 
+<p><p><a 
+ id="Q1-136-613"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">taskwait-begin</span></span> event occurs in a thread when it encounters a <span class="textbf"><span class="texttt">taskwait</span></span> construct with no <span class="textbf"><span class="texttt">depend</span></span>
+clause on entry to the <span class="textbf"><span class="texttt">taskwait</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">taskwait-wait-begin</span></span> event occurs when a task begins an interval of active or passive waiting in a region
+corresponding to a <span class="textbf"><span class="texttt">taskwait</span></span> construct with no <span class="textbf"><span class="texttt">depend</span></span> clause.
+</p> 
+<p>The <span class="textit"><span class="textrm">taskwait-wait-end</span></span> event occurs when a task ends an interval of active or passive waiting and
+resumes execution from a region corresponding to a <span class="textbf"><span class="texttt">taskwait</span></span> construct with no <span class="textbf"><span class="texttt">depend</span></span>
+clause.
+</p> 
+<p>The <span class="textit"><span class="textrm">taskwait-end</span></span> event occurs in a thread when it encounters a <span class="textbf"><span class="texttt">taskwait</span></span> construct with no <span class="textbf"><span class="texttt">depend</span></span>
+clause after the taskwait synchronization on exit from the <span class="textbf"><span class="texttt">taskwait</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">taskwait-init</span></span> event occurs in a thread when it encounters a <span class="textbf"><span class="texttt">taskwait</span></span> construct with one or more
+<span class="textbf"><span class="texttt">depend</span></span> clauses on entry to the <span class="textbf"><span class="texttt">taskwait</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">taskwait-complete</span></span> event occurs on completion of the dependent task that results from a <span class="textbf"><span class="texttt">taskwait</span></span>
+construct with one or more <span class="textbf"><span class="texttt">depend</span></span> clauses, in the context of the thread that executes the dependent
+task and before any subsequently generated task that depends on the dependent task starts its
+execution.
+</p> 
+<p><p><a 
+ id="Q1-136-614"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_sync_region</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_sync_region_taskwait</span></span> as its <span class="textit"><span class="textrm">kind</span></span> argument and <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span>
+argument for each occurrence of a <span class="textit"><span class="textrm">taskwait-begin</span></span> event in the task that encounters the <span class="textbf"><span class="texttt">taskwait</span></span>
+construct. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_sync_region</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_sync_region_taskwait</span></span> as its <span class="textit"><span class="textrm">kind</span></span> argument and <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span>
+argument for each occurrence of a <span class="textit"><span class="textrm">taskwait-end</span></span> event in the task that encounters the <span class="textbf"><span class="texttt">taskwait</span></span> construct.
+These callbacks occur in the task that encounters the <span class="textbf"><span class="texttt">taskwait</span></span> construct and have the type signature
+<span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_sync_region_wait</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_sync_region_taskwait</span></span> as its <span class="textit"><span class="textrm">kind</span></span> argument and <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span>
+argument for each occurrence of a <span class="textit"><span class="textrm">taskwait-wait-begin</span></span> event. Similarly, a thread dispatches a registered
+<span class="textbf"><span class="texttt">ompt_callback_sync_region_wait</span></span> callback with <span class="textbf"><span class="texttt">ompt_sync_region_taskwait</span></span> as its <span class="textit"><span class="textrm">kind</span></span>
+argument and <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">taskwait-wait-end</span></span>
+event. These callbacks occur in the context of the task that encounters the <span class="textbf"><span class="texttt">taskwait</span></span> construct and have
+type signature <span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_task_create</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">taskwait-init</span></span> event in the context of the encountering task. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_task_create_t</span></span>. In the dispatched callback, <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp; ompt_task_taskwait)</span></span>
+always evaluates to <span class="textit"><span class="textrm">true</span></span>. If the <span class="textbf"><span class="texttt">nowait</span></span> clause is not present, <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp; ompt_task_undeferred)</span></span>
+also evaluates to true.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_task_schedule</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">taskwait-complete</span></span> event. This callback has the type signature <span class="textbf"><span class="texttt">ompt_callback_task_schedule_t</span></span>
+with <span class="textbf"><span class="texttt">ompt_taskwait_complete</span></span> as its <span class="textit"><span class="textrm">prior_task_status</span></span> argument.
+</p> 
+<p><p><a 
+ id="Q1-136-615"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">taskwait</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">mutexinoutset</span></span>
+  <span class="textit"><span class="textrm">dependence-type</span></span>
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">depend</span></span>
+                                                                            
+                                                                            
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textit"><span class="textrm">dependence-type</span></span>
+  of
+  a
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  is
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  then
+  the
+  dependence
+  objects
+  cannot
+  represent
+  dependences
+  of
+  the
+  <span class="textbf"><span class="texttt">mutexinoutset</span></span>
+  dependence
+  type.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  may
+  only
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  directive
+                                                                            
+                                                                            
+  if
+  the
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  is
+  present.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-136-616"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+  </li>
+  <li class="itemize">
+  Task
+  scheduling,
+  see
+  Section&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">2.12.6<!--tex4ht:ref: subsec:Task Scheduling --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_sync_region_taskwait</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3200004.4.4.13">4.4.4.13<!--tex4ht:ref: sec:ompt_sync_region_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3550004.5.2.13">4.5.2.13<!--tex4ht:ref: sec:ompt_callback_sync_region_t --></a>.</li></ul>
+<!--l. 569--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu104.html" >next</a>] [<a 
+href="openmpsu102.html" >prev</a>] [<a 
+href="openmpsu102.html#tailopenmpsu102.html" >prev-tail</a>] [<a 
+href="openmpsu103.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu103.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu103.html"></a> </p> 
+ 
+</body> 
+</html>

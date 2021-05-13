@@ -1,0 +1,207 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_destroy_allocator</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 214--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu198.html" >next</a>] [<a 
+href="openmpsu196.html" >prev</a>] [<a 
+href="openmpsu196.html#tailopenmpsu196.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu197.html">tail</a>] [<a 
+href="openmpse43.html#openmpsu197.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.13.3</span>&#x00A0;&#x00A0;<a 
+ id="x247-2800003.13.3"></a><span class="textbf"><span class="texttt">omp_destroy_allocator</span></span></h4>
+<a 
+ id="dx247-280001"></a>
+<p><p><a 
+ id="Q1-247-1352"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span> routine releases all resources used by the allocator handle.
+<p><a 
+ id="Q1-247-1353"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x247-280002r1"></a></span></p> 
+<!--l. 224--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x247-280003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_destroy_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x247-280004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x247-280005r1"></a></span></p> 
+<!--l. 230--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x247-280006r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_destroy_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x247-280007r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_allocator_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x247-280008r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-247-1354"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The <span class="textit"><span class="textrm">allocator</span></span> argument must not represent a predefined memory allocator.
+</p> 
+<p><p><a 
+ id="Q1-247-1355"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span> region is all threads on a device. The effect of
+executing this routine is not related to any specific region that corresponds to any construct or API
+routine.
+</p> 
+<p><p><a 
+ id="Q1-247-1356"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span> routine releases all resources used to implement the <span class="textit"><span class="textrm">allocator</span></span>
+handle.
+</p> 
+<p>If <span class="textit"><span class="textrm">allocator</span></span> is <span class="textbf"><span class="texttt">omp_null_allocator</span></span> then this routine will have no effect.
+</p> 
+<p><p><a 
+ id="Q1-247-1357"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The restrictions to the <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span> routine are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Accessing
+  any
+  memory
+  allocated
+  by
+  the
+  <span class="textit"><span class="textrm">allocator</span></span>
+  after
+  this
+  call
+  results
+  in
+                                                                            
+                                                                            
+  unspecified
+  behavior.
+  </li>
+  <li class="itemize">
+  Unless
+  a
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  with
+  the
+  <span class="textbf"><span class="texttt">dynamic_allocators</span></span>
+  clause
+  is
+  present
+  in
+  the
+  same
+  compilation
+  unit,
+  using
+  this
+  routine
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  results
+  in
+  unspecified
+  behavior.</li></ul>
+<p><p><a 
+ id="Q1-247-1358"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Memory
+  Allocators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>.</li></ul>
+                                                                            
+                                                                            
+<!--l. 269--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu198.html" >next</a>] [<a 
+href="openmpsu196.html" >prev</a>] [<a 
+href="openmpsu196.html#tailopenmpsu196.html" >prev-tail</a>] [<a 
+href="openmpsu197.html" >front</a>] [<a 
+href="openmpse43.html#openmpsu197.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu197.html"></a> </p> 
+ 
+</body> 
+</html>

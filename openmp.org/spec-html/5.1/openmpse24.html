@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Combined Constructs</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 47--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu73.html" >next</a>] [<a 
+href="openmpsu72.html" >prev</a>] [<a 
+href="openmpsu72.html#tailopenmpsu72.html" >prev-tail</a>] [<a 
+href="#tailopenmpse24.html">tail</a>] [<a 
+href="openmpch2.html#openmpse24.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.16</span>&#x00A0;&#x00A0;<a 
+ id="x102-1120002.16"></a>Combined Constructs</h3>
+<a 
+ id="dx102-112001"></a>
+<a 
+ id="dx102-112002"></a>
+<p>Combined constructs are shortcuts for specifying one construct immediately nested inside another construct.
+The semantics of the combined constructs are identical to that of explicitly specifying the first construct
+containing one instance of the second construct and no other statements.
+</p> 
+<p>For combined constructs, tool callbacks are invoked as if the constructs were explicitly nested.
+</p> 
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.1&#x00A0;&#x00A0;<a 
+href="openmpsu73.html#x103-1130002.16.1">Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.2&#x00A0;&#x00A0;<a 
+href="openmpsu74.html#x104-1140002.16.2"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.3&#x00A0;&#x00A0;<a 
+href="openmpsu75.html#x105-1150002.16.3"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.4&#x00A0;&#x00A0;<a 
+href="openmpsu76.html#x106-1160002.16.4"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">workshare</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.5&#x00A0;&#x00A0;<a 
+href="openmpsu77.html#x107-1170002.16.5">Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.6&#x00A0;&#x00A0;<a 
+href="openmpsu78.html#x108-1180002.16.6"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.7&#x00A0;&#x00A0;<a 
+href="openmpsu79.html#x109-1190002.16.7"><span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.8&#x00A0;&#x00A0;<a 
+href="openmpsu80.html#x110-1200002.16.8"><span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.9&#x00A0;&#x00A0;<a 
+href="openmpsu81.html#x111-1210002.16.9"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.10&#x00A0;&#x00A0;<a 
+href="openmpsu82.html#x112-1220002.16.10"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.11&#x00A0;&#x00A0;<a 
+href="openmpsu83.html#x113-1230002.16.11"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.12&#x00A0;&#x00A0;<a 
+href="openmpsu84.html#x114-1240002.16.12"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.13&#x00A0;&#x00A0;<a 
+href="openmpsu85.html#x115-1250002.16.13">Teams Distribute Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.14&#x00A0;&#x00A0;<a 
+href="openmpsu86.html#x116-1260002.16.14">Teams Distribute Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.15&#x00A0;&#x00A0;<a 
+href="openmpsu87.html#x117-1270002.16.15"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.16&#x00A0;&#x00A0;<a 
+href="openmpsu88.html#x118-1280002.16.16"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.17&#x00A0;&#x00A0;<a 
+href="openmpsu89.html#x119-1290002.16.17">Target Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.18&#x00A0;&#x00A0;<a 
+href="openmpsu90.html#x120-1300002.16.18">Target Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.19&#x00A0;&#x00A0;<a 
+href="openmpsu91.html#x121-1310002.16.19"><span class="textbf"><span class="texttt">target</span></span><span class="textbf"><span class="texttt">parallel</span></span><span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.20&#x00A0;&#x00A0;<a 
+href="openmpsu92.html#x122-1320002.16.20"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.21&#x00A0;&#x00A0;<a 
+href="openmpsu93.html#x123-1330002.16.21"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.22&#x00A0;&#x00A0;<a 
+href="openmpsu94.html#x124-1340002.16.22"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.23&#x00A0;&#x00A0;<a 
+href="openmpsu95.html#x125-1350002.16.23"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.24&#x00A0;&#x00A0;<a 
+href="openmpsu96.html#x126-1360002.16.24"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.25&#x00A0;&#x00A0;<a 
+href="openmpsu97.html#x127-1370002.16.25">Target Teams Distribute Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.26&#x00A0;&#x00A0;<a 
+href="openmpsu98.html#x128-1380002.16.26">Target Teams Distribute Parallel Worksharing-Loop SIMD Construct</a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--l. 2045--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu73.html" >next</a>] [<a 
+href="openmpsu72.html" >prev</a>] [<a 
+href="openmpsu72.html#tailopenmpsu72.html" >prev-tail</a>] [<a 
+href="openmpse24.html" >front</a>] [<a 
+href="openmpch2.html#openmpse24.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse24.html"></a> </p> 
+ 
+</body> 
+</html>

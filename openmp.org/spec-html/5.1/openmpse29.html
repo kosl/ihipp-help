@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Data Environment</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu113.html" >next</a>] [<a 
+href="openmpsu112.html" >prev</a>] [<a 
+href="openmpsu112.html#tailopenmpsu112.html" >prev-tail</a>] [<a 
+href="#tailopenmpse29.html">tail</a>] [<a 
+href="openmpch2.html#openmpse29.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.21</span>&#x00A0;&#x00A0;<a 
+ id="x147-1590002.21"></a>Data Environment</h3>
+<a 
+ id="dx147-159001"></a>
+<p>This section presents directives and clauses for controlling data environments.
+</p> 
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.1&#x00A0;&#x00A0;<a 
+href="openmpsu113.html#x148-1600002.21.1">Data-Sharing Attribute Rules</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.1.1&#x00A0;&#x00A0;<a 
+href="openmpsu113.html#x148-1610002.21.1.1">Variables Referenced in a Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.1.2&#x00A0;&#x00A0;<a 
+href="openmpsu113.html#x148-1620002.21.1.2">Variables Referenced in a Region but not in a Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.2&#x00A0;&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2"><span class="textbf"><span class="texttt">threadprivate</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.3&#x00A0;&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">List Item Privatization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.4&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">Data-Sharing Attribute Clauses</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1660002.21.4.1"><span class="textbf"><span class="texttt">default</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1670002.21.4.2"><span class="textbf"><span class="texttt">shared</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1680002.21.4.3"><span class="textbf"><span class="texttt">private</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1690002.21.4.4"><span class="textbf"><span class="texttt">firstprivate</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1700002.21.4.5"><span class="textbf"><span class="texttt">lastprivate</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.4.6&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1710002.21.4.6"><span class="textbf"><span class="texttt">linear</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.5&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1720002.21.5">Reduction Clauses and Directives</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1730002.21.5.1">Properties Common to All Reduction Clauses</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1740002.21.5.2">Reduction Scoping Clauses</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.5.3&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1750002.21.5.3">Reduction Participating Clauses</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.5.4&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1760002.21.5.4"><span class="textbf"><span class="texttt">reduction</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.5.5&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1770002.21.5.5"><span class="textbf"><span class="texttt">task_reduction</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.5.6&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1780002.21.5.6"><span class="textbf"><span class="texttt">in_reduction</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.5.7&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1790002.21.5.7"><span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.6&#x00A0;&#x00A0;<a 
+href="openmpsu118.html#x153-1800002.21.6">Data Copying Clauses</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu118.html#x153-1810002.21.6.1"><span class="textbf"><span class="texttt">copyin</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu118.html#x153-1820002.21.6.2"><span class="textbf"><span class="texttt">copyprivate</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.7&#x00A0;&#x00A0;<a 
+href="openmpsu119.html#x154-1830002.21.7">Data-Mapping Attribute Rules, Clauses, and Directives</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.7.1&#x00A0;&#x00A0;<a 
+href="openmpsu119.html#x154-1840002.21.7.1"><span class="textbf"><span class="texttt">map</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.7.2&#x00A0;&#x00A0;<a 
+href="openmpsu119.html#x154-1850002.21.7.2">Pointer Initialization for Device Data Environments</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.7.3&#x00A0;&#x00A0;<a 
+href="openmpsu119.html#x154-1860002.21.7.3"><span class="textbf"><span class="texttt">defaultmap</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.21.7.4&#x00A0;&#x00A0;<a 
+href="openmpsu119.html#x154-1870002.21.7.4"><span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> Directive</a></span>
+</div>
+
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu113.html" >next</a>] [<a 
+href="openmpsu112.html" >prev</a>] [<a 
+href="openmpsu112.html#tailopenmpsu112.html" >prev-tail</a>] [<a 
+href="openmpse29.html" >front</a>] [<a 
+href="openmpch2.html#openmpse29.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<p><a 
+ id="tailopenmpse29.html"></a> </p> 
+ 
+</body> 
+</html>

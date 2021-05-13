@@ -1,0 +1,254 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Monitoring Activity on the Host with OMPT</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 385--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu208.html" >next</a>] [<a 
+href="openmpsu206.html" >prev</a>] [<a 
+href="openmpsu206.html#tailopenmpsu206.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu207.html">tail</a>] [<a 
+href="openmpse47.html#openmpsu207.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.4</span>&#x00A0;&#x00A0;<a 
+ id="x262-2960004.2.4"></a>Monitoring Activity on the Host with OMPT</h4>
+<a 
+ id="dx262-296001"></a>
+<p>To monitor the execution of an OpenMP program on the host device, a tool initializer must register to
+receive notification of events that occur as an OpenMP program executes. A tool can use the
+<span class="textbf"><span class="texttt">ompt_set_callback</span></span> runtime entry point to register callbacks for OpenMP events. The return
+codes for <span class="textbf"><span class="texttt">ompt_set_callback</span></span> use the <span class="textbf"><span class="texttt">ompt_set_result_t</span></span> enumeration type. If the
+<span class="textbf"><span class="texttt">ompt_set_callback</span></span> runtime entry point is called outside a tool initializer, registration of supported
+callbacks may fail with a return value of <span class="textbf"><span class="texttt">ompt_set_error</span></span>.
+</p> 
+<p>All callbacks registered with <span class="textbf"><span class="texttt">ompt_set_callback</span></span> or returned by <span class="textbf"><span class="texttt">ompt_get_callback</span></span> use the
+dummy type signature <span class="textbf"><span class="texttt">ompt_callback_t</span></span>.
+</p> 
+<p>For callbacks listed in Table&#x00A0;<a 
+href="#x262-2960022">4.2<!--tex4ht:ref: table:valid_rc_mandatory --></a>, <span class="textbf"><span class="texttt">ompt_set_always</span></span> is the only registration return code that is allowed.
+An OpenMP implementation must guarantee that the callback will be invoked every time that a runtime
+event that is associated with it occurs. Support for such callbacks is required in a minimal implementation of
+the OMPT interface.
+</p> 
+<p>For callbacks listed in Table&#x00A0;<a 
+href="#x262-2960033">4.3<!--tex4ht:ref: table:valid_rc_optional --></a>, the <span class="textbf"><span class="texttt">ompt_set_callback</span></span> runtime entry may return any non-error
+code. Whether an OpenMP implementation invokes a registered callback never, sometimes, or always is
+implementation defined. If registration for a callback allows a return code of <span class="textbf"><span class="texttt">omp_set_never</span></span>, support
+for invoking such a callback may not be present in a minimal implementation of the OMPT interface. The
+                                                                            
+                                                                            
+return code from registering a callback indicates the implementation-defined level of support for the
+callback.
+</p> 
+<p><a 
+ id="x262-2960022"></a></p> 
+<hr class="float" /><div class="float" 
+>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;4.2: </td><td  
+class="content">Callbacks for which <span class="textbf"><span class="texttt">ompt_set_callback</span></span> Must Return <span class="textbf"><span class="texttt">ompt_set_always</span></span></td></tr></table></div><!--tex4ht:label?: x262-2960022 -->
+<div class="tabular">
+<table id="TBL-34" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-34-1g"><col 
+id="TBL-34-1" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-34-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-1-1"  
+class="td11"> Callback name                                                      </td></tr><tr 
+class="hline"><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-2-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_thread_begin</span></span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-3-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_thread_end</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-4-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_parallel_begin</span></span>     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_parallel_end</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_task_create</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_task_schedule</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_implicit_task</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target</span></span>             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target_emi</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-11-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target_data_op</span></span>     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-13-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target_submit</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-14-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi</span></span>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-15-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_control_tool</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-16-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_device_initialize</span></span>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-17-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_device_finalize</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-18-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_device_load</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-19-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_device_unload</span></span>      </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-34-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-34-20-1"  
+class="td11">                                  </td></tr></table></div>
+</div><hr class="endfloat" />
+<p><a 
+ id="x262-2960033"></a></p> 
+<hr class="float" /><div class="float" 
+>
+<div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;4.3: </td><td  
+class="content">Callbacks for which <span class="textbf"><span class="texttt">ompt_set_callback</span></span> May Return Any Non-Error Code</td></tr></table></div><!--tex4ht:label?: x262-2960033 -->
+<div class="tabular">
+ <table id="TBL-35" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-35-1g"><col 
+id="TBL-35-1" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-35-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-1-1"  
+class="td11"> Callback name                                                                </td></tr><tr 
+class="hline"><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-2-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_sync_region_wait</span></span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-3-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_mutex_released</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-4-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_dependences</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_task_dependence</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_work</span></span>                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_master // (deprecated)</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_masked</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target_map</span></span>             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_target_map_emi</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-11-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_sync_region</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_reduction</span></span>              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-13-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_lock_init</span></span>              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-14-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_lock_destroy</span></span>           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-15-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire</span></span>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-16-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_mutex_acquired</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-17-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_nest_lock</span></span>              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-18-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_flush</span></span>                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-19-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_cancel</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-20-1"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_callback_dispatch</span></span>               </td>
+
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-35-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-35-21-1"  
+class="td11">                                      </td></tr></table></div>
+</div><hr class="endfloat" />
+<p>Two techniques reduce the size of the OMPT interface. First, in cases where events are naturally paired, for
+example, the beginning and end of a region, and the arguments needed by the callback at each endpoint are
+identical, a tool registers a single callback for the pair of events, with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> or
+<span class="textbf"><span class="texttt">ompt_scope_end</span></span> provided as an argument to identify for which endpoint the callback is invoked.
+Second, when a class of events is amenable to uniform treatment, OMPT provides a single
+                                                                            
+                                                                            
+callback for that class of events, for example, an <span class="textbf"><span class="texttt">ompt_callback_sync_region_wait</span></span>
+callback is used for multiple kinds of synchronization regions, such as barrier, taskwait, and
+taskgroup regions. Some events, for example, <span class="textbf"><span class="texttt">ompt_callback_sync_region_wait</span></span>, use both
+techniques.
+</p> 
+<p><p><a 
+ id="Q1-262-1440"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_result_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3090004.4.4.2">4.4.4.2<!--tex4ht:ref: sec:ompt_set_result_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3770004.6.1.3">4.6.1.3<!--tex4ht:ref: sec:ompt_set_callback_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_callback_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3780004.6.1.4">4.6.1.4<!--tex4ht:ref: sec:ompt_get_callback_t --></a>.</li></ul>
+<!--l. 505--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu208.html" >next</a>] [<a 
+href="openmpsu206.html" >prev</a>] [<a 
+href="openmpsu206.html#tailopenmpsu206.html" >prev-tail</a>] [<a 
+href="openmpsu207.html" >front</a>] [<a 
+href="openmpse47.html#openmpsu207.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu207.html"></a> </p> 
+ 
+</body> 
+</html>

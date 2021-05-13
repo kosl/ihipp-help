@@ -1,0 +1,158 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMPT Tool Callback Signatures and Trace Records</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu213.html" >next</a>] [<a 
+href="openmpsu212.html" >prev</a>] [<a 
+href="openmpsu212.html#tailopenmpsu212.html" >prev-tail</a>] [<a 
+href="#tailopenmpse50.html">tail</a>] [<a 
+href="openmpch4.html#openmpse50.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.5</span>&#x00A0;&#x00A0;<a 
+ id="x270-3380004.5"></a>OMPT Tool Callback Signatures and Trace Records</h3>
+<p>The C/C++ header file (<span class="textbf"><span class="texttt">omp-tools.h</span></span>) provides the definitions of the types that are specified throughout
+this subsection. Restrictions to the OpenMP tool callbacks are as follows:
+</p> 
+<p><p><a 
+ id="Q1-270-1582"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Tool
+  callbacks
+  may
+  not
+  use
+  OpenMP
+  directives
+  or
+  call
+  any
+  runtime
+  library
+  routines
+  described
+  in
+  Section&#x00A0;<a 
+href="openmpch3.html#x156-1890003">3<!--tex4ht:ref: chap:Runtime Library Routines --></a>.
+  </li>
+  <li class="itemize">
+  Tool
+                                                                            
+                                                                            
+  callbacks
+  must
+  exit
+  by
+  either
+  returning
+  to
+  the
+  caller
+  or
+  aborting.</li></ul>
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu213.html#x271-3390004.5.1">Initialization and Finalization Callback Signature</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.1.1&#x00A0;&#x00A0;<a 
+href="openmpsu213.html#x271-3400004.5.1.1"><span class="textbf"><span class="texttt">ompt_initialize_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.1.2&#x00A0;&#x00A0;<a 
+href="openmpsu213.html#x271-3410004.5.1.2"><span class="textbf"><span class="texttt">ompt_finalize_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3420004.5.2">Event Callback Signatures and Trace Records</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3430004.5.2.1"><span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3440004.5.2.2"><span class="textbf"><span class="texttt">ompt_callback_thread_end_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3450004.5.2.3"><span class="textbf"><span class="texttt">ompt_callback_parallel_begin_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3460004.5.2.4"><span class="textbf"><span class="texttt">ompt_callback_parallel_end_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3470004.5.2.5"><span class="textbf"><span class="texttt">ompt_callback_work_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.6&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3480004.5.2.6"><span class="textbf"><span class="texttt">ompt_callback_dispatch_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.7&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3490004.5.2.7"><span class="textbf"><span class="texttt">ompt_callback_task_create_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.8&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3500004.5.2.8"><span class="textbf"><span class="texttt">ompt_callback_dependences_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.9&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3510004.5.2.9"><span class="textbf"><span class="texttt">ompt_callback_task_dependence_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.10&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3520004.5.2.10"><span class="textbf"><span class="texttt">ompt_callback_task_schedule_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.11&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3530004.5.2.11"><span class="textbf"><span class="texttt">ompt_callback_implicit_task_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.12&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3540004.5.2.12"><span class="textbf"><span class="texttt">ompt_callback_masked_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.13&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3550004.5.2.13"><span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.14&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3560004.5.2.14"><span class="textbf"><span class="texttt">ompt_callback_mutex_acquire_t</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.15&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3570004.5.2.15"><span class="textbf"><span class="texttt">ompt_callback_mutex_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.16&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3580004.5.2.16"><span class="textbf"><span class="texttt">ompt_callback_nest_lock_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.17&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3590004.5.2.17"><span class="textbf"><span class="texttt">ompt_callback_flush_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.18&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3600004.5.2.18"><span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.19&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3610004.5.2.19"><span class="textbf"><span class="texttt">ompt_callback_device_initialize_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.20&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3620004.5.2.20"><span class="textbf"><span class="texttt">ompt_callback_device_finalize_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.21&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3630004.5.2.21"><span class="textbf"><span class="texttt">ompt_callback_device_load_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.22&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3640004.5.2.22"><span class="textbf"><span class="texttt">ompt_callback_device_unload_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.23&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3650004.5.2.23"><span class="textbf"><span class="texttt">ompt_callback_buffer_request_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.24&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3660004.5.2.24"><span class="textbf"><span class="texttt">ompt_callback_buffer_complete_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.25&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3670004.5.2.25"><span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.26&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3680004.5.2.26"><span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">ompt_callback_target_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.27&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3690004.5.2.27"><span class="textbf"><span class="texttt">ompt_callback_target_map_emi_t</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">ompt_callback_target_map_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.28&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3700004.5.2.28"><span class="textbf"><span class="texttt">ompt_callback_target_submit_emi_t</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">ompt_callback_target_submit_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.29&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3710004.5.2.29"><span class="textbf"><span class="texttt">ompt_callback_control_tool_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.5.2.30&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3720004.5.2.30"><span class="textbf"><span class="texttt">ompt_callback_error_t</span></span></a></span>
+</div>
+<!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu213.html" >next</a>] [<a 
+href="openmpsu212.html" >prev</a>] [<a 
+href="openmpsu212.html#tailopenmpsu212.html" >prev-tail</a>] [<a 
+href="openmpse50.html" >front</a>] [<a 
+href="openmpch4.html#openmpse50.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse50.html"></a> </p> 
+ 
+</body> 
+</html>

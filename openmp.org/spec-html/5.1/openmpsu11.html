@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Memory Management</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 170--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu12.html" >next</a>] [<a 
+href="openmpsu10.html" >prev</a>] [<a 
+href="openmpsu10.html#tailopenmpsu10.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu11.html">tail</a>] [<a 
+href="openmpse4.html#openmpsu11.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.4.3</span>&#x00A0;&#x00A0;<a 
+ id="x20-190001.4.3"></a>Memory Management</h4>
+<p>The host device, and other devices that an implementation may support, have attached storage resources
+where program variables are stored. These resources can have different traits. A memory space in an
+OpenMP program represents a set of these storage resources. Memory spaces are defined according to a set
+of traits, and a single resource may be exposed as multiple memory spaces with different traits or may be
+part of multiple memory spaces. In any device, at least one memory space is guaranteed to
+exist.
+</p> 
+<p>An OpenMP program can use a <span class="emph">memory allocator</span> to allocate <span class="emph">memory</span> in which to store variables. This
+<span class="emph">memory</span> will be allocated from the storage resources of the <span class="emph">memory space</span> associated with the memory
+allocator. Memory allocators are also used to deallocate previously allocated <span class="emph">memory</span>. When an
+OpenMP memory allocator is not used to allocate memory, OpenMP does not prescribe the
+storage resource for the allocation; the memory for the variables may be allocated in any storage
+resource.
+</p> 
+<!--l. 189--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu12.html" >next</a>] [<a 
+href="openmpsu10.html" >prev</a>] [<a 
+href="openmpsu10.html#tailopenmpsu10.html" >prev-tail</a>] [<a 
+href="openmpsu11.html" >front</a>] [<a 
+href="openmpse4.html#openmpsu11.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu11.html"></a> </p> 
+ 
+</body> 
+</html>

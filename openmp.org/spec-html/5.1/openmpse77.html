@@ -1,0 +1,185 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_TOOL_VERBOSE_INIT</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1051--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse78.html" >next</a>] [<a 
+href="openmpse76.html" >prev</a>] [<a 
+href="openmpse76.html#tailopenmpse76.html" >prev-tail</a>] [<a 
+href="#tailopenmpse77.html">tail</a>] [<a 
+href="openmpch6.html#openmpse77.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.20</span>&#x00A0;&#x00A0;<a 
+ id="x343-5180006.20"></a><span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span></h3>
+                                                                            
+                                                                            
+<a 
+ id="dx343-518001"></a>
+<a 
+ id="dx343-518002"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span> environment variable sets the <span class="textit"><span class="textrm">tool-verbose-init-var</span></span> ICV,
+which controls whether an OpenMP implementation will verbosely log the registration of a
+tool.
+</p> 
+<p>The value of this environment variable must be one of the following:
+</p> 
+<p><span class="textbf"><span class="texttt">disabled </span></span>|<span class="textbf"><span class="texttt">  stdout </span></span>|<span class="textbf"><span class="texttt">  stderr </span></span>|<span class="textbf"><span class="texttt">  &#x003C;filename&#x003E;</span></span>
+</p> 
+<p>If <span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span> is set to any value other than case insensitive <span class="textbf"><span class="texttt">disabled</span></span>, <span class="textbf"><span class="texttt">stdout</span></span> or
+<span class="textbf"><span class="texttt">stderr</span></span>, the value is interpreted as a filename and the OpenMP runtime will try to log to a file with prefix
+<span class="textit"><span class="textrm">filename</span></span>. If the value is interpreted as a filename, whether it is case sensitive is implementation defined. If
+opening the logfile fails, the output will be redirected to stderr. If <span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span> is
+not defined, the default value for <span class="textit"><span class="textrm">tool-verbose-init-var</span></span> is <span class="textbf"><span class="texttt">disabled</span></span>. Support for logging to
+<span class="textbf"><span class="texttt">stdout</span></span> or <span class="textbf"><span class="texttt">stderr</span></span> is implementation defined. Unless <span class="textit"><span class="textrm">tool-verbose-init-var</span></span> is <span class="textbf"><span class="texttt">disabled</span></span>,
+the OpenMP runtime will log the steps of the tool activation process defined in Section&#x00A0;<a 
+href="openmpsu205.html#x260-2930004.2.2">4.2.2<!--tex4ht:ref: sec:ompt-check-tool --></a>
+to a file with a name that is constructed using the provided filename prefix. The format and
+detail of the log is implementation defined. At a minimum, the log will contain the following:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  either
+  that
+  tool-var
+  is
+  disabled,
+  or
+  </li>
+  <li class="itemize">
+  an
+  indication
+  that
+  a
+  tool
+  was
+  available
+  in
+  the
+  address
+  space
+                                                                            
+                                                                            
+  at
+  program
+  launch,
+  or
+  </li>
+  <li class="itemize">
+  the
+  path
+  name
+  of
+  each
+  tool
+  in
+  <span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span>
+  that
+  is
+  considered
+  for
+  dynamic
+  loading,
+  whether
+  dynamic
+  loading
+  was
+  successful,
+  and
+  whether
+  the
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  function
+  is
+  found
+  in
+  the
+  loaded
+  library.</li></ul>
+<p>In addition, if an <span class="textbf"><span class="texttt">ompt_start_tool</span></span> function is called the log will indicate whether or not the tool will
+use the OMPT interface.
+</p> 
+<p>Example:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x343-518003r1"></a></span></p> 
+<!--l. 1091--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x343-518004r2"></a></span><span 
+class="pcrb8t-">%</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_TOOL_VERBOSE_INIT</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">disabled</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x343-518005r3"></a></span><span 
+class="pcrb8t-">%</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_TOOL_VERBOSE_INIT</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">STDERR</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x343-518006r4"></a></span><span 
+class="pcrb8t-">%</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_TOOL_VERBOSE_INIT</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_load</span><span 
+class="pcrb8t-">.</span><span 
+class="pcrb8t-">log</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x343-518007r5"></a></span></pre>
+                                                                            
+                                                                            
+<p><p><a 
+ id="Q1-343-2487"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">tool-verbose-init-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  OMPT
+  Interface,
+  see
+  Chapter&#x00A0;<a 
+href="openmpch4.html#x256-2890004">4<!--tex4ht:ref: chap:OMPT Interface --></a>.</li></ul>
+<!--l. 1106--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse78.html" >next</a>] [<a 
+href="openmpse76.html" >prev</a>] [<a 
+href="openmpse76.html#tailopenmpse76.html" >prev-tail</a>] [<a 
+href="openmpse77.html" >front</a>] [<a 
+href="openmpch6.html#openmpse77.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse77.html"></a> </p> 
+ 
+</body> 
+</html>

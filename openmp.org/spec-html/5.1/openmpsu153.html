@@ -1,0 +1,204 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_set_num_teams</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 86--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu154.html" >next</a>] [<a 
+href="openmpsu152.html" >prev</a>] [<a 
+href="openmpsu152.html#tailopenmpsu152.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu153.html">tail</a>] [<a 
+href="openmpse34.html#openmpsu153.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.4.3</span>&#x00A0;&#x00A0;<a 
+ id="x194-2270003.4.3"></a><span class="textbf"><span class="texttt">omp_set_num_teams</span></span></h4>
+<a 
+ id="dx194-227001"></a>
+<p><p><a 
+ id="Q1-194-1014"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_set_num_teams</span></span> routine affects the number of threads to be used for subsequent <span class="textbf"><span class="texttt">teams</span></span>
+regions that do not specify a <span class="textbf"><span class="texttt">num_teams</span></span> clause, by setting the value of the <span class="textit"><span class="textrm">nteams-var</span></span> ICV of the current
+task.
+<p><a 
+ id="Q1-194-1015"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x194-227002r1"></a></span></p> 
+<!--l. 97--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x194-227003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_set_num_teams</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">num_teams</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x194-227004r3"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x194-227005r1"></a></span></p> 
+<!--l. 103--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x194-227006r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_set_num_teams</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">num_teams</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x194-227007r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">num_teams</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x194-227008r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-194-1016"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The value of the argument passed to this routine must evaluate to a positive integer, or else the behavior of
+this routine is implementation defined.
+</p> 
+<p><p><a 
+ id="Q1-194-1017"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_set_num_teams</span></span> region is the generating task.
+</p> 
+<p><p><a 
+ id="Q1-194-1018"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The effect of this routine is to set the value of the <span class="textit"><span class="textrm">nteams-var</span></span> ICV of the current task to the value specified
+in the argument.
+</p> 
+<p><p><a 
+ id="Q1-194-1019"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">omp_set_num_teams</span></span> routine are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  routine
+  may
+  not
+  be
+  called
+  from
+  within
+  a
+  parallel
+                                                                            
+                                                                            
+  region
+  that
+  is
+  not
+  the
+  implicit
+  parallel
+  region
+  that
+  surrounds
+  the
+  whole
+  OpenMP
+  program.</li></ul>
+<p><p><a 
+ id="Q1-194-1020"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">nteams-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  and
+  <span class="textbf"><span class="texttt">num_teams</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse15.html#x62-620002.7">2.7<!--tex4ht:ref: sec:teams Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_teams</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu151.html#x192-2250003.4.1">3.4.1<!--tex4ht:ref: subsec:omp_get_num_teams --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_max_teams</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu154.html#x195-2280003.4.4">3.4.4<!--tex4ht:ref: subsec:omp_get_max_teams --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NUM_TEAMS</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse80.html#x346-5210006.23">6.23<!--tex4ht:ref: sec:OMP_NUM_TEAMS --></a>.</li></ul>
+<!--l. 149--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu154.html" >next</a>] [<a 
+href="openmpsu152.html" >prev</a>] [<a 
+href="openmpsu152.html#tailopenmpsu152.html" >prev-tail</a>] [<a 
+href="openmpsu153.html" >front</a>] [<a 
+href="openmpse34.html#openmpsu153.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu153.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OpenMP Language Terminology</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 118--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu3.html" >next</a>] [<a 
+href="openmpsu1.html" >prev</a>] [<a 
+href="openmpsu1.html#tailopenmpsu1.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu2.html">tail</a>] [<a 
+href="openmpse2.html#openmpsu2.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.2.2</span>&#x00A0;&#x00A0;<a 
+ id="x9-80001.2.2"></a>OpenMP Language Terminology</h4>
+<p><div class="glossaryterm">base language</div> <div class="glossarydefstart">A programming language that serves as the foundation of the OpenMP specification.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     See
+     Section&#x00A0;<a 
+href="openmpse7.html#x28-270001.7">1.7<!--tex4ht:ref: sec:normative references --></a>
+     for
+     a
+     listing
+     of
+     current
+     <span class="emph">base
+     languages</span>
+     for
+     the
+     OpenMP
+     API.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">base program</div> <div class="glossarydefstart">A program written in a <span class="emph">base language</span>. </div>
+</p> 
+<p><div class="glossaryterm">preprocessed code</div> <div class="glossarydefstart">For C/C++, a sequence of preprocessing tokens that result from the first six phases of
+translation, as defined by the <span class="emph">base language</span>. </div>
+</p> 
+<p><div class="glossaryterm">program order</div> <div class="glossarydefstart">An ordering of operations performed by the same <span class="emph">thread</span> as determined by the execution
+sequence of operations specified by the <span class="emph">base language</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     For
+     versions
+     of
+                                                                            
+                                                                            
+     C
+     and
+     C++
+     that
+     include
+     base
+     language
+     support
+     for
+     threading,
+     <span class="emph">program
+     order</span>
+     corresponds
+     to
+     the
+     <span class="emph">sequenced
+     before</span>
+     relation
+     between
+     operations
+     performed
+     by
+     the
+     same
+     <span class="emph">thread</span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">structured block</div> <div class="glossarydefstart">For C/C++, an executable statement, possibly compound, with a single entry at the top and
+a single exit at the bottom, or an OpenMP <span class="emph">construct</span>.
+</p> 
+<p>For Fortran, a <span class="emph">strictly structured block</span>, or a <span class="emph">loosely structured block</span>. </div>
+</p> 
+<p><div class="glossaryterm">structured block sequence</div> <div class="glossarydefstart">A <span class="emph">structured block</span>, or, for C/C++, a sequence of two or more executable
+statements that together have a single entry at the top and a single exit at the bottom. </div>
+</p> 
+<p><div class="glossaryterm">strictly structured block</div> <div class="glossarydefstart">A single Fortran <span class="textbf"><span class="texttt">BLOCK</span></span> construct, with a single entry at the top and a single exit at
+the bottom. </div>
+</p> 
+<p><div class="glossaryterm">loosely structured block</div> <div class="glossarydefstart">A block of executable constructs, where the first executable construct is not a
+Fortran <span class="textbf"><span class="texttt">BLOCK</span></span> construct, with a single entry at the top and a single exit at the bottom, or an OpenMP
+<span class="emph">construct</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+                                                                            
+                                                                            
+     <p>COMMENT:
+     In
+     Fortran
+     code,
+     when
+     a
+     <span class="emph">strictly
+     structured
+     block</span>
+     appears
+     within
+     an
+     OpenMP
+     <span class="emph">construct</span>,
+     that
+     OpenMP
+     construct
+     does
+     not
+     usually
+     require
+     a
+     paired
+     <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textit"><span class="textrm">directive</span></span>
+     to
+     define
+     the
+     range
+     of
+     the
+     OpenMP
+     <span class="emph">construct</span>,
+     while
+     an
+     OpenMP
+     <span class="emph">construct</span>
+     that
+     contains
+     a
+     <span class="emph">loosely
+     structured
+                                                                            
+                                                                            
+     block</span>
+     relies
+     on
+     the
+     paired
+     <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textit"><span class="textrm">directive</span></span>
+     to
+     define
+     the
+     range
+     of
+     the
+     OpenMP
+     <span class="emph">construct</span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">compilation unit</div> <div class="glossarydefstart">For C/C++, a translation unit.
+</p> 
+<p>For Fortran, a program unit. </div>
+</p> 
+<p><div class="glossaryterm">enclosing context</div> <div class="glossarydefstart">For C/C++, the innermost scope enclosing an OpenMP <span class="emph">directive</span>.
+</p> 
+<p>For Fortran, the innermost scoping unit enclosing an OpenMP <span class="emph">directive</span>. </div>
+</p> 
+<p><div class="glossaryterm">directive</div> <div class="glossarydefstart">A <span class="emph">base language</span> mechanism to specify <span class="emph">OpenMP program</span> behavior.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     See
+     Section&#x00A0;<a 
+href="openmpse9.html#x31-300002.1">2.1<!--tex4ht:ref: sec:Directive Format --></a>
+     for
+     a
+     description
+     of
+     OpenMP
+     <span class="emph">directive</span>
+     syntax
+     in
+     each
+     <span class="emph">base
+     language</span>.</p> 
+</div>
+                                                                            
+                                                                            
+<p></div>
+</p> 
+<p><div class="glossaryterm">white space</div> <div class="glossarydefstart">A non-empty sequence of space and/or horizontal tab characters. </div>
+</p> 
+<p><div class="glossaryterm">OpenMP program</div> <div class="glossarydefstart">A program that consists of a <span class="emph">base program</span> that is annotated with OpenMP <span class="emph">directives</span> or
+that calls OpenMP API runtime library routines. </div>
+</p> 
+<p><div class="glossaryterm">conforming program</div> <div class="glossarydefstart">An <span class="emph">OpenMP program</span> that follows all rules and restrictions of the OpenMP
+specification. </div>
+</p> 
+<p><div class="glossaryterm">implementation code</div> <div class="glossarydefstart">Implicit code that is introduced by the OpenMP implementation. </div>
+</p> 
+<p><div class="glossaryterm">metadirective</div> <div class="glossarydefstart">A <span class="emph">directive</span> that conditionally resolves to another <span class="emph">directive</span>. </div>
+</p> 
+<p><div class="glossaryterm">declarative directive</div> <div class="glossarydefstart">An OpenMP <span class="emph">directive</span> that may only be placed in a declarative context and results in
+one or more declarations only; it is not associated with the immediate execution of any user code or
+<span class="emph">implementation code</span>. For C++, if a declarative directive applies to a function declaration or
+definition and it is specified with one or more C++ attribute specifiers, the specified attributes
+must be applied to the function as permitted by the base language. For Fortran, a declarative
+directive must appear after any <span class="textbf"><span class="texttt">USE</span></span>, <span class="textbf"><span class="texttt">IMPORT</span></span>, and <span class="textbf"><span class="texttt">IMPLICIT</span></span> statements in a declarative context.
+</div>
+</p> 
+<p><div class="glossaryterm">executable directive</div> <div class="glossarydefstart">An OpenMP <span class="emph">directive</span> that appears in an executable context and results in
+<span class="emph">implementation</span> code and/or prescribes the manner in which associated user code must execute.
+</div>
+</p> 
+<p><div class="glossaryterm">informational directive</div> <div class="glossarydefstart">An OpenMP <span class="emph">directive</span> that is neither declarative nor executable, but otherwise
+conveys user code properties to the compiler. </div>
+</p> 
+<p><div class="glossaryterm">utility directive</div> <div class="glossarydefstart">An OpenMP <span class="emph">directive</span> that is neither declarative nor executable, but otherwise facilitates
+interactions with the compiler and/or supports code readability. </div>
+</p> 
+<p><div class="glossaryterm">stand-alone directive</div> <div class="glossarydefstart">An OpenMP <span class="emph">executable directive</span> that has no associated user code, but may produce
+implementation code resulting from clauses in the directive. </div>
+</p> 
+<p><div class="glossaryterm">construct</div> <div class="glossarydefstart">An OpenMP <span class="emph">executable directive</span> (and for Fortran, the paired <span class="textbf"><span class="texttt">end</span></span><span class="emph">directive</span>, if any) and the
+associated statement, loop nest or <span class="emph">structured block</span>, if any, not including the code in any called routines.
+That is, the lexical extent of an <span class="emph">executable directive</span>. </div>
+</p> 
+<p><div class="glossaryterm">combined construct</div> <div class="glossarydefstart">A <span class="emph">construct</span> that is a shortcut for specifying one <span class="emph">construct</span> immediately nested inside
+another <span class="emph">construct</span>. A <span class="emph">combined construct</span> is semantically identical to that of explicitly specifying
+the first <span class="emph">construct</span> containing one instance of the second <span class="emph">construct</span> and no other statements.
+</div>
+</p> 
+<p><div class="glossaryterm">composite construct</div> <div class="glossarydefstart">A <span class="emph">construct</span> that is composed of two <span class="emph">constructs</span> but does not have identical semantics to
+specifying one of the <span class="emph">constructs</span> immediately nested inside the other. A <span class="emph">composite construct</span>
+either adds semantics not included in the <span class="emph">constructs</span> from which it is composed or provides an
+effective nesting of the one <span class="emph">construct</span> inside the other that would otherwise be non-conforming.
+</div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">constituent construct</div> <div class="glossarydefstart">For a given combined or composite <span class="emph">construct</span>, a <span class="emph">construct</span> from which it, or any one of
+its <span class="emph">constituent constructs</span>, is composed.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     The
+     <span class="emph">constituent
+     constructs</span>
+     of
+     a
+     <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">for</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>
+     construct
+     are
+     the
+     following
+     constructs:
+     <span class="textbf"><span class="texttt">target</span></span>,
+     <span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">for</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>,
+     <span class="textbf"><span class="texttt">teams</span></span>,
+     <span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">for</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>,
+     <span class="textbf"><span class="texttt">distribute</span></span>,
+     <span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">for</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>,
+     <span class="textbf"><span class="texttt">parallel</span></span>,
+     <span class="textbf"><span class="texttt">for</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>,
+     <span class="textbf"><span class="texttt">for</span></span>,
+     and
+     <span class="textbf"><span class="texttt">simd</span></span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">leaf construct</div> <div class="glossarydefstart">For a given combined or composite <span class="emph">construct</span>, a <span class="emph">constituent construct</span> that is not itself a
+combined or composite <span class="emph">construct</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+                                                                            
+                                                                            
+     The
+     <span class="emph">leaf
+     constructs</span>
+     of
+     a
+     <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">for</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>
+     construct
+     are
+     the
+     following
+     constructs:
+     <span class="textbf"><span class="texttt">target</span></span>,
+     <span class="textbf"><span class="texttt">teams</span></span>,
+     <span class="textbf"><span class="texttt">distribute</span></span>,
+     <span class="textbf"><span class="texttt">parallel</span></span>,
+     <span class="textbf"><span class="texttt">for</span></span>,
+     and
+     <span class="textbf"><span class="texttt">simd</span></span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">combined target construct</div> <div class="glossarydefstart">A <span class="emph">combined construct</span> that is composed of a <span class="textbf"><span class="texttt">target</span></span> construct along with
+another construct. </div>
+</p> 
+<p><div class="glossaryterm">region</div> <div class="glossarydefstart">All code encountered during a specific instance of the execution of a given <span class="emph">construct</span>, structured
+block sequence or OpenMP library routine. A <span class="emph">region</span> includes any code in called routines as well as any
+<span class="emph">implementation code</span>. The generation of a <span class="emph">task</span> at the point where a <span class="emph">task generating construct</span> is encountered
+is a part of the <span class="emph">region</span> of the <span class="emph">encountering thread</span>. However, an <span class="emph">explicit task region</span> that corresponds to a <span class="emph">task
+generating construct</span> is not part of the <span class="emph">region</span> of the <span class="emph">encountering thread</span> unless it is an <span class="emph">included task region</span>.
+The point where a <span class="textbf"><span class="texttt">target</span></span> or <span class="textbf"><span class="texttt">teams</span></span> directive is encountered is a part of the <span class="emph">region</span> of the
+<span class="emph">encountering thread</span>, but the <span class="emph">region</span> that corresponds to the <span class="textbf"><span class="texttt">target</span></span> or <span class="textbf"><span class="texttt">teams</span></span> directive is
+not.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENTS:
+     </p> 
+<p>A
+     <span class="emph">region</span>
+     may
+     also
+     be
+                                                                            
+                                                                            
+     thought
+     of
+     as
+     the
+     dynamic
+     or
+     runtime
+     extent
+     of
+     a
+     <span class="emph">construct</span>
+     or
+     of
+     an
+     OpenMP
+     library
+     routine.
+     </p> 
+<p>During
+     the
+     execution
+     of
+     an
+     <span class="emph">OpenMP
+     program</span>,
+     a
+     <span class="emph">construct</span>
+     may
+     give
+     rise
+     to
+     many
+     <span class="emph">regions</span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">active parallel region</div> <div class="glossarydefstart">A <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span> that is executed by a <span class="emph">team</span> consisting of more than one <span class="emph">thread</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">inactive parallel region</div> <div class="glossarydefstart">A <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span> that is executed by a <span class="emph">team</span> of only one <span class="emph">thread</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">active target region</div> <div class="glossarydefstart">A <span class="textbf"><span class="texttt">target</span></span><span class="emph">region</span> that is executed on a <span class="emph">device</span> other than the <span class="emph">device</span> that encountered the
+<span class="textbf"><span class="texttt">target</span></span><span class="emph">construct</span>. </div>
+</p> 
+<p><div class="glossaryterm">inactive target region</div> <div class="glossarydefstart">A <span class="textbf"><span class="texttt">target</span></span><span class="emph">region</span> that is executed on the same <span class="emph">device</span> that encountered the <span class="textbf"><span class="texttt">target</span></span>
+                                                                            
+                                                                            
+<span class="emph">construct</span>. </div>
+</p> 
+<p><div class="glossaryterm">sequential part</div> <div class="glossarydefstart">All code encountered during the execution of an <span class="emph">initial task region</span> that is not part of a
+<span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span> corresponding to a <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">construct</span> or a <span class="textbf"><span class="texttt">task</span></span><span class="emph">region</span> corresponding to a <span class="textbf"><span class="texttt">task</span></span>
+<span class="emph">construct</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENTS:
+     </p> 
+<p>A
+     <span class="emph">sequential
+     part</span>
+     is
+     enclosed
+     by
+     an
+     <span class="emph">implicit
+     parallel
+     region</span>.
+     </p> 
+<p>Executable
+     statements
+     in
+     called
+     routines
+     may
+     be
+     in
+     both
+     a
+     <span class="emph">sequential
+     part</span>
+     and
+     any
+     number
+     of
+     explicit
+     <span class="textbf"><span class="texttt">parallel</span></span>
+     <span class="emph">regions</span>
+     at
+                                                                            
+                                                                            
+     different
+     points
+     in
+     the
+     program
+     execution.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">primary thread</div> <div class="glossarydefstart">An <span class="emph">OpenMP thread</span> that has <span class="emph">thread number</span> 0. A <span class="emph">primary thread</span> may be an <span class="emph">initial thread</span> or
+the <span class="emph">thread</span> that encounters a <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">construct</span>, creates a <span class="emph">team</span>, generates a set of <span class="emph">implicit tasks</span>, and then
+executes one of those <span class="emph">tasks</span> as <span class="emph">thread</span> number 0. </div>
+</p> 
+<p><div class="glossaryterm">parent thread</div> <div class="glossarydefstart">The <span class="emph">thread</span> that encountered the <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">construct</span> and generated a <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span> is
+the <span class="emph">parent thread</span> of each of the <span class="emph">threads</span> in the <span class="emph">team</span> of that <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span>. The <span class="emph">primary thread</span> of a
+<span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span> is the same <span class="emph">thread</span> as its <span class="emph">parent thread</span> with respect to any resources associated with an
+<span class="emph">OpenMP thread</span>. </div>
+</p> 
+<p><div class="glossaryterm">child thread</div> <div class="glossarydefstart">When a thread encounters a <span class="textbf"><span class="texttt">parallel</span></span> construct, each of the threads in the generated
+<span class="textbf"><span class="texttt">parallel</span></span> region&#8217;s team are <span class="emph">child threads</span> of the encountering <span class="emph">thread</span>. The <span class="textbf"><span class="texttt">target</span></span> or <span class="textbf"><span class="texttt">teams</span></span> region&#8217;s
+<span class="emph">initial thread</span> is not a <span class="emph">child thread</span> of the thread that encountered the <span class="textbf"><span class="texttt">target</span></span> or <span class="textbf"><span class="texttt">teams</span></span> construct.
+</div>
+</p> 
+<p><div class="glossaryterm">ancestor thread</div> <div class="glossarydefstart">For a given <span class="emph">thread</span>, its <span class="emph">parent thread</span> or one of its <span class="emph">parent thread&#8217;s ancestor threads</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">descendent thread</div> <div class="glossarydefstart">For a given <span class="emph">thread</span>, one of its <span class="emph">child threads</span> or one of its <span class="emph">child threads&#8217; descendent
+threads</span>. </div>
+</p> 
+<p><div class="glossaryterm">team</div> <div class="glossarydefstart">A set of one or more <span class="emph">threads</span> participating in the execution of a <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENTS:
+     </p> 
+<p>For
+     an
+     <span class="emph">active
+     parallel
+     region</span>,
+     the
+     team
+     comprises
+     the
+                                                                            
+                                                                            
+     <span class="emph">primary
+     thread</span>
+     and
+     at
+     least
+     one
+     additional
+     <span class="emph">thread</span>.
+     </p> 
+<p>For
+     an
+     <span class="emph">inactive
+     parallel
+     region</span>,
+     the
+     <span class="emph">team</span>
+     comprises
+     only
+     the
+     <span class="emph">primary
+     thread</span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">league</div> <div class="glossarydefstart">The set of <span class="emph">teams</span> created by a <span class="textbf"><span class="texttt">teams</span></span> construct. </div>
+</p> 
+<p><div class="glossaryterm">contention group</div> <div class="glossarydefstart">An initial <span class="emph">thread</span> and its <span class="emph">descendent threads</span>. </div>
+</p> 
+<p><div class="glossaryterm">implicit parallel region</div> <div class="glossarydefstart">An <span class="emph">inactive parallel region</span> that is not generated from a <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">construct</span>.
+<span class="emph">Implicit parallel regions</span> surround the whole <span class="emph">OpenMP program</span>, all <span class="textbf"><span class="texttt">target</span></span><span class="emph">regions</span>, and all <span class="textbf"><span class="texttt">teams</span></span>
+<span class="emph">regions</span>.
+</p> 
+<p></div>
+</p> 
+<p><div class="glossaryterm">initial thread</div> <div class="glossarydefstart">The <span class="emph">thread</span> that executes an <span class="emph">implicit parallel region</span>. </div>
+</p> 
+<p><div class="glossaryterm">initial team</div> <div class="glossarydefstart">The <span class="emph">team</span> that comprises an <span class="emph">initial thread</span> executing an <span class="emph">implicit parallel region</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">nested construct</div> <div class="glossarydefstart">A <span class="emph">construct</span> (lexically) enclosed by another <span class="emph">construct</span>. </div>
+</p> 
+<p><div class="glossaryterm">closely nested construct</div> <div class="glossarydefstart">A <span class="emph">construct</span> nested inside another <span class="emph">construct</span> with no other <span class="emph">construct</span> nested between
+them. </div>
+</p> 
+<p><div class="glossaryterm">explicit region</div> <div class="glossarydefstart">A <span class="emph">region</span> that corresponds to either a <span class="emph">construct</span> of the same name or a library routine call that
+explicitly appears in the program. </div>
+</p> 
+<p><div class="glossaryterm">nested region</div> <div class="glossarydefstart">A <span class="emph">region</span> (dynamically) enclosed by another <span class="emph">region</span>. That is, a <span class="emph">region</span> generated from the
+execution of another <span class="emph">region</span> or one of its <span class="emph">nested regions</span>.
+                                                                            
+                                                                            
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     Some
+     nestings
+     are
+     <span class="emph">conforming</span>
+     and
+     some
+     are
+     not.
+     See
+     Section&#x00A0;<a 
+href="openmpse30.html#x155-1880002.22">2.22<!--tex4ht:ref: sec:Nesting of Regions --></a>
+     for
+     the
+     restrictions
+     on
+     nesting.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">closely nested region</div> <div class="glossarydefstart">A <span class="emph">region nested</span> inside another <span class="emph">region</span> with no <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region nested</span> between
+them. </div>
+</p> 
+<p><div class="glossaryterm">strictly nested region</div> <div class="glossarydefstart">A <span class="emph">region nested</span> inside another <span class="emph">region</span> with no other <span class="emph">explicit region nested</span> between
+them. </div>
+</p> 
+<p><div class="glossaryterm">all threads</div> <div class="glossarydefstart">All OpenMP <span class="emph">threads</span> participating in the <span class="emph">OpenMP program</span>. </div>
+</p> 
+<p><div class="glossaryterm">current team</div> <div class="glossarydefstart">All <span class="emph">threads</span> in the <span class="emph">team</span> executing the innermost enclosing <span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">encountering thread</div> <div class="glossarydefstart">For a given <span class="emph">region</span>, the <span class="emph">thread</span> that encounters the corresponding <span class="emph">construct</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">all tasks</div> <div class="glossarydefstart">All <span class="emph">tasks</span> participating in the <span class="emph">OpenMP program</span>. </div>
+</p> 
+<p><div class="glossaryterm">current team tasks</div> <div class="glossarydefstart">All <span class="emph">tasks</span> encountered by the corresponding <span class="emph">team</span>. The <span class="emph">implicit tasks</span> constituting the
+<span class="textbf"><span class="texttt">parallel</span></span><span class="emph">region</span> and any <span class="emph">descendent tasks</span> encountered during the execution of these <span class="emph">implicit tasks</span> are
+included in this set of tasks. </div>
+</p> 
+<p><div class="glossaryterm">generating task</div> <div class="glossarydefstart">For a given <span class="emph">region</span>, the task for which execution by a <span class="emph">thread</span> generated the <span class="emph">region</span>.
+</div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">binding thread set</div> <div class="glossarydefstart">The set of <span class="emph">threads</span> that are affected by, or provide the context for, the execution of a
+<span class="emph">region</span>.
+</p> 
+<p>The <span class="emph">binding thread set</span> for a given <span class="emph">region</span> can be <span class="emph">all threads</span> on a specified set of devices, <span class="emph">all threads</span> in a
+<span class="emph">contention group</span>, all <span class="emph">primary threads</span> executing an enclosing <span class="textbf"><span class="texttt">teams</span></span><span class="emph">region</span>, the <span class="emph">current team</span>, or the
+<span class="emph">encountering thread</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     The
+     <span class="emph">binding
+     thread
+     set</span>
+     for
+     a
+     particular
+     <span class="emph">region</span>
+     is
+     described
+     in
+     its
+     corresponding
+     subsection
+     of
+     this
+     specification.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">binding task set</div> <div class="glossarydefstart">The set of <span class="emph">tasks</span> that are affected by, or provide the context for, the execution of a
+<span class="emph">region</span>.
+</p> 
+<p>The <span class="emph">binding task</span> set for a given <span class="emph">region</span> can be <span class="emph">all tasks</span>, the <span class="emph">current team tasks</span>, <span class="emph">all tasks of
+the current team that are generated in the region</span>, the <span class="emph">binding implicit task</span>, or the <span class="emph">generating
+task</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+                                                                            
+                                                                            
+     <p>COMMENT:
+     The
+     <span class="emph">binding
+     task</span>
+     set
+     for
+     a
+     particular
+     <span class="emph">region</span>
+     (if
+     applicable)
+     is
+     described
+     in
+     its
+     corresponding
+     subsection
+     of
+     this
+     specification.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">binding region</div> <div class="glossarydefstart">The enclosing <span class="emph">region</span> that determines the execution context and limits the scope of the effects
+of the bound <span class="emph">region</span> is called the <span class="emph">binding region</span>.
+</p> 
+<p><span class="emph">Binding region</span> is not defined for <span class="emph">regions</span> for which the <span class="emph">binding thread</span> set is <span class="emph">all threads</span> or the
+<span class="emph">encountering thread</span>, nor is it defined for <span class="emph">regions</span> for which the <span class="emph">binding task set</span> is <span class="emph">all tasks</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">orphaned construct</div> <div class="glossarydefstart">A <span class="emph">construct</span> that gives rise to a <span class="emph">region</span> for which the <span class="emph">binding thread set</span> is the
+<span class="emph">current team</span>, but is not nested within another <span class="emph">construct</span> that gives rise to the <span class="emph">binding region</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">worksharing construct</div> <div class="glossarydefstart">A <span class="emph">construct</span> that divides the work within its structured block into partitions, each
+of which is executed exactly once by one of the <span class="emph">threads</span> in the <span class="emph">team</span> executing the <span class="emph">construct</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">device construct</div> <div class="glossarydefstart">An OpenMP <span class="emph">construct</span> that accepts the <span class="textbf"><span class="texttt">device</span></span> clause. </div>
+</p> 
+<p><div class="glossaryterm">device routine</div> <div class="glossarydefstart">A function (for C/C++ and Fortran) or subroutine (for Fortran) that can be executed on a
+<span class="emph">target device</span>, as part of a <span class="textbf"><span class="texttt">target</span></span> region. </div>
+</p> 
+<p><div class="glossaryterm">foreign runtime environment</div> <div class="glossarydefstart">A runtime environment that exists outside the OpenMP runtime with which
+the OpenMP implementation may interoperate. </div>
+</p> 
+<p><div class="glossaryterm">foreign execution context</div> <div class="glossarydefstart">A context that is instantiated from a <span class="emph">foreign runtime environment</span> in order to
+facilitate execution on a given device. </div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">foreign task</div> <div class="glossarydefstart">A unit of work executed in a <span class="emph">foreign execution context</span>. </div>
+</p> 
+<p><div class="glossaryterm">indirect device invocation</div> <div class="glossarydefstart">An indirect call to the device version of a procedure on a device other than the
+host device, through a function pointer (C/C++), a pointer to a member function (C++) or a procedure
+pointer (Fortran) that refers to the host version of the procedure. </div>
+</p> 
+<p><div class="glossaryterm">place</div> <div class="glossarydefstart">An unordered set of <span class="emph">processors</span> on a device. </div>
+</p> 
+<p><div class="glossaryterm">place list</div> <div class="glossarydefstart">The ordered list that describes all OpenMP <span class="emph">places</span> available to the execution environment.
+</div>
+</p> 
+<p><div class="glossaryterm">place partition</div> <div class="glossarydefstart">An ordered list that corresponds to a contiguous interval in the OpenMP <span class="emph">place list</span>. It
+describes the <span class="emph">places</span> currently available to the execution environment for a given parallel <span class="emph">region</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">place number</div> <div class="glossarydefstart">A number that uniquely identifies a <span class="emph">place</span> in the <span class="emph">place list</span>, with zero identifying the first <span class="emph">place</span>
+in the <span class="emph">place list</span>, and each consecutive whole number identifying the next <span class="emph">place</span> in the <span class="emph">place list</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">thread affinity</div> <div class="glossarydefstart">A binding of <span class="emph">threads</span> to <span class="emph">places</span> within the current <span class="emph">place partition</span>. </div>
+</p> 
+<p><div class="glossaryterm">SIMD instruction</div> <div class="glossarydefstart">A single machine instruction that can operate on multiple data elements.
+</div>
+</p> 
+<p><div class="glossaryterm">SIMD lane</div> <div class="glossarydefstart">A software or hardware mechanism capable of processing one data element from a <span class="emph">SIMD
+instruction</span>. </div>
+</p> 
+<p><div class="glossaryterm">SIMD chunk</div> <div class="glossarydefstart">A set of iterations executed concurrently, each by a <span class="emph">SIMD lane</span>, by a single <span class="emph">thread</span> by means of
+<span class="emph">SIMD instructions</span>. </div>
+</p> 
+<p><div class="glossaryterm">memory</div> <div class="glossarydefstart">A storage resource to store and to retrieve variables accessible by OpenMP threads.
+</div>
+</p> 
+<p><div class="glossaryterm">memory space</div> <div class="glossarydefstart">A representation of storage resources from which <span class="emph">memory</span> can be allocated or deallocated.
+More than one memory space may exist. </div>
+</p> 
+<p><div class="glossaryterm">memory allocator</div> <div class="glossarydefstart">An OpenMP object that fulfills requests to allocate and to deallocate <span class="emph">memory</span> for program
+variables from the storage resources of its associated <span class="emph">memory space</span>. </div>
+</p> 
+<p><div class="glossaryterm">handle</div> <div class="glossarydefstart">An opaque reference that uniquely identifies an abstraction. </div>
+</p> 
+<!--l. 754--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu3.html" >next</a>] [<a 
+href="openmpsu1.html" >prev</a>] [<a 
+href="openmpsu1.html#tailopenmpsu1.html" >prev-tail</a>] [<a 
+href="openmpsu2.html" >front</a>] [<a 
+href="openmpse2.html#openmpsu2.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu2.html"></a> </p> 
+ 
+</body> 
+</html>

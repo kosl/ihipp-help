@@ -1,0 +1,369 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>parallel sections Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 199--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu76.html" >next</a>] [<a 
+href="openmpsu74.html" >prev</a>] [<a 
+href="openmpsu74.html#tailopenmpsu74.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu75.html">tail</a>] [<a 
+href="openmpse24.html#openmpsu75.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.16.3</span>&#x00A0;&#x00A0;<a 
+ id="x105-1150002.16.3"></a><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> Construct</h4>
+<a 
+ id="dx105-115001"></a>
+<a 
+ id="dx105-115002"></a>
+<a 
+ id="dx105-115003"></a>
+<p><p><a 
+ id="Q1-105-436"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> construct is a shortcut for specifying a <span class="textbf"><span class="texttt">parallel</span></span> construct containing a
+<span class="textbf"><span class="texttt">sections</span></span> construct and no other statements.
+<p><a 
+ id="Q1-105-437"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115004r1"></a></span></p> 
+<!--l. 214--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">sections</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115006r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115007r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">section</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115008r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115009r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">section</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115010r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115011r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115012r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">}</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115013r10"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">parallel</span></span> or <span class="textbf"><span class="texttt">sections</span></span> directives, except the
+<span class="textbf"><span class="texttt">nowait</span></span> clause, with identical meanings and restrictions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115014r1"></a></span></p> 
+<!--l. 233--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115015r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">sections</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115016r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">section</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115017r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115018r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">section</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115019r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115020r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115021r8"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">sections</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x105-115022r9"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">parallel</span></span> or <span class="textbf"><span class="texttt">sections</span></span> directives, with identical
+meanings and restrictions.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-105-438"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The semantics are identical to explicitly specifying a <span class="textbf"><span class="texttt">parallel</span></span> directive immediately followed by a
+<span class="textbf"><span class="texttt">sections</span></span> directive.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The semantics are identical to explicitly specifying a <span class="textbf"><span class="texttt">parallel</span></span> directive immediately followed by a
+<span class="textbf"><span class="texttt">sections</span></span> directive, and an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> directive immediately followed by an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>
+directive.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-105-439"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The restrictions for the <span class="textbf"><span class="texttt">parallel</span></span> construct and the <span class="textbf"><span class="texttt">sections</span></span> construct apply.
+</p> 
+<p><p><a 
+ id="Q1-105-440"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">sections</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu42.html#x66-660002.10.1">2.10.1<!--tex4ht:ref: subsec:sections Construct --></a>.
+  </li>
+  <li class="itemize">
+  Data
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<!--l. 277--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu76.html" >next</a>] [<a 
+href="openmpsu74.html" >prev</a>] [<a 
+href="openmpsu74.html#tailopenmpsu74.html" >prev-tail</a>] [<a 
+href="openmpsu75.html" >front</a>] [<a 
+href="openmpse24.html#openmpsu75.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu75.html"></a> </p> 
+ 
+</body> 
+</html>

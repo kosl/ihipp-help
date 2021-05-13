@@ -1,0 +1,195 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMPT Runtime Entry Points for Tools</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu215.html" >next</a>] [<a 
+href="openmpsu214.html" >prev</a>] [<a 
+href="openmpsu214.html#tailopenmpsu214.html" >prev-tail</a>] [<a 
+href="#tailopenmpse51.html">tail</a>] [<a 
+href="openmpch4.html#openmpse51.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h3 class="sectionHead"><span class="titlemark">4.6</span>&#x00A0;&#x00A0;<a 
+ id="x273-3730004.6"></a>OMPT Runtime Entry Points for Tools</h3>
+<p>OMPT supports two principal sets of runtime entry points for tools. One set of runtime entry points enables
+a tool to register callbacks for OpenMP events and to inspect the state of an OpenMP thread while executing
+in a tool callback or a signal handler. The second set of runtime entry points enables a tool to trace activities
+on a device. When directed by the tracing interface, an OpenMP implementation will trace activities on a
+device, collect buffers of trace records, and invoke callbacks on the host to process these records. OMPT
+runtime entry points should not be global symbols since tools cannot rely on the visibility of such
+symbols.
+</p> 
+<p>OMPT also supports runtime entry points for two classes of lookup routines. The first class
+of lookup routines contains a single member: a routine that returns runtime entry points in
+the OMPT callback interface. The second class of lookup routines includes a unique lookup
+routine for each kind of device that can return runtime entry points in a device&#8217;s OMPT tracing
+interface.
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp-tools.h</span></span> C/C++ header file provides the definitions of the types that are specified throughout
+this subsection.
+</p> 
+<p><p><a 
+ id="Q1-273-1788"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for each of the entry points in this section is the encountering thread unless otherwise
+specified. The binding task set is the task executing on the encountering thread.
+<p><a 
+ id="Q1-273-1789"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on OMPT runtime entry points are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  OMPT
+  runtime
+  entry
+  points
+  must
+  not
+  be
+  called
+  from
+  a
+  signal
+  handler
+                                                                            
+                                                                            
+  on
+  a
+  native
+  thread
+  before
+  a
+  <span class="textit"><span class="textrm">native-thread-begin</span></span>
+  or
+  after
+  a
+  <span class="textit"><span class="textrm">native-thread-end</span></span>
+  event.
+  </li>
+  <li class="itemize">
+  OMPT
+  device
+  runtime
+  entry
+  points
+  must
+  not
+  be
+  called
+  after
+  a
+  <span class="textit"><span class="textrm">device-finalize</span></span>
+  event
+  for
+  that
+  device.</li></ul>
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3740004.6.1">Entry Points in the OMPT Callback Interface</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.1&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3750004.6.1.1"><span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.2&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3760004.6.1.2"><span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.3&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3770004.6.1.3"><span class="textbf"><span class="texttt">ompt_set_callback_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.4&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3780004.6.1.4"><span class="textbf"><span class="texttt">ompt_get_callback_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.5&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3790004.6.1.5"><span class="textbf"><span class="texttt">ompt_get_thread_data_t</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.6&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3800004.6.1.6"><span class="textbf"><span class="texttt">ompt_get_num_procs_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.7&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3810004.6.1.7"><span class="textbf"><span class="texttt">ompt_get_num_places_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.8&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3820004.6.1.8"><span class="textbf"><span class="texttt">ompt_get_place_proc_ids_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.9&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3830004.6.1.9"><span class="textbf"><span class="texttt">ompt_get_place_num_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.10&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3840004.6.1.10"><span class="textbf"><span class="texttt">ompt_get_partition_place_nums_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.11&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3850004.6.1.11"><span class="textbf"><span class="texttt">ompt_get_proc_id_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.12&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3860004.6.1.12"><span class="textbf"><span class="texttt">ompt_get_state_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.13&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3870004.6.1.13"><span class="textbf"><span class="texttt">ompt_get_parallel_info_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.14&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3880004.6.1.14"><span class="textbf"><span class="texttt">ompt_get_task_info_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.15&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3890004.6.1.15"><span class="textbf"><span class="texttt">ompt_get_task_memory_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.16&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3900004.6.1.16"><span class="textbf"><span class="texttt">ompt_get_target_info_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.17&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3910004.6.1.17"><span class="textbf"><span class="texttt">ompt_get_num_devices_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.18&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3920004.6.1.18"><span class="textbf"><span class="texttt">ompt_get_unique_id_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.1.19&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3930004.6.1.19"><span class="textbf"><span class="texttt">ompt_finalize_tool_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3940004.6.2">Entry Points in the OMPT Device Tracing Interface</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3950004.6.2.1"><span class="textbf"><span class="texttt">ompt_get_device_num_procs_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3960004.6.2.2"><span class="textbf"><span class="texttt">ompt_get_device_time_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3970004.6.2.3"><span class="textbf"><span class="texttt">ompt_translate_time_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3980004.6.2.4"><span class="textbf"><span class="texttt">ompt_set_trace_ompt_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3990004.6.2.5"><span class="textbf"><span class="texttt">ompt_set_trace_native_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.6&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4000004.6.2.6"><span class="textbf"><span class="texttt">ompt_start_trace_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.7&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4010004.6.2.7"><span class="textbf"><span class="texttt">ompt_pause_trace_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.8&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4020004.6.2.8"><span class="textbf"><span class="texttt">ompt_flush_trace_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.9&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4030004.6.2.9"><span class="textbf"><span class="texttt">ompt_stop_trace_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.10&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4040004.6.2.10"><span class="textbf"><span class="texttt">ompt_advance_buffer_cursor_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.11&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4050004.6.2.11"><span class="textbf"><span class="texttt">ompt_get_record_type_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.12&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4060004.6.2.12"><span class="textbf"><span class="texttt">ompt_get_record_ompt_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.13&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4070004.6.2.13"><span class="textbf"><span class="texttt">ompt_get_record_native_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.6.2.14&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-4080004.6.2.14"><span class="textbf"><span class="texttt">ompt_get_record_abstract_t</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.3&#x00A0;&#x00A0;<a 
+href="openmpsu217.html#x276-4090004.6.3">Lookup Entry Points: <span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span></a></span>
+</div>
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu215.html" >next</a>] [<a 
+href="openmpsu214.html" >prev</a>] [<a 
+href="openmpsu214.html#tailopenmpsu214.html" >prev-tail</a>] [<a 
+href="openmpse51.html" >front</a>] [<a 
+href="openmpch4.html#openmpse51.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse51.html"></a> </p> 
+ 
+</body> 
+</html>

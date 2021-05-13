@@ -1,0 +1,283 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Memory Management of OMPD Library</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 28--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu235.html" >next</a>] [<a 
+href="openmpse55.html" >prev</a>] [<a 
+href="openmpse55.html#tailopenmpse55.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu234.html">tail</a>] [<a 
+href="openmpse55.html#openmpsu234.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.4.1</span>&#x00A0;&#x00A0;<a 
+ id="x298-4310005.4.1"></a>Memory Management of OMPD Library</h4>
+<p>The OMPD library must not access the heap manager directly. Instead, if it needs heap memory it
+must use the memory allocation and deallocation callback functions that are described
+in this section, <span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span> (see Section&#x00A0;<a 
+href="#x298-4320005.4.1.1">5.4.1.1<!--tex4ht:ref: subsubsubsec:ompd_callback_memory_alloc_fn_t --></a>) and
+<span class="textbf"><span class="texttt">ompd_callback_memory_free_fn_t</span></span> (see Section&#x00A0;<a 
+href="#x298-4330005.4.1.2">5.4.1.2<!--tex4ht:ref: subsubsubsec:ompd_callback_memory_free_fn_t --></a>), which are provided by the
+third-party tool to obtain and to release heap memory. This mechanism ensures that the library
+does not interfere with any custom memory management scheme that the third-party tool may
+use.
+</p> 
+<p>If the OMPD library is implemented in C++ then memory management operators, like <span class="textbf"><span class="texttt">new</span></span> and
+<span class="textbf"><span class="texttt">delete</span></span> and their variants, <span class="emph">must all</span> be overloaded and implemented in terms of the callbacks
+that the third-party tool provides. The OMPD library must be implemented in a manner such
+that any of its definitions of <span class="textbf"><span class="texttt">new</span></span> or <span class="textbf"><span class="texttt">delete</span></span> do not interfere with any that the third-party tool
+defines.
+</p> 
+<p>In some cases, the OMPD library must allocate memory to return results to the third-party tool. The
+third-party tool then owns this memory and has the responsibility to release it. Thus, the OMPD library and
+the third-party tool must use the same memory manager.
+</p> 
+<p>The OMPD library creates OMPD handles, which are opaque to the third-party tool and may have a
+complex internal structure. The third-party tool cannot determine if the handle pointers that the API returns
+correspond to discrete heap allocations. Thus, the third-party tool must not simply deallocate a handle by
+passing an address that it receives from the OMPD library to its own memory manager. Instead, the
+OMPD API includes functions that the third-party tool must use when it no longer needs a
+handle.
+</p> 
+<p>A third-party tool creates contexts and passes them to the OMPD library. The OMPD library does not
+release contexts; instead the third-party tool releases them after it releases any handles that may reference
+the contexts.
+</p> 
+<p>
+</p> 
+
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">5.4.1.1  </span> <a 
+ id="x298-4320005.4.1.1"></a><span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span></h5>
+<a 
+ id="dx298-432001"></a>
+<p><p><a 
+ id="Q1-298-2071"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span> type is the type signature of the callback routine that the
+third-party tool provides to the OMPD library to allocate memory.
+<p><a 
+ id="Q1-298-2072"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-432002r1"></a></span></p> 
+<!--l. 77--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-432003r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompd_callback_memory_alloc_fn_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-432004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nbytes</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-432005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-432006r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-432007r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-298-2073"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span> type is the type signature of the memory
+allocation callback routine that the third-party tool provides. The OMPD library may call the
+<span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span> callback function to allocate memory.
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-298-2074"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">nbytes</span></span> argument is the size in bytes of the block of memory to allocate.
+</p> 
+<p>The address of the newly allocated block of memory is returned in the location to which the <span class="textit"><span class="textrm">ptr</span></span> argument
+points. The newly allocated block is suitably aligned for any type of variable and is not guaranteed to be set
+to zero.
+</p> 
+<p><p><a 
+ id="Q1-298-2075"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+Routines that use the <span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span> type may return the general return
+codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">5.4<!--tex4ht:ref: subsec:ompd-third-party-tool-callback-interface --></a>.
+</p> 
+<p><p><a 
+ id="Q1-298-2076"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_size_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">5.3.1<!--tex4ht:ref: subsubsubsec:ompd_size_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.4.1.2  </span> <a 
+ id="x298-4330005.4.1.2"></a><span class="textbf"><span class="texttt">ompd_callback_memory_free_fn_t</span></span></h5>
+<a 
+ id="dx298-433001"></a>
+<p><p><a 
+ id="Q1-298-2078"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_free_fn_t</span></span> type is the type signature of the callback routine that the
+third-party tool provides to the OMPD library to deallocate memory.
+<p><a 
+ id="Q1-298-2079"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-433002r1"></a></span></p> 
+<!--l. 125--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-433003r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompd_callback_memory_free_fn_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-433004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-433005r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x298-433006r5"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-298-2080"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_free_fn_t</span></span> type is the type signature of the memory
+deallocation callback routine that the third-party tool provides. The OMPD library may call
+the <span class="textbf"><span class="texttt">ompd_callback_memory_free_fn_t</span></span> callback function to deallocate memory that
+was obtained from a prior call to the <span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span> callback
+function.
+</p> 
+<p><p><a 
+ id="Q1-298-2081"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">ptr</span></span> argument is the address of the block to be deallocated.
+</p> 
+<p><p><a 
+ id="Q1-298-2082"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+Routines that use the <span class="textbf"><span class="texttt">ompd_callback_memory_free_fn_t</span></span> type may return the general return codes
+listed at the beginning of Section&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">5.4<!--tex4ht:ref: subsec:ompd-third-party-tool-callback-interface --></a>.
+</p> 
+<p><p><a 
+ id="Q1-298-2083"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_memory_alloc_fn_t</span></span>
+  type,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="#x298-4320005.4.1.1">5.4.1.1<!--tex4ht:ref: subsubsubsec:ompd_callback_memory_alloc_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callbacks_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6">5.4.6<!--tex4ht:ref: subsubsec:ompd_callbacks_t --></a>.</li></ul>
+<!--l. 161--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu235.html" >next</a>] [<a 
+href="openmpse55.html" >prev</a>] [<a 
+href="openmpse55.html#tailopenmpse55.html" >prev-tail</a>] [<a 
+href="openmpsu234.html" >front</a>] [<a 
+href="openmpse55.html#openmpsu234.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu234.html"></a> </p> 
+ 
+</body> 
+</html>

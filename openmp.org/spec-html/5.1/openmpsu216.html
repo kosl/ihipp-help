@@ -1,0 +1,1517 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Entry Points in the OMPT Device Tracing Interface</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1055--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu217.html" >next</a>] [<a 
+href="openmpsu215.html" >prev</a>] [<a 
+href="openmpsu215.html#tailopenmpsu215.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu216.html">tail</a>] [<a 
+href="openmpse51.html#openmpsu216.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.6.2</span>&#x00A0;&#x00A0;<a 
+ id="x275-3940004.6.2"></a>Entry Points in the OMPT Device Tracing Interface</h4>
+<p>The runtime entry points with type signatures of the types that are specified in this section enable a tool to
+trace activities on a device.
+                                                                            
+                                                                            
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.1  </span> <a 
+ id="x275-3950004.6.2.1"></a><span class="textbf"><span class="texttt">ompt_get_device_num_procs_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1908"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_device_num_procs_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_device_num_procs</span></span>
+runtime entry point, which returns the number of processors currently available to the execution
+environment on the specified device.
+<p><a 
+ id="Q1-275-1909"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-395001r1"></a></span></p> 
+<!--l. 1078--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-395002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_device_num_procs_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-395003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-395004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-395005r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1910"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_device_num_procs</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_get_device_num_procs_t</span></span>, returns the number of processors that are available on the device
+at the time the routine is called. This value may change between the time that it is determined and the time
+that it is read in the calling context due to system actions outside the control of the OpenMP
+implementation.
+</p> 
+<p><p><a 
+ id="Q1-275-1911"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument is a pointer to an opaque object that represents the target device instance. The pointer
+to the device instance object is used by functions in the device tracing interface to identify the device being
+addressed.
+</p> 
+<p><p><a 
+ id="Q1-275-1912"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.2  </span> <a 
+ id="x275-3960004.6.2.2"></a><span class="textbf"><span class="texttt">ompt_get_device_time_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1914"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_device_time_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_device_time</span></span>
+runtime entry point, which returns the current time on the specified device.
+<p><a 
+ id="Q1-275-1915"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-396001r1"></a></span></p> 
+<!--l. 1115--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-396002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_time_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_device_time_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-396003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-396004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-396005r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1916"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Host and target devices are typically distinct and run independently. If host and target devices are different
+hardware components, they may use different clock generators. For this reason, a common time base for
+ordering host-side and device-side events may not be available.
+</p> 
+<p>The <span class="textbf"><span class="texttt">ompt_get_device_time</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_device_time_t</span></span>,
+returns the current time on the specified device. A tool can use this information to align time stamps from
+different devices.
+</p> 
+<p><p><a 
+ id="Q1-275-1917"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument is a pointer to an opaque object that represents the target device instance. The pointer
+to the device instance object is used by functions in the device tracing interface to identify the device being
+addressed.
+</p> 
+<p><p><a 
+ id="Q1-275-1918"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_time_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3130004.4.4.6">4.4.4.6<!--tex4ht:ref: sec:ompt_device_time_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.3  </span> <a 
+ id="x275-3970004.6.2.3"></a><span class="textbf"><span class="texttt">ompt_translate_time_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1920"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_translate_time_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_translate_time</span></span> runtime
+entry point, which translates a time value that is obtained from the specified device to a corresponding time
+value on the host device.
+<p><a 
+ id="Q1-275-1921"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-397001r1"></a></span></p> 
+<!--l. 1158--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-397002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">double</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_translate_time_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-397003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-397004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_time_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">time</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-397005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-397006r6"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1922"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_translate_time</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_translate_time_t</span></span>,
+translates a time value obtained from the specified device to a corresponding time value on the host
+device. The returned value for the host time has the same meaning as the value returned from
+<span class="textbf"><span class="texttt">omp_get_wtime</span></span>.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  The accuracy of time translations may degrade, if they are not performed promptly after a device time value
+is received and if either the host or device vary their clock speeds. Prompt translation of device times to host times is
+recommended. <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-275-1923"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument is a pointer to an opaque object that represents the target device instance. The pointer
+to the device instance object is used by functions in the device tracing interface to identify the device being
+addressed.
+</p> 
+<p>The <span class="textit"><span class="textrm">time</span></span> argument is a time from the specified device.
+</p> 
+<p><p><a 
+ id="Q1-275-1924"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_wtime</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu185.html#x232-2650003.10.1">3.10.1<!--tex4ht:ref: subsec:omp_get_wtime --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_time_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3130004.4.4.6">4.4.4.6<!--tex4ht:ref: sec:ompt_device_time_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.4  </span> <a 
+ id="x275-3980004.6.2.4"></a><span class="textbf"><span class="texttt">ompt_set_trace_ompt_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1926"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_set_trace_ompt_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span> runtime
+entry point, which enables or disables the recording of trace records for one or more types of OMPT
+events.
+<p><a 
+ id="Q1-275-1927"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-398001r1"></a></span></p> 
+<!--l. 1206--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-398002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_set_result_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_set_trace_ompt_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-398003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-398004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">unsigned</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">enable</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-398005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">unsigned</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">etype</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-398006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-398007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1928"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument points to an opaque object that represents the target device instance. Functions in the
+device tracing interface use this pointer to identify the device that is being addressed.
+</p> 
+<p>The <span class="textit"><span class="textrm">etype</span></span> argument indicates the events to which the invocation of <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span> applies. If
+the value of <span class="textit"><span class="textrm">etype</span></span> is 0 then the invocation applies to all events. If <span class="textit"><span class="textrm">etype</span></span> is positive then it applies to the event
+in <span class="textbf"><span class="texttt">ompt_callbacks_t</span></span> that matches that value.
+</p> 
+<p>The <span class="textit"><span class="textrm">enable</span></span> argument indicates whether tracing should be enabled or disabled for the event or events that the
+<span class="textit"><span class="textrm">etype</span></span> argument specifies. A positive value for <span class="textit"><span class="textrm">enable</span></span> indicates that recording should be enabled; a value of 0
+for <span class="textit"><span class="textrm">enable</span></span> indicates that recording should be disabled.
+</p> 
+<p><p><a 
+ id="Q1-275-1929"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on the <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span> runtime entry point are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  entry
+  point
+  must
+  not
+  return
+  <span class="textbf"><span class="texttt">ompt_set_sometimes_paired</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-275-1930"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Tracing
+  activity
+  on
+  target
+  devices
+  with
+  OMPT,
+  see
+  Section&#x00A0;<a 
+href="openmpsu208.html#x263-2970004.2.5">4.2.5<!--tex4ht:ref: sec:tracing-device-activity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callbacks_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu210.html#x267-3010004.4.2">4.4.2<!--tex4ht:ref: sec:ompt_callbacks_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_result_t</span></span>
+  type,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3090004.4.4.2">4.4.4.2<!--tex4ht:ref: sec:ompt_set_result_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.5  </span> <a 
+ id="x275-3990004.6.2.5"></a><span class="textbf"><span class="texttt">ompt_set_trace_native_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1932"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_set_trace_native_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_set_trace_native</span></span>
+runtime entry point, which enables or disables the recording of native trace records for a device.
+<p><a 
+ id="Q1-275-1933"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-399001r1"></a></span></p> 
+<!--l. 1261--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-399002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_set_result_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_set_trace_native_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-399003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-399004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">enable</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-399005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">flags</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-399006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-399007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1934"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+This interface is designed for use by a tool that cannot directly use native control functions
+for the device. If a tool can directly use the native control functions then it can invoke native
+control functions directly using pointers that the <span class="textit"><span class="textrm">lookup</span></span> function associated with the device
+provides and that are described in the <span class="textit"><span class="textrm">documentation</span></span> string that is provided to the device initializer
+callback.
+</p> 
+<p><p><a 
+ id="Q1-275-1935"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument points to an opaque object that represents the target device instance. Functions in the
+device tracing interface use this pointer to identify the device that is being addressed.
+</p> 
+<p>The <span class="textit"><span class="textrm">enable</span></span> argument indicates whether this invocation should enable or disable recording of
+events.
+</p> 
+<p>The <span class="textit"><span class="textrm">flags</span></span> argument specifies the kinds of native device monitoring to enable or to disable. Each kind of
+monitoring is specified by a flag bit. Flags can be composed by using logical <span 
+class="pcrr8t-">or </span>to combine enumeration
+values from type <span class="textbf"><span class="texttt">ompt_native_mon_flag_t</span></span>.
+</p> 
+<p>To start, to pause, to flush, or to stop tracing for a specific target device associated with <span class="textit"><span class="textrm">device</span></span>, a
+tool invokes the <span class="textbf"><span class="texttt">ompt_start_trace</span></span>, <span class="textbf"><span class="texttt">ompt_pause_trace</span></span>, <span class="textbf"><span class="texttt">ompt_flush_trace</span></span>, or
+<span class="textbf"><span class="texttt">ompt_stop_trace</span></span> runtime entry point for the device.
+</p> 
+<p><p><a 
+ id="Q1-275-1936"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on the <span class="textbf"><span class="texttt">ompt_set_trace_native</span></span> runtime entry point are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  entry
+  point
+  must
+  not
+  return
+  <span class="textbf"><span class="texttt">ompt_set_sometimes_paired</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-275-1937"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Tracing
+  activity
+  on
+  target
+  devices
+  with
+  OMPT,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu208.html#x263-2970004.2.5">4.2.5<!--tex4ht:ref: sec:tracing-device-activity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_result_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3090004.4.4.2">4.4.4.2<!--tex4ht:ref: sec:ompt_set_result_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.6  </span> <a 
+ id="x275-4000004.6.2.6"></a><span class="textbf"><span class="texttt">ompt_start_trace_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1939"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_start_trace_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_start_trace</span></span> runtime entry
+point, which starts tracing of activity on a specific device.
+<p><a 
+ id="Q1-275-1940"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-400001r1"></a></span></p> 
+<!--l. 1325--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-400002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_start_trace_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-400003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-400004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_buffer_request_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">request</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-400005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_buffer_complete_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">complete</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-400006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-400007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1941"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+A device&#8217;s <span class="textbf"><span class="texttt">ompt_start_trace</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_start_trace_t</span></span>,
+initiates tracing on the device. Under normal operating conditions, every event buffer provided to a device
+by a tool callback is returned to the tool before the OpenMP runtime shuts down. If an exceptional condition
+terminates execution of an OpenMP program, the OpenMP runtime may not return buffers provided to the
+device.
+</p> 
+<p>An invocation of <span class="textbf"><span class="texttt">ompt_start_trace</span></span> returns 1 if the command succeeds and 0 otherwise.
+</p> 
+<p><p><a 
+ id="Q1-275-1942"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument points to an opaque object that represents the target device instance. Functions in the
+device tracing interface use this pointer to identify the device that is being addressed.
+</p> 
+<p>The <span class="emph">request</span> argument specifies a tool callback that supplies a buffer in which a device can deposit
+events.
+</p> 
+<p>The <span class="emph">complete</span> argument specifies a tool callback that is invoked by the OpenMP implementation to empty a
+buffer that contains event records.
+</p> 
+<p><p><a 
+ id="Q1-275-1943"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_buffer_request_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3650004.5.2.23">4.5.2.23<!--tex4ht:ref: sec:ompt_callback_buffer_request_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_buffer_complete_t</span></span>
+  callback
+                                                                            
+                                                                            
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3660004.5.2.24">4.5.2.24<!--tex4ht:ref: sec:ompt_callback_buffer_complete_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.7  </span> <a 
+ id="x275-4010004.6.2.7"></a><span class="textbf"><span class="texttt">ompt_pause_trace_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1945"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_pause_trace_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_pause_trace</span></span> runtime entry
+point, which pauses or restarts activity tracing on a specific device.
+<p><a 
+ id="Q1-275-1946"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-401001r1"></a></span></p> 
+<!--l. 1379--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-401002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_pause_trace_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-401003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-401004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">begin_pause</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-401005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-401006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1947"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A device&#8217;s <span class="textbf"><span class="texttt">ompt_pause_trace</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_pause_trace_t</span></span>,
+pauses or resumes tracing on a device. An invocation of <span class="textbf"><span class="texttt">ompt_pause_trace</span></span> returns 1 if the command
+succeeds and 0 otherwise. Redundant pause or resume commands are idempotent and will return the same
+value as the prior command.
+</p> 
+<p><p><a 
+ id="Q1-275-1948"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument points to an opaque object that represents the target device instance. Functions in the
+device tracing interface use this pointer to identify the device that is being addressed.
+</p> 
+<p>The <span class="textit"><span class="textrm">begin_pause</span></span> argument indicates whether to pause or to resume tracing. To resume tracing, zero should
+be supplied for <span class="textit"><span class="textrm">begin_pause</span></span>; To pause tracing, any other value should be supplied.
+</p> 
+<p><p><a 
+ id="Q1-275-1949"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.8  </span> <a 
+ id="x275-4020004.6.2.8"></a><span class="textbf"><span class="texttt">ompt_flush_trace_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1951"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_flush_trace_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_flush_trace</span></span> runtime entry
+point, which causes all pending trace records for the specified device to be delivered.
+<p><a 
+ id="Q1-275-1952"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-402001r1"></a></span></p> 
+<!--l. 1419--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-402002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_flush_trace_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-402003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-402004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-402005r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1953"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A device&#8217;s <span class="textbf"><span class="texttt">ompt_flush_trace</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_flush_trace_t</span></span>,
+causes the OpenMP implementation to issue a sequence of zero or more buffer completion callbacks to
+deliver all trace records that have been collected prior to the flush. An invocation of <span class="textbf"><span class="texttt">ompt_flush_trace</span></span>
+returns 1 if the command succeeds and 0 otherwise.
+</p> 
+<p><p><a 
+ id="Q1-275-1954"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument points to an opaque object that represents the target device instance. Functions in the
+device tracing interface use this pointer to identify the device that is being addressed.
+</p> 
+<p><p><a 
+ id="Q1-275-1955"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.9  </span> <a 
+ id="x275-4030004.6.2.9"></a><span class="textbf"><span class="texttt">ompt_stop_trace_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1957"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_stop_trace_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_stop_trace</span></span> runtime entry point,
+which stops tracing for a device.
+<p><a 
+ id="Q1-275-1958"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-403001r1"></a></span></p> 
+<!--l. 1453--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-403002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_stop_trace_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-403003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-403004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-403005r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1959"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A device&#8217;s <span class="textbf"><span class="texttt">ompt_stop_trace</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_stop_trace_t</span></span>,
+halts tracing on the device and requests that any pending trace records are flushed. An invocation of
+<span class="textbf"><span class="texttt">ompt_stop_trace</span></span> returns 1 if the command succeeds and 0 otherwise.
+</p> 
+<p><p><a 
+ id="Q1-275-1960"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument points to an opaque object that represents the target device instance. Functions in the
+device tracing interface use this pointer to identify the device that is being addressed.
+</p> 
+<p><p><a 
+ id="Q1-275-1961"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.10  </span> <a 
+ id="x275-4040004.6.2.10"></a><span class="textbf"><span class="texttt">ompt_advance_buffer_cursor_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1963"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_advance_buffer_cursor_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_advance_buffer_cursor</span></span>
+runtime entry point, which advances a trace buffer cursor to the next record.
+<p><a 
+ id="Q1-275-1964"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404001r1"></a></span></p> 
+<!--l. 1487--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_advance_buffer_cursor_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">buffer</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_cursor_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_cursor_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">next</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404008r8"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-404009r9"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1965"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A device&#8217;s <span class="textbf"><span class="texttt">ompt_advance_buffer_cursor</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_advance_buffer_cursor_t</span></span>, advances a trace buffer pointer to the next trace record. An
+invocation of <span class="textbf"><span class="texttt">ompt_advance_buffer_cursor</span></span> returns <span class="textit"><span class="textrm">true</span></span> if the advance is successful and the next
+position in the buffer is valid.
+</p> 
+<p><p><a 
+ id="Q1-275-1966"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device</span></span> argument points to an opaque object that represents the target device instance. Functions in the
+device tracing interface use this pointer to identify the device that is being addressed.
+</p> 
+<p>The <span class="textit"><span class="textrm">buffer</span></span> argument indicates a trace buffer that is associated with the cursors.
+</p> 
+<p>The argument <span class="textit"><span class="textrm">size</span></span> indicates the size of <span class="textit"><span class="textrm">buffer</span></span> in bytes.
+</p> 
+<p>The <span class="textit"><span class="textrm">current</span></span> argument is an opaque buffer cursor.
+</p> 
+<p>The <span class="textit"><span class="textrm">next</span></span> argument returns the next value of an opaque buffer cursor.
+</p> 
+<p><p><a 
+ id="Q1-275-1967"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_buffer_cursor_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3150004.4.4.8">4.4.4.8<!--tex4ht:ref: sec:ompt_buffer_cursor_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.11  </span> <a 
+ id="x275-4050004.6.2.11"></a><span class="textbf"><span class="texttt">ompt_get_record_type_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1969"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_record_type_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_record_type</span></span>
+runtime entry point, which inspects the type of a trace record.
+<p><a 
+ id="Q1-275-1970"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-405001r1"></a></span></p> 
+<!--l. 1547--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-405002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_record_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_record_type_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-405003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">buffer</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-405004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_cursor_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-405005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-405006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1971"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Trace records for a device may be in one of two forms: <span class="emph">native</span> record format, which may be device-specific,
+or <span class="emph">OMPT</span> record format, in which each trace record corresponds to an OpenMP <span class="emph">event</span> and most fields
+in the record structure are the arguments that would be passed to the OMPT callback for the
+event.
+</p> 
+<p>A device&#8217;s <span class="textbf"><span class="texttt">ompt_get_record_type</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_get_record_type_t</span></span>, inspects the type of a trace record and indicates whether the record at the
+current position in the trace buffer is an OMPT record, a native record, or an invalid record. An invalid
+record type is returned if the cursor is out of bounds.
+</p> 
+<p><p><a 
+ id="Q1-275-1972"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">buffer</span></span> argument indicates a trace buffer.
+</p> 
+<p>The <span class="textit"><span class="textrm">current</span></span> argument is an opaque buffer cursor.
+</p> 
+<p><p><a 
+ id="Q1-275-1973"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_record_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu211.html#x268-3030004.4.3.1">4.4.3.1<!--tex4ht:ref: sec:ompt_record_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_buffer_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3140004.4.4.7">4.4.4.7<!--tex4ht:ref: sec:ompt_buffer_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_buffer_cursor_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3150004.4.4.8">4.4.4.8<!--tex4ht:ref: sec:ompt_buffer_cursor_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.12  </span> <a 
+ id="x275-4060004.6.2.12"></a><span class="textbf"><span class="texttt">ompt_get_record_ompt_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1975"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_record_ompt_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_record_ompt</span></span>
+runtime entry point, which obtains a pointer to an OMPT trace record from a trace buffer associated with a
+device.
+<p><a 
+ id="Q1-275-1976"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-406001r1"></a></span></p> 
+<!--l. 1593--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-406002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_record_ompt_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*(*</span><span 
+class="pcrb8t-">ompt_get_record_ompt_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-406003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">buffer</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-406004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_cursor_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-406005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-406006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1977"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A device&#8217;s <span class="textbf"><span class="texttt">ompt_get_record_ompt</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_get_record_ompt_t</span></span>, returns a pointer that may point to a record in the trace buffer, or it may
+point to a record in thread local storage in which the information extracted from a record was assembled.
+The information available for an event depends upon its type.
+</p> 
+<p>The return value of the <span class="textbf"><span class="texttt">ompt_record_ompt_t</span></span> type includes a field of a union type that can represent
+information for any OMPT event record type. Another call to the runtime entry point may overwrite the
+contents of the fields in a record returned by a prior invocation.
+</p> 
+<p><p><a 
+ id="Q1-275-1978"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">buffer</span></span> argument indicates a trace buffer.
+</p> 
+<p>The <span class="textit"><span class="textrm">current</span></span> argument is an opaque buffer cursor.
+</p> 
+<p><p><a 
+ id="Q1-275-1979"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_record_ompt_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu211.html#x268-3060004.4.3.4">4.4.3.4<!--tex4ht:ref: sec:ompt_record_ompt_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_device_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5">4.4.4.5<!--tex4ht:ref: sec:ompt_device_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_buffer_cursor_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3150004.4.4.8">4.4.4.8<!--tex4ht:ref: sec:ompt_buffer_cursor_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.13  </span> <a 
+ id="x275-4070004.6.2.13"></a><span class="textbf"><span class="texttt">ompt_get_record_native_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1981"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_record_native_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_record_native</span></span>
+runtime entry point, which obtains a pointer to a native trace record from a trace buffer associated with a
+device.
+<p><a 
+ id="Q1-275-1982"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-407001r1"></a></span></p> 
+<!--l. 1638--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-407002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*(*</span><span 
+class="pcrb8t-">ompt_get_record_native_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-407003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">buffer</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-407004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_buffer_cursor_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-407005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">host_op_id</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-407006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-407007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1983"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A device&#8217;s <span class="textbf"><span class="texttt">ompt_get_record_native</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_get_record_native_t</span></span>, returns a pointer that may point may point into the specified trace
+buffer, or into thread local storage in which the information extracted from a trace record was assembled.
+The information available for a native event depends upon its type. If the function returns a non-null result,
+it will also set the object to which <span class="textbf"><span class="texttt">host_op_id</span></span> points to a host-side identifier for the operation that is
+associated with the record. A subsequent call to <span class="textbf"><span class="texttt">ompt_get_record_native</span></span> may overwrite the
+contents of the fields in a record returned by a prior invocation.
+</p> 
+<p><p><a 
+ id="Q1-275-1984"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">buffer</span></span> argument indicates a trace buffer.
+</p> 
+<p>The <span class="textit"><span class="textrm">current</span></span> argument is an opaque buffer cursor.
+</p> 
+<p>The <span class="textit"><span class="textrm">host_op_id</span></span> argument is a pointer to an identifier that is returned by the function. The entry point sets
+the identifier to which <span class="textit"><span class="textrm">host_op_id</span></span> points to the value of a host-side identifier for an operation on a target
+device that was created when the operation was initiated by the host.
+</p> 
+<p><p><a 
+ id="Q1-275-1985"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3100004.4.4.3">4.4.4.3<!--tex4ht:ref: sec:ompt_id_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_buffer_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3140004.4.4.7">4.4.4.7<!--tex4ht:ref: sec:ompt_buffer_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_buffer_cursor_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3150004.4.4.8">4.4.4.8<!--tex4ht:ref: sec:ompt_buffer_cursor_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.2.14  </span> <a 
+ id="x275-4080004.6.2.14"></a><span class="textbf"><span class="texttt">ompt_get_record_abstract_t</span></span></h5>
+<p><p><a 
+ id="Q1-275-1987"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_record_abstract_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_record_abstract</span></span>
+runtime entry point, which summarizes the context of a native (device-specific) trace record.
+<p><a 
+ id="Q1-275-1988"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-408001r1"></a></span></p> 
+<!--l. 1694--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-408002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_record_abstract_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*(*</span><span 
+class="pcrb8t-">ompt_get_record_abstract_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-408003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">native_record</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-408004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x275-408005r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-275-1989"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+An OpenMP implementation may execute on a device that logs trace records in a native (device-specific)
+format that a tool cannot interpret directly. The <span class="textbf"><span class="texttt">ompt_get_record_abstract</span></span> runtime entry point of a
+device, which has type signature <span class="textbf"><span class="texttt">ompt_get_record_abstract_t</span></span>, translates a native trace record into
+a standard form.
+</p> 
+<p><p><a 
+ id="Q1-275-1990"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">native_record</span></span> argument is a pointer to a native trace record.
+</p> 
+<p><p><a 
+ id="Q1-275-1991"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_record_abstract_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu211.html#x268-3050004.4.3.3">4.4.3.3<!--tex4ht:ref: sec:ompt_record_abstract_t --></a>.</li></ul>
+<!--l. 1725--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu217.html" >next</a>] [<a 
+href="openmpsu215.html" >prev</a>] [<a 
+href="openmpsu215.html#tailopenmpsu215.html" >prev-tail</a>] [<a 
+href="openmpsu216.html" >front</a>] [<a 
+href="openmpse51.html#openmpsu216.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu216.html"></a> </p> 
+ 
+</body> 
+</html>

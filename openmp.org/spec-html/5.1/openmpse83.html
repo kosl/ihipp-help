@@ -1,0 +1,1105 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Version 5.0 to 5.1 Differences</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 110--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse84.html" >next</a>] [<a 
+href="openmpse82.html" >prev</a>] [<a 
+href="openmpse82.html#tailopenmpse82.html" >prev-tail</a>] [<a 
+href="#tailopenmpse83.html">tail</a>] [<a 
+href="openmpap2.html#openmpse83.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">B.2</span>&#x00A0;&#x00A0;<a 
+ id="x351-526000B.2"></a>Version 5.0 to 5.1 Differences</h3>
+  <ul class="itemize1">
+  <li class="itemize">
+  Full
+  support
+  of
+  C11,
+  C++11,
+  C++14,
+  C++17,
+  C++20
+  and
+  Fortran
+  2008
+  was
+  completed
+  (see
+  Section&#x00A0;<a 
+href="openmpse7.html#x28-270001.7">1.7<!--tex4ht:ref: sec:normative references --></a>).
+  </li>
+  <li class="itemize">
+  Various
+  changes
+  throughout
+  the
+                                                                            
+                                                                            
+  specification
+  were
+  made
+  to
+  provide
+  initial
+  support
+  of
+  Fortran
+  2018
+  (see
+  Section&#x00A0;<a 
+href="openmpse7.html#x28-270001.7">1.7<!--tex4ht:ref: sec:normative references --></a>).
+  </li>
+  <li class="itemize">
+  The
+  OpenMP
+  directive
+  syntax
+  was
+  extended
+  to
+  include
+  C++
+  attribute
+  specifiers
+  (see
+  Section&#x00A0;<a 
+href="openmpse9.html#x31-300002.1">2.1<!--tex4ht:ref: sec:Directive Format --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_all_memory</span></span>
+  reserved
+  locator
+  was
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpse9.html#x31-300002.1">2.1<!--tex4ht:ref: sec:Directive Format --></a>),
+  and
+  the
+  <span class="textbf"><span class="texttt">depend</span></span>
+                                                                            
+                                                                            
+  clause
+  was
+  extended
+  to
+  allow
+  its
+  use
+  (see
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">target_device</span></span>
+  trait
+  set
+  was
+  added
+  to
+  the
+  OpenMP
+  Context
+  (see
+  Section&#x00A0;<a 
+href="openmpsu25.html#x42-410002.3.1">2.3.1<!--tex4ht:ref: subsec:OpenMP Context --></a>),
+  and
+  the
+  <span class="textbf"><span class="texttt">target_device</span></span>
+  selector
+  set
+  was
+  added
+  to
+  context
+  selectors
+  (see
+  Section&#x00A0;<a 
+href="openmpsu26.html#x43-420002.3.2">2.3.2<!--tex4ht:ref: subsec:Context Selectors --></a>).
+  </li>
+  <li class="itemize">
+  For
+  C/C++,
+  the
+                                                                            
+                                                                            
+  declare
+  variant
+  directive
+  was
+  extended
+  to
+  support
+  elision
+  of
+  preprocessed
+  code
+  and
+  to
+  allow
+  enclosed
+  function
+  definitions
+  to
+  be
+  interpreted
+  as
+  variant
+  functions
+  (see
+  Section&#x00A0;<a 
+href="openmpsu29.html#x46-450002.3.5">2.3.5<!--tex4ht:ref: subsec:Declare Variant Directive --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+  directive
+  was
+  extended
+  with
+  new
+  clauses
+  (<span class="textbf"><span class="texttt">adjust_args</span></span>
+  and
+  <span class="textbf"><span class="texttt">append_args</span></span>)
+  that
+  support
+  adjustment
+  of
+                                                                            
+                                                                            
+  the
+  interface
+  between
+  the
+  original
+  function
+  and
+  its
+  variants
+  (see
+  Section&#x00A0;<a 
+href="openmpsu29.html#x46-450002.3.5">2.3.5<!--tex4ht:ref: subsec:Declare Variant Directive --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">dispatch</span></span>
+  construct
+  was
+  added
+  to
+  allow
+  users
+  to
+  control
+  when
+  variant
+  substitution
+  happens
+  and
+  to
+  define
+  additional
+  information
+  that
+  can
+  be
+  passed
+  as
+  arguments
+  to
+  the
+  function
+  variants
+                                                                            
+                                                                            
+  (see
+  Section&#x00A0;<a 
+href="openmpsu30.html#x47-460002.3.6">2.3.6<!--tex4ht:ref: subsec:dispatch Construct --></a>).
+  </li>
+  <li class="itemize">
+  To
+  support
+  device-specific
+  ICV
+  settings
+  the
+  environment
+  variable
+  syntax
+  was
+  extended
+  to
+  support
+  device-specific
+  variables
+  (see
+  Section&#x00A0;<a 
+href="openmpsu32.html#x50-490002.4.2">2.4.2<!--tex4ht:ref: subsec:ICV Initialization --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpch6.html#x323-4980006">6<!--tex4ht:ref: chap:Environment Variables --></a>).
+  </li>
+  <li class="itemize">
+  The
+  assume
+  directive
+  was
+  added
+  to
+  allow
+  users
+  to
+  specify
+  invariants
+  (see
+  Section&#x00A0;<a 
+href="openmpsu37.html#x56-560002.5.2">2.5.2<!--tex4ht:ref: subsec:assume Directive --></a>).
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  To
+  support
+  clarity
+  in
+  metadirectives,
+  the
+  <span class="textbf"><span class="texttt">nothing</span></span>
+  directive
+  was
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpsu38.html#x57-570002.5.3">2.5.3<!--tex4ht:ref: subsec:nothing Directive --></a>).
+  </li>
+  <li class="itemize">
+  To
+  allow
+  users
+  to
+  control
+  the
+  compilation
+  process
+  and
+  runtime
+  error
+  actions,
+  the
+  <span class="textbf"><span class="texttt">error</span></span>
+  directive
+  was
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpsu39.html#x58-580002.5.4">2.5.4<!--tex4ht:ref: subsec:error Directive --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">masked</span></span>
+  construct
+  was
+                                                                            
+                                                                            
+  added
+  to
+  support
+  restricting
+  execution
+  to
+  a
+  specific
+  thread
+  (see
+  Section&#x00A0;<a 
+href="openmpse16.html#x63-630002.8">2.8<!--tex4ht:ref: sec:masked --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">scope</span></span>
+  directive
+  was
+  added
+  to
+  support
+  reductions
+  without
+  requiring
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  or
+  worksharing
+  region
+  (see
+  Section&#x00A0;<a 
+href="openmpse17.html#x64-640002.9">2.9<!--tex4ht:ref: sec:scope Construct --></a>).
+  </li>
+  <li class="itemize">
+  Loop
+  transformation
+  constructs
+  were
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpsu53.html#x78-860002.11.9">2.11.9<!--tex4ht:ref: subsec:Loop Transformation Constructs --></a>).
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">grainsize</span></span>
+  and
+  <span class="textbf"><span class="texttt">num_tasks</span></span>
+  clauses
+  for
+  the
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct
+  were
+  extended
+  with
+  a
+  <span class="textbf"><span class="texttt">strict</span></span>
+  modifier
+  to
+  ensure
+  a
+  deterministic
+  distribution
+  of
+  logical
+  iterations
+  to
+  tasks
+  (see
+  Section&#x00A0;<a 
+href="openmpsu55.html#x81-910002.12.2">2.12.2<!--tex4ht:ref: subsec:taskloop Construct --></a>).
+  </li>
+  <li class="itemize">
+  Support
+  for
+  the
+  <span class="textbf"><span class="texttt">align</span></span>
+  clause
+  on
+  the
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  directive
+  and
+  <span class="textbf"><span class="texttt">allocator</span></span>
+                                                                            
+                                                                            
+  and
+  <span class="textbf"><span class="texttt">align</span></span>
+  modifiers
+  on
+  the
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  clause
+  was
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpse21.html#x86-960002.13">2.13<!--tex4ht:ref: sec:Memory Management Directives --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause
+  was
+  added
+  to
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  to
+  control
+  the
+  upper
+  bound
+  on
+  the
+  number
+  of
+  threads
+  in
+  the
+  created
+  contention
+  group
+  (see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>).
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">has_device_addr</span></span>
+  clause
+  was
+  added
+  to
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  to
+  allow
+  access
+  to
+  variables
+  or
+  array
+  sections
+  that
+  already
+  have
+  a
+  device
+  address
+  (see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>).
+  </li>
+  <li class="itemize">
+  Support
+  was
+  added
+  so
+  that
+  iterators
+  may
+  be
+  defined
+  and
+  used
+  in
+  a
+  motion
+                                                                            
+                                                                            
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+  directive
+  (see
+  Section&#x00A0;<a 
+href="openmpsu69.html#x97-1070002.14.6">2.14.6<!--tex4ht:ref: subsec:target update Construct --></a>)
+  or
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  (see
+  Section&#x00A0;<a 
+href="openmpsu119.html#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>).
+  </li>
+  <li class="itemize">
+  Support
+  was
+  added
+  for
+  indirect
+  calls
+  to
+  the
+  device
+  version
+  of
+  a
+  procedure
+  or
+  function
+  in
+  <span class="textbf"><span class="texttt">target</span></span>
+  regions.
+  (see
+  Section&#x00A0;<a 
+href="openmpsu70.html#x98-1080002.14.7">2.14.7<!--tex4ht:ref: subsec:declare target Directive --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">interop</span></span>
+                                                                            
+                                                                            
+  directive
+  was
+  added
+  to
+  enable
+  portable
+  interoperability
+  with
+  foreign
+  execution
+  contexts
+  used
+  to
+  implement
+  OpenMP
+  (see
+  Section&#x00A0;<a 
+href="openmpsu71.html#x100-1100002.15.1">2.15.1<!--tex4ht:ref: subsec:interop Construct --></a>).
+  Runtime
+  routines
+  that
+  facilitate
+  use
+  of
+  <span class="textbf"><span class="texttt">omp_interop_t</span></span>
+  objects
+  were
+  also
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpse42.html#x236-2690003.12">3.12<!--tex4ht:ref: sec:Interoperability Routines --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  was
+  added
+  to
+  the
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  directive
+  to
+                                                                            
+                                                                            
+  support
+  insertion
+  of
+  non-blocking
+  join
+  operations
+  in
+  a
+  task
+  dependence
+  graph
+  (see
+  Section&#x00A0;<a 
+href="openmpsu103.html#x136-1460002.19.5">2.19.5<!--tex4ht:ref: subsec:taskwait Construct --></a>).
+  </li>
+  <li class="itemize">
+  Support
+  was
+  added
+  for
+  compare-and-swap
+  and
+  (for
+  C
+  and
+  C++)
+  minimum
+  and
+  maximum
+  atomic
+  operations
+  through
+  the
+  <span class="textbf"><span class="texttt">compare</span></span>
+  clause.
+  Support
+  was
+  also
+  added
+  for
+  the
+  specification
+  of
+                                                                            
+                                                                            
+  the
+  memory
+  order
+  to
+  apply
+  to
+  a
+  failed
+  comparing
+  atomic
+  operation
+  with
+  the
+  <span class="textbf"><span class="texttt">fail</span></span>
+  clause
+  (see
+  Section&#x00A0;<a 
+href="openmpsu105.html#x138-1480002.19.7">2.19.7<!--tex4ht:ref: subsec:atomic Construct --></a>).
+  </li>
+  <li class="itemize">
+  Specification
+  of
+  the
+  <span class="textbf"><span class="texttt">seq_cst</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">flush</span></span>
+  construct
+  was
+  allowed,
+  with
+  the
+  same
+  meaning
+  as
+  a
+  <span class="textbf"><span class="texttt">flush</span></span>
+  construct
+  without
+  a
+  list
+  and
+                                                                            
+                                                                            
+  without
+  a
+  clause
+  (see
+  Section&#x00A0;<a 
+href="openmpsu106.html#x139-1490002.19.8">2.19.8<!--tex4ht:ref: subsec:flush Construct --></a>).
+  </li>
+  <li class="itemize">
+  To
+  support
+  inout
+  sets,
+  the
+  <span class="textbf"><span class="texttt">inoutset</span></span>
+  argument
+  was
+  added
+  to
+  the
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  (see
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>).
+  </li>
+  <li class="itemize">
+  Support
+  for
+  <span class="textbf"><span class="texttt">private</span></span>
+  and
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  as
+  an
+  argument
+  to
+  the
+  <span class="textbf"><span class="texttt">default</span></span>
+  clause
+  in
+  C
+  and
+  C++
+                                                                            
+                                                                            
+  was
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1660002.21.4.1">2.21.4.1<!--tex4ht:ref: subsubsec:default clause --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">present</span></span>
+  argument
+  was
+  added
+  to
+  the
+  <span class="textbf"><span class="texttt">defaultmap</span></span>
+  clause
+  (see
+  Section&#x00A0;<a 
+href="openmpsu119.html#x154-1860002.21.7.3">2.21.7.3<!--tex4ht:ref: subsubsec:defaultmap clause --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_set_num_teams</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span>
+  runtime
+  routines
+  were
+  added
+  to
+  control
+  the
+  number
+  of
+  teams
+  and
+  the
+  size
+  of
+  those
+  teams
+  on
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpsu153.html#x194-2270003.4.3">3.4.3<!--tex4ht:ref: subsec:omp_set_num_teams --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu155.html#x196-2290003.4.5">3.4.5<!--tex4ht:ref: subsec:omp_set_teams_thread_limit --></a>).
+  Additionally,
+  the
+  <span class="textbf"><span class="texttt">omp_get_max_teams</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_get_teams_thread_limit</span></span>
+  runtime
+  routines
+  were
+  added
+  to
+  retrieve
+  the
+  values
+  that
+  will
+  be
+  used
+  in
+  the
+  next
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpsu154.html#x195-2280003.4.4">3.4.4<!--tex4ht:ref: subsec:omp_get_max_teams --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu156.html#x197-2300003.4.6">3.4.6<!--tex4ht:ref: subsec:omp_get_teams_thread_limit --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_target_is_accessible</span></span>
+  runtime
+  routine
+  was
+  added
+  to
+                                                                            
+                                                                            
+  test
+  whether
+  host
+  memory
+  is
+  accessible
+  from
+  a
+  given
+  device
+  (see
+  Section&#x00A0;<a 
+href="openmpsu171.html#x216-2490003.8.4">3.8.4<!--tex4ht:ref: subsec:omp_target_is_accessible --></a>).
+  </li>
+  <li class="itemize">
+  To
+  support
+  asynchronous
+  device
+  memory
+  management,
+  <span class="textbf"><span class="texttt">omp_target_memcpy_async</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span>
+  runtime
+  routines
+  were
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpsu174.html#x219-2520003.8.7">3.8.7<!--tex4ht:ref: subsec:omp_target_memcpy_async --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu175.html#x220-2530003.8.8">3.8.8<!--tex4ht:ref: subsec:omp_target_memcpy_rect_async --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span>
+  runtime
+  routine
+  was
+  added
+  to
+                                                                            
+                                                                            
+  support
+  obtaining
+  the
+  device
+  pointer
+  that
+  is
+  associated
+  with
+  a
+  host
+  pointer
+  for
+  a
+  given
+  device
+  (see
+  Section&#x00A0;<a 
+href="openmpsu178.html#x223-2560003.8.11">3.8.11<!--tex4ht:ref: subsec:omp_get_mapped_ptr --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_calloc</span></span>,
+  <span class="textbf"><span class="texttt">omp_realloc</span></span>,
+  <span class="textbf"><span class="texttt">omp_aligned_alloc</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span>
+  API
+  routines
+  were
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpse43.html#x244-2770003.13">3.13<!--tex4ht:ref: sec:Memory Management Routines --></a>).
+  </li>
+  <li class="itemize">
+  For
+  the
+  <span class="textbf"><span class="texttt">omp_alloctrait_key_t</span></span>
+  enum,
+  the
+  <span class="textbf"><span class="texttt">omp_atv_serialized</span></span>
+                                                                            
+                                                                            
+  value
+  was
+  added
+  and
+  the
+  <span class="textbf"><span class="texttt">omp_atv_default</span></span>
+  value
+  was
+  changed
+  (see
+  Section&#x00A0;<a 
+href="openmpsu195.html#x245-2780003.13.1">3.13.1<!--tex4ht:ref: subsec:Memory Management Types --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_display_env</span></span>
+  runtime
+  routine
+  was
+  added
+  to
+  provide
+  information
+  about
+  ICVs
+  and
+  settings
+  of
+  environment
+  variables
+  (see
+  Section&#x00A0;<a 
+href="openmpse45.html#x255-2880003.15">3.15<!--tex4ht:ref: sec:omp_display_env --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ompt_scope_beginend</span></span>
+  value
+  was
+  added
+  to
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompt_scope_endpoint_t</span></span>
+  enum
+  to
+  indicate
+  the
+  coincident
+  beginning
+  and
+  end
+  of
+  a
+  scope
+  (see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implicit_workshare</span></span>,
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implicit_parallel</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_teams</span></span>
+  values
+  were
+  added
+  to
+  the
+  <span class="textbf"><span class="texttt">ompt_sync_region_t</span></span>
+  enum
+  (see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3200004.4.4.13">4.4.4.13<!--tex4ht:ref: sec:ompt_sync_region_t --></a>).
+  </li>
+  <li class="itemize">
+  Values
+  for
+  asynchronous
+  data
+  transfers
+  were
+  added
+  to
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">ompt_target_data_op_t</span></span>
+  enum
+  (see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3210004.4.4.14">4.4.4.14<!--tex4ht:ref: sec:ompt_target_data_op_t --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ompt_state_wait_barrier_implementation</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_state_wait_barrier_teams</span></span>
+  values
+  were
+  added
+  to
+  the
+  <span class="textbf"><span class="texttt">ompt_state_t</span></span>
+  enum
+  (see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3340004.4.4.27">4.4.4.27<!--tex4ht:ref: sec:ompt_state_t --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_target_map_emi_t</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi_t</span></span>
+  callbacks
+  were
+  added
+  to
+  support
+  external
+  monitoring
+  interfaces
+  (see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3670004.5.2.25">4.5.2.25<!--tex4ht:ref: sec:ompt_callback_target_data_op_emi_t --></a>,
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3680004.5.2.26">4.5.2.26<!--tex4ht:ref: sec:ompt_callback_target_emi_t --></a>,
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3690004.5.2.27">4.5.2.27<!--tex4ht:ref: sec:ompt_callback_target_map_emi_t --></a>
+                                                                            
+                                                                            
+  and
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3700004.5.2.28">4.5.2.28<!--tex4ht:ref: sec:ompt_callback_target_submit_emi_t --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ompt_callback_error_t</span></span>
+  type
+  was
+  added
+  (see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3720004.5.2.30">4.5.2.30<!--tex4ht:ref: sec:ompt_callback_error_t --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  syntax
+  was
+  extended
+  (see
+  Section&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5">6.5<!--tex4ht:ref: sec:OMP_PLACES --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">OMP_NUM_TEAMS</span></span>
+  and
+  <span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span>
+  environment
+  variables
+  were
+  added
+  to
+  control
+  the
+  number
+  and
+  size
+  of
+  teams
+  on
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpse80.html#x346-5210006.23">6.23<!--tex4ht:ref: sec:OMP_NUM_TEAMS --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpse81.html#x347-5220006.24">6.24<!--tex4ht:ref: sec:OMP_TEAMS_THREAD_LIMIT --></a>).</li></ul>
+<!--l. 304--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse84.html" >next</a>] [<a 
+href="openmpse82.html" >prev</a>] [<a 
+href="openmpse82.html#tailopenmpse82.html" >prev-tail</a>] [<a 
+href="openmpse83.html" >front</a>] [<a 
+href="openmpap2.html#openmpse83.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse83.html"></a> </p> 
+ 
+</body> 
+</html>

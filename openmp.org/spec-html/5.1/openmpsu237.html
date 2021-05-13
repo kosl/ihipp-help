@@ -1,0 +1,191 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Data Format Conversion: ompd_callback_device_host_fn_t</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 607--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu238.html" >next</a>] [<a 
+href="openmpsu236.html" >prev</a>] [<a 
+href="openmpsu236.html#tailopenmpsu236.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu237.html">tail</a>] [<a 
+href="openmpse55.html#openmpsu237.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.4.4</span>&#x00A0;&#x00A0;<a 
+ id="x301-4410005.4.4"></a>Data Format Conversion: <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span></h4>
+<a 
+ id="dx301-441001"></a>
+<p><p><a 
+ id="Q1-301-2125"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span> type is the type signature of the callback that the
+third-party tool provides to convert data between the formats that the third-party tool and the OMPD library
+use and that the OpenMP program uses.
+<p><a 
+ id="Q1-301-2126"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441002r1"></a></span></p> 
+<!--l. 619--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441003r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompd_callback_device_host_fn_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">address_space_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">input</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441006r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">unit_size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441007r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">count</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441008r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">output</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441009r8"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x301-441010r9"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-301-2127"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The architecture on which the third-party tool and the OMPD library execute may be different from the
+architecture on which the OpenMP program that is being examined executes. Thus, the conventions for
+representing data may differ. The callback interface includes operations to convert between the conventions,
+such as the byte order (endianness), that the third-party tool and OMPD library use and the ones that the
+OpenMP program use. The callback with the <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span> type signature
+converts data between the formats.
+</p> 
+<p><p><a 
+ id="Q1-301-2128"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">address_space_context</span></span> argument specifies the OpenMP address space that is associated with the data.
+The <span class="textit"><span class="textrm">input</span></span> argument is the source buffer and the <span class="textit"><span class="textrm">output</span></span> argument is the destination buffer. The <span class="textit"><span class="textrm">unit_size</span></span>
+argument is the size of each of the elements to be converted. The <span class="textit"><span class="textrm">count</span></span> argument is the number of elements
+to be transformed.
+</p> 
+<p>The OMPD library allocates and owns the input and output buffers. It must ensure that the buffers have the
+correct size and are eventually deallocated when they are no longer needed.
+</p> 
+<p><p><a 
+ id="Q1-301-2129"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+Routines that use the <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span> type may return the general return codes
+listed at the beginning of Section&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">5.4<!--tex4ht:ref: subsec:ompd-third-party-tool-callback-interface --></a>.
+</p> 
+<p><p><a 
+ id="Q1-301-2130"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_size_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">5.3.1<!--tex4ht:ref: subsubsubsec:ompd_size_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_address_space_context_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callbacks_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6">5.4.6<!--tex4ht:ref: subsubsec:ompd_callbacks_t --></a>.</li></ul>
+<!--l. 673--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu238.html" >next</a>] [<a 
+href="openmpsu236.html" >prev</a>] [<a 
+href="openmpsu236.html#tailopenmpsu236.html" >prev-tail</a>] [<a 
+href="openmpsu237.html" >front</a>] [<a 
+href="openmpse55.html#openmpsu237.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu237.html"></a> </p> 
+ 
+</body> 
+</html>

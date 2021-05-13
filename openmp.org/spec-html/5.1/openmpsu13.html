@@ -1,0 +1,418 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Flush Synchronization and Happens Before</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 294--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu14.html" >next</a>] [<a 
+href="openmpsu12.html" >prev</a>] [<a 
+href="openmpsu12.html#tailopenmpsu12.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu13.html">tail</a>] [<a 
+href="openmpse4.html#openmpsu13.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.4.5</span>&#x00A0;&#x00A0;<a 
+ id="x22-210001.4.5"></a>Flush Synchronization and <span class="emph">Happens Before</span></h4>
+<a 
+ id="dx22-21001"></a>
+<a 
+ id="dx22-21002"></a>
+<a 
+ id="dx22-21003"></a>
+<a 
+ id="dx22-21004"></a>
+<p>OpenMP supports thread synchronization with the use of release flushes and acquire flushes. For
+any such synchronization, a release flush is the source of the synchronization and an acquire
+flush is the sink of the synchronization, such that the release flush <span class="emph">synchronizes with</span> the acquire
+flush.
+</p> 
+<p>A release flush has one or more associated <span class="emph">release sequences</span> that define the set of modifications that may be
+used to establish a synchronization. A release sequence starts with an atomic operation that follows the
+release flush and modifies a shared variable and additionally includes any read-modify-write atomic
+operations that read a value taken from some modification in the release sequence. The following rules
+determine the atomic operation that starts an associated release sequence.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+                                                                            
+                                                                            
+  a
+  release
+  flush
+  is
+  performed
+  on
+  entry
+  to
+  an
+  atomic
+  operation,
+  that
+  atomic
+  operation
+  starts
+  its
+  release
+  sequence.
+  </li>
+  <li class="itemize">
+  If
+  a
+  release
+  flush
+  is
+  performed
+  in
+  an
+  implicit
+  <span class="textbf"><span class="texttt">flush</span></span>
+  region,
+  an
+  atomic
+  operation
+  that
+  is
+  provided
+  by
+  the
+  implementation
+  and
+  that
+                                                                            
+                                                                            
+  modifies
+  an
+  internal
+  synchronization
+  variable
+  starts
+  its
+  release
+  sequence.
+  </li>
+  <li class="itemize">
+  If
+  a
+  release
+  flush
+  is
+  performed
+  by
+  an
+  explicit
+  <span class="textbf"><span class="texttt">flush</span></span>
+  region,
+  any
+  atomic
+  operation
+  that
+  modifies
+  a
+  shared
+  variable
+  and
+  follows
+  the
+  <span class="textbf"><span class="texttt">flush</span></span>
+  region
+  in
+  its
+  thread&#8217;s
+  program
+  order
+  starts
+  an
+                                                                            
+                                                                            
+  associated
+  release
+  sequence.</li></ul>
+<p>An acquire flush is associated with one or more prior atomic operations that read a shared variable and that
+may be used to establish a synchronization. The following rules determine the associated atomic operation
+that may establish a synchronization.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  an
+  acquire
+  flush
+  is
+  performed
+  on
+  exit
+  from
+  an
+  atomic
+  operation,
+  that
+  atomic
+  operation
+  is
+  its
+  associated
+  atomic
+  operation.
+  </li>
+  <li class="itemize">
+  If
+  an
+  acquire
+  flush
+  is
+  performed
+  in
+  an
+                                                                            
+                                                                            
+  implicit
+  <span class="textbf"><span class="texttt">flush</span></span>
+  region,
+  an
+  atomic
+  operation
+  that
+  is
+  provided
+  by
+  the
+  implementation
+  and
+  that
+  reads
+  an
+  internal
+  synchronization
+  variable
+  is
+  its
+  associated
+  atomic
+  operation.
+  </li>
+  <li class="itemize">
+  If
+  an
+  acquire
+  flush
+  is
+  performed
+  by
+  an
+  explicit
+  <span class="textbf"><span class="texttt">flush</span></span>
+  region,
+  any
+  atomic
+  operation
+  that
+  reads
+                                                                            
+                                                                            
+  a
+  shared
+  variable
+  and
+  precedes
+  the
+  <span class="textbf"><span class="texttt">flush</span></span>
+  region
+  in
+  its
+  thread&#8217;s
+  program
+  order
+  is
+  an
+  associated
+  atomic
+  operation.</li></ul>
+<p>A release flush synchronizes with an acquire flush if the following conditions are satisfied:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  An
+  atomic
+  operation
+  associated
+  with
+  the
+  acquire
+  flush
+  reads
+  a
+  value
+  written
+  by
+  a
+  modification
+  from
+  a
+  release
+  sequence
+                                                                            
+                                                                            
+  associated
+  with
+  the
+  release
+  flush;
+  and
+  </li>
+  <li class="itemize">
+  The
+  device
+  on
+  which
+  each
+  flush
+  is
+  performed
+  is
+  in
+  both
+  of
+  their
+  respective
+  device-sets.</li></ul>
+<p>An operation <span class="textit"><span class="textrm">X</span></span> <span class="emph">simply&#x00A0;happens&#x00A0;before</span> an operation <span class="textit"><span class="textrm">Y</span></span> if any of the following conditions are
+satisfied:
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  <span class="textit"><span class="textrm">X</span></span>
+  and
+  <span class="textit"><span class="textrm">Y</span></span>
+  are
+  performed
+  by
+  the
+  same
+  thread,
+  and
+  <span class="textit"><span class="textrm">X</span></span>
+  precedes
+  <span class="textit"><span class="textrm">Y</span></span>
+                                                                            
+                                                                            
+  in
+  the
+  thread&#8217;s
+  program
+  order;
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  <span class="textit"><span class="textrm">X</span></span>
+  synchronizes
+  with
+  <span class="textit"><span class="textrm">Y</span></span>
+  according
+  to
+  the
+  flush
+  synchronization
+  conditions
+  explained
+  above
+  or
+  according
+  to
+  the
+  base
+  language&#8217;s
+  definition
+  of
+  <span class="emph">synchronizes&#x00A0;with</span>,
+  if
+  such
+  a
+  definition
+  exists;
+  or
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">
+  Another
+  operation,
+  <span class="textit"><span class="textrm">Z</span></span>,
+  exists
+                                                                            
+                                                                            
+  such
+  that
+  <span class="textit"><span class="textrm">X</span></span>
+  simply
+  happens
+  before
+  <span class="textit"><span class="textrm">Z</span></span>
+  and
+  <span class="textit"><span class="textrm">Z</span></span>
+  simply
+  happens
+  before
+  <span class="textit"><span class="textrm">Y</span></span>.</dd></dl>
+<p>An operation <span class="textit"><span class="textrm">X</span></span> <span class="emph">happens&#x00A0;before</span> an operation <span class="textit"><span class="textrm">Y</span></span> if any of the following conditions are satisfied:
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  <span class="textit"><span class="textrm">X</span></span>
+  happens
+  before
+  <span class="textit"><span class="textrm">Y</span></span>
+  according
+  to
+  the
+  base
+  language&#8217;s
+  definition
+  of
+  <span class="emph">happens&#x00A0;before</span>,
+  if
+  such
+  a
+  definition
+  exists;
+  or
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  <span class="textit"><span class="textrm">X</span></span>
+  simply
+  happens
+  before
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">Y</span></span>.</dd></dl>
+<p>A variable with an initial value is treated as if the value is stored to the variable by an operation that happens
+before all operations that access or modify the variable in the program.
+</p> 
+<!--l. 380--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu14.html" >next</a>] [<a 
+href="openmpsu12.html" >prev</a>] [<a 
+href="openmpsu12.html#tailopenmpsu12.html" >prev-tail</a>] [<a 
+href="openmpsu13.html" >front</a>] [<a 
+href="openmpse4.html#openmpsu13.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu13.html"></a> </p> 
+ 
+</body> 
+</html>

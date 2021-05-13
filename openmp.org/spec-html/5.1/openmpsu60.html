@@ -1,0 +1,143 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Memory Spaces</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 7--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu61.html" >next</a>] [<a 
+href="openmpse21.html" >prev</a>] [<a 
+href="openmpse21.html#tailopenmpse21.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu60.html">tail</a>] [<a 
+href="openmpse21.html#openmpsu60.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.13.1</span>&#x00A0;&#x00A0;<a 
+ id="x87-970002.13.1"></a>Memory Spaces</h4>
+<a 
+ id="dx87-97001"></a>
+<p>OpenMP memory spaces represent storage resources where variables can be stored and retrieved. Table&#x00A0;<a 
+href="openmpsu48.html#x87-97002r8">2.8<!--tex4ht:ref: tab:Predefined Memory Spaces --></a>
+shows the list of predefined memory spaces. The selection of a given memory space expresses an intent to
+use storage with certain traits for the allocations. The actual storage resources that each memory space
+represents are implementation defined.
+<a 
+ id="x87-97002r8"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x87-97003"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.8: </td><td  
+class="content">Predefined Memory Spaces</td></tr></table></div><!--tex4ht:label?: x87-97002r2.13 -->
+                                                                            
+                                                                            
+ <table id="TBL-17" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-17-1g"><col 
+id="TBL-17-1" /><col 
+id="TBL-17-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Memory space name</span></span>                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-17-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Storage selection intent</span></span>                                       </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-2-1"  
+class="td
+11">                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-3-1"  
+class="td11">                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-4-1"  
+class="td11">                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_default_mem_space</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-17-5-2"  
+class="td11"> Represents the system default storage                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_large_cap_mem_space</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-17-6-2"  
+class="td11"> Represents storage with large capacity                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_const_mem_space</span></span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-17-7-2"  
+class="td11"> Represents storage optimized for variables with
+  constant values                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_high_bw_mem_space</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-17-8-2"  
+class="td11"> Represents storage with high bandwidth                         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_low_lat_mem_space</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-17-9-2"  
+class="td11"> Represents storage with low latency                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-10-1"  
+class="td11">                            </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-17-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-17-11-1"  
+class="td11">                            </td>
+</tr></table></div>
+<p>Variables allocated in the <span class="textbf"><span class="texttt">omp_const_mem_space</span></span> memory space may be initialized through
+the <span class="textbf"><span class="texttt">firstprivate</span></span> clause or with compile time constants for static and constant variables.
+Implementation-defined mechanisms to provide the constant value of these variables may also be
+supported.
+</p> 
+<p><p><a 
+ id="Q1-87-334"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to OpenMP memory spaces are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Variables
+  in
+  the
+  <span class="textbf"><span class="texttt">omp_const_mem_space</span></span>
+  memory
+  space
+  may
+  not
+  be
+  written.</li></ul>
+<p><p><a 
+ id="Q1-87-335"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_init_allocator</span></span>
+                                                                            
+                                                                            
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu196.html#x246-2790003.13.2">3.13.2<!--tex4ht:ref: subsec:omp_init_allocator --></a>.</li></ul>
+<!--l. 63--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu61.html" >next</a>] [<a 
+href="openmpse21.html" >prev</a>] [<a 
+href="openmpse21.html#tailopenmpse21.html" >prev-tail</a>] [<a 
+href="openmpsu60.html" >front</a>] [<a 
+href="openmpse21.html#openmpsu60.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu60.html"></a> </p> 
+ 
+</body> 
+</html>

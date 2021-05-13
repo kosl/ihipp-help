@@ -1,0 +1,211 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>parallel workshare Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 277--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu77.html" >next</a>] [<a 
+href="openmpsu75.html" >prev</a>] [<a 
+href="openmpsu75.html#tailopenmpsu75.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu76.html">tail</a>] [<a 
+href="openmpse24.html#openmpsu76.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.16.4</span>&#x00A0;&#x00A0;<a 
+ id="x106-1160002.16.4"></a><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">workshare</span></span> Construct</h4>
+<a 
+ id="dx106-116001"></a>
+<a 
+ id="dx106-116002"></a>
+<a 
+ id="dx106-116003"></a>
+<p><p><a 
+ id="Q1-106-442"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">workshare</span></span> construct is a shortcut for specifying a <span class="textbf"><span class="texttt">parallel</span></span> construct containing a
+<span class="textbf"><span class="texttt">workshare</span></span> construct and no other statements.
+<p><a 
+ id="Q1-106-443"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">workshare</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116004r1"></a></span></p> 
+<!--l. 293--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116005r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116006r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116007r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116008r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116009r1"></a></span></p> 
+<!--l. 299--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116010r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116011r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116012r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x106-116013r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">parallel</span></span> directive, with identical meanings and
+restrictions.
+</p> 
+<p><p><a 
+ id="Q1-106-444"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The semantics are identical to explicitly specifying a <span class="textbf"><span class="texttt">parallel</span></span> directive immediately followed by a
+<span class="textbf"><span class="texttt">workshare</span></span> directive, and an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">workshare</span></span> directive immediately followed by an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>
+directive.
+</p> 
+<p><p><a 
+ id="Q1-106-445"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The restrictions for the <span class="textbf"><span class="texttt">parallel</span></span> construct and the <span class="textbf"><span class="texttt">workshare</span></span> construct apply.
+</p> 
+<p><p><a 
+ id="Q1-106-446"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">workshare</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu44.html#x68-680002.10.3">2.10.3<!--tex4ht:ref: subsec:workshare Construct --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Data
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<!--l. 338--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu77.html" >next</a>] [<a 
+href="openmpsu75.html" >prev</a>] [<a 
+href="openmpsu75.html#tailopenmpsu75.html" >prev-tail</a>] [<a 
+href="openmpsu76.html" >front</a>] [<a 
+href="openmpse24.html#openmpsu76.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu76.html"></a> </p> 
+ 
+</body> 
+</html>

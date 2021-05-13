@@ -1,0 +1,79 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_MAX_ACTIVE_LEVELS</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 549--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse66.html" >next</a>] [<a 
+href="openmpse64.html" >prev</a>] [<a 
+href="openmpse64.html#tailopenmpse64.html" >prev-tail</a>] [<a 
+href="#tailopenmpse65.html">tail</a>] [<a 
+href="openmpch6.html#openmpse65.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.8</span>&#x00A0;&#x00A0;<a 
+ id="x331-5060006.8"></a><span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span></h3>
+<a 
+ id="dx331-506001"></a>
+<a 
+ id="dx331-506002"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span> environment variable controls the maximum number of nested active
+<span class="textbf"><span class="texttt">parallel</span></span> regions by setting the initial value of the <span class="textit"><span class="textrm">max-active-levels-var</span></span> ICV.
+</p> 
+<p>The value of this environment variable must be a non-negative integer. The behavior of the program is
+implementation defined if the requested value of <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span> is greater than the
+maximum number of nested active parallel levels an implementation can support, or if the value is not a
+non-negative integer.
+</p> 
+<p><p><a 
+ id="Q1-331-2462"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">max-active-levels-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu134.html#x173-2060003.2.15">3.2.15<!--tex4ht:ref: subsec:omp_set_max_active_levels --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_max_active_levels</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu135.html#x174-2070003.2.16">3.2.16<!--tex4ht:ref: subsec:omp_get_max_active_levels --></a>.</li></ul>
+<!--l. 579--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse66.html" >next</a>] [<a 
+href="openmpse64.html" >prev</a>] [<a 
+href="openmpse64.html#tailopenmpse64.html" >prev-tail</a>] [<a 
+href="openmpse65.html" >front</a>] [<a 
+href="openmpch6.html#openmpse65.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse65.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>ompd_dll_locations</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 115--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu220.html" >next</a>] [<a 
+href="openmpsu218.html" >prev</a>] [<a 
+href="openmpsu218.html#tailopenmpsu218.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu219.html">tail</a>] [<a 
+href="openmpse53.html#openmpsu219.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.2.2</span>&#x00A0;&#x00A0;<a 
+ id="x281-4140005.2.2"></a><span class="textbf"><span class="texttt">ompd_dll_locations</span></span></h4>
+<a 
+ id="dx281-414001"></a>
+<p><p><a 
+ id="Q1-281-2004"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_dll_locations</span></span> global variable points to the locations of OMPD libraries that are
+compatible with the OpenMP implementation.
+<p><a 
+ id="Q1-281-2005"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x281-414002r1"></a></span></p> 
+<!--l. 125--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x281-414003r2"></a></span><span 
+class="pcrb8t-">extern</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="pcrb8t-">ompd_dll_locations</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x281-414004r3"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-281-2006"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+An OpenMP runtime may have more than one OMPD library. The third-party tool must be able to locate the
+right library to use for the OpenMP program that it is examining. The OpenMP runtime system must
+provide a public variable <span class="textbf"><span class="texttt">ompd_dll_locations</span></span>, which is an <span class="textbf"><span class="texttt">argv</span></span>-style vector of filename string
+pointers that provides the names of any compatible OMPD libraries. This variable must have <span class="textbf"><span class="texttt">C</span></span> linkage. The
+third-party tool uses the name of the variable verbatim and, in particular, does not apply any name mangling
+before performing the look up.
+</p> 
+<p>The architecture on which the third-party tool and, thus, the OMPD library execute does not have to match
+the architecture on which the OpenMP program that is being examined executes. The third-party tool
+must interpret the contents of <span class="textbf"><span class="texttt">ompd_dll_locations</span></span> to find a suitable OMPD library that
+matches its own architectural characteristics. On platforms that support different architectures (for
+example, 32-bit vs 64-bit), OpenMP implementations are encouraged to provide an OMPD library
+for each supported architecture that can handle OpenMP programs that run on any supported
+architecture. Thus, for example, a 32-bit debugger that uses OMPD should be able to debug a 64-bit
+OpenMP program by loading a 32-bit OMPD implementation that can manage a 64-bit OpenMP
+runtime.
+</p> 
+<p>The <span class="textbf"><span class="texttt">ompd_dll_locations</span></span> variable points to a NULL-terminated vector of zero or more
+NULL-terminated pathname strings that do not have any filename conventions. This vector
+must be fully initialized <span class="emph">before</span> <span class="textbf"><span class="texttt">ompd_dll_locations</span></span> is set to a non-null value. Thus, if a
+third-party tool, such as a debugger, stops execution of the OpenMP program at any point at which
+<span class="textbf"><span class="texttt">ompd_dll_locations</span></span> is non-null, the vector of strings to which it points shall be valid and
+complete.
+</p> 
+<p><p><a 
+ id="Q1-281-2007"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_dll_locations_valid</span></span>
+  global
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpsu220.html#x282-4150005.2.3">5.2.3<!--tex4ht:ref: subsubsec:ompd_dll_locations_valid --></a>.</li></ul>
+<!--l. 165--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu220.html" >next</a>] [<a 
+href="openmpsu218.html" >prev</a>] [<a 
+href="openmpsu218.html#tailopenmpsu218.html" >prev-tail</a>] [<a 
+href="openmpsu219.html" >front</a>] [<a 
+href="openmpse53.html#openmpsu219.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu219.html"></a> </p> 
+ 
+</body> 
+</html>

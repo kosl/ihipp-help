@@ -1,0 +1,846 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>ordered Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1626--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu108.html" >next</a>] [<a 
+href="openmpsu106.html" >prev</a>] [<a 
+href="openmpsu106.html#tailopenmpsu106.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu107.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu107.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.9</span>&#x00A0;&#x00A0;<a 
+ id="x140-1510002.19.9"></a><span class="textbf"><span class="texttt">ordered</span></span> Construct</h4>
+<a 
+ id="dx140-151001"></a>
+<a 
+ id="dx140-151002"></a>
+<p><p><a 
+ id="Q1-140-645"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ordered</span></span> construct either specifies a structured block in a worksharing-loop, <span class="textbf"><span class="texttt">simd</span></span>, or
+worksharing-loop SIMD region that will be executed in the order of the loop iterations, or it is a stand-alone
+directive that specifies cross-iteration dependences in a doacross loop nest. The <span class="textbf"><span class="texttt">ordered</span></span> construct
+sequentializes and orders the execution of <span class="textbf"><span class="texttt">ordered</span></span> regions while allowing code outside the region to run
+in parallel.
+<p><a 
+ id="Q1-140-646"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">ordered</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151003r1"></a></span></p> 
+<!--l. 1642--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ordered</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151007r1"></a></span></p> 
+<!--l. 1648--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151008r2"></a></span><span 
+class="pcrb8t-">threads</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151009r3"></a></span><span 
+class="pcrb8t-">simd</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151010r4"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151011r1"></a></span></p> 
+<!--l. 1655--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151012r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ordered</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151013r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151014r1"></a></span></p> 
+<!--l. 1659--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151015r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">source</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151016r3"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">sink</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">vec</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151017r4"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">ordered</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151018r1"></a></span></p> 
+<!--l. 1670--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151019r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ordered</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151020r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151021r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ordered</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151022r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151023r1"></a></span></p> 
+<!--l. 1676--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151024r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ordered</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151025r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151026r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ordered</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151027r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151028r1"></a></span></p> 
+<!--l. 1683--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151029r2"></a></span><span 
+class="pcrb8t-">threads</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151030r3"></a></span><span 
+class="pcrb8t-">simd</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151031r4"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151032r1"></a></span></p> 
+<!--l. 1690--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151033r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ordered</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151034r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151035r1"></a></span></p> 
+<!--l. 1695--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151036r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">source</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151037r3"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">sink</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">vec</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x140-151038r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>If the <span class="textbf"><span class="texttt">depend</span></span> clause is specified, the <span class="textbf"><span class="texttt">ordered</span></span> construct is a stand-alone directive.
+</p> 
+<p><p><a 
+ id="Q1-140-647"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">ordered</span></span> region is the current team. An <span class="textbf"><span class="texttt">ordered</span></span> region binds to the
+innermost enclosing <span class="textbf"><span class="texttt">simd</span></span> or worksharing-loop SIMD region if the <span class="textbf"><span class="texttt">simd</span></span> clause is present, and otherwise
+it binds to the innermost enclosing worksharing-loop region. <span class="textbf"><span class="texttt">ordered</span></span> regions that bind to different
+regions execute independently of each other.
+</p> 
+<p><p><a 
+ id="Q1-140-648"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+If no clause is specified, the <span class="textbf"><span class="texttt">ordered</span></span> construct behaves as if the <span class="textbf"><span class="texttt">threads</span></span> clause had been specified. If
+the <span class="textbf"><span class="texttt">threads</span></span> clause is specified, the threads in the team that is executing the worksharing-loop region
+execute <span class="textbf"><span class="texttt">ordered</span></span> regions sequentially in the order of the loop iterations. If any <span class="textbf"><span class="texttt">depend</span></span> clauses are
+specified then those clauses specify the order in which the threads in the team execute <span class="textbf"><span class="texttt">ordered</span></span> regions. If
+the <span class="textbf"><span class="texttt">simd</span></span> clause is specified, the <span class="textbf"><span class="texttt">ordered</span></span> regions encountered by any thread will execute one at a time in
+the order of the loop iterations.
+</p> 
+<p>When the thread that is executing the first iteration of the loop encounters an <span class="textbf"><span class="texttt">ordered</span></span> construct, it can
+enter the <span class="textbf"><span class="texttt">ordered</span></span> region without waiting. When a thread that is executing any subsequent iteration
+encounters an <span class="textbf"><span class="texttt">ordered</span></span> construct without a <span class="textbf"><span class="texttt">depend</span></span> clause, it waits at the beginning of the
+<span class="textbf"><span class="texttt">ordered</span></span> region until execution of all <span class="textbf"><span class="texttt">ordered</span></span> regions that belong to all previous iterations has
+completed. When a thread that is executing any subsequent iteration encounters an <span class="textbf"><span class="texttt">ordered</span></span>
+construct with one or more <span class="textbf"><span class="texttt">depend(sink:<span class="textit"><span class="textrm">vec</span></span>)</span></span> clauses, it waits until its dependences on all
+valid iterations specified by the <span class="textbf"><span class="texttt">depend</span></span> clauses are satisfied before it completes execution
+of the <span class="textbf"><span class="texttt">ordered</span></span> region. A specific dependence is satisfied when a thread that is executing
+the corresponding iteration encounters an <span class="textbf"><span class="texttt">ordered</span></span> construct with a <span class="textbf"><span class="texttt">depend(source)</span></span>
+clause.
+</p> 
+<p><p><a 
+ id="Q1-140-649"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">ordered-acquiring</span></span> event occurs in the task that encounters the <span class="textbf"><span class="texttt">ordered</span></span> construct on entry to the
+ordered region before it initiates synchronization for the region.
+</p> 
+<p>The <span class="textit"><span class="textrm">ordered-acquired</span></span> event occurs in the task that encounters the <span class="textbf"><span class="texttt">ordered</span></span> construct after it enters the
+region, but before it executes the structured block of the <span class="textbf"><span class="texttt">ordered</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">ordered-released</span></span> event occurs in the task that encounters the <span class="textbf"><span class="texttt">ordered</span></span> construct after it completes any
+synchronization on exit from the <span class="textbf"><span class="texttt">ordered</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">doacross-sink</span></span> event occurs in the task that encounters an <span class="textbf"><span class="texttt">ordered</span></span> construct for each
+<span class="textbf"><span class="texttt">depend(sink:<span class="textit"><span class="textrm">vec</span></span>)</span></span> clause after the dependence is fulfilled.
+</p> 
+<p>The <span class="textit"><span class="textrm">doacross-source</span></span> event occurs in the task that encounters an <span class="textbf"><span class="texttt">ordered</span></span> construct with a
+<span class="textbf"><span class="texttt">depend(source:<span class="textit"><span class="textrm">vec</span></span>)</span></span> clause before signaling the dependence to be fulfilled.
+</p> 
+<p><p><a 
+ id="Q1-140-650"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire</span></span> callback for each
+occurrence of an <span class="textit"><span class="textrm">ordered-acquiring</span></span> event in that thread. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_mutex_acquire_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_mutex_acquired</span></span> callback for each
+occurrence of an <span class="textit"><span class="textrm">ordered-acquired</span></span> event in that thread. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_mutex_t</span></span>.
+                                                                            
+                                                                            
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_mutex_released</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_mutex_ordered</span></span> as the <span class="textit"><span class="textrm">kind</span></span> argument if practical, although a less specific kind may be
+used, for each occurrence of an <span class="textit"><span class="textrm">ordered-released</span></span> event in that thread. This callback has the type
+signature <span class="textbf"><span class="texttt">ompt_callback_mutex_t</span></span> and occurs in the task that encounters the atomic
+construct.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_dependences</span></span> callback with all vector entries listed
+as <span class="textbf"><span class="texttt">ompt_dependence_type_sink</span></span> in the <span class="textit"><span class="textrm">deps</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">doacross-sink</span></span> event
+in that thread. A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_dependences</span></span> callback with all
+vector entries listed as <span class="textbf"><span class="texttt">ompt_dependence_type_source</span></span> in the <span class="textit"><span class="textrm">deps</span></span> argument for each
+occurrence of a <span class="textit"><span class="textrm">doacross-source</span></span> event in that thread. These callbacks have the type signature
+<span class="textbf"><span class="texttt">ompt_callback_dependences_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-140-651"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">ordered</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">threads</span></span>
+  clause
+  can
+  appear
+  on
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause
+  can
+  appear
+  on
+                                                                            
+                                                                            
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">depend(source)</span></span>
+  clause
+  can
+  appear
+  on
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  The
+  construct
+  that
+  corresponds
+  to
+  the
+  binding
+  region
+  of
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  must
+  not
+  specify
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  modifier.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Either
+  <span class="textbf"><span class="texttt">depend(sink:<span class="textit"><span class="textrm">vec</span></span>)</span></span>
+  clauses
+  or
+  <span class="textbf"><span class="texttt">depend(source)</span></span>
+  clauses
+  may
+  appear
+  on
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct,
+  but
+  not
+  both.
+  </li>
+  <li class="itemize">
+  The
+  worksharing-loop
+  or
+  worksharing-loop
+  SIMD
+  region
+  to
+  which
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  corresponding
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  without
+  a
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  binds
+  must
+                                                                            
+                                                                            
+  have
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  without
+  the
+  parameter
+  specified
+  on
+  the
+  corresponding
+  worksharing-loop
+  or
+  worksharing-loop
+  SIMD
+  directive.
+  </li>
+  <li class="itemize">
+  The
+  worksharing-loop
+  region
+  to
+  which
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  any
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clauses
+  binds
+  must
+  have
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+                                                                            
+                                                                            
+  with
+  the
+  parameter
+  specified
+  on
+  the
+  corresponding
+  worksharing-loop
+  directive.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  specified
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing-loop
+  (or
+  parallel
+  worksharing-loop)
+  construct.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+                                                                            
+                                                                            
+  construct
+  without
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause
+  specified
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing-loop
+  region.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause
+  specified
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  or
+  worksharing-loop
+  SIMD
+  region.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  both
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  and
+  <span class="textbf"><span class="texttt">threads</span></span>
+  clauses
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing-loop
+  SIMD
+  region
+  or
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing-loop
+  and
+  <span class="textbf"><span class="texttt">simd</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  During
+                                                                            
+                                                                            
+  execution
+  of
+  an
+  iteration
+  of
+  a
+  worksharing-loop
+  or
+  a
+  loop
+  nest
+  within
+  a
+  worksharing-loop,
+  <span class="textbf"><span class="texttt">simd</span></span>,
+  or
+  worksharing-loop
+  SIMD
+  region,
+  a
+  thread
+  must
+  not
+  execute
+  more
+  than
+  one
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  without
+  a
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  throw
+  executed
+  inside
+  a
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  must
+  cause
+  execution
+  to
+  resume
+  within
+  the
+  same
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region,
+  and
+  the
+  same
+  thread
+  that
+  threw
+  the
+  exception
+  must
+  catch
+  it.</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-140-652"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  worksharing-loop
+  construct,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-760002.11.5.1">2.11.5.1<!--tex4ht:ref: subsubsec:simd Construct --></a>.
+  </li>
+  <li class="itemize">
+  parallel
+  Worksharing-loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu73.html#x103-1130002.16.1">2.16.1<!--tex4ht:ref: subsec:Parallel Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">depend</span></span>
+  Clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_mutex_ordered</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3230004.4.4.16">4.4.4.16<!--tex4ht:ref: sec:ompt_mutex_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3560004.5.2.14">4.5.2.14<!--tex4ht:ref: sec:ompt_callback_mutex_acquire_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_t</span></span>,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3570004.5.2.15">4.5.2.15<!--tex4ht:ref: sec:ompt_callback_mutex_t --></a>.</li></ul>
+<!--l. 1859--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu108.html" >next</a>] [<a 
+href="openmpsu106.html" >prev</a>] [<a 
+href="openmpsu106.html#tailopenmpsu106.html" >prev-tail</a>] [<a 
+href="openmpsu107.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu107.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu107.html"></a> </p> 
+ 
+</body> 
+</html>

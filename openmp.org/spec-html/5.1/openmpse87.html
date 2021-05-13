@@ -1,0 +1,341 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Version 3.0 to 3.1 Differences</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 756--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse88.html" >next</a>] [<a 
+href="openmpse86.html" >prev</a>] [<a 
+href="openmpse86.html#tailopenmpse86.html" >prev-tail</a>] [<a 
+href="#tailopenmpse87.html">tail</a>] [<a 
+href="openmpap2.html#openmpse87.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">B.6</span>&#x00A0;&#x00A0;<a 
+ id="x355-530000B.6"></a>Version 3.0 to 3.1 Differences</h3>
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">bind-var</span></span>
+  ICV
+  (see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>)
+  and
+  the
+  <span class="textbf"><span class="texttt">OMP_PROC_BIND</span></span>
+  environment
+  variable
+  (see
+  Section&#x00A0;<a 
+href="openmpse61.html#x327-5020006.4">6.4<!--tex4ht:ref: sec:OMP_PROC_BIND --></a>)
+  were
+  added
+  to
+  support
+  control
+  of
+  whether
+  threads
+  are
+  bound
+  to
+  processors.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  ICV
+  was
+  modified
+  to
+  be
+  a
+  list
+  of
+  the
+  number
+  of
+                                                                            
+                                                                            
+  threads
+  to
+  use
+  at
+  each
+  nested
+  parallel
+  region
+  level
+  and
+  the
+  algorithm
+  for
+  determining
+  the
+  number
+  of
+  threads
+  used
+  in
+  a
+  parallel
+  region
+  was
+  modified
+  to
+  handle
+  a
+  list
+  (see
+  Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">final</span></span>
+  and
+  <span class="textbf"><span class="texttt">mergeable</span></span>
+  clauses
+  (see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>)
+  were
+  added
+                                                                            
+                                                                            
+  to
+  the
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct
+  to
+  support
+  optimization
+  of
+  task
+  data
+  environments.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">taskyield</span></span>
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpsu57.html#x83-930002.12.4">2.12.4<!--tex4ht:ref: subsec:taskyield Construct --></a>)
+  was
+  added
+  to
+  allow
+  user-defined
+  task
+  scheduling
+  points.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpsu105.html#x138-1480002.19.7">2.19.7<!--tex4ht:ref: subsec:atomic Construct --></a>)
+  was
+  extended
+  to
+  include
+  <span class="textbf"><span class="texttt">read</span></span>,
+  <span class="textbf"><span class="texttt">write</span></span>,
+  and
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">capture</span></span>
+  forms,
+  and
+  an
+  <span class="textbf"><span class="texttt">update</span></span>
+  clause
+  was
+  added
+  to
+  apply
+  the
+  already
+  existing
+  form
+  of
+  the
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  Data
+  environment
+  restrictions
+  were
+  changed
+  to
+  allow
+  <span class="textbf"><span class="texttt">intent(in)</span></span>
+  and
+  <span class="textbf"><span class="texttt">const</span></span>-qualified
+  types
+  for
+  the
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  (see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1690002.21.4.4">2.21.4.4<!--tex4ht:ref: subsubsec:firstprivate clause --></a>).
+  </li>
+  <li class="itemize">
+  Data
+                                                                            
+                                                                            
+  environment
+  restrictions
+  were
+  changed
+  to
+  allow
+  Fortran
+  pointers
+  in
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  (see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1690002.21.4.4">2.21.4.4<!--tex4ht:ref: subsubsec:firstprivate clause --></a>)
+  and
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  (see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1700002.21.4.5">2.21.4.5<!--tex4ht:ref: subsubsec:lastprivate clause --></a>).
+  </li>
+  <li class="itemize">
+  New
+  reduction
+  operators
+  <span class="textbf"><span class="texttt">min</span></span>
+  and
+  <span class="textbf"><span class="texttt">max</span></span>
+  were
+  added
+  for
+  C
+  and
+  C++
+  (see
+  Section&#x00A0;<a 
+href="openmpsu117.html#x152-1720002.21.5">2.21.5<!--tex4ht:ref: subsec:Reduction Clauses and Directives --></a>).
+  </li>
+  <li class="itemize">
+  The
+  nesting
+  restrictions
+  in
+  Section&#x00A0;<a 
+href="openmpse30.html#x155-1880002.22">2.22<!--tex4ht:ref: sec:Nesting of Regions --></a>
+  were
+                                                                            
+                                                                            
+  clarified
+  to
+  disallow
+  closely-nested
+  OpenMP
+  regions
+  within
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  region
+  so
+  that
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  region
+  can
+  be
+  consistently
+  defined
+  with
+  other
+  OpenMP
+  regions
+  to
+  include
+  all
+  code
+  in
+  the
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_in_final</span></span>
+  runtime
+  library
+  routine
+  (see
+  Section&#x00A0;<a 
+href="openmpsu158.html#x200-2330003.5.2">3.5.2<!--tex4ht:ref: subsec:omp_in_final --></a>)
+  was
+  added
+                                                                            
+                                                                            
+  to
+  support
+  specialization
+  of
+  final
+  task
+  regions.
+  </li>
+  <li class="itemize">
+  Descriptions
+  of
+  examples
+  (previously
+  Appendix
+  A)
+  were
+  expanded
+  and
+  clarified.
+  </li>
+  <li class="itemize">
+  Incorrect
+  use
+  of
+  <span class="textbf"><span class="texttt">omp_integer_kind</span></span>
+  in
+  Fortran
+  interfaces
+  was
+  replaced
+  with
+  <span class="textbf"><span class="texttt">selected_int_kind(8)</span></span>.</li></ul>
+<!--l. 814--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse88.html" >next</a>] [<a 
+href="openmpse86.html" >prev</a>] [<a 
+href="openmpse86.html#tailopenmpse86.html" >prev-tail</a>] [<a 
+href="openmpse87.html" >front</a>] [<a 
+href="openmpap2.html#openmpse87.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse87.html"></a> </p> 
+ 
+</body> 
+</html>

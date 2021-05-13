@@ -1,0 +1,2348 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Reduction Clauses and Directives</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1374--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu118.html" >next</a>] [<a 
+href="openmpsu116.html" >prev</a>] [<a 
+href="openmpsu116.html#tailopenmpsu116.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu117.html">tail</a>] [<a 
+href="openmpse29.html#openmpsu117.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.21.5</span>&#x00A0;&#x00A0;<a 
+ id="x152-1720002.21.5"></a>Reduction Clauses and Directives</h4>
+<a 
+ id="dx152-172001"></a>
+<p>The reduction clauses are data-sharing attribute clauses that can be used to perform some forms of
+recurrence calculations in parallel. Reduction clauses include reduction scoping clauses and reduction
+participating clauses. Reduction scoping clauses define the region in which a reduction is computed.
+Reduction participating clauses define the participants in the reduction.
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.5.1  </span> <a 
+ id="x152-1730002.21.5.1"></a>Properties Common to All Reduction Clauses</h5>
+<p><p><a 
+ id="Q1-152-737"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of a <span class="textit"><span class="textrm">reduction-identifier</span></span> is defined as follows:
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+<p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+A <span class="textit"><span class="textrm">reduction-identifier</span></span> is either an <span class="textit"><span class="textrm">identifier</span></span> or one of the following operators: <span class="textbf"><span class="texttt">+</span></span>, <span class="textbf"><span class="texttt">-</span></span>, <span class="textbf"><span class="texttt">*</span></span>, <span class="textbf"><span class="texttt">&amp;</span></span>, <span class="textbf"><span class="texttt">|</span></span>, <span class="textbf"><span class="texttt">^</span></span>, <span class="textbf"><span class="texttt">&amp;&amp;</span></span> and
+<span class="textbf"><span class="texttt">||</span></span>.
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+<p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+A <span class="textit"><span class="textrm">reduction-identifier</span></span> is either an <span class="textit"><span class="textrm">id-expression</span></span> or one of the following operators: <span class="textbf"><span class="texttt">+</span></span>, <span class="textbf"><span class="texttt">-</span></span>, <span class="textbf"><span class="texttt">*</span></span>, <span class="textbf"><span class="texttt">&amp;</span></span>, <span class="textbf"><span class="texttt">|</span></span>, <span class="textbf"><span class="texttt">^</span></span>, <span class="textbf"><span class="texttt">&amp;&amp;</span></span> and
+<span class="textbf"><span class="texttt">||</span></span>.
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents"><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+A <span class="textit"><span class="textrm">reduction-identifier</span></span> is either a base language identifier, or a user-defined operator, or one of the following
+operators: <span class="textbf"><span class="texttt">+</span></span>, <span class="textbf"><span class="texttt">-</span></span>, <span class="textbf"><span class="texttt">*</span></span>, <span class="textbf"><span class="texttt">.and.</span></span>, <span class="textbf"><span class="texttt">.or.</span></span>, <span class="textbf"><span class="texttt">.eqv.</span></span>, <span class="textbf"><span class="texttt">.neqv.</span></span>, or one of the following intrinsic procedure names:
+<span class="textbf"><span class="texttt">max</span></span>, <span class="textbf"><span class="texttt">min</span></span>, <span class="textbf"><span class="texttt">iand</span></span>, <span class="textbf"><span class="texttt">ior</span></span>, <span class="textbf"><span class="texttt">ieor</span></span>.<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents"><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+Table&#x00A0;<a 
+href="openmpsu48.html#x152-173001r11">2.11<!--tex4ht:ref: tab:Implicitly Declared C/C++ Reduction Identifiers --></a> lists each <span class="textit"><span class="textrm">reduction-identifier</span></span> that is implicitly declared at every scope for arithmetic types and
+its semantic initializer value. The actual initializer value is that value as expressed in the data type of the
+reduction list item.
+<a 
+ id="x152-173001r11"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x152-173002"></a>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.11: </td><td  
+class="content">Implicitly Declared C/C++ <span class="textit"><span class="textrm">reduction-identifiers</span></span></td></tr></table></div><!--tex4ht:label?: x152-173001r2.21 -->
+ <table id="TBL-25" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-25-1g"><col 
+id="TBL-25-1" /><col 
+id="TBL-25-2" /><col 
+id="TBL-25-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Identifier</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Initializer</span></span>                             </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-1-3"  
+class="td11"> <span class="textsf"><span class="textbf">Combiner</span></span>                                                         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-2-1"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-3-1"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-4-1"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">+</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-5-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out += omp_in</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">-</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-6-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out += omp_in</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">*</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 1</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-7-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out *= omp_in</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">&amp;</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-8-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = ~ 0</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-8-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out &amp;= omp_in</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">|</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-9-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out |= omp_in</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">^</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-10-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out ^</span></span><span class="textbf"><span class="texttt">= omp_in</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-11-1"  
+class="td11"> <span class="textbf"><span class="texttt">&amp;&amp;</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 1</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-11-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in &amp;&amp; omp_out</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">||</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-12-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-12-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in || omp_out</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-13-1"  
+class="td11"> <span class="textbf"><span class="texttt">max</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-13-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = </span></span><span class="textit"><span class="textrm">Minimal
+  representable number in the
+  reduction list item type</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-13-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in &#x003E; omp_out ?
+ omp_in : omp_out</span></span>                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-14-1"  
+class="td11"> <span class="textbf"><span class="texttt">min</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-14-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = </span></span><span class="textit"><span class="textrm">Maximal
+  representable number in the
+  reduction list item type</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-25-14-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in &#x003C; omp_out ?
+ omp_in : omp_out</span></span>                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-15-1"  
+class="td11">         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-25-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-25-16-1"  
+class="td11">         </td>
+</tr></table></div>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents"><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+Table&#x00A0;<a 
+href="openmpsu48.html#x152-173003r12">2.12<!--tex4ht:ref: tab:Implicitly Declared Fortran Reduction Identifiers --></a> lists each <span class="textit"><span class="textrm">reduction-identifier</span></span> that is implicitly declared for numeric and logical types and its
+semantic initializer value. The actual initializer value is that value as expressed in the data type of the
+reduction list item.
+<a 
+ id="x152-173003r12"></a>
+<div class="supertabular">
+<a 
+ id="x152-173004"></a>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.12: </td><td  
+class="content">Implicitly Declared Fortran <span class="textit"><span class="textrm">reduction-identifiers</span></span></td></tr></table></div><!--tex4ht:label?: x152-173003r2.21 -->
+ <table id="TBL-27" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-27-1g"><col 
+id="TBL-27-1" /><col 
+id="TBL-27-2" /><col 
+id="TBL-27-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Identifier</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Initializer</span></span>                             </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-1-3"  
+class="td11"> <span class="textsf"><span class="textbf">Combiner</span></span>                                                         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-2-1"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-3-1"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-4-1"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">+</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-5-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in + omp_out</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">-</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-6-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in + omp_out</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">*</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 1</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-7-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in * omp_out</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">.and.</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-8-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = .true.</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-8-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in .and. omp_out</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">.or.</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = .false.</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-9-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in .or. omp_out</span></span>     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">.eqv.</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = .true.</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-10-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in .eqv. omp_out</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-11-1"  
+class="td11"> <span class="textbf"><span class="texttt">.neqv.</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = .false.</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-11-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = omp_in .neqv. omp_out</span></span>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">max</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-12-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = </span></span><span class="textit"><span class="textrm">Minimal
+  representable number in the
+  reduction list item type</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-12-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = max(omp_in, omp_out)</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-13-1"  
+class="td11"> <span class="textbf"><span class="texttt">min</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-13-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = </span></span><span class="textit"><span class="textrm">Maximal
+  representable number in the
+  reduction list item type</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-13-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = min(omp_in, omp_out)</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-14-1"  
+class="td11"> <span class="textbf"><span class="texttt">iand</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-14-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = </span></span><span class="textit"><span class="textrm">All bits on</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-14-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = iand(omp_in, omp_out)</span></span>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-15-1"  
+class="td11"> <span class="textbf"><span class="texttt">ior</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-15-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-15-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = ior(omp_in, omp_out)</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-16-1"  
+class="td11"> <span class="textbf"><span class="texttt">ieor</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-16-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_priv = 0</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-27-16-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_out = ieor(omp_in, omp_out)</span></span>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-17-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-17-1"  
+class="td11">         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-27-18-"><td  style="white-space:wrap; text-align:left;" id="TBL-27-18-1"  
+class="td11">         </td>
+</tr></table></div>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+In the above tables, <span class="textbf"><span class="texttt">omp_in</span></span> and <span class="textbf"><span class="texttt">omp_out</span></span> correspond to two identifiers that refer to storage of the type of
+the list item. If the list item is an array or array section, the identifiers to which <span class="textbf"><span class="texttt">omp_in</span></span> and <span class="textbf"><span class="texttt">omp_out</span></span>
+correspond each refer to an array element. <span class="textbf"><span class="texttt">omp_out</span></span> holds the final value of the combiner
+operation.
+Any <span class="textit"><span class="textrm">reduction-identifier</span></span> that is defined with the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive is also valid. In that
+case, the initializer and combiner of the <span class="textit"><span class="textrm">reduction-identifier</span></span> are specified by the <span class="textit"><span class="textrm">initializer-clause</span></span> and the
+<span class="textit"><span class="textrm">combiner</span></span> in the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive.
+                                                                            
+                                                                            
+<p><a 
+ id="Q1-152-740"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A reduction clause specifies a <span class="textit"><span class="textrm">reduction-identifier</span></span> and one or more list items.
+<p>The <span class="textit"><span class="textrm">reduction-identifier</span></span> specified in a reduction clause must match a previously declared <span class="textit"><span class="textrm">reduction-identifier</span></span> of
+the same name and type for each of the list items. This match is done by means of a name lookup in the base
+language.
+</p> 
+<p>The list items that appear in a reduction clause may include array sections.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the type is a derived class, then any <span class="textit"><span class="textrm">reduction-identifier</span></span> that matches its base classes is also a match, if no
+specific match for the type has been specified.
+</p> 
+<p>If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is not an <span class="textit"><span class="textrm">id-expression</span></span>, then it is implicitly converted to one by prepending the
+keyword operator (for example, <span class="textbf"><span class="texttt">+</span></span> becomes <span class="textit"><span class="textrm">operator</span></span><span class="textbf"><span class="texttt">+</span></span>).
+</p> 
+<p>If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is qualified then a qualified name lookup is used to find the declaration.
+</p> 
+<p>If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is unqualified then an <span class="emph">argument-dependent name lookup</span> must be performed using
+the type of each list item.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If a list item is an array or array section, it will be treated as if a reduction clause would be applied to each
+separate element of the array section.
+</p> 
+<p>If a list item is an array section, the elements of any copy of the array section will be stored
+contiguously.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the original list item has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, any copies of the list item are associated with private
+targets.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Any copies of a list item associated with the reduction are initialized with the initializer value of the
+<span class="textit"><span class="textrm">reduction-identifier</span></span>.
+</p> 
+<p>Any copies are combined using the combiner associated with the <span class="textit"><span class="textrm">reduction-identifier</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-152-741"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">reduction-begin</span></span> event occurs before a task begins to perform loads and stores that belong to the
+implementation of a reduction and the <span class="textit"><span class="textrm">reduction-end</span></span> event occurs after the task has completed loads and
+stores associated with the reduction. If a task participates in multiple reductions, each reduction may be
+bracketed by its own pair of <span class="textit"><span class="textrm">reduction-begin</span></span>/<span class="textit"><span class="textrm">reduction-end</span></span> events or multiple reductions may be bracketed
+by a single pair of events. The interval defined by a pair of <span class="textit"><span class="textrm">reduction-begin</span></span>/<span class="textit"><span class="textrm">reduction-end</span></span> events may not
+contain a task scheduling point.
+</p> 
+<p><p><a 
+ id="Q1-152-742"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_reduction</span></span> with <span class="textbf"><span class="texttt">ompt_sync_region_reduction</span></span>
+in its <span class="textit"><span class="textrm">kind</span></span> argument and <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of a
+<span class="textit"><span class="textrm">reduction-begin</span></span> event in that thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_reduction</span></span>
+with <span class="textbf"><span class="texttt">ompt_sync_region_reduction</span></span> in its <span class="textit"><span class="textrm">kind</span></span> argument and <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span>
+argument for each occurrence of a <span class="textit"><span class="textrm">reduction-end</span></span> event in that thread. These callbacks occur in the context
+of the task that performs the reduction and has the type signature <span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-152-743"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions common to reduction clauses are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Any
+  number
+  of
+  reduction
+  clauses
+  can
+  be
+  specified
+  on
+  the
+  directive,
+  but
+  a
+  list
+  item
+  (or
+  any
+  array
+                                                                            
+                                                                            
+  element
+  in
+  an
+  array
+  section)
+  can
+  appear
+  only
+  once
+  in
+  reduction
+  clauses
+  for
+  that
+  directive.
+  </li>
+  <li class="itemize">
+  For
+  a
+  <span class="textit"><span class="textrm">reduction-identifier</span></span>
+  declared
+  in
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+  directive,
+  the
+  directive
+  must
+  appear
+  before
+  its
+  use
+  in
+  a
+  reduction
+  clause.
+  </li>
+  <li class="itemize">
+  If
+  a
+                                                                            
+                                                                            
+  list
+  item
+  is
+  an
+  array
+  section
+  or
+  an
+  array
+  element,
+  its
+  base
+  expression
+  must
+  be
+  a
+  base
+  language
+  identifier.
+  </li>
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  is
+  an
+  array
+  section,
+  it
+  must
+  specify
+  contiguous
+  storage
+  and
+  it
+  cannot
+  be
+  a
+  zero-length
+  array
+  section.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  is
+  an
+  array
+  section
+  or
+  an
+  array
+  element,
+  accesses
+  to
+  the
+  elements
+  of
+  the
+  array
+  outside
+  the
+  specified
+  array
+  section
+  or
+  array
+  element
+  result
+  in
+  unspecified
+  behavior.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is part of another variable, with the exception of array elements, cannot appear in a
+  reduction clause.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+                                                                            
+                                                                            
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is part of another variable, with the exception of array elements, cannot appear in a
+  reduction clause except if the reduction clause is associated with a construct within a class non-static
+  member function and the variable is an accessible data member of the object for which the non-static
+  member function is invoked.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The type of a list item that appears in a reduction clause must be valid for the <span class="textit"><span class="textrm">reduction-identifier</span></span>. For a
+  <span class="textbf"><span class="texttt">max</span></span> or <span class="textbf"><span class="texttt">min</span></span> reduction in C, the type of the list item must be an allowed arithmetic data type: <span class="textbf"><span class="texttt">char</span></span>, <span class="textbf"><span class="texttt">int</span></span>,
+  <span class="textbf"><span class="texttt">float</span></span>, <span class="textbf"><span class="texttt">double</span></span>, or <span class="textbf"><span class="texttt">_Bool</span></span>, possibly modified with <span class="textbf"><span class="texttt">long</span></span>, <span class="textbf"><span class="texttt">short</span></span>, <span class="textbf"><span class="texttt">signed</span></span>, or <span class="textbf"><span class="texttt">unsigned</span></span>. For a
+  <span class="textbf"><span class="texttt">max</span></span> or <span class="textbf"><span class="texttt">min</span></span> reduction in C++, the type of the list item must be an allowed arithmetic data type: <span class="textbf"><span class="texttt">char</span></span>,
+  <span class="textbf"><span class="texttt">wchar_t</span></span>, <span class="textbf"><span class="texttt">int</span></span>, <span class="textbf"><span class="texttt">float</span></span>, <span class="textbf"><span class="texttt">double</span></span>, or <span class="textbf"><span class="texttt">bool</span></span>, possibly modified with <span class="textbf"><span class="texttt">long</span></span>, <span class="textbf"><span class="texttt">short</span></span>, <span class="textbf"><span class="texttt">signed</span></span>, or
+  <span class="textbf"><span class="texttt">unsigned</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> A list item that appears in a reduction clause must not be <span class="textbf"><span class="texttt">const</span></span>-qualified.
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textit"><span class="textrm">reduction-identifier</span></span> for any list item must be unambiguous and accessible.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is part of another variable, with the exception of array elements, cannot appear in a
+  reduction clause.
+<span 
+class="cmsy-10">&#x2219;</span> A type parameter inquiry cannot appear in a reduction clause.
+<span 
+class="cmsy-10">&#x2219;</span> The type, type parameters and rank of a list item that appears in a reduction clause must be valid for the
+  <span class="textit"><span class="textrm">combiner</span></span> and <span class="textit"><span class="textrm">initializer</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> A list item that appears in a reduction clause must be definable.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> A procedure pointer may not appear in a reduction clause.
+<span 
+class="cmsy-10">&#x2219;</span> A pointer with the <span class="textbf"><span class="texttt">INTENT(IN)</span></span> attribute may not appear in the reduction clause.
+<span 
+class="cmsy-10">&#x2219;</span> An original list item with the <span class="textbf"><span class="texttt">POINTER</span></span> attribute or any pointer component of an original list item that is
+  referenced in the <span class="textit"><span class="textrm">combiner</span></span> must be associated at entry to the construct that contains the reduction clause.
+  Additionally, the list item or the pointer component of the list item must not be deallocated, allocated, or
+  pointer assigned within the region.
+<span 
+class="cmsy-10">&#x2219;</span> An original list item with the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute or any allocatable component of an original list
+  item that corresponds to a special variable identifier in the <span class="textit"><span class="textrm">combiner</span></span> or the <span class="textit"><span class="textrm">initializer</span></span> must be in the
+  allocated state at entry to the construct that contains the reduction clause. Additionally, the list item or the
+  allocatable component of the list item must be neither deallocated nor allocated, explicitly or implicitly,
+  within the region.
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is defined in a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive, the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+  directive must be in the same subprogram, or accessible by host or use association.
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is a user-defined operator, the same explicit interface for that operator
+  must be accessible at the location of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive that defines the
+  <span class="textit"><span class="textrm">reduction-identifier</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is defined in a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive, any procedure referenced in
+  the <span class="textbf"><span class="texttt">initializer</span></span> clause or <span class="textit"><span class="textrm">combiner</span></span> expression must be an intrinsic function, or must have an explicit
+  interface where the same explicit interface is accessible as at the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+  directive.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-152-744"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_sync_region_reduction</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3200004.4.4.13">4.4.4.13<!--tex4ht:ref: sec:ompt_sync_region_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3550004.5.2.13">4.5.2.13<!--tex4ht:ref: sec:ompt_callback_sync_region_t --></a>.
+  </li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.5.2  </span> <a 
+ id="x152-1740002.21.5.2"></a>Reduction Scoping Clauses</h5>
+<p>Reduction scoping clauses define the region in which a reduction is computed by tasks or SIMD lanes. All
+properties common to all reduction clauses, which are defined in Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>, apply to reduction
+scoping clauses.
+</p> 
+<p>The number of copies created for each list item and the time at which those copies are initialized are
+determined by the particular reduction scoping clause that appears on the construct.
+</p> 
+<p>The time at which the original list item contains the result of the reduction is determined by the particular
+reduction scoping clause.
+</p> 
+<p>The location in the OpenMP program at which values are combined and the order in which values are
+combined are unspecified. Therefore, when comparing sequential and parallel executions, or when
+comparing one parallel execution to another (even if the number of threads used is the same),
+bitwise-identical results are not guaranteed to be obtained. Similarly, side effects (such as floating-point
+exceptions) may not be identical and may not take place at the same location in the OpenMP
+program.
+</p> 
+<p>To avoid data races, concurrent reads or updates of the original list item must be synchronized with the
+update of the original list item that occurs as a result of the reduction computation.
+</p> 
+<p>
+</p> 
+
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.5.3  </span> <a 
+ id="x152-1750002.21.5.3"></a>Reduction Participating Clauses</h5>
+<p>A reduction participating clause specifies a task or a SIMD lane as a participant in a reduction defined by a
+reduction scoping clause. All properties common to all reduction clauses, which are defined in
+Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>, apply to reduction participating clauses.
+</p> 
+<p>Accesses to the original list item may be replaced by accesses to copies of the original list item created by a
+region that corresponds to a construct with a reduction scoping clause.
+</p> 
+<p>In any case, the final value of the reduction must be determined as if all tasks or SIMD lanes that participate
+in the reduction are executed sequentially in some arbitrary order.
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.5.4  </span> <a 
+ id="x152-1760002.21.5.4"></a><span class="textbf"><span class="texttt">reduction</span></span> Clause</h5>
+<a 
+ id="dx152-176001"></a>
+<a 
+ id="dx152-176002"></a>
+<p><p><a 
+ id="Q1-152-748"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">reduction</span></span> clause specifies a <span class="textit"><span class="textrm">reduction-identifier</span></span> and one or more list items. For each list item, a
+private copy is created for each implicit task or SIMD lane and is initialized with the initializer value of the
+<span class="textit"><span class="textrm">reduction-identifier</span></span>. After the end of the region, the original list item is updated with the values of the
+private copies using the combiner associated with the <span class="textit"><span class="textrm">reduction-identifier</span></span>.
+<p><a 
+ id="Q1-152-749"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">reduction</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176003r1"></a></span></p> 
+<!--l. 1742--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176004r2"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176005r3"></a></span></pre>
+<p>Where <span class="textit"><span class="textrm">reduction-identifier</span></span> is defined in Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>, and <span class="textit"><span class="textrm">reduction-modifier</span></span> is one of the
+following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176006r1"></a></span></p> 
+<!--l. 1749--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176007r2"></a></span><span 
+class="pcrb8t-">inscan</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176008r3"></a></span><span 
+class="pcrb8t-">task</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176009r4"></a></span><span 
+class="pcrb8t-">default</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-176010r5"></a></span></pre>
+<p><p><a 
+ id="Q1-152-750"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">reduction</span></span> clause is a reduction scoping clause and a reduction participating clause, as described in
+Section&#x00A0;<a 
+href="#x152-1740002.21.5.2">2.21.5.2<!--tex4ht:ref: subsubsec:Reduction Scoping Clauses --></a> and Section&#x00A0;<a 
+href="#x152-1750002.21.5.3">2.21.5.3<!--tex4ht:ref: subsubsec:Reduction Participating Clauses --></a>.
+</p> 
+<p>If <span class="textit"><span class="textrm">reduction-modifier</span></span> is not present or the <span class="textbf"><span class="texttt">default</span></span><span class="textit"><span class="textrm">reduction-modifier</span></span> is present, the behavior is as
+follows. For <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">scope</span></span> and worksharing constructs, one or more private copies of each list item
+are created for each implicit task, as if the <span class="textbf"><span class="texttt">private</span></span> clause had been used. For the <span class="textbf"><span class="texttt">simd</span></span> construct, one or
+more private copies of each list item are created for each SIMD lane, as if the <span class="textbf"><span class="texttt">private</span></span> clause had been
+used. For the <span class="textbf"><span class="texttt">taskloop</span></span> construct, private copies are created according to the rules of the reduction
+scoping clauses. For the <span class="textbf"><span class="texttt">teams</span></span> construct, one or more private copies of each list item are created for the
+initial task of each team in the league, as if the <span class="textbf"><span class="texttt">private</span></span> clause had been used. For the <span class="textbf"><span class="texttt">loop</span></span>
+construct, private copies are created and used in the construct according to the description and
+restrictions in Section&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">2.21.3<!--tex4ht:ref: subsec:List Item Privatization --></a>. At the end of a region that corresponds to a construct for which the
+<span class="textbf"><span class="texttt">reduction</span></span> clause was specified, the original list item is updated by combining its original
+value with the final value of each of the private copies, using the combiner of the specified
+<span class="textit"><span class="textrm">reduction-identifier</span></span>.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">inscan</span></span><span class="textit"><span class="textrm">reduction-modifier</span></span> is present, a scan computation is performed over updates to the list item
+performed in each logical iteration of the loop associated with the worksharing-loop, worksharing-loop
+SIMD, or <span class="textbf"><span class="texttt">simd</span></span> construct (see Section&#x00A0;<a 
+href="openmpsu52.html#x77-850002.11.8">2.11.8<!--tex4ht:ref: subsec:scan Directive --></a>). The list items are privatized in the construct according to
+the description and restrictions in Section&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">2.21.3<!--tex4ht:ref: subsec:List Item Privatization --></a>. At the end of the region, each original list item is
+assigned the value described in Section&#x00A0;<a 
+href="openmpsu52.html#x77-850002.11.8">2.11.8<!--tex4ht:ref: subsec:scan Directive --></a>.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">task</span></span><span class="textit"><span class="textrm">reduction-modifier</span></span> is present for a <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">scope</span></span>, or worksharing construct, then each
+list item is privatized according to the description and restrictions in Section&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">2.21.3<!--tex4ht:ref: subsec:List Item Privatization --></a>, and an unspecified
+number of additional private copies may be created to support task reductions. Any copies associated with
+the reduction are initialized before they are accessed by the tasks that participate in the reduction, which
+include all implicit tasks in the corresponding region and all participating explicit tasks that specify an
+<span class="textbf"><span class="texttt">in_reduction</span></span> clause (see Section&#x00A0;<a 
+href="#x152-1780002.21.5.6">2.21.5.6<!--tex4ht:ref: subsubsec:in_reduction clause --></a>). After the end of the region, the original list item contains
+the result of the reduction.
+</p> 
+<p>If <span class="textbf"><span class="texttt">nowait</span></span> is not specified for the construct, the reduction computation will be complete at the end of the
+region that corresponds to the construct; however, if the <span class="textbf"><span class="texttt">reduction</span></span> clause is used on a construct to which
+<span class="textbf"><span class="texttt">nowait</span></span> is also applied, accesses to the original list item will create a race and, thus, have unspecified effect
+unless synchronization ensures that they occur after all threads have executed all of their iterations or
+<span class="textbf"><span class="texttt">section</span></span> constructs, and the reduction computation has completed and stored the computed
+value of that list item. This can be ensured simply through a barrier synchronization in most
+cases.
+</p> 
+<p><p><a 
+ id="Q1-152-751"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">reduction</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+                                                                            
+                                                                            
+  <li class="itemize">
+  All
+  restrictions
+  common
+  to
+  all
+  reduction
+  clauses,
+  which
+  are
+  listed
+  in
+  Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>,
+  apply
+  to
+  this
+  clause.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  a
+  worksharing
+  construct
+  must
+  be
+  shared
+  in
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  to
+  which
+                                                                            
+                                                                            
+  a
+  corresponding
+  worksharing
+  region
+  binds.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  a
+  <span class="textbf"><span class="texttt">scope</span></span>
+  construct
+  must
+  be
+  shared
+  in
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  to
+  which
+  a
+  corresponding
+  <span class="textbf"><span class="texttt">scope</span></span>
+  region
+  binds.
+  </li>
+  <li class="itemize">
+  If
+  an
+  array
+  section
+                                                                            
+                                                                            
+  or
+  an
+  array
+  element
+  appears
+  as
+  a
+  list
+  item
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  a
+  worksharing
+  construct,
+  <span class="textbf"><span class="texttt">scope</span></span>
+  construct
+  or
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct
+  for
+  which
+  the
+  corresponding
+  region
+  binds
+  to
+  a
+  parallel
+  region,
+  all
+  threads
+  that
+  participate
+  in
+  the
+  reduction
+  must
+  specify
+  the
+  same
+                                                                            
+                                                                            
+  storage
+  location.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span>
+  must
+  appear
+  as
+  a
+  list
+  item
+  in
+  an
+  <span class="textbf"><span class="texttt">inclusive</span></span>
+  or
+  <span class="textbf"><span class="texttt">exclusive</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">scan</span></span>
+  directive
+  enclosed
+  by
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  A
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  without
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span>
+  may
+  not
+  appear
+  on
+  a
+  construct
+  on
+  which
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span>
+  appears.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">task</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span>
+  may
+  only
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  a
+  <span class="textbf"><span class="texttt">scope</span></span>
+  construct,
+  a
+                                                                            
+                                                                            
+  worksharing
+  construct
+  or
+  a
+  combined
+  or
+  composite
+  construct
+  for
+  which
+  any
+  of
+  the
+  aforementioned
+  constructs
+  is
+  a
+  constituent
+  construct
+  and
+  <span class="textbf"><span class="texttt">simd</span></span>
+  or
+  <span class="textbf"><span class="texttt">loop</span></span>
+  are
+  not
+  constituent
+  constructs.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span>
+  may
+  only
+  appear
+  on
+  a
+  worksharing-loop
+                                                                            
+                                                                            
+  construct,
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct
+  or
+  a
+  combined
+  or
+  composite
+  construct
+  for
+  which
+  any
+  of
+  the
+  aforementioned
+  constructs
+  is
+  a
+  constituent
+  construct
+  and
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  is
+  not
+  a
+  constituent
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  the
+  innermost
+                                                                            
+                                                                            
+  enclosing
+  worksharing,
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  or
+  <span class="textbf"><span class="texttt">scope</span></span>
+  construct
+  may
+  not
+  be
+  accessed
+  in
+  an
+  explicit
+  task
+  generated
+  by
+  a
+  construct
+  for
+  which
+  an
+  <span class="textbf"><span class="texttt">in_reduction</span></span>
+  clause
+  over
+  the
+  same
+  list
+  item
+  does
+  not
+  appear.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">task</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span>
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+                                                                            
+                                                                            
+  clause
+  if
+  the
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  is
+  specified
+  on
+  the
+  same
+  construct.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If a list item in a <span class="textbf"><span class="texttt">reduction</span></span> clause on a worksharing construct, <span class="textbf"><span class="texttt">scope</span></span> construct or <span class="textbf"><span class="texttt">loop</span></span> construct
+  for which the corresponding region binds to a parallel region has a reference type then it must bind to the
+  same object for all threads of the team.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item in a <span class="textbf"><span class="texttt">reduction</span></span> clause on a worksharing construct, <span class="textbf"><span class="texttt">scope</span></span> or <span class="textbf"><span class="texttt">loop</span></span> construct for which
+  the corresponding region binds to a parallel region is an array section or an array element then the base
+  pointer must point to the same variable for all threads of the team.
+<span 
+class="cmsy-10">&#x2219;</span> A variable of class type (or array thereof) that appears in a <span class="textbf"><span class="texttt">reduction</span></span> clause with the <span class="textbf"><span class="texttt">inscan</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span> requires an accessible, unambiguous default constructor for the class type.
+  The number of calls to the default constructor while performing the scan computation is
+  unspecified.
+<span 
+class="cmsy-10">&#x2219;</span> A variable of class type (or array thereof) that appears in a <span class="textbf"><span class="texttt">reduction</span></span> clause with the <span class="textbf"><span class="texttt">inscan</span></span>
+  <span class="textit"><span class="textrm">reduction-modifier</span></span> requires an accessible, unambiguous copy assignment operator for the class type. The
+  number of calls to the copy assignment operator while performing the scan computation is
+  unspecified.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-152-752"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">scan</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu52.html#x77-850002.11.8">2.11.8<!--tex4ht:ref: subsec:scan Directive --></a>.
+  </li>
+  <li class="itemize">
+  List
+  Item
+  Privatization,
+  see
+  Section&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">2.21.3<!--tex4ht:ref: subsec:List Item Privatization --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">private</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.5.5  </span> <a 
+ id="x152-1770002.21.5.5"></a><span class="textbf"><span class="texttt">task_reduction</span></span> Clause</h5>
+<a 
+ id="dx152-177001"></a>
+<a 
+ id="dx152-177002"></a>
+<p><p><a 
+ id="Q1-152-754"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">task_reduction</span></span> clause specifies a reduction among tasks.
+<p><a 
+ id="Q1-152-755"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">task_reduction</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-177003r1"></a></span></p> 
+<!--l. 1891--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-177004r2"></a></span><span 
+class="pcrb8t-">task_reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-177005r3"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">reduction-identifier</span></span> is defined in Section <a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>.
+</p> 
+<p><p><a 
+ id="Q1-152-756"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">task_reduction</span></span> clause is a reduction scoping clause, as described in <a 
+href="#x152-1740002.21.5.2">2.21.5.2<!--tex4ht:ref: subsubsec:Reduction Scoping Clauses --></a>.
+</p> 
+<p>For each list item, the number of copies is unspecified. Any copies associated with the reduction are
+initialized before they are accessed by the tasks that participate in the reduction. After the end of the region,
+the original list item contains the result of the reduction.
+</p> 
+<p><p><a 
+ id="Q1-152-757"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">task_reduction</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+  restrictions
+  common
+  to
+  all
+  reduction
+  clauses,
+  which
+  are
+  listed
+  in
+  Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>,
+  apply
+  to
+  this
+  clause.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.5.6  </span> <a 
+ id="x152-1780002.21.5.6"></a><span class="textbf"><span class="texttt">in_reduction</span></span> Clause</h5>
+<a 
+ id="dx152-178001"></a>
+<a 
+ id="dx152-178002"></a>
+<p><p><a 
+ id="Q1-152-759"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">in_reduction</span></span> clause specifies that a task participates in a reduction.
+<p><a 
+ id="Q1-152-760"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">in_reduction</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-178003r1"></a></span></p> 
+<!--l. 1930--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-178004r2"></a></span><span 
+class="pcrb8t-">in_reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-178005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">reduction-identifier</span></span> is defined in Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>.
+</p> 
+<p><p><a 
+ id="Q1-152-761"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">in_reduction</span></span> clause is a reduction participating clause, as described in Section&#x00A0;<a 
+href="#x152-1750002.21.5.3">2.21.5.3<!--tex4ht:ref: subsubsec:Reduction Participating Clauses --></a>. For a
+given list item, the <span class="textbf"><span class="texttt">in_reduction</span></span> clause defines a task to be a participant in a task reduction that is
+defined by an enclosing region for a matching list item that appears in a <span class="textbf"><span class="texttt">task_reduction</span></span> clause or a
+<span class="textbf"><span class="texttt">reduction</span></span> clause with <span class="textbf"><span class="texttt">task</span></span> as the <span class="textit"><span class="textrm">reduction-modifier</span></span>, where either:
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  The
+  matching
+  list
+  item
+  has
+  the
+  same
+  storage
+  location
+  as
+  the
+  list
+  item
+  in
+  the
+  <span class="textbf"><span class="texttt">in_reduction</span></span>
+  clause;
+  or
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  A
+  private
+  copy,
+  derived
+  from
+  the
+                                                                            
+                                                                            
+  matching
+  list
+  item,
+  that
+  is
+  used
+  to
+  perform
+  the
+  task
+  reduction
+  has
+  the
+  same
+  storage
+  location
+  as
+  the
+  list
+  item
+  in
+  the
+  <span class="textbf"><span class="texttt">in_reduction</span></span>
+  clause.</dd></dl>
+<p>For the <span class="textbf"><span class="texttt">task</span></span> construct, the generated task becomes the participating task. For each list item, a private copy
+may be created as if the <span class="textbf"><span class="texttt">private</span></span> clause had been used.
+</p> 
+<p>For the <span class="textbf"><span class="texttt">target</span></span> construct, the target task becomes the participating task. For each list item, a private copy
+may be created in the data environment of the target task as if the <span class="textbf"><span class="texttt">private</span></span> clause had been used. This
+private copy will be implicitly mapped into the device data environment of the target device, if the target
+device is not the parent device.
+</p> 
+<p>At the end of the task region, if a private copy was created its value is combined with a copy created by a
+reduction scoping clause or with the original list item.
+</p> 
+<p><p><a 
+ id="Q1-152-762"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">in_reduction</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+                                                                            
+                                                                            
+  restrictions
+  common
+  to
+  all
+  reduction
+  clauses,
+  which
+  are
+  listed
+  in
+  Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>,
+  apply
+  to
+  this
+  clause.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">task_reduction</span></span>
+  clause
+  or
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  <span class="textbf"><span class="texttt">task</span></span>
+  as
+  the
+  <span class="textit"><span class="textrm">reduction-modifier</span></span>
+  that
+  is
+  specified
+  on
+  a
+  construct
+  that
+                                                                            
+                                                                            
+  corresponds
+  to
+  a
+  region
+  in
+  which
+  the
+  region
+  of
+  the
+  participating
+  task
+  is
+  closely
+  nested
+  must
+  match
+  each
+  list
+  item.
+  The
+  construct
+  that
+  corresponds
+  to
+  the
+  innermost
+  enclosing
+  region
+  that
+  meets
+  this
+  condition
+  must
+  specify
+  the
+  same
+  <span class="textit"><span class="textrm">reduction-identifier</span></span>
+  for
+  the
+  matching
+  list
+  item
+                                                                            
+                                                                            
+  as
+  the
+  <span class="textbf"><span class="texttt">in_reduction</span></span>
+  clause.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.5.7  </span> <a 
+ id="x152-1790002.21.5.7"></a><span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> Directive</h5>
+<a 
+ id="dx152-179001"></a>
+<a 
+ id="dx152-179002"></a>
+<p><p><a 
+ id="Q1-152-764"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The following section describes the directive for declaring user-defined reductions. The
+<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive declares a <span class="textit"><span class="textrm">reduction-identifier</span></span> that can be used in a <span class="textbf"><span class="texttt">reduction</span></span> clause.
+The <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive is a declarative directive.
+<p><a 
+ id="Q1-152-765"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179003r1"></a></span></p> 
+<!--l. 2004--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">typename</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179005r3"></a></span><span 
+class="ec-qtmri-">combiner</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">initializer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179006r4"></a></span></pre>
+<p>where:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">reduction-identifier</span></span>
+  is
+  either
+  a
+  base
+  language
+  identifier
+  or
+  one
+  of
+  the
+                                                                            
+                                                                            
+  following
+  operators:
+  <span class="textbf"><span class="texttt">+</span></span>,
+  <span class="textbf"><span class="texttt">-</span></span>,
+  <span class="textbf"><span class="texttt">*</span></span>,
+  <span class="textbf"><span class="texttt">&amp;</span></span>,
+  <span class="textbf"><span class="texttt">|</span></span>,
+  <span class="textbf"><span class="texttt">^</span></span>,
+  <span class="textbf"><span class="texttt">&amp;&amp;</span></span>
+  or
+  <span class="textbf"><span class="texttt">||</span></span>
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">typename-list</span></span>
+  is
+  a
+  list
+  of
+  type
+  names
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">combiner</span></span>
+  is
+  an
+  expression
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">initializer-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">initializer(</span></span><span class="textit"><span class="textrm">initializer-expr</span></span><span class="textbf"><span class="texttt">)</span></span>
+  where
+  <span class="textit"><span class="textrm">initializer-expr</span></span>
+  is
+  <span class="textbf"><span class="texttt">omp_priv
+  =
+  </span></span><span class="textit"><span class="textrm">initializer</span></span>
+  or
+  <span class="textit"><span class="textrm">function-name</span></span><span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">argument-list</span></span><span class="textbf"><span class="texttt">)</span></span></li></ul>
+                                                                            
+                                                                            
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179007r1"></a></span></p> 
+<!--l. 2026--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179008r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">typename</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179009r3"></a></span><span 
+class="ec-qtmri-">combiner</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">initializer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179010r4"></a></span></pre>
+<p>where:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">reduction-identifier</span></span>
+  is
+  either
+  an
+  <span class="textit"><span class="textrm">id-expression</span></span>
+  or
+  one
+  of
+  the
+  following
+  operators:
+  <span class="textbf"><span class="texttt">+</span></span>,
+  <span class="textbf"><span class="texttt">-</span></span>,
+  <span class="textbf"><span class="texttt">*</span></span>,
+  <span class="textbf"><span class="texttt">&amp;</span></span>,
+  <span class="textbf"><span class="texttt">|</span></span>,
+  <span class="textbf"><span class="texttt">^</span></span>,
+  <span class="textbf"><span class="texttt">&amp;&amp;</span></span>
+  or
+  <span class="textbf"><span class="texttt">||</span></span>
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">typename-list</span></span>
+  is
+  a
+  list
+                                                                            
+                                                                            
+  of
+  type
+  names
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">combiner</span></span>
+  is
+  an
+  expression
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">initializer-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">initializer(</span></span><span class="textit"><span class="textrm">initializer-expr</span></span><span class="textbf"><span class="texttt">)</span></span>
+  where
+  <span class="textit"><span class="textrm">initializer-expr</span></span>
+  is
+  <span class="textbf"><span class="texttt">omp_priv</span></span>
+  <span class="textit"><span class="textrm">initializer</span></span>
+  or
+  <span class="textit"><span class="textrm">function-name</span></span><span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">argument-list</span></span><span class="textbf"><span class="texttt">)</span></span></li></ul>
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179011r1"></a></span></p> 
+<!--l. 2053--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179012r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">combiner</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179013r3"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">initializer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x152-179014r4"></a></span></pre>
+<p>where:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">reduction-identifier</span></span>
+  is
+  either
+                                                                            
+                                                                            
+  a
+  base
+  language
+  identifier,
+  or
+  a
+  user-defined
+  operator,
+  or
+  one
+  of
+  the
+  following
+  operators:
+  <span class="textbf"><span class="texttt">+</span></span>,
+  <span class="textbf"><span class="texttt">-</span></span>,
+  <span class="textbf"><span class="texttt">*</span></span>,
+  <span class="textbf"><span class="texttt">.and.</span></span>,
+  <span class="textbf"><span class="texttt">.or.</span></span>,
+  <span class="textbf"><span class="texttt">.eqv.</span></span>,
+  <span class="textbf"><span class="texttt">.neqv.</span></span>,
+  or
+  one
+  of
+  the
+  following
+  intrinsic
+  procedure
+  names:
+  <span class="textbf"><span class="texttt">max</span></span>,
+  <span class="textbf"><span class="texttt">min</span></span>,
+  <span class="textbf"><span class="texttt">iand</span></span>,
+  <span class="textbf"><span class="texttt">ior</span></span>,
+  <span class="textbf"><span class="texttt">ieor</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">type-list</span></span>
+  is
+  a
+  list
+  of
+  type
+                                                                            
+                                                                            
+  specifiers
+  that
+  must
+  not
+  be
+  <span class="textbf"><span class="texttt">CLASS(*)</span></span>
+  or
+  an
+  abstract
+  type
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">combiner</span></span>
+  is
+  either
+  an
+  assignment
+  statement
+  or
+  a
+  subroutine
+  name
+  followed
+  by
+  an
+  argument
+  list
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">initializer-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">initializer(</span></span><span class="textit"><span class="textrm">initializer-expr</span></span><span class="textbf"><span class="texttt">)</span></span>,
+  where
+  <span class="textit"><span class="textrm">initializer-expr</span></span>
+  is
+  <span class="textbf"><span class="texttt">omp_priv
+  =
+  </span></span><span class="textit"><span class="textrm">expression</span></span>
+  or
+  <span class="textit"><span class="textrm">subroutine-name</span></span><span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">argument-list</span></span><span class="textbf"><span class="texttt">)</span></span></li></ul>
+                                                                            
+                                                                            
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-152-766"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+User-defined reductions can be defined using the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive. The <span class="textit"><span class="textrm">reduction-identifier</span></span>
+and the type identify the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive. The <span class="textit"><span class="textrm">reduction-identifier</span></span> can later be used in a
+<span class="textbf"><span class="texttt">reduction</span></span> clause that uses variables of the type or types specified in the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+directive. If the directive specifies several types then the behavior is as if a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+directive was specified for each type.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a type with deferred or assumed length type parameter is specified in a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+directive, the <span class="textit"><span class="textrm">reduction-identifier</span></span> of that directive can be used in a reduction clause with any variable of the
+same type and the same kind parameter, regardless of the length type Fortran parameters with which the
+variable is declared.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The visibility and accessibility of a user-defined reduction are the same as those of a variable declared at the
+same location in the program. The enclosing context of the <span class="textit"><span class="textrm">combiner</span></span> and of the <span class="textit"><span class="textrm">initializer-expr</span></span> is that of the
+<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive. The <span class="textit"><span class="textrm">combiner</span></span> and the <span class="textit"><span class="textrm">initializer-expr</span></span> must be correct in
+the base language as if they were the body of a function defined at the same location in the
+program.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is the same as the name of a user-defined operator or an extended operator, or the
+same as a generic name that is one of the allowed intrinsic procedures, and if the operator or
+procedure name appears in an accessibility statement in the same module, the accessibility of the
+corresponding <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive is determined by the accessibility attribute of the
+statement.
+</p> 
+<p>If the <span class="textit"><span class="textrm">reduction-identifier</span></span> is the same as a generic name that is one of the allowed intrinsic procedures and is
+accessible, and if it has the same name as a derived type in the same module, the accessibility of the
+corresponding <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive is determined by the accessibility of the generic name
+according to the base language.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive can also appear at the locations in a program where a static data
+member could be declared. In this case, the visibility and accessibility of the declaration are the same as
+those of a static data member declared at the same location in the program.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The <span class="textit"><span class="textrm">combiner</span></span> specifies how partial results are combined into a single value. The <span class="textit"><span class="textrm">combiner</span></span> can use the
+special variable identifiers <span class="textbf"><span class="texttt">omp_in</span></span> and <span class="textbf"><span class="texttt">omp_out</span></span> that are of the type of the variables that this
+<span class="textit"><span class="textrm">reduction-identifier</span></span> reduces. Each of the two special variable identifiers denotes one of the values to be
+combined before executing the <span class="textit"><span class="textrm">combiner</span></span>. The special <span class="textbf"><span class="texttt">omp_out</span></span> identifier refers to the storage that holds
+the resulting combined value after executing the <span class="textit"><span class="textrm">combiner</span></span>.
+</p> 
+<p>The number of times that the <span class="textit"><span class="textrm">combiner</span></span> is executed and the order of these executions for any reduction
+clause are unspecified.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the <span class="textit"><span class="textrm">combiner</span></span> is a subroutine name with an argument list, the <span class="textit"><span class="textrm">combiner</span></span> is evaluated by calling the
+subroutine with the specified argument list.
+</p> 
+<p>If the <span class="textit"><span class="textrm">combiner</span></span> is an assignment statement, the <span class="textit"><span class="textrm">combiner</span></span> is evaluated by executing the assignment
+statement.
+                                                                            
+                                                                            
+</p> 
+<p>If a generic name is used in the <span class="textit"><span class="textrm">combiner</span></span> expression and the list item in the corresponding <span class="textbf"><span class="texttt">reduction</span></span>
+clause is an array or array section, it is resolved to the specific procedure that is elemental or only has scalar
+dummy arguments.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If the <span class="textit"><span class="textrm">initializer-expr</span></span> value of a user-defined reduction is not known <span class="emph">a priori</span>, the <span class="textit"><span class="textrm">initializer-clause</span></span> can be
+used to specify one. The content of the <span class="textit"><span class="textrm">initializer-clause</span></span> will be used as the initializer for the private copies
+of reduction list items where the <span class="textbf"><span class="texttt">omp_priv</span></span> identifier will refer to the storage to be initialized. The special
+identifier <span class="textbf"><span class="texttt">omp_orig</span></span> can also appear in the <span class="textit"><span class="textrm">initializer-clause</span></span> and it will refer to the storage of the original
+variable to be reduced.
+</p> 
+<p>The number of times that the <span class="textit"><span class="textrm">initializer-expr</span></span> is evaluated and the order of these evaluations are
+unspecified.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the <span class="textit"><span class="textrm">initializer-expr</span></span> is a function name with an argument list, the <span class="textit"><span class="textrm">initializer-expr</span></span> is evaluated by calling the
+function with the specified argument list. Otherwise, the <span class="textit"><span class="textrm">initializer-expr</span></span> specifies how <span class="textbf"><span class="texttt">omp_priv</span></span> is
+declared and initialized.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If no <span class="textit"><span class="textrm">initializer-clause</span></span> is specified, the private variables will be initialized following the rules for
+initialization of objects with static storage duration.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If no <span class="textit"><span class="textrm">initializer-expr</span></span> is specified, the private variables will be initialized following the rules for
+<span class="textit"><span class="textrm">default-initialization</span></span>.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the <span class="textit"><span class="textrm">initializer-expr</span></span> is a subroutine name with an argument list, the <span class="textit"><span class="textrm">initializer-expr</span></span> is evaluated by calling
+the subroutine with the specified argument list.
+</p> 
+<p>If the <span class="textit"><span class="textrm">initializer-expr</span></span> is an assignment statement, the <span class="textit"><span class="textrm">initializer-expr</span></span> is evaluated by executing the
+assignment statement.
+</p> 
+<p>If no <span class="textit"><span class="textrm">initializer-clause</span></span> is specified, the private variables will be initialized as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  For
+  <span class="textbf"><span class="texttt">complex</span></span>,
+  <span class="textbf"><span class="texttt">real</span></span>,
+  or
+  <span class="textbf"><span class="texttt">integer</span></span>
+  types,
+  the
+  value
+  0
+  will
+  be
+  used.
+  </li>
+  <li class="itemize">
+  For
+  <span class="textbf"><span class="texttt">logical</span></span>
+  types,
+  the
+  value
+  <span class="textbf"><span class="texttt">.false.</span></span>
+  will
+  be
+  used.
+  </li>
+  <li class="itemize">
+  For
+  derived
+  types
+                                                                            
+                                                                            
+  for
+  which
+  default
+  initialization
+  is
+  specified,
+  default
+  initialization
+  will
+  be
+  used.
+  </li>
+  <li class="itemize">
+  Otherwise,
+  not
+  specifying
+  an
+  <span class="textit"><span class="textrm">initializer-clause</span></span>
+  results
+  in
+  unspecified
+  behavior.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If <span class="textit"><span class="textrm">reduction-identifier</span></span> is used in a <span class="textbf"><span class="texttt">target</span></span> region then a declare target directive must be specified for any
+function that can be accessed through the <span class="textit"><span class="textrm">combiner</span></span> and <span class="textit"><span class="textrm">initializer-expr</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If <span class="textit"><span class="textrm">reduction-identifier</span></span> is used in a <span class="textbf"><span class="texttt">target</span></span> region then a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive must be specified
+for any function or subroutine that can be accessed through the <span class="textit"><span class="textrm">combiner</span></span> and <span class="textit"><span class="textrm">initializer-expr</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-152-767"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  only
+  variables
+  allowed
+  in
+  the
+  <span class="textit"><span class="textrm">combiner</span></span>
+  are
+  <span class="textbf"><span class="texttt">omp_in</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_out</span></span>.
+  </li>
+  <li class="itemize">
+  The
+  only
+  variables
+  allowed
+  in
+  the
+  <span class="textit"><span class="textrm">initializer-clause</span></span>
+  are
+  <span class="textbf"><span class="texttt">omp_priv</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_orig</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  the
+  variable
+  <span class="textbf"><span class="texttt">omp_orig</span></span>
+  is
+  modified
+  in
+                                                                            
+                                                                            
+  the
+  <span class="textit"><span class="textrm">initializer-clause</span></span>,
+  the
+  behavior
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  If
+  execution
+  of
+  the
+  <span class="textit"><span class="textrm">combiner</span></span>
+  or
+  the
+  <span class="textit"><span class="textrm">initializer-expr</span></span>
+  results
+  in
+  the
+  execution
+  of
+  an
+  OpenMP
+  construct
+  or
+  an
+  OpenMP
+  API
+  call,
+  then
+  the
+  behavior
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">reduction-identifier</span></span>
+  may
+  not
+                                                                            
+                                                                            
+  be
+  re-declared
+  in
+  the
+  current
+  scope
+  for
+  the
+  same
+  type
+  or
+  for
+  a
+  type
+  that
+  is
+  compatible
+  according
+  to
+  the
+  base
+  language
+  rules.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textit"><span class="textrm">initializer-clause</span></span>
+  can
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">typename-list</span></span>
+  must
+  not
+  declare
+  new
+                                                                            
+                                                                            
+  types.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A type name in a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive cannot be a function type, an array type, a reference
+  type, or a type qualified with <span class="textbf"><span class="texttt">const</span></span>, <span class="textbf"><span class="texttt">volatile</span></span> or <span class="textbf"><span class="texttt">restrict</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textit"><span class="textrm">initializer-expr</span></span> is a function name with an argument list, then one of the arguments must be the
+  address of <span class="textbf"><span class="texttt">omp_priv</span></span>.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textit"><span class="textrm">initializer-expr</span></span> is a function name with an argument list, then one of the arguments must be
+  <span class="textbf"><span class="texttt">omp_priv</span></span> or the address of <span class="textbf"><span class="texttt">omp_priv</span></span>.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> Any selectors in the designator of <span class="textbf"><span class="texttt">omp_in</span></span> and <span class="textbf"><span class="texttt">omp_out</span></span> can only be <span class="textit"><span class="textrm">component</span></span>&#x00A0;<span class="textit"><span class="textrm">selectors</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textit"><span class="textrm">initializer-expr</span></span> is a subroutine name with an argument list, then one of the arguments must be
+  <span class="textbf"><span class="texttt">omp_priv</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> Any subroutine or function used in the <span class="textbf"><span class="texttt">initializer</span></span> clause or <span class="textit"><span class="textrm">combiner</span></span> expression must be an
+  intrinsic function, or must have an accessible interface.
+<span 
+class="cmsy-10">&#x2219;</span> Any user-defined operator, defined assignment or extended operator used in the <span class="textbf"><span class="texttt">initializer</span></span> clause or
+  <span class="textit"><span class="textrm">combiner</span></span> expression must have an accessible interface.
+<span 
+class="cmsy-10">&#x2219;</span> If any subroutine, function, user-defined operator, defined assignment or extended operator is used in the
+  <span class="textbf"><span class="texttt">initializer</span></span> clause or <span class="textit"><span class="textrm">combiner</span></span> expression, it must be accessible to the subprogram in which the
+  corresponding <span class="textbf"><span class="texttt">reduction</span></span> clause is specified.
+<span 
+class="cmsy-10">&#x2219;</span> If the length type parameter is specified for a type, it must be a constant, a colon or an&#x00A0;<span class="textbf"><span class="texttt">*</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> If a type with deferred or assumed length parameter is specified in a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive,
+  no other <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span> directive with the same type, the same kind parameters and the same
+  <span class="textit"><span class="textrm">reduction-identifier</span></span> is allowed in the same scope.
+<span 
+class="cmsy-10">&#x2219;</span> Any subroutine used in the <span class="textbf"><span class="texttt">initializer</span></span> clause or <span class="textit"><span class="textrm">combiner</span></span> expression must not have any alternate
+  returns appear in the argument list.
+<span 
+class="cmsy-10">&#x2219;</span> If the list item in the corresponding <span class="textbf"><span class="texttt">reduction</span></span> clause is an array or array section, then any procedure
+  used in the <span class="textbf"><span class="texttt">initializer</span></span> clause or <span class="textit"><span class="textrm">combiner</span></span> expression must either be elemental or have dummy
+  arguments that are scalar.
+<span 
+class="cmsy-10">&#x2219;</span> Any procedure called in the region of <span class="textit"><span class="textrm">initializer-expr</span></span> or <span class="textit"><span class="textrm">combiner</span></span> must be pure and may not reference
+  any host-associated variables.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-152-768"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Properties
+  Common
+  to
+  All
+  Reduction
+  Clauses,
+  see
+  Section&#x00A0;<a 
+href="#x152-1730002.21.5.1">2.21.5.1<!--tex4ht:ref: subsubsec:Properties Common to All Reduction Clauses --></a>.</li></ul>
+<!--l. 2296--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu118.html" >next</a>] [<a 
+href="openmpsu116.html" >prev</a>] [<a 
+href="openmpsu116.html#tailopenmpsu116.html" >prev-tail</a>] [<a 
+href="openmpsu117.html" >front</a>] [<a 
+href="openmpse29.html#openmpsu117.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu117.html"></a> </p> 
+ 
+</body> 
+</html>

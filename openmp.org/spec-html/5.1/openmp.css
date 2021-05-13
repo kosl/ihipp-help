@@ -1,0 +1,235 @@
+/* start css.sty */
+
+/* Handy color reminders
+Gray 		#808080		Heading numbers
+OpenMP		#00737D
+Gainsboro	#DCDCDC		Highlight
+MintCream 	#F5FFFA		Quote
+Orange		#ff9800		Link Orange
+ */
+
+.page-heading-wrapper {width:100%;border:1px solid #00737D;padding:5px 0px; color:#FFFFFF;}
+.page-heading {display:inline;width:100%;background-color:#00737D;padding:5px 20px; color:#FFFFFF;}
+.page-heading-home {display:inline;padding:0 20px;}
+.section-wrapper {border-top:1px solid #00737D;border-bottom:2px solid #00737D;background-color:#F0FFFF;margin-left:3.5em;}
+.section-wrapper .itemize1{margin-left:0em;}
+.section-heading {background-color:#00737D;padding:0.25em 0 0.25em 1em;color:white;}
+.section-contents {display:block;padding: 0 2px;margin: 1em;}
+
+.section-cspecific {}
+.section-cspecific:before{content: "C"}
+
+.section-ccppspecific {}
+.section-ccppspecific:before{content: "C/C++"}
+
+.section-cppspecific {}
+.section-cppspecific:before{content: "C++"}
+
+.section-c90specific {}
+.section-c90specific:before{content: "C90"}
+
+.section-c99specific {}
+.section-c99specific:before{content: "C99"}
+
+.section-fortranspecific {}
+.section-fortranspecific:before{content: "Fortran"}
+
+#TBL-1 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-1{border-collapse:collapse;}
+#TBL-39 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-39{border-collapse:collapse;}
+* {font-family: "Open Sans",Arial,Helvetica,sans-serif;}
+.alltt P { margin-bottom : 0em; margin-top : 0em; }
+.alltt { margin-bottom : 1em; margin-top : 1em; }
+.bold{font-weight:bold;}
+.Canvas { position:relative; }
+.caption td.id{font-weight: bold; white-space: nowrap; }
+.centerline {text-align:center;}
+.chapterToc a, .chapterToc, .likechapterToc a, .likechapterToc, .appendixToc a, .appendixToc, .addchapToc a {line-height: 200%; font-weight:bold;}
+.chapterToc {}
+.cmbsy-10{font-weight: bold;}
+.cmmi-10{font-style: italic;}
+.cmmi-7{font-size:70%;font-style: italic;}
+.cmr-7{font-size:70%;}
+.cmsy-7{font-size:70%;}
+.code{font-family: monospace; font-style:bold;color:#00737D;font-size:1.1em;} /* edited */
+.crosslinks p.noindent{text-align:right;margin-left:0;background-color:#DCDCDC;padding:5px 20px 5px 20px;color:#808080;} /* edited */
+.ec-qtmb- {padding-right:15px;}
+.ec-qtmb-x-x-144{font-size:144%;}
+.ec-qtmr-x-x-70{font-size:70%;}
+.ec-qtmr-x-x-90{font-size:90%;}
+.ec-qtmri-x-x-90{font-size:90%;}
+.enumerate-enumitem, .itemize1 {margin-left:4.5em;}
+.enumerate1 {list-style-type:decimal;}
+.enumerate2 {list-style-type:lower-alpha;}
+.enumerate3 {list-style-type:lower-roman;}
+.enumerate4 {list-style-type:upper-alpha;}
+.equation td{text-align:center; }
+.equation-star td{text-align:center; }
+.fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+.figure img.graphics {margin-left:10%;}
+.framebox-c {text-align:center;}
+.framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+.framebox-l {text-align:left;}
+.framebox-r {text-align:right;}
+.glossaryterm {width:25%;vertical-align:top;text-align:right;margin-left:20px;font-size:1.0em;font-weight:600;display:inline-block;}
+.glossarydefstart {width:60%;display:block;margin-left:30px;display:inline-block;} /* edited */
+.glossarydef {display:block;margin-left:20px;border:1px solid red;} /* edited */
+.hline hr, .cline hr { border-top : 1px solid black }
+.listings-nested {font-size:1.1em;}
+.index-item, .index-subitem, .index-subsubitem {display:block}
+.listings {background-color:#F6F6F6; border-left:5px solid #00737D;padding-left:1em;font-size:1em;margin-left:3.5em;}
+.lstinputlisting .label{margin-right:0.5em;}
+.lstlisting .label{margin-right:0.5em; }
+.marginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+.marginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+.obeylines-h,.obeylines-v {white-space: nowrap; }
+.overline img{ border-top: 1px solid black; }
+.overline{ text-decoration:overline; }
+.paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+.partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+.pcrb8t-x-x-90{ font-weight: bold; font-family: monospace;}
+.pcrb8t-x-x-90{font-size:90%; font-weight: bold; font-family: monospace;}
+.pcrb8t-{ font-weight: bold; font-family: monospace;font-size:1.1em;}
+.pcrr8t-x-x-70{font-size:70%;font-weight: bold;}
+.pcrr8t-x-x-70{font-weight: bold;}
+.pcrr8t-x-x-90{font-size:90%;font-weight: bold;}
+.pcrr8t-x-x-90{font-weight: bold;}
+.pcrr8t-{font-weight: bold;}
+.pcrro8t-x-x-90{font-family: monospace;    font-style: oblique;}
+.pcrro8t-x-x-90{font-size:90%;font-family: monospace;    font-style: oblique;}
+.pcrro8t-{font-family: monospace;    font-style: oblique;}
+.phvb8t-x-x-110{font-family: "Open Sans",Arial,Helvetica,sans-serif; font-weight: bold;}
+.phvb8t-x-x-110{font-size:110%;font-family: "Open Sans",Arial,Helvetica,sans-serif; font-weight: bold;}
+.phvb8t-x-x-90{font-family: "Open Sans",Arial,Helvetica,sans-serif; font-weight: bold;}
+.phvb8t-x-x-90{font-size:90%;font-family: "Open Sans",Arial,Helvetica,sans-serif; font-weight: bold;}
+.phvb8t-{font-family: "Open Sans",Arial,Helvetica,sans-serif; font-weight: bold;}
+.phvr8t-x-x-248{ font-family: "Open Sans",Arial,Helvetica,sans-serif;}
+.phvr8t-x-x-248{font-size:248%; font-family: "Open Sans",Arial,Helvetica,sans-serif;}
+.phvr8t-{ font-family: "Open Sans",Arial,Helvetica,sans-serif;}
+.plc{font-family: monospace; font-style:italic;}
+.quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+.quote {margin:0.5em 0 0.5em 2em; padding:0.15em 1em;text-align:justify;background-color:#F7F7F7; border-top:1px solid #00737D; border-bottom:1px solid #00737D;}
+.quote p {margin-left:0px;}
+.rightline {text-align:right;}
+.sectionHead  {padding:0.5em 1em;border: 1px solid #00737D;font-size:1.5em;}
+.subsectionHead {font-size:1.2em;}
+.sectionToc {margin-left:20px;} /* edited */
+.subsectionToc {margin-left:50px;line-height: 1.8em;} /* edited */
+.subsubsectionToc {margin-left:90px;} /* edited */
+.subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+.supertabular {text-align:center}
+.tabbing-right {text-align:right;}
+.titlepage p {margin-left:0;}
+.titlepage .list {margin-left:0;}
+.tableofcontents, .sectionTOCS {line-height:2em;color:#808080} /* edited */
+.underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+.underline{ text-decoration:underline; }
+.verse{white-space:nowrap; margin-left:2em}
+@media print {div.crosslinks {visibility:hidden;}}
+@media print {span.next {visibility:hidden;}}
+a img { border-top: 0; border-left: 0; border-right: 0; }
+a {color:#0000EE;text-decoration:none;}
+a:hover {color:#ff9800;text-decoration:underline;}
+a span.TEX span.E {text-decoration: none; }
+body{/* max-width: 100ch; */ margin:25px 25px;}
+center { margin-top:1em; margin-bottom:1em; }
+div.array {text-align:center;}
+div.author, div.date {text-align:center;}
+div.author{white-space: nowrap;}
+div.caption {text-align:center;}
+div.center div {text-align: left;}
+div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+div.dedication {text-align:center;}
+div.eqnarray{text-align:center;}
+div.fbox {display:table}
+div.figure img {text-align:center;}
+div.float img {text-align:center;}
+div.float, div.figure {margin-left: auto; margin-right: auto;}
+div.flushleft {text-align: left;}
+div.flushright div {text-align: left;}
+div.flushright, div.flushright div.flushright {text-align: right;}
+div.gather-star {text-align:center;}
+div.lstinputlisting{ font-family: monospace; white-space: nowrap; }
+div.lstlisting{font-family: monospace; white-space: nowrap; margin-top:0.5em; margin-bottom:0.5em; }
+div.maketitle{ margin-bottom: 2em; text-align:center; }
+div.minipage{width:100%;}
+div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+div.obeylines-v p { margin-top:0; margin-bottom:0; }
+div.pmatrix {text-align:center;}
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+div.td00{ margin-left:0pt; margin-right:0pt; }
+div.td01{ margin-left:0pt; margin-right:5pt; }
+div.td10{ margin-left:5pt; margin-right:0pt; }
+div.td11{ margin-left:5pt; margin-right:5pt; }
+div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+div.verbatim {font-family: monospace; white-space: nowrap; text-align:left; clear:both; }
+div.verbatiminput {font-family: monospace; white-space: nowrap; }
+dt.enumerate-enumitem{float:left; clear:left; margin-left:1em; margin-right:1em;}
+html {font-size: 16px;}
+h1.partHead{text-align: center}
+h2.titleHead{text-align:center;}
+img.cdots{vertical-align:middle;}
+img.math{vertical-align:middle;}
+li {margin-bottom:1.2em;}
+li p.indent { text-indent: 0em }
+li p:first-child{ margin-top:0em; }
+li p:last-child, li div:last-child { margin-bottom:0.5em; }
+li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+math {vertical-align:baseline; line-height:100%; font-size:100%; font-family:STIXGeneral,Times,Symbol, cmr10,cmsy10,cmex10,cmmi10; font-style: normal; margin:0; padding:0; }
+p {margin-left:3.5em;}
+p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+P.fancyvrb {white-space: nowrap; margin:0em;}
+p.indent{ text-indent: 1.5em }
+p.noindent { text-indent: 0em }
+p.nopar { text-indent: 0em; }
+span.bar-css {text-decoration:overline;}
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+span.LATEX span.A{ position:relative; top:-0.5ex; left:-0.4em; font-size:85%;}
+span.LATEX span.TEX{ position:relative; left: -0.4em; }
+span.pmatrix img{vertical-align:middle;}
+span.TEX span.E{ position:relative;top:0.5ex;left:-0.0417em;}
+span.TEX {letter-spacing: -0.125em; }
+span.textbf { font-weight: 400;}
+span.textit { font-style: italic; }
+span.textrm { font-family: serif; font-size:1.2em;}
+span.textsc { font-variant: small-caps; }
+span.textsf { font-family: "Open Sans",Arial,Helvetica,sans-serif; font-weight: 600; font-size:1.0em;}
+span.texttt { font-family: monospace;font-size:1.2em;} /* edited */
+span.thank-mark{ vertical-align: super }
+table {}
+table.align, table.alignat, table.xalignat, table.xxalignat, table.flalign {width:95%; margin-left:5%; white-space: nowrap;}
+table.align-star, table.alignat-star, table.xalignat-star, table.flalign-star {margin-left:auto; margin-right:auto; white-space: nowrap;}
+table.eqnarray-star, table.eqnarray {width:100%;}
+table.equation { width:100%; }
+table.equation {width:100%;}
+table.equation-star { width:100%; }
+table.gather {width:100%;}
+table.multline, table.multline-star {width:100%;}
+table.pmatrix {width:100%;}
+table.tabular td p{margin-top:0em;}
+table.tabular {margin-left: auto; margin-right: auto;}
+table.tabular{border-collapse: collapse; border-spacing: 0;}
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+td center { margin-top:0em; margin-bottom:0em; }
+td p.noindent { text-indent: 0em; margin-top:0em; }
+td p:first-child{ margin-top:0em; }
+td p:last-child{ margin-bottom:0em; }
+td.align-even { text-align:left; padding-right:0.6em;}
+td.align-label { width:5%; text-align:center; }
+td.align-odd { text-align:right; padding-right:0.3em;}
+td.displaylines {text-align:center; white-space:nowrap;}
+td.eqnarray2 { width:5%; }
+td.eqnarray4 { width:5%; white-space: normal; }
+td.equation { margin-top:1em; margin-bottom:1em; }
+td.equation-label { width:5%; text-align:center; }
+td.gather {text-align:center; }
+td.td00{ padding-left:0pt; padding-right:0pt; }
+td.td01{ padding-left:0pt; padding-right:5pt; }
+td.td10{ padding-left:5pt; padding-right:0pt; }
+td.td11{ padding-left:5pt; padding-right:5pt; }
+tr#TBL-33-0- td{border-bottom:0.06999em solid}
+tr#TBL-33-33- td{border-bottom:0.112em solid}
+/* end css.sty */

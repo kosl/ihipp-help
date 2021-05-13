@@ -1,0 +1,788 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Accessing Scope-Specific Information</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1685--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse57.html" >next</a>] [<a 
+href="openmpsu247.html" >prev</a>] [<a 
+href="openmpsu247.html#tailopenmpsu247.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu248.html">tail</a>] [<a 
+href="openmpse56.html#openmpsu248.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.5.9</span>&#x00A0;&#x00A0;<a 
+ id="x313-4840005.5.9"></a>Accessing Scope-Specific Information</h4>
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.9.1  </span> <a 
+ id="x313-4850005.5.9.1"></a><span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span></h5>
+<p><p><a 
+ id="Q1-313-2374"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span> function enumerates ICVs.
+<p><a 
+ id="Q1-313-2375"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485001r1"></a></span></p> 
+<!--l. 1699--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_enumerate_icvs</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_icv_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_icv_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">next_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">next_icv_name</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">next_scope</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485008r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">more</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485009r9"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-485010r10"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-313-2376"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+An OpenMP implementation must support all ICVs listed in Section <a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>. An OpenMP implementation
+may support additional implementation-specific variables. An implementation may store ICVs in a different
+scope than Table&#x00A0;<a 
+href="openmpsu34.html#x52-51001r3">2.3<!--tex4ht:ref: tab:Scopes of ICVs --></a> indicates. The <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span> function enables a tool to enumerate the
+ICVs that an OpenMP implementation supports and their related scopes. The ICVs <span class="textit"><span class="textrm">num-procs-var</span></span>,
+<span class="textit"><span class="textrm">thread-num-var</span></span>, <span class="textit"><span class="textrm">final-task-var</span></span>, <span class="textit"><span class="textrm">implicit-task-var</span></span> and <span class="textit"><span class="textrm">team-size-var</span></span> must also be available with an <span class="textit"><span class="textrm">ompd-</span></span>
+prefix.
+</p> 
+<p>When the <span class="textit"><span class="textrm">current</span></span> argument is set to the identifier of a supported ICV, <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span> assigns
+the value, string name, and scope of the next ICV in the enumeration to the locations to which the <span class="textit"><span class="textrm">next_id</span></span>,
+<span class="textit"><span class="textrm">next_icv_name</span></span>, and <span class="textit"><span class="textrm">next_scope</span></span> arguments point. On return, the third-party tool owns the <span class="textit"><span class="textrm">next_icv_name</span></span>
+string. The OMPD library uses the memory allocation callback that the tool provides to allocate the string
+storage; the tool is responsible for releasing the memory.
+</p> 
+<p>On return, the location to which the <span class="textit"><span class="textrm">more</span></span> argument points has the value of <span 
+class="cmr-10">1 </span>whenever one or more ICV are
+left in the enumeration. On return, that location has the value <span 
+class="cmr-10">0 </span>when <span class="textit"><span class="textrm">current</span></span> is the last ICV in the
+enumeration.
+</p> 
+<p><p><a 
+ id="Q1-313-2377"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">address_space_handle</span></span> argument identifies the address space. The <span class="textit"><span class="textrm">current</span></span> argument must be an ICV
+that the OpenMP implementation supports. To begin enumerating the ICVs, a tool should pass
+<span class="textbf"><span class="texttt">ompd_icv_undefined</span></span> as the value of <span class="textit"><span class="textrm">current</span></span>. Subsequent calls to <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span> should
+pass the value returned by the call in the <span class="textit"><span class="textrm">next_id</span></span> output argument. On return, the <span class="textit"><span class="textrm">next_id</span></span> argument points to
+an integer with the value of the ID of the next ICV in the enumeration. On return, the <span class="textit"><span class="textrm">next_icv_name</span></span>
+argument points to a character string with the name of the next ICV. On return, the <span class="textit"><span class="textrm">next_scope</span></span> argument
+points to the scope enum value of the scope of the next ICV. On return, the <span class="textit"><span class="textrm">more_enums</span></span> argument points to
+an integer with the value of <span 
+class="cmr-10">1 </span>when more ICVs are left to enumerate and the value of <span 
+class="cmr-10">0 </span>when no more ICVs
+are left.
+</p> 
+<p><p><a 
+ id="Q1-313-2378"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  an
+  unknown
+  value
+  is
+  provided
+  in
+  <span class="textit"><span class="textrm">current</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-313-2379"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_scope_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu229.html#x292-4250005.3.9">5.3.9<!--tex4ht:ref: subsubsec:ompd_scope_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_icv_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu230.html#x293-4260005.3.10">5.3.10<!--tex4ht:ref: subsubsec:ompd_icv_id_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.9.2  </span> <a 
+ id="x313-4860005.5.9.2"></a><span class="textbf"><span class="texttt">ompd_get_icv_from_scope</span></span></h5>
+<p><p><a 
+ id="Q1-313-2381"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_icv_from_scope</span></span> function returns the value of an ICV.
+<p><a 
+ id="Q1-313-2382"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486001r1"></a></span></p> 
+<!--l. 1780--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_icv_from_scope</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">scope</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_icv_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">icv_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">icv_value</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486007r7"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-486008r8"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-313-2383"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_icv_from_scope</span></span> function provides access to the ICVs that <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span>
+identifies.
+</p> 
+<p><p><a 
+ id="Q1-313-2384"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">handle</span></span> argument provides an OpenMP scope handle. The <span class="textit"><span class="textrm">scope</span></span> argument specifies the kind of scope
+provided in <span class="textit"><span class="textrm">handle</span></span>. The <span class="textit"><span class="textrm">icv_id</span></span> argument specifies the ID of the requested ICV. On return, the <span class="textit"><span class="textrm">icv_value</span></span>
+argument points to a location with the value of the requested ICV.
+</p> 
+<p><p><a 
+ id="Q1-313-2385"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The provided <span class="textit"><span class="textrm">handle</span></span> must match the <span class="textit"><span class="textrm">scope</span></span> as defined in Section&#x00A0;<a 
+href="openmpsu230.html#x293-4260005.3.10">5.3.10<!--tex4ht:ref: subsubsec:ompd_icv_id_t --></a>.
+</p> 
+<p>The provided <span class="textit"><span class="textrm">scope</span></span> must match the scope for <span class="textit"><span class="textrm">icv_id</span></span> as requested by <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-313-2386"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or any of the
+following return codes: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_incompatible</span></span>
+  if
+  the
+  ICV
+  cannot
+  be
+  represented
+  as
+  an
+  integer;
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_incomplete</span></span>
+  if
+  only
+  the
+  first
+  item
+  of
+  the
+  ICV
+  is
+  returned
+  in
+  the
+  integer
+  (e.g.,
+  if
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  is
+  a
+  list);
+  or
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  an
+  unknown
+  value
+  is
+  provided
+  in
+  <span class="textit"><span class="textrm">icv_id</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-313-2387"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_parallel_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_parallel_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_scope_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu229.html#x292-4250005.3.9">5.3.9<!--tex4ht:ref: subsubsec:ompd_scope_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_icv_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu230.html#x293-4260005.3.10">5.3.10<!--tex4ht:ref: subsubsec:ompd_icv_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="#x313-4850005.5.9.1">5.5.9.1<!--tex4ht:ref: subsubsubsec:ompd_enumerate_icvs --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.9.3  </span> <a 
+ id="x313-4870005.5.9.3"></a><span class="textbf"><span class="texttt">ompd_get_icv_string_from_scope</span></span></h5>
+<p><p><a 
+ id="Q1-313-2389"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_icv_string_from_scope</span></span> function returns the value of an ICV.
+<p><a 
+ id="Q1-313-2390"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487001r1"></a></span></p> 
+<!--l. 1849--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_icv_string_from_scope</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">scope</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_icv_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">icv_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">icv_string</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487007r7"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-487008r8"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-313-2391"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_icv_string_from_scope</span></span> function provides access to the ICVs that
+<span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span> identifies.
+</p> 
+<p><p><a 
+ id="Q1-313-2392"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">handle</span></span> argument provides an OpenMP scope handle. The <span class="textit"><span class="textrm">scope</span></span> argument specifies the kind of scope
+provided in <span class="textit"><span class="textrm">handle</span></span>. The <span class="textit"><span class="textrm">icv_id</span></span> argument specifies the ID of the requested ICV. On return, the <span class="textit"><span class="textrm">icv_string</span></span>
+argument points to a string representation of the requested ICV.
+</p> 
+<p>On return, the third-party tool owns the <span class="textit"><span class="textrm">icv_string</span></span> string. The OMPD library allocates the string storage
+with the memory allocation callback that the tool provides. The tool is responsible for releasing the
+memory.
+</p> 
+<p><p><a 
+ id="Q1-313-2393"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The provided <span class="textit"><span class="textrm">handle</span></span> must match the <span class="textit"><span class="textrm">scope</span></span> as defined in Section&#x00A0;<a 
+href="openmpsu230.html#x293-4260005.3.10">5.3.10<!--tex4ht:ref: subsubsec:ompd_icv_id_t --></a>.
+</p> 
+<p>The provided <span class="textit"><span class="textrm">scope</span></span> must match the scope for <span class="textit"><span class="textrm">icv_id</span></span> as requested by <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-313-2394"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  an
+  unknown
+  value
+  is
+  provided
+  in
+  <span class="textit"><span class="textrm">icv_id</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-313-2395"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_parallel_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_parallel_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_scope_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu229.html#x292-4250005.3.9">5.3.9<!--tex4ht:ref: subsubsec:ompd_scope_t --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompd_icv_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu230.html#x293-4260005.3.10">5.3.10<!--tex4ht:ref: subsubsec:ompd_icv_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_enumerate_icvs</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="#x313-4850005.5.9.1">5.5.9.1<!--tex4ht:ref: subsubsubsec:ompd_enumerate_icvs --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.9.4  </span> <a 
+ id="x313-4880005.5.9.4"></a><span class="textbf"><span class="texttt">ompd_get_tool_data</span></span></h5>
+<p><p><a 
+ id="Q1-313-2397"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_tool_data</span></span> function provides access to the OMPT data variable stored for each
+OpenMP scope.
+<p><a 
+ id="Q1-313-2398"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488001r1"></a></span></p> 
+<!--l. 1930--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_tool_data</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">scope</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">value</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488007r7"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x313-488008r8"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-313-2399"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_tool_data</span></span> function provides access to the OMPT tool data stored for each scope. If the
+runtime library does not support OMPT then the function returns <span class="textbf"><span class="texttt">ompd_rc_unsupported</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-313-2400"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">handle</span></span> argument provides an OpenMP scope handle. The <span class="textit"><span class="textrm">scope</span></span> argument specifies the kind of scope
+provided in <span class="textit"><span class="textrm">handle</span></span>. On return, the <span class="textit"><span class="textrm">value</span></span> argument points to the <span class="textit"><span class="textrm">value</span></span> field of the <span class="textbf"><span class="texttt">ompt_data_t</span></span> union
+stored for the selected scope. On return, the <span class="textit"><span class="textrm">ptr</span></span> argument points to the <span class="textit"><span class="textrm">ptr</span></span> field of the <span class="textbf"><span class="texttt">ompt_data_t</span></span> union
+stored for the selected scope.
+</p> 
+<p><p><a 
+ id="Q1-313-2401"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unsupported</span></span>
+  if
+  the
+  runtime
+  library
+  does
+  not
+  support
+  OMPT.</li></ul>
+<p><p><a 
+ id="Q1-313-2402"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4">4.4.4.4<!--tex4ht:ref: sec:ompt_data_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+                                                                            
+                                                                            
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_parallel_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_parallel_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_scope_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu229.html#x292-4250005.3.9">5.3.9<!--tex4ht:ref: subsubsec:ompd_scope_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse57.html" >next</a>] [<a 
+href="openmpsu247.html" >prev</a>] [<a 
+href="openmpsu247.html#tailopenmpsu247.html" >prev-tail</a>] [<a 
+href="openmpsu248.html" >front</a>] [<a 
+href="openmpse56.html#openmpsu248.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu248.html"></a> </p> 
+ 
+</body> 
+</html>

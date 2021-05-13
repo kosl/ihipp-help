@@ -1,0 +1,622 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Runtime Library Definitions</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 43--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse32.html" >next</a>] [<a 
+href="openmpch3.html" >prev</a>] [<a 
+href="openmpch3.html#tailopenmpch3.html" >prev-tail</a>] [<a 
+href="#tailopenmpse31.html">tail</a>] [<a 
+href="openmpch3.html#openmpse31.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.1</span>&#x00A0;&#x00A0;<a 
+ id="x157-1900003.1"></a>Runtime Library Definitions</h3>
+<a 
+ id="dx157-190001"></a>
+<a 
+ id="dx157-190002"></a>
+<a 
+ id="dx157-190003"></a>
+<p>For each base language, a compliant implementation must supply a set of definitions for the OpenMP API
+runtime library routines and the special data types of their parameters. The set of definitions must contain a
+declaration for each OpenMP API runtime library routine and variable and a definition of each required data
+type listed below. In addition, each set of definitions may specify other implementation specific
+values.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The library routines are external functions with &#8220;C&#8221; linkage.
+</p> 
+<p>Prototypes for the C/C++ runtime library routines described in this chapter shall be provided in a header file
+named <span class="textbf"><span class="texttt">omp.h</span></span>. This file also defines the following:
+                                                                            
+                                                                            
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_allocator_handle_t</span></span>,
+  which
+  must
+  be
+  an
+  implementation-defined
+  (for
+  C++
+  possibly
+  scoped)
+  enum
+  type
+  with
+  at
+  least
+  the
+  <span class="textbf"><span class="texttt">omp_null_allocator</span></span>
+  enumerator
+  with
+  the
+  value
+  zero
+  and
+  an
+  enumerator
+  for
+  each
+  predefined
+  memory
+  allocator
+  in
+  Table&#x00A0;<a 
+href="openmpsu48.html#x88-98004r10">2.10<!--tex4ht:ref: tab:Predefined Allocators --></a>;
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_atv_default</span></span>,
+                                                                            
+                                                                            
+  which
+  is
+  an
+  instance
+  of
+  a
+  type
+  compatible
+  with
+  <span class="textbf"><span class="texttt">omp_uintptr_t</span></span>
+  with
+  the
+  value
+  -1;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_control_tool_result_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_control_tool_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_depend_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_event_handle_t</span></span>,
+  which
+  must
+  be
+                                                                            
+                                                                            
+  an
+  implementation-defined
+  (for
+  C++
+  possibly
+  scoped)
+  enum
+  type;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_intptr_t</span></span>,
+  which
+  is
+  a
+  signed
+  integer
+  type
+  that
+  is
+  at
+  least
+  the
+  size
+  of
+  a
+  pointer
+  on
+  any
+  device;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_interop_t</span></span>,
+  which
+  must
+  be
+  an
+                                                                            
+                                                                            
+  implementation-defined
+  integral
+  or
+  pointer
+  type;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_interop_fr_t</span></span>,
+  which
+  must
+  be
+  an
+  implementation-defined
+  enum
+  type
+  with
+  enumerators
+  named
+  <span class="textbf"><span class="texttt">omp_ifr_<span class="textit"><span class="textrm">name</span></span></span></span>
+  where
+  <span class="textit"><span class="textrm">name</span></span>
+  is
+  a
+  foreign
+  runtime
+  name
+  that
+  is
+  defined
+  in
+  the
+  <span class="emph">OpenMP
+  Additional
+  Definitions</span>
+  document;
+  </li>
+  <li class="itemize">
+  The
+                                                                            
+                                                                            
+  type
+  <span class="textbf"><span class="texttt">omp_lock_hint_t</span></span>
+  (deprecated);
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_lock_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_memspace_handle_t</span></span>,
+  which
+  must
+  be
+  an
+  implementation-defined
+  (for
+  C++
+  possibly
+  scoped)
+  enum
+  type
+  with
+  an
+  enumerator
+  for
+  at
+  least
+  each
+  predefined
+  memory
+  space
+  in
+  Table&#x00A0;<a 
+href="openmpsu48.html#x87-97002r8">2.8<!--tex4ht:ref: tab:Predefined Memory Spaces --></a>;
+  </li>
+  <li class="itemize">
+  The
+                                                                            
+                                                                            
+  type
+  <span class="textbf"><span class="texttt">omp_nest_lock_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_pause_resource_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_proc_bind_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_sched_t</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_sync_hint_t</span></span>;
+  and
+  </li>
+  <li class="itemize">
+  The
+  type
+  <span class="textbf"><span class="texttt">omp_uintptr_t</span></span>,
+  which
+  is
+  an
+  unsigned
+  integer
+  type
+  capable
+  of
+                                                                            
+                                                                            
+  holding
+  a
+  pointer
+  on
+  any
+  device.</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The OpenMP enumeration types provided in the <span class="textbf"><span class="texttt">omp.h</span></span> header file shall not be scoped enumeration types
+unless explicitly allowed.
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp.h</span></span> header file also defines a class template that models the <span class="textbf"><span class="texttt">Allocator</span></span> concept in the
+<span class="textbf"><span class="texttt">omp::allocator</span></span> namespace for each predefined memory allocator in Table&#x00A0;<a 
+href="openmpsu48.html#x88-98004r10">2.10<!--tex4ht:ref: tab:Predefined Allocators --></a> for which the name
+includes neither the <span class="textbf"><span class="texttt">omp_</span></span> prefix nor the <span class="textbf"><span class="texttt">_alloc</span></span> suffix.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The OpenMP Fortran API runtime library routines are external procedures. The return values of these
+routines are of default kind, unless otherwise specified.
+</p> 
+<p>Interface declarations for the OpenMP Fortran runtime library routines described in this chapter shall be
+provided in the form of a Fortran <span class="textbf"><span class="texttt">module</span></span> named <span class="textbf"><span class="texttt">omp_lib</span></span> or a Fortran <span class="textbf"><span class="texttt">include</span></span> file named
+<span class="textbf"><span class="texttt">omp_lib.h</span></span>. Whether the <span class="textbf"><span class="texttt">omp_lib.h</span></span> file provides derived-type definitions or those routines that require
+an explicit interface is implementation defined. Whether the <span class="textbf"><span class="texttt">include</span></span> file or the <span class="textbf"><span class="texttt">module</span></span> file (or both) is
+provided is also implementation defined.
+</p> 
+<p>These files also define the following:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_allocator_handle_kind</span></span>;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  An
+  integer
+  named
+  constant
+  of
+  kind
+  <span class="textbf"><span class="texttt">omp_allocator_handle_kind</span></span>
+  for
+  each
+  predefined
+  memory
+  allocator
+  in
+  Table&#x00A0;<a 
+href="openmpsu48.html#x88-98004r10">2.10<!--tex4ht:ref: tab:Predefined Allocators --></a>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_alloctrait_key_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_alloctrait_val_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+                                                                            
+                                                                            
+  constant
+  <span class="textbf"><span class="texttt">omp_control_tool_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_control_tool_result_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_depend_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_event_handle_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_interop_kind</span></span>;
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_interop_fr_kind</span></span>;
+  </li>
+  <li class="itemize">
+  An
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_ifr_<span class="textit"><span class="textrm">name</span></span></span></span>
+  of
+  kind
+  <span class="textbf"><span class="texttt">omp_interop_fr_kind</span></span>
+  for
+  each
+  <span class="textit"><span class="textrm">name</span></span>
+  that
+  is
+  a
+  foreign
+  runtime
+  name
+  that
+  is
+  defined
+  in
+  the
+  <span class="emph">OpenMP
+  Additional
+  Definitions</span>
+  document;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+                                                                            
+                                                                            
+  constant
+  <span class="textbf"><span class="texttt">omp_lock_hint_kind</span></span>
+  (deprecated);
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_lock_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_memspace_handle_kind</span></span>;
+  </li>
+  <li class="itemize">
+  An
+  integer
+  named
+  constant
+  of
+  kind
+  <span class="textbf"><span class="texttt">omp_memspace_handle_kind</span></span>
+  for
+  each
+  predefined
+  memory
+  space
+  in
+  Table&#x00A0;<a 
+href="openmpsu48.html#x87-97002r8">2.8<!--tex4ht:ref: tab:Predefined Memory Spaces --></a>;
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_nest_lock_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_pause_resource_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_proc_bind_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">omp_sched_kind</span></span>;
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">omp_sync_hint_kind</span></span>;
+  and
+  </li>
+  <li class="itemize">
+  The
+  default
+  integer
+  named
+  constant
+  <span class="textbf"><span class="texttt">openmp_version</span></span>
+  with
+  a
+  value
+  <span class="textit"><span class="textrm">yyyymm</span></span>
+  where
+  <span class="textit"><span class="textrm">yyyy</span></span>
+  and
+  <span class="textit"><span class="textrm">mm</span></span>
+  are
+  the
+  year
+  and
+  month
+  designations
+  of
+  the
+  version
+  of
+  the
+  OpenMP
+  Fortran
+  API
+  that
+  the
+  implementation
+  supports;
+  this
+  value
+  matches
+  that
+  of
+  the
+                                                                            
+                                                                            
+  C
+  preprocessor
+  macro
+  <span class="textbf"><span class="texttt">_OPENMP</span></span>,
+  when
+  a
+  macro
+  preprocessor
+  is
+  supported
+  (see
+  Section&#x00A0;<a 
+href="openmpse10.html#x38-370002.2">2.2<!--tex4ht:ref: sec:Conditional Compilation --></a>).</li></ul>
+<p>Whether any of the OpenMP runtime library routines that take an argument are extended with a
+generic interface so arguments of different <span class="textbf"><span class="texttt">KIND</span></span> type can be accommodated is implementation
+defined.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse32.html" >next</a>] [<a 
+href="openmpch3.html" >prev</a>] [<a 
+href="openmpch3.html#tailopenmpch3.html" >prev-tail</a>] [<a 
+href="openmpse31.html" >front</a>] [<a 
+href="openmpch3.html#openmpse31.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse31.html"></a> </p> 
+ 
+</body> 
+</html>

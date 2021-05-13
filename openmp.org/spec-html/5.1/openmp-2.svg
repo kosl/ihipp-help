@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?> 
+<?xml-stylesheet href="openmp.css" type="text/css"?> 
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0.0pt" height="1.0pt" viewBox="0.0 0.0 0.0 1.0 "> 
+<g transform="translate(0,0.0 ) scale(1,-1) translate(0,0.0 )"> 
+</p> 
+<g stroke="#000" fill="#000">
+ <g stroke-width="0.4">
+ <g stroke="#99f" fill="#99f">
+ <path d=" M 393.51234 0.0 L 389.89864 5.05916 L 386.28493 0.0 L 393.51234 0.0  " />
+ </g>
+ <g stroke-width="1.35">
+ <g stroke="#99f" fill="#99f">
+ <g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <path d=" M 5.87741 0.3375 L 180.4242 0.3375  " fill="none"/>
+ </g>
+ </g>
+ </g>
+ <g stroke-width="1.35">
+ <g stroke="#99f" fill="#99f">
+ <g stroke-dasharray="none" stroke-dashoffset="0.0">
+ <path d=" M 213.08813 0.3375 L 387.63493 0.3375  " fill="none"/>
+ </g>
+ </g>
+ </g>
+ <g stroke="#99f" fill="#99f">
+ <path d=" M 0.0 0.0 L 3.61371 5.05916 L 7.22742 0.0 L 0.0 0.0  " />
+ </g>
+ <g stroke="#1919ff" fill="#1919ff">
+ <g stroke="#1919ff" fill="#1919ff">
+ </g>
+ <g transform="translate(192.4242,-4.29001)">
+ <g fill="#1919ff">
+ <text style="stroke:none" transform="scale(1,-1) translate(4.33197,0)" text-anchor="middle"  font-size="10"> 
+<g fill="#1919ff">
+ <g stroke="none"> <span class="textsf"><span class="textup">C</span></span></g> </g>
+ </text> 
+</g>
+ </g>
+ </g>
+ </g>
+ </g>
+ </g> 
+</svg> 

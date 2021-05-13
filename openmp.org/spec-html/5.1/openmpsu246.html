@@ -1,0 +1,1303 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Task Handles</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1018--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu247.html" >next</a>] [<a 
+href="openmpsu245.html" >prev</a>] [<a 
+href="openmpsu245.html#tailopenmpsu245.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu246.html">tail</a>] [<a 
+href="openmpse56.html#openmpsu246.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.5.7</span>&#x00A0;&#x00A0;<a 
+ id="x311-4700005.5.7"></a>Task Handles</h4>
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.1  </span> <a 
+ id="x311-4710005.5.7.1"></a><span class="textbf"><span class="texttt">ompd_get_curr_task_handle</span></span></h5>
+<p><p><a 
+ id="Q1-311-2287"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_curr_task_handle</span></span> function obtains a pointer to the task handle for the current task
+region that is associated with an OpenMP thread.
+<p><a 
+ id="Q1-311-2288"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-471001r1"></a></span></p> 
+<!--l. 1031--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-471002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_curr_task_handle</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-471003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-471004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">task_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-471005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-471006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2289"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_curr_task_handle</span></span> function obtains a pointer to the task handle for the
+current task region that is associated with an OpenMP thread. This call is meaningful only if
+the thread for which the handle is provided is stopped. The task handle must be released with
+<span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-311-2290"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">thread_handle</span></span> argument is an opaque handle that selects the thread on which to operate. On return, the
+<span class="textit"><span class="textrm">task_handle</span></span> argument points to a location that points to a handle for the task that the thread is currently
+executing.
+</p> 
+<p><p><a 
+ id="Q1-311-2291"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unavailable</span></span>
+  if
+  the
+  thread
+  is
+  currently
+  not
+  executing
+  a
+  task.</li></ul>
+<p><p><a 
+ id="Q1-311-2292"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="#x311-4750005.5.7.5">5.5.7.5<!--tex4ht:ref: subsubsubsec:ompd_rel_task_handle --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.2  </span> <a 
+ id="x311-4720005.5.7.2"></a><span class="textbf"><span class="texttt">ompd_get_generating_task_handle</span></span></h5>
+<p><p><a 
+ id="Q1-311-2294"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_generating_task_handle</span></span> function obtains a pointer to the task handle of the
+generating task region.
+<p><a 
+ id="Q1-311-2295"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-472001r1"></a></span></p> 
+<!--l. 1093--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-472002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_generating_task_handle</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-472003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">task_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-472004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">generating_task_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-472005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-472006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2296"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_generating_task_handle</span></span> function obtains a pointer to the task handle for the task
+that encountered the OpenMP task construct that generated the task represented by <span class="textit"><span class="textrm">task_handle</span></span>. The
+generating task is the OpenMP task that was active when the task specified by <span class="textit"><span class="textrm">task_handle</span></span> was created. This
+call is meaningful only if the thread that is executing the task that <span class="textit"><span class="textrm">task_handle</span></span> specifies is stopped. The
+generating task handle must be released with <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span>.
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-311-2297"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">task_handle</span></span> argument is an opaque handle that selects the task on which to operate. On return, the
+<span class="textit"><span class="textrm">generating_task_handle</span></span> argument points to a location that points to a handle for the generating
+task.
+</p> 
+<p><p><a 
+ id="Q1-311-2298"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unavailable</span></span>
+  if
+  no
+  generating
+  task
+  region
+  exists.</li></ul>
+<p><p><a 
+ id="Q1-311-2299"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="#x311-4750005.5.7.5">5.5.7.5<!--tex4ht:ref: subsubsubsec:ompd_rel_task_handle --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.3  </span> <a 
+ id="x311-4730005.5.7.3"></a><span class="textbf"><span class="texttt">ompd_get_scheduling_task_handle</span></span></h5>
+<p><p><a 
+ id="Q1-311-2301"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_scheduling_task_handle</span></span> function obtains a task handle for the task that was
+active at a task scheduling point.
+<p><a 
+ id="Q1-311-2302"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-473001r1"></a></span></p> 
+<!--l. 1146--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-473002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_scheduling_task_handle</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-473003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">task_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-473004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">scheduling_task_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-473005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-473006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2303"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_scheduling_task_handle</span></span> function obtains a task handle for the task that was
+active when the task that <span class="textit"><span class="textrm">task_handle</span></span> represents was scheduled. This call is meaningful only if the thread
+that is executing the task that <span class="textit"><span class="textrm">task_handle</span></span> specifies is stopped. The scheduling task handle must be released
+with <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-311-2304"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">task_handle</span></span> argument is an opaque handle for a task and selects the task on which to operate. On
+return, the <span class="textit"><span class="textrm">scheduling_task_handle</span></span> argument points to a location that points to a handle for the task that is
+still on the stack of execution on the same thread and was deferred in favor of executing the selected
+task.
+</p> 
+<p><p><a 
+ id="Q1-311-2305"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unavailable</span></span>
+  if
+  no
+  scheduling
+  task
+  region
+  exists.</li></ul>
+<p><p><a 
+ id="Q1-311-2306"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="#x311-4750005.5.7.5">5.5.7.5<!--tex4ht:ref: subsubsubsec:ompd_rel_task_handle --></a>.</li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.4  </span> <a 
+ id="x311-4740005.5.7.4"></a><span class="textbf"><span class="texttt">ompd_get_task_in_parallel</span></span></h5>
+<p><p><a 
+ id="Q1-311-2308"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_task_in_parallel</span></span> function obtains handles for the implicit tasks that are associated
+with a parallel region.
+<p><a 
+ id="Q1-311-2309"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-474001r1"></a></span></p> 
+<!--l. 1194--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-474002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_task_in_parallel</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-474003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_parallel_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">parallel_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-474004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">thread_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-474005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">task_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-474006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-474007r7"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2310"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_task_in_parallel</span></span> function obtains handles for the implicit tasks that are associated
+with a parallel region. A successful invocation of <span class="textbf"><span class="texttt">ompd_get_task_in_parallel</span></span> returns a pointer to
+a task handle in the location to which <span class="textit"><span class="textrm">task_handle</span></span> points. This call yields meaningful results only if all
+OpenMP threads in the parallel region are stopped.
+</p> 
+<p><p><a 
+ id="Q1-311-2311"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">parallel_handle</span></span> argument is an opaque handle that selects the parallel region on which to operate. The
+<span class="textit"><span class="textrm">thread_num</span></span> argument selects the implicit task of the team to be returned. The <span class="textit"><span class="textrm">thread_num</span></span>
+argument is equal to the <span class="textit"><span class="textrm">thread-num-var</span></span> ICV value of the selected implicit task. On return, the
+<span class="textit"><span class="textrm">task_handle</span></span> argument points to a location that points to an opaque handle for the selected implicit
+task.
+</p> 
+<p><p><a 
+ id="Q1-311-2312"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  the
+  <span class="textit"><span class="textrm">thread_num</span></span>
+  argument
+  is
+  greater
+  than
+  or
+  equal
+  to
+  the
+  <span class="textit"><span class="textrm">team-size-var</span></span>
+  ICV
+  or
+  negative.</li></ul>
+<p><p><a 
+ id="Q1-311-2313"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on the <span class="textbf"><span class="texttt">ompd_get_task_in_parallel</span></span> function are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  value
+  of
+  <span class="textit"><span class="textrm">thread_num</span></span>
+  must
+  be
+  a
+  non-negative
+  integer
+  that
+  is
+  smaller
+                                                                            
+                                                                            
+  than
+  the
+  size
+  of
+  the
+  team
+  size
+  that
+  is
+  the
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">team-size-var</span></span>
+  ICV
+  that
+  <span class="textbf"><span class="texttt">ompd_get_icv_from_scope</span></span>
+  returns.</li></ul>
+<p><p><a 
+ id="Q1-311-2314"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_parallel_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_parallel_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_get_icv_from_scope</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu248.html#x313-4860005.5.9.2">5.5.9.2<!--tex4ht:ref: subsubsubsec:ompd_get_icv_from_scope --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.5  </span> <a 
+ id="x311-4750005.5.7.5"></a><span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span></h5>
+<p><p><a 
+ id="Q1-311-2316"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+This <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span> function releases a task handle.
+<p><a 
+ id="Q1-311-2317"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-475001r1"></a></span></p> 
+<!--l. 1265--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-475002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rel_task_handle</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-475003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">task_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-475004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-475005r5"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2318"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Task handles are opaque to tools; thus tools cannot release them directly. Instead, when a tool is
+finished with a task handle it must use the <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span> function to release
+it.
+</p> 
+<p><p><a 
+ id="Q1-311-2319"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">task_handle</span></span> argument is an opaque task handle to be released.
+</p> 
+<p><p><a 
+ id="Q1-311-2320"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-311-2321"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.6  </span> <a 
+ id="x311-4760005.5.7.6"></a><span class="textbf"><span class="texttt">ompd_task_handle_compare</span></span></h5>
+<p><p><a 
+ id="Q1-311-2323"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_task_handle_compare</span></span> function compares task handles.
+<p><a 
+ id="Q1-311-2324"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-476001r1"></a></span></p> 
+<!--l. 1309--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-476002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_compare</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-476003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">task_handle_1</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-476004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">task_handle_2</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-476005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">cmp_value</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-476006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-476007r7"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2325"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The internal structure of task handles is opaque; so tools cannot directly determine if handles at two
+different addresses refer to the same underlying task. The <span class="textbf"><span class="texttt">ompd_task_handle_compare</span></span>
+function compares task handles. After a successful call to <span class="textbf"><span class="texttt">ompd_task_handle_compare</span></span>,
+the value of the location to which <span class="textit"><span class="textrm">cmp_value</span></span> points is a signed integer that indicates how the
+underlying tasks compare: a value less than, equal to, or greater than 0 indicates that the task that
+corresponds to <span class="textit"><span class="textrm">task_handle_1</span></span> is, respectively, less than, equal to, or greater than the task that
+corresponds to <span class="textit"><span class="textrm">task_handle_2</span></span>. The means by which task handles are ordered is implementation
+defined.
+</p> 
+<p><p><a 
+ id="Q1-311-2326"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">task_handle_1</span></span> and <span class="textit"><span class="textrm">task_handle_2</span></span> arguments are opaque handles that correspond to tasks. On return,
+the <span class="textit"><span class="textrm">cmp_value</span></span> argument points to a location in which a signed integer value indicates how the underlying
+tasks compare.
+</p> 
+<p><p><a 
+ id="Q1-311-2327"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-311-2328"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.7  </span> <a 
+ id="x311-4770005.5.7.7"></a><span class="textbf"><span class="texttt">ompd_get_task_function</span></span></h5>
+<p><p><a 
+ id="Q1-311-2330"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+This <span class="textbf"><span class="texttt">ompd_get_task_function</span></span> function returns the entry point of the code that corresponds to the
+body of a task.
+<p><a 
+ id="Q1-311-2331"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-477001r1"></a></span></p> 
+<!--l. 1370--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-477002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_task_function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-477003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">task_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-477004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">entry_point</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-477005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-477006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2332"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_task_function</span></span> function returns the entry point of the code that corresponds to the
+body of code that the task executes.
+</p> 
+<p><p><a 
+ id="Q1-311-2333"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">task_handle</span></span> argument is an opaque handle that selects the task on which to operate. On return, the
+<span class="textit"><span class="textrm">entry_point</span></span> argument is set to an address that describes the beginning of application code that executes the
+task region.
+</p> 
+<p><p><a 
+ id="Q1-311-2334"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-311-2335"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu224.html#x287-4200005.3.4">5.3.4<!--tex4ht:ref: subsubsubsec:ompd_address_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.8  </span> <a 
+ id="x311-4780005.5.7.8"></a><span class="textbf"><span class="texttt">ompd_get_task_frame</span></span></h5>
+<p><p><a 
+ id="Q1-311-2337"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_task_frame</span></span> function extracts the frame pointers of a task.
+<p><a 
+ id="Q1-311-2338"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-478001r1"></a></span></p> 
+<!--l. 1409--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-478002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_task_frame</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-478003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">task_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-478004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_frame_info_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">exit_frame</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-478005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_frame_info_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">enter_frame</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-478006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-478007r7"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2339"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+An OpenMP implementation maintains an <span class="textbf"><span class="texttt">ompt_frame_t</span></span> object for every implicit or explicit task.
+The <span class="textbf"><span class="texttt">ompd_get_task_frame</span></span> function extracts the <span class="textit"><span class="textrm">enter_frame</span></span> and <span class="textit"><span class="textrm">exit_frame</span></span> fields of the
+<span class="textbf"><span class="texttt">ompt_frame_t</span></span> object of the task that <span class="textit"><span class="textrm">task_handle</span></span> identifies.
+</p> 
+<p><p><a 
+ id="Q1-311-2340"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">task_handle</span></span> argument specifies an OpenMP task. On return, the <span class="textit"><span class="textrm">exit_frame</span></span> argument points to an
+<span class="textbf"><span class="texttt">ompd_frame_info_t</span></span> object that has the frame information with the same semantics as the <span class="textit"><span class="textrm">exit_frame</span></span>
+field in the <span class="textbf"><span class="texttt">ompt_frame_t</span></span> object that is associated with the specified task. On return, the <span class="textit"><span class="textrm">enter_frame</span></span>
+argument points to an <span class="textbf"><span class="texttt">ompd_frame_info_t</span></span> object that has the frame information with the same
+semantics as the <span class="textit"><span class="textrm">enter_frame</span></span> field in the <span class="textbf"><span class="texttt">ompt_frame_t</span></span> object that is associated with the specified
+task.
+</p> 
+<p><p><a 
+ id="Q1-311-2341"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-311-2342"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_frame_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3350004.4.4.28">4.4.4.28<!--tex4ht:ref: sec:ompt_frame_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu224.html#x287-4200005.3.4">5.3.4<!--tex4ht:ref: subsubsubsec:ompd_address_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_frame_info_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu225.html#x288-4210005.3.5">5.3.5<!--tex4ht:ref: subsubsubsec:ompd_frame_info_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>
+  type,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_task_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.9  </span> <a 
+ id="x311-4790005.5.7.9"></a><span class="textbf"><span class="texttt">ompd_enumerate_states</span></span></h5>
+<p><p><a 
+ id="Q1-311-2344"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_enumerate_states</span></span> function enumerates thread states that an OpenMP implementation
+supports.
+<p><a 
+ id="Q1-311-2345"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479001r1"></a></span></p> 
+<!--l. 1461--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_enumerate_states</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">address_space_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current_state</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">next_state</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">next_state_name</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">more_enums</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479008r8"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-479009r9"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2346"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+An OpenMP implementation may support only a subset of the states that the <span class="textbf"><span class="texttt">ompt_state_t</span></span> enumeration
+type defines. In addition, an OpenMP implementation may support implementation-specific states. The
+<span class="textbf"><span class="texttt">ompd_enumerate_states</span></span> call enables a tool to enumerate the thread states that an OpenMP
+implementation supports.
+</p> 
+<p>When the <span class="textit"><span class="textrm">current_state</span></span> argument is a thread state that an OpenMP implementation supports, the call
+assigns the value and string name of the next thread state in the enumeration to the locations to which the
+<span class="textit"><span class="textrm">next_state</span></span> and <span class="textit"><span class="textrm">next_state_name</span></span> arguments point.
+</p> 
+<p>On return, the third-party tool owns the <span class="textit"><span class="textrm">next_state_name</span></span> string. The OMPD library allocates storage for the
+string with the memory allocation callback that the tool provides. The tool is responsible for releasing the
+memory.
+                                                                            
+                                                                            
+</p> 
+<p>On return, the location to which the <span class="textit"><span class="textrm">more_enums</span></span> argument points has the value <span 
+class="cmr-10">1 </span>whenever one or more
+states are left in the enumeration. On return, the location to which the <span class="textit"><span class="textrm">more_enums</span></span> argument points has the
+value <span 
+class="cmr-10">0 </span>when <span class="textit"><span class="textrm">current_state</span></span> is the last state in the enumeration.
+</p> 
+<p><p><a 
+ id="Q1-311-2347"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">address_space_handle</span></span> argument identifies the address space. The <span class="textit"><span class="textrm">current_state</span></span> argument must be a
+thread state that the OpenMP implementation supports. To begin enumerating the supported states, a tool
+should pass <span class="textbf"><span class="texttt">ompt_state_undefined</span></span> as the value of <span class="textit"><span class="textrm">current_state</span></span>. Subsequent calls to
+<span class="textbf"><span class="texttt">ompd_enumerate_states</span></span> by the tool should pass the value that the call returned in the <span class="textit"><span class="textrm">next_state</span></span>
+argument. On return, the <span class="textit"><span class="textrm">next_state</span></span> argument points to an integer with the value of the next
+state in the enumeration. On return, the <span class="textit"><span class="textrm">next_state_name</span></span> argument points to a character string
+that describes the next state. On return, the <span class="textit"><span class="textrm">more_enums</span></span> argument points to an integer with a
+value of <span 
+class="cmr-10">1 </span>when more states are left to enumerate and a value of <span 
+class="cmr-10">0 </span>when no more states are
+left.
+</p> 
+<p><p><a 
+ id="Q1-311-2348"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  an
+  unknown
+  value
+  is
+  provided
+  in
+  <span class="textit"><span class="textrm">current_state</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-311-2349"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_state_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3340004.4.4.27">4.4.4.27<!--tex4ht:ref: sec:thread-states --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.7.10  </span> <a 
+ id="x311-4800005.5.7.10"></a><span class="textbf"><span class="texttt">ompd_get_state</span></span></h5>
+<p><p><a 
+ id="Q1-311-2351"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_state</span></span> function obtains the state of a thread.
+<p><a 
+ id="Q1-311-2352"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-480001r1"></a></span></p> 
+<!--l. 1535--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-480002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_state</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-480003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-480004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">state</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-480005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_wait_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">wait_id</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-480006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x311-480007r7"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-311-2353"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_state</span></span> function returns the state of an OpenMP thread.
+</p> 
+<p><p><a 
+ id="Q1-311-2354"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">thread_handle</span></span> argument identifies the thread. The <span class="textit"><span class="textrm">state</span></span> argument represents the state of that thread as
+represented by a value that <span class="textbf"><span class="texttt">ompd_enumerate_states</span></span> returns. On return, if the <span class="textit"><span class="textrm">wait_id</span></span> argument is
+non-null then it points to a handle that corresponds to the <span class="textit"><span class="textrm">wait_id</span></span> wait identifier of the thread.
+If the thread state is not one of the specified wait states, the value to which <span class="textit"><span class="textrm">wait_id</span></span> points is
+undefined.
+</p> 
+<p><p><a 
+ id="Q1-311-2355"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-311-2356"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_wait_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu222.html#x285-4180005.3.2">5.3.2<!--tex4ht:ref: subsubsubsec:ompd_wait_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_enumerate_states</span></span>
+  routine,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="#x311-4790005.5.7.9">5.5.7.9<!--tex4ht:ref: subsubsubsec:ompd_enumerate_states --></a>.</li></ul>
+<!--l. 1578--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu247.html" >next</a>] [<a 
+href="openmpsu245.html" >prev</a>] [<a 
+href="openmpsu245.html#tailopenmpsu245.html" >prev-tail</a>] [<a 
+href="openmpsu246.html" >front</a>] [<a 
+href="openmpse56.html#openmpsu246.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu246.html"></a> </p> 
+ 
+</body> 
+</html>

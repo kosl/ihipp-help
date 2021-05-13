@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_TEAMS_THREAD_LIMIT</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1237--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpap1.html" >next</a>] [<a 
+href="openmpse80.html" >prev</a>] [<a 
+href="openmpse80.html#tailopenmpse80.html" >prev-tail</a>] [<a 
+href="#tailopenmpse81.html">tail</a>] [<a 
+href="openmpch6.html#openmpse81.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.24</span>&#x00A0;&#x00A0;<a 
+ id="x347-5220006.24"></a><span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span></h3>
+<a 
+ id="dx347-522001"></a>
+<a 
+ id="dx347-522002"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span> environment variable sets the maximum number of OpenMP threads
+to use in each contention group created by a <span class="textbf"><span class="texttt">teams</span></span> construct by setting the <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>
+ICV.
+</p> 
+<p>The value of this environment variable must be a positive integer. The behavior of the program is
+implementation defined if the requested value of <span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span> is greater
+than the number of threads that an implementation can support, or if the value is not a positive
+integer.
+</p> 
+<p><p><a 
+ id="Q1-347-2495"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_teams_thread_limit</span></span>
+  routine,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu156.html#x197-2300003.4.6">3.4.6<!--tex4ht:ref: subsec:omp_get_teams_thread_limit --></a>.</li></ul>
+<!--l. 113--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpap1.html" >next</a>] [<a 
+href="openmpse80.html" >prev</a>] [<a 
+href="openmpse80.html#tailopenmpse80.html" >prev-tail</a>] [<a 
+href="openmpse81.html" >front</a>] [<a 
+href="openmpch6.html#openmpse81.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse81.html"></a> </p> 
+ 
+</body> 
+</html>

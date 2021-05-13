@@ -1,0 +1,241 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Address Space Information</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 390--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu244.html" >next</a>] [<a 
+href="openmpsu242.html" >prev</a>] [<a 
+href="openmpsu242.html#tailopenmpsu242.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu243.html">tail</a>] [<a 
+href="openmpse56.html#openmpsu243.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.5.4</span>&#x00A0;&#x00A0;<a 
+ id="x308-4550005.5.4"></a>Address Space Information</h4>
+                                                                            
+                                                                            
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.4.1  </span> <a 
+ id="x308-4560005.5.4.1"></a><span class="textbf"><span class="texttt">ompd_get_omp_version</span></span></h5>
+<p><p><a 
+ id="Q1-308-2199"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The tool may call the <span class="textbf"><span class="texttt">ompd_get_omp_version</span></span> function to obtain the version of the OpenMP API that
+is associated with an address space.
+<p><a 
+ id="Q1-308-2200"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-456001r1"></a></span></p> 
+<!--l. 401--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-456002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_omp_version</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-456003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">address_space</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-456004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">omp_version</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-456005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-456006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-308-2201"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The tool may call the <span class="textbf"><span class="texttt">ompd_get_omp_version</span></span> function to obtain the version of the OpenMP API that
+is associated with the address space.
+</p> 
+<p><p><a 
+ id="Q1-308-2202"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">address_space</span></span> argument is an opaque handle that the tool provides to reference the address space of the
+OpenMP process or device.
+</p> 
+<p>Upon return, the <span class="textit"><span class="textrm">omp_version</span></span> argument contains the version of the OpenMP runtime in the <span class="textbf"><span class="texttt">_OPENMP</span></span>
+version macro format.
+</p> 
+<p><p><a 
+ id="Q1-308-2203"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-308-2204"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.4.2  </span> <a 
+ id="x308-4570005.5.4.2"></a><span class="textbf"><span class="texttt">ompd_get_omp_version_string</span></span></h5>
+<p><p><a 
+ id="Q1-308-2206"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_omp_version_string</span></span> function returns a descriptive string for the OpenMP API
+version that is associated with an address space.
+<p><a 
+ id="Q1-308-2207"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-457001r1"></a></span></p> 
+<!--l. 442--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-457002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_omp_version_string</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-457003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">address_space</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-457004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">string</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-457005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x308-457006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-308-2208"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+After initialization, the tool may call the <span class="textbf"><span class="texttt">ompd_get_omp_version_string</span></span> function to obtain the
+version of the OpenMP API that is associated with an address space.
+</p> 
+<p><p><a 
+ id="Q1-308-2209"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">address_space</span></span> argument is an opaque handle that the tool provides to reference the address space of the
+OpenMP process or device. A pointer to a descriptive version string is placed into the location to which the
+<span class="textit"><span class="textrm">string</span></span> output argument points. After returning from the call, the tool owns the string. The OMPD library
+must use the memory allocation callback that the tool provides to allocate the string storage. The tool is
+responsible for releasing the memory.
+</p> 
+<p><p><a 
+ id="Q1-308-2210"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-308-2211"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+                                                                            
+                                                                            
+<!--l. 479--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu244.html" >next</a>] [<a 
+href="openmpsu242.html" >prev</a>] [<a 
+href="openmpsu242.html#tailopenmpsu242.html" >prev-tail</a>] [<a 
+href="openmpsu243.html" >front</a>] [<a 
+href="openmpse56.html#openmpsu243.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu243.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Threading Concepts</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 51--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu2.html" >next</a>] [<a 
+href="openmpse2.html" >prev</a>] [<a 
+href="openmpse2.html#tailopenmpse2.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu1.html">tail</a>] [<a 
+href="openmpse2.html#openmpsu1.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.2.1</span>&#x00A0;&#x00A0;<a 
+ id="x8-70001.2.1"></a>Threading Concepts</h4>
+<p><div class="glossaryterm">thread</div> <div class="glossarydefstart">An execution entity with a stack and associated <span class="emph">threadprivate memory</span>. </div>
+</p> 
+<p><div class="glossaryterm">OpenMP thread</div> <div class="glossarydefstart">A <span class="emph">thread</span> that is managed by the OpenMP implementation. </div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">thread number</div> <div class="glossarydefstart">A number that the OpenMP implementation assigns to an OpenMP thread. For threads
+within the same team, zero identifies the primary thread and consecutive numbers identify the other threads
+of this team. </div>
+</p> 
+<p><div class="glossaryterm">idle thread</div> <div class="glossarydefstart">An <span class="emph">OpenMP thread</span> that is not currently part of any <span class="textbf"><span class="texttt">parallel</span></span> region. </div>
+</p> 
+<p><div class="glossaryterm">thread-safe routine</div> <div class="glossarydefstart">A routine that performs the intended function even when executed concurrently (by more
+than one <span class="emph">thread</span>). </div>
+</p> 
+<p><div class="glossaryterm">processor</div> <div class="glossarydefstart">Implementation-defined hardware unit on which one or more <span class="emph">OpenMP threads</span> can execute.
+</div>
+</p> 
+<p><div class="glossaryterm">device</div> <div class="glossarydefstart">An implementation-defined logical execution engine.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     A
+     <span class="emph">device</span>
+     could
+     have
+     one
+     or
+     more
+     <span class="emph">processors</span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">host device</div> <div class="glossarydefstart">The <span class="emph">device</span> on which the <span class="emph">OpenMP program</span> begins execution. </div>
+</p> 
+<p><div class="glossaryterm">target device</div> <div class="glossarydefstart">A device with respect to which the current device performs an operation, as specified by a
+<span class="emph">device construct</span> or an OpenMP device memory routine. </div>
+</p> 
+<p><div class="glossaryterm">parent device</div> <div class="glossarydefstart">For a given <span class="textbf"><span class="texttt">target</span></span> region, the device on which the corresponding <span class="textbf"><span class="texttt">target</span></span> construct was
+encountered. </div>
+</p> 
+<!--l. 118--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu2.html" >next</a>] [<a 
+href="openmpse2.html" >prev</a>] [<a 
+href="openmpse2.html#tailopenmpse2.html" >prev-tail</a>] [<a 
+href="openmpsu1.html" >front</a>] [<a 
+href="openmpse2.html#openmpsu1.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu1.html"></a> </p> 
+ 
+</body> 
+</html>

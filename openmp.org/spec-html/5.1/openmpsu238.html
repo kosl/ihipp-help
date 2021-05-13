@@ -1,0 +1,146 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>ompd_callback_print_string_fn_t</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 673--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu239.html" >next</a>] [<a 
+href="openmpsu237.html" >prev</a>] [<a 
+href="openmpsu237.html#tailopenmpsu237.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu238.html">tail</a>] [<a 
+href="openmpse55.html#openmpsu238.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.4.5</span>&#x00A0;&#x00A0;<a 
+ id="x302-4420005.4.5"></a><span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span></h4>
+<a 
+ id="dx302-442001"></a>
+<p><p><a 
+ id="Q1-302-2132"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span> type is the type signature of the callback that the
+third-party tool provides so that the OMPD library can emit output.
+<p><a 
+ id="Q1-302-2133"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x302-442002r1"></a></span></p> 
+<!--l. 684--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x302-442003r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompd_callback_print_string_fn_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x302-442004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">string</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x302-442005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">category</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x302-442006r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x302-442007r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-302-2134"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The OMPD library may call the <span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span> callback
+function to emit output, such as logging or debug information. The third-party tool may set the
+<span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span> callback function to NULL to prevent the OMPD
+library from emitting output. The OMPD library may not write to file descriptors that it did not
+open.
+</p> 
+<p><p><a 
+ id="Q1-302-2135"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">string</span></span> argument is the null-terminated string to be printed. No conversion or formatting is performed on
+the string.
+</p> 
+<p>The <span class="textit"><span class="textrm">category</span></span> argument is the implementation-defined category of the string to be printed.
+</p> 
+<p><p><a 
+ id="Q1-302-2136"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+Routines that use the <span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span> type may return the general return
+codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">5.4<!--tex4ht:ref: subsec:ompd-third-party-tool-callback-interface --></a>.
+</p> 
+<p><p><a 
+ id="Q1-302-2137"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callbacks_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6">5.4.6<!--tex4ht:ref: subsubsec:ompd_callbacks_t --></a>.</li></ul>
+<!--l. 721--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu239.html" >next</a>] [<a 
+href="openmpsu237.html" >prev</a>] [<a 
+href="openmpsu237.html#tailopenmpsu237.html" >prev-tail</a>] [<a 
+href="openmpsu238.html" >front</a>] [<a 
+href="openmpse55.html#openmpsu238.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu238.html"></a> </p> 
+ 
+</body> 
+</html>

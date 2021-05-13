@@ -1,0 +1,848 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Version 2.5 to 3.0 Differences</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 814--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse87.html" >prev</a>] [<a 
+href="openmpse87.html#tailopenmpse87.html" >prev-tail</a>] [<a 
+href="#tailopenmpse88.html">tail</a>] [<a 
+href="openmpap2.html#openmpse88.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">B.7</span>&#x00A0;&#x00A0;<a 
+ id="x356-531000B.7"></a>Version 2.5 to 3.0 Differences</h3>
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  definition
+  of
+  active
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  was
+  changed
+  so
+  that
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  is
+  active
+  if
+  it
+  is
+  executed
+  by
+  a
+  team
+  that
+  consists
+  of
+  more
+  than
+  one
+  thread
+  (see
+  Section&#x00A0;<a 
+href="openmpsu2.html#x9-80001.2.2">1.2.2<!--tex4ht:ref: subsec:OpenMP Language Terminology --></a>).
+  </li>
+  <li class="itemize">
+  The
+                                                                            
+                                                                            
+  concept
+  of
+  tasks
+  was
+  added
+  to
+  the
+  OpenMP
+  execution
+  model
+  (see
+  Section&#x00A0;<a 
+href="openmpsu5.html#x12-110001.2.5">1.2.5<!--tex4ht:ref: subsec:Tasking Terminology --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpse3.html#x16-150001.3">1.3<!--tex4ht:ref: sec:Execution Model --></a>).
+  </li>
+  <li class="itemize">
+  The
+  OpenMP
+  memory
+  model
+  was
+  extended
+  to
+  cover
+  atomicity
+  of
+  memory
+  accesses
+  (see
+  Section&#x00A0;<a 
+href="openmpsu9.html#x18-170001.4.1">1.4.1<!--tex4ht:ref: subsec:Structure of the OpenMP Memory Model --></a>).
+  The
+  description
+  of
+  the
+  behavior
+  of
+  <span class="textbf"><span class="texttt">volatile</span></span>
+  in
+  terms
+  of
+  <span class="textbf"><span class="texttt">flush</span></span>
+  was
+                                                                            
+                                                                            
+  removed.
+  </li>
+  <li class="itemize">
+  The
+  definition
+  of
+  the
+  <span class="textit"><span class="textrm">nest-var</span></span>,
+  <span class="textit"><span class="textrm">dyn-var</span></span>,
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  and
+  <span class="textit"><span class="textrm">run-sched-var</span></span>
+  internal
+  control
+  variables
+  (ICVs)
+  were
+  modified
+  to
+  provide
+  one
+  copy
+  of
+  these
+  ICVs
+  per
+  task
+  instead
+  of
+  one
+  copy
+  for
+  the
+  whole
+  program
+  (see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>).
+  The
+  <span class="textbf"><span class="texttt">omp_set_num_threads</span></span>,
+  <span class="textbf"><span class="texttt">omp_set_nested</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_set_dynamic</span></span>
+                                                                            
+                                                                            
+  runtime
+  library
+  routines
+  were
+  specified
+  to
+  support
+  their
+  use
+  from
+  inside
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  (see
+  Section&#x00A0;<a 
+href="openmpsu120.html#x159-1920003.2.1">3.2.1<!--tex4ht:ref: subsec:omp_set_num_threads --></a>,
+  Section&#x00A0;<a 
+href="openmpsu125.html#x164-1970003.2.6">3.2.6<!--tex4ht:ref: subsec:omp_set_dynamic --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu128.html#x167-2000003.2.9">3.2.9<!--tex4ht:ref: subsec:omp_set_nested --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">thread-limit-var</span></span>
+  ICV,
+  the
+  <span class="textbf"><span class="texttt">omp_get_thread_limit</span></span>
+  runtime
+  library
+  routine
+  and
+  the
+  <span class="textbf"><span class="texttt">OMP_THREAD_LIMIT</span></span>
+  environment
+  variable
+  were
+  added
+  to
+  support
+  control
+  of
+  the
+  maximum
+                                                                            
+                                                                            
+  number
+  of
+  threads
+  that
+  participate
+  in
+  the
+  OpenMP
+  program
+  (see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>,
+  Section&#x00A0;<a 
+href="openmpsu132.html#x171-2040003.2.13">3.2.13<!--tex4ht:ref: subsec:omp_get_thread_limit --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpse67.html#x333-5080006.10">6.10<!--tex4ht:ref: sec:OMP_THREAD_LIMIT --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">max-active-levels-var</span></span>
+  ICV,
+  the
+  <span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_get_max_active_levels</span></span>
+  runtime
+  library
+  routine
+  and
+  the
+  <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span>
+  environment
+  variable
+  and
+  were
+  added
+  to
+  support
+  control
+  of
+  the
+  number
+  of
+  nested
+                                                                            
+                                                                            
+  active
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  (see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>,
+  Section&#x00A0;<a 
+href="openmpsu134.html#x173-2060003.2.15">3.2.15<!--tex4ht:ref: subsec:omp_set_max_active_levels --></a>,
+  Section&#x00A0;<a 
+href="openmpsu135.html#x174-2070003.2.16">3.2.16<!--tex4ht:ref: subsec:omp_get_max_active_levels --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpse65.html#x331-5060006.8">6.8<!--tex4ht:ref: sec:OMP_MAX_ACTIVE_LEVELS --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">stacksize-var</span></span>
+  ICV
+  and
+  the
+  <span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span>
+  environment
+  variable
+  were
+  added
+  to
+  support
+  control
+  of
+  the
+  stack
+  size
+  for
+  threads
+  that
+  the
+  OpenMP
+  implementation
+  creates
+  (see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpse63.html#x329-5040006.6">6.6<!--tex4ht:ref: sec:OMP_STACKSIZE --></a>).
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">wait-policy-var</span></span>
+  ICV
+  and
+  the
+  <span class="textbf"><span class="texttt">OMP_WAIT_POLICY</span></span>
+  environment
+  variable
+  were
+  added
+  to
+  control
+  the
+  desired
+  behavior
+  of
+  waiting
+  threads
+  (see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpse64.html#x330-5050006.7">6.7<!--tex4ht:ref: sec:OMP_WAIT_POLICY --></a>).
+  </li>
+  <li class="itemize">
+  The
+  rules
+  for
+  determining
+  the
+  number
+  of
+  threads
+  used
+  in
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  were
+  modified
+  (see
+  Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a>).
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  The
+  assignment
+  of
+  iterations
+  to
+  threads
+  in
+  a
+  loop
+  construct
+  with
+  a
+  <span class="textbf"><span class="texttt">static</span></span>
+  schedule
+  kind
+  was
+  made
+  deterministic
+  (see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>).
+  </li>
+  <li class="itemize">
+  The
+  worksharing-loop
+  construct
+  was
+  extended
+  to
+  support
+  association
+  with
+  more
+  than
+  one
+  perfectly
+  nested
+  loop
+  through
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">collapse</span></span>
+  clause
+  (see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>).
+  </li>
+  <li class="itemize">
+  Iteration
+  variables
+  for
+  worksharing-loops
+  were
+  allowed
+  to
+  be
+  random
+  access
+  iterators
+  or
+  of
+  unsigned
+  integer
+  type
+  (see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>).
+  </li>
+  <li class="itemize">
+  The
+  schedule
+  kind
+  <span class="textbf"><span class="texttt">auto</span></span>
+  was
+  added
+  to
+  allow
+  the
+  implementation
+  to
+  choose
+  any
+  possible
+                                                                            
+                                                                            
+  mapping
+  of
+  iterations
+  in
+  a
+  loop
+  construct
+  to
+  threads
+  in
+  the
+  team
+  (see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpse20.html#x79-890002.12">2.12<!--tex4ht:ref: sec:Tasking Constructs --></a>)
+  was
+  added
+  to
+  support
+  explicit
+  tasks.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpsu103.html#x136-1460002.19.5">2.19.5<!--tex4ht:ref: subsec:taskwait Construct --></a>)
+  was
+  added
+  to
+  support
+  task
+  synchronization.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Predetermined
+  data-sharing
+  attributes
+  were
+  defined
+  for
+  Fortran
+  assumed-size
+  arrays
+  (see
+  Section&#x00A0;<a 
+href="openmpsu113.html#x148-1610002.21.1.1">2.21.1.1<!--tex4ht:ref: subsubsec:Variables Referenced in a Construct --></a>).
+  </li>
+  <li class="itemize">
+  Static
+  class
+  members
+  variables
+  were
+  allowed
+  to
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive
+  (see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>).
+  </li>
+  <li class="itemize">
+  Invocations
+  of
+  constructors
+  and
+  destructors
+  for
+  private
+  and
+                                                                            
+                                                                            
+  threadprivate
+  class
+  type
+  variables
+  was
+  clarified
+  (see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>,
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>,
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1690002.21.4.4">2.21.4.4<!--tex4ht:ref: subsubsec:firstprivate clause --></a>,
+  Section&#x00A0;<a 
+href="openmpsu118.html#x153-1810002.21.6.1">2.21.6.1<!--tex4ht:ref: subsubsec:copyin clause --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu118.html#x153-1820002.21.6.2">2.21.6.2<!--tex4ht:ref: subsubsec:copyprivate clause --></a>).
+  </li>
+  <li class="itemize">
+  The
+  use
+  of
+  Fortran
+  allocatable
+  arrays
+  was
+  allowed
+  in
+  <span class="textbf"><span class="texttt">private</span></span>,
+  <span class="textbf"><span class="texttt">firstprivate</span></span>,
+  <span class="textbf"><span class="texttt">lastprivate</span></span>,
+  <span class="textbf"><span class="texttt">reduction</span></span>,
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  and
+  <span class="textbf"><span class="texttt">copyprivate</span></span>
+  clauses
+  (see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>,
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>,
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1690002.21.4.4">2.21.4.4<!--tex4ht:ref: subsubsec:firstprivate clause --></a>,
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1700002.21.4.5">2.21.4.5<!--tex4ht:ref: subsubsec:lastprivate clause --></a>,
+  Section&#x00A0;<a 
+href="openmpsu117.html#x152-1760002.21.5.4">2.21.5.4<!--tex4ht:ref: subsubsec:reduction clause --></a>,
+  Section&#x00A0;<a 
+href="openmpsu118.html#x153-1810002.21.6.1">2.21.6.1<!--tex4ht:ref: subsubsec:copyin clause --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu118.html#x153-1820002.21.6.2">2.21.6.2<!--tex4ht:ref: subsubsec:copyprivate clause --></a>).
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  argument
+  was
+  added
+  for
+  the
+  <span class="textbf"><span class="texttt">default</span></span>
+  clause
+  in
+  Fortran
+  (see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1660002.21.4.1">2.21.4.1<!--tex4ht:ref: subsubsec:default clause --></a>).
+  </li>
+  <li class="itemize">
+  Implementations
+  were
+  precluded
+  from
+  using
+  the
+  storage
+  of
+  the
+  original
+  list
+  item
+  to
+  hold
+  the
+  new
+  list
+  item
+  on
+  the
+  primary
+  thread
+  for
+  list
+                                                                            
+                                                                            
+  items
+  in
+  the
+  <span class="textbf"><span class="texttt">private</span></span>
+  clause
+  and
+  the
+  value
+  was
+  made
+  well
+  defined
+  on
+  exit
+  from
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  if
+  no
+  attempt
+  is
+  made
+  to
+  reference
+  the
+  original
+  list
+  item
+  inside
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  (see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>).
+  </li>
+  <li class="itemize">
+  The
+  runtime
+  library
+  routines
+  <span class="textbf"><span class="texttt">omp_set_schedule</span></span>
+                                                                            
+                                                                            
+  and
+  <span class="textbf"><span class="texttt">omp_get_schedule</span></span>
+  were
+  added
+  to
+  set
+  and
+  to
+  retrieve
+  the
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">run-sched-var</span></span>
+  ICV
+  (see
+  Section&#x00A0;<a 
+href="openmpsu130.html#x169-2020003.2.11">3.2.11<!--tex4ht:ref: subsec:omp_set_schedule --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu131.html#x170-2030003.2.12">3.2.12<!--tex4ht:ref: subsec:omp_get_schedule --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_get_level</span></span>
+  runtime
+  library
+  routine
+  was
+  added
+  to
+  return
+  the
+  number
+  of
+  nested
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  that
+  enclose
+  the
+  task
+  that
+  contains
+                                                                            
+                                                                            
+  the
+  call
+  (see
+  Section&#x00A0;<a 
+href="openmpsu136.html#x175-2080003.2.17">3.2.17<!--tex4ht:ref: subsec:omp_get_level --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span>
+  runtime
+  library
+  routine
+  was
+  added
+  to
+  return
+  the
+  thread
+  number
+  of
+  the
+  ancestor
+  for
+  a
+  given
+  nested
+  level
+  of
+  the
+  current
+  thread,
+  (see
+  Section&#x00A0;<a 
+href="openmpsu137.html#x176-2090003.2.18">3.2.18<!--tex4ht:ref: subsec:omp_get_ancestor_thread_num --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_get_team_size</span></span>
+  runtime
+  library
+  routine
+  was
+                                                                            
+                                                                            
+  added
+  to
+  return
+  the
+  size
+  of
+  the
+  thread
+  team
+  to
+  which
+  the
+  ancestor
+  belongs
+  for
+  a
+  given
+  nested
+  level
+  of
+  the
+  current
+  thread,
+  (see
+  Section&#x00A0;<a 
+href="openmpsu138.html#x177-2100003.2.19">3.2.19<!--tex4ht:ref: subsec:omp_get_team_size --></a>).
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_get_active_level</span></span>
+  runtime
+  library
+  routine
+  was
+  added
+  to
+  return
+  the
+  number
+  of
+  nested
+  active
+  <span class="textbf"><span class="texttt">parallel</span></span>
+                                                                            
+                                                                            
+  regions
+  that
+  enclose
+  the
+  task
+  that
+  contains
+  the
+  call
+  (see
+  Section&#x00A0;<a 
+href="openmpsu139.html#x178-2110003.2.20">3.2.20<!--tex4ht:ref: subsec:omp_get_active_level --></a>).
+  </li>
+  <li class="itemize">
+  Lock
+  ownership
+  was
+  defined
+  in
+  terms
+  of
+  tasks
+  instead
+  of
+  threads
+  (see
+  Section&#x00A0;<a 
+href="openmpse39.html#x224-2570003.9">3.9<!--tex4ht:ref: sec:Lock Routines --></a>).</li></ul>
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+<p><a 
+ id="likesection.4"></a>
+</p> 
+<!--l. 129--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse87.html" >prev</a>] [<a 
+href="openmpse87.html#tailopenmpse87.html" >prev-tail</a>] [<a 
+href="openmpse88.html" >front</a>] [<a 
+href="openmpap2.html#openmpse88.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse88.html"></a> </p> 
+ 
+</body> 
+</html>

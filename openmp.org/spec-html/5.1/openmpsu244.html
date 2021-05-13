@@ -1,0 +1,756 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Thread Handles</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 479--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu245.html" >next</a>] [<a 
+href="openmpsu243.html" >prev</a>] [<a 
+href="openmpsu243.html#tailopenmpsu243.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu244.html">tail</a>] [<a 
+href="openmpse56.html#openmpsu244.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.5.5</span>&#x00A0;&#x00A0;<a 
+ id="x309-4580005.5.5"></a>Thread Handles</h4>
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.5.1  </span> <a 
+ id="x309-4590005.5.5.1"></a><span class="textbf"><span class="texttt">ompd_get_thread_in_parallel</span></span></h5>
+<p><p><a 
+ id="Q1-309-2214"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_thread_in_parallel</span></span> function enables a tool to obtain handles for OpenMP threads
+that are associated with a parallel region.
+<p><a 
+ id="Q1-309-2215"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-459001r1"></a></span></p> 
+<!--l. 494--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-459002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_thread_in_parallel</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-459003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_parallel_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">parallel_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-459004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">thread_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-459005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">thread_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-459006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-459007r7"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-309-2216"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A successful invocation of <span class="textbf"><span class="texttt">ompd_get_thread_in_parallel</span></span> returns a pointer to a thread handle in
+the location to which <span class="textbf"><span class="texttt">thread_handle</span></span> points. This call yields meaningful results only if all OpenMP
+threads in the parallel region are stopped.
+</p> 
+<p><p><a 
+ id="Q1-309-2217"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">parallel_handle</span></span> argument is an opaque handle for a parallel region and selects the parallel
+region on which to operate. The <span class="textit"><span class="textrm">thread_num</span></span> argument selects the thread, the handle of which is
+to be returned. On return, the <span class="textit"><span class="textrm">thread_handle</span></span> argument is an opaque handle for the selected
+thread.
+</p> 
+<p><p><a 
+ id="Q1-309-2218"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  the
+  <span class="textit"><span class="textrm">thread_num</span></span>
+  argument
+  is
+  greater
+  than
+  or
+  equal
+  to
+  the
+  <span class="textit"><span class="textrm">team-size-var</span></span>
+  ICV
+  or
+  negative.</li></ul>
+<p><p><a 
+ id="Q1-309-2219"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on the <span class="textbf"><span class="texttt">ompd_get_thread_in_parallel</span></span> function are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  value
+  of
+  <span class="textit"><span class="textrm">thread_num</span></span>
+  must
+  be
+                                                                            
+                                                                            
+  a
+  non-negative
+  integer
+  smaller
+  than
+  the
+  team
+  size
+  that
+  was
+  provided
+  as
+  the
+  <span class="textit"><span class="textrm">team-size-var</span></span>
+  ICV
+  from
+  <span class="textbf"><span class="texttt">ompd_get_icv_from_scope</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-309-2220"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_parallel_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_parallel_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_get_icv_from_scope</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu248.html#x313-4860005.5.9.2">5.5.9.2<!--tex4ht:ref: subsubsubsec:ompd_get_icv_from_scope --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.5.2  </span> <a 
+ id="x309-4600005.5.5.2"></a><span class="textbf"><span class="texttt">ompd_get_thread_handle</span></span></h5>
+<p><p><a 
+ id="Q1-309-2222"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_thread_handle</span></span> function maps a native thread to an OMPD thread handle.
+<p><a 
+ id="Q1-309-2223"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460001r1"></a></span></p> 
+<!--l. 569--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_thread_handle</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">kind</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">sizeof_thread_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">thread_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460008r8"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-460009r9"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-309-2224"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_thread_handle</span></span> function determines if the native thread identifier to which <span class="textit"><span class="textrm">thread_id</span></span>
+points represents an OpenMP thread. If so, the function returns <span class="textbf"><span class="texttt">ompd_rc_ok</span></span> and the location to which
+<span class="textit"><span class="textrm">thread_handle</span></span> points is set to the thread handle for the OpenMP thread.
+</p> 
+<p><p><a 
+ id="Q1-309-2225"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">handle</span></span> argument is an opaque handle that the tool provides to reference an address space. The <span class="textit"><span class="textrm">kind</span></span>,
+<span class="textit"><span class="textrm">sizeof_thread_id</span></span>, and <span class="textit"><span class="textrm">thread_id</span></span> arguments represent a native thread identifier. On return, the
+<span class="textit"><span class="textrm">thread_handle</span></span> argument provides an opaque handle to the thread within the provided address
+space.
+</p> 
+<p>The native thread identifier to which <span class="textit"><span class="textrm">thread_id</span></span> points is guaranteed to be valid for the duration of the call. If
+the OMPD library must retain the native thread identifier, it must copy it.
+</p> 
+<p><p><a 
+ id="Q1-309-2226"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or any of the
+following return codes: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  a
+  different
+  value
+  in
+  <span class="textit"><span class="textrm">sizeof_thread_id</span></span>
+  is
+  expected
+  for
+  a
+  thread
+  kind
+  of
+  <span class="textit"><span class="textrm">kind</span></span>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unsupported</span></span>
+  if
+  the
+  <span class="textit"><span class="textrm">kind</span></span>
+  of
+  thread
+  is
+  not
+  supported.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unavailable</span></span>
+  if
+  the
+  thread
+  is
+  not
+                                                                            
+                                                                            
+  an
+  OpenMP
+  thread.</li></ul>
+<p><p><a 
+ id="Q1-309-2227"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_size_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">5.3.1<!--tex4ht:ref: subsubsubsec:ompd_size_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu227.html#x290-4230005.3.7">5.3.7<!--tex4ht:ref: ompd:ompd_thread_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.5.3  </span> <a 
+ id="x309-4610005.5.5.3"></a><span class="textbf"><span class="texttt">ompd_rel_thread_handle</span></span></h5>
+<p><p><a 
+ id="Q1-309-2229"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_rel_thread_handle</span></span> function releases a thread handle.
+<p><a 
+ id="Q1-309-2230"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-461001r1"></a></span></p> 
+<!--l. 638--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-461002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rel_thread_handle</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-461003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-461004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-461005r5"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-309-2231"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Thread handles are opaque to tools, which therefore cannot release them directly. Instead, when
+the tool is finished with a thread handle it must pass it to <span class="textbf"><span class="texttt">ompd_rel_thread_handle</span></span> for
+disposal.
+</p> 
+<p><p><a 
+ id="Q1-309-2232"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">thread_handle</span></span> argument is an opaque handle for a thread to be released.
+</p> 
+<p><p><a 
+ id="Q1-309-2233"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-309-2234"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.5.4  </span> <a 
+ id="x309-4620005.5.5.4"></a><span class="textbf"><span class="texttt">ompd_thread_handle_compare</span></span></h5>
+<p><p><a 
+ id="Q1-309-2236"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_thread_handle_compare</span></span> function allows tools to compare two thread handles.
+<p><a 
+ id="Q1-309-2237"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-462001r1"></a></span></p> 
+<!--l. 674--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-462002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_compare</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-462003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_handle_1</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-462004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_handle_2</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-462005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">cmp_value</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-462006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-462007r7"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-309-2238"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The internal structure of thread handles is opaque to a tool. While the tool can easily compare pointers
+to thread handles, it cannot determine whether handles of two different addresses refer to the
+same underlying thread. The <span class="textbf"><span class="texttt">ompd_thread_handle_compare</span></span> function compares thread
+handles.
+                                                                            
+                                                                            
+</p> 
+<p>On success, <span class="textbf"><span class="texttt">ompd_thread_handle_compare</span></span> returns in the location to which <span class="textit"><span class="textrm">cmp_value</span></span> points a
+signed integer value that indicates how the underlying threads compare: a value less than, equal to, or
+greater than 0 indicates that the thread corresponding to <span class="textit"><span class="textrm">thread_handle_1</span></span> is, respectively, less than, equal
+to, or greater than that corresponding to <span class="textit"><span class="textrm">thread_handle_2</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-309-2239"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">thread_handle_1</span></span> and <span class="textit"><span class="textrm">thread_handle_2</span></span> arguments are opaque handles for threads. On return the
+<span class="textit"><span class="textrm">cmp_value</span></span> argument is set to a signed integer value.
+</p> 
+<p><p><a 
+ id="Q1-309-2240"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-309-2241"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.5.5  </span> <a 
+ id="x309-4630005.5.5.5"></a><span class="textbf"><span class="texttt">ompd_get_thread_id</span></span></h5>
+<p><p><a 
+ id="Q1-309-2243"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_get_thread_id</span></span> maps an OMPD thread handle to a native thread.
+<p><a 
+ id="Q1-309-2244"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463001r1"></a></span></p> 
+<!--l. 722--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_get_thread_id</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">kind</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">sizeof_thread_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_id</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463007r7"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x309-463008r8"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-309-2245"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_get_thread_id</span></span> function maps an OMPD thread handle to a native thread identifier.
+</p> 
+<p><p><a 
+ id="Q1-309-2246"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">thread_handle</span></span> argument is an opaque thread handle. The <span class="textit"><span class="textrm">kind</span></span> argument represents the native thread
+identifier. The <span class="textit"><span class="textrm">sizeof_thread_id</span></span> argument represents the size of the native thread identifier. On return, the
+<span class="textit"><span class="textrm">thread_id</span></span> argument is a buffer that represents a native thread identifier.
+</p> 
+<p><p><a 
+ id="Q1-309-2247"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or any of the
+following return codes: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  a
+  different
+  value
+  in
+  <span class="textit"><span class="textrm">sizeof_thread_id</span></span>
+  is
+  expected
+  for
+  a
+  thread
+  kind
+  of
+  <span class="textit"><span class="textrm">kind</span></span>;
+  or
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unsupported</span></span>
+  if
+  the
+  <span class="textit"><span class="textrm">kind</span></span>
+  of
+  thread
+  is
+  not
+  supported.</li></ul>
+<p><p><a 
+ id="Q1-309-2248"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_size_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">5.3.1<!--tex4ht:ref: subsubsubsec:ompd_size_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu227.html#x290-4230005.3.7">5.3.7<!--tex4ht:ref: ompd:ompd_thread_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_thread_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+                                                                            
+                                                                            
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<!--l. 764--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu245.html" >next</a>] [<a 
+href="openmpsu243.html" >prev</a>] [<a 
+href="openmpsu243.html#tailopenmpsu243.html" >prev-tail</a>] [<a 
+href="openmpsu244.html" >front</a>] [<a 
+href="openmpse56.html#openmpsu244.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu244.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_TARGET_OFFLOAD</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 949--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse75.html" >next</a>] [<a 
+href="openmpse73.html" >prev</a>] [<a 
+href="openmpse73.html#tailopenmpse73.html" >prev-tail</a>] [<a 
+href="#tailopenmpse74.html">tail</a>] [<a 
+href="openmpch6.html#openmpse74.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.17</span>&#x00A0;&#x00A0;<a 
+ id="x340-5150006.17"></a><span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span></h3>
+<a 
+ id="dx340-515001"></a>
+<a 
+ id="dx340-515002"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span> environment variable sets the initial value of the <span class="textit"><span class="textrm">target-offload-var</span></span> ICV. The
+value of the <span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span> environment variable must be one of the following:
+</p> 
+<p><span class="textbf"><span class="texttt">mandatory </span></span>|<span class="textbf"><span class="texttt">  disabled </span></span>|<span class="textbf"><span class="texttt">  default</span></span>
+</p> 
+<p>The <span class="textbf"><span class="texttt">mandatory</span></span> value specifies that program execution is terminated if a device construct or device
+memory routine is encountered and the device is not available or is not supported by the implementation.
+Support for the <span class="textbf"><span class="texttt">disabled</span></span> value is implementation defined. If an implementation supports it, the behavior
+is as if the only device is the host device.
+</p> 
+<p>The <span class="textbf"><span class="texttt">default</span></span> value specifies the default behavior as described in Section&#x00A0;<a 
+href="openmpse3.html#x16-150001.3">1.3<!--tex4ht:ref: sec:Execution Model --></a>.
+</p> 
+<p>Example:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x340-515003r1"></a></span></p> 
+<!--l. 969--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x340-515004r2"></a></span><span 
+class="pcrb8t-">%</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_TARGET_OFFLOAD</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">mandatory</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x340-515005r3"></a></span></pre>
+<p><p><a 
+ id="Q1-340-2481"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">target-offload-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Device
+  Directives,
+  see
+  Section&#x00A0;<a 
+href="openmpse22.html#x91-1010002.14">2.14<!--tex4ht:ref: sec:Device Directives --></a>.
+  </li>
+  <li class="itemize">
+  Device
+  Memory
+  Routines,
+  see
+  Section&#x00A0;<a 
+href="openmpse38.html#x212-2450003.8">3.8<!--tex4ht:ref: sec:Device Memory Routines --></a>.</li></ul>
+<!--l. 983--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse75.html" >next</a>] [<a 
+href="openmpse73.html" >prev</a>] [<a 
+href="openmpse73.html#tailopenmpse73.html" >prev-tail</a>] [<a 
+href="openmpse74.html" >front</a>] [<a 
+href="openmpch6.html#openmpse74.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse74.html"></a> </p> 
+ 
+</body> 
+</html>

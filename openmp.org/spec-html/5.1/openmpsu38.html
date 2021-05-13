@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>nothing Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2872--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu39.html" >next</a>] [<a 
+href="openmpsu37.html" >prev</a>] [<a 
+href="openmpsu37.html#tailopenmpsu37.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu38.html">tail</a>] [<a 
+href="openmpse13.html#openmpsu38.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.5.3</span>&#x00A0;&#x00A0;<a 
+ id="x57-570002.5.3"></a><span class="textbf"><span class="texttt">nothing</span></span> Directive</h4>
+<a 
+ id="dx57-57001"></a>
+<a 
+ id="dx57-57002"></a>
+<p><p><a 
+ id="Q1-57-101"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">nothing</span></span> directive has no effect. It can be used in a metadirective and other contexts to indicate
+explicitly that the intent is to have no effect on the execution of the OpenMP program. The <span class="textbf"><span class="texttt">nothing</span></span>
+directive is a utility directive.
+<p><a 
+ id="Q1-57-102"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">nothing</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x57-57003r1"></a></span></p> 
+<!--l. 2887--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x57-57004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">nothing</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x57-57005r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">nothing</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x57-57006r1"></a></span></p> 
+<!--l. 2897--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x57-57007r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">nothing</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x57-57008r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-57-103"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">nothing</span></span> directive has no effect on the execution of the OpenMP program.
+</p> 
+<p><p><a 
+ id="Q1-57-104"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Metadirectives,
+  see
+  Section&#x00A0;<a 
+href="openmpsu28.html#x45-440002.3.4">2.3.4<!--tex4ht:ref: subsec:Metadirective Meta-Directive --></a>.</li></ul>
+<!--l. 2914--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu39.html" >next</a>] [<a 
+href="openmpsu37.html" >prev</a>] [<a 
+href="openmpsu37.html#tailopenmpsu37.html" >prev-tail</a>] [<a 
+href="openmpsu38.html" >front</a>] [<a 
+href="openmpse13.html#openmpsu38.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu38.html"></a> </p> 
+ 
+</body> 
+</html>

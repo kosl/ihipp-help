@@ -1,0 +1,234 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>The Flush Operation</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 189--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu13.html" >next</a>] [<a 
+href="openmpsu11.html" >prev</a>] [<a 
+href="openmpsu11.html#tailopenmpsu11.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu12.html">tail</a>] [<a 
+href="openmpse4.html#openmpsu12.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.4.4</span>&#x00A0;&#x00A0;<a 
+ id="x21-200001.4.4"></a>The Flush Operation</h4>
+<a 
+ id="dx21-20001"></a>
+<a 
+ id="dx21-20002"></a>
+<a 
+ id="dx21-20003"></a>
+<p>The memory model has relaxed-consistency because a thread&#8217;s temporary view of memory is not required
+to be consistent with memory at all times. A value written to a variable can remain in the thread&#8217;s temporary
+view until it is forced to memory at a later time. Likewise, a read from a variable may retrieve the value
+from the thread&#8217;s temporary view, unless it is forced to read from memory. OpenMP flush operations are
+used to enforce consistency between a thread&#8217;s temporary view of memory and memory, or between
+multiple threads&#8217; view of memory.
+</p> 
+<p>A flush operation has an associated <span class="emph">device-set</span> that constrains the threads with which it enforces memory
+consistency. Consistency is only guaranteed to be enforced between the view of memory of its thread and
+the view of memory of other threads executing on devices in its device-set. Unless otherwise stated, the
+device-set of a flush operation only includes the current device.
+</p> 
+<p>If a flush operation is a strong flush, it enforces consistency between a thread&#8217;s temporary view and
+memory. A strong flush operation is applied to a set of variables called the <span class="emph">flush-set</span>. A strong
+flush restricts reordering of memory operations that an implementation might otherwise do.
+Implementations must not reorder the code for a memory operation for a given variable, or the code for a
+flush operation for the variable, with respect to a strong flush operation that refers to the same
+variable.
+</p> 
+<p>If a thread has performed a write to its temporary view of a shared variable since its last strong flush of that
+variable, then when it executes another strong flush of the variable, the strong flush does not complete until
+the value of the variable has been written to the variable in memory. If a thread performs multiple writes
+to the same variable between two strong flushes of that variable, the strong flush ensures that
+the value of the last write is written to the variable in memory. A strong flush of a variable
+executed by a thread also causes its temporary view of the variable to be discarded, so that if its
+next memory operation for that variable is a read, then the thread will read from memory and
+capture the value in its temporary view. When a thread executes a strong flush, no later memory
+operation by that thread for a variable involved in that strong flush is allowed to start until the strong
+flush completes. The completion of a strong flush executed by a thread is defined as the point
+at which all writes to the flush-set performed by the thread before the strong flush are visible
+in memory to all other threads, and at which that thread&#8217;s temporary view of the flush-set is
+discarded.
+</p> 
+<p>A strong flush operation provides a guarantee of consistency between a thread&#8217;s temporary view and
+memory. Therefore, a strong flush can be used to guarantee that a value written to a variable by one thread
+may be read by a second thread. To accomplish this, the programmer must ensure that the second thread has
+not written to the variable since its last strong flush of the variable, and that the following sequence of events
+are completed in this specific order:
+                                                                            
+                                                                            
+</p> 
+<p>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  The
+  value
+  is
+  written
+  to
+  the
+  variable
+  by
+  the
+  first
+  thread;
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  The
+  variable
+  is
+  flushed,
+  with
+  a
+  strong
+  flush,
+  by
+  the
+  first
+  thread;
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">
+  The
+  variable
+  is
+  flushed,
+  with
+  a
+  strong
+  flush,
+  by
+                                                                            
+                                                                            
+  the
+  second
+  thread;
+  and
+  </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">
+  The
+  value
+  is
+  read
+  from
+  the
+  variable
+  by
+  the
+  second
+  thread.</dd></dl>
+<p>If a flush operation is a release flush or acquire flush, it can enforce consistency between the views
+of memory of two synchronizing threads. A release flush guarantees that any prior operation
+that writes or reads a shared variable will appear to be completed before any operation that
+writes or reads the same shared variable and follows an acquire flush with which the release
+flush synchronizes (see Section&#x00A0;<a 
+href="openmpsu13.html#x22-210001.4.5">1.4.5<!--tex4ht:ref: subsec:happens-before --></a> for more details on flush synchronization). A release
+flush will propagate the values of all shared variables in its temporary view to memory prior to
+the thread performing any subsequent atomic operation that may establish a synchronization.
+An acquire flush will discard any value of a shared variable in its temporary view to which
+the thread has not written since last performing a release flush, and it will load any value of a
+shared variable propagated by a release flush that synchronizes with it into its temporary view so
+that it may be subsequently read. Therefore, release and acquire flushes may also be used to
+guarantee that a value written to a variable by one thread may be read by a second thread. To
+accomplish this, the programmer must ensure that the second thread has not written to the variable
+since its last acquire flush, and that the following sequence of events happen in this specific
+order:
+</p> 
+<p>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  The
+  value
+  is
+  written
+                                                                            
+                                                                            
+  to
+  the
+  variable
+  by
+  the
+  first
+  thread;
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  The
+  first
+  thread
+  performs
+  a
+  release
+  flush;
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">
+  The
+  second
+  thread
+  performs
+  an
+  acquire
+  flush;
+  and
+  </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">
+  The
+  value
+  is
+  read
+  from
+  the
+  variable
+  by
+  the
+  second
+  thread.</dd></dl>
+                                                                            
+                                                                            
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  OpenMP synchronization operations, described in Section&#x00A0;<a 
+href="openmpse27.html#x131-1410002.19">2.19<!--tex4ht:ref: sec:Synchronization Constructs and Clauses --></a> and in
+Section&#x00A0;<a 
+href="openmpse39.html#x224-2570003.9">3.9<!--tex4ht:ref: sec:Lock Routines --></a>, are recommended for enforcing this order. Synchronization through variables
+is possible but is not recommended because the proper timing of flushes is difficult.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The flush properties that define whether a flush operation is a strong flush, a release flush, or an acquire
+flush are not mutually disjoint. A flush operation may be a strong flush and a release flush; it may be a
+strong flush and an acquire flush; it may be a release flush and an acquire flush; or it may be all
+three.
+</p> 
+<!--l. 294--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu13.html" >next</a>] [<a 
+href="openmpsu11.html" >prev</a>] [<a 
+href="openmpsu11.html#tailopenmpsu11.html" >prev-tail</a>] [<a 
+href="openmpsu12.html" >front</a>] [<a 
+href="openmpse4.html#openmpsu12.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu12.html"></a> </p> 
+ 
+</body> 
+</html>

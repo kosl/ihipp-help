@@ -1,0 +1,468 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Array Sections</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 436--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu22.html" >next</a>] [<a 
+href="openmpsu20.html" >prev</a>] [<a 
+href="openmpsu20.html#tailopenmpsu20.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu21.html">tail</a>] [<a 
+href="openmpse9.html#openmpsu21.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.1.5</span>&#x00A0;&#x00A0;<a 
+ id="x36-350002.1.5"></a>Array Sections</h4>
+<a 
+ id="dx36-35001"></a>
+<p>An array section designates a subset of the elements in an array.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>To specify an array section in an OpenMP construct, array subscript expressions are extended with the
+following syntax:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35002r1"></a></span></p> 
+<!--l. 447--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35003r2"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">stride</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35004r3"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35005r4"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35006r5"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">stride</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35007r6"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35008r7"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35009r8"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">stride</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35010r9"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35011r10"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35012r11"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">stride</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35013r12"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35014r13"></a></span><span 
+class="pcrb8t-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35015r14"></a></span></pre>
+<p>The array section must be a subset of the original array.
+</p> 
+<p>Array sections are allowed on multidimensional arrays. Base language array subscript expressions can be
+used to specify length-one dimensions of multidimensional array sections.
+</p> 
+<p>Each of the <span class="textit"><span class="textrm">lower-bound</span></span>, <span class="textit"><span class="textrm">length</span></span>, and <span class="textit"><span class="textrm">stride</span></span> expressions if specified must be an integral type <span class="textit"><span class="textrm">expression</span></span> of
+the base language. When evaluated they represent a set of integer values as follows:
+</p> 
+<p>{ <span class="textit"><span class="textrm">lower-bound</span></span>, <span class="textit"><span class="textrm">lower-bound</span></span> + <span class="textit"><span class="textrm">stride</span></span>, <span class="textit"><span class="textrm">lower-bound</span></span> + 2 * <span class="textit"><span class="textrm">stride</span></span>,... , <span class="textit"><span class="textrm">lower-bound</span></span> + ((<span class="textit"><span class="textrm">length</span></span> - 1) * <span class="textit"><span class="textrm">stride</span></span>)
+}
+</p> 
+<p>The <span class="textit"><span class="textrm">length</span></span> must evaluate to a non-negative integer.
+</p> 
+<p>The <span class="textit"><span class="textrm">stride</span></span> must evaluate to a positive integer.
+</p> 
+<p>When the size of the array dimension is not known, the <span class="textit"><span class="textrm">length</span></span> must be specified explicitly.
+</p> 
+<p>When the <span class="textit"><span class="textrm">stride</span></span> is absent it defaults to 1.
+</p> 
+<p>When the <span class="textit"><span class="textrm">length</span></span> is absent it defaults to <span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">size</span></span> <span 
+class="cmsy-10">-</span><span class="textit"><span class="textrm">lower-bound</span></span><span 
+class="cmr-10">)</span><span 
+class="cmmi-10">&#x2215;</span><span class="textit"><span class="textrm">stride</span></span><span 
+class="cmbsy-10">&#x2309;&#x2309;</span>, where <span class="textit"><span class="textrm">size</span></span> is the size of the array
+dimension.
+</p> 
+<p>When the <span class="textit"><span class="textrm">lower-bound</span></span> is absent it defaults to 0.
+</p> 
+<p>The precedence of a subscript operator that uses the array section syntax is the same as the precedence of a
+subscript operator that does not use the array section syntax.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  The following are examples of array sections:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35016r1"></a></span></p> 
+<!--l. 496--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35017r2"></a></span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">[0:6]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35018r3"></a></span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">[0:6:1]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35019r4"></a></span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">[1:10]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35020r5"></a></span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">[1:]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35021r6"></a></span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">[:10:2]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35022r7"></a></span><span 
+class="pcrb8t-">b</span><span 
+class="pcrb8t-">[10][:][:]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35023r8"></a></span><span 
+class="pcrb8t-">b</span><span 
+class="pcrb8t-">[10][:][:0]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35024r9"></a></span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">[42][0:6][:]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35025r10"></a></span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">[42][0:6:2][:]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35026r11"></a></span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">[1:10][42][0:6]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35027r12"></a></span><span 
+class="pcrb8t-">S</span><span 
+class="pcrb8t-">.</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">[:100]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35028r13"></a></span><span 
+class="pcrb8t-">p</span><span 
+class="pcrb8t-">-&#x003E;</span><span 
+class="pcrb8t-">y</span><span 
+class="pcrb8t-">[:10]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35029r14"></a></span><span 
+class="pcrb8t-">this</span><span 
+class="pcrb8t-">-&#x003E;</span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">[:</span><span 
+class="pcrb8t-">N</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35030r15"></a></span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">p</span><span 
+class="pcrb8t-">+10)</span><span 
+class="pcrb8t-">[:</span><span 
+class="pcrb8t-">N</span><span 
+class="pcrb8t-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35031r16"></a></span></pre>
+<p>Assume <span class="textbf"><span class="texttt">a</span></span> is declared to be a 1-dimensional array with dimension size 11. The first two examples are
+equivalent, and the third and fourth examples are equivalent. The fifth example specifies a stride of 2 and
+therefore is not contiguous.
+</p> 
+<p>Assume <span class="textbf"><span class="texttt">b</span></span> is declared to be a pointer to a 2-dimensional array with dimension sizes 10 and 10. The sixth
+example refers to all elements of the 2-dimensional array given by <span class="textbf"><span class="texttt">b[10]</span></span>. The seventh example is a
+zero-length array section.
+</p> 
+<p>Assume <span class="textbf"><span class="texttt">c</span></span> is declared to be a 3-dimensional array with dimension sizes 50, 50, and 50. The eighth example
+is contiguous, while the ninth and tenth examples are not contiguous.
+</p> 
+<p>The final four examples show array sections that are formed from more general base expressions.
+</p> 
+<p>The following are examples that are non-conforming array sections:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35032r1"></a></span></p> 
+<!--l. 532--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35033r2"></a></span><span 
+class="pcrb8t-">s</span><span 
+class="pcrb8t-">[:10].</span><span 
+class="pcrb8t-">x</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35034r3"></a></span><span 
+class="pcrb8t-">p</span><span 
+class="pcrb8t-">[:10]-&#x003E;</span><span 
+class="pcrb8t-">y</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35035r4"></a></span><span 
+class="pcrb8t-">*(</span><span 
+class="pcrb8t-">xp</span><span 
+class="pcrb8t-">[:10])</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x36-35036r5"></a></span></pre>
+<p>For all three examples, a base language operator is applied in an undefined manner to an array section. The only
+operator that may be applied to an array section is a subscript operator for which the array section appears as the postfix
+expression. <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Fortran has built-in support for array sections although some restrictions apply to their use in OpenMP
+directives, as enumerated in the following section.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-36-42"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to array sections are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  An
+  array
+  section
+  can
+  appear
+  only
+  in
+  clauses
+  for
+  which
+  it
+  is
+  explicitly
+  allowed.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">stride</span></span>
+  expression
+  may
+  not
+  be
+  specified
+  unless
+  otherwise
+  stated.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> An element of an array section with a non-zero size must have a complete type.
+<span 
+class="cmsy-10">&#x2219;</span> The base expression of an array section must have an array or pointer type.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> If a consecutive sequence of array subscript expressions appears in an array section, and the first subscript
+  expression in the sequence uses the extended array section syntax defined in this section, then only
+  the last subscript expression in the sequence may select array elements that have a pointer
+  type.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the type of the base expression of an array section is a reference to a type <span class="textit"><span class="textrm">T</span></span>, then the type will be
+  considered to be <span class="textit"><span class="textrm">T</span></span> for all purposes of the array section.
+<span 
+class="cmsy-10">&#x2219;</span> An array section cannot be used in an overloaded <span class="textbf"><span class="texttt">[]</span></span> operator.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If a stride expression is specified, it must be positive.
+<span 
+class="cmsy-10">&#x2219;</span> The upper bound for the last dimension of an assumed-size dummy array must be specified.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item is an array section with vector subscripts, the first array element must be the lowest in the
+  array element order of the array section.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item is an array section, the last <span class="textit"><span class="textrm">part-ref</span></span> of the list item must have a section subscript
+  list.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<!--l. 590--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu22.html" >next</a>] [<a 
+href="openmpsu20.html" >prev</a>] [<a 
+href="openmpsu20.html#tailopenmpsu20.html" >prev-tail</a>] [<a 
+href="openmpsu21.html" >front</a>] [<a 
+href="openmpse9.html#openmpsu21.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu21.html"></a> </p> 
+ 
+</body> 
+</html>

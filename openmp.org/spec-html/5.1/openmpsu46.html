@@ -1,0 +1,115 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Consistent Loop Schedules</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 534--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu47.html" >next</a>] [<a 
+href="openmpsu45.html" >prev</a>] [<a 
+href="openmpsu45.html#tailopenmpsu45.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu46.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu46.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.2</span>&#x00A0;&#x00A0;<a 
+ id="x71-710002.11.2"></a>Consistent Loop Schedules</h4>
+<a 
+ id="dx71-71001"></a>
+<p>For constructs formed from loop-associated directives that have consistent schedules, the implementation
+will guarantee that memory effects of a logical iteration in the first loop nest happen before the execution of
+the same logical iteration in the second loop nest.
+</p> 
+<p>Two constructs formed from loop-associated directives have consistent schedules if all of the following
+                                                                            
+                                                                            
+conditions hold:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  constructs
+  are
+  formed
+  from
+  directives
+  with
+  the
+  same
+  directive
+  name;
+  </li>
+  <li class="itemize">
+  The
+  regions
+  that
+  correspond
+  to
+  the
+  two
+  constructs
+  have
+  the
+  same
+  binding
+  region;
+  </li>
+  <li class="itemize">
+  The
+  constructs
+  have
+  the
+  same
+  reproducible
+                                                                            
+                                                                            
+  schedule;
+  </li>
+  <li class="itemize">
+  The
+  associated
+  loop
+  nests
+  have
+  identical
+  logical
+  iteration
+  vector
+  spaces;
+  and
+  </li>
+  <li class="itemize">
+  The
+  associated
+  loop
+  nests
+  are
+  either
+  both
+  rectangular
+  or
+  both
+  non-rectangular.</li></ul>
+<!--l. 554--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu47.html" >next</a>] [<a 
+href="openmpsu45.html" >prev</a>] [<a 
+href="openmpsu45.html#tailopenmpsu45.html" >prev-tail</a>] [<a 
+href="openmpsu46.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu46.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu46.html"></a> </p> 
+ 
+</body> 
+</html>

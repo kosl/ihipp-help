@@ -1,0 +1,895 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>threadprivate Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 320--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu115.html" >next</a>] [<a 
+href="openmpsu113.html" >prev</a>] [<a 
+href="openmpsu113.html#tailopenmpsu113.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu114.html">tail</a>] [<a 
+href="openmpse29.html#openmpsu114.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.21.2</span>&#x00A0;&#x00A0;<a 
+ id="x149-1630002.21.2"></a><span class="textbf"><span class="texttt">threadprivate</span></span> Directive</h4>
+<a 
+ id="dx149-163001"></a>
+<a 
+ id="dx149-163002"></a>
+<p><p><a 
+ id="Q1-149-696"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">threadprivate</span></span> directive specifies that variables are replicated, with each thread having its own
+copy. The <span class="textbf"><span class="texttt">threadprivate</span></span> directive is a declarative directive.
+<p><a 
+ id="Q1-149-697"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">threadprivate</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x149-163003r1"></a></span></p> 
+<!--l. 333--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x149-163004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">threadprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x149-163005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">list</span></span> is a comma-separated list of file-scope, namespace-scope, or static block-scope variables that do
+not have incomplete types.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">threadprivate</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x149-163006r1"></a></span></p> 
+<!--l. 344--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x149-163007r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">threadprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x149-163008r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">list</span></span> is a comma-separated list of named variables and named common blocks. Common block names
+must appear between slashes.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-149-698"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Unless otherwise specified, each copy of a threadprivate variable is initialized once, in the manner specified
+by the program, but at an unspecified point in the program prior to the first reference to that copy. The
+storage of all copies of a threadprivate variable is freed according to how static variables are handled in the
+base language, but at an unspecified point in the program.
+                                                                            
+                                                                            
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Each copy of a block-scope threadprivate variable that has a dynamic initializer is initialized the first time its
+thread encounters its definition; if its thread does not encounter its definition, its initialization is
+unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The content of a threadprivate variable can change across a task scheduling point if the executing thread
+switches to another task that modifies the variable. For more details on task scheduling, see Section&#x00A0;<a 
+href="openmpse3.html#x16-150001.3">1.3<!--tex4ht:ref: sec:Execution Model --></a> and
+Section&#x00A0;<a 
+href="openmpse20.html#x79-890002.12">2.12<!--tex4ht:ref: sec:Tasking Constructs --></a>.
+</p> 
+<p>In <span class="textbf"><span class="texttt">parallel</span></span> regions, references by the primary thread will be to the copy of the variable in the thread that
+encountered the <span class="textbf"><span class="texttt">parallel</span></span> region.
+</p> 
+<p>During a sequential part references will be to the initial thread&#8217;s copy of the variable. The values of data in
+the initial thread&#8217;s copy of a threadprivate variable are guaranteed to persist between any two
+consecutive references to the variable in the program provided that no <span class="textbf"><span class="texttt">teams</span></span> construct that is not
+nested inside of a <span class="textbf"><span class="texttt">target</span></span> construct is encountered between the references and that the initial
+thread is not nested inside of a <span class="textbf"><span class="texttt">teams</span></span> region. For initial threads nested inside of a <span class="textbf"><span class="texttt">teams</span></span>
+region, the values of data in the copies of a threadprivate variable of those initial threads are
+guaranteed to persist between any two consecutive references to the variable inside of that <span class="textbf"><span class="texttt">teams</span></span>
+region.
+</p> 
+<p>The values of data in the threadprivate variables of threads that are not initial threads are guaranteed to
+persist between two consecutive active <span class="textbf"><span class="texttt">parallel</span></span> regions only if all of the following conditions
+hold:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Neither
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  is
+  nested
+  inside
+  another
+  explicit
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  The
+  number
+  of
+  threads
+  used
+  to
+  execute
+  both
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  is
+  the
+  same;
+  </li>
+  <li class="itemize">
+  The
+  thread
+  affinity
+  policies
+  used
+  to
+  execute
+  both
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  are
+  the
+  same;
+  </li>
+  <li class="itemize">
+  The
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">dyn-var</span></span>
+  internal
+  control
+                                                                            
+                                                                            
+  variable
+  in
+  the
+  enclosing
+  task
+  region
+  is
+  <span class="textit"><span class="textrm">false</span></span>
+  at
+  entry
+  to
+  both
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions;
+  </li>
+  <li class="itemize">
+  No
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  that
+  is
+  not
+  nested
+  inside
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  is
+  encountered
+  between
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions;
+  </li>
+  <li class="itemize">
+  No
+  construct
+  with
+  an
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>
+  is
+  encountered
+  between
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions;
+  and
+  </li>
+  <li class="itemize">
+  Neither
+  the
+  <span class="textbf"><span class="texttt">omp_pause_resource</span></span>
+  nor
+  <span class="textbf"><span class="texttt">omp_pause_resource_all</span></span>
+  routine
+  is
+  called.</li></ul>
+<p>If these conditions all hold, and if a threadprivate variable is referenced in both regions, then threads
+with the same thread number in their respective regions will reference the same copy of that
+variable.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the above conditions hold, the storage duration, lifetime, and value of a thread&#8217;s copy of a threadprivate
+variable that does not appear in any <span class="textbf"><span class="texttt">copyin</span></span> clause on the second region will span the two consecutive
+active <span class="textbf"><span class="texttt">parallel</span></span> regions. Otherwise, the storage duration, lifetime, and value of a thread&#8217;s copy of the
+variable in the second region is unspecified.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the above conditions hold, the definition, association, or allocation status of a thread&#8217;s copy of a
+threadprivate variable or a variable in a threadprivate common block that is not affected by any <span class="textbf"><span class="texttt">copyin</span></span>
+clause that appears on the second region (a variable is affected by a <span class="textbf"><span class="texttt">copyin</span></span> clause if the variable appears
+in the <span class="textbf"><span class="texttt">copyin</span></span> clause or it is in a common block that appears in the <span class="textbf"><span class="texttt">copyin</span></span> clause) will span the two
+consecutive active <span class="textbf"><span class="texttt">parallel</span></span> regions. Otherwise, the definition and association status of a thread&#8217;s copy of
+the variable in the second region are undefined, and the allocation status of an allocatable variable will be
+implementation defined.
+</p> 
+<p>If a threadprivate variable or a variable in a threadprivate common block is not affected by any <span class="textbf"><span class="texttt">copyin</span></span>
+clause that appears on the first <span class="textbf"><span class="texttt">parallel</span></span> region in which it is referenced, the thread&#8217;s copy of the variable
+inherits the declared type parameter and the default parameter values from the original variable. The
+variable or any subobject of the variable is initially defined or undefined according to the following
+rules:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  it
+  has
+  the
+  <span class="textbf"><span class="texttt">ALLOCATABLE</span></span>
+  attribute,
+  each
+  copy
+  created
+  will
+  have
+  an
+  initial
+  allocation
+  status
+  of
+  unallocated;
+  </li>
+  <li class="itemize">
+  If
+  it
+  has
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">POINTER</span></span>
+  attribute,
+  each
+  copy
+  will
+  have
+  the
+  same
+  association
+  status
+  as
+  the
+  initial
+  association
+  status.
+  </li>
+  <li class="itemize">
+  If
+  it
+  does
+  not
+  have
+  either
+  the
+  <span class="textbf"><span class="texttt">POINTER</span></span>
+  or
+  the
+  <span class="textbf"><span class="texttt">ALLOCATABLE</span></span>
+  attribute:
+    <ul class="itemize2">
+    <li class="itemize">
+    If
+    it
+    is
+    initially
+    defined,
+    either
+    through
+    explicit
+    initialization
+                                                                            
+                                                                            
+    or
+    default
+    initialization,
+    each
+    copy
+    created
+    is
+    so
+    defined;
+    </li>
+    <li class="itemize">
+    Otherwise,
+    each
+    copy
+    created
+    is
+    undefined.</li></ul>
+  </li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The address of a threadprivate variable may not be an address constant.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The order in which any constructors for different threadprivate variables of class type are called is
+unspecified. The order in which any destructors for different threadprivate variables of class type are called
+is unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-149-699"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">threadprivate</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  thread
+  must
+  not
+  reference
+  another
+  thread&#8217;s
+  copy
+  of
+  a
+  threadprivate
+  variable.
+  </li>
+  <li class="itemize">
+  A
+  threadprivate
+  variable
+  must
+  not
+  appear
+  in
+  any
+  clause
+  except
+  the
+  <span class="textbf"><span class="texttt">copyin</span></span>,
+  <span class="textbf"><span class="texttt">copyprivate</span></span>,
+  <span class="textbf"><span class="texttt">schedule</span></span>,
+  <span class="textbf"><span class="texttt">num_threads</span></span>,
+  <span class="textbf"><span class="texttt">thread_limit</span></span>,
+  and
+  <span class="textbf"><span class="texttt">if</span></span>
+  clauses.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  A
+  program
+  in
+  which
+  an
+  untied
+  task
+  accesses
+  threadprivate
+  storage
+  is
+  non-conforming.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the value of a variable referenced in an explicit initializer of a threadprivate variable is modified
+  prior to the first reference to any instance of the threadprivate variable, then the behavior is
+  unspecified.
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is part of another variable (as an array or structure element) cannot appear in a
+  <span class="textbf"><span class="texttt">threadprivate</span></span> directive unless it is a static data member of a C++ class.
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textbf"><span class="texttt">threadprivate</span></span> directive for file-scope variables must appear outside any definition or declaration,
+  and must lexically precede all references to any of the variables in its list.
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textbf"><span class="texttt">threadprivate</span></span> directive for namespace-scope variables must appear outside any definition or
+  declaration other than the namespace definition itself, and must lexically precede all references to any of
+  the variables in its list.
+<span 
+class="cmsy-10">&#x2219;</span> Each variable in the list of a <span class="textbf"><span class="texttt">threadprivate</span></span> directive at file, namespace, or class scope must
+  refer to a variable declaration at file, namespace, or class scope that lexically precedes the
+  directive.
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textbf"><span class="texttt">threadprivate</span></span> directive for static block-scope variables must appear in the scope of the variable
+  and not in a nested scope. The directive must lexically precede all references to any of the variables in its
+  list.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> Each variable in the list of a <span class="textbf"><span class="texttt">threadprivate</span></span> directive in block scope must refer to a variable
+  declaration in the same scope that lexically precedes the directive. The variable must have static storage
+  duration.
+<span 
+class="cmsy-10">&#x2219;</span> If a variable is specified in a <span class="textbf"><span class="texttt">threadprivate</span></span> directive in one translation unit, it must be specified in a
+  <span class="textbf"><span class="texttt">threadprivate</span></span> directive in every translation unit in which it is declared.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textbf"><span class="texttt">threadprivate</span></span> directive for static class member variables must appear in the class definition, in
+  the same scope in which the member variables are declared, and must lexically precede all references to
+  any of the variables in its list.
+<span 
+class="cmsy-10">&#x2219;</span> A threadprivate variable must not have an incomplete type or a reference type.
+<span 
+class="cmsy-10">&#x2219;</span> A threadprivate variable with class type must have:
+  </p> 
+
+    <ul class="itemize2">
+    <li class="itemize">
+    An
+    accessible,
+    unambiguous
+    default
+    constructor
+    in
+    the
+    case
+    of
+    default
+    initialization
+    without
+    a
+    given
+    initializer;
+                                                                            
+                                                                            
+    </li>
+    <li class="itemize">
+    An
+    accessible,
+    unambiguous
+    constructor
+    that
+    accepts
+    the
+    given
+    argument
+    in
+    the
+    case
+    of
+    direct
+    initialization;
+    and
+    </li>
+    <li class="itemize">
+    An
+    accessible,
+    unambiguous
+    copy
+    constructor
+    in
+    the
+    case
+    of
+    copy
+    initialization
+    with
+    an
+    explicit
+    initializer.</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  <p></div></div></p> 
+</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  variable
+  that
+  is
+  part
+  of
+  another
+  variable
+  (as
+  an
+  array,
+  structure
+  element
+  or
+  type
+  parameter
+  inquiry)
+  cannot
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  coarray
+  cannot
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  An
+  associate
+  name
+  cannot
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive
+  must
+  appear
+  in
+  the
+  declaration
+  section
+  of
+  a
+  scoping
+  unit
+  in
+  which
+  the
+  common
+  block
+  or
+  variable
+  is
+  declared.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive
+                                                                            
+                                                                            
+  that
+  specifies
+  a
+  common
+  block
+  name
+  appears
+  in
+  one
+  program
+  unit,
+  then
+  such
+  a
+  directive
+  must
+  also
+  appear
+  in
+  every
+  other
+  program
+  unit
+  that
+  contains
+  a
+  <span class="textbf"><span class="texttt">COMMON</span></span>
+  statement
+  that
+  specifies
+  the
+  same
+  name.
+  It
+  must
+  appear
+  after
+  the
+  last
+  such
+  <span class="textbf"><span class="texttt">COMMON</span></span>
+  statement
+  in
+                                                                            
+                                                                            
+  the
+  program
+  unit.
+  </li>
+  <li class="itemize">
+  If
+  a
+  threadprivate
+  variable
+  or
+  a
+  threadprivate
+  common
+  block
+  is
+  declared
+  with
+  the
+  <span class="textbf"><span class="texttt">BIND</span></span>
+  attribute,
+  the
+  corresponding
+  C
+  entities
+  must
+  also
+  be
+  specified
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive
+  in
+  the
+  C
+  program.
+  </li>
+  <li class="itemize">
+  A
+  variable
+                                                                            
+                                                                            
+  can
+  only
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive
+  in
+  the
+  scope
+  in
+  which
+  it
+  is
+  declared.
+  It
+  must
+  not
+  be
+  an
+  element
+  of
+  a
+  common
+  block
+  or
+  appear
+  in
+  an
+  <span class="textbf"><span class="texttt">EQUIVALENCE</span></span>
+  statement.
+  </li>
+  <li class="itemize">
+  A
+  variable
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive
+  must
+                                                                            
+                                                                            
+  be
+  declared
+  in
+  the
+  scope
+  of
+  a
+  module
+  or
+  have
+  the
+  <span class="textbf"><span class="texttt">SAVE</span></span>
+  attribute,
+  either
+  explicitly
+  or
+  implicitly.
+  </li>
+  <li class="itemize">
+  The
+  effect
+  of
+  an
+  access
+  to
+  a
+  threadprivate
+  variable
+  in
+  a
+  <span class="textbf"><span class="texttt">DO</span></span>&#x00A0;<span class="textbf"><span class="texttt">CONCURRENT</span></span>
+  construct
+  is
+  unspecified.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-149-700"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">dyn-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  Number
+  of
+  threads
+  used
+  to
+  execute
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region,
+  see
+  Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu118.html#x153-1810002.21.6.1">2.21.6.1<!--tex4ht:ref: subsubsec:copyin clause --></a>.</li></ul>
+<!--l. 572--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu115.html" >next</a>] [<a 
+href="openmpsu113.html" >prev</a>] [<a 
+href="openmpsu113.html#tailopenmpsu113.html" >prev-tail</a>] [<a 
+href="openmpsu114.html" >front</a>] [<a 
+href="openmpse29.html#openmpsu114.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu114.html"></a> </p> 
+ 
+</body> 
+</html>

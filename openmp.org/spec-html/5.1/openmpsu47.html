@@ -1,0 +1,262 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>order Clause</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 554--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu48.html" >next</a>] [<a 
+href="openmpsu46.html" >prev</a>] [<a 
+href="openmpsu46.html#tailopenmpsu46.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu47.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu47.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.3</span>&#x00A0;&#x00A0;<a 
+ id="x72-720002.11.3"></a><span class="textbf"><span class="texttt">order</span></span> Clause</h4>
+<a 
+ id="dx72-72001"></a>
+<p><p><a 
+ id="Q1-72-187"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">order</span></span> clause specifies an expected order of execution for the iterations of the associated loops of a
+loop-associated directive.
+<p><a 
+ id="Q1-72-188"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">order</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x72-72002r1"></a></span></p> 
+<!--l. 565--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x72-72003r2"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x72-72004r3"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">order-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x72-72005r1"></a></span></p> 
+<!--l. 573--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x72-72006r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">reproducible</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x72-72007r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">unconstrained</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x72-72008r4"></a></span></pre>
+<p><p><a 
+ id="Q1-72-189"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">order</span></span> clause specifies an expected order of execution for the iterations of the associated loops of a
+loop-associated directive. The specified order must be <span class="textbf"><span class="texttt">concurrent</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">order</span></span> clause is part of the schedule specification for the purpose of determining its consistency with
+other schedules (see Section&#x00A0;<a 
+href="openmpsu46.html#x71-710002.11.2">2.11.2<!--tex4ht:ref: subsec:Consistent Loop Schedules --></a>).
+</p> 
+<p>If the <span class="textbf"><span class="texttt">order</span></span> clause specifies <span class="textbf"><span class="texttt">concurrent</span></span>, the logical iterations of the associated loops may execute in
+any order, including concurrently.
+</p> 
+<p>If <span class="textit"><span class="textrm">order-modifier</span></span> is not <span class="textbf"><span class="texttt">unconstrained</span></span>, the behavior is as if the <span class="textbf"><span class="texttt">reproducible</span></span> modifier is
+present.
+</p> 
+<p>The specified schedule is reproducible if the <span class="textbf"><span class="texttt">reproducible</span></span> modifier is present.
+</p> 
+<p><p><a 
+ id="Q1-72-190"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">order</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  only
+  constructs
+  that
+  may
+  be
+  encountered
+  inside
+  a
+  region
+  that
+  corresponds
+  to
+  a
+  construct
+  with
+                                                                            
+                                                                            
+  an
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>
+  are
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct,
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  and
+  combined
+  constructs
+  for
+  which
+  the
+  first
+  construct
+  is
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  region
+  that
+  corresponds
+  to
+  a
+  construct
+  with
+  an
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+                                                                            
+                                                                            
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>
+  may
+  not
+  contain
+  calls
+  to
+  procedures
+  that
+  contain
+  OpenMP
+  directives.
+  </li>
+  <li class="itemize">
+  A
+  region
+  that
+  corresponds
+  to
+  a
+  construct
+  with
+  an
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>
+  may
+  not
+  contain
+  calls
+  to
+  the
+  OpenMP
+  Runtime
+  API.
+  </li>
+  <li class="itemize">
+  If
+                                                                            
+                                                                            
+  a
+  threadprivate
+  variable
+  is
+  referenced
+  inside
+  a
+  region
+  that
+  corresponds
+  to
+  a
+  construct
+  with
+  an
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>,
+  the
+  behavior
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  may
+  appear
+  on
+  a
+  construct.</li></ul>
+<!--l. 617--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu48.html" >next</a>] [<a 
+href="openmpsu46.html" >prev</a>] [<a 
+href="openmpsu46.html#tailopenmpsu46.html" >prev-tail</a>] [<a 
+href="openmpsu47.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu47.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu47.html"></a> </p> 
+ 
+</body> 
+</html>

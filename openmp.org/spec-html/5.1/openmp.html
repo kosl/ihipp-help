@@ -1,0 +1,953 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script>
+<title></title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div>
+</p> 
+<div class="titlepage">
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+<p>
+                                                                            
+                                                                            
+</p> 
+
+<div class="flushleft" 
+>
+<p>
+<img 
+src="openmp-logo.png" alt="PIC"  
+ /></p> 
+</div>
+<dl class="list1"><dt class="list">
+</dt><dd 
+class="list">
+<p>
+</p> 
+<p><span class="textsf">OpenMP<br />
+Application Programming<br />
+Interface</span>
+</p> 
+<p><span class="textsf"></span>
+</p> 
+<p><span class="textbf"></span>
+</p> 
+</dd></dl>
+                                                                            
+<p><span class="textsf">This HTML version of the specification is a translation from the official <a href="https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf" target="_blank">PDF 
+specification</a>. If the translation process has introduced any differences, the 
+official PDF version takes precedent.</span></p>
+                                                                            
+<dl class="list1"><dt class="list">
+</dt><dd 
+class="list">
+<p>Copyright
+<span 
+class="cmsy-10">©</span>1997-2020
+OpenMP
+Architecture
+Review
+Board.<br 
+class="newline" />Permission
+to
+copy
+without
+fee
+all
+or
+part
+of
+this
+material
+is
+granted,
+provided
+the
+OpenMP
+Architecture
+Review
+Board
+copyright
+notice
+and
+the
+title
+of
+this
+document
+appear.
+Notice
+is
+given
+that
+copying
+is
+                                                                            
+                                                                            
+by
+permission
+of
+the
+OpenMP
+Architecture
+Review
+Board.</p> 
+</dd></dl>
+                                                                            
+                                                                            
+</div>
+                                                                            
+                                                                            
+<p>
+</p> 
+<p>This page intentionally left blank in published version.
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+</p> 
+<p>
+                                                                            
+                                                                            
+</p> 
+<p><a 
+ id="chapter*.1"></a>
+</p> 
+<p>
+</p> 
+<div class="tableofcontents">
+<span class="likechapterToc" ><a 
+href="openmpli1.html#x2-1000" id="QQ2-2-1">Contents</a></span>
+<br /><span class="likechapterToc" ><a 
+href="openmpli2.html#x3-2000" id="QQ2-3-2">List of Figures</a></span>
+<br /><span class="likechapterToc" ><a 
+href="openmpli3.html#x4-3000" id="QQ2-4-3">List of Tables</a></span>
+<br /><span class="chapterToc" >1&#x00A0;&#x00A0;<a 
+href="openmpch1.html#x5-40001" id="QQ2-5-4">Overview of the OpenMP API</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.1&#x00A0;&#x00A0;<a 
+href="openmpse1.html#x6-50001.1" id="QQ2-6-5">Scope</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.2&#x00A0;&#x00A0;<a 
+href="openmpse2.html#x7-60001.2" id="QQ2-7-6">Glossary</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu1.html#x8-70001.2.1" id="QQ2-8-7">Threading Concepts</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu2.html#x9-80001.2.2" id="QQ2-9-8">OpenMP Language Terminology</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu3.html#x10-90001.2.3" id="QQ2-10-9">Loop Terminology</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu4.html#x11-100001.2.4" id="QQ2-11-10">Synchronization Terminology</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu5.html#x12-110001.2.5" id="QQ2-12-11">Tasking Terminology</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.6&#x00A0;&#x00A0;<a 
+href="openmpsu6.html#x13-120001.2.6" id="QQ2-13-12">Data Terminology</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.7&#x00A0;&#x00A0;<a 
+href="openmpsu7.html#x14-130001.2.7" id="QQ2-14-13">Implementation Terminology</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.2.8&#x00A0;&#x00A0;<a 
+href="openmpsu8.html#x15-140001.2.8" id="QQ2-15-14">Tool Terminology</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.3&#x00A0;&#x00A0;<a 
+href="openmpse3.html#x16-150001.3" id="QQ2-16-15">Execution Model</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.4&#x00A0;&#x00A0;<a 
+href="openmpse4.html#x17-160001.4" id="QQ2-17-16">Memory Model</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu9.html#x18-170001.4.1" id="QQ2-18-17">Structure of the OpenMP Memory Model</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu10.html#x19-180001.4.2" id="QQ2-19-18">Device Data Environments</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu11.html#x20-190001.4.3" id="QQ2-20-19">Memory Management</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu12.html#x21-200001.4.4" id="QQ2-21-20">The Flush Operation</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu13.html#x22-210001.4.5" id="QQ2-22-21">Flush Synchronization and <span class="emph">Happens Before</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.4.6&#x00A0;&#x00A0;<a 
+href="openmpsu14.html#x23-220001.4.6" id="QQ2-23-22">OpenMP Memory Consistency</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.5&#x00A0;&#x00A0;<a 
+href="openmpse5.html#x24-230001.5" id="QQ2-24-23">Tool Interfaces</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu15.html#x25-240001.5.1" id="QQ2-25-24">OMPT</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >1.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu16.html#x26-250001.5.2" id="QQ2-26-25">OMPD</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.6&#x00A0;&#x00A0;<a 
+href="openmpse6.html#x27-260001.6" id="QQ2-27-26">OpenMP Compliance</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.7&#x00A0;&#x00A0;<a 
+href="openmpse7.html#x28-270001.7" id="QQ2-28-27">Normative References</a></span>
+<br />&#x00A0;<span class="sectionToc" >1.8&#x00A0;&#x00A0;<a 
+href="openmpse8.html#x29-280001.8" id="QQ2-29-28">Organization of this Document</a></span>
+<br /><span class="chapterToc" >2&#x00A0;&#x00A0;<a 
+href="openmpch2.html#x30-290002" id="QQ2-30-29">Directives</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.1&#x00A0;&#x00A0;<a 
+href="openmpse9.html#x31-300002.1" id="QQ2-31-31">Directive Format</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.1&#x00A0;&#x00A0;<a 
+href="openmpsu17.html#x32-310002.1.1" id="QQ2-32-33">Fixed Source Form Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.2&#x00A0;&#x00A0;<a 
+href="openmpsu18.html#x33-320002.1.2" id="QQ2-33-34">Free Source Form Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.3&#x00A0;&#x00A0;<a 
+href="openmpsu19.html#x34-330002.1.3" id="QQ2-34-35">Stand-Alone Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.4&#x00A0;&#x00A0;<a 
+href="openmpsu20.html#x35-340002.1.4" id="QQ2-35-39">Array Shaping</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.5&#x00A0;&#x00A0;<a 
+href="openmpsu21.html#x36-350002.1.5" id="QQ2-36-41">Array Sections</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.6&#x00A0;&#x00A0;<a 
+href="openmpsu22.html#x37-360002.1.6" id="QQ2-37-43">Iterators</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.2&#x00A0;&#x00A0;<a 
+href="openmpse10.html#x38-370002.2" id="QQ2-38-45">Conditional Compilation</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu23.html#x39-380002.2.1" id="QQ2-39-46">Fixed Source Form Conditional Compilation Sentinels</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu24.html#x40-390002.2.2" id="QQ2-40-47">Free Source Form Conditional Compilation Sentinel</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.3&#x00A0;&#x00A0;<a 
+href="openmpse11.html#x41-400002.3" id="QQ2-41-48">Variant Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.1&#x00A0;&#x00A0;<a 
+href="openmpsu25.html#x42-410002.3.1" id="QQ2-42-49">OpenMP Context</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.2&#x00A0;&#x00A0;<a 
+href="openmpsu26.html#x43-420002.3.2" id="QQ2-43-50">Context Selectors</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.3&#x00A0;&#x00A0;<a 
+href="openmpsu27.html#x44-430002.3.3" id="QQ2-44-52">Matching and Scoring Context Selectors</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.4&#x00A0;&#x00A0;<a 
+href="openmpsu28.html#x45-440002.3.4" id="QQ2-45-53">Metadirectives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.5&#x00A0;&#x00A0;<a 
+href="openmpsu29.html#x46-450002.3.5" id="QQ2-46-58">Declare Variant Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.6&#x00A0;&#x00A0;<a 
+href="openmpsu30.html#x47-460002.3.6" id="QQ2-47-64"><span class="textbf"><span class="texttt">dispatch</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.4&#x00A0;&#x00A0;<a 
+href="openmpse12.html#x48-470002.4" id="QQ2-48-71">Internal Control Variables</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1" id="QQ2-49-72">ICV Descriptions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu32.html#x50-490002.4.2" id="QQ2-50-73">ICV Initialization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu33.html#x51-500002.4.3" id="QQ2-51-77">Modifying and Retrieving ICV Values</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu34.html#x52-510002.4.4" id="QQ2-52-81">How ICVs are Scoped</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu35.html#x53-530002.4.5" id="QQ2-53-85">ICV Override Relationships</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.5&#x00A0;&#x00A0;<a 
+href="openmpse13.html#x54-540002.5" id="QQ2-54-89">Informational and Utility Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu36.html#x55-550002.5.1" id="QQ2-55-90"><span class="textbf"><span class="texttt">requires</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu37.html#x56-560002.5.2" id="QQ2-56-95">Assume Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.3&#x00A0;&#x00A0;<a 
+href="openmpsu38.html#x57-570002.5.3" id="QQ2-57-100"><span class="textbf"><span class="texttt">nothing</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.4&#x00A0;&#x00A0;<a 
+href="openmpsu39.html#x58-580002.5.4" id="QQ2-58-105"><span class="textbf"><span class="texttt">error</span></span> Directive</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.6&#x00A0;&#x00A0;<a 
+href="openmpse14.html#x59-590002.6" id="QQ2-59-113"><span class="textbf"><span class="texttt">parallel</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1" id="QQ2-60-122">Determining the Number of Threads for a <span class="textbf"><span class="texttt">parallel</span></span> Region</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2" id="QQ2-61-124">Controlling OpenMP Thread Affinity</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.7&#x00A0;&#x00A0;<a 
+href="openmpse15.html#x62-620002.7" id="QQ2-62-125"><span class="textbf"><span class="texttt">teams</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.8&#x00A0;&#x00A0;<a 
+href="openmpse16.html#x63-630002.8" id="QQ2-63-134"><span class="textbf"><span class="texttt">masked</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.9&#x00A0;&#x00A0;<a 
+href="openmpse17.html#x64-640002.9" id="QQ2-64-143"><span class="textbf"><span class="texttt">scope</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.10&#x00A0;&#x00A0;<a 
+href="openmpse18.html#x65-650002.10" id="QQ2-65-152">Worksharing Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.1&#x00A0;&#x00A0;<a 
+href="openmpsu42.html#x66-660002.10.1" id="QQ2-66-154"><span class="textbf"><span class="texttt">sections</span></span> Construct</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.2&#x00A0;&#x00A0;<a 
+href="openmpsu43.html#x67-670002.10.2" id="QQ2-67-163"><span class="textbf"><span class="texttt">single</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.3&#x00A0;&#x00A0;<a 
+href="openmpsu44.html#x68-680002.10.3" id="QQ2-68-172"><span class="textbf"><span class="texttt">workshare</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.11&#x00A0;&#x00A0;<a 
+href="openmpse19.html#x69-690002.11" id="QQ2-69-181">Loop-Related Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.1&#x00A0;&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1" id="QQ2-70-182">Canonical Loop Nest Form</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.2&#x00A0;&#x00A0;<a 
+href="openmpsu46.html#x71-710002.11.2" id="QQ2-71-185">Consistent Loop Schedules</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.3&#x00A0;&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3" id="QQ2-72-186"><span class="textbf"><span class="texttt">order</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.4&#x00A0;&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4" id="QQ2-73-191">Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.5&#x00A0;&#x00A0;<a 
+href="openmpsu49.html#x74-750002.11.5" id="QQ2-74-205">SIMD Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.6&#x00A0;&#x00A0;<a 
+href="openmpsu50.html#x75-790002.11.6" id="QQ2-75-227"><span class="textbf"><span class="texttt">distribute</span></span> Loop Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.7&#x00A0;&#x00A0;<a 
+href="openmpsu51.html#x76-840002.11.7" id="QQ2-76-261"><span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.8&#x00A0;&#x00A0;<a 
+href="openmpsu52.html#x77-850002.11.8" id="QQ2-77-268"><span class="textbf"><span class="texttt">scan</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.9&#x00A0;&#x00A0;<a 
+href="openmpsu53.html#x78-860002.11.9" id="QQ2-78-274">Loop Transformation Constructs</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.12&#x00A0;&#x00A0;<a 
+href="openmpse20.html#x79-890002.12" id="QQ2-79-288">Tasking Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.1&#x00A0;&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1" id="QQ2-80-289"><span class="textbf"><span class="texttt">task</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.2&#x00A0;&#x00A0;<a 
+href="openmpsu55.html#x81-910002.12.2" id="QQ2-81-299"><span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.3&#x00A0;&#x00A0;<a 
+href="openmpsu56.html#x82-920002.12.3" id="QQ2-82-308"><span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.4&#x00A0;&#x00A0;<a 
+href="openmpsu57.html#x83-930002.12.4" id="QQ2-83-317"><span class="textbf"><span class="texttt">taskyield</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.5&#x00A0;&#x00A0;<a 
+href="openmpsu58.html#x84-940002.12.5" id="QQ2-84-323">Initial Task</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.6&#x00A0;&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6" id="QQ2-85-327">Task Scheduling</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.13&#x00A0;&#x00A0;<a 
+href="openmpse21.html#x86-960002.13" id="QQ2-86-331">Memory Management Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.1&#x00A0;&#x00A0;<a 
+href="openmpsu60.html#x87-970002.13.1" id="QQ2-87-332">Memory Spaces</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.2&#x00A0;&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2" id="QQ2-88-336">Memory Allocators</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.3&#x00A0;&#x00A0;<a 
+href="openmpsu62.html#x89-990002.13.3" id="QQ2-89-340"><span class="textbf"><span class="texttt">allocate</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.4&#x00A0;&#x00A0;<a 
+href="openmpsu63.html#x90-1000002.13.4" id="QQ2-90-346"><span class="textbf"><span class="texttt">allocate</span></span> Clause</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >2.14&#x00A0;&#x00A0;<a 
+href="openmpse22.html#x91-1010002.14" id="QQ2-91-352">Device Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.1&#x00A0;&#x00A0;<a 
+href="openmpsu64.html#x92-1020002.14.1" id="QQ2-92-353">Device Initialization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.2&#x00A0;&#x00A0;<a 
+href="openmpsu65.html#x93-1030002.14.2" id="QQ2-93-358"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.3&#x00A0;&#x00A0;<a 
+href="openmpsu66.html#x94-1040002.14.3" id="QQ2-94-367"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.4&#x00A0;&#x00A0;<a 
+href="openmpsu67.html#x95-1050002.14.4" id="QQ2-95-376"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.5&#x00A0;&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5" id="QQ2-96-385"><span class="textbf"><span class="texttt">target</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.6&#x00A0;&#x00A0;<a 
+href="openmpsu69.html#x97-1070002.14.6" id="QQ2-97-394"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.7&#x00A0;&#x00A0;<a 
+href="openmpsu70.html#x98-1080002.14.7" id="QQ2-98-403">Declare Target Directive</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.15&#x00A0;&#x00A0;<a 
+href="openmpse23.html#x99-1090002.15" id="QQ2-99-411">Interoperability</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.15.1&#x00A0;&#x00A0;<a 
+href="openmpsu71.html#x100-1100002.15.1" id="QQ2-100-413"><span class="textbf"><span class="texttt">interop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.15.2&#x00A0;&#x00A0;<a 
+href="openmpsu72.html#x101-1110002.15.2" id="QQ2-101-420">Interoperability Requirement Set</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.16&#x00A0;&#x00A0;<a 
+href="openmpse24.html#x102-1120002.16" id="QQ2-102-422">Combined Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.1&#x00A0;&#x00A0;<a 
+href="openmpsu73.html#x103-1130002.16.1" id="QQ2-103-423">Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.2&#x00A0;&#x00A0;<a 
+href="openmpsu74.html#x104-1140002.16.2" id="QQ2-104-429"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.3&#x00A0;&#x00A0;<a 
+href="openmpsu75.html#x105-1150002.16.3" id="QQ2-105-435"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.4&#x00A0;&#x00A0;<a 
+href="openmpsu76.html#x106-1160002.16.4" id="QQ2-106-441"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">workshare</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.5&#x00A0;&#x00A0;<a 
+href="openmpsu77.html#x107-1170002.16.5" id="QQ2-107-447">Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.6&#x00A0;&#x00A0;<a 
+href="openmpsu78.html#x108-1180002.16.6" id="QQ2-108-453"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.7&#x00A0;&#x00A0;<a 
+href="openmpsu79.html#x109-1190002.16.7" id="QQ2-109-459"><span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.8&#x00A0;&#x00A0;<a 
+href="openmpsu80.html#x110-1200002.16.8" id="QQ2-110-465"><span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.9&#x00A0;&#x00A0;<a 
+href="openmpsu81.html#x111-1210002.16.9" id="QQ2-111-471"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.10&#x00A0;&#x00A0;<a 
+href="openmpsu82.html#x112-1220002.16.10" id="QQ2-112-476"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.11&#x00A0;&#x00A0;<a 
+href="openmpsu83.html#x113-1230002.16.11" id="QQ2-113-482"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.12&#x00A0;&#x00A0;<a 
+href="openmpsu84.html#x114-1240002.16.12" id="QQ2-114-488"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.13&#x00A0;&#x00A0;<a 
+href="openmpsu85.html#x115-1250002.16.13" id="QQ2-115-494">Teams Distribute Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.14&#x00A0;&#x00A0;<a 
+href="openmpsu86.html#x116-1260002.16.14" id="QQ2-116-500">Teams Distribute Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.15&#x00A0;&#x00A0;<a 
+href="openmpsu87.html#x117-1270002.16.15" id="QQ2-117-506"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.16&#x00A0;&#x00A0;<a 
+href="openmpsu88.html#x118-1280002.16.16" id="QQ2-118-512"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.17&#x00A0;&#x00A0;<a 
+href="openmpsu89.html#x119-1290002.16.17" id="QQ2-119-518">Target Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.18&#x00A0;&#x00A0;<a 
+href="openmpsu90.html#x120-1300002.16.18" id="QQ2-120-524">Target Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.19&#x00A0;&#x00A0;<a 
+href="openmpsu91.html#x121-1310002.16.19" id="QQ2-121-530"><span class="textbf"><span class="texttt">target</span></span><span class="textbf"><span class="texttt">parallel</span></span><span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.20&#x00A0;&#x00A0;<a 
+href="openmpsu92.html#x122-1320002.16.20" id="QQ2-122-536"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.21&#x00A0;&#x00A0;<a 
+href="openmpsu93.html#x123-1330002.16.21" id="QQ2-123-542"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.22&#x00A0;&#x00A0;<a 
+href="openmpsu94.html#x124-1340002.16.22" id="QQ2-124-548"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.23&#x00A0;&#x00A0;<a 
+href="openmpsu95.html#x125-1350002.16.23" id="QQ2-125-554"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.24&#x00A0;&#x00A0;<a 
+href="openmpsu96.html#x126-1360002.16.24" id="QQ2-126-560"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.25&#x00A0;&#x00A0;<a 
+href="openmpsu97.html#x127-1370002.16.25" id="QQ2-127-566">Target Teams Distribute Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.26&#x00A0;&#x00A0;<a 
+href="openmpsu98.html#x128-1380002.16.26" id="QQ2-128-572">Target Teams Distribute Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.17&#x00A0;&#x00A0;<a 
+href="openmpse25.html#x129-1390002.17" id="QQ2-129-578">Clauses on Combined and Composite Constructs</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.18&#x00A0;&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18" id="QQ2-130-579"><span class="textbf"><span class="texttt">if</span></span> Clause</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.19&#x00A0;&#x00A0;<a 
+href="openmpse27.html#x131-1410002.19" id="QQ2-131-583">Synchronization Constructs and Clauses</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.1&#x00A0;&#x00A0;<a 
+href="openmpsu99.html#x132-1420002.19.1" id="QQ2-132-584"><span class="textbf"><span class="texttt">critical</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.2&#x00A0;&#x00A0;<a 
+href="openmpsu100.html#x133-1430002.19.2" id="QQ2-133-593"><span class="textbf"><span class="texttt">barrier</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.3&#x00A0;&#x00A0;<a 
+href="openmpsu101.html#x134-1440002.19.3" id="QQ2-134-602">Implicit Barriers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.4&#x00A0;&#x00A0;<a 
+href="openmpsu102.html#x135-1450002.19.4" id="QQ2-135-607">Implementation-Specific Barriers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.5&#x00A0;&#x00A0;<a 
+href="openmpsu103.html#x136-1460002.19.5" id="QQ2-136-608"><span class="textbf"><span class="texttt">taskwait</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.6&#x00A0;&#x00A0;<a 
+href="openmpsu104.html#x137-1470002.19.6" id="QQ2-137-617"><span class="textbf"><span class="texttt">taskgroup</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.7&#x00A0;&#x00A0;<a 
+href="openmpsu105.html#x138-1480002.19.7" id="QQ2-138-625"><span class="textbf"><span class="texttt">atomic</span></span> Construct</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.8&#x00A0;&#x00A0;<a 
+href="openmpsu106.html#x139-1490002.19.8" id="QQ2-139-634"><span class="textbf"><span class="texttt">flush</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.9&#x00A0;&#x00A0;<a 
+href="openmpsu107.html#x140-1510002.19.9" id="QQ2-140-644"><span class="textbf"><span class="texttt">ordered</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.10&#x00A0;&#x00A0;<a 
+href="openmpsu108.html#x141-1520002.19.10" id="QQ2-141-653">Depend Objects</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.11&#x00A0;&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11" id="QQ2-142-661"><span class="textbf"><span class="texttt">depend</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.12&#x00A0;&#x00A0;<a 
+href="openmpsu110.html#x143-1550002.19.12" id="QQ2-143-669">Synchronization Hints</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.20&#x00A0;&#x00A0;<a 
+href="openmpse28.html#x144-1560002.20" id="QQ2-144-672">Cancellation Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.20.1&#x00A0;&#x00A0;<a 
+href="openmpsu111.html#x145-1570002.20.1" id="QQ2-145-673"><span class="textbf"><span class="texttt">cancel</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.20.2&#x00A0;&#x00A0;<a 
+href="openmpsu112.html#x146-1580002.20.2" id="QQ2-146-682"><span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.21&#x00A0;&#x00A0;<a 
+href="openmpse29.html#x147-1590002.21" id="QQ2-147-691">Data Environment</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.1&#x00A0;&#x00A0;<a 
+href="openmpsu113.html#x148-1600002.21.1" id="QQ2-148-692">Data-Sharing Attribute Rules</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.2&#x00A0;&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2" id="QQ2-149-695"><span class="textbf"><span class="texttt">threadprivate</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.3&#x00A0;&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3" id="QQ2-150-701">List Item Privatization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.4&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4" id="QQ2-151-703">Data-Sharing Attribute Clauses</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.5&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1720002.21.5" id="QQ2-152-735">Reduction Clauses and Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.6&#x00A0;&#x00A0;<a 
+href="openmpsu118.html#x153-1800002.21.6" id="QQ2-153-769">Data Copying Clauses</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.7&#x00A0;&#x00A0;<a 
+href="openmpsu119.html#x154-1830002.21.7" id="QQ2-154-782">Data-Mapping Attribute Rules, Clauses, and Directives</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.22&#x00A0;&#x00A0;<a 
+href="openmpse30.html#x155-1880002.22" id="QQ2-155-804">Nesting of Regions</a></span>
+<br /><span class="chapterToc" >3&#x00A0;&#x00A0;<a 
+href="openmpch3.html#x156-1890003" id="QQ2-156-805">Runtime Library Routines</a></span>
+<br />&#x00A0;<span class="sectionToc" >3.1&#x00A0;&#x00A0;<a 
+href="openmpse31.html#x157-1900003.1" id="QQ2-157-807">Runtime Library Definitions</a></span>
+<br />&#x00A0;<span class="sectionToc" >3.2&#x00A0;&#x00A0;<a 
+href="openmpse32.html#x158-1910003.2" id="QQ2-158-808">Thread Team Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu120.html#x159-1920003.2.1" id="QQ2-159-809"><span class="textbf"><span class="texttt">omp_set_num_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu121.html#x160-1930003.2.2" id="QQ2-160-816"><span class="textbf"><span class="texttt">omp_get_num_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu122.html#x161-1940003.2.3" id="QQ2-161-822"><span class="textbf"><span class="texttt">omp_get_max_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu123.html#x162-1950003.2.4" id="QQ2-162-828"><span class="textbf"><span class="texttt">omp_get_thread_num</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu124.html#x163-1960003.2.5" id="QQ2-163-834"><span class="textbf"><span class="texttt">omp_in_parallel</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.6&#x00A0;&#x00A0;<a 
+href="openmpsu125.html#x164-1970003.2.6" id="QQ2-164-840"><span class="textbf"><span class="texttt">omp_set_dynamic</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.7&#x00A0;&#x00A0;<a 
+href="openmpsu126.html#x165-1980003.2.7" id="QQ2-165-846"><span class="textbf"><span class="texttt">omp_get_dynamic</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.8&#x00A0;&#x00A0;<a 
+href="openmpsu127.html#x166-1990003.2.8" id="QQ2-166-852"><span class="textbf"><span class="texttt">omp_get_cancellation</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.9&#x00A0;&#x00A0;<a 
+href="openmpsu128.html#x167-2000003.2.9" id="QQ2-167-858"><span class="textbf"><span class="texttt">omp_set_nested</span></span> (Deprecated)</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.10&#x00A0;&#x00A0;<a 
+href="openmpsu129.html#x168-2010003.2.10" id="QQ2-168-864"><span class="textbf"><span class="texttt">omp_get_nested</span></span> (Deprecated)</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.11&#x00A0;&#x00A0;<a 
+href="openmpsu130.html#x169-2020003.2.11" id="QQ2-169-870"><span class="textbf"><span class="texttt">omp_set_schedule</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.12&#x00A0;&#x00A0;<a 
+href="openmpsu131.html#x170-2030003.2.12" id="QQ2-170-877"><span class="textbf"><span class="texttt">omp_get_schedule</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.13&#x00A0;&#x00A0;<a 
+href="openmpsu132.html#x171-2040003.2.13" id="QQ2-171-883"><span class="textbf"><span class="texttt">omp_get_thread_limit</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.14&#x00A0;&#x00A0;<a 
+href="openmpsu133.html#x172-2050003.2.14" id="QQ2-172-889"><span class="textbf"><span class="texttt">omp_get_supported_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.15&#x00A0;&#x00A0;<a 
+href="openmpsu134.html#x173-2060003.2.15" id="QQ2-173-895"><span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.16&#x00A0;&#x00A0;<a 
+href="openmpsu135.html#x174-2070003.2.16" id="QQ2-174-902"><span class="textbf"><span class="texttt">omp_get_max_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.17&#x00A0;&#x00A0;<a 
+href="openmpsu136.html#x175-2080003.2.17" id="QQ2-175-908"><span class="textbf"><span class="texttt">omp_get_level</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.18&#x00A0;&#x00A0;<a 
+href="openmpsu137.html#x176-2090003.2.18" id="QQ2-176-914"><span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.19&#x00A0;&#x00A0;<a 
+href="openmpsu138.html#x177-2100003.2.19" id="QQ2-177-920"><span class="textbf"><span class="texttt">omp_get_team_size</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.20&#x00A0;&#x00A0;<a 
+href="openmpsu139.html#x178-2110003.2.20" id="QQ2-178-926"><span class="textbf"><span class="texttt">omp_get_active_level</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.3&#x00A0;&#x00A0;<a 
+href="openmpse33.html#x179-2120003.3" id="QQ2-179-932">Thread Affinity Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.1&#x00A0;&#x00A0;<a 
+href="openmpsu140.html#x180-2130003.3.1" id="QQ2-180-933"><span class="textbf"><span class="texttt">omp_get_proc_bind</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.2&#x00A0;&#x00A0;<a 
+href="openmpsu141.html#x181-2140003.3.2" id="QQ2-181-940"><span class="textbf"><span class="texttt">omp_get_num_places</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.3&#x00A0;&#x00A0;<a 
+href="openmpsu142.html#x182-2150003.3.3" id="QQ2-182-946"><span class="textbf"><span class="texttt">omp_get_place_num_procs</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.4&#x00A0;&#x00A0;<a 
+href="openmpsu143.html#x183-2160003.3.4" id="QQ2-183-952"><span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.5&#x00A0;&#x00A0;<a 
+href="openmpsu144.html#x184-2170003.3.5" id="QQ2-184-958"><span class="textbf"><span class="texttt">omp_get_place_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.6&#x00A0;&#x00A0;<a 
+href="openmpsu145.html#x185-2180003.3.6" id="QQ2-185-964"><span class="textbf"><span class="texttt">omp_get_partition_num_places</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.7&#x00A0;&#x00A0;<a 
+href="openmpsu146.html#x186-2190003.3.7" id="QQ2-186-970"><span class="textbf"><span class="texttt">omp_get_partition_place_nums</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.8&#x00A0;&#x00A0;<a 
+href="openmpsu147.html#x187-2200003.3.8" id="QQ2-187-976"><span class="textbf"><span class="texttt">omp_set_affinity_format</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.9&#x00A0;&#x00A0;<a 
+href="openmpsu148.html#x188-2210003.3.9" id="QQ2-188-982"><span class="textbf"><span class="texttt">omp_get_affinity_format</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.10&#x00A0;&#x00A0;<a 
+href="openmpsu149.html#x189-2220003.3.10" id="QQ2-189-988"><span class="textbf"><span class="texttt">omp_display_affinity</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.11&#x00A0;&#x00A0;<a 
+href="openmpsu150.html#x190-2230003.3.11" id="QQ2-190-994"><span class="textbf"><span class="texttt">omp_capture_affinity</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.4&#x00A0;&#x00A0;<a 
+href="openmpse34.html#x191-2240003.4" id="QQ2-191-1000">Teams Region Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu151.html#x192-2250003.4.1" id="QQ2-192-1001"><span class="textbf"><span class="texttt">omp_get_num_teams</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu152.html#x193-2260003.4.2" id="QQ2-193-1007"><span class="textbf"><span class="texttt">omp_get_team_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu153.html#x194-2270003.4.3" id="QQ2-194-1013"><span class="textbf"><span class="texttt">omp_set_num_teams</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu154.html#x195-2280003.4.4" id="QQ2-195-1021"><span class="textbf"><span class="texttt">omp_get_max_teams</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu155.html#x196-2290003.4.5" id="QQ2-196-1027"><span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.6&#x00A0;&#x00A0;<a 
+href="openmpsu156.html#x197-2300003.4.6" id="QQ2-197-1035"><span class="textbf"><span class="texttt">omp_get_teams_thread_limit</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.5&#x00A0;&#x00A0;<a 
+href="openmpse35.html#x198-2310003.5" id="QQ2-198-1041">Tasking Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu157.html#x199-2320003.5.1" id="QQ2-199-1042"><span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu158.html#x200-2330003.5.2" id="QQ2-200-1048"><span class="textbf"><span class="texttt">omp_in_final</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.6&#x00A0;&#x00A0;<a 
+href="openmpse36.html#x201-2340003.6" id="QQ2-201-1054">Resource Relinquishing Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu159.html#x202-2350003.6.1" id="QQ2-202-1055"><span class="textbf"><span class="texttt">omp_pause_resource</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu160.html#x203-2360003.6.2" id="QQ2-203-1065"><span class="textbf"><span class="texttt">omp_pause_resource_all</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.7&#x00A0;&#x00A0;<a 
+href="openmpse37.html#x204-2370003.7" id="QQ2-204-1073">Device Information Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.1&#x00A0;&#x00A0;<a 
+href="openmpsu161.html#x205-2380003.7.1" id="QQ2-205-1074"><span class="textbf"><span class="texttt">omp_get_num_procs</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.2&#x00A0;&#x00A0;<a 
+href="openmpsu162.html#x206-2390003.7.2" id="QQ2-206-1080"><span class="textbf"><span class="texttt">omp_set_default_device</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.3&#x00A0;&#x00A0;<a 
+href="openmpsu163.html#x207-2400003.7.3" id="QQ2-207-1086"><span class="textbf"><span class="texttt">omp_get_default_device</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.4&#x00A0;&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4" id="QQ2-208-1092"><span class="textbf"><span class="texttt">omp_get_num_devices</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.5&#x00A0;&#x00A0;<a 
+href="openmpsu165.html#x209-2420003.7.5" id="QQ2-209-1098"><span class="textbf"><span class="texttt">omp_get_device_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.6&#x00A0;&#x00A0;<a 
+href="openmpsu166.html#x210-2430003.7.6" id="QQ2-210-1104"><span class="textbf"><span class="texttt">omp_is_initial_device</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.7&#x00A0;&#x00A0;<a 
+href="openmpsu167.html#x211-2440003.7.7" id="QQ2-211-1110"><span class="textbf"><span class="texttt">omp_get_initial_device</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.8&#x00A0;&#x00A0;<a 
+href="openmpse38.html#x212-2450003.8" id="QQ2-212-1116">Device Memory Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.1&#x00A0;&#x00A0;<a 
+href="openmpsu168.html#x213-2460003.8.1" id="QQ2-213-1117"><span class="textbf"><span class="texttt">omp_target_alloc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.2&#x00A0;&#x00A0;<a 
+href="openmpsu169.html#x214-2470003.8.2" id="QQ2-214-1127"><span class="textbf"><span class="texttt">omp_target_free</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.3&#x00A0;&#x00A0;<a 
+href="openmpsu170.html#x215-2480003.8.3" id="QQ2-215-1137"><span class="textbf"><span class="texttt">omp_target_is_present</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.4&#x00A0;&#x00A0;<a 
+href="openmpsu171.html#x216-2490003.8.4" id="QQ2-216-1145"><span class="textbf"><span class="texttt">omp_target_is_accessible</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.5&#x00A0;&#x00A0;<a 
+href="openmpsu172.html#x217-2500003.8.5" id="QQ2-217-1153"><span class="textbf"><span class="texttt">omp_target_memcpy</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.6&#x00A0;&#x00A0;<a 
+href="openmpsu173.html#x218-2510003.8.6" id="QQ2-218-1163"><span class="textbf"><span class="texttt">omp_target_memcpy_rect</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.7&#x00A0;&#x00A0;<a 
+href="openmpsu174.html#x219-2520003.8.7" id="QQ2-219-1173"><span class="textbf"><span class="texttt">omp_target_memcpy_async</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.8&#x00A0;&#x00A0;<a 
+href="openmpsu175.html#x220-2530003.8.8" id="QQ2-220-1183"><span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.9&#x00A0;&#x00A0;<a 
+href="openmpsu176.html#x221-2540003.8.9" id="QQ2-221-1193"><span class="textbf"><span class="texttt">omp_target_associate_ptr</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.10&#x00A0;&#x00A0;<a 
+href="openmpsu177.html#x222-2550003.8.10" id="QQ2-222-1203"><span class="textbf"><span class="texttt">omp_target_disassociate_ptr</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.11&#x00A0;&#x00A0;<a 
+href="openmpsu178.html#x223-2560003.8.11" id="QQ2-223-1213"><span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.9&#x00A0;&#x00A0;<a 
+href="openmpse39.html#x224-2570003.9" id="QQ2-224-1222">Lock Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.1&#x00A0;&#x00A0;<a 
+href="openmpsu179.html#x225-2580003.9.1" id="QQ2-225-1227"><span class="textbf"><span class="texttt">omp_init_lock</span></span> and <span class="textbf"><span class="texttt">omp_init_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.2&#x00A0;&#x00A0;<a 
+href="openmpsu180.html#x226-2590003.9.2" id="QQ2-226-1235"><span class="textbf"><span class="texttt">omp_init_lock_with_hint</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">omp_init_nest_lock_with_hint</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.3&#x00A0;&#x00A0;<a 
+href="openmpsu181.html#x227-2600003.9.3" id="QQ2-227-1243"><span class="textbf"><span class="texttt">omp_destroy_lock</span></span> and <span class="textbf"><span class="texttt">omp_destroy_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.4&#x00A0;&#x00A0;<a 
+href="openmpsu182.html#x228-2610003.9.4" id="QQ2-228-1251"><span class="textbf"><span class="texttt">omp_set_lock</span></span> and <span class="textbf"><span class="texttt">omp_set_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.5&#x00A0;&#x00A0;<a 
+href="openmpsu183.html#x229-2620003.9.5" id="QQ2-229-1259"><span class="textbf"><span class="texttt">omp_unset_lock</span></span> and <span class="textbf"><span class="texttt">omp_unset_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.6&#x00A0;&#x00A0;<a 
+href="openmpsu184.html#x230-2630003.9.6" id="QQ2-230-1267"><span class="textbf"><span class="texttt">omp_test_lock</span></span> and <span class="textbf"><span class="texttt">omp_test_nest_lock</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.10&#x00A0;&#x00A0;<a 
+href="openmpse40.html#x231-2640003.10" id="QQ2-231-1275">Timing Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.10.1&#x00A0;&#x00A0;<a 
+href="openmpsu185.html#x232-2650003.10.1" id="QQ2-232-1276"><span class="textbf"><span class="texttt">omp_get_wtime</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.10.2&#x00A0;&#x00A0;<a 
+href="openmpsu186.html#x233-2660003.10.2" id="QQ2-233-1281"><span class="textbf"><span class="texttt">omp_get_wtick</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.11&#x00A0;&#x00A0;<a 
+href="openmpse41.html#x234-2670003.11" id="QQ2-234-1286">Event Routine</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.11.1&#x00A0;&#x00A0;<a 
+href="openmpsu187.html#x235-2680003.11.1" id="QQ2-235-1288"><span class="textbf"><span class="texttt">omp_fulfill_event</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.12&#x00A0;&#x00A0;<a 
+href="openmpse42.html#x236-2690003.12" id="QQ2-236-1296">Interoperability Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.1&#x00A0;&#x00A0;<a 
+href="openmpsu188.html#x237-2700003.12.1" id="QQ2-237-1300"><span class="textbf"><span class="texttt">omp_get_num_interop_properties</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.2&#x00A0;&#x00A0;<a 
+href="openmpsu189.html#x238-2710003.12.2" id="QQ2-238-1305"><span class="textbf"><span class="texttt">omp_get_interop_int</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.3&#x00A0;&#x00A0;<a 
+href="openmpsu190.html#x239-2720003.12.3" id="QQ2-239-1311"><span class="textbf"><span class="texttt">omp_get_interop_ptr</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.4&#x00A0;&#x00A0;<a 
+href="openmpsu191.html#x240-2730003.12.4" id="QQ2-240-1317"><span class="textbf"><span class="texttt">omp_get_interop_str</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.5&#x00A0;&#x00A0;<a 
+href="openmpsu192.html#x241-2740003.12.5" id="QQ2-241-1323"><span class="textbf"><span class="texttt">omp_get_interop_name</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.6&#x00A0;&#x00A0;<a 
+href="openmpsu193.html#x242-2750003.12.6" id="QQ2-242-1329"><span class="textbf"><span class="texttt">omp_get_interop_type_desc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.7&#x00A0;&#x00A0;<a 
+href="openmpsu194.html#x243-2760003.12.7" id="QQ2-243-1335"><span class="textbf"><span class="texttt">omp_get_interop_rc_desc</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.13&#x00A0;&#x00A0;<a 
+href="openmpse43.html#x244-2770003.13" id="QQ2-244-1341">Memory Management Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.1&#x00A0;&#x00A0;<a 
+href="openmpsu195.html#x245-2780003.13.1" id="QQ2-245-1342">Memory Management Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.2&#x00A0;&#x00A0;<a 
+href="openmpsu196.html#x246-2790003.13.2" id="QQ2-246-1343"><span class="textbf"><span class="texttt">omp_init_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.3&#x00A0;&#x00A0;<a 
+href="openmpsu197.html#x247-2800003.13.3" id="QQ2-247-1351"><span class="textbf"><span class="texttt">omp_destroy_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.4&#x00A0;&#x00A0;<a 
+href="openmpsu198.html#x248-2810003.13.4" id="QQ2-248-1359"><span class="textbf"><span class="texttt">omp_set_default_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.5&#x00A0;&#x00A0;<a 
+href="openmpsu199.html#x249-2820003.13.5" id="QQ2-249-1366"><span class="textbf"><span class="texttt">omp_get_default_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.6&#x00A0;&#x00A0;<a 
+href="openmpsu200.html#x250-2830003.13.6" id="QQ2-250-1372"><span class="textbf"><span class="texttt">omp_alloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_alloc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.7&#x00A0;&#x00A0;<a 
+href="openmpsu201.html#x251-2840003.13.7" id="QQ2-251-1379"><span class="textbf"><span class="texttt">omp_free</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.8&#x00A0;&#x00A0;<a 
+href="openmpsu202.html#x252-2850003.13.8" id="QQ2-252-1386"><span class="textbf"><span class="texttt">omp_calloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.9&#x00A0;&#x00A0;<a 
+href="openmpsu203.html#x253-2860003.13.9" id="QQ2-253-1393"><span class="textbf"><span class="texttt">omp_realloc</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.14&#x00A0;&#x00A0;<a 
+href="openmpse44.html#x254-2870003.14" id="QQ2-254-1401">Tool Control Routine</a></span>
+<br />&#x00A0;<span class="sectionToc" >3.15&#x00A0;&#x00A0;<a 
+href="openmpse45.html#x255-2880003.15" id="QQ2-255-1412">Environment Display Routine</a></span>
+<br /><span class="chapterToc" >4&#x00A0;&#x00A0;<a 
+href="openmpch4.html#x256-2890004" id="QQ2-256-1418">OMPT Interface</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.1&#x00A0;&#x00A0;<a 
+href="openmpse46.html#x257-2900004.1" id="QQ2-257-1419">OMPT Interfaces Definitions</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.2&#x00A0;&#x00A0;<a 
+href="openmpse47.html#x258-2910004.2" id="QQ2-258-1420">Activating a First-Party Tool</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1" id="QQ2-259-1421"><span class="textbf"><span class="texttt">ompt_start_tool</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu205.html#x260-2930004.2.2" id="QQ2-260-1429">Determining Whether a First-Party Tool Should be Initialized</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu206.html#x261-2940004.2.3" id="QQ2-261-1432">Initializing a First-Party Tool</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu207.html#x262-2960004.2.4" id="QQ2-262-1437">Monitoring Activity on the Host with OMPT</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu208.html#x263-2970004.2.5" id="QQ2-263-1441">Tracing Activity on Target Devices with OMPT</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.3&#x00A0;&#x00A0;<a 
+href="openmpse48.html#x264-2980004.3" id="QQ2-264-1445">Finalizing a First-Party Tool</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.4&#x00A0;&#x00A0;<a 
+href="openmpse49.html#x265-2990004.4" id="QQ2-265-1447">OMPT Data Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1" id="QQ2-266-1448">Tool Initialization and Finalization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu210.html#x267-3010004.4.2" id="QQ2-267-1453">Callbacks</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu211.html#x268-3020004.4.3" id="QQ2-268-1456">Tracing</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3070004.4.4" id="QQ2-269-1472">Miscellaneous Type Definitions</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.5&#x00A0;&#x00A0;<a 
+href="openmpse50.html#x270-3380004.5" id="QQ2-270-1581">OMPT Tool Callback Signatures and Trace Records</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu213.html#x271-3390004.5.1" id="QQ2-271-1583">Initialization and Finalization Callback Signature</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu214.html#x272-3420004.5.2" id="QQ2-272-1596">Event Callback Signatures and Trace Records</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.6&#x00A0;&#x00A0;<a 
+href="openmpse51.html#x273-3730004.6" id="QQ2-273-1787">OMPT Runtime Entry Points for Tools</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu215.html#x274-3740004.6.1" id="QQ2-274-1790">Entry Points in the OMPT Callback Interface</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu216.html#x275-3940004.6.2" id="QQ2-275-1906">Entry Points in the OMPT Device Tracing Interface</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.6.3&#x00A0;&#x00A0;<a 
+href="openmpsu217.html#x276-4090004.6.3" id="QQ2-276-1992">Lookup Entry Points: <span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span></a></span>
+<br /><span class="chapterToc" >5&#x00A0;&#x00A0;<a 
+href="openmpch5.html#x277-4100005" id="QQ2-277-1998">OMPD Interface</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.1&#x00A0;&#x00A0;<a 
+href="openmpse52.html#x278-4110005.1" id="QQ2-278-1999">OMPD Interfaces Definitions</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.2&#x00A0;&#x00A0;<a 
+href="openmpse53.html#x279-4120005.2" id="QQ2-279-2000">Activating a Third-Party Tool</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu218.html#x280-4130005.2.1" id="QQ2-280-2001">Enabling Runtime Support for OMPD</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu219.html#x281-4140005.2.2" id="QQ2-281-2003"><span class="textbf"><span class="texttt">ompd_dll_locations</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu220.html#x282-4150005.2.3" id="QQ2-282-2008"><span class="textbf"><span class="texttt">ompd_dll_locations_valid</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >5.3&#x00A0;&#x00A0;<a 
+href="openmpse54.html#x283-4160005.3" id="QQ2-283-2012">OMPD Data Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.1&#x00A0;&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1" id="QQ2-284-2013">Size Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.2&#x00A0;&#x00A0;<a 
+href="openmpsu222.html#x285-4180005.3.2" id="QQ2-285-2016">Wait ID Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.3&#x00A0;&#x00A0;<a 
+href="openmpsu223.html#x286-4190005.3.3" id="QQ2-286-2021">Basic Value Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.4&#x00A0;&#x00A0;<a 
+href="openmpsu224.html#x287-4200005.3.4" id="QQ2-287-2025">Address Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.5&#x00A0;&#x00A0;<a 
+href="openmpsu225.html#x288-4210005.3.5" id="QQ2-288-2029">Frame Information Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.6&#x00A0;&#x00A0;<a 
+href="openmpsu226.html#x289-4220005.3.6" id="QQ2-289-2034">System Device Identifiers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.7&#x00A0;&#x00A0;<a 
+href="openmpsu227.html#x290-4230005.3.7" id="QQ2-290-2038">Native Thread Identifiers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.8&#x00A0;&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8" id="QQ2-291-2042">OMPD Handle Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.9&#x00A0;&#x00A0;<a 
+href="openmpsu229.html#x292-4250005.3.9" id="QQ2-292-2046">OMPD Scope Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.10&#x00A0;&#x00A0;<a 
+href="openmpsu230.html#x293-4260005.3.10" id="QQ2-293-2051">ICV ID Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.11&#x00A0;&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11" id="QQ2-294-2054">Tool Context Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.12&#x00A0;&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12" id="QQ2-295-2058">Return Code Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.13&#x00A0;&#x00A0;<a 
+href="openmpsu233.html#x296-4290005.3.13" id="QQ2-296-2062">Primitive Type Sizes</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.4&#x00A0;&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4" id="QQ2-297-2067">OMPD Third-Party Tool Callback Interface</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu234.html#x298-4310005.4.1" id="QQ2-298-2069">Memory Management of OMPD Library</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu235.html#x299-4340005.4.2" id="QQ2-299-2084">Context Management and Navigation</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu236.html#x300-4370005.4.3" id="QQ2-300-2101">Accessing Memory in the OpenMP Program or Runtime</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu237.html#x301-4410005.4.4" id="QQ2-301-2124">Data Format Conversion: <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu238.html#x302-4420005.4.5" id="QQ2-302-2131"><span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.6&#x00A0;&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6" id="QQ2-303-2138">The Callback Interface</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.5&#x00A0;&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5" id="QQ2-304-2143">OMPD Tool Interface Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu240.html#x305-4450005.5.1" id="QQ2-305-2145">Per OMPD Library Initialization and Finalization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu241.html#x306-4500005.5.2" id="QQ2-306-2173">Per OpenMP Process Initialization and Finalization</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.3&#x00A0;&#x00A0;<a 
+href="openmpsu242.html#x307-4540005.5.3" id="QQ2-307-2196">Thread and Signal Safety</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.4&#x00A0;&#x00A0;<a 
+href="openmpsu243.html#x308-4550005.5.4" id="QQ2-308-2197">Address Space Information</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.5&#x00A0;&#x00A0;<a 
+href="openmpsu244.html#x309-4580005.5.5" id="QQ2-309-2212">Thread Handles</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.6&#x00A0;&#x00A0;<a 
+href="openmpsu245.html#x310-4640005.5.6" id="QQ2-310-2249">Parallel Region Handles</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.7&#x00A0;&#x00A0;<a 
+href="openmpsu246.html#x311-4700005.5.7" id="QQ2-311-2285">Task Handles</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.8&#x00A0;&#x00A0;<a 
+href="openmpsu247.html#x312-4810005.5.8" id="QQ2-312-2357">Display Control Variables</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.9&#x00A0;&#x00A0;<a 
+href="openmpsu248.html#x313-4840005.5.9" id="QQ2-313-2372">Accessing Scope-Specific Information</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.6&#x00A0;&#x00A0;<a 
+href="openmpse57.html#x314-4890005.6" id="QQ2-314-2403">Runtime Entry Points for OMPD</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu249.html#x315-4900005.6.1" id="QQ2-315-2404">Beginning Parallel Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu250.html#x316-4910005.6.2" id="QQ2-316-2409">Ending Parallel Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.3&#x00A0;&#x00A0;<a 
+href="openmpsu251.html#x317-4920005.6.3" id="QQ2-317-2414">Beginning Task Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.4&#x00A0;&#x00A0;<a 
+href="openmpsu252.html#x318-4930005.6.4" id="QQ2-318-2419">Ending Task Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.5&#x00A0;&#x00A0;<a 
+href="openmpsu253.html#x319-4940005.6.5" id="QQ2-319-2424">Beginning OpenMP Threads</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.6&#x00A0;&#x00A0;<a 
+href="openmpsu254.html#x320-4950005.6.6" id="QQ2-320-2429">Ending OpenMP Threads</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.7&#x00A0;&#x00A0;<a 
+href="openmpsu255.html#x321-4960005.6.7" id="QQ2-321-2434">Initializing OpenMP Devices</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.8&#x00A0;&#x00A0;<a 
+href="openmpsu256.html#x322-4970005.6.8" id="QQ2-322-2439">Finalizing OpenMP Devices</a></span>
+<br /><span class="chapterToc" >6&#x00A0;&#x00A0;<a 
+href="openmpch6.html#x323-4980006" id="QQ2-323-2444">Environment Variables</a></span>
+<br />&#x00A0;<span class="sectionToc" >6.1&#x00A0;&#x00A0;<a 
+href="openmpse58.html#x324-4990006.1" id="QQ2-324-2446"><span class="textbf"><span class="texttt">OMP_SCHEDULE</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.2&#x00A0;&#x00A0;<a 
+href="openmpse59.html#x325-5000006.2" id="QQ2-325-2448"><span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.3&#x00A0;&#x00A0;<a 
+href="openmpse60.html#x326-5010006.3" id="QQ2-326-2450"><span class="textbf"><span class="texttt">OMP_DYNAMIC</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.4&#x00A0;&#x00A0;<a 
+href="openmpse61.html#x327-5020006.4" id="QQ2-327-2452"><span class="textbf"><span class="texttt">OMP_PROC_BIND</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.5&#x00A0;&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5" id="QQ2-328-2454"><span class="textbf"><span class="texttt">OMP_PLACES</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.6&#x00A0;&#x00A0;<a 
+href="openmpse63.html#x329-5040006.6" id="QQ2-329-2457"><span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.7&#x00A0;&#x00A0;<a 
+href="openmpse64.html#x330-5050006.7" id="QQ2-330-2459"><span class="textbf"><span class="texttt">OMP_WAIT_POLICY</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >6.8&#x00A0;&#x00A0;<a 
+href="openmpse65.html#x331-5060006.8" id="QQ2-331-2461"><span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.9&#x00A0;&#x00A0;<a 
+href="openmpse66.html#x332-5070006.9" id="QQ2-332-2463"><span class="textbf"><span class="texttt">OMP_NESTED</span></span> (Deprecated)</a></span>
+<br />&#x00A0;<span class="sectionToc" >6.10&#x00A0;&#x00A0;<a 
+href="openmpse67.html#x333-5080006.10" id="QQ2-333-2465"><span class="textbf"><span class="texttt">OMP_THREAD_LIMIT</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.11&#x00A0;&#x00A0;<a 
+href="openmpse68.html#x334-5090006.11" id="QQ2-334-2467"><span class="textbf"><span class="texttt">OMP_CANCELLATION</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.12&#x00A0;&#x00A0;<a 
+href="openmpse69.html#x335-5100006.12" id="QQ2-335-2469"><span class="textbf"><span class="texttt">OMP_DISPLAY_ENV</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.13&#x00A0;&#x00A0;<a 
+href="openmpse70.html#x336-5110006.13" id="QQ2-336-2471"><span class="textbf"><span class="texttt">OMP_DISPLAY_AFFINITY</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.14&#x00A0;&#x00A0;<a 
+href="openmpse71.html#x337-5120006.14" id="QQ2-337-2473"><span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.15&#x00A0;&#x00A0;<a 
+href="openmpse72.html#x338-5130006.15" id="QQ2-338-2476"><span class="textbf"><span class="texttt">OMP_DEFAULT_DEVICE</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.16&#x00A0;&#x00A0;<a 
+href="openmpse73.html#x339-5140006.16" id="QQ2-339-2478"><span class="textbf"><span class="texttt">OMP_MAX_TASK_PRIORITY</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.17&#x00A0;&#x00A0;<a 
+href="openmpse74.html#x340-5150006.17" id="QQ2-340-2480"><span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.18&#x00A0;&#x00A0;<a 
+href="openmpse75.html#x341-5160006.18" id="QQ2-341-2482"><span class="textbf"><span class="texttt">OMP_TOOL</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.19&#x00A0;&#x00A0;<a 
+href="openmpse76.html#x342-5170006.19" id="QQ2-342-2484"><span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.20&#x00A0;&#x00A0;<a 
+href="openmpse77.html#x343-5180006.20" id="QQ2-343-2486"><span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.21&#x00A0;&#x00A0;<a 
+href="openmpse78.html#x344-5190006.21" id="QQ2-344-2488"><span class="textbf"><span class="texttt">OMP_DEBUG</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.22&#x00A0;&#x00A0;<a 
+href="openmpse79.html#x345-5200006.22" id="QQ2-345-2490"><span class="textbf"><span class="texttt">OMP_ALLOCATOR</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.23&#x00A0;&#x00A0;<a 
+href="openmpse80.html#x346-5210006.23" id="QQ2-346-2492"><span class="textbf"><span class="texttt">OMP_NUM_TEAMS</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.24&#x00A0;&#x00A0;<a 
+href="openmpse81.html#x347-5220006.24" id="QQ2-347-2494"><span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span></a></span>
+<br /><span class="appendixToc" >A&#x00A0;&#x00A0;<a 
+href="openmpap1.html#x348-523000A" id="QQ2-348-2496">OpenMP Implementation-Defined Behaviors</a></span>
+<br /><span class="appendixToc" >B&#x00A0;&#x00A0;<a 
+href="openmpap2.html#x349-524000B" id="QQ2-349-2503">Features History</a></span>
+<br />&#x00A0;<span class="sectionToc" >B.1&#x00A0;&#x00A0;<a 
+href="openmpse82.html#x350-525000B.1" id="QQ2-350-2504">Deprecated Features</a></span>
+<br />&#x00A0;<span class="sectionToc" >B.2&#x00A0;&#x00A0;<a 
+href="openmpse83.html#x351-526000B.2" id="QQ2-351-2505">Version 5.0 to 5.1 Differences</a></span>
+<br />&#x00A0;<span class="sectionToc" >B.3&#x00A0;&#x00A0;<a 
+href="openmpse84.html#x352-527000B.3" id="QQ2-352-2506">Version 4.5 to 5.0 Differences</a></span>
+<br />&#x00A0;<span class="sectionToc" >B.4&#x00A0;&#x00A0;<a 
+href="openmpse85.html#x353-528000B.4" id="QQ2-353-2507">Version 4.0 to 4.5 Differences</a></span>
+<br />&#x00A0;<span class="sectionToc" >B.5&#x00A0;&#x00A0;<a 
+href="openmpse86.html#x354-529000B.5" id="QQ2-354-2508">Version 3.1 to 4.0 Differences</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >B.6&#x00A0;&#x00A0;<a 
+href="openmpse87.html#x355-530000B.6" id="QQ2-355-2509">Version 3.0 to 3.1 Differences</a></span>
+<br />&#x00A0;<span class="sectionToc" >B.7&#x00A0;&#x00A0;<a 
+href="openmpse88.html#x356-531000B.7" id="QQ2-356-2510">Version 2.5 to 3.0 Differences</a></span>
+</div>
+                                                                            
+                                                                            
+<a 
+ id="chapter*.2"></a>
+<p>
+</p> 
+
+                                                                            
+                                                                            
+<a 
+ id="chapter*.3"></a>
+<p>
+</p> 
+
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+<p>
+                                                                            
+                                                                            
+</p> 
+
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+<a 
+ id="x1-522003r2444"></a>
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+<p>
+                                                                            
+                                                                            
+<a 
+ id="x1-523005r2444"></a>
+</p> 
+
+<p><span class="next">[<a 
+href="openmpli1.html" id="tailopenmp" >next</a>]</span></p> 
+ 
+</body> 
+</html>
+                                                                            
+                                                                            
+                                                                            
+
+

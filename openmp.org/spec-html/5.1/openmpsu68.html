@@ -1,0 +1,1602 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>target Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 612--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu69.html" >next</a>] [<a 
+href="openmpsu67.html" >prev</a>] [<a 
+href="openmpsu67.html#tailopenmpsu67.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu68.html">tail</a>] [<a 
+href="openmpse22.html#openmpsu68.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.14.5</span>&#x00A0;&#x00A0;<a 
+ id="x96-1060002.14.5"></a><span class="textbf"><span class="texttt">target</span></span> Construct</h4>
+<a 
+ id="dx96-106001"></a>
+<a 
+ id="dx96-106002"></a>
+<a 
+ id="dx96-106003"></a>
+<p><p><a 
+ id="Q1-96-386"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">target</span></span> construct maps variables to a device data environment and executes the construct on that
+device.
+<p><a 
+ id="Q1-96-387"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">target</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106004r1"></a></span></p> 
+<!--l. 625--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106006r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106007r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106008r1"></a></span></p> 
+<!--l. 632--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106009r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106010r3"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">device</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106011r4"></a></span><span 
+class="pcrb8t-">thread_limit</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106012r5"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106013r6"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106014r7"></a></span><span 
+class="pcrb8t-">in_reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106015r8"></a></span><span 
+class="pcrb8t-">map</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106016r9"></a></span><span 
+class="pcrb8t-">is_device_ptr</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106017r10"></a></span><span 
+class="pcrb8t-">has_device_addr</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106018r11"></a></span><span 
+class="pcrb8t-">defaultmap</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">implicit</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">behavior</span><span 
+class="ec-qtmri-">[:</span><span 
+class="ec-qtmri-">variable</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">category</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106019r12"></a></span><span 
+class="pcrb8t-">nowait</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106020r13"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106021r14"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106022r15"></a></span><span 
+class="pcrb8t-">uses_allocators</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">traits</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">array</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106023r16"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">traits</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">array</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106024r17"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">device-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106025r1"></a></span></p> 
+<!--l. 651--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106026r2"></a></span><span 
+class="pcrb8t-">ancestor</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106027r3"></a></span><span 
+class="pcrb8t-">device_num</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106028r4"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">allocator</span></span> is an identifier of <span class="textbf"><span class="texttt">omp_allocator_handle_t</span></span> type and <span class="textit"><span class="textrm">allocator-traits-array</span></span> is an
+identifier of <span class="textbf"><span class="texttt">const omp_alloctrait_t *</span></span> type.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+                                                                            
+                                                                            
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">target</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106029r1"></a></span></p> 
+<!--l. 666--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106030r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106031r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106032r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106033r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106034r1"></a></span></p> 
+<!--l. 672--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106035r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106036r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106037r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106038r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106039r1"></a></span></p> 
+<!--l. 680--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106040r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106041r3"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">device</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106042r4"></a></span><span 
+class="pcrb8t-">thread_limit</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106043r5"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106044r6"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106045r7"></a></span><span 
+class="pcrb8t-">in_reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106046r8"></a></span><span 
+class="pcrb8t-">map</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106047r9"></a></span><span 
+class="pcrb8t-">is_device_ptr</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106048r10"></a></span><span 
+class="pcrb8t-">has_device_addr</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106049r11"></a></span><span 
+class="pcrb8t-">defaultmap</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">implicit</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">behavior</span><span 
+class="ec-qtmri-">[:</span><span 
+class="ec-qtmri-">variable</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">category</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106050r12"></a></span><span 
+class="pcrb8t-">nowait</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106051r13"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106052r14"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106053r15"></a></span><span 
+class="pcrb8t-">uses_allocators</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">traits</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">array</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106054r16"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">traits</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">array</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106055r17"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">device-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106056r1"></a></span></p> 
+<!--l. 699--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106057r2"></a></span><span 
+class="pcrb8t-">ancestor</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106058r3"></a></span><span 
+class="pcrb8t-">device_num</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x96-106059r4"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">allocator</span></span> is an integer expression of <span class="textbf"><span class="texttt">omp_allocator_handle_kind</span></span><span class="textit"><span class="textrm">kind</span></span> and
+<span class="textit"><span class="textrm">allocator-traits-array</span></span> is an array of <span class="textbf"><span class="texttt">type(omp_alloctrait)</span></span> type.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-96-388"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for a <span class="textbf"><span class="texttt">target</span></span> region is the generating task, which is the <span class="textit"><span class="textrm">target task</span></span> generated by the
+<span class="textbf"><span class="texttt">target</span></span> construct. The <span class="textbf"><span class="texttt">target</span></span> region binds to the corresponding <span class="textit"><span class="textrm">target task</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-96-389"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">target</span></span> construct provides a superset of the functionality provided by the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> directive,
+except for the <span class="textbf"><span class="texttt">use_device_ptr</span></span> and <span class="textbf"><span class="texttt">use_device_addr</span></span> clauses.
+</p> 
+<p>The functionality added to the <span class="textbf"><span class="texttt">target</span></span> directive is the inclusion of an executable region to be executed on a
+device. That is, the <span class="textbf"><span class="texttt">target</span></span> directive is an executable directive.
+</p> 
+<p>The <span class="textbf"><span class="texttt">target</span></span> construct is a task generating construct. The generated task is a <span class="textit"><span class="textrm">target task</span></span>. The generated task
+region encloses the <span class="textbf"><span class="texttt">target</span></span> region. The <span class="textbf"><span class="texttt">device</span></span> clause determines the device on which the <span class="textbf"><span class="texttt">target</span></span>
+region executes.
+                                                                            
+                                                                            
+</p> 
+<p>All clauses are evaluated when the <span class="textbf"><span class="texttt">target</span></span> construct is encountered. The data environment of the
+<span class="textit"><span class="textrm">target task</span></span> is created according to the data-sharing and data-mapping attribute clauses on the
+<span class="textbf"><span class="texttt">target</span></span> construct, per-data environment ICVs, and any default data-sharing attribute rules that
+apply to the <span class="textbf"><span class="texttt">target</span></span> construct. If a variable or part of a variable is mapped by the <span class="textbf"><span class="texttt">target</span></span>
+construct and does not appear as a list item in an <span class="textbf"><span class="texttt">in_reduction</span></span> clause on the construct, the
+variable has a default data-sharing attribute of shared in the data environment of the <span class="textit"><span class="textrm">target
+task</span></span>.
+</p> 
+<p>Assignment operations associated with mapping a variable (see Section&#x00A0;<a 
+href="openmpsu119.html#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>) occur when the <span class="textit"><span class="textrm">target
+task</span></span> executes.
+</p> 
+<p>As described in Section&#x00A0;<a 
+href="openmpsu34.html#x52-520002.4.4.1">2.4.4.1<!--tex4ht:ref: subsubsec:How the Per-Data Environment ICVs Work --></a>, the <span class="textbf"><span class="texttt">target</span></span> construct limits the number of threads that may participate in
+a contention group initiated by the initial thread by setting the value of the <span class="textit"><span class="textrm">thread-limit-var</span></span> ICV for
+the initial task to an implementation defined value greater than zero. If the <span class="textbf"><span class="texttt">thread_limit</span></span>
+clause is specified, the number of threads will be less than or equal to the value specified in the
+clause.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">device</span></span> clause in which the <span class="textbf"><span class="texttt">device_num</span></span><span class="textit"><span class="textrm">device-modifier</span></span> appears is present on the construct, the
+<span class="textbf"><span class="texttt">device</span></span> clause expression specifies the device number of the target device. If <span class="textit"><span class="textrm">device-modifier</span></span> does not
+appear in the clause, the behavior of the clause is as if <span class="textit"><span class="textrm">device-modifier</span></span> is <span class="textbf"><span class="texttt">device_num</span></span>.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">device</span></span> clause in which the <span class="textbf"><span class="texttt">ancestor</span></span><span class="textit"><span class="textrm">device-modifier</span></span> appears is present on the <span class="textbf"><span class="texttt">target</span></span> construct
+and the <span class="textbf"><span class="texttt">device</span></span> clause expression evaluates to 1, execution of the <span class="textbf"><span class="texttt">target</span></span> region occurs on the
+parent device of the enclosing <span class="textbf"><span class="texttt">target</span></span> region. If the <span class="textbf"><span class="texttt">target</span></span> construct is not encountered in a
+<span class="textbf"><span class="texttt">target</span></span> region, the current device is treated as the parent device. The encountering thread waits
+for completion of the <span class="textbf"><span class="texttt">target</span></span> region on the parent device before resuming. For any list item
+that appears in a <span class="textbf"><span class="texttt">map</span></span> clause on the same construct, if the corresponding list item exists in the
+device data environment of the parent device, it is treated as if it has a reference count of positive
+infinity.
+</p> 
+<p>If no <span class="textbf"><span class="texttt">device</span></span> clause is present, the behavior is as if the <span class="textbf"><span class="texttt">device</span></span> clause appears without a <span class="textit"><span class="textrm">device-modifier</span></span>
+and with an expression equal to the value of the <span class="textit"><span class="textrm">default-device-var</span></span> ICV.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">nowait</span></span> clause is present, execution of the <span class="textit"><span class="textrm">target task</span></span> may be deferred. If the <span class="textbf"><span class="texttt">nowait</span></span> clause is not
+present, the <span class="textit"><span class="textrm">target task</span></span> is an included task.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">depend</span></span> clause is present, it is associated with the <span class="textit"><span class="textrm">target task</span></span>.
+</p> 
+<p>When an <span class="textbf"><span class="texttt">if</span></span> clause is present and the <span class="textbf"><span class="texttt">if</span></span> clause expression evaluates to <span class="textit"><span class="textrm">false</span></span>, the <span class="textbf"><span class="texttt">target</span></span> region is
+executed by the host device.
+</p> 
+<p>The <span class="textbf"><span class="texttt">has_device_addr</span></span> clause indicates that its list items already have device addresses and therefore
+they may be directly accessed from a target device. If the device address of a list item is not for the device on
+which the <span class="textbf"><span class="texttt">target</span></span> region executes, accessing the list item inside the region results in unspecified behavior.
+The list items may include array sections.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">is_device_ptr</span></span> clause indicates that its list items are device pointers. Inside the <span class="textbf"><span class="texttt">target</span></span>
+construct, each list item is privatized and the new list item is initialized to the device address
+to which the original list item refers. Support for device pointers created outside of OpenMP,
+specifically outside of any OpenMP mechanism that returns a device pointer, is implementation
+defined.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">is_device_ptr</span></span> clause indicates that its list items are device pointers if they are of type <span class="textbf"><span class="texttt">C_PTR</span></span>.
+Inside the <span class="textbf"><span class="texttt">target</span></span> construct, each list item of type <span class="textbf"><span class="texttt">C_PTR</span></span> is privatized and the new list item is initialized
+to the device address to which the original list item refers. Support for device pointers created outside of
+OpenMP, specifically outside of any OpenMP mechanism that returns a device pointer, is implementation
+defined. For any list item in an <span class="textbf"><span class="texttt">is_device_ptr</span></span> clause that is not of type <span class="textbf"><span class="texttt">C_PTR</span></span>, the behavior is as if the
+list item appeared in a <span class="textbf"><span class="texttt">has_device_addr</span></span> clause. Support for such list items in an <span class="textbf"><span class="texttt">is_device_ptr</span></span>
+clause is deprecated.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If a function (C, C++, Fortran) or subroutine (Fortran) is referenced in a <span class="textbf"><span class="texttt">target</span></span> construct that
+does not specify a <span class="textbf"><span class="texttt">device</span></span> clause in which the <span class="textbf"><span class="texttt">ancestor</span></span><span class="textit"><span class="textrm">device-modifier</span></span> appears then that
+function or subroutine is treated as if its name had appeared in a <span class="textbf"><span class="texttt">to</span></span> clause on a declare target
+directive.
+</p> 
+<p>If a variable with static storage duration is declared in a <span class="textbf"><span class="texttt">target</span></span> construct that does not specify a <span class="textbf"><span class="texttt">device</span></span>
+clause in which the <span class="textbf"><span class="texttt">ancestor</span></span><span class="textit"><span class="textrm">device-modifier</span></span> appears then the named variable is treated as if it had
+appeared in a <span class="textbf"><span class="texttt">to</span></span> clause on a declare target directive.
+</p> 
+<p>Each memory <span class="textit"><span class="textrm">allocator</span></span> specified in the <span class="textbf"><span class="texttt">uses_allocators</span></span> clause will be made available in the
+<span class="textbf"><span class="texttt">target</span></span> region. For each non-predefined allocator that is specified, a new allocator handle
+will be associated with an allocator that is created with the specified <span class="textit"><span class="textrm">traits</span></span> as if by a call to
+<span class="textbf"><span class="texttt">omp_init_allocator</span></span> at the beginning of the <span class="textbf"><span class="texttt">target</span></span> region. Each non-predefined allocator
+will be destroyed as if by a call to <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span> at the end of the <span class="textbf"><span class="texttt">target</span></span>
+region.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a list item in a <span class="textbf"><span class="texttt">map</span></span> clause has a base pointer and it is a scalar variable with a predetermined data-sharing
+attribute of firstprivate (see Section&#x00A0;<a 
+href="openmpsu113.html#x148-1610002.21.1.1">2.21.1.1<!--tex4ht:ref: subsubsec:Variables Referenced in a Construct --></a>), then on entry to the <span class="textbf"><span class="texttt">target</span></span> region:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  list
+  item
+  is
+  not
+  a
+  zero-length
+  array
+  section,
+  the
+  corresponding
+  private
+  variable
+  is
+  initialized
+  such
+  that
+  the
+  corresponding
+  list
+  item
+  in
+  the
+  device
+  data
+  environment
+  can
+  be
+  accessed
+  through
+  the
+  pointer
+  in
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">target</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  If
+  the
+  list
+  item
+  is
+  a
+  zero-length
+  array
+  section
+  ,
+  the
+  corresponding
+  private
+  variable
+  is
+  initialized
+  according
+  to
+  Section&#x00A0;<a 
+href="openmpsu119.html#x154-1850002.21.7.2">2.21.7.2<!--tex4ht:ref: subsec:pointer initialization --></a>.</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>When an internal procedure is called in a <span class="textbf"><span class="texttt">target</span></span> region, any references to variables that are host
+associated in the procedure have unspecified behavior.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-96-390"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+Events associated with a <span class="textit"><span class="textrm">target task</span></span> are the same as for the <span class="textbf"><span class="texttt">task</span></span> construct defined in Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+</p> 
+<p>Events associated with the <span class="textit"><span class="textrm">initial task</span></span> that executes the <span class="textbf"><span class="texttt">target</span></span> region are defined in Section&#x00A0;<a 
+href="openmpsu58.html#x84-940002.12.5">2.12.5<!--tex4ht:ref: subsec:Initial Task --></a>.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-begin</span></span> event occurs when a thread enters a <span class="textbf"><span class="texttt">target</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-end</span></span> event occurs when a thread exits a <span class="textbf"><span class="texttt">target</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-submit-begin</span></span> event occurs prior to initiating creation of an initial task on a target device for a
+<span class="textbf"><span class="texttt">target</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-submit-end</span></span> event occurs after initiating creation of an initial task on a target device for a
+<span class="textbf"><span class="texttt">target</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-96-391"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+Callbacks associated with events for <span class="textit"><span class="textrm">target tasks</span></span> are the same as for the <span class="textbf"><span class="texttt">task</span></span> construct defined in
+Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_target)</span></span> always evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched
+callback.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target</span></span> or <span class="textbf"><span class="texttt">ompt_callback_target_emi</span></span> callback
+with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_target</span></span> or <span class="textbf"><span class="texttt">ompt_target_nowait</span></span> if
+the <span class="textbf"><span class="texttt">nowait</span></span> clause is present as its <span class="textit"><span class="textrm">kind</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">target-begin</span></span> event in that
+thread in the context of the target task on the host. Similarly, a thread dispatches a registered
+<span class="textbf"><span class="texttt">ompt_callback_target</span></span> or <span class="textbf"><span class="texttt">ompt_callback_target_emi</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as
+its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_target</span></span> or <span class="textbf"><span class="texttt">ompt_target_nowait</span></span> if the <span class="textbf"><span class="texttt">nowait</span></span> clause is present
+as its <span class="textit"><span class="textrm">kind</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">target-end</span></span> event in that thread in the context of the
+target task on the host. These callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_target_t</span></span> or
+<span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span>, respectively.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-submit-begin</span></span> event in that
+thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi</span></span> callback
+with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-submit-end</span></span> event in that
+thread. These callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_submit</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">target-submit-begin</span></span> event in that thread. The callback occurs in the context of the target task and has type
+signature <span class="textbf"><span class="texttt">ompt_callback_target_submit_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-96-392"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">target</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>,
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  or
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct
+  is
+  encountered
+  during
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region,
+  the
+  behavior
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  The
+  result
+  of
+  an
+  <span class="textbf"><span class="texttt">omp_set_default_device</span></span>,
+  <span class="textbf"><span class="texttt">omp_get_default_device</span></span>,
+  or
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>
+  routine
+  called
+  within
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+                                                                            
+                                                                            
+  region
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  The
+  effect
+  of
+  an
+  access
+  to
+  a
+  threadprivate
+  variable
+  in
+  a
+  target
+  region
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  is
+  a
+  structure
+  element,
+  any
+  other
+  element
+  of
+  that
+  structure
+                                                                            
+                                                                            
+  that
+  is
+  referenced
+  in
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  must
+  also
+  appear
+  as
+  a
+  list
+  item
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  cannot
+  appear
+  in
+  both
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  and
+  a
+  data-sharing
+  attribute
+  clause
+  on
+  the
+  same
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  A
+  variable
+  referenced
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  but
+  not
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  that
+  is
+  not
+  declared
+  in
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  must
+  appear
+  in
+  a
+  declare
+  target
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">defaultmap</span></span>
+  clause
+  for
+  each
+  category
+  can
+  appear
+  on
+                                                                            
+                                                                            
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">map-type</span></span>
+  in
+  a
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause
+  must
+  be
+  <span class="textbf"><span class="texttt">to</span></span>,
+  <span class="textbf"><span class="texttt">from</span></span>,
+  <span class="textbf"><span class="texttt">tofrom</span></span>
+                                                                            
+                                                                            
+  or
+  <span class="textbf"><span class="texttt">alloc</span></span>.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  an
+  <span class="textbf"><span class="texttt">is_device_ptr</span></span>
+  clause
+  must
+  be
+  a
+  valid
+  device
+  pointer
+  for
+  the
+  device
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">has_device_addr</span></span>
+  clause
+  must
+  have
+  a
+  valid
+  device
+                                                                            
+                                                                            
+  address
+  for
+  the
+  device
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  may
+  not
+  be
+  specified
+  in
+  both
+  an
+  <span class="textbf"><span class="texttt">is_device_ptr</span></span>
+  clause
+  and
+  a
+  <span class="textbf"><span class="texttt">has_device_addr</span></span>
+  clause
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  an
+  <span class="textbf"><span class="texttt">is_device_ptr</span></span>
+  or
+  a
+  <span class="textbf"><span class="texttt">has_device_addr</span></span>
+                                                                            
+                                                                            
+  clause
+  must
+  not
+  be
+  specified
+  in
+  any
+  data-sharing
+  attribute
+  clause
+  on
+  the
+  same
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  The
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  expression
+  must
+  evaluate
+  to
+  a
+  non-negative
+  integer
+  value
+  that
+  is
+  less
+  than
+                                                                            
+                                                                            
+  or
+  equal
+  to
+  the
+  value
+  of
+  <span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  in
+  which
+  the
+  <span class="textbf"><span class="texttt">ancestor</span></span>
+  <span class="textit"><span class="textrm">device-modifier</span></span>
+  appears
+  is
+  present
+  on
+  the
+  construct,
+  then
+  the
+  following
+  restrictions
+  apply:
+    <ul class="itemize2">
+    <li class="itemize">
+    A
+    <span class="textbf"><span class="texttt">requires</span></span>
+    directive
+    with
+    the
+    <span class="textbf"><span class="texttt">reverse_offload</span></span>
+    clause
+    must
+    be
+                                                                            
+                                                                            
+    specified;
+    </li>
+    <li class="itemize">
+    The
+    <span class="textbf"><span class="texttt">device</span></span>
+    clause
+    expression
+    must
+    evaluate
+    to
+    1;
+    </li>
+    <li class="itemize">
+    Only
+    the
+    <span class="textbf"><span class="texttt">device</span></span>,
+    <span class="textbf"><span class="texttt">firstprivate</span></span>,
+    <span class="textbf"><span class="texttt">private</span></span>,
+    <span class="textbf"><span class="texttt">defaultmap</span></span>,
+    and
+    <span class="textbf"><span class="texttt">map</span></span>
+    clauses
+    may
+    appear
+    on
+    the
+    construct;
+    </li>
+    <li class="itemize">
+    No
+    OpenMP
+    constructs
+    or
+    calls
+    to
+    OpenMP
+    API
+    runtime
+    routines
+                                                                            
+                                                                            
+    are
+    allowed
+    inside
+    the
+    corresponding
+    <span class="textbf"><span class="texttt">target</span></span>
+    region.</li></ul>
+  </li>
+  <li class="itemize">Memory allocators that do not appear in a <span class="textbf"><span class="texttt">uses_allocators</span></span> clause cannot appear as an allocator in
+  an <span class="textbf"><span class="texttt">allocate</span></span> clause or be used in the <span class="textbf"><span class="texttt">target</span></span> region unless a <span class="textbf"><span class="texttt">requires</span></span> directive with the
+  <span class="textbf"><span class="texttt">dynamic_allocators</span></span> clause is present in the same compilation unit.
+  </li>
+  <li class="itemize">Memory allocators that appear in a <span class="textbf"><span class="texttt">uses_allocators</span></span> clause cannot appear in other data-sharing
+  attribute clauses or data-mapping attribute clauses in the same construct.
+  </li>
+  <li class="itemize">Predefined allocators appearing in a <span class="textbf"><span class="texttt">uses_allocators</span></span> clause cannot have <span class="textit"><span class="textrm">traits</span></span> specified.
+  </li>
+  <li class="itemize">Non-predefined allocators appearing in a <span class="textbf"><span class="texttt">uses_allocators</span></span> clause must have <span class="textit"><span class="textrm">traits</span></span> specified.
+  </li>
+  <li class="itemize">Arrays that contain allocator traits that appear in a <span class="textbf"><span class="texttt">uses_allocators</span></span> clause must be constant arrays,
+  have constant values and be defined in the same scope as the construct in which the clause
+  appears.
+  </li>
+  <li class="itemize">Any IEEE floating-point exception status flag, halting mode, or rounding mode set prior to a <span class="textbf"><span class="texttt">target</span></span>
+  region is unspecified in the region.
+  </li>
+  <li class="itemize">Any IEEE floating-point exception status flag, halting mode, or rounding mode set in a <span class="textbf"><span class="texttt">target</span></span> region is
+  unspecified upon exiting the region.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> An attached pointer must not be modified in a <span class="textbf"><span class="texttt">target</span></span> region.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A list item that appears in an <span class="textbf"><span class="texttt">is_device_ptr</span></span> clause must have a type of pointer or array.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A list item that appears in an <span class="textbf"><span class="texttt">is_device_ptr</span></span> clause must have a type of pointer, array, reference to
+  pointer or reference to array.
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textbf"><span class="texttt">throw</span></span> executed inside a <span class="textbf"><span class="texttt">target</span></span> region must cause execution to resume within the same <span class="textbf"><span class="texttt">target</span></span>
+  region, and the same thread that threw the exception must catch it.
+<span 
+class="cmsy-10">&#x2219;</span> The run-time type information&#x00A0;(RTTI) of an object can only be accessed from the device on which it was
+  constructed.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> An attached pointer that is associated with a given pointer target must not become associated with a
+  different pointer target in a <span class="textbf"><span class="texttt">target</span></span> region.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item in a <span class="textbf"><span class="texttt">map</span></span> clause is an array section, and the array section is derived from a variable with a
+  <span class="textbf"><span class="texttt">POINTER</span></span> or <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute then the behavior is unspecified if the corresponding list item&#8217;s
+  variable is modified in the region.
+<span 
+class="cmsy-10">&#x2219;</span> A reference to a coarray that is encountered on a non-host device must not be coindexed or
+  appear as an actual argument to a procedure where the corresponding dummy argument is a
+  coarray.
+<span 
+class="cmsy-10">&#x2219;</span> If the allocation status of a mapped variable that has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute is unallocated on entry
+  to a <span class="textbf"><span class="texttt">target</span></span> region, the allocation status of the corresponding variable in the device data environment
+  must be unallocated upon exiting the region.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> If the allocation status of a mapped variable that has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute is allocated on entry to
+  a <span class="textbf"><span class="texttt">target</span></span> region, the allocation status and shape of the corresponding variable in the device data
+  environment may not be changed, either explicitly or implicitly, in the region after entry to
+  it.
+<span 
+class="cmsy-10">&#x2219;</span> If the association status of a list item with the <span class="textbf"><span class="texttt">POINTER</span></span> attribute that appears in a <span class="textbf"><span class="texttt">map</span></span> clause on the
+  construct is associated upon entry to the <span class="textbf"><span class="texttt">target</span></span> region, the list item must be associated with the same
+  pointer target upon exit from the region.
+<span 
+class="cmsy-10">&#x2219;</span> If the association status of a list item with the <span class="textbf"><span class="texttt">POINTER</span></span> attribute that appears in a <span class="textbf"><span class="texttt">map</span></span> clause on the
+  construct is disassociated upon entry to the <span class="textbf"><span class="texttt">target</span></span> region, the list item must be disassociated upon exit
+  from the region.
+<span 
+class="cmsy-10">&#x2219;</span> If the association status of a list item with the <span class="textbf"><span class="texttt">POINTER</span></span> attribute that appears in a <span class="textbf"><span class="texttt">map</span></span> clause on the
+  construct is disassociated or undefined on entry to the <span class="textbf"><span class="texttt">target</span></span> region and if the list item is associated
+  with a pointer target inside the <span class="textbf"><span class="texttt">target</span></span> region, the pointer association status must become disassociated
+  before the end the region.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-96-393"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">default-device-var</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>
+  scheduling
+  constraints,
+  see
+  Section&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">2.12.6<!--tex4ht:ref: subsec:Task Scheduling --></a>
+  </li>
+  <li class="itemize">
+  Memory
+  allocators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu65.html#x93-1030002.14.2">2.14.2<!--tex4ht:ref: subsec:target data Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">private</span></span>
+  and
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.
+  </li>
+  <li class="itemize">
+  Data-Mapping
+  Attribute
+                                                                            
+                                                                            
+  Rules
+  and
+  Clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu119.html#x154-1830002.21.7">2.21.7<!--tex4ht:ref: subsec:Data-Mapping Attribute Rules, Clauses, and Directives --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4">3.7.4<!--tex4ht:ref: subsec:omp_get_num_devices --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_alloctrait_t</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_alloctrait</span></span>
+  types,
+  see
+  Section&#x00A0;<a 
+href="openmpsu195.html#x245-2780003.13.1">3.13.1<!--tex4ht:ref: subsec:Memory Management Types --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_default_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu198.html#x248-2810003.13.4">3.13.4<!--tex4ht:ref: subsec:omp_set_default_allocator --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_default_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu199.html#x249-2820003.13.5">3.13.5<!--tex4ht:ref: subsec:omp_get_default_allocator --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span>
+                                                                            
+                                                                            
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3680004.5.2.26">4.5.2.26<!--tex4ht:ref: sec:ompt_callback_target_emi_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_submit_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi_t</span></span>
+  callback
+  type,
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3700004.5.2.28">4.5.2.28<!--tex4ht:ref: sec:ompt_callback_target_submit_emi_t --></a>.
+  </li></ul>
+<!--l. 1082--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu69.html" >next</a>] [<a 
+href="openmpsu67.html" >prev</a>] [<a 
+href="openmpsu67.html#tailopenmpsu67.html" >prev-tail</a>] [<a 
+href="openmpsu68.html" >front</a>] [<a 
+href="openmpse22.html#openmpsu68.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu68.html"></a> </p> 
+ 
+</body> 
+</html>

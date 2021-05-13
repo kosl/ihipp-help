@@ -1,0 +1,660 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Data Copying Clauses</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2296--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu119.html" >next</a>] [<a 
+href="openmpsu117.html" >prev</a>] [<a 
+href="openmpsu117.html#tailopenmpsu117.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu118.html">tail</a>] [<a 
+href="openmpse29.html#openmpsu118.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.21.6</span>&#x00A0;&#x00A0;<a 
+ id="x153-1800002.21.6"></a>Data Copying Clauses</h4>
+<a 
+ id="dx153-180001"></a>
+<a 
+ id="dx153-180002"></a>
+<p>This section describes the <span class="textbf"><span class="texttt">copyin</span></span> clause (allowed on the <span class="textbf"><span class="texttt">parallel</span></span> construct and combined parallel
+worksharing constructs) and the <span class="textbf"><span class="texttt">copyprivate</span></span> clause (allowed on the <span class="textbf"><span class="texttt">single</span></span> construct).
+</p> 
+<p>These two clauses support copying data values from private or threadprivate variables of an
+implicit task or thread to the corresponding variables of other implicit tasks or threads in the
+team.
+</p> 
+<p>The clauses accept a comma-separated list of list items (see Section&#x00A0;<a 
+href="openmpse9.html#x31-300002.1">2.1<!--tex4ht:ref: sec:Directive Format --></a>). All list items appearing in a
+clause must be visible, according to the scoping rules of the base language. Clauses may be repeated as
+needed, but a list item that specifies a given variable may not appear in more than one clause on the same
+directive.
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.6.1  </span> <a 
+ id="x153-1810002.21.6.1"></a><span class="textbf"><span class="texttt">copyin</span></span> Clause</h5>
+                                                                            
+                                                                            
+<a 
+ id="dx153-181001"></a>
+<a 
+ id="dx153-181002"></a>
+<p><p><a 
+ id="Q1-153-771"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">copyin</span></span> clause provides a mechanism to copy the value of a threadprivate variable of the primary
+thread to the threadprivate variable of each other member of the team that is executing the <span class="textbf"><span class="texttt">parallel</span></span>
+region.
+<p><a 
+ id="Q1-153-772"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">copyin</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x153-181003r1"></a></span></p> 
+<!--l. 2327--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x153-181004r2"></a></span><span 
+class="pcrb8t-">copyin</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x153-181005r3"></a></span></pre>
+<p><p><a 
+ id="Q1-153-773"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The copy is performed after the team is formed and prior to the execution of the associated structured block.
+For variables of non-array type, the copy is by copy assignment. For an array of elements of non-array type,
+each element is copied as if by assignment from an element of the array of the primary thread to the
+corresponding element of the array of all other threads.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For class types, the copy assignment operator is invoked. The order in which copy assignment operators for
+different variables of the same class type are invoked is unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The copy is performed, as if by assignment, after the team is formed and prior to the execution of the
+associated structured block.
+</p> 
+<p>On entry to any <span class="textbf"><span class="texttt">parallel</span></span> region, each thread&#8217;s copy of a variable that is affected by a <span class="textbf"><span class="texttt">copyin</span></span> clause for
+the <span class="textbf"><span class="texttt">parallel</span></span> region will acquire the type parameters, allocation, association, and definition status of the
+copy of the primary thread, according to the following rules:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  original
+  list
+  item
+  has
+  the
+  <span class="textbf"><span class="texttt">POINTER</span></span>
+  attribute,
+  each
+  copy
+  receives
+  the
+  same
+  association
+  status
+  as
+  that
+  of
+  the
+  copy
+  of
+  the
+  primary
+  thread
+  as
+  if
+  by
+  pointer
+  assignment.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  If
+  the
+  original
+  list
+  item
+  does
+  not
+  have
+  the
+  <span class="textbf"><span class="texttt">POINTER</span></span>
+  attribute,
+  each
+  copy
+  becomes
+  defined
+  with
+  the
+  value
+  of
+  the
+  copy
+  of
+  the
+  primary
+  thread
+  as
+  if
+  by
+  intrinsic
+  assignment
+  unless
+  the
+  list
+  item
+  has
+  a
+  type
+  bound
+  procedure
+  as
+  a
+                                                                            
+                                                                            
+  defined
+  assignment.
+  If
+  the
+  original
+  list
+  item
+  that
+  does
+  not
+  have
+  the
+  <span class="textbf"><span class="texttt">POINTER</span></span>
+  attribute
+  has
+  the
+  allocation
+  status
+  of
+  unallocated,
+  each
+  copy
+  will
+  have
+  the
+  same
+  status.
+  </li>
+  <li class="itemize">
+  If
+  the
+  original
+  list
+  item
+  is
+  unallocated
+  or
+  unassociated,
+  each
+  copy
+  inherits
+  the
+                                                                            
+                                                                            
+  declared
+  type
+  parameters
+  and
+  the
+  default
+  type
+  parameter
+  values
+  from
+  the
+  original
+  list
+  item.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-153-774"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">copyin</span></span> clause are as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  clause
+  must
+  be
+  threadprivate.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  A
+  variable
+  of
+  class
+  type
+  (or
+  array
+  thereof)
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  clause
+  requires
+  an
+  accessible,
+  unambiguous
+  copy
+  assignment
+  operator
+  for
+  the
+  class
+  type.</li></ul>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+                                                                            
+                                                                            
+  in
+  a
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  clause
+  must
+  be
+  threadprivate.
+  Named
+  variables
+  that
+  appear
+  in
+  a
+  threadprivate
+  common
+  block
+  may
+  be
+  specified:
+  the
+  whole
+  common
+  block
+  does
+  not
+  need
+  to
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  A
+  common
+  block
+  name
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  clause
+  must
+                                                                            
+                                                                            
+  be
+  declared
+  to
+  be
+  a
+  common
+  block
+  in
+  the
+  same
+  scoping
+  unit
+  in
+  which
+  the
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  clause
+  appears.
+  </li>
+  <li class="itemize">
+  If
+  the
+  list
+  item
+  is
+  a
+  polymorphic
+  variable
+  with
+  the
+  <span class="textbf"><span class="texttt">ALLOCATABLE</span></span>
+  attribute,
+  the
+  behavior
+  is
+  unspecified.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-153-775"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.6.2  </span> <a 
+ id="x153-1820002.21.6.2"></a><span class="textbf"><span class="texttt">copyprivate</span></span> Clause</h5>
+<a 
+ id="dx153-182001"></a>
+<a 
+ id="dx153-182002"></a>
+<p><p><a 
+ id="Q1-153-777"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">copyprivate</span></span> clause provides a mechanism to use a private variable to broadcast a value from the
+data environment of one implicit task to the data environments of the other implicit tasks that belong to the
+<span class="textbf"><span class="texttt">parallel</span></span> region.
+To avoid data races, concurrent reads or updates of the list item must be synchronized with the update of the
+list item that occurs as a result of the <span class="textbf"><span class="texttt">copyprivate</span></span> clause.
+<p><a 
+ id="Q1-153-778"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">copyprivate</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x153-182003r1"></a></span></p> 
+<!--l. 2421--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x153-182004r2"></a></span><span 
+class="pcrb8t-">copyprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x153-182005r3"></a></span></pre>
+<p><p><a 
+ id="Q1-153-779"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The effect of the <span class="textbf"><span class="texttt">copyprivate</span></span> clause on the specified list items occurs after the execution of the
+structured block associated with the <span class="textbf"><span class="texttt">single</span></span> construct (see Section&#x00A0;<a 
+href="openmpsu43.html#x67-670002.10.2">2.10.2<!--tex4ht:ref: subsec:single Construct --></a>), and before any of the threads
+in the team have left the barrier at the end of the construct.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>In all other implicit tasks that belong to the <span class="textbf"><span class="texttt">parallel</span></span> region, each specified list item becomes defined
+with the value of the corresponding list item in the implicit task associated with the thread that executed the
+structured block. For variables of non-array type, the definition occurs by copy assignment. For an array of
+elements of non-array type, each element is copied by copy assignment from an element of the array in the
+data environment of the implicit task that is associated with the thread that executed the structured
+block to the corresponding element of the array in the data environment of the other implicit
+tasks.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For class types, a copy assignment operator is invoked. The order in which copy assignment operators for
+different variables of class type are called is unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a list item does not have the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, then in all other implicit tasks that belong to the
+<span class="textbf"><span class="texttt">parallel</span></span> region, the list item becomes defined as if by intrinsic assignment with the value of the
+corresponding list item in the implicit task that is associated with the thread that executed the structured
+block. If the list item has a type bound procedure as a defined assignment, the assignment is performed by
+the defined assignment.
+</p> 
+<p>If the list item has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, then, in all other implicit tasks that belong to the <span class="textbf"><span class="texttt">parallel</span></span>
+region, the list item receives, as if by pointer assignment, the same association status of the
+corresponding list item in the implicit task that is associated with the thread that executed the structured
+block.
+</p> 
+<p>The order in which any final subroutines for different variables of a finalizable type are called is
+unspecified.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  The <span class="textbf"><span class="texttt">copyprivate</span></span> clause is an alternative to using a shared variable for the value when providing
+such a shared variable would be difficult (for example, in a recursion requiring a different variable at each
+level). <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-153-780"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">copyprivate</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+  list
+  items
+  that
+  appear
+  in
+  the
+  <span class="textbf"><span class="texttt">copyprivate</span></span>
+  clause
+  must
+  be
+  either
+  threadprivate
+  or
+  private
+  in
+  the
+  enclosing
+  context.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+                                                                            
+                                                                            
+  in
+  a
+  <span class="textbf"><span class="texttt">copyprivate</span></span>
+  clause
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">private</span></span>
+  or
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  on
+  the
+  <span class="textbf"><span class="texttt">single</span></span>
+  construct.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable of class type (or array thereof) that appears in a <span class="textbf"><span class="texttt">copyprivate</span></span> clause requires an accessible
+  unambiguous copy assignment operator for the class type.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A common block that appears in a <span class="textbf"><span class="texttt">copyprivate</span></span> clause must be threadprivate.
+<span 
+class="cmsy-10">&#x2219;</span> Pointers with the <span class="textbf"><span class="texttt">INTENT(IN)</span></span> attribute may not appear in the <span class="textbf"><span class="texttt">copyprivate</span></span> clause.
+<span 
+class="cmsy-10">&#x2219;</span> Any list item with the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute must have the allocation status of allocated when the
+  intrinsic assignment is performed.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item is a polymorphic variable with the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute, the behavior is
+  unspecified.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+                                                                            
+                                                                            
+<p><p><a 
+ id="Q1-153-781"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">private</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>.</li></ul>
+<!--l. 2510--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu119.html" >next</a>] [<a 
+href="openmpsu117.html" >prev</a>] [<a 
+href="openmpsu117.html#tailopenmpsu117.html" >prev-tail</a>] [<a 
+href="openmpsu118.html" >front</a>] [<a 
+href="openmpse29.html#openmpsu118.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu118.html"></a> </p> 
+ 
+</body> 
+</html>

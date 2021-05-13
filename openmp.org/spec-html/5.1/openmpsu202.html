@@ -1,0 +1,471 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_calloc and omp_aligned_calloc</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 519--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu203.html" >next</a>] [<a 
+href="openmpsu201.html" >prev</a>] [<a 
+href="openmpsu201.html#tailopenmpsu201.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu202.html">tail</a>] [<a 
+href="openmpse43.html#openmpsu202.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.13.8</span>&#x00A0;&#x00A0;<a 
+ id="x252-2850003.13.8"></a><span class="textbf"><span class="texttt">omp_calloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span></h4>
+<a 
+ id="dx252-285001"></a>
+<a 
+ id="dx252-285002"></a>
+<p><p><a 
+ id="Q1-252-1387"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_calloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span> routines request a zero initialized memory allocation
+from a memory allocator.
+<p><a 
+ id="Q1-252-1388"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285003r1"></a></span></p> 
+<!--l. 530--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285004r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">omp_calloc</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285006r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285007r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285008r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285009r7"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">omp_aligned_calloc</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285010r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285011r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285012r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285013r11"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285014r12"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285015r13"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285016r1"></a></span></p> 
+<!--l. 546--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285017r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">omp_calloc</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285018r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285019r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285020r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_null_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285021r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285022r7"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">omp_aligned_calloc</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285023r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285024r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285025r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285026r11"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_null_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285027r12"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285028r13"></a></span></pre>
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285029r1"></a></span></p> 
+<!--l. 562--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285030r2"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_calloc</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285031r3"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">intrinsic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iso_c_binding</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">only</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285032r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285033r5"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_allocator_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285034r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285035r7"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_aligned_calloc</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285036r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285037r9"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">intrinsic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iso_c_binding</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">only</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285038r10"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nmemb</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285039r11"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_allocator_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x252-285040r12"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-252-1389"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+Unless <span class="textbf"><span class="texttt">dynamic_allocators</span></span> appears on a <span class="textbf"><span class="texttt">requires</span></span> directive in the same compilation unit,
+<span class="textbf"><span class="texttt">omp_calloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span> invocations that appear in <span class="textbf"><span class="texttt">target</span></span> regions must not pass
+<span class="textbf"><span class="texttt">omp_null_allocator</span></span> as the <span class="textit"><span class="textrm">allocator</span></span> argument, which must be a constant expression that evaluates to
+one of the predefined memory allocator values.
+</p> 
+<p>The <span class="textit"><span class="textrm">alignment</span></span> argument to <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span> must be a power of two and the <span class="textit"><span class="textrm">size</span></span> argument must
+be a multiple of <span class="textit"><span class="textrm">alignment</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-252-1390"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_calloc</span></span> or <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span> region is the generating
+task.
+</p> 
+<p><p><a 
+ id="Q1-252-1391"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_calloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span> routines request a memory allocation from the specified
+memory allocator for an array of <span class="textit"><span class="textrm">nmemb</span></span> elements each of which has a size of <span class="textit"><span class="textrm">size</span></span> bytes. If the <span class="textit"><span class="textrm">allocator</span></span>
+argument is <span class="textbf"><span class="texttt">omp_null_allocator</span></span> the memory allocator used by the routines will be the one specified
+by the <span class="textit"><span class="textrm">def-allocator-var</span></span> ICV of the binding implicit task. Upon success they return a pointer
+to the allocated memory. Otherwise, the behavior that the <span class="textbf"><span class="texttt">fallback</span></span> trait of the allocator
+specifies will be followed. Any memory allocated by these routines will be set to zero before
+returning.
+</p> 
+<p>If either <span class="textit"><span class="textrm">nmemb</span></span> or <span class="textit"><span class="textrm">size</span></span> is 0, <span class="textbf"><span class="texttt">omp_calloc</span></span> will return <span class="textbf"><span class="texttt">NULL</span></span> (or, <span class="textbf"><span class="texttt">C_NULL_PTR</span></span>, for Fortran).
+</p> 
+<p>Memory allocated by <span class="textbf"><span class="texttt">omp_calloc</span></span> will be byte-aligned to at least the maximum of the alignment required
+by <span class="textbf"><span class="texttt">malloc</span></span> and the <span class="textbf"><span class="texttt">alignment</span></span> trait of the allocator.
+</p> 
+<p>Memory allocated by <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span> will be byte-aligned to at least the maximum of the
+alignment required by <span class="textbf"><span class="texttt">malloc</span></span>, the <span class="textbf"><span class="texttt">alignment</span></span> trait of the allocator and the <span class="textit"><span class="textrm">alignment</span></span> argument
+value.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp_calloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span> routines require an explicit interface and so might not
+be provided in <span class="textbf"><span class="texttt">omp_lib.h</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-252-1392"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Memory
+  allocators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>.</li></ul>
+<!--l. 624--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu203.html" >next</a>] [<a 
+href="openmpsu201.html" >prev</a>] [<a 
+href="openmpsu201.html#tailopenmpsu201.html" >prev-tail</a>] [<a 
+href="openmpsu202.html" >front</a>] [<a 
+href="openmpse43.html#openmpsu202.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu202.html"></a> </p> 
+ 
+</body> 
+</html>

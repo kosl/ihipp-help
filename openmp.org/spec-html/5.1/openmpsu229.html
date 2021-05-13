@@ -1,0 +1,228 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMPD Scope Types</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 423--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu230.html" >next</a>] [<a 
+href="openmpsu228.html" >prev</a>] [<a 
+href="openmpsu228.html#tailopenmpsu228.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu229.html">tail</a>] [<a 
+href="openmpse54.html#openmpsu229.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.3.9</span>&#x00A0;&#x00A0;<a 
+ id="x292-4250005.3.9"></a>OMPD Scope Types</h4>
+<p><p><a 
+ id="Q1-292-2047"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_scope_t</span></span> type identifies OMPD scopes.
+<p><a 
+ id="Q1-292-2048"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425001r1"></a></span></p> 
+<!--l. 431--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">enum</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_global</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_address_space</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_thread</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_implicit_task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">5,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425008r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">6</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425009r9"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_scope_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x292-425010r10"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-292-2049"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_scope_t</span></span> type identifies OpenMP scopes, including those related to parallel regions and tasks.
+When used in an OMPD interface function call, the scope type and the OMPD handle must match according
+to Table&#x00A0;<a 
+href="#x292-4250111">5.1<!--tex4ht:ref: table:scope-types --></a>.
+</p> 
+<p><a 
+ id="x292-4250111"></a><a 
+ id="x328-503003r1"></a><a 
+ id="x337-512007r2"></a></p> 
+<hr class="float" /><div class="float" 
+>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;5.1: </td><td  
+class="content">Mapping of Scope Type and OMPD Handles</td></tr></table></div><!--tex4ht:label?: x292-4250111 -->
+                                                                            
+                                                                            
+<div class="tabular"> <table id="TBL-37" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-37-1g"><col 
+id="TBL-37-1" /><col 
+id="TBL-37-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-1-1"  
+class="td11"> <p><span class="textsf"><span class="textbf">Scope types</span></span>                         </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-37-1-2"  
+class="td11"> <p><span class="textsf"><span class="textbf">Handles</span></span>                                                                  </p> 
+</td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-2-1"  
+class="td
+11"> <p><span class="textit"><span class="textrm">ompd_scope_global</span></span>                     </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-37-2-2"  
+class="td11"> <p>Address space handle for the host device                        </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-3-1"  
+class="td11"> <p><span class="textit"><span class="textrm">ompd_scope_address_space</span></span>       </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-37-3-2"  
+class="td11"> <p>Any address space handle                                                </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-4-1"  
+class="td11"> <p><span class="textit"><span class="textrm">ompd_scope_thread</span></span>                    </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-37-4-2"  
+class="td11"> <p>Any thread handle                                                            </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-5-1"  
+class="td11"> <p><span class="textit"><span class="textrm">ompd_scope_parallel</span></span>                  </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-37-5-2"  
+class="td11"> <p>Any parallel region handle                                              </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-6-1"  
+class="td11"> <p><span class="textit"><span class="textrm">ompd_scope_implicit_task</span></span>          </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-37-6-2"  
+class="td11"> <p>Task handle for an implicit task                                       </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-7-1"  
+class="td11"> <p><span class="textit"><span class="textrm">ompd_scope_task</span></span>                        </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-37-7-2"  
+class="td11"> <p>Any task handle                                                               </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-37-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-37-8-1"  
+class="td11">                       </td></tr></table></div></div><hr class="endfloat" />
+<!--l. 467--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu230.html" >next</a>] [<a 
+href="openmpsu228.html" >prev</a>] [<a 
+href="openmpsu228.html#tailopenmpsu228.html" >prev-tail</a>] [<a 
+href="openmpsu229.html" >front</a>] [<a 
+href="openmpse54.html#openmpsu229.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu229.html"></a> </p> 
+ 
+</body> 
+</html>

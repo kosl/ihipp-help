@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Structure of the OpenMP Memory Model</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 48--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu10.html" >next</a>] [<a 
+href="openmpse4.html" >prev</a>] [<a 
+href="openmpse4.html#tailopenmpse4.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu9.html">tail</a>] [<a 
+href="openmpse4.html#openmpsu9.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.4.1</span>&#x00A0;&#x00A0;<a 
+ id="x18-170001.4.1"></a>Structure of the OpenMP Memory Model</h4>
+<p>The OpenMP API provides a relaxed-consistency, shared-memory model. All OpenMP threads have access
+to a place to store and to retrieve variables, called the <span class="emph">memory</span>. A given storage location in the memory may
+be associated with one or more devices, such that only threads on associated devices have access to it. In
+addition, each thread is allowed to have its own <span class="emph">temporary view</span> of the memory. The temporary view of
+memory for each thread is not a required part of the OpenMP memory model, but can represent any kind
+of intervening structure, such as machine registers, cache, or other local storage, between the
+thread and the memory. The temporary view of memory allows the thread to cache variables and
+thereby to avoid going to memory for every reference to a variable. Each thread also has access
+to another type of memory that must not be accessed by other threads, called <span class="emph">threadprivate
+memory</span>.
+</p> 
+<p>A directive that accepts data-sharing attribute clauses determines two kinds of access to variables used in
+the directive&#8217;s associated structured block: shared and private. Each variable referenced in the structured
+block has an original variable, which is the variable by the same name that exists in the program
+immediately outside the construct. Each reference to a shared variable in the structured block becomes a
+reference to the original variable. For each private variable referenced in the structured block, a new version
+of the original variable (of the same type and size) is created in memory for each task or SIMD lane that
+contains code associated with the directive. Creation of the new version does not alter the value of the
+original variable. However, the impact of attempts to access the original variable from within
+the region corresponding to the directive is unspecified; see Section&#x00A0;<a 
+href="openmpsu116.html#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a> for additional
+details. References to a private variable in the structured block refer to the private version of the
+original variable for the current task or SIMD lane. The relationship between the value of the
+original variable and the initial or final value of the private version depends on the exact clause
+that specifies it. Details of this issue, as well as other issues with privatization, are provided in
+Section&#x00A0;<a 
+href="openmpse29.html#x147-1590002.21">2.21<!--tex4ht:ref: sec:Data Environment --></a>.
+</p> 
+<p>The minimum size at which a memory update may also read and write back adjacent variables that are part
+of another variable (as array or structure elements) is implementation defined but is no larger than the base
+language requires.
+</p> 
+<p>A single access to a variable may be implemented with multiple load or store instructions and, thus, is not
+guaranteed to be atomic with respect to other accesses to the same variable. Accesses to variables smaller
+than the implementation defined minimum size or to C or C++ bit-fields may be implemented by reading,
+modifying, and rewriting a larger unit of memory, and may thus interfere with updates of variables or fields
+in the same unit of memory.
+</p> 
+<p>Two memory operations are considered unordered if the order in which they must complete, as seen by their
+affected threads, is not specified by the memory consistency guarantees listed in Section&#x00A0;<a 
+href="openmpsu14.html#x23-220001.4.6">1.4.6<!--tex4ht:ref: subsec:OpenMP Memory Consistency --></a>. If
+multiple threads write to the same memory unit (defined consistently with the above access
+                                                                            
+                                                                            
+considerations) then a data race occurs if the writes are unordered. Similarly, if at least one thread reads
+from a memory unit and at least one thread writes to that same memory unit then a data race
+occurs if the read and write are unordered. If a data race occurs then the result of the program is
+unspecified.
+</p> 
+<p>A private variable in a task region that subsequently generates an inner nested <span class="textbf"><span class="texttt">parallel</span></span> region is
+permitted to be made shared for implicit tasks in the inner <span class="textbf"><span class="texttt">parallel</span></span> region. A private variable in a task
+region can also be shared by an explicit task region generated during its execution. However, the
+programmer must use synchronization that ensures that the lifetime of the variable does not end before
+completion of the explicit task region sharing it. Any other access by one task to the private variables of
+another task results in unspecified behavior.
+</p> 
+<p>A storage location in memory that is associated with a given device has a device address that may be
+dereferenced by a thread executing on that device, but it may not be generally accessible from other devices.
+A different device may obtain a device pointer that refers to this device address. The manner in which a
+program can obtain the referenced device address from a device pointer, outside of mechanisms specified by
+OpenMP, is implementation defined.
+</p> 
+<!--l. 125--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu10.html" >next</a>] [<a 
+href="openmpse4.html" >prev</a>] [<a 
+href="openmpse4.html#tailopenmpse4.html" >prev-tail</a>] [<a 
+href="openmpsu9.html" >front</a>] [<a 
+href="openmpse4.html#openmpsu9.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu9.html"></a> </p> 
+ 
+</body> 
+</html>

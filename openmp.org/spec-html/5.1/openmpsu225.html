@@ -1,0 +1,115 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Frame Information Type</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 295--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu226.html" >next</a>] [<a 
+href="openmpsu224.html" >prev</a>] [<a 
+href="openmpsu224.html#tailopenmpsu224.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu225.html">tail</a>] [<a 
+href="openmpse54.html#openmpsu225.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.3.5</span>&#x00A0;&#x00A0;<a 
+ id="x288-4210005.3.5"></a>Frame Information Type</h4>
+<p><p><a 
+ id="Q1-288-2030"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_frame_info_t</span></span> type is used to specify frame information.
+<p><a 
+ id="Q1-288-2031"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x288-421001r1"></a></span></p> 
+<!--l. 303--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x288-421002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_frame_info_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x288-421003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">frame_address</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x288-421004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_word_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">frame_flag</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x288-421005r5"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_frame_info_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x288-421006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-288-2032"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_frame_info_t</span></span> type is a structure that OMPD uses to specify frame information. The
+<span class="textit"><span class="textrm">frame_address</span></span> field of <span class="textbf"><span class="texttt">ompd_frame_info_t</span></span> identifies a frame. The <span class="textit"><span class="textrm">frame_flag</span></span> field of
+<span class="textbf"><span class="texttt">ompd_frame_info_t</span></span> indicates what type of information is provided in <span class="textit"><span class="textrm">frame_address</span></span>.
+The values and meaning is the same as defined for the <span class="textbf"><span class="texttt">ompt_frame_flag_t</span></span> enumeration
+type.
+</p> 
+<p><p><a 
+ id="Q1-288-2033"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_frame_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3350004.4.4.28">4.4.4.28<!--tex4ht:ref: subsubsubsec:ompt_frame_t --></a>.</li></ul>
+<!--l. 324--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu226.html" >next</a>] [<a 
+href="openmpsu224.html" >prev</a>] [<a 
+href="openmpsu224.html#tailopenmpsu224.html" >prev-tail</a>] [<a 
+href="openmpsu225.html" >front</a>] [<a 
+href="openmpse54.html#openmpsu225.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu225.html"></a> </p> 
+ 
+</body> 
+</html>

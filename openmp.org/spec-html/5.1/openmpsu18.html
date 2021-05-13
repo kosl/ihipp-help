@@ -1,0 +1,190 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Free Source Form Directives</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 312--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu19.html" >next</a>] [<a 
+href="openmpsu17.html" >prev</a>] [<a 
+href="openmpsu17.html#tailopenmpsu17.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu18.html">tail</a>] [<a 
+href="openmpse9.html#openmpsu18.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.1.2</span>&#x00A0;&#x00A0;<a 
+ id="x33-320002.1.2"></a>Free Source Form Directives</h4>
+<a 
+ id="dx33-32001"></a>
+<p>The following sentinel is recognized in free form source files:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32002r1"></a></span></p> 
+<!--l. 318--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32003r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32004r3"></a></span></pre>
+<p>The sentinel can appear in any column as long as it is preceded only by white space. It must appear as a
+single word with no intervening white space. Fortran free form line length, white space, and
+continuation rules apply to the directive line. Initial directive lines must have a space after the
+sentinel. Continued directive lines must have an ampersand&#x00A0;(<span class="textbf"><span class="texttt">&amp;</span></span>) as the last non-blank character
+on the line, prior to any comment placed inside the directive. Continuation directive lines can
+have an ampersand after the directive sentinel with optional white space before and after the
+ampersand.
+</p> 
+<p>Comments may appear on the same line as a directive. The exclamation point&#x00A0;(<span class="textbf"><span class="texttt">!</span></span>) initiates a comment. The
+comment extends to the end of the source line and is ignored. If the first non-blank character after the
+directive sentinel is an exclamation point, the line is ignored.
+</p> 
+<p>One or more blanks or horizontal tabs are optional to separate adjacent keywords in <span class="textit"><span class="textrm">directive-names</span></span> unless
+otherwise specified.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  In the following example the three formats for specifying the directive are equivalent (the first line
+represents the position of the first 9 columns):
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32005r1"></a></span></p> 
+<!--l. 343--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32006r2"></a></span><span 
+class="pcrb8t-">!23456789</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32007r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32008r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">b</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32009r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32010r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32011r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">b</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32012r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32013r9"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">paralleldo</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">a</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">b</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x33-32014r10"></a></span></pre>
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+                                                                            
+                                                                            
+</p> 
+<!--l. 359--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu19.html" >next</a>] [<a 
+href="openmpsu17.html" >prev</a>] [<a 
+href="openmpsu17.html#tailopenmpsu17.html" >prev-tail</a>] [<a 
+href="openmpsu18.html" >front</a>] [<a 
+href="openmpse9.html#openmpsu18.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu18.html"></a> </p> 
+ 
+</body> 
+</html>

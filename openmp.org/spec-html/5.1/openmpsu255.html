@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Initializing OpenMP Devices</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 220--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu256.html" >next</a>] [<a 
+href="openmpsu254.html" >prev</a>] [<a 
+href="openmpsu254.html#tailopenmpsu254.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu255.html">tail</a>] [<a 
+href="openmpse57.html#openmpsu255.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.6.7</span>&#x00A0;&#x00A0;<a 
+ id="x321-4960005.6.7"></a>Initializing OpenMP Devices</h4>
+<a 
+ id="dx321-496001"></a>
+<p><p><a 
+ id="Q1-321-2435"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The OpenMP implementation must execute <span class="textbf"><span class="texttt">ompd_bp_device_begin</span></span> at every <span class="textit"><span class="textrm">device-initialize</span></span>
+event.
+<p><a 
+ id="Q1-321-2436"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x321-496002r1"></a></span></p> 
+<!--l. 230--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x321-496003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_bp_device_begin</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x321-496004r3"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-321-2437"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+When initializing a device for execution of a <span class="textbf"><span class="texttt">target</span></span> region, the implementation must execute
+<span class="textbf"><span class="texttt">ompd_bp_device_begin</span></span>. This execution occurs before the work associated with any OpenMP region
+executes on the device.
+</p> 
+<p><p><a 
+ id="Q1-321-2438"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Device
+  Initialization,
+  see
+  Section&#x00A0;<a 
+href="openmpsu64.html#x92-1020002.14.1">2.14.1<!--tex4ht:ref: subsec:Device Initialization --></a>.</li></ul>
+<!--l. 247--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu256.html" >next</a>] [<a 
+href="openmpsu254.html" >prev</a>] [<a 
+href="openmpsu254.html#tailopenmpsu254.html" >prev-tail</a>] [<a 
+href="openmpsu255.html" >front</a>] [<a 
+href="openmpse57.html#openmpsu255.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu255.html"></a> </p> 
+ 
+</body> 
+</html>

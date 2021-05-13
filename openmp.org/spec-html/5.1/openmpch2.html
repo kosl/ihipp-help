@@ -1,0 +1,527 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>2 Directives</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse9.html" >next</a>] [<a 
+href="openmpse8.html" >prev</a>] [<a 
+href="openmpse8.html#tailopenmpse8.html" >prev-tail</a>] [<a 
+href="#tailopenmpch2.html">tail</a>] [<a 
+href="openmp.html#openmpch2.html" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">2</span>&#x00A0;&#x00A0;<a 
+ id="x30-290002"></a>Directives</h2>
+<a 
+ id="dx30-29001"></a>
+<p>This chapter describes the syntax and behavior of OpenMP directives.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>OpenMP directives are specified with the <span class="textbf"><span class="texttt">#pragma</span></span> mechanism provided by the C standard.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>OpenMP directives are specified with attribute specifiers or the <span class="textbf"><span class="texttt">#pragma</span></span> mechanism provided by the C++
+standard.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>OpenMP directives are specified with stylized comments that are identified by unique sentinels. Also, a
+stylized comment form is available for conditional compilation.
+</p> 
+<p>If a directive appears in the declarative part of a module then the behavior is as if that directive appears after
+any references to that module.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Compilers can therefore ignore OpenMP directives and conditionally compiled code if support of the
+OpenMP API is not provided or enabled. A compliant implementation must provide an option or interface
+that ensures that underlying support of all OpenMP directives and OpenMP conditional compilation
+mechanisms is enabled. In the remainder of this document, the phrase <span class="emph">OpenMP compilation</span> is used to mean
+a compilation with these OpenMP features enabled.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>This chapter uses <span class="textit"><span class="textrm">NULL</span></span> as a generic term for a null pointer constant, <span class="textit"><span class="textrm">true</span></span> as a generic term for a non-zero
+integer value and <span class="textit"><span class="textrm">false</span></span> as a generic term for an integer value of zero.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>This chapter uses <span class="textit"><span class="textrm">NULL</span></span> as a generic term for the named constant <span class="textbf"><span class="texttt">C_NULL_PTR</span></span>, <span class="textit"><span class="textrm">true</span></span> as a
+generic term for a logical value of <span class="textbf"><span class="texttt">.TRUE.</span></span> and <span class="textit"><span class="textrm">false</span></span> as a generic term for a logical value of
+<span class="textbf"><span class="texttt">.FALSE.</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-30-30"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The following restrictions apply to OpenMP directives:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  declarative
+  directive
+  may
+  not
+  be
+  used
+  in
+  place
+  of
+  a
+  substatement
+  in
+                                                                            
+                                                                            
+  a
+  selection
+  statement,
+  in
+  place
+  of
+  the
+  loop
+  body
+  in
+  an
+  iteration
+  statement,
+  or
+  in
+  place
+  of
+  the
+  statement
+  that
+  follows
+  a
+  label.</li></ul><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  declarative
+  directive
+  may
+  not
+  be
+  used
+  in
+  place
+  of
+  a
+                                                                            
+                                                                            
+  substatement
+  in
+  a
+  selection
+  statement
+  or
+  iteration
+  statement,
+  or
+  in
+  place
+  of
+  the
+  statement
+  that
+  follows
+  a
+  label.</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  OpenMP
+  directives,
+  except
+  <span class="textbf"><span class="texttt">simd</span></span>
+  and
+  declarative
+  directives,
+  may
+  not
+  appear
+  in
+  pure
+                                                                            
+                                                                            
+  procedures.
+  </li>
+  <li class="itemize">
+  OpenMP
+  directives
+  may
+  not
+  appear
+  in
+  the
+  <span class="textbf"><span class="texttt">WHERE</span></span>,
+  <span class="textbf"><span class="texttt">FORALL</span></span>
+  or
+  <span class="textbf"><span class="texttt">DO</span></span>&#x00A0;<span class="textbf"><span class="texttt">CONCURRENT</span></span>
+  constructs.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<div class="sectionTOCS">
+&#x00A0;<span class="sectionToc" >2.1&#x00A0;&#x00A0;<a 
+href="openmpse9.html#x31-300002.1">Directive Format</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.1&#x00A0;&#x00A0;<a 
+href="openmpsu17.html#x32-310002.1.1">Fixed Source Form Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.2&#x00A0;&#x00A0;<a 
+href="openmpsu18.html#x33-320002.1.2">Free Source Form Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.3&#x00A0;&#x00A0;<a 
+href="openmpsu19.html#x34-330002.1.3">Stand-Alone Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.4&#x00A0;&#x00A0;<a 
+href="openmpsu20.html#x35-340002.1.4">Array Shaping</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.5&#x00A0;&#x00A0;<a 
+href="openmpsu21.html#x36-350002.1.5">Array Sections</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.6&#x00A0;&#x00A0;<a 
+href="openmpsu22.html#x37-360002.1.6">Iterators</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.2&#x00A0;&#x00A0;<a 
+href="openmpse10.html#x38-370002.2">Conditional Compilation</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu23.html#x39-380002.2.1">Fixed Source Form Conditional Compilation Sentinels</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu24.html#x40-390002.2.2">Free Source Form Conditional Compilation Sentinel</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.3&#x00A0;&#x00A0;<a 
+href="openmpse11.html#x41-400002.3">Variant Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.1&#x00A0;&#x00A0;<a 
+href="openmpsu25.html#x42-410002.3.1">OpenMP Context</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.2&#x00A0;&#x00A0;<a 
+href="openmpsu26.html#x43-420002.3.2">Context Selectors</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.3&#x00A0;&#x00A0;<a 
+href="openmpsu27.html#x44-430002.3.3">Matching and Scoring Context Selectors</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.4&#x00A0;&#x00A0;<a 
+href="openmpsu28.html#x45-440002.3.4">Metadirectives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.5&#x00A0;&#x00A0;<a 
+href="openmpsu29.html#x46-450002.3.5">Declare Variant Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.6&#x00A0;&#x00A0;<a 
+href="openmpsu30.html#x47-460002.3.6"><span class="textbf"><span class="texttt">dispatch</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.4&#x00A0;&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">Internal Control Variables</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">ICV Descriptions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu32.html#x50-490002.4.2">ICV Initialization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu33.html#x51-500002.4.3">Modifying and Retrieving ICV Values</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu34.html#x52-510002.4.4">How ICVs are Scoped</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu35.html#x53-530002.4.5">ICV Override Relationships</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.5&#x00A0;&#x00A0;<a 
+href="openmpse13.html#x54-540002.5">Informational and Utility Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu36.html#x55-550002.5.1"><span class="textbf"><span class="texttt">requires</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu37.html#x56-560002.5.2">Assume Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.3&#x00A0;&#x00A0;<a 
+href="openmpsu38.html#x57-570002.5.3"><span class="textbf"><span class="texttt">nothing</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.4&#x00A0;&#x00A0;<a 
+href="openmpsu39.html#x58-580002.5.4"><span class="textbf"><span class="texttt">error</span></span> Directive</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.6&#x00A0;&#x00A0;<a 
+href="openmpse14.html#x59-590002.6"><span class="textbf"><span class="texttt">parallel</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">Determining the Number of Threads for a <span class="textbf"><span class="texttt">parallel</span></span> Region</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">Controlling OpenMP Thread Affinity</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.7&#x00A0;&#x00A0;<a 
+href="openmpse15.html#x62-620002.7"><span class="textbf"><span class="texttt">teams</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.8&#x00A0;&#x00A0;<a 
+href="openmpse16.html#x63-630002.8"><span class="textbf"><span class="texttt">masked</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.9&#x00A0;&#x00A0;<a 
+href="openmpse17.html#x64-640002.9"><span class="textbf"><span class="texttt">scope</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.10&#x00A0;&#x00A0;<a 
+href="openmpse18.html#x65-650002.10">Worksharing Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.1&#x00A0;&#x00A0;<a 
+href="openmpsu42.html#x66-660002.10.1"><span class="textbf"><span class="texttt">sections</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.2&#x00A0;&#x00A0;<a 
+href="openmpsu43.html#x67-670002.10.2"><span class="textbf"><span class="texttt">single</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.3&#x00A0;&#x00A0;<a 
+href="openmpsu44.html#x68-680002.10.3"><span class="textbf"><span class="texttt">workshare</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.11&#x00A0;&#x00A0;<a 
+href="openmpse19.html#x69-690002.11">Loop-Related Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.1&#x00A0;&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">Canonical Loop Nest Form</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.2&#x00A0;&#x00A0;<a 
+href="openmpsu46.html#x71-710002.11.2">Consistent Loop Schedules</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.3&#x00A0;&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3"><span class="textbf"><span class="texttt">order</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.4&#x00A0;&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">Worksharing-Loop Construct</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.5&#x00A0;&#x00A0;<a 
+href="openmpsu49.html#x74-750002.11.5">SIMD Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.6&#x00A0;&#x00A0;<a 
+href="openmpsu50.html#x75-790002.11.6"><span class="textbf"><span class="texttt">distribute</span></span> Loop Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.7&#x00A0;&#x00A0;<a 
+href="openmpsu51.html#x76-840002.11.7"><span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.8&#x00A0;&#x00A0;<a 
+href="openmpsu52.html#x77-850002.11.8"><span class="textbf"><span class="texttt">scan</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.9&#x00A0;&#x00A0;<a 
+href="openmpsu53.html#x78-860002.11.9">Loop Transformation Constructs</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.12&#x00A0;&#x00A0;<a 
+href="openmpse20.html#x79-890002.12">Tasking Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.1&#x00A0;&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1"><span class="textbf"><span class="texttt">task</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.2&#x00A0;&#x00A0;<a 
+href="openmpsu55.html#x81-910002.12.2"><span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.3&#x00A0;&#x00A0;<a 
+href="openmpsu56.html#x82-920002.12.3"><span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.4&#x00A0;&#x00A0;<a 
+href="openmpsu57.html#x83-930002.12.4"><span class="textbf"><span class="texttt">taskyield</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.5&#x00A0;&#x00A0;<a 
+href="openmpsu58.html#x84-940002.12.5">Initial Task</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.12.6&#x00A0;&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">Task Scheduling</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.13&#x00A0;&#x00A0;<a 
+href="openmpse21.html#x86-960002.13">Memory Management Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.1&#x00A0;&#x00A0;<a 
+href="openmpsu60.html#x87-970002.13.1">Memory Spaces</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.2&#x00A0;&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">Memory Allocators</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.3&#x00A0;&#x00A0;<a 
+href="openmpsu62.html#x89-990002.13.3"><span class="textbf"><span class="texttt">allocate</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.13.4&#x00A0;&#x00A0;<a 
+href="openmpsu63.html#x90-1000002.13.4"><span class="textbf"><span class="texttt">allocate</span></span> Clause</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.14&#x00A0;&#x00A0;<a 
+href="openmpse22.html#x91-1010002.14">Device Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.1&#x00A0;&#x00A0;<a 
+href="openmpsu64.html#x92-1020002.14.1">Device Initialization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.2&#x00A0;&#x00A0;<a 
+href="openmpsu65.html#x93-1030002.14.2"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.3&#x00A0;&#x00A0;<a 
+href="openmpsu66.html#x94-1040002.14.3"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.4&#x00A0;&#x00A0;<a 
+href="openmpsu67.html#x95-1050002.14.4"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.5&#x00A0;&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5"><span class="textbf"><span class="texttt">target</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.6&#x00A0;&#x00A0;<a 
+href="openmpsu69.html#x97-1070002.14.6"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.14.7&#x00A0;&#x00A0;<a 
+href="openmpsu70.html#x98-1080002.14.7">Declare Target Directive</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.15&#x00A0;&#x00A0;<a 
+href="openmpse23.html#x99-1090002.15">Interoperability</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.15.1&#x00A0;&#x00A0;<a 
+href="openmpsu71.html#x100-1100002.15.1"><span class="textbf"><span class="texttt">interop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.15.2&#x00A0;&#x00A0;<a 
+href="openmpsu72.html#x101-1110002.15.2">Interoperability Requirement Set</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.16&#x00A0;&#x00A0;<a 
+href="openmpse24.html#x102-1120002.16">Combined Constructs</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.1&#x00A0;&#x00A0;<a 
+href="openmpsu73.html#x103-1130002.16.1">Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.2&#x00A0;&#x00A0;<a 
+href="openmpsu74.html#x104-1140002.16.2"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.3&#x00A0;&#x00A0;<a 
+href="openmpsu75.html#x105-1150002.16.3"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">sections</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.4&#x00A0;&#x00A0;<a 
+href="openmpsu76.html#x106-1160002.16.4"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">workshare</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.5&#x00A0;&#x00A0;<a 
+href="openmpsu77.html#x107-1170002.16.5">Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.6&#x00A0;&#x00A0;<a 
+href="openmpsu78.html#x108-1180002.16.6"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.7&#x00A0;&#x00A0;<a 
+href="openmpsu79.html#x109-1190002.16.7"><span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.8&#x00A0;&#x00A0;<a 
+href="openmpsu80.html#x110-1200002.16.8"><span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.9&#x00A0;&#x00A0;<a 
+href="openmpsu81.html#x111-1210002.16.9"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.10&#x00A0;&#x00A0;<a 
+href="openmpsu82.html#x112-1220002.16.10"><span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">masked</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.11&#x00A0;&#x00A0;<a 
+href="openmpsu83.html#x113-1230002.16.11"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.12&#x00A0;&#x00A0;<a 
+href="openmpsu84.html#x114-1240002.16.12"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.13&#x00A0;&#x00A0;<a 
+href="openmpsu85.html#x115-1250002.16.13">Teams Distribute Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.14&#x00A0;&#x00A0;<a 
+href="openmpsu86.html#x116-1260002.16.14">Teams Distribute Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.15&#x00A0;&#x00A0;<a 
+href="openmpsu87.html#x117-1270002.16.15"><span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.16&#x00A0;&#x00A0;<a 
+href="openmpsu88.html#x118-1280002.16.16"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.17&#x00A0;&#x00A0;<a 
+href="openmpsu89.html#x119-1290002.16.17">Target Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.18&#x00A0;&#x00A0;<a 
+href="openmpsu90.html#x120-1300002.16.18">Target Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.19&#x00A0;&#x00A0;<a 
+href="openmpsu91.html#x121-1310002.16.19"><span class="textbf"><span class="texttt">target</span></span><span class="textbf"><span class="texttt">parallel</span></span><span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.20&#x00A0;&#x00A0;<a 
+href="openmpsu92.html#x122-1320002.16.20"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.21&#x00A0;&#x00A0;<a 
+href="openmpsu93.html#x123-1330002.16.21"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.22&#x00A0;&#x00A0;<a 
+href="openmpsu94.html#x124-1340002.16.22"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.23&#x00A0;&#x00A0;<a 
+href="openmpsu95.html#x125-1350002.16.23"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.24&#x00A0;&#x00A0;<a 
+href="openmpsu96.html#x126-1360002.16.24"><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">teams</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.25&#x00A0;&#x00A0;<a 
+href="openmpsu97.html#x127-1370002.16.25">Target Teams Distribute Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.16.26&#x00A0;&#x00A0;<a 
+href="openmpsu98.html#x128-1380002.16.26">Target Teams Distribute Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.17&#x00A0;&#x00A0;<a 
+href="openmpse25.html#x129-1390002.17">Clauses on Combined and Composite Constructs</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.18&#x00A0;&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18"><span class="textbf"><span class="texttt">if</span></span> Clause</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.19&#x00A0;&#x00A0;<a 
+href="openmpse27.html#x131-1410002.19">Synchronization Constructs and Clauses</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.1&#x00A0;&#x00A0;<a 
+href="openmpsu99.html#x132-1420002.19.1"><span class="textbf"><span class="texttt">critical</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.2&#x00A0;&#x00A0;<a 
+href="openmpsu100.html#x133-1430002.19.2"><span class="textbf"><span class="texttt">barrier</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.3&#x00A0;&#x00A0;<a 
+href="openmpsu101.html#x134-1440002.19.3">Implicit Barriers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.4&#x00A0;&#x00A0;<a 
+href="openmpsu102.html#x135-1450002.19.4">Implementation-Specific Barriers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.5&#x00A0;&#x00A0;<a 
+href="openmpsu103.html#x136-1460002.19.5"><span class="textbf"><span class="texttt">taskwait</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.6&#x00A0;&#x00A0;<a 
+href="openmpsu104.html#x137-1470002.19.6"><span class="textbf"><span class="texttt">taskgroup</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.7&#x00A0;&#x00A0;<a 
+href="openmpsu105.html#x138-1480002.19.7"><span class="textbf"><span class="texttt">atomic</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.8&#x00A0;&#x00A0;<a 
+href="openmpsu106.html#x139-1490002.19.8"><span class="textbf"><span class="texttt">flush</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.9&#x00A0;&#x00A0;<a 
+href="openmpsu107.html#x140-1510002.19.9"><span class="textbf"><span class="texttt">ordered</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.10&#x00A0;&#x00A0;<a 
+href="openmpsu108.html#x141-1520002.19.10">Depend Objects</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.11&#x00A0;&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11"><span class="textbf"><span class="texttt">depend</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.12&#x00A0;&#x00A0;<a 
+href="openmpsu110.html#x143-1550002.19.12">Synchronization Hints</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.20&#x00A0;&#x00A0;<a 
+href="openmpse28.html#x144-1560002.20">Cancellation Constructs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.20.1&#x00A0;&#x00A0;<a 
+href="openmpsu111.html#x145-1570002.20.1"><span class="textbf"><span class="texttt">cancel</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.20.2&#x00A0;&#x00A0;<a 
+href="openmpsu112.html#x146-1580002.20.2"><span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span> Construct</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.21&#x00A0;&#x00A0;<a 
+href="openmpse29.html#x147-1590002.21">Data Environment</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.1&#x00A0;&#x00A0;<a 
+href="openmpsu113.html#x148-1600002.21.1">Data-Sharing Attribute Rules</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.2&#x00A0;&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2"><span class="textbf"><span class="texttt">threadprivate</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.3&#x00A0;&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">List Item Privatization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.4&#x00A0;&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">Data-Sharing Attribute Clauses</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.5&#x00A0;&#x00A0;<a 
+href="openmpsu117.html#x152-1720002.21.5">Reduction Clauses and Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.6&#x00A0;&#x00A0;<a 
+href="openmpsu118.html#x153-1800002.21.6">Data Copying Clauses</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.21.7&#x00A0;&#x00A0;<a 
+href="openmpsu119.html#x154-1830002.21.7">Data-Mapping Attribute Rules, Clauses, and Directives</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.22&#x00A0;&#x00A0;<a 
+href="openmpse30.html#x155-1880002.22">Nesting of Regions</a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                            
+                                                                            
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse9.html" >next</a>] [<a 
+href="openmpse8.html" >prev</a>] [<a 
+href="openmpse8.html#tailopenmpse8.html" >prev-tail</a>] [<a 
+href="openmpch2.html" >front</a>] [<a 
+href="openmp.html#openmpch2.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpch2.html"></a> </p> 
+ 
+</body> 
+</html>

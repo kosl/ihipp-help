@@ -1,0 +1,198 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Implicit Barriers</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 294--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu102.html" >next</a>] [<a 
+href="openmpsu100.html" >prev</a>] [<a 
+href="openmpsu100.html#tailopenmpsu100.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu101.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu101.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.3</span>&#x00A0;&#x00A0;<a 
+ id="x134-1440002.19.3"></a>Implicit Barriers</h4>
+                                                                            
+                                                                            
+<a 
+ id="dx134-144001"></a>
+<a 
+ id="dx134-144002"></a>
+<p>This section describes the OMPT events and tool callbacks associated with implicit barriers, which occur at
+the end of various regions as defined in the description of the constructs to which they correspond. Implicit
+barriers are task scheduling points. For a description of task scheduling points, associated events, and tool
+callbacks, see Section&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">2.12.6<!--tex4ht:ref: subsec:Task Scheduling --></a>.
+</p> 
+<p><p><a 
+ id="Q1-134-603"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">implicit-barrier-begin</span></span> event occurs in each implicit task at the beginning of an implicit barrier
+region.
+The <span class="textit"><span class="textrm">implicit-barrier-wait-begin</span></span> event occurs when a task begins an interval of active or passive waiting in
+an implicit barrier region.
+The <span class="textit"><span class="textrm">implicit-barrier-wait-end</span></span> event occurs when a task ends an interval of active or waiting and resumes
+execution of an implicit barrier region.
+The <span class="textit"><span class="textrm">implicit-barrier-end</span></span> event occurs in each implicit task after the barrier synchronization on exit from an
+implicit barrier region.
+A <span class="textit"><span class="textrm">cancellation</span></span> event occurs if cancellation is activated at an implicit cancellation point in an implicit barrier
+region.
+<p><a 
+ id="Q1-134-604"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_sync_region</span></span> callback for each implicit barrier
+<span class="textit"><span class="textrm">begin</span></span> and <span class="textit"><span class="textrm">end</span></span> event. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_sync_region_wait</span></span>
+callback for each implicit barrier <span class="textit"><span class="textrm">wait-begin</span></span> and <span class="textit"><span class="textrm">wait-end</span></span> event. All callbacks for implicit barrier events execute
+in the context of the encountering task and have type signature <span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span>.
+</p> 
+<p>For the implicit barrier at the end of a worksharing construct, the <span class="textit"><span class="textrm">kind</span></span> argument is
+<span class="textbf"><span class="texttt">ompt_sync_region_barrier_implicit_workshare</span></span>. For the implicit barrier at the end of a
+<span class="textbf"><span class="texttt">parallel</span></span> region, the <span class="textit"><span class="textrm">kind</span></span> argument is <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implicit_parallel</span></span>.
+For an extra barrier added by an OpenMP implementation, the <span class="textit"><span class="textrm">kind</span></span> argument is
+<span class="textbf"><span class="texttt">ompt_sync_region_barrier_implementation</span></span>. For a barrier at the end of a <span class="textbf"><span class="texttt">teams</span></span> region, the
+<span class="textit"><span class="textrm">kind</span></span> argument is <span class="textbf"><span class="texttt">ompt_sync_region_barrier_teams</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_cancel</span></span> callback with <span class="textbf"><span class="texttt">ompt_cancel_detected</span></span>
+as its <span class="textit"><span class="textrm">flags</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">cancellation</span></span> event in that thread. The callback occurs in the
+context of the encountering task. The callback has type signature <span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-134-605"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to implicit barriers are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  a
+  thread
+  is
+  in
+  the
+  state
+  <span class="textbf"><span class="texttt">ompt_state_wait_barrier_implicit_parallel</span></span>,
+  a
+  call
+  to
+  <span class="textbf"><span class="texttt">ompt_get_parallel_info</span></span>
+  may
+  return
+  a
+  pointer
+  to
+  a
+  copy
+  of
+  the
+  data
+  object
+  associated
+  with
+  the
+  parallel
+  region
+  rather
+  than
+  a
+  pointer
+  to
+  the
+  associated
+  data
+                                                                            
+                                                                            
+  object
+  itself.
+  Writing
+  to
+  the
+  data
+  object
+  returned
+  by
+  <span class="textbf"><span class="texttt">omp_get_parallel_info</span></span>
+  when
+  a
+  thread
+  is
+  in
+  the
+  <span class="textbf"><span class="texttt">ompt_state_wait_barrier_implicit_parallel</span></span>
+  results
+  in
+  unspecified
+  behavior.</li></ul>
+<p><p><a 
+ id="Q1-134-606"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implementation</span></span>,
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implicit_parallel</span></span>
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_teams</span></span>,
+  and
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implicit_workshare</span></span>,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3200004.4.4.13">4.4.4.13<!--tex4ht:ref: sec:ompt_sync_region_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_cancel_detected</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3320004.4.4.25">4.4.4.25<!--tex4ht:ref: sec:ompt_cancel_flag_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_sync_region_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3550004.5.2.13">4.5.2.13<!--tex4ht:ref: sec:ompt_callback_sync_region_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3600004.5.2.18">4.5.2.18<!--tex4ht:ref: sec:ompt_callback_cancel_t --></a>.</li></ul>
+<!--l. 385--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu102.html" >next</a>] [<a 
+href="openmpsu100.html" >prev</a>] [<a 
+href="openmpsu100.html#tailopenmpsu100.html" >prev-tail</a>] [<a 
+href="openmpsu101.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu101.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu101.html"></a> </p> 
+ 
+</body> 
+</html>

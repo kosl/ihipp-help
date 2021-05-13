@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_max_task_priority</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 8--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu158.html" >next</a>] [<a 
+href="openmpse35.html" >prev</a>] [<a 
+href="openmpse35.html#tailopenmpse35.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu157.html">tail</a>] [<a 
+href="openmpse35.html#openmpsu157.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.5.1</span>&#x00A0;&#x00A0;<a 
+ id="x199-2320003.5.1"></a><span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span></h4>
+<a 
+ id="dx199-232001"></a>
+<p><p><a 
+ id="Q1-199-1043"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span> routine returns the maximum value that can be specified in the
+<span class="textbf"><span class="texttt">priority</span></span> clause.
+<p><a 
+ id="Q1-199-1044"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x199-232002r1"></a></span></p> 
+<!--l. 19--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x199-232003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_max_task_priority</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x199-232004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents"><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <!--l. 26--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x199-232005r1"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_max_task_priority</span><span 
+class="pcrb8t-">()</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x199-232006r2"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-199-1045"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span> region is all threads on the device. The
+effect of executing this routine is not related to any specific region that corresponds to any construct or API
+routine.
+</p> 
+<p><p><a 
+ id="Q1-199-1046"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span> routine returns the value of the <span class="textit"><span class="textrm">max-task-priority-var</span></span> ICV, which
+determines the maximum value that can be specified in the <span class="textbf"><span class="texttt">priority</span></span> clause.
+</p> 
+<p><p><a 
+ id="Q1-199-1047"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">max-task-priority-var</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.</li></ul>
+<!--l. 53--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu158.html" >next</a>] [<a 
+href="openmpse35.html" >prev</a>] [<a 
+href="openmpse35.html#tailopenmpse35.html" >prev-tail</a>] [<a 
+href="openmpsu157.html" >front</a>] [<a 
+href="openmpse35.html#openmpsu157.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu157.html"></a> </p> 
+ 
+</body> 
+</html>

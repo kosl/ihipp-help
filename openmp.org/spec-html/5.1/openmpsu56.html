@@ -1,0 +1,345 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>taskloop simd Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 609--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu57.html" >next</a>] [<a 
+href="openmpsu55.html" >prev</a>] [<a 
+href="openmpsu55.html#tailopenmpsu55.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu56.html">tail</a>] [<a 
+href="openmpse20.html#openmpsu56.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.12.3</span>&#x00A0;&#x00A0;<a 
+ id="x82-920002.12.3"></a><span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</h4>
+<a 
+ id="dx82-92001"></a>
+<a 
+ id="dx82-92002"></a>
+<p><p><a 
+ id="Q1-82-309"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct specifies a loop that can be executed concurrently using SIMD
+instructions and that those iterations will also be executed in parallel using explicit tasks. The <span class="textbf"><span class="texttt">taskloop</span></span>
+<span class="textbf"><span class="texttt">simd</span></span> construct is a composite construct.
+<p><a 
+ id="Q1-82-310"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92003r1"></a></span></p> 
+<!--l. 622--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">taskloop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">taskloop</span></span> or
+<span class="textbf"><span class="texttt">simd</span></span> directives with identical meanings and restrictions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92007r1"></a></span></p> 
+<!--l. 633--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92008r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">taskloop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92009r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92010r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">taskloop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x82-92011r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">taskloop</span></span> or
+<span class="textbf"><span class="texttt">simd</span></span> directives with identical meanings and restrictions.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is assumed at
+the end of the <span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-82-311"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set of the <span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> region is the current team. A <span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> region
+binds to the innermost enclosing parallel region.
+</p> 
+<p><p><a 
+ id="Q1-82-312"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct first distributes the iterations of the associated loops across tasks in a
+manner consistent with any clauses that apply to the <span class="textbf"><span class="texttt">taskloop</span></span> construct. The resulting tasks are
+then converted to a SIMD loop in a manner consistent with any clauses that apply to the <span class="textbf"><span class="texttt">simd</span></span>
+construct, except for the <span class="textbf"><span class="texttt">collapse</span></span> clause. For the purposes of each task&#8217;s conversion to a SIMD
+loop, the <span class="textbf"><span class="texttt">collapse</span></span> clause is ignored and the effect of any <span class="textbf"><span class="texttt">in_reduction</span></span> clause is as if a
+<span class="textbf"><span class="texttt">reduction</span></span> clause with the same reduction operator and list items is present on the <span class="textbf"><span class="texttt">simd</span></span>
+construct.
+</p> 
+<p><p><a 
+ id="Q1-82-313"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+This composite construct generates the same events as the <span class="textbf"><span class="texttt">taskloop</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-82-314"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+This composite construct dispatches the same callbacks as the <span class="textbf"><span class="texttt">taskloop</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-82-315"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">taskloop</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  restrictions
+  for
+  the
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  and
+  <span class="textbf"><span class="texttt">simd</span></span>
+  constructs
+  apply.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">conditional</span></span>
+  modifier
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  If
+  any
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  on
+  the
+  directive
+  includes
+  a
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  then
+  all
+  <span class="textbf"><span class="texttt">if</span></span>
+  clauses
+  on
+  the
+  directive
+  must
+  include
+  a
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  without
+  a
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+                                                                            
+                                                                            
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  can
+  appear
+  on
+  the
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-82-316"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-760002.11.5.1">2.11.5.1<!--tex4ht:ref: subsubsec:simd Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu55.html#x81-910002.12.2">2.12.2<!--tex4ht:ref: subsec:taskloop Construct --></a>.
+  </li>
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul>
+<!--l. 701--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu57.html" >next</a>] [<a 
+href="openmpsu55.html" >prev</a>] [<a 
+href="openmpsu55.html#tailopenmpsu55.html" >prev-tail</a>] [<a 
+href="openmpsu56.html" >front</a>] [<a 
+href="openmpse20.html#openmpsu56.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu56.html"></a> </p> 
+ 
+</body> 
+</html>

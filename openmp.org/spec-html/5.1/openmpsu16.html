@@ -1,0 +1,147 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMPD</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 98--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse6.html" >next</a>] [<a 
+href="openmpsu15.html" >prev</a>] [<a 
+href="openmpsu15.html#tailopenmpsu15.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu16.html">tail</a>] [<a 
+href="openmpse5.html#openmpsu16.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.5.2</span>&#x00A0;&#x00A0;<a 
+ id="x26-250001.5.2"></a>OMPD</h4>
+                                                                            
+                                                                            
+<p>The OMPD interface is intended for <span class="emph">third-party</span> tools, which run as separate processes. An OpenMP
+implementation must provide an OMPD library that can be dynamically loaded and used by a third-party
+tool. A third-party tool, such as a debugger, uses the OMPD library to access OpenMP state of a program
+that has begun execution. OMPD defines the following:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  An
+  interface
+  that
+  an
+  OMPD
+  library
+  exports,
+  which
+  a
+  tool
+  can
+  use
+  to
+  access
+  OpenMP
+  state
+  of
+  a
+  program
+  that
+  has
+  begun
+  execution;
+  </li>
+  <li class="itemize">
+  A
+  callback
+  interface
+  that
+  a
+  tool
+  provides
+  to
+                                                                            
+                                                                            
+  the
+  OMPD
+  library
+  so
+  that
+  the
+  library
+  can
+  use
+  it
+  to
+  access
+  the
+  OpenMP
+  state
+  of
+  a
+  program
+  that
+  has
+  begun
+  execution;
+  and
+  </li>
+  <li class="itemize">
+  A
+  small
+  number
+  of
+  symbols
+  that
+  must
+  be
+  defined
+  by
+  an
+  OpenMP
+  implementation
+  to
+  help
+  the
+  tool
+                                                                            
+                                                                            
+  find
+  the
+  correct
+  OMPD
+  library
+  to
+  use
+  for
+  that
+  OpenMP
+  implementation
+  and
+  to
+  facilitate
+  notification
+  of
+  events.</li></ul>
+<p>Section&#x00A0;<a 
+href="openmpch5.html#x277-4100005">5<!--tex4ht:ref: sec:ompd-overview --></a> describes OMPD in detail.
+</p> 
+<!--l. 45--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse6.html" >next</a>] [<a 
+href="openmpsu15.html" >prev</a>] [<a 
+href="openmpsu15.html#tailopenmpsu15.html" >prev-tail</a>] [<a 
+href="openmpsu16.html" >front</a>] [<a 
+href="openmpse5.html#openmpsu16.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu16.html"></a> </p> 
+ 
+</body> 
+</html>

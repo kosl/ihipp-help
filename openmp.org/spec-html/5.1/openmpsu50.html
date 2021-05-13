@@ -1,0 +1,1480 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>distribute Loop Constructs</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1543--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu51.html" >next</a>] [<a 
+href="openmpsu49.html" >prev</a>] [<a 
+href="openmpsu49.html#tailopenmpsu49.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu50.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu50.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.6</span>&#x00A0;&#x00A0;<a 
+ id="x75-790002.11.6"></a><span class="textbf"><span class="texttt">distribute</span></span> Loop Constructs</h4>
+                                                                            
+                                                                            
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.6.1  </span> <a 
+ id="x75-800002.11.6.1"></a><span class="textbf"><span class="texttt">distribute</span></span> Construct</h5>
+<a 
+ id="dx75-80001"></a>
+<a 
+ id="dx75-80002"></a>
+<a 
+ id="dx75-80003"></a>
+<p><p><a 
+ id="Q1-75-229"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">distribute</span></span> construct specifies that the iterations of one or more loops will be executed by the
+initial teams in the context of their implicit tasks. The iterations are distributed across the initial
+threads of all initial teams that execute the <span class="textbf"><span class="texttt">teams</span></span> region to which the <span class="textbf"><span class="texttt">distribute</span></span> region
+binds.
+<p><a 
+ id="Q1-75-230"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">distribute</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80004r1"></a></span></p> 
+<!--l. 1562--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80006r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80007r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80008r1"></a></span></p> 
+<!--l. 1570--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80009r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80010r3"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80011r4"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80012r5"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80013r6"></a></span><span 
+class="pcrb8t-">dist_schedule</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">kind</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">chunk_size</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80014r7"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">:]</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80015r8"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80016r9"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">distribute</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80017r1"></a></span></p> 
+<!--l. 1585--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80018r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80019r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80020r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80021r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+                                                                            
+                                                                            
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80022r1"></a></span></p> 
+<!--l. 1594--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80023r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80024r3"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80025r4"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80026r5"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80027r6"></a></span><span 
+class="pcrb8t-">dist_schedule</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">kind</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">chunk_size</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80028r7"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">:]</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80029r8"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-80030r9"></a></span></pre>
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span> directive is assumed at the end
+of the <span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-75-231"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">distribute</span></span> region is the set of initial threads executing an enclosing <span class="textbf"><span class="texttt">teams</span></span>
+region. A <span class="textbf"><span class="texttt">distribute</span></span> region binds to this <span class="textbf"><span class="texttt">teams</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-75-232"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">distribute</span></span> construct is associated with a loop nest consisting of one or more loops that follow the
+directive.
+</p> 
+<p>The <span class="textbf"><span class="texttt">collapse</span></span> clause may be used to specify how many loops are associated with the <span class="textbf"><span class="texttt">distribute</span></span>
+construct. The parameter of the <span class="textbf"><span class="texttt">collapse</span></span> clause must be a constant positive integer expression. If the
+<span class="textbf"><span class="texttt">collapse</span></span> clause is omitted, the behavior is as if a <span class="textbf"><span class="texttt">collapse</span></span> clause with a parameter value of one was
+specified.
+</p> 
+<p>No implicit barrier occurs at the end of a <span class="textbf"><span class="texttt">distribute</span></span> region. To avoid data races the original list items
+that are modified due to <span class="textbf"><span class="texttt">lastprivate</span></span> or <span class="textbf"><span class="texttt">linear</span></span> clauses should not be accessed between the end of
+the <span class="textbf"><span class="texttt">distribute</span></span> construct and the end of the <span class="textbf"><span class="texttt">teams</span></span> region to which the <span class="textbf"><span class="texttt">distribute</span></span>
+binds.
+</p> 
+<p>At the beginning of each logical iteration, the loop iteration variable or the variable declared by <span class="textit"><span class="textrm">range-decl</span></span>
+of each associated loop has the value that it would have if the set of the associated loops was executed
+sequentially.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">dist_schedule</span></span> clause is specified, <span class="textit"><span class="textrm">kind</span></span> must be <span class="textbf"><span class="texttt">static</span></span>. If specified, iterations are divided into
+chunks of size <span class="textit"><span class="textrm">chunk_size</span></span>. These chunks are assigned to the initial teams of the league in a round-robin
+fashion in the order of the initial team number. When <span class="textit"><span class="textrm">chunk_size</span></span> is not specified, the iteration space is
+divided into chunks that are approximately equal in size, and at most one chunk is distributed to each initial
+team of the league.
+</p> 
+<p>When <span class="textbf"><span class="texttt">dist_schedule</span></span> clause is not specified, the schedule is implementation defined.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">order</span></span> clause is present then the semantics are as described in Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+</p> 
+<p>The schedule is reproducible if one of the following conditions is true: </p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  is
+  present
+  and
+  uses
+  the
+  <span class="textbf"><span class="texttt">reproducible</span></span>
+  modifier;
+  or
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">dist_schedule</span></span>
+  clause
+  is
+  specified
+  with
+  <span class="textbf"><span class="texttt">static</span></span>
+  as
+  the
+  <span class="textit"><span class="textrm">kind</span></span>
+  parameter.</li></ul>
+<p>Programs can only depend on which team executes a particular iteration if the schedule is reproducible.
+Schedule reproducibility is also used for determining its consistency with other schedules (see
+Section&#x00A0;<a 
+href="openmpsu46.html#x71-710002.11.2">2.11.2<!--tex4ht:ref: subsec:Consistent Loop Schedules --></a>).
+</p> 
+<p><p><a 
+ id="Q1-75-233"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">distribute-begin</span></span> event occurs after an implicit task encounters a <span class="textbf"><span class="texttt">distribute</span></span> construct but before the
+task starts to execute the structured block of the <span class="textbf"><span class="texttt">distribute</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">distribute-end</span></span> event occurs after an implicit task finishes execution of a <span class="textbf"><span class="texttt">distribute</span></span> region but
+before it resumes execution of the enclosing context.
+</p> 
+<p><p><a 
+ id="Q1-75-234"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+as its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_work_distribute</span></span> as its <span class="textit"><span class="textrm">wstype</span></span> argument for each
+occurrence of a <span class="textit"><span class="textrm">distribute-begin</span></span> event in that thread. Similarly, a thread dispatches a registered
+<span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and
+<span class="textbf"><span class="texttt">ompt_work_distribute</span></span> as its <span class="textit"><span class="textrm">wstype</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">distribute-end</span></span> event in that
+thread. The callbacks occur in the context of the implicit task. The callbacks have type signature
+<span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-75-235"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">distribute</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  inherits
+  the
+  restrictions
+  of
+  the
+  worksharing-loop
+  construct.
+  </li>
+  <li class="itemize">
+  Each
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  region
+  must
+  be
+  encountered
+  by
+  the
+  initial
+  threads
+  of
+  all
+  initial
+                                                                            
+                                                                            
+  teams
+  in
+  a
+  league
+  or
+  by
+  none
+  at
+  all.
+  </li>
+  <li class="itemize">
+  The
+  sequence
+  of
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  regions
+  encountered
+  must
+  be
+  the
+  same
+  for
+  every
+  initial
+  thread
+  of
+  every
+  initial
+  team
+  in
+  a
+  league.
+  </li>
+  <li class="itemize">
+  The
+  region
+  that
+  corresponds
+  to
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  must
+  be
+  strictly
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  may
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  or
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause,
+  but
+  not
+  in
+  both.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">dist_schedule</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">dist_schedule</span></span>
+  is
+  present
+  then
+  none
+  of
+  the
+  associated
+  loops
+  may
+  be
+  non-rectangular
+  loops.</li></ul>
+<p><p><a 
+ id="Q1-75-236"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse15.html#x62-620002.7">2.7<!--tex4ht:ref: sec:teams Construct --></a>
+  </li>
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">order</span></span>
+                                                                            
+                                                                            
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+  </li>
+  <li class="itemize">
+  Worksharing-loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">tile</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu53.html#x78-870002.11.9.1">2.11.9.1<!--tex4ht:ref: subsubsec:tile Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_work_distribute</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3220004.4.4.15">4.4.4.15<!--tex4ht:ref: sec:ompt_work_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3470004.5.2.5">4.5.2.5<!--tex4ht:ref: sec:ompt_callback_work_t --></a>.</li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.6.2  </span> <a 
+ id="x75-810002.11.6.2"></a><span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</h5>
+<a 
+ id="dx75-81001"></a>
+<a 
+ id="dx75-81002"></a>
+<a 
+ id="dx75-81003"></a>
+<p><p><a 
+ id="Q1-75-238"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct specifies a loop that will be distributed across the primary threads of
+the <span class="textbf"><span class="texttt">teams</span></span> region and executed concurrently using SIMD instructions. The <span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct
+is a composite construct.
+<p><a 
+ id="Q1-75-239"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81004r1"></a></span></p> 
+<!--l. 1738--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81006r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81007r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">distribute</span></span>
+or <span class="textbf"><span class="texttt">simd</span></span> directives with identical meanings and restrictions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81008r1"></a></span></p> 
+<!--l. 1751--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81009r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81010r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81011r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-81012r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">distribute</span></span>
+or <span class="textbf"><span class="texttt">simd</span></span> directives with identical meanings and restrictions.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is
+assumed at the end of the <span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-75-240"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct will first distribute the logical iterations of the associated loops across
+the initial tasks of the <span class="textbf"><span class="texttt">teams</span></span> region in a manner consistent with any clauses that apply to the
+<span class="textbf"><span class="texttt">distribute</span></span> construct. Each resulting chunk of iterations will then be converted to a SIMD loop in a
+manner consistent with any clauses that apply to the <span class="textbf"><span class="texttt">simd</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-75-241"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+This composite construct generates the same events as the <span class="textbf"><span class="texttt">distribute</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-75-242"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+This composite construct dispatches the same callbacks as the <span class="textbf"><span class="texttt">distribute</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-75-243"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+All restrictions to the <span class="textbf"><span class="texttt">distribute</span></span> and <span class="textbf"><span class="texttt">simd</span></span> constructs apply to the <span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> construct. In
+addition, the following restrictions apply:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  list
+  item
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause
+  unless
+  it
+  is
+  the
+  loop
+  iteration
+  variable
+  of
+  a
+  loop
+  that
+                                                                            
+                                                                            
+  is
+  associated
+  with
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">conditional</span></span>
+  modifier
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause.</li></ul>
+<p><p><a 
+ id="Q1-75-244"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-760002.11.5.1">2.11.5.1<!--tex4ht:ref: subsubsec:simd Construct --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="#x75-800002.11.6.1">2.11.6.1<!--tex4ht:ref: subsec:distribute Construct --></a>.
+  </li>
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.6.3  </span> <a 
+ id="x75-820002.11.6.3"></a>Distribute Parallel Worksharing-Loop Construct</h5>
+<a 
+ id="dx75-82001"></a>
+<a 
+ id="dx75-82002"></a>
+<a 
+ id="dx75-82003"></a>
+<a 
+ id="dx75-82004"></a>
+<a 
+ id="dx75-82005"></a>
+<p><p><a 
+ id="Q1-75-246"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The distribute parallel worksharing-loop construct specifies a loop that can be executed in parallel by
+multiple threads that are members of multiple teams. The distribute parallel worksharing-loop construct is a
+composite construct.
+<p><a 
+ id="Q1-75-247"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the distribute parallel worksharing-loop construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82006r1"></a></span></p> 
+<!--l. 1827--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82007r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82009r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">distribute</span></span>
+or parallel worksharing-loop directives with identical meanings and restrictions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the distribute parallel worksharing-loop construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82010r1"></a></span></p> 
+<!--l. 1840--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82011r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82012r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82013r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-82014r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">distribute</span></span>
+or parallel worksharing-loop directives with identical meanings and restrictions.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">do</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>
+<span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">do</span></span> directive is assumed at the end of the <span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-75-248"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The distribute parallel worksharing-loop construct will first distribute the logical iterations of the associated
+loops across the initial tasks of the <span class="textbf"><span class="texttt">teams</span></span> region in a manner consistent with any clauses that apply to the
+<span class="textbf"><span class="texttt">distribute</span></span> construct. Each resulting chunk of iterations will then execute as if part of a parallel
+worksharing-loop region in a manner consistent with any clauses that apply to the parallel worksharing-loop
+construct.
+</p> 
+<p><p><a 
+ id="Q1-75-249"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+This composite construct generates the same events as the <span class="textbf"><span class="texttt">distribute</span></span> and parallel worksharing-loop
+constructs.
+</p> 
+<p><p><a 
+ id="Q1-75-250"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+This composite construct dispatches the same callbacks as the <span class="textbf"><span class="texttt">distribute</span></span> and parallel worksharing-loop
+constructs.
+</p> 
+<p><p><a 
+ id="Q1-75-251"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+All restrictions to the <span class="textbf"><span class="texttt">distribute</span></span> and parallel worksharing-loop constructs apply to the distribute
+parallel worksharing-loop construct. In addition, the following restrictions apply:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  No
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+                                                                            
+                                                                            
+  can
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  No
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause
+  can
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">conditional</span></span>
+  modifier
+  must
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause.</li></ul>
+<p><p><a 
+ id="Q1-75-252"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="#x75-800002.11.6.1">2.11.6.1<!--tex4ht:ref: subsec:distribute Construct --></a>.
+  </li>
+  <li class="itemize">
+  Parallel
+  worksharing-loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu73.html#x103-1130002.16.1">2.16.1<!--tex4ht:ref: subsec:Parallel Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.6.4  </span> <a 
+ id="x75-830002.11.6.4"></a>Distribute Parallel Worksharing-Loop SIMD Construct</h5>
+<a 
+ id="dx75-83001"></a>
+<a 
+ id="dx75-83002"></a>
+<a 
+ id="dx75-83003"></a>
+<a 
+ id="dx75-83004"></a>
+<a 
+ id="dx75-83005"></a>
+<p><p><a 
+ id="Q1-75-254"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The distribute parallel worksharing-loop SIMD construct specifies a loop that can be executed concurrently
+using SIMD instructions in parallel by multiple threads that are members of multiple teams. The distribute
+parallel worksharing-loop SIMD construct is a composite construct.
+<p><a 
+ id="Q1-75-255"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the distribute parallel worksharing-loop SIMD construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83006r1"></a></span></p> 
+<!--l. 1918--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83007r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">\</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83009r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83010r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">distribute</span></span>
+or parallel worksharing-loop SIMD directives with identical meanings and restrictions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the distribute parallel worksharing-loop SIMD construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83011r1"></a></span></p> 
+<!--l. 1932--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83012r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83013r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83014r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">distribute</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x75-83015r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">distribute</span></span>
+or parallel worksharing-loop SIMD directives with identical meanings and restrictions.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">parallel</span></span>&#x00A0;<span class="textbf"><span class="texttt">do</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">distribute</span></span>
+<span class="textbf"><span class="texttt">parallel</span></span><span class="textbf"><span class="texttt">do</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is assumed at the end of the <span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-75-256"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The distribute parallel worksharing-loop SIMD construct will first distribute the logical iterations of the
+associated loops across the initial tasks of the <span class="textbf"><span class="texttt">teams</span></span> region in a manner consistent with any clauses that
+apply to the <span class="textbf"><span class="texttt">distribute</span></span> construct. Each resulting chunk of iterations will then execute as if part of a
+parallel worksharing-loop SIMD region in a manner consistent with any clauses that apply to the parallel
+worksharing-loop SIMD construct.
+</p> 
+<p><p><a 
+ id="Q1-75-257"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+This composite construct generates the same events as the <span class="textbf"><span class="texttt">distribute</span></span> and parallel worksharing-loop
+SIMD constructs.
+</p> 
+<p><p><a 
+ id="Q1-75-258"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+This composite construct dispatches the same callbacks as the <span class="textbf"><span class="texttt">distribute</span></span> and parallel worksharing-loop
+SIMD constructs.
+</p> 
+<p><p><a 
+ id="Q1-75-259"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+All restrictions to the <span class="textbf"><span class="texttt">distribute</span></span> and parallel worksharing-loop SIMD constructs apply to the
+distribute parallel worksharing-loop SIMD construct. In addition, the following restrictions
+apply:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  No
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  can
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause
+  unless
+  it
+  is
+  the
+  loop
+  iteration
+  variable
+  of
+  a
+  loop
+                                                                            
+                                                                            
+  that
+  is
+  associated
+  with
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">conditional</span></span>
+  modifier
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  If
+  any
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  on
+  the
+  directive
+  includes
+  a
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  then
+  all
+  <span class="textbf"><span class="texttt">if</span></span>
+  clauses
+  on
+  the
+  directive
+  must
+  include
+  a
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  without
+  a
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+                                                                            
+                                                                            
+  with
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  <span class="textit"><span class="textrm">directive-name-modifier</span></span>
+  can
+  appear
+  on
+  the
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-75-260"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="#x75-800002.11.6.1">2.11.6.1<!--tex4ht:ref: subsec:distribute Construct --></a>.
+  </li>
+  <li class="itemize">
+  Parallel
+  worksharing-loop
+  SIMD
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu77.html#x107-1170002.16.5">2.16.5<!--tex4ht:ref: subsec:Parallel Worksharing-Loop SIMD Construct --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul>
+<!--l. 2004--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu51.html" >next</a>] [<a 
+href="openmpsu49.html" >prev</a>] [<a 
+href="openmpsu49.html#tailopenmpsu49.html" >prev-tail</a>] [<a 
+href="openmpsu50.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu50.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu50.html"></a> </p> 
+ 
+</body> 
+</html>

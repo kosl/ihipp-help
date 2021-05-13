@@ -1,0 +1,433 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>scope Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 47--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse18.html" >next</a>] [<a 
+href="openmpse16.html" >prev</a>] [<a 
+href="openmpse16.html#tailopenmpse16.html" >prev-tail</a>] [<a 
+href="#tailopenmpse17.html">tail</a>] [<a 
+href="openmpch2.html#openmpse17.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.9</span>&#x00A0;&#x00A0;<a 
+ id="x64-640002.9"></a><span class="textbf"><span class="texttt">scope</span></span> Construct</h3>
+<a 
+ id="dx64-64001"></a>
+<a 
+ id="dx64-64002"></a>
+<p><p><a 
+ id="Q1-64-144"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">scope</span></span> construct defines a structured block that is executed by all threads in a team but where
+additional OpenMP operations can be specified.
+<p><a 
+ id="Q1-64-145"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the scope construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64003r1"></a></span></p> 
+<!--l. 59--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scope</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64007r1"></a></span></p> 
+<!--l. 67--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64008r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64009r3"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64010r4"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64011r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">scope</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64012r1"></a></span></p> 
+<!--l. 78--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64013r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scope</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64014r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64015r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scope</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">nowait</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64016r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64017r1"></a></span></p> 
+<!--l. 84--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64018r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scope</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64019r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64020r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scope</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">nowait</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64021r5"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64022r1"></a></span></p> 
+<!--l. 92--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64023r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64024r3"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x64-64025r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-64-146"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">scope</span></span> region is the current team. A <span class="textbf"><span class="texttt">scope</span></span> region binds to the innermost
+enclosing parallel region. Only the threads of the team that executes the binding parallel region participate
+in the execution of the structured block and the implied barrier of the <span class="textbf"><span class="texttt">scope</span></span> region if the barrier is not
+eliminated by a <span class="textbf"><span class="texttt">nowait</span></span> clause.
+</p> 
+<p><p><a 
+ id="Q1-64-147"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+All encountering threads will execute the structured block associated with the <span class="textbf"><span class="texttt">scope</span></span> construct. An implicit
+barrier occurs at the end of a <span class="textbf"><span class="texttt">scope</span></span> region if the <span class="textbf"><span class="texttt">nowait</span></span> clause is not specified.
+</p> 
+<p><p><a 
+ id="Q1-64-148"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">scope-begin</span></span> event occurs after an implicit task encounters a <span class="textbf"><span class="texttt">scope</span></span> construct but before the task starts
+to execute the structured block of the <span class="textbf"><span class="texttt">scope</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">scope-end</span></span> event occurs after an implicit task finishes execution of a <span class="textbf"><span class="texttt">scope</span></span> region but before it
+resumes execution of the enclosing region.
+</p> 
+<p><p><a 
+ id="Q1-64-149"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its
+<span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_work_scope</span></span> as its <span class="textit"><span class="textrm">wstype</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">scope-begin</span></span>
+event in that thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_work_scope</span></span> as its <span class="textit"><span class="textrm">wstype</span></span> argument for each
+occurrence of a <span class="textit"><span class="textrm">scope-end</span></span> event in that thread. The callbacks occur in the context of the implicit task. The
+callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-64-150"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">scope</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Each
+  <span class="textbf"><span class="texttt">scope</span></span>
+  region
+  must
+  be
+  encountered
+  by
+  all
+  threads
+  in
+  a
+  team
+  or
+  by
+  none
+  at
+  all,
+  unless
+  cancellation
+  has
+  been
+  requested
+  for
+  the
+  innermost
+  enclosing
+  parallel
+  region.
+  </li>
+  <li class="itemize">
+  The
+  sequence
+  of
+  worksharing
+  regions,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">scope</span></span>
+  regions
+  and
+  <span class="textbf"><span class="texttt">barrier</span></span>
+  regions
+  encountered
+  must
+  be
+  the
+  same
+  for
+  every
+  thread
+  in
+  a
+  team.
+  </li>
+  <li class="itemize">At most one <span class="textbf"><span class="texttt">nowait</span></span> clause can appear on a <span class="textbf"><span class="texttt">scope</span></span> construct.  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A throw executed inside a <span class="textbf"><span class="texttt">scope</span></span> region must cause execution to resume within the same <span class="textbf"><span class="texttt">scope</span></span> region,
+  and the same thread that threw the exception must catch it.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-64-151"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_work_scope</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3220004.4.4.15">4.4.4.15<!--tex4ht:ref: sec:ompt_work_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3470004.5.2.5">4.5.2.5<!--tex4ht:ref: sec:ompt_callback_work_t --></a>.
+  </li></ul>
+<!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse18.html" >next</a>] [<a 
+href="openmpse16.html" >prev</a>] [<a 
+href="openmpse16.html#tailopenmpse16.html" >prev-tail</a>] [<a 
+href="openmpse17.html" >front</a>] [<a 
+href="openmpch2.html#openmpse17.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse17.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>scan Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2184--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu53.html" >next</a>] [<a 
+href="openmpsu51.html" >prev</a>] [<a 
+href="openmpsu51.html#tailopenmpsu51.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu52.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu52.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.8</span>&#x00A0;&#x00A0;<a 
+ id="x77-850002.11.8"></a><span class="textbf"><span class="texttt">scan</span></span> Directive</h4>
+<a 
+ id="dx77-85001"></a>
+<a 
+ id="dx77-85002"></a>
+<p><p><a 
+ id="Q1-77-269"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">scan</span></span> directive specifies that scan computations update the list items on each iteration of an
+enclosing loop nest that is associated with a worksharing-loop, worksharing-loop SIMD, or <span class="textbf"><span class="texttt">simd</span></span>
+directive.
+<p><a 
+ id="Q1-77-270"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">scan</span></span> directive and the loop body that contains it is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85003r1"></a></span></p> 
+<!--l. 2201--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85004r2"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85006r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scan</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85007r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85008r6"></a></span><span 
+class="pcrb8t-">}</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85009r7"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85010r1"></a></span></p> 
+<!--l. 2210--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85011r2"></a></span><span 
+class="pcrb8t-">inclusive</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85012r3"></a></span><span 
+class="pcrb8t-">exclusive</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85013r4"></a></span></pre>
+<p>and where the containing loop body belongs to the innermost loop that is associated with the directive of an
+enclosing <span class="textbf"><span class="texttt">for</span></span>, <span class="textbf"><span class="texttt">for</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>, or <span class="textbf"><span class="texttt">simd</span></span> construct.
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents"><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+The syntax of the <span class="textbf"><span class="texttt">scan</span></span> directive and the loop body that contains it is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85014r1"></a></span></p> 
+<!--l. 2226--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85015r2"></a></span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85016r3"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">scan</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85017r4"></a></span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sequence</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85018r5"></a></span></pre>
+where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <!--l. 2234--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85019r1"></a></span><span 
+class="pcrb8t-">inclusive</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85020r2"></a></span><span 
+class="pcrb8t-">exclusive</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x77-85021r3"></a></span></pre>
+<p>and where the containing loop body belongs to the innermost loop that is associated with the directive of an
+enclosing <span class="textbf"><span class="texttt">do</span></span>, <span class="textbf"><span class="texttt">do</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>, or <span class="textbf"><span class="texttt">simd</span></span> construct.
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><a 
+ id="Q1-77-271"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+A <span class="textbf"><span class="texttt">scan</span></span> directive is associated with the same worksharing-loop, worksharing-loop SIMD, or <span class="textbf"><span class="texttt">simd</span></span>
+directive as the associated loop to which its containing loop body belongs. The directive specifies that a scan
+computation updates each list item on each logical iteration of the associated loops controlled by its
+associated directive. The directive specifies that either an inclusive scan computation is to be performed for
+each list item that appears in an <span class="textbf"><span class="texttt">inclusive</span></span> clause on the directive, or an exclusive scan computation is to
+be performed for each list item that appears in an <span class="textbf"><span class="texttt">exclusive</span></span> clause on the directive. For each list item for
+which a scan computation is specified, statements that lexically precede or follow the directive
+constitute one of two phases for a given logical iteration of the loop &#8212; an <span class="textit">input phase</span> or a <span class="textit">scan
+phase</span>.
+</p> 
+<p>If the list item appears in an <span class="textbf"><span class="texttt">inclusive</span></span> clause, all statements in the structured block sequence that
+lexically precede the directive constitute the <span class="textit">input phase</span> and all statements in the structured block sequence
+that lexically follow the directive constitute the <span class="textit">scan phase</span>. If the list item appears in an <span class="textbf"><span class="texttt">exclusive</span></span>
+clause, all statements in the structured block sequence that lexically precede the directive constitute the <span class="textit">scan
+phase</span> and all statements in the structured block sequence that lexically follow the directive constitute the
+<span class="textit">input phase</span>. The <span class="textit">input phase</span> contains all computations that update the list item in the iteration, and the <span class="textit">scan
+phase</span> ensures that any statement that reads the list item uses the result of the scan computation for that
+iteration.
+</p> 
+<p>The list items that appear in an <span class="textbf"><span class="texttt">inclusive</span></span> or <span class="textbf"><span class="texttt">exclusive</span></span> clause may include array sections.
+</p> 
+<p>The result of a scan computation for a given iteration is calculated according to the last <span class="textit">generalized prefix
+sum</span> (<span class="texttt">PRESUM<sub class="textsubscript">last</sub></span>) applied over the sequence of values given by the original value of the list item prior to
+the loop and all preceding updates to the list item in the logical iteration space of the loop. The operation
+<span class="texttt">PRESUM<sub class="textsubscript">last</sub></span>( <span class="textit"><span class="textrm">op</span></span>, <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>, &#x2026;, <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">N</span></sub> ) is defined for a given binary operator <span class="textit"><span class="textrm">op</span></span> and a sequence of <span class="textit"><span class="textrm">N</span></span> values <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>, &#x2026;, <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">N</span></sub>
+as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  if
+  <span class="textit"><span class="textrm">N</span></span> <span 
+class="cmr-10">= 1</span>,
+  <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>
+  </li>
+  <li class="itemize">
+  if
+  <span class="textit"><span class="textrm">N</span></span> <span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmr-10">1</span>,
+  <span class="textit"><span class="textrm">op</span></span>(
+  <span class="texttt">PRESUM<sub class="textsubscript">last</sub></span>(<span class="textit"><span class="textrm">op</span></span>,
+  <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>,
+  &#x2026;,
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">K</span></sub>),
+  <span class="texttt">PRESUM<sub class="textsubscript">last</sub></span>(<span class="textit"><span class="textrm">op</span></span>,
+  <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">L</span></sub>,
+  &#x2026;,
+  <span class="textit"><span class="textrm">a</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">N</span></sub>)
+  ),
+  where
+  <span 
+class="cmr-10">1 </span><span 
+class="cmsy-10">&#x2264;</span><span class="textit"><span class="textrm">K</span></span> <span 
+class="cmr-10">+ 1 =</span> <span class="textit"><span class="textrm">L</span></span> <span 
+class="cmsy-10">&#x2264;</span><span class="textit"><span class="textrm">N</span></span>.</li></ul>
+<p>At the beginning of the <span class="textit">input phase</span> of each iteration, the list item is initialized with the initializer value of
+the <span class="textit"><span class="textrm">reduction-identifier</span></span> specified by the <span class="textbf"><span class="texttt">reduction</span></span> clause on the innermost enclosing construct. The
+<span class="textit">update value</span> of a list item is, for a given iteration, the value of the list item on completion of its <span class="textit">input
+phase</span>.
+</p> 
+<p>Let <span class="textit"><span class="textrm">orig-val</span></span> be the value of the original list item on entry to the enclosing worksharing-loop,
+worksharing-loop SIMD, or <span class="textbf"><span class="texttt">simd</span></span> construct. Let <span class="textit"><span class="textrm">combiner</span></span> be the combiner for the <span class="textit"><span class="textrm">reduction-identifier</span></span>
+specified by the <span class="textbf"><span class="texttt">reduction</span></span> clause on the construct. And let <span class="textit"><span class="textrm">u</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">I</span></sub> be the update value of a list item for
+iteration <span class="textit"><span class="textrm">I</span></span>. For list items that appear in an <span class="textbf"><span class="texttt">inclusive</span></span> clause on the <span class="textbf"><span class="texttt">scan</span></span> directive, at the
+beginning of the <span class="textit">scan phase</span> for iteration <span class="textit"><span class="textrm">I</span></span> the list item is assigned the result of the operation
+<span class="texttt">PRESUM<sub class="textsubscript">last</sub></span>( <span class="textit"><span class="textrm">combiner</span></span>, <span class="textit"><span class="textrm">orig-val</span></span>, <span class="textit"><span class="textrm">u</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">0</span></sub>, &#x2026;, <span class="textit"><span class="textrm">u</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">I</span></sub>). For list items that appear in an <span class="textbf"><span class="texttt">exclusive</span></span>
+clause on the <span class="textbf"><span class="texttt">scan</span></span> directive, at the beginning of the <span class="textit">scan phase</span> for iteration <span class="textit"><span class="textrm">I</span></span> <span 
+class="cmr-10">= 0 </span>the list
+item is assigned the value <span class="textit"><span class="textrm">orig-val</span></span>, and at the beginning of the <span class="textit">scan phase</span> for iteration <span class="textit"><span class="textrm">I</span></span> <span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmr-10">0</span>
+the list item is assigned the result of the operation <span class="texttt">PRESUM<sub class="textsubscript">last</sub></span>( <span class="textit"><span class="textrm">combiner</span></span>, <span class="textit"><span class="textrm">orig-val</span></span>, <span class="textit"><span class="textrm">u</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">0</span></sub>, &#x2026;,
+<span class="textit"><span class="textrm">u</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">I-1</span></sub>).
+</p> 
+<p>For list items that appear in an <span class="textbf"><span class="texttt">inclusive</span></span> clause, at the end of the enclosing worksharing-loop,
+worksharing-loop SIMD, or <span class="textbf"><span class="texttt">simd</span></span> construct, the original list item is assigned the private copy from the last
+logical iteration of the loops associated with the enclosing construct. For list items that appear in an
+<span class="textbf"><span class="texttt">exclusive</span></span> clause, let <span class="textit"><span class="textrm">L</span></span> be the last logical iteration of the loops associated with the enclosing construct.
+At the end of the enclosing construct, the original list item is assigned the result of the operation
+<span class="texttt">PRESUM<sub class="textsubscript">last</sub></span>( <span class="textit"><span class="textrm">combiner</span></span>, <span class="textit"><span class="textrm">orig-val</span></span>, <span class="textit"><span class="textrm">u</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">0</span></sub>, &#x2026;, <span class="textit"><span class="textrm">u</span></span><sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">L</span></sub>).
+</p> 
+<p><p><a 
+ id="Q1-77-272"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">scan</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Exactly
+  one
+  <span class="textbf"><span class="texttt">scan</span></span>
+  directive
+  must
+                                                                            
+                                                                            
+  be
+  associated
+  with
+  a
+  given
+  worksharing-loop,
+  worksharing-loop
+  SIMD,
+  or
+  <span class="textbf"><span class="texttt">simd</span></span>
+  directive
+  on
+  which
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  modifier
+  is
+  present.
+  </li>
+  <li class="itemize">
+  The
+  loops
+  that
+  are
+  associated
+  with
+  the
+  directive
+  to
+  which
+  the
+  <span class="textbf"><span class="texttt">scan</span></span>
+  directive
+  is
+  associated
+  must
+  all
+  be
+                                                                            
+                                                                            
+  perfectly
+  nested.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  the
+  <span class="textbf"><span class="texttt">inclusive</span></span>
+  or
+  <span class="textbf"><span class="texttt">exclusive</span></span>
+  clause
+  must
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  modifier
+  on
+  the
+  associated
+  worksharing-loop,
+  worksharing-loop
+  SIMD,
+  or
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  Cross-iteration
+  dependences
+  across
+  different
+                                                                            
+                                                                            
+  logical
+  iterations
+  must
+  not
+  exist,
+  except
+  for
+  dependences
+  for
+  the
+  list
+  items
+  specified
+  in
+  an
+  <span class="textbf"><span class="texttt">inclusive</span></span>
+  or
+  <span class="textbf"><span class="texttt">exclusive</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  Intra-iteration
+  dependences
+  from
+  a
+  statement
+  in
+  the
+  structured
+  block
+  sequence
+  that
+  precede
+  a
+  <span class="textbf"><span class="texttt">scan</span></span>
+  directive
+  to
+  a
+  statement
+  in
+  the
+  structured
+                                                                            
+                                                                            
+  block
+  sequence
+  that
+  follows
+  a
+  <span class="textbf"><span class="texttt">scan</span></span>
+  directive
+  must
+  not
+  exist,
+  except
+  for
+  dependences
+  for
+  the
+  list
+  items
+  specified
+  in
+  an
+  <span class="textbf"><span class="texttt">inclusive</span></span>
+  or
+  <span class="textbf"><span class="texttt">exclusive</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  The
+  private
+  copy
+  of
+  list
+  items
+  that
+  appear
+  in
+  the
+  <span class="textbf"><span class="texttt">inclusive</span></span>
+  or
+  <span class="textbf"><span class="texttt">exclusive</span></span>
+  clause
+  may
+  not
+                                                                            
+                                                                            
+  be
+  modified
+  in
+  the
+  <span class="textit">scan
+  phase</span>.</li></ul>
+<p><p><a 
+ id="Q1-77-273"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Worksharing-loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-760002.11.5.1">2.11.5.1<!--tex4ht:ref: subsubsec:simd Construct --></a>.
+  </li>
+  <li class="itemize">
+  Worksharing-loop
+  SIMD
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-770002.11.5.2">2.11.5.2<!--tex4ht:ref: subsubsec:Worksharing-Loop SIMD Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu117.html#x152-1760002.21.5.4">2.21.5.4<!--tex4ht:ref: subsubsec:reduction clause --></a>.</li></ul>
+<!--l. 2366--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu53.html" >next</a>] [<a 
+href="openmpsu51.html" >prev</a>] [<a 
+href="openmpsu51.html#tailopenmpsu51.html" >prev-tail</a>] [<a 
+href="openmpsu52.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu52.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<p><a 
+ id="tailopenmpsu52.html"></a> </p> 
+ 
+</body> 
+</html>

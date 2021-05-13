@@ -1,0 +1,133 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Worksharing Constructs</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu42.html" >next</a>] [<a 
+href="openmpse17.html" >prev</a>] [<a 
+href="openmpse17.html#tailopenmpse17.html" >prev-tail</a>] [<a 
+href="#tailopenmpse18.html">tail</a>] [<a 
+href="openmpch2.html#openmpse18.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.10</span>&#x00A0;&#x00A0;<a 
+ id="x65-650002.10"></a>Worksharing Constructs</h3>
+<a 
+ id="dx65-65001"></a>
+<a 
+ id="dx65-65002"></a>
+<a 
+ id="dx65-65003"></a>
+<p>A worksharing construct distributes the execution of the corresponding region among the members of the
+team that encounters it. Threads execute portions of the region in the context of the implicit tasks that each
+one is executing. If the team consists of only one thread then the worksharing region is not executed in
+parallel.
+</p> 
+<p>A worksharing region has no barrier on entry; however, an implied barrier exists at the end of the
+worksharing region, unless a <span class="textbf"><span class="texttt">nowait</span></span> clause is specified. If a <span class="textbf"><span class="texttt">nowait</span></span> clause is present, an implementation
+may omit the barrier at the end of the worksharing region. In this case, threads that finish early may
+proceed straight to the instructions that follow the worksharing region without waiting for the
+other members of the team to finish the worksharing region, and without performing a flush
+operation.
+</p> 
+<p>The OpenMP API defines the worksharing constructs that are described in this section as well as the
+worksharing-loop construct, which is described in Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-65-153"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The following restrictions apply to worksharing constructs:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Each
+  worksharing
+  region
+  must
+  be
+  encountered
+  by
+  all
+  threads
+  in
+  a
+  team
+  or
+  by
+  none
+  at
+  all,
+  unless
+  cancellation
+  has
+  been
+  requested
+  for
+  the
+  innermost
+  enclosing
+  parallel
+  region.
+  </li>
+  <li class="itemize">
+  The
+  sequence
+                                                                            
+                                                                            
+  of
+  worksharing
+  regions,
+  <span class="textbf"><span class="texttt">scope</span></span>
+  regions
+  and
+  <span class="textbf"><span class="texttt">barrier</span></span>
+  regions
+  encountered
+  must
+  be
+  the
+  same
+  for
+  every
+  thread
+  in
+  a
+  team.</li></ul>
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.1&#x00A0;&#x00A0;<a 
+href="openmpsu42.html#x66-660002.10.1"><span class="textbf"><span class="texttt">sections</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.2&#x00A0;&#x00A0;<a 
+href="openmpsu43.html#x67-670002.10.2"><span class="textbf"><span class="texttt">single</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.10.3&#x00A0;&#x00A0;<a 
+href="openmpsu44.html#x68-680002.10.3"><span class="textbf"><span class="texttt">workshare</span></span> Construct</a></span>
+</div>
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu42.html" >next</a>] [<a 
+href="openmpse17.html" >prev</a>] [<a 
+href="openmpse17.html#tailopenmpse17.html" >prev-tail</a>] [<a 
+href="openmpse18.html" >front</a>] [<a 
+href="openmpch2.html#openmpse18.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse18.html"></a> </p> 
+ 
+</body> 
+</html>

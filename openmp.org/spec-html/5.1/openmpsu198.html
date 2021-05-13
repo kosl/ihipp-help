@@ -1,0 +1,164 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_set_default_allocator</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 269--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu199.html" >next</a>] [<a 
+href="openmpsu197.html" >prev</a>] [<a 
+href="openmpsu197.html#tailopenmpsu197.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu198.html">tail</a>] [<a 
+href="openmpse43.html#openmpsu198.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.13.4</span>&#x00A0;&#x00A0;<a 
+ id="x248-2810003.13.4"></a><span class="textbf"><span class="texttt">omp_set_default_allocator</span></span></h4>
+<a 
+ id="dx248-281001"></a>
+<p><p><a 
+ id="Q1-248-1360"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_set_default_allocator</span></span> routine sets the default memory allocator to be used by allocation
+calls, <span class="textbf"><span class="texttt">allocate</span></span> directives and <span class="textbf"><span class="texttt">allocate</span></span> clauses that do not specify an allocator.
+<p><a 
+ id="Q1-248-1361"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x248-281002r1"></a></span></p> 
+<!--l. 280--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x248-281003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_set_default_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x248-281004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x248-281005r1"></a></span></p> 
+<!--l. 286--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x248-281006r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_set_default_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x248-281007r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_allocator_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x248-281008r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-248-1362"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The <span class="textit"><span class="textrm">allocator</span></span> argument must be a valid memory allocator handle.
+</p> 
+<p><p><a 
+ id="Q1-248-1363"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_set_default_allocator</span></span> region is the binding implicit
+task.
+</p> 
+<p><p><a 
+ id="Q1-248-1364"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The effect of this routine is to set the value of the <span class="textit"><span class="textrm">def-allocator-var</span></span> ICV of the binding implicit task to the
+value specified in the <span class="textit"><span class="textrm">allocator</span></span> argument.
+</p> 
+<p><p><a 
+ id="Q1-248-1365"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">def-allocator-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  Memory
+  Allocators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_alloc</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu200.html#x250-2830003.13.6">3.13.6<!--tex4ht:ref: subsec:omp_alloc --></a>.</li></ul>
+<!--l. 314--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu199.html" >next</a>] [<a 
+href="openmpsu197.html" >prev</a>] [<a 
+href="openmpsu197.html#tailopenmpsu197.html" >prev-tail</a>] [<a 
+href="openmpsu198.html" >front</a>] [<a 
+href="openmpse43.html#openmpsu198.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu198.html"></a> </p> 
+ 
+</body> 
+</html>

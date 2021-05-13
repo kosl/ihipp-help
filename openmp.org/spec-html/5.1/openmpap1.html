@@ -1,0 +1,3152 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>A OpenMP Implementation-Defined Behaviors</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpap2.html" >next</a>] [<a 
+href="openmpse81.html" >prev</a>] [<a 
+href="openmpse81.html#tailopenmpse81.html" >prev-tail</a>] [<a 
+href="#tailopenmpap1.html">tail</a>] [<a 
+href="openmp.html#openmpap1.html" >up</a>] </p></div>
+<h2 class="appendixHead"><span class="titlemark">A</span>.&#x00A0;&#x00A0;<a 
+ id="x348-523000A"></a>OpenMP Implementation-Defined Behaviors</h2>
+<a 
+ id="dx348-523001"></a>
+<p>This appendix summarizes the behaviors that are described as implementation defined in this API. Each
+behavior is cross-referenced back to its description in the main specification. An implementation is required
+to define and to document its behavior in these cases.
+</p> 
+<p><p><a 
+ id="Q1-348-2497"></a>
+<span 
+class="phvb8t-x-x-110">Chapter </span><a 
+href="openmpch1.html#x5-40001"><span 
+class="phvb8t-x-x-110">1</span><!--tex4ht:ref: chap:introduction --></a><span 
+class="phvb8t-x-x-110">:</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf">Processor</span>:
+  A
+  hardware
+  unit
+  that
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu1.html#x8-70001.2.1">1.2.1<!--tex4ht:ref: subsec:Threading Concepts --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Device</span>:
+  An
+  implementation
+  defined
+  logical
+  execution
+  engine
+  (see
+  Section&#x00A0;<a 
+href="openmpsu1.html#x8-70001.2.1">1.2.1<!--tex4ht:ref: subsec:Threading Concepts --></a>).
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf">Device
+  pointer</span>:
+  an
+  implementation
+  defined
+  handle
+  that
+  refers
+  to
+  a
+  device
+  address
+  (see
+  Section&#x00A0;<a 
+href="openmpsu6.html#x13-120001.2.6">1.2.6<!--tex4ht:ref: subsec:Data Terminology --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Supported
+  active
+  levels
+  of
+  parallelism</span>:
+  The
+  maximum
+  number
+  of
+  active
+  parallel
+  regions
+  that
+  may
+  enclose
+  any
+  region
+  of
+  code
+  in
+  the
+  program
+  is
+  implementation
+  defined
+  (see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu7.html#x14-130001.2.7">1.2.7<!--tex4ht:ref: subsec:Implementation Terminology --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Memory
+  model</span>:
+  The
+  minimum
+  size
+  at
+  which
+  a
+  memory
+  update
+  may
+  also
+  read
+  and
+  write
+  back
+  adjacent
+  variables
+  that
+  are
+  part
+  of
+  another
+  variable
+  (as
+  array
+  or
+  structure
+  elements)
+  is
+  implementation
+  defined
+  but
+  is
+  no
+  larger
+  than
+  required
+  by
+                                                                            
+                                                                            
+  the
+  base
+  language.
+  The
+  manner
+  in
+  which
+  a
+  program
+  can
+  obtain
+  the
+  referenced
+  device
+  address
+  from
+  a
+  device
+  pointer,
+  outside
+  the
+  mechanisms
+  specified
+  by
+  OpenMP,
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu9.html#x18-170001.4.1">1.4.1<!--tex4ht:ref: subsec:Structure of the OpenMP Memory Model --></a>).</li></ul>
+<p><p><a 
+ id="Q1-348-2498"></a>
+<span 
+class="phvb8t-x-x-110">Chapter </span><a 
+href="openmpch2.html#x30-290002"><span 
+class="phvb8t-x-x-110">2</span><!--tex4ht:ref: chap:Directives --></a><span 
+class="phvb8t-x-x-110">:</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf">OpenMP
+  context</span>:
+  Whether
+  the
+  <span class="textbf"><span class="texttt">dispatch</span></span>
+  construct
+                                                                            
+                                                                            
+  is
+  added
+  to
+  the
+  <span class="textit"><span class="textrm">construct</span></span>
+  set,
+  the
+  accepted
+  <span class="textit"><span class="textrm">isa-name</span></span>
+  values
+  for
+  the
+  <span class="textit"><span class="textrm">isa</span></span>
+  trait,
+  the
+  accepted
+  <span class="textit"><span class="textrm">arch-name</span></span>
+  values
+  for
+  the
+  <span class="textit"><span class="textrm">arch</span></span>
+  trait,
+  and
+  the
+  accepted
+  <span class="textit"><span class="textrm">extension-name</span></span>
+  values
+  for
+  the
+  <span class="textit"><span class="textrm">extension</span></span>
+  trait
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu25.html#x42-410002.3.1">2.3.1<!--tex4ht:ref: subsec:OpenMP Context --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Metadirectives</span>:
+  The
+  number
+  of
+                                                                            
+                                                                            
+  times
+  that
+  each
+  expression
+  of
+  the
+  context
+  selector
+  of
+  a
+  <span class="textbf"><span class="texttt">when</span></span>
+  clause
+  is
+  evaluated
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu28.html#x45-440002.3.4">2.3.4<!--tex4ht:ref: subsec:Metadirective Meta-Directive --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Declare
+  variant
+  directive</span>:
+  If
+  two
+  replacement
+  candidates
+  have
+  the
+  same
+  score,
+  their
+  order
+  is
+  implementation
+  defined.
+  The
+  number
+  of
+  times
+  each
+                                                                            
+                                                                            
+  expression
+  of
+  the
+  context
+  selector
+  of
+  a
+  <span class="textbf"><span class="texttt">match</span></span>
+  clause
+  is
+  evaluated
+  is
+  implementation
+  defined.
+  For
+  calls
+  to
+  <span class="textbf"><span class="texttt">constexpr</span></span>
+  base
+  functions
+  that
+  are
+  evaluated
+  in
+  constant
+  expressions,
+  whether
+  any
+  variant
+  replacement
+  occurs
+  is
+  implementation
+  defined.
+  Any
+  differences
+  that
+  the
+  specific
+  OpenMP
+  context
+  requires
+  in
+                                                                            
+                                                                            
+  the
+  prototype
+  of
+  the
+  variant
+  from
+  the
+  base
+  function
+  prototype
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu29.html#x46-450002.3.5">2.3.5<!--tex4ht:ref: subsec:Declare Variant Directive --></a>).
+  <a 
+ id="dx348-523002"></a>
+  </li>
+  <li class="itemize">
+  <span class="textbf">Internal
+  control
+  variables</span>:
+  The
+  initial
+  values
+  of
+  <span class="textit"><span class="textrm">dyn-var</span></span>,
+  <span class="textit"><span class="textrm">nthreads-var</span></span>,
+  <span class="textit"><span class="textrm">run-sched-var</span></span>,
+  <span class="textit"><span class="textrm">def-sched-var</span></span>,
+  <span class="textit"><span class="textrm">bind-var</span></span>,
+  <span class="textit"><span class="textrm">stacksize-var</span></span>,
+  <span class="textit"><span class="textrm">wait-policy-var</span></span>,
+  <span class="textit"><span class="textrm">thread-limit-var</span></span>,
+  <span class="textit"><span class="textrm">max-active-levels-var</span></span>,
+  <span class="textit"><span class="textrm">place-partition-var</span></span>,
+  <span class="textit"><span class="textrm">affinity-format-var</span></span>,
+  <span class="textit"><span class="textrm">default-device-var</span></span>,
+  <span class="textit"><span class="textrm">num-procs-var</span></span>
+  and
+  <span class="textit"><span class="textrm">def-allocator-var</span></span>
+  are
+  implementation
+                                                                            
+                                                                            
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu32.html#x50-490002.4.2">2.4.2<!--tex4ht:ref: subsec:ICV Initialization --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">requires</span></span>
+  <span class="textbf">directive</span>:
+  Support
+  for
+  any
+  feature
+  specified
+  by
+  a
+  requirement
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu36.html#x55-550002.5.1">2.5.1<!--tex4ht:ref: subsec:requires Directive --></a>).
+  <a 
+ id="dx348-523003"></a>
+  </li>
+  <li class="itemize">
+  <span class="textbf">Dynamic
+  adjustment
+  of
+  threads</span>:
+  Providing
+  the
+  ability
+  to
+  adjust
+  the
+  number
+  of
+                                                                            
+                                                                            
+  threads
+  dynamically
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Thread
+  affinity</span>:
+  For
+  the
+  <span class="textbf"><span class="texttt">close</span></span>
+  thread
+  affinity
+  policy,
+  if
+  <span class="emph">T
+  &#x003E;
+  P</span>
+  and
+  <span class="emph">P</span>
+  does
+  not
+  divide
+  <span class="emph">T</span>
+  evenly,
+  the
+  exact
+  number
+  of
+  threads
+  in
+  a
+  particular
+  place
+  is
+  implementation
+  defined.
+  For
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">spread</span></span>
+  thread
+  affinity,
+  if
+  <span class="emph">T
+  &#x003E;
+  P</span>
+  and
+  <span class="emph">P</span>
+  does
+  not
+  divide
+  <span class="emph">T</span>
+  evenly,
+  the
+  exact
+  number
+  of
+  threads
+  in
+  a
+  particular
+  subpartition
+  is
+  implementation
+  defined.
+  The
+  determination
+  of
+  whether
+  the
+  affinity
+  request
+  can
+  be
+  fulfilled
+  is
+  implementation
+  defined.
+  If
+  not,
+  the
+  mapping
+                                                                            
+                                                                            
+  of
+  threads
+  in
+  the
+  team
+  to
+  places
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">2.6.2<!--tex4ht:ref: subsec:Controlling OpenMP Thread Affinity --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">teams</span></span>
+  <span class="textbf">construct</span>:
+  The
+  number
+  of
+  teams
+  that
+  are
+  created
+  is
+  implementation
+  defined,
+  it
+  is
+  greater
+  than
+  or
+  equal
+  to
+  the
+  lower
+  bound
+  and
+  less
+  than
+  or
+  equal
+  to
+                                                                            
+                                                                            
+  the
+  upper
+  bound
+  values
+  of
+  the
+  <span class="textbf"><span class="texttt">num_teams</span></span>
+  clause
+  if
+  specified
+  or
+  it
+  is
+  less
+  than
+  or
+  equal
+  to
+  the
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">nteams-var</span></span>
+  ICV
+  if
+  its
+  value
+  is
+  greater
+  than
+  zero.
+  Otherwise
+  it
+  is
+  greater
+  than
+  or
+  equal
+  to
+  1.
+  The
+  maximum
+  number
+                                                                            
+                                                                            
+  of
+  threads
+  that
+  participate
+  in
+  the
+  contention
+  group
+  that
+  each
+  team
+  initiates
+  is
+  implementation
+  defined
+  if
+  no
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause
+  is
+  specified
+  on
+  the
+  construct.
+  The
+  assignment
+  of
+  the
+  initial
+  threads
+  to
+  places
+  and
+  the
+  values
+  of
+  the
+  <span class="textit"><span class="textrm">place-partition-var</span></span>
+  and
+  <span class="textit"><span class="textrm">default-device-var</span></span>
+  ICVs
+  for
+  each
+                                                                            
+                                                                            
+  initial
+  thread
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse15.html#x62-620002.7">2.7<!--tex4ht:ref: sec:teams Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">sections</span></span>
+  <span class="textbf">construct</span>:
+  The
+  method
+  of
+  scheduling
+  the
+  structured
+  blocks
+  among
+  threads
+  in
+  the
+  team
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu42.html#x66-660002.10.1">2.10.1<!--tex4ht:ref: subsec:sections Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">single</span></span>
+  <span class="textbf">construct</span>:
+  The
+  method
+  of
+  choosing
+  a
+  thread
+  to
+  execute
+                                                                            
+                                                                            
+  the
+  structured
+  block
+  each
+  time
+  the
+  team
+  encounters
+  the
+  construct
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu43.html#x67-670002.10.2">2.10.2<!--tex4ht:ref: subsec:single Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Canonical
+  loop
+  nest
+  form</span>:
+  The
+  particular
+  integer
+  type
+  used
+  to
+  compute
+  the
+  iteration
+  count
+  for
+  the
+  collapsed
+  loop
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>).
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf">Worksharing-loop
+  directive</span>:
+  The
+  effect
+  of
+  the
+  <span class="textbf"><span class="texttt">schedule(runtime)</span></span>
+  clause
+  when
+  the
+  <span class="textit"><span class="textrm">run-sched-var</span></span>
+  ICV
+  is
+  set
+  to
+  <span class="textbf"><span class="texttt">auto</span></span>
+  is
+  implementation
+  defined.
+  The
+  value
+  of
+  <span class="textit"><span class="textrm">simd_width</span></span>
+  for
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  schedule
+  modifier
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">simd</span></span>
+  <span class="textbf">construct</span>:
+  The
+  number
+  of
+                                                                            
+                                                                            
+  iterations
+  that
+  are
+  executed
+  concurrently
+  at
+  any
+  given
+  time
+  is
+  implementation
+  defined.
+  If
+  the
+  <span class="textit"><span class="textrm">alignment</span></span>
+  parameter
+  is
+  not
+  specified
+  in
+  the
+  <span class="textbf"><span class="texttt">aligned</span></span>
+  clause,
+  the
+  default
+  alignments
+  for
+  the
+  SIMD
+  instructions
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-760002.11.5.1">2.11.5.1<!--tex4ht:ref: subsubsec:simd Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>
+  <span class="textbf">directive</span>:
+  If
+  the
+  parameter
+                                                                            
+                                                                            
+  of
+  the
+  <span class="textbf"><span class="texttt">simdlen</span></span>
+  clause
+  is
+  not
+  a
+  constant
+  positive
+  integer
+  expression,
+  the
+  number
+  of
+  concurrent
+  arguments
+  for
+  the
+  function
+  is
+  implementation
+  defined.
+  If
+  the
+  <span class="textit"><span class="textrm">alignment</span></span>
+  parameter
+  of
+  the
+  <span class="textbf"><span class="texttt">aligned</span></span>
+  clause
+  is
+  not
+  specified,
+  the
+  default
+  alignments
+  for
+  SIMD
+  instructions
+  are
+  implementation
+  defined
+  (see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-780002.11.5.3">2.11.5.3<!--tex4ht:ref: subsubsec:declare simd Directive --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  <span class="textbf">construct</span>:
+  If
+  no
+  <span class="textbf"><span class="texttt">dist_schedule</span></span>
+  clause
+  is
+  specified
+  then
+  the
+  schedule
+  for
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu50.html#x75-800002.11.6.1">2.11.6.1<!--tex4ht:ref: subsec:distribute Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">unroll</span></span>
+  <span class="textbf">construct</span>:
+  If
+  the
+  <span class="textbf"><span class="texttt">partial</span></span>
+  clause
+  is
+  specified
+  without
+  an
+  argument,
+  the
+  unroll
+  factor
+  is
+                                                                            
+                                                                            
+  a
+  positive
+  integer
+  that
+  is
+  implementation
+  defined.
+  If
+  neither
+  the
+  <span class="textbf"><span class="texttt">partial</span></span>
+  nor
+  the
+  <span class="textbf"><span class="texttt">full</span></span>
+  clause
+  is
+  specified,
+  if
+  and
+  how
+  the
+  loop
+  is
+  unrolled
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu53.html#x78-880002.11.9.2">2.11.9.2<!--tex4ht:ref: subsubsec:unroll Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  <span class="textbf">construct</span>:
+  The
+  number
+  of
+  loop
+  iterations
+  assigned
+  to
+  a
+  task
+                                                                            
+                                                                            
+  created
+  from
+  a
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct
+  is
+  implementation
+  defined,
+  unless
+  the
+  <span class="textbf"><span class="texttt">grainsize</span></span>
+  or
+  <span class="textbf"><span class="texttt">num_tasks</span></span>
+  clause
+  is
+  specified
+  (see
+  Section&#x00A0;<a 
+href="openmpsu55.html#x81-910002.12.2">2.12.2<!--tex4ht:ref: subsec:taskloop Construct --></a>).</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  <span class="textbf">construct</span>:
+  For
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  variables
+  of
+  class
+  type,
+  the
+  number
+  of
+  invocations
+  of
+  copy
+  constructors
+  to
+  perform
+  the
+                                                                            
+                                                                            
+  initialization
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu55.html#x81-910002.12.2">2.12.2<!--tex4ht:ref: subsec:taskloop Construct --></a>).</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf">Memory
+  spaces</span>:
+  The
+  actual
+  storage
+  resources
+  that
+  each
+  memory
+  space
+  defined
+  in
+  Table&#x00A0;<a 
+href="openmpsu48.html#x87-97002r8">2.8<!--tex4ht:ref: tab:Predefined Memory Spaces --></a>
+  represents
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu60.html#x87-970002.13.1">2.13.1<!--tex4ht:ref: subsec:Memory Spaces --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Memory
+  allocators</span>:
+  The
+  minimum
+  partitioning
+  size
+  for
+                                                                            
+                                                                            
+  partitioning
+  of
+  allocated
+  memory
+  over
+  the
+  storage
+  resources
+  is
+  implementation
+  defined.
+  The
+  default
+  value
+  for
+  the
+  <span class="textbf"><span class="texttt">pool_size</span></span>
+  allocator
+  trait
+  (see
+  Table&#x00A0;<a 
+href="openmpsu48.html#x88-98002r9">2.9<!--tex4ht:ref: tab:Allocator traits --></a>)
+  is
+  implementation
+  defined.
+  The
+  associated
+  memory
+  space
+  for
+  each
+  of
+  the
+  predefined
+  <span class="textbf"><span class="texttt">omp_cgroup_mem_alloc</span></span>,
+  <span class="textbf"><span class="texttt">omp_pteam_mem_alloc</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_thread_mem_alloc</span></span>
+  allocators
+  (see
+  Table&#x00A0;<a 
+href="openmpsu48.html#x88-98004r10">2.10<!--tex4ht:ref: tab:Predefined Allocators --></a>)
+  is
+  implementation
+  defined
+                                                                            
+                                                                            
+  (see
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  <span class="textbf">construct</span>:
+  The
+  maximum
+  number
+  of
+  threads
+  that
+  participate
+  in
+  the
+  contention
+  group
+  that
+  each
+  team
+  initiates
+  is
+  implementation
+  defined
+  if
+  no
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause
+  is
+  specified
+  on
+  the
+  construct
+  (see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">is_device_ptr</span></span>
+  <span class="textbf">clause</span>:
+  Support
+                                                                            
+                                                                            
+  for
+  pointers
+  created
+  outside
+  of
+  the
+  OpenMP
+  device
+  data
+  management
+  routines
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">interop</span></span>
+  <span class="textbf">directive</span>:
+  The
+  <span class="textit"><span class="textrm">foreign-runtime-id</span></span>
+  that
+  is
+  used
+  if
+  the
+  implementation
+  does
+  not
+  support
+  any
+  of
+  the
+  items
+  in
+  <span class="textit"><span class="textrm">preference-list</span></span>
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu71.html#x100-1100002.15.1">2.15.1<!--tex4ht:ref: subsec:interop Construct --></a>).
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">interop</span></span>
+  <span class="textbf">Construct</span>:
+  The
+  <span class="textit"><span class="textrm">foreign-runtime-id</span></span>
+  values
+  for
+  the
+  <span class="textbf"><span class="texttt">prefer_type</span></span>
+  clause
+  that
+  the
+  implementation
+  supports,
+  including
+  non-standard
+  names
+  compatible
+  with
+  this
+  clause,
+  and
+  the
+  default
+  choice
+  when
+  the
+  implementation
+  supports
+  multiple
+  values
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu71.html#x100-1100002.15.1">2.15.1<!--tex4ht:ref: subsec:interop Construct --></a>).
+  </li>
+  <li class="itemize">
+  The
+  concrete
+                                                                            
+                                                                            
+  types
+  of
+  the
+  values
+  of
+  interop
+  properties
+  for
+  implementation
+  defined
+  <span class="textit"><span class="textrm">foreign-runtime-ids</span></span>
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu71.html#x100-1100002.15.1">2.15.1<!--tex4ht:ref: subsec:interop Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  <span class="textbf">construct</span>:
+  A
+  compliant
+  implementation
+  may
+  enforce
+  exclusive
+  access
+  <a 
+ id="dx348-523004"></a>between
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  regions
+  that
+  update
+  different
+  storage
+  locations.
+  The
+  circumstances
+  under
+  which
+  this
+  occurs
+  are
+                                                                            
+                                                                            
+  implementation
+  defined.
+  If
+  the
+  storage
+  location
+  designated
+  by
+  <span class="emph">x</span>
+  is
+  not
+  size-aligned
+  (that
+  is,
+  if
+  the
+  byte
+  alignment
+  of
+  <span class="emph">x</span>
+  is
+  not
+  a
+  multiple
+  of
+  the
+  size
+  of
+  <span class="emph">x</span>),
+  then
+  the
+  behavior
+  of
+  the
+  atomic
+  region
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu105.html#x138-1480002.19.7">2.19.7<!--tex4ht:ref: subsec:atomic Construct --></a>).</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf">Data-sharing
+  attributes</span>:
+  The
+  data-sharing
+  attributes
+  of
+  dummy
+  arguments
+  without
+  the
+  <span class="textbf"><span class="texttt">VALUE</span></span>
+  attribute
+  are
+  implementation
+  defined
+  if
+  the
+  associated
+  actual
+  argument
+  is
+  shared,
+  except
+  for
+  the
+  conditions
+  specified
+  (see
+  Section&#x00A0;<a 
+href="openmpsu113.html#x148-1620002.21.1.2">2.21.1.2<!--tex4ht:ref: subsubsec:Variables Referenced in a Region but not in a Construct --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  <span class="textbf">directive</span>:
+  If
+  the
+  conditions
+                                                                            
+                                                                            
+  for
+  values
+  of
+  data
+  in
+  the
+  threadprivate
+  objects
+  of
+  threads
+  (other
+  than
+  an
+  initial
+  thread)
+  to
+  persist
+  between
+  two
+  consecutive
+  active
+  parallel
+  regions
+  do
+  not
+  all
+  hold,
+  the
+  allocation
+  status
+  of
+  an
+  allocatable
+  variable
+  in
+  the
+  second
+  region
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>).</li></ul>
+                                                                            
+                                                                            
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-348-2499"></a>
+<span 
+class="phvb8t-x-x-110">Chapter </span><a 
+href="openmpch3.html#x156-1890003"><span 
+class="phvb8t-x-x-110">3</span><!--tex4ht:ref: chap:Runtime Library Routines --></a><span 
+class="phvb8t-x-x-110">:</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf">Runtime
+  library
+  definitions</span>:
+  The
+  enum
+  types
+  for
+  <span class="textbf"><span class="texttt">omp_allocator_handle_t</span></span>,
+  <span class="textbf"><span class="texttt">omp_event_handle_t</span></span>,
+  <span class="textbf"><span class="texttt">omp_interop_type_t</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_memspace_handle_t</span></span>
+  are
+  implementation
+  defined.
+  The
+  integral
+  or
+  pointer
+  type
+  for
+  <span class="textbf"><span class="texttt">omp_interop_t</span></span>
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse31.html#x157-1900003.1">3.1<!--tex4ht:ref: sec:runtime library definitions --></a>).</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+                                                                            
+                                                                            
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf">Runtime
+  library
+  definitions</span>:
+  Whether
+  the
+  include
+  file
+  <span class="textbf"><span class="texttt">omp_lib.h</span></span>
+  or
+  the
+  module
+  <span class="textbf"><span class="texttt">omp_lib</span></span>
+  (or
+  both)
+  is
+  provided
+  is
+  implementation
+  defined.
+  Whether
+  the
+  <span class="textbf"><span class="texttt">omp_lib.h</span></span>
+  file
+  provides
+  derived-type
+  definitions
+  or
+  those
+  routines
+  that
+  require
+  an
+  explicit
+  interface
+  is
+  implementation
+                                                                            
+                                                                            
+  defined.
+  Whether
+  any
+  of
+  the
+  OpenMP
+  runtime
+  library
+  routines
+  that
+  take
+  an
+  argument
+  are
+  extended
+  with
+  a
+  generic
+  interface
+  so
+  arguments
+  of
+  different
+  <span class="textbf"><span class="texttt">KIND</span></span>
+  type
+  can
+  be
+  accommodated
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse31.html#x157-1900003.1">3.1<!--tex4ht:ref: sec:runtime library definitions --></a>).</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_num_threads</span></span>
+  <span class="textbf">routine</span>:
+                                                                            
+                                                                            
+  If
+  the
+  argument
+  is
+  not
+  a
+  positive
+  integer
+  the
+  behavior
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu120.html#x159-1920003.2.1">3.2.1<!--tex4ht:ref: subsec:omp_set_num_threads --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_schedule</span></span>
+  <span class="textbf">routine</span>:
+  For
+  implementation-specific
+  schedule
+  kinds,
+  the
+  values
+  and
+  associated
+  meanings
+  of
+  the
+  second
+  argument
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu130.html#x169-2020003.2.11">3.2.11<!--tex4ht:ref: subsec:omp_set_schedule --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_schedule</span></span>
+                                                                            
+                                                                            
+  <span class="textbf">routine</span>:
+  The
+  value
+  returned
+  by
+  the
+  second
+  argument
+  is
+  implementation
+  defined
+  for
+  any
+  schedule
+  kinds
+  other
+  than
+  <span class="textbf"><span class="texttt">static</span></span>,
+  <span class="textbf"><span class="texttt">dynamic</span></span>
+  and
+  <span class="textbf"><span class="texttt">guided</span></span>
+  (see
+  Section&#x00A0;<a 
+href="openmpsu131.html#x170-2030003.2.12">3.2.12<!--tex4ht:ref: subsec:omp_get_schedule --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_supported_active_levels</span></span>
+  <span class="textbf">routine</span>:
+  The
+  number
+  of
+  active
+  levels
+  of
+  parallelism
+  supported
+  by
+  the
+  implementation
+  is
+  implementation
+  defined,
+  but
+                                                                            
+                                                                            
+  must
+  be
+  greater
+  than
+  0
+  (see
+  Section&#x00A0;<a 
+href="openmpsu133.html#x172-2050003.2.14">3.2.14<!--tex4ht:ref: subsec:omp_get_supported_active_levels --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span>
+  <span class="textbf">routine</span>:
+  If
+  the
+  argument
+  is
+  not
+  a
+  non-negative
+  integer
+  then
+  the
+  behavior
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu134.html#x173-2060003.2.15">3.2.15<!--tex4ht:ref: subsec:omp_set_max_active_levels --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span>
+  <span class="textbf">routine</span>:
+  The
+  meaning
+  of
+  the
+  non-negative
+  numerical
+  identifiers
+  returned
+  by
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span>
+  routine
+  is
+  implementation
+  defined.
+  The
+  order
+  of
+  the
+  numerical
+  identifiers
+  returned
+  in
+  the
+  array
+  <span class="textit"><span class="textrm">ids</span></span>
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu143.html#x183-2160003.3.4">3.3.4<!--tex4ht:ref: subsec:omp_get_place_proc_ids --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_affinity_format</span></span>
+  <span class="textbf">routine</span>:
+  When
+  called
+  from
+  within
+  any
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  or
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region,
+  the
+  binding
+  thread
+  set
+  (and
+  binding
+  region,
+                                                                            
+                                                                            
+  if
+  required)
+  for
+  the
+  <span class="textbf"><span class="texttt">omp_set_affinity_format</span></span>
+  region
+  and
+  the
+  effect
+  of
+  this
+  routine
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu147.html#x187-2200003.3.8">3.3.8<!--tex4ht:ref: subsec:omp_set_affinity_format --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_affinity_format</span></span>
+  <span class="textbf">routine</span>:
+  When
+  called
+  from
+  within
+  any
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  or
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region,
+  the
+  binding
+  thread
+  set
+  (and
+  binding
+  region,
+  if
+  required)
+  for
+  the
+  <span class="textbf"><span class="texttt">omp_get_affinity_format</span></span>
+                                                                            
+                                                                            
+  region
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu148.html#x188-2210003.3.9">3.3.9<!--tex4ht:ref: subsec:omp_get_affinity_format --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_display_affinity</span></span>
+  <span class="textbf">routine</span>:
+  If
+  the
+  <span class="textit"><span class="textrm">format</span></span>
+  argument
+  does
+  not
+  conform
+  to
+  the
+  specified
+  format
+  then
+  the
+  result
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu149.html#x189-2220003.3.10">3.3.10<!--tex4ht:ref: subsec:omp_display_affinity --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_capture_affinity</span></span>
+  <span class="textbf">routine</span>:
+  If
+  the
+  <span class="textit"><span class="textrm">format</span></span>
+  argument
+  does
+  not
+  conform
+                                                                            
+                                                                            
+  to
+  the
+  specified
+  format
+  then
+  the
+  result
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu150.html#x190-2230003.3.11">3.3.11<!--tex4ht:ref: subsec:omp_capture_affinity --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_num_teams</span></span>
+  <span class="textbf">routine</span>:
+  If
+  the
+  argument
+  is
+  not
+  evaluated
+  to
+  a
+  positive
+  integer
+  the
+  behavior
+  of
+  this
+  routine
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu153.html#x194-2270003.4.3">3.4.3<!--tex4ht:ref: subsec:omp_set_num_teams --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span>
+  <span class="textbf">routine</span>:
+                                                                            
+                                                                            
+  If
+  the
+  argument
+  is
+  not
+  a
+  positive
+  integer
+  the
+  behavior
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu155.html#x196-2290003.4.5">3.4.5<!--tex4ht:ref: subsec:omp_set_teams_thread_limit --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_target_memcpy_rect</span></span>
+  <span class="textbf">routine</span>:
+  The
+  maximum
+  number
+  of
+  dimensions
+  supported
+  is
+  implementation
+  defined,
+  but
+  must
+  be
+  at
+  least
+  three
+  (see
+  Section&#x00A0;<a 
+href="openmpsu173.html#x218-2510003.8.6">3.8.6<!--tex4ht:ref: subsec:omp_target_memcpy_rect --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Lock
+  routines</span>:
+                                                                            
+                                                                            
+  If
+  a
+  lock
+  contains
+  a
+  synchronization
+  hint,
+  the
+  effect
+  of
+  the
+  hint
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse39.html#x224-2570003.9">3.9<!--tex4ht:ref: sec:Lock Routines --></a>
+  and
+  Section&#x00A0;<a 
+href="openmpsu180.html#x226-2590003.9.2">3.9.2<!--tex4ht:ref: subsec:omp_init_lock_with_hint and omp_init_nest_lock_with_hint --></a>).</li></ul>
+<p><p><a 
+ id="Q1-348-2500"></a>
+<span 
+class="phvb8t-x-x-110">Chapter </span><a 
+href="openmpch4.html#x256-2890004"><span 
+class="phvb8t-x-x-110">4</span><!--tex4ht:ref: chap:OMPT Interface --></a><span 
+class="phvb8t-x-x-110">:</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_sync_region_wait</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_released</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_dependences</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_task_dependence</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_work</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_master</span></span>
+  (deprecated),
+  <span class="textbf"><span class="texttt">ompt_callback_masked</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_target_map</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_target_map_emi</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_sync_region</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_reduction</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_lock_init</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_lock_destroy</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_acquired</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_nest_lock</span></span>,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompt_callback_flush</span></span>,
+  <span class="textbf"><span class="texttt">ompt_callback_cancel</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_callback_dispatch</span></span>
+  <span class="textbf">tool
+  callbacks</span>:
+  If
+  a
+  tool
+  attempts
+  to
+  register
+  a
+  callback
+  with
+  the
+  string
+  name
+  using
+  the
+  runtime
+  entry
+  point
+  <span class="textbf"><span class="texttt">ompt_set_callback</span></span>
+  (see
+  Table&#x00A0;<a 
+href="openmpsu207.html#x262-2960033">4.3<!--tex4ht:ref: table:valid_rc_optional --></a>),
+  whether
+  the
+  registered
+  callback
+  may
+  never,
+  sometimes
+  or
+  always
+  invoke
+  this
+  callback
+  for
+  the
+  associated
+  events
+  is
+                                                                            
+                                                                            
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu207.html#x262-2960004.2.4">4.2.4<!--tex4ht:ref: sec:ompt-register-callbacks --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Device
+  tracing</span>:
+  Whether
+  a
+  target
+  device
+  supports
+  tracing
+  or
+  not
+  is
+  implementation
+  defined;
+  if
+  a
+  target
+  device
+  does
+  not
+  support
+  tracing,
+  a
+  <span class="textbf"><span class="texttt">NULL</span></span>
+  may
+  be
+  supplied
+  for
+  the
+  <span class="textit"><span class="textrm">lookup</span></span>
+  function
+  to
+  the
+  device
+  initializer
+  of
+  a
+                                                                            
+                                                                            
+  tool
+  (see
+  Section&#x00A0;<a 
+href="openmpsu208.html#x263-2970004.2.5">4.2.5<!--tex4ht:ref: sec:tracing-device-activity --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_buffer_get_record_ompt</span></span>
+  <span class="textbf">runtime
+  entry
+  points</span>:
+  Whether
+  a
+  device-specific
+  tracing
+  interface
+  will
+  define
+  this
+  runtime
+  entry
+  point,
+  indicating
+  that
+  it
+  can
+  collect
+  traces
+  in
+  OMPT
+  format
+  is
+  implementation
+  defined.
+  The
+  kinds
+  of
+  trace
+  records
+  available
+  for
+  a
+                                                                            
+                                                                            
+  device
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu208.html#x263-2970004.2.5">4.2.5<!--tex4ht:ref: sec:tracing-device-activity --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Native
+  record
+  abstract
+  type</span>:
+  The
+  meaning
+  of
+  a
+  <span class="textit"><span class="textrm">hwid</span></span>
+  value
+  for
+  a
+  device
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu211.html#x268-3050004.4.3.3">4.4.3.3<!--tex4ht:ref: sec:ompt_record_abstract_t --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_record_abstract_t</span></span>
+  <span class="textbf">type</span>:
+  The
+  set
+  of
+  OMPT
+  thread
+  states
+  supported
+  is
+  implementation
+  defined
+                                                                            
+                                                                            
+  (see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3340004.4.4.27">4.4.4.27<!--tex4ht:ref: sec:thread-states --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>
+  <span class="textbf">callback
+  type</span>:
+  Whether
+  in
+  some
+  operations
+  <span class="textit"><span class="textrm">src_addr</span></span>
+  or
+  <span class="textit"><span class="textrm">dest_addr</span></span>
+  might
+  point
+  to
+  an
+  intermediate
+  buffer
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3670004.5.2.25">4.5.2.25<!--tex4ht:ref: sec:ompt_callback_target_data_op_t --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span>
+  <span class="textbf">entry
+  point
+  type</span>:
+  The
+  subset
+  of
+  the
+  associated
+  event
+  in
+  which
+  the
+                                                                            
+                                                                            
+  callback
+  is
+  invoked
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3770004.6.1.3">4.6.1.3<!--tex4ht:ref: sec:ompt_set_callback_t --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_place_proc_ids_t</span></span>
+  <span class="textbf">entry
+  point
+  type</span>:
+  The
+  meaning
+  of
+  the
+  numerical
+  identifiers
+  returned
+  is
+  implementation
+  defined.
+  The
+  order
+  of
+  <span class="textit"><span class="textrm">ids</span></span>
+  returned
+  in
+  the
+  array
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3820004.6.1.8">4.6.1.8<!--tex4ht:ref: sec:ompt_get_place_proc_ids_t --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_partition_place_nums_t</span></span>
+                                                                            
+                                                                            
+  <span class="textbf">entry
+  point
+  type</span>:
+  The
+  order
+  of
+  the
+  identifiers
+  returned
+  in
+  the
+  array
+  <span class="textit"><span class="textrm">place_nums</span></span>
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3840004.6.1.10">4.6.1.10<!--tex4ht:ref: sec:ompt_get_partition_place_nums_t --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_proc_id_t</span></span>
+  <span class="textbf">entry
+  point
+  type</span>:
+  The
+  meaning
+  of
+  the
+  numerical
+  identifier
+  returned
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3850004.6.1.11">4.6.1.11<!--tex4ht:ref: sec:ompt_get_proc_id_t --></a>).</li></ul>
+<p><p><a 
+ id="Q1-348-2501"></a>
+<span 
+class="phvb8t-x-x-110">Chapter </span><a 
+href="openmpch5.html#x277-4100005"><span 
+class="phvb8t-x-x-110">5</span><!--tex4ht:ref: chap:OMPD Interface --></a><span 
+class="phvb8t-x-x-110">:</span>
+</p> 
+
+  <ul class="itemize1">
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span>
+  <span class="textbf">callback
+  function</span>:
+  The
+  value
+  of
+  <span class="textit"><span class="textrm">category</span></span>
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu238.html#x302-4420005.4.5">5.4.5<!--tex4ht:ref: subsubsubsec:ompd_callback_print_string_fn_t --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_parallel_handle_compare</span></span>
+  <span class="textbf">operation</span>:
+  The
+  means
+  by
+  which
+  parallel
+  region
+  handles
+  are
+  ordered
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu245.html#x310-4690005.5.6.5">5.5.6.5<!--tex4ht:ref: subsubsubsec:ompd_parallel_handle_compare --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_task_handle_compare</span></span>
+  <span class="textbf">operation</span>:
+  The
+  means
+  by
+  which
+                                                                            
+                                                                            
+  task
+  handles
+  are
+  ordered
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpsu246.html#x311-4760005.5.7.6">5.5.7.6<!--tex4ht:ref: subsubsubsec:ompd_task_handle_compare --></a>).</li></ul>
+<p><p><a 
+ id="Q1-348-2502"></a>
+<span 
+class="phvb8t-x-x-110">Chapter </span><a 
+href="openmpch6.html#x323-4980006"><span 
+class="phvb8t-x-x-110">6</span><!--tex4ht:ref: chap:Environment Variables --></a><span 
+class="phvb8t-x-x-110">:</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_SCHEDULE</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  does
+  not
+  conform
+  to
+  the
+  specified
+  format
+  then
+  the
+  behavior
+  of
+  the
+  program
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse58.html#x324-4990006.1">6.1<!--tex4ht:ref: sec:OMP_SCHEDULE --></a>).
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  any
+  value
+  of
+  the
+  list
+  specified
+  leads
+  to
+  a
+  number
+  of
+  threads
+  that
+  is
+  greater
+  than
+  the
+  implementation
+  can
+  support,
+  or
+  if
+  any
+  value
+  is
+  not
+  a
+  positive
+  integer,
+  then
+  the
+  behavior
+  of
+  the
+  program
+  is
+  implementation
+  defined
+                                                                            
+                                                                            
+  (see
+  Section&#x00A0;<a 
+href="openmpse59.html#x325-5000006.2">6.2<!--tex4ht:ref: sec:OMP_NUM_THREADS --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DYNAMIC</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  is
+  neither
+  <span class="textbf"><span class="texttt">true</span></span>
+  nor
+  <span class="textbf"><span class="texttt">false</span></span>
+  the
+  behavior
+  of
+  the
+  program
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse60.html#x326-5010006.3">6.3<!--tex4ht:ref: sec:OMP_DYNAMIC --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_PROC_BIND</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  is
+  not
+  <span class="textbf"><span class="texttt">true</span></span>,
+  <span class="textbf"><span class="texttt">false</span></span>,
+  or
+  a
+  comma
+                                                                            
+                                                                            
+  separated
+  list
+  of
+  <span class="textbf"><span class="texttt">primary</span></span>
+  (<span class="textbf"><span class="texttt">master</span></span>
+  has
+  been
+  deprecated),
+  <span class="textbf"><span class="texttt">close</span></span>,
+  or
+  <span class="textbf"><span class="texttt">spread</span></span>,
+  the
+  behavior
+  is
+  implementation
+  defined.
+  The
+  behavior
+  is
+  also
+  implementation
+  defined
+  if
+  an
+  initial
+  thread
+  cannot
+  be
+  bound
+  to
+  the
+  first
+  place
+  in
+  the
+  OpenMP
+  place
+  list.
+  The
+  thread
+  affinity
+  policy
+  is
+                                                                            
+                                                                            
+  implementation
+  defined
+  if
+  the
+  value
+  is
+  <span class="textbf"><span class="texttt">true</span></span>
+  (see
+  Section&#x00A0;<a 
+href="openmpse61.html#x327-5020006.4">6.4<!--tex4ht:ref: sec:OMP_PROC_BIND --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  The
+  meaning
+  of
+  the
+  numbers
+  specified
+  in
+  the
+  environment
+  variable
+  and
+  how
+  the
+  numbering
+  is
+  done
+  are
+  implementation
+  defined.
+  The
+  precise
+  definitions
+  of
+  the
+  abstract
+  names
+  are
+  implementation
+                                                                            
+                                                                            
+  defined.
+  An
+  implementation
+  may
+  add
+  implementation-defined
+  abstract
+  names
+  as
+  appropriate
+  for
+  the
+  target
+  platform.
+  When
+  creating
+  a
+  place
+  list
+  of
+  n
+  elements
+  by
+  appending
+  the
+  number
+  <span class="emph">n</span>
+  to
+  an
+  abstract
+  name,
+  the
+  determination
+  of
+  which
+  resources
+  to
+  include
+  in
+  the
+  place
+  list
+  is
+                                                                            
+                                                                            
+  implementation
+  defined.
+  When
+  requesting
+  more
+  resources
+  than
+  available,
+  the
+  length
+  of
+  the
+  place
+  list
+  is
+  also
+  implementation
+  defined.
+  The
+  behavior
+  of
+  the
+  program
+  is
+  implementation
+  defined
+  when
+  the
+  execution
+  environment
+  cannot
+  map
+  a
+  numerical
+  value
+  (either
+  explicitly
+  defined
+  or
+  implicitly
+  derived
+  from
+  an
+                                                                            
+                                                                            
+  interval)
+  within
+  the
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  list
+  to
+  a
+  processor
+  on
+  the
+  target
+  platform,
+  or
+  if
+  it
+  maps
+  to
+  an
+  unavailable
+  processor.
+  The
+  behavior
+  is
+  also
+  implementation
+  defined
+  when
+  the
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  environment
+  variable
+  is
+  defined
+  using
+  an
+  abstract
+  name
+  (see
+  Section&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5">6.5<!--tex4ht:ref: sec:OMP_PLACES --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span>
+                                                                            
+                                                                            
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  does
+  not
+  conform
+  to
+  the
+  specified
+  format
+  or
+  the
+  implementation
+  cannot
+  provide
+  a
+  stack
+  of
+  the
+  specified
+  size
+  then
+  the
+  behavior
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse63.html#x329-5040006.6">6.6<!--tex4ht:ref: sec:OMP_STACKSIZE --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_WAIT_POLICY</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  The
+  details
+  of
+  the
+  <span class="textbf"><span class="texttt">active</span></span>
+  and
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">passive</span></span>
+  behaviors
+  are
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse64.html#x330-5050006.7">6.7<!--tex4ht:ref: sec:OMP_WAIT_POLICY --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  is
+  not
+  a
+  non-negative
+  integer
+  or
+  is
+  greater
+  than
+  the
+  maximum
+  number
+  of
+  nested
+  active
+  parallel
+  levels
+  that
+  an
+  implementation
+  can
+  support
+  then
+  the
+  behavior
+  of
+  the
+                                                                            
+                                                                            
+  program
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse65.html#x331-5060006.8">6.8<!--tex4ht:ref: sec:OMP_MAX_ACTIVE_LEVELS --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NESTED</span></span>
+  <span class="textbf">environment
+  variable
+  (deprecated)</span>:
+  If
+  the
+  value
+  is
+  neither
+  <span class="textbf"><span class="texttt">true</span></span>
+  nor
+  <span class="textbf"><span class="texttt">false</span></span>
+  the
+  behavior
+  of
+  the
+  program
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse66.html#x332-5070006.9">6.9<!--tex4ht:ref: sec:OMP_NESTED --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf">Conflicting
+  </span>
+  <span class="textbf"><span class="texttt">OMP_NESTED</span></span>
+  <span class="textbf">(deprecated)
+  and</span>
+  <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span>
+  <span class="textbf">environment
+  variables</span>:
+                                                                            
+                                                                            
+  If
+  both
+  environment
+  variables
+  are
+  set,
+  the
+  value
+  of
+  <span class="textbf"><span class="texttt">OMP_NESTED</span></span>
+  is
+  <span class="textbf"><span class="texttt">false</span></span>,
+  and
+  the
+  value
+  of
+  <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span>
+  is
+  greater
+  than
+  1,
+  the
+  behavior
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse66.html#x332-5070006.9">6.9<!--tex4ht:ref: sec:OMP_NESTED --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_THREAD_LIMIT</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  requested
+  value
+  is
+  greater
+  than
+  the
+  number
+                                                                            
+                                                                            
+  of
+  threads
+  an
+  implementation
+  can
+  support,
+  or
+  if
+  the
+  value
+  is
+  not
+  a
+  positive
+  integer,
+  the
+  behavior
+  of
+  the
+  program
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse67.html#x333-5080006.10">6.10<!--tex4ht:ref: sec:OMP_THREAD_LIMIT --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DISPLAY_AFFINITY</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  For
+  all
+  values
+  of
+  the
+  environment
+  variables
+  other
+  than
+  <span class="textbf"><span class="texttt">true</span></span>
+  or
+  <span class="textbf"><span class="texttt">false</span></span>,
+                                                                            
+                                                                            
+  the
+  display
+  action
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse70.html#x336-5110006.13">6.13<!--tex4ht:ref: sec:OMP_DISPLAY_AFFINITY --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  does
+  not
+  conform
+  to
+  the
+  specified
+  format
+  then
+  the
+  result
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse71.html#x337-5120006.14">6.14<!--tex4ht:ref: sec:OMP_AFFINITY_FORMAT --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  The
+  support
+  of
+  <span class="textbf"><span class="texttt">disabled</span></span>
+                                                                            
+                                                                            
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse74.html#x340-5150006.17">6.17<!--tex4ht:ref: sec:OMP_TARGET_OFFLOAD --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  Whether
+  the
+  value
+  of
+  the
+  environment
+  variable
+  is
+  case
+  sensitive
+  or
+  insensitive
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse76.html#x342-5170006.19">6.19<!--tex4ht:ref: sec:OMP_TOOL_LIBRARIES --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  Support
+  for
+  logging
+  to
+  <span class="textbf"><span class="texttt">stdout</span></span>
+  or
+  <span class="textbf"><span class="texttt">stderr</span></span>
+  is
+                                                                            
+                                                                            
+  implementation
+  defined.
+  Whether
+  the
+  value
+  of
+  the
+  environment
+  variable
+  is
+  case
+  sensitive
+  when
+  it
+  is
+  treated
+  as
+  a
+  filename
+  is
+  implementation
+  defined.
+  The
+  format
+  and
+  detail
+  of
+  the
+  log
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse77.html#x343-5180006.20">6.20<!--tex4ht:ref: sec:OMP_TOOL_VERBOSE_INIT --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DEBUG</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+                                                                            
+                                                                            
+  is
+  neither
+  <span class="textbf"><span class="texttt">disabled</span></span>
+  nor
+  <span class="textbf"><span class="texttt">enabled</span></span>
+  the
+  behavior
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse78.html#x344-5190006.21">6.21<!--tex4ht:ref: sec:OMP_DEBUG --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NUM_TEAMS</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  is
+  not
+  a
+  positive
+  integer
+  or
+  is
+  greater
+  than
+  the
+  number
+  of
+  teams
+  that
+  an
+  implementation
+  can
+  support,
+  the
+  behavior
+  of
+  the
+                                                                            
+                                                                            
+  program
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse80.html#x346-5210006.23">6.23<!--tex4ht:ref: sec:OMP_NUM_TEAMS --></a>).
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span>
+  <span class="textbf">environment
+  variable</span>:
+  If
+  the
+  value
+  is
+  not
+  a
+  positive
+  integer
+  or
+  is
+  greater
+  than
+  the
+  number
+  of
+  threads
+  that
+  an
+  implementation
+  can
+  support,
+  the
+  behavior
+  of
+  the
+  program
+  is
+  implementation
+  defined
+  (see
+  Section&#x00A0;<a 
+href="openmpse81.html#x347-5220006.24">6.24<!--tex4ht:ref: sec:OMP_TEAMS_THREAD_LIMIT --></a>).</li></ul>
+                                                                            
+                                                                            
+<!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpap2.html" >next</a>] [<a 
+href="openmpse81.html" >prev</a>] [<a 
+href="openmpse81.html#tailopenmpse81.html" >prev-tail</a>] [<a 
+href="openmpap1.html" >front</a>] [<a 
+href="openmp.html#openmpap1.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpap1.html"></a> </p> 
+ 
+</body> 
+</html>

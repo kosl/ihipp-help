@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Thread Team Routines</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu120.html" >next</a>] [<a 
+href="openmpse31.html" >prev</a>] [<a 
+href="openmpse31.html#tailopenmpse31.html" >prev-tail</a>] [<a 
+href="#tailopenmpse32.html">tail</a>] [<a 
+href="openmpch3.html#openmpse32.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.2</span>&#x00A0;&#x00A0;<a 
+ id="x158-1910003.2"></a>Thread Team Routines</h3>
+<a 
+ id="dx158-191001"></a>
+<p>This section describes routines that affect and monitor thread teams in the current contention
+group.
+</p> 
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu120.html#x159-1920003.2.1"><span class="textbf"><span class="texttt">omp_set_num_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu121.html#x160-1930003.2.2"><span class="textbf"><span class="texttt">omp_get_num_threads</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu122.html#x161-1940003.2.3"><span class="textbf"><span class="texttt">omp_get_max_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu123.html#x162-1950003.2.4"><span class="textbf"><span class="texttt">omp_get_thread_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu124.html#x163-1960003.2.5"><span class="textbf"><span class="texttt">omp_in_parallel</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.6&#x00A0;&#x00A0;<a 
+href="openmpsu125.html#x164-1970003.2.6"><span class="textbf"><span class="texttt">omp_set_dynamic</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.7&#x00A0;&#x00A0;<a 
+href="openmpsu126.html#x165-1980003.2.7"><span class="textbf"><span class="texttt">omp_get_dynamic</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.8&#x00A0;&#x00A0;<a 
+href="openmpsu127.html#x166-1990003.2.8"><span class="textbf"><span class="texttt">omp_get_cancellation</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.9&#x00A0;&#x00A0;<a 
+href="openmpsu128.html#x167-2000003.2.9"><span class="textbf"><span class="texttt">omp_set_nested</span></span> (Deprecated)</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.10&#x00A0;&#x00A0;<a 
+href="openmpsu129.html#x168-2010003.2.10"><span class="textbf"><span class="texttt">omp_get_nested</span></span> (Deprecated)</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.11&#x00A0;&#x00A0;<a 
+href="openmpsu130.html#x169-2020003.2.11"><span class="textbf"><span class="texttt">omp_set_schedule</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.12&#x00A0;&#x00A0;<a 
+href="openmpsu131.html#x170-2030003.2.12"><span class="textbf"><span class="texttt">omp_get_schedule</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.13&#x00A0;&#x00A0;<a 
+href="openmpsu132.html#x171-2040003.2.13"><span class="textbf"><span class="texttt">omp_get_thread_limit</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.14&#x00A0;&#x00A0;<a 
+href="openmpsu133.html#x172-2050003.2.14"><span class="textbf"><span class="texttt">omp_get_supported_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.15&#x00A0;&#x00A0;<a 
+href="openmpsu134.html#x173-2060003.2.15"><span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.16&#x00A0;&#x00A0;<a 
+href="openmpsu135.html#x174-2070003.2.16"><span class="textbf"><span class="texttt">omp_get_max_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.17&#x00A0;&#x00A0;<a 
+href="openmpsu136.html#x175-2080003.2.17"><span class="textbf"><span class="texttt">omp_get_level</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.18&#x00A0;&#x00A0;<a 
+href="openmpsu137.html#x176-2090003.2.18"><span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.19&#x00A0;&#x00A0;<a 
+href="openmpsu138.html#x177-2100003.2.19"><span class="textbf"><span class="texttt">omp_get_team_size</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.20&#x00A0;&#x00A0;<a 
+href="openmpsu139.html#x178-2110003.2.20"><span class="textbf"><span class="texttt">omp_get_active_level</span></span></a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu120.html" >next</a>] [<a 
+href="openmpse31.html" >prev</a>] [<a 
+href="openmpse31.html#tailopenmpse31.html" >prev-tail</a>] [<a 
+href="openmpse32.html" >front</a>] [<a 
+href="openmpch3.html#openmpse32.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse32.html"></a> </p> 
+ 
+</body> 
+</html>

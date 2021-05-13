@@ -1,0 +1,1659 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>SIMD Directives</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1057--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu50.html" >next</a>] [<a 
+href="openmpsu48.html" >prev</a>] [<a 
+href="openmpsu48.html#tailopenmpsu48.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu49.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu49.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.5</span>&#x00A0;&#x00A0;<a 
+ id="x74-750002.11.5"></a>SIMD Directives</h4>
+<a 
+ id="dx74-75001"></a>
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.5.1  </span> <a 
+ id="x74-760002.11.5.1"></a><span class="textbf"><span class="texttt">simd</span></span> Construct</h5>
+                                                                            
+                                                                            
+<a 
+ id="dx74-76001"></a>
+<a 
+ id="dx74-76002"></a>
+<p><p><a 
+ id="Q1-74-207"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">simd</span></span> construct can be applied to a loop to indicate that the loop can be transformed into a
+SIMD loop (that is, multiple iterations of the loop can be executed concurrently by using SIMD
+instructions).
+<p><a 
+ id="Q1-74-208"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">simd</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76003r1"></a></span></p> 
+<!--l. 1075--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76006r4"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76007r1"></a></span></p> 
+<!--l. 1086--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76008r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76009r3"></a></span><span 
+class="pcrb8t-">safelen</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76010r4"></a></span><span 
+class="pcrb8t-">simdlen</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76011r5"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76012r6"></a></span><span 
+class="pcrb8t-">aligned</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76013r7"></a></span><span 
+class="pcrb8t-">nontemporal</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76014r8"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76015r9"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lastprivate</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76016r10"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76017r11"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76018r12"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76019r13"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">simd</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76020r1"></a></span></p> 
+<!--l. 1103--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76021r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76022r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76023r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76024r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76025r1"></a></span></p> 
+<!--l. 1113--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76026r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76027r3"></a></span><span 
+class="pcrb8t-">safelen</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76028r4"></a></span><span 
+class="pcrb8t-">simdlen</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76029r5"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76030r6"></a></span><span 
+class="pcrb8t-">aligned</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76031r7"></a></span><span 
+class="pcrb8t-">nontemporal</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76032r8"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76033r9"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lastprivate</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76034r10"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76035r11"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76036r12"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-76037r13"></a></span></pre>
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is assumed at the end of the
+<span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-74-209"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+A <span class="textbf"><span class="texttt">simd</span></span> region binds to the current task region. The binding thread set of the <span class="textbf"><span class="texttt">simd</span></span> region is the current
+team.
+</p> 
+<p><p><a 
+ id="Q1-74-210"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">simd</span></span> construct enables the execution of multiple iterations of the associated loops concurrently by
+using SIMD instructions.
+</p> 
+<p>The <span class="textbf"><span class="texttt">collapse</span></span> clause may be used to specify how many loops are associated with the <span class="textbf"><span class="texttt">simd</span></span> construct.
+The <span class="textbf"><span class="texttt">collapse</span></span> clause specifies the number of loops that are collapsed into a logical iteration space that is
+then executed with SIMD instructions. The parameter of the <span class="textbf"><span class="texttt">collapse</span></span> clause must be a constant positive
+integer expression. If the <span class="textbf"><span class="texttt">collapse</span></span> clause is omitted, the behavior is as if a <span class="textbf"><span class="texttt">collapse</span></span> clause with a
+parameter value of one was specified.
+                                                                            
+                                                                            
+</p> 
+<p>At the beginning of each logical iteration, the loop iteration variable or the variable declared by <span class="textit"><span class="textrm">range-decl</span></span>
+of each associated loop has the value that it would have if the set of the associated loops was executed
+sequentially. The number of iterations that are executed concurrently at any given time is implementation
+defined. Each concurrent iteration will be executed by a different SIMD lane. Each set of concurrent
+iterations is a SIMD chunk. Lexical forward dependences in the iterations of the original loop must be
+preserved within each SIMD chunk, unless an <span class="textbf"><span class="texttt">order</span></span> clause that specifies <span class="textbf"><span class="texttt">concurrent</span></span> is
+present.
+</p> 
+<p>The <span class="textbf"><span class="texttt">safelen</span></span> clause specifies that no two concurrent iterations within a SIMD chunk can have a distance
+in the logical iteration space that is greater than or equal to the value given in the clause. The parameter of
+the <span class="textbf"><span class="texttt">safelen</span></span> clause must be a constant positive integer expression. The <span class="textbf"><span class="texttt">simdlen</span></span> clause
+specifies the preferred number of iterations to be executed concurrently, unless an <span class="textbf"><span class="texttt">if</span></span> clause is
+present and evaluates to <span class="textit"><span class="textrm">false</span></span>, in which case the preferred number of iterations to be executed
+concurrently is one. The parameter of the <span class="textbf"><span class="texttt">simdlen</span></span> clause must be a constant positive integer
+expression.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">order</span></span> clause is present then the semantics are as described in Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">aligned</span></span> clause declares that the object to which each list item points is aligned to the number of
+bytes expressed in the optional parameter of the <span class="textbf"><span class="texttt">aligned</span></span> clause.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">aligned</span></span> clause declares that the location of each list item is aligned to the number of bytes expressed
+in the optional parameter of the <span class="textbf"><span class="texttt">aligned</span></span> clause.
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The optional parameter of the <span class="textbf"><span class="texttt">aligned</span></span> clause, <span class="textit"><span class="textrm">alignment</span></span>, must be a constant positive integer expression.
+If no optional parameter is specified, implementation-defined default alignments for SIMD instructions on
+the target platforms are assumed.
+</p> 
+<p>The <span class="textbf"><span class="texttt">nontemporal</span></span> clause specifies that accesses to the storage locations to which the list
+items refer have low temporal locality across the iterations in which those storage locations are
+accessed.
+</p> 
+<p><p><a 
+ id="Q1-74-211"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">simd</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">collapse</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">list-item</span></span>
+  cannot
+  appear
+  in
+  more
+  than
+  one
+  <span class="textbf"><span class="texttt">aligned</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">list-item</span></span>
+  cannot
+  appear
+  in
+  more
+  than
+  one
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">nontemporal</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">safelen</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">simdlen</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  can
+  appear
+  on
+  a
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">simd</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  If
+  both
+  <span class="textbf"><span class="texttt">simdlen</span></span>
+  and
+  <span class="textbf"><span class="texttt">safelen</span></span>
+  clauses
+  are
+  specified,
+  the
+  value
+  of
+  the
+  <span class="textbf"><span class="texttt">simdlen</span></span>
+  parameter
+  must
+  be
+  less
+  than
+  or
+  equal
+  to
+  the
+  value
+  of
+  the
+  <span class="textbf"><span class="texttt">safelen</span></span>
+  parameter.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">modifier</span></span>
+  may
+  not
+  be
+  specified
+  on
+                                                                            
+                                                                            
+  a
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  The
+  only
+  OpenMP
+  constructs
+  that
+  can
+  be
+  encountered
+  during
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  region
+  are
+  the
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  construct,
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct,
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  and
+  the
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  If
+                                                                            
+                                                                            
+  an
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>
+  appears
+  on
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  directive,
+  the
+  <span class="textbf"><span class="texttt">safelen</span></span>
+  clause
+  may
+  not
+  also
+  appear.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">simd</span></span> region cannot contain calls to the <span class="textbf"><span class="texttt">longjmp</span></span> or <span class="textbf"><span class="texttt">setjmp</span></span> functions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The type of list items appearing in the <span class="textbf"><span class="texttt">aligned</span></span> clause must be array or pointer.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The type of list items appearing in the <span class="textbf"><span class="texttt">aligned</span></span> clause must be array, pointer, reference to array, or
+  reference to pointer.
+<span 
+class="cmsy-10">&#x2219;</span> No exception can be raised in the <span class="textbf"><span class="texttt">simd</span></span> region.
+<span 
+class="cmsy-10">&#x2219;</span> The only random access iterator types that are allowed for the associated loops are pointer
+  types.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If a list item on the <span class="textbf"><span class="texttt">aligned</span></span> clause has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute, the allocation status must be
+  allocated.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item on the <span class="textbf"><span class="texttt">aligned</span></span> clause has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, the association status must be
+  associated.
+<span 
+class="cmsy-10">&#x2219;</span> If the type of a list item on the <span class="textbf"><span class="texttt">aligned</span></span> clause is either <span class="textbf"><span class="texttt">C_PTR</span></span> or Cray pointer, the list item must be
+  defined. Cray pointer support has been deprecated.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-74-212"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+  </li>
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.5.2  </span> <a 
+ id="x74-770002.11.5.2"></a>Worksharing-Loop SIMD Construct</h5>
+<a 
+ id="dx74-77001"></a>
+<a 
+ id="dx74-77002"></a>
+<a 
+ id="dx74-77003"></a>
+<a 
+ id="dx74-77004"></a>
+<p><p><a 
+ id="Q1-74-214"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The worksharing-loop SIMD construct specifies that the iterations of one or more associated loops will be
+distributed across threads that already exist in the team and that the iterations executed by each thread can
+also be executed concurrently using SIMD instructions. The worksharing-loop SIMD construct is a
+composite construct.
+</p> 
+<p><p><a 
+ id="Q1-74-215"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the worksharing-loop SIMD construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77005r1"></a></span></p> 
+<!--l. 1277--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77006r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77007r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77008r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">for</span></span> or <span class="textbf"><span class="texttt">simd</span></span>
+directives with identical meanings and restrictions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the worksharing-loop SIMD construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77009r1"></a></span></p> 
+<!--l. 1291--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77010r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77011r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77012r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">nowait</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-77013r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> can be any of the clauses accepted by the <span class="textbf"><span class="texttt">simd</span></span> or <span class="textbf"><span class="texttt">do</span></span>
+directives, with identical meanings and restrictions.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">do</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">do</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is assumed at the end of the
+<span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-74-216"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The worksharing-loop SIMD construct will first distribute the logical iterations of the associated loops
+across the implicit tasks of the parallel region in a manner consistent with any clauses that apply to the
+worksharing-loop construct. Each resulting chunk of iterations will then be converted to a SIMD loop in a
+manner consistent with any clauses that apply to the <span class="textbf"><span class="texttt">simd</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-74-217"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+This composite construct generates the same events as the worksharing-loop construct.
+</p> 
+<p><p><a 
+ id="Q1-74-218"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+This composite construct dispatches the same callbacks as the worksharing-loop construct.
+</p> 
+<p><p><a 
+ id="Q1-74-219"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+All restrictions to the worksharing-loop construct and the <span class="textbf"><span class="texttt">simd</span></span> construct apply to the worksharing-loop
+SIMD construct. In addition, the following restrictions apply:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  No
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  with
+  a
+  parameter
+  can
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  may
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">linear</span></span>
+  or
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause,
+  but
+  not
+  in
+  both.</li></ul>
+<p><p><a 
+ id="Q1-74-220"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+                                                                            
+                                                                            
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+  <li class="itemize">
+  Worksharing-loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="#x74-760002.11.5.1">2.11.5.1<!--tex4ht:ref: subsubsec:simd Construct --></a>.
+  </li>
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.5.3  </span> <a 
+ id="x74-780002.11.5.3"></a><span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Directive</h5>
+<a 
+ id="dx74-78001"></a>
+<a 
+ id="dx74-78002"></a>
+<p><p><a 
+ id="Q1-74-222"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive can be applied to a function (C, C++, and Fortran) or a subroutine (Fortran)
+to enable the creation of one or more versions that can process multiple arguments using SIMD instructions
+from a single invocation in a SIMD loop. The <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is a declarative directive. Multiple
+<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directives may be specified for a function (C, C++, and Fortran) or subroutine
+(Fortran).
+                                                                            
+                                                                            
+<p><a 
+ id="Q1-74-223"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78003r1"></a></span></p> 
+<!--l. 1368--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78005r3"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78006r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78007r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">function</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">definition</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">or</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">declaration</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78008r6"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78009r1"></a></span></p> 
+<!--l. 1377--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78010r2"></a></span><span 
+class="pcrb8t-">simdlen</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78011r3"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78012r4"></a></span><span 
+class="pcrb8t-">aligned</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">argument</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78013r5"></a></span><span 
+class="pcrb8t-">uniform</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">argument</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78014r6"></a></span><span 
+class="pcrb8t-">inbranch</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78015r7"></a></span><span 
+class="pcrb8t-">notinbranch</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78016r8"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78017r1"></a></span></p> 
+<!--l. 1390--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78018r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">simd</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">proc</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78019r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78020r1"></a></span></p> 
+<!--l. 1395--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78021r2"></a></span><span 
+class="pcrb8t-">simdlen</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78022r3"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78023r4"></a></span><span 
+class="pcrb8t-">aligned</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">argument</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78024r5"></a></span><span 
+class="pcrb8t-">uniform</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">argument</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78025r6"></a></span><span 
+class="pcrb8t-">inbranch</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78026r7"></a></span><span 
+class="pcrb8t-">notinbranch</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x74-78027r8"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-74-224"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The use of one or more <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directives on a function declaration or definition enables the
+creation of corresponding SIMD versions of the associated function that can be used to process multiple
+arguments from a single invocation in a SIMD loop concurrently.
+</p> 
+<p>The expressions appearing in the clauses of each directive are evaluated in the scope of the arguments of the
+function declaration or definition.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The use of one or more <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directives in a subroutine or function enables the creation of
+corresponding SIMD versions of the subroutine or function that can be used to process multiple arguments
+from a single invocation in a SIMD loop concurrently.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If a SIMD version is created, the number of concurrent arguments for the function is determined by the
+<span class="textbf"><span class="texttt">simdlen</span></span> clause. If the <span class="textbf"><span class="texttt">simdlen</span></span> clause is used, its value corresponds to the number of concurrent
+arguments of the function. The parameter of the <span class="textbf"><span class="texttt">simdlen</span></span> clause must be a constant positive integer
+expression. Otherwise, the number of concurrent arguments for the function is implementation
+defined.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The special <span class="textit"><span class="textrm">this</span></span> pointer can be used as if it was one of the arguments to the function in any of the <span class="textbf"><span class="texttt">linear</span></span>,
+<span class="textbf"><span class="texttt">aligned</span></span>, or <span class="textbf"><span class="texttt">uniform</span></span> clauses.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The <span class="textbf"><span class="texttt">uniform</span></span> clause declares one or more arguments to have an invariant value for all concurrent
+invocations of the function in the execution of a single SIMD loop.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">aligned</span></span> clause declares that the object to which each list item points is aligned to the number of
+bytes expressed in the optional parameter of the <span class="textbf"><span class="texttt">aligned</span></span> clause.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">aligned</span></span> clause declares that the target of each list item is aligned to the number of bytes expressed in
+the optional parameter of the <span class="textbf"><span class="texttt">aligned</span></span> clause.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The optional parameter of the <span class="textbf"><span class="texttt">aligned</span></span> clause, <span class="textit"><span class="textrm">alignment</span></span>, must be a constant positive integer expression.
+If no optional parameter is specified, implementation-defined default alignments for SIMD instructions on
+the target platforms are assumed.
+</p> 
+<p>The <span class="textbf"><span class="texttt">inbranch</span></span> clause specifies that the SIMD version of the function will always be called from inside a
+conditional statement of a SIMD loop. The <span class="textbf"><span class="texttt">notinbranch</span></span> clause specifies that the SIMD version of the
+function will never be called from inside a conditional statement of a SIMD loop. If neither clause is
+specified, then the SIMD version of the function may or may not be called from inside a conditional
+statement of a SIMD loop.
+</p> 
+<p><p><a 
+ id="Q1-74-225"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Each
+  argument
+  can
+  appear
+  in
+  at
+  most
+  one
+  <span class="textbf"><span class="texttt">uniform</span></span>
+  or
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">simdlen</span></span>
+  clause
+  can
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  Either
+  <span class="textbf"><span class="texttt">inbranch</span></span>
+  or
+  <span class="textbf"><span class="texttt">notinbranch</span></span>
+  may
+  be
+  specified,
+  but
+  not
+  both.
+  </li>
+  <li class="itemize">
+  When
+  a
+  <span class="textit"><span class="textrm">linear-step</span></span>
+  expression
+  is
+  specified
+  in
+  a
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause
+                                                                            
+                                                                            
+  it
+  must
+  be
+  either
+  a
+  constant
+  integer
+  expression
+  or
+  an
+  integer-typed
+  parameter
+  that
+  is
+  specified
+  in
+  a
+  <span class="textbf"><span class="texttt">uniform</span></span>
+  clause
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  The
+  function
+  or
+  subroutine
+  body
+  must
+  be
+  a
+  structured
+  block.
+  </li>
+  <li class="itemize">
+  The
+  execution
+  of
+  the
+                                                                            
+                                                                            
+  function
+  or
+  subroutine,
+  when
+  called
+  from
+  a
+  SIMD
+  loop,
+  cannot
+  result
+  in
+  the
+  execution
+  of
+  an
+  OpenMP
+  construct
+  except
+  for
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause
+  or
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  The
+  execution
+  of
+  the
+  function
+  or
+  subroutine
+  cannot
+  have
+                                                                            
+                                                                            
+  any
+  side
+  effects
+  that
+  would
+  alter
+  its
+  execution
+  for
+  concurrent
+  iterations
+  of
+  a
+  SIMD
+  chunk.
+  </li>
+  <li class="itemize">
+  A
+  program
+  that
+  branches
+  into
+  or
+  out
+  of
+  the
+  function
+  is
+  non-conforming.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the function has any declarations, then the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive for any declaration that
+  has one must be equivalent to the one specified for the definition. Otherwise, the result is
+  unspecified.
+<span 
+class="cmsy-10">&#x2219;</span> The function cannot contain calls to the <span class="textbf"><span class="texttt">longjmp</span></span> or <span class="textbf"><span class="texttt">setjmp</span></span> functions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+                                                                            
+                                                                            
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The type of list items appearing in the <span class="textbf"><span class="texttt">aligned</span></span> clause must be array or pointer.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The function cannot contain any calls to <span class="textbf"><span class="texttt">throw</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> The type of list items appearing in the <span class="textbf"><span class="texttt">aligned</span></span> clause must be array, pointer, reference to array, or
+  reference to pointer.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> <span class="textit"><span class="textrm">proc-name</span></span> must not be a generic name, procedure pointer, or entry name.
+<span 
+class="cmsy-10">&#x2219;</span> If <span class="textit"><span class="textrm">proc-name</span></span> is omitted, the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive must appear in the specification part of a
+  subroutine subprogram or a function subprogram for which creation of the SIMD versions is
+  enabled.
+<span 
+class="cmsy-10">&#x2219;</span> Any <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive must appear in the specification part of a subroutine subprogram,
+  function subprogram, or interface body to which it applies.
+<span 
+class="cmsy-10">&#x2219;</span> If a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is specified in an interface block for a procedure, it must match a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive in the definition of the procedure.
+<span 
+class="cmsy-10">&#x2219;</span> If a procedure is declared via a procedure declaration statement, the procedure <span class="textit"><span class="textrm">proc-name</span></span> should appear
+  in the same specification.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> If a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is specified for a procedure name with explicit interface and a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive is also specified for the definition of the procedure then the two
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directives must match. Otherwise the result is unspecified.
+<span 
+class="cmsy-10">&#x2219;</span> Procedure pointers may not be used to access versions created by the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive.
+<span 
+class="cmsy-10">&#x2219;</span> The type of list items appearing in the <span class="textbf"><span class="texttt">aligned</span></span> clause must be <span class="textbf"><span class="texttt">C_PTR</span></span> or Cray pointer, or the list
+  item must have the <span class="textbf"><span class="texttt">POINTER</span></span> or <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute. Cray pointer support has been
+  deprecated.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-74-226"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1710002.21.4.6">2.21.4.6<!--tex4ht:ref: subsubsec:linear clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu117.html#x152-1760002.21.5.4">2.21.5.4<!--tex4ht:ref: subsubsec:reduction clause --></a>.</li></ul>
+<!--l. 1543--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu50.html" >next</a>] [<a 
+href="openmpsu48.html" >prev</a>] [<a 
+href="openmpsu48.html#tailopenmpsu48.html" >prev-tail</a>] [<a 
+href="openmpsu49.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu49.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu49.html"></a> </p> 
+ 
+</body> 
+</html>

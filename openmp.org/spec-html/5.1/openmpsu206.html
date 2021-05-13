@@ -1,0 +1,411 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Initializing a First-Party Tool</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 227--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu207.html" >next</a>] [<a 
+href="openmpsu205.html" >prev</a>] [<a 
+href="openmpsu205.html#tailopenmpsu205.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu206.html">tail</a>] [<a 
+href="openmpse47.html#openmpsu206.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.3</span>&#x00A0;&#x00A0;<a 
+ id="x261-2940004.2.3"></a>Initializing a First-Party Tool</h4>
+<a 
+ id="dx261-294001"></a>
+<p>To initialize the OMPT interface, the OpenMP implementation invokes the tool initializer that is specified in
+the <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure that is indicated by the non-null pointer that
+<span class="textbf"><span class="texttt">ompt_start_tool</span></span> returns. The initializer is invoked prior to the occurrence of any OpenMP
+<span class="emph">event</span>.
+</p> 
+<p>A tool initializer, described in Section&#x00A0;<a 
+href="openmpsu213.html#x271-3400004.5.1.1">4.5.1.1<!--tex4ht:ref: sec:ompt_initialize_t --></a>, uses the function specified in its <span class="textit"><span class="textrm">lookup</span></span> argument to look up
+pointers to OMPT interface runtime entry points that the OpenMP implementation provides;
+this process is described in Section&#x00A0;<a 
+href="#x261-2950004.2.3.1">4.2.3.1<!--tex4ht:ref: sec:ompt-bind --></a>. Typically, a tool initializer obtains a pointer to the
+<span class="textbf"><span class="texttt">ompt_set_callback</span></span> runtime entry point with type signature <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span> and
+then uses this runtime entry point to register tool callbacks for OpenMP events, as described in
+Section&#x00A0;<a 
+href="openmpsu207.html#x262-2960004.2.4">4.2.4<!--tex4ht:ref: sec:ompt-register-callbacks --></a>.
+</p> 
+<p>A tool initializer may use the <span class="textbf"><span class="texttt">ompt_enumerate_states</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span>, to determine the thread states that an OpenMP implementation employs.
+Similarly, it may use the <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span> runtime entry point, which has type
+signature <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span>, to determine the mutual exclusion implementations
+that the OpenMP implementation employs.
+                                                                            
+                                                                            
+</p> 
+<p>If a tool initializer returns a non-zero value, the OMPT interface state remains <span class="emph">active</span> for the execution;
+otherwise, the OMPT interface state changes to <span class="emph">inactive</span>.
+</p> 
+<p><p><a 
+ id="Q1-261-1433"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  function,
+  see
+  Section&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1">4.2.1<!--tex4ht:ref: sec:ompt_start_tool --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1">4.4.1<!--tex4ht:ref: sec:ompt_start_tool_result_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_initialize_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu213.html#x271-3400004.5.1.1">4.5.1.1<!--tex4ht:ref: sec:ompt_initialize_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3430004.5.2.1">4.5.2.1<!--tex4ht:ref: sec:ompt_callback_thread_begin_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span>
+  type,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3750004.6.1.1">4.6.1.1<!--tex4ht:ref: sec:ompt_enumerate_states_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3760004.6.1.2">4.6.1.2<!--tex4ht:ref: sec:ompt_enumerate_mutex_impls_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3770004.6.1.3">4.6.1.3<!--tex4ht:ref: sec:ompt_set_callback_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu217.html#x276-4090004.6.3">4.6.3<!--tex4ht:ref: sec:ompt_function_lookup_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.2.3.1  </span> <a 
+ id="x261-2950004.2.3.1"></a>Binding Entry Points in the OMPT Callback Interface</h5>
+<p>Functions that an OpenMP implementation provides to support the OMPT interface are not defined
+as global function symbols. Instead, they are defined as runtime entry points that a tool can
+only identify through the <span class="textit"><span class="textrm">lookup</span></span> function that is provided as an argument with type signature
+<span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span> to the tool initializer. A tool can use this function to obtain a pointer
+to each of the runtime entry points that an OpenMP implementation provides to support the
+OMPT interface. Once a tool has obtained a <span class="textit"><span class="textrm">lookup</span></span> function, it may employ it at any point in the
+future.
+</p> 
+<p>For each runtime entry point in the OMPT interface for the host device, Table&#x00A0;<a 
+href="#x261-2950011">4.1<!--tex4ht:ref: table:ompt-callback-interface-functions --></a> provides the string name
+by which it is known and its associated type signature. Implementations can provide additional
+implementation-specific names and corresponding entry points. Any names that begin with <span class="textbf"><span class="texttt">ompt_</span></span> are
+reserved names.
+</p> 
+<p>During initialization, a tool should look up each runtime entry point in the OMPT interface by name and
+bind a pointer maintained by the tool that can later be used to invoke the entry point. The entry points
+described in Table&#x00A0;<a 
+href="#x261-2950011">4.1<!--tex4ht:ref: table:ompt-callback-interface-functions --></a> enable a tool to assess the thread states and mutual exclusion implementations that
+                                                                            
+                                                                            
+an OpenMP implementation supports to register tool callbacks, to inspect registered callbacks, to introspect
+OpenMP state associated with threads, and to use tracing to monitor computations that execute on target
+devices.
+</p> 
+<p>Detailed information about each runtime entry point listed in Table&#x00A0;<a 
+href="#x261-2950011">4.1<!--tex4ht:ref: table:ompt-callback-interface-functions --></a> is included as part of the description
+of its type signature.
+</p> 
+<p><p><a 
+ id="Q1-261-1435"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3750004.6.1.1">4.6.1.1<!--tex4ht:ref: sec:ompt_enumerate_states_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3760004.6.1.2">4.6.1.2<!--tex4ht:ref: sec:ompt_enumerate_mutex_impls_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3770004.6.1.3">4.6.1.3<!--tex4ht:ref: sec:ompt_set_callback_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_callback_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3780004.6.1.4">4.6.1.4<!--tex4ht:ref: sec:ompt_get_callback_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_thread_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3790004.6.1.5">4.6.1.5<!--tex4ht:ref: sec:ompt_get_thread_data_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_num_procs_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3800004.6.1.6">4.6.1.6<!--tex4ht:ref: sec:ompt_get_num_procs_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_num_places_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3810004.6.1.7">4.6.1.7<!--tex4ht:ref: sec:ompt_get_num_places_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_place_proc_ids_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3820004.6.1.8">4.6.1.8<!--tex4ht:ref: sec:ompt_get_place_proc_ids_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_place_num_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3830004.6.1.9">4.6.1.9<!--tex4ht:ref: sec:ompt_get_place_num_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_partition_place_nums_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3840004.6.1.10">4.6.1.10<!--tex4ht:ref: sec:ompt_get_partition_place_nums_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_proc_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3850004.6.1.11">4.6.1.11<!--tex4ht:ref: sec:ompt_get_proc_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_state_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3860004.6.1.12">4.6.1.12<!--tex4ht:ref: sec:ompt_get_state_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_parallel_info_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3870004.6.1.13">4.6.1.13<!--tex4ht:ref: sec:ompt_get_parallel_info_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_task_info_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3880004.6.1.14">4.6.1.14<!--tex4ht:ref: sec:ompt_get_task_info_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_task_memory_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3890004.6.1.15">4.6.1.15<!--tex4ht:ref: sec:ompt_get_task_memory_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_target_info_t</span></span>
+  type,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3900004.6.1.16">4.6.1.16<!--tex4ht:ref: sec:ompt_get_target_info_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_num_devices_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3910004.6.1.17">4.6.1.17<!--tex4ht:ref: sec:ompt_get_num_devices_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_unique_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3920004.6.1.18">4.6.1.18<!--tex4ht:ref: sec:ompt_get_unique_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_finalize_tool_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu215.html#x274-3930004.6.1.19">4.6.1.19<!--tex4ht:ref: sec:ompt_finalize_tool_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu217.html#x276-4090004.6.3">4.6.3<!--tex4ht:ref: sec:ompt_function_lookup_t --></a>.</li></ul>
+<p><a 
+ id="x261-2950011"></a></p> 
+<hr class="float" /><div class="float" 
+>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;4.1: </td><td  
+class="content">OMPT Callback Interface Runtime Entry Point Names and Their Type Signatures</td></tr></table></div><!--tex4ht:label?: x261-2950011 -->
+                                                                            
+                                                                            
+<div class="tabular"> <table id="TBL-33" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-33-1g"><col 
+id="TBL-33-1" /><col 
+id="TBL-33-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-1-1"  
+class="td11"> <span class="textbf"><span class="textsf">Entry Point String Name</span></span>                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-1-2"  
+class="td11"> <span class="textbf"><span class="textsf">Type signature</span></span>                                                   </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-2-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_enumerate_states</span></span>&#8221;                      </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-2-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-3-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span>&#8221;          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-3-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-4-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_set_callback</span></span>&#8221;                               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-4-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span>             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-5-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_callback</span></span>&#8221;                               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_callback_t</span></span>             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-6-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_thread_data</span></span>&#8221;                        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_thread_data_t</span></span>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-7-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_num_places</span></span>&#8221;                          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_num_places_t</span></span>           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-8-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_place_proc_ids</span></span>&#8221;                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-8-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_place_proc_ids_t</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-9-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_place_num</span></span>&#8221;                             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_place_num_t</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-10-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_partition_place_nums</span></span>&#8221;  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_partition_place_nums_t</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-11-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_proc_id</span></span>&#8221;                                  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_proc_id_t</span></span>              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-12-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_state</span></span>&#8221;                                      </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-12-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_state_t</span></span>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-13-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_parallel_info</span></span>&#8221;                   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-13-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_parallel_info_t</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-14-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_task_info</span></span>&#8221;                             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-14-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_task_info_t</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-15-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_task_memory</span></span>&#8221;                        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-15-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_task_memory_t</span></span>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-16-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_num_devices</span></span>&#8221;                        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-16-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_num_devices_t</span></span>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-17-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_num_procs</span></span>&#8221;                             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-17-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_num_procs_t</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-18-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_target_info</span></span>&#8221;                        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-18-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_target_info_t</span></span>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-19-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_get_unique_id</span></span>&#8221;                             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-19-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_unique_id_t</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-20-1"  
+class="td11"> &#8220;<span class="textbf"><span class="texttt">ompt_finalize_tool</span></span>&#8221;                             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-33-20-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_finalize_tool_t</span></span>            </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-33-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-21-1"  
+class="td11">                                </td></tr></table></div></div><hr class="endfloat" />
+<!--l. 385--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu207.html" >next</a>] [<a 
+href="openmpsu205.html" >prev</a>] [<a 
+href="openmpsu205.html#tailopenmpsu205.html" >prev-tail</a>] [<a 
+href="openmpsu206.html" >front</a>] [<a 
+href="openmpse47.html#openmpsu206.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu206.html"></a> </p> 
+ 
+</body> 
+</html>

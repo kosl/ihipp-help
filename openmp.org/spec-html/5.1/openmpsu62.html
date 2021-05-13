@@ -1,0 +1,561 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>allocate Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 266--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu63.html" >next</a>] [<a 
+href="openmpsu61.html" >prev</a>] [<a 
+href="openmpsu61.html#tailopenmpsu61.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu62.html">tail</a>] [<a 
+href="openmpse21.html#openmpsu62.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.13.3</span>&#x00A0;&#x00A0;<a 
+ id="x89-990002.13.3"></a><span class="textbf"><span class="texttt">allocate</span></span> Directive</h4>
+<a 
+ id="dx89-99001"></a>
+<a 
+ id="dx89-99002"></a>
+<p><p><a 
+ id="Q1-89-341"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">allocate</span></span> directive specifies how to allocate the specified variables. The <span class="textbf"><span class="texttt">allocate</span></span> directive is a
+declarative directive if it is not associated with an allocation statement.
+<p><a 
+ id="Q1-89-342"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">allocate</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99003r1"></a></span></p> 
+<!--l. 280--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99006r1"></a></span></p> 
+<!--l. 286--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99007r2"></a></span><span 
+class="pcrb8t-">allocator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99008r3"></a></span><span 
+class="pcrb8t-">align</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99009r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">allocator</span></span> is an expression of <span class="textbf"><span class="texttt">omp_allocator_handle_t</span></span> type and <span class="textit"><span class="textrm">alignment</span></span> is a constant
+positive integer expression with a value that is a power of two.
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">allocate</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99010r1"></a></span></p> 
+<!--l. 301--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99011r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99012r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99013r1"></a></span></p> 
+<!--l. 306--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99014r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">allocate</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99015r3"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">allocate</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99016r4"></a></span><span 
+class="ec-qtmri-">[...]]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99017r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocate</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">stmt</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99018r6"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">allocate-stmt</span></span> is a Fortran <span class="textbf"><span class="texttt">ALLOCATE</span></span> statement and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99019r1"></a></span></p> 
+<!--l. 316--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99020r2"></a></span><span 
+class="pcrb8t-">allocator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99021r3"></a></span><span 
+class="pcrb8t-">align</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">alignment</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x89-99022r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">allocator</span></span> is an integer expression of <span class="textbf"><span class="texttt">omp_allocator_handle_kind</span></span><span class="textit"><span class="textrm">kind</span></span> and <span class="textit"><span class="textrm">alignment</span></span> is a
+constant scalar positive integer expression with a value that is a power of two.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-89-343"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The storage for each list item that appears in the <span class="textbf"><span class="texttt">allocate</span></span> directive is provided by an allocation through a
+memory allocator. If no <span class="textbf"><span class="texttt">allocator</span></span> clause is specified then the memory allocator specified by the
+<span class="textit"><span class="textrm">def-allocator-var</span></span> ICV is used. If the <span class="textbf"><span class="texttt">allocator</span></span> clause is specified, the memory allocator specified in the
+clause is used. If the <span class="textbf"><span class="texttt">align</span></span> clause is specified then the allocation of each list item is byte aligned to at least
+the maximum of the alignment required by the base language for the type of that list item, the <span class="textbf"><span class="texttt">alignment</span></span>
+trait of the allocator and the <span class="textit"><span class="textrm">alignment</span></span> value of the <span class="textbf"><span class="texttt">align</span></span> clause. If the <span class="textbf"><span class="texttt">align</span></span> clause is not specified
+then the allocation of each list item is byte aligned to at least the maximum of the alignment
+required by the base language for the type of that list item and the <span class="textbf"><span class="texttt">alignment</span></span> trait of the
+allocator.
+</p> 
+<p>The scope of this allocation is that of the list item in the base language. At the end of the scope for a given
+list item the memory allocator used to allocate that list item deallocates the storage.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the directive is associated with an <span class="textit"><span class="textrm">allocate-stmt</span></span>, the <span class="textit"><span class="textrm">allocate-stmt</span></span> allocates all list items that appear in the
+directive list using the specified memory allocator. If no list items are specified then all variables that are
+listed by the <span class="textit"><span class="textrm">allocate-stmt</span></span> and are not listed in an <span class="textbf"><span class="texttt">allocate</span></span> directive associated with the statement are
+allocated with the specified memory allocator.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+                                                                            
+                                                                            
+</p> 
+<p>For allocations that arise from this directive the <span class="textbf"><span class="texttt">null_fb</span></span> value of the fallback allocator trait behaves as if
+the <span class="textbf"><span class="texttt">abort_fb</span></span> had been specified.
+</p> 
+<p><p><a 
+ id="Q1-89-344"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">allocate</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">allocator</span></span>
+  clause
+  may
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">align</span></span>
+  clause
+  may
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  variable
+  that
+  is
+  part
+                                                                            
+                                                                            
+  of
+  another
+  variable
+  (as
+  an
+  array
+  or
+  structure
+  element)
+  cannot
+  appear
+  in
+  a
+  declarative
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  declarative
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  directive
+  must
+  appear
+  in
+  the
+  same
+  scope
+  as
+  the
+  declarations
+  of
+  each
+  of
+  its
+  list
+  items
+  and
+  must
+  follow
+  all
+  such
+                                                                            
+                                                                            
+  declarations.
+  </li>
+  <li class="itemize">
+  A
+  declared
+  variable
+  may
+  appear
+  as
+  a
+  list
+  item
+  in
+  at
+  most
+  one
+  declarative
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  directive
+  in
+  a
+  given
+  compilation
+  unit.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">allocator</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  directives
+  that
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  must
+  specify
+  an
+  <span class="textbf"><span class="texttt">allocator</span></span>
+  clause
+  unless
+  a
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  with
+  the
+  <span class="textbf"><span class="texttt">dynamic_allocators</span></span>
+  clause
+  is
+  present
+  in
+  the
+  same
+  compilation
+  unit.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If a list item has static storage duration, the <span class="textbf"><span class="texttt">allocator</span></span> clause must be specified and the <span class="textit"><span class="textrm">allocator</span></span>
+  expression in the clause must be a constant expression that evaluates to one of the predefined memory
+  allocator values.
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is declared in a namespace or global scope may only appear as a list item in an
+  <span class="textbf"><span class="texttt">allocate</span></span> directive if an <span class="textbf"><span class="texttt">allocate</span></span> directive that lists the variable follows a declaration that
+  defines the variable and if all <span class="textbf"><span class="texttt">allocate</span></span> directives that list the variable specify the same
+  allocator.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+                                                                            
+                                                                            
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> After a list item has been allocated, the scope that contains the <span class="textbf"><span class="texttt">allocate</span></span> directive must not end
+  abnormally, such as through a call to the <span class="textbf"><span class="texttt">longjmp</span></span> function.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> After a list item has been allocated, the scope that contains the <span class="textbf"><span class="texttt">allocate</span></span> directive must not
+  end abnormally, such as through a call to the <span class="textbf"><span class="texttt">longjmp</span></span> function, other than through C++
+  exceptions.
+<span 
+class="cmsy-10">&#x2219;</span> A variable that has a reference type may not appear as a list item in an <span class="textbf"><span class="texttt">allocate</span></span> directive.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> An <span class="textbf"><span class="texttt">allocate</span></span> directive that is associated with an <span class="textit"><span class="textrm">allocate-stmt</span></span> and specifies a <span class="textit"><span class="textrm">list</span></span> must be preceded by
+  an executable statement or OpenMP construct.
+<span 
+class="cmsy-10">&#x2219;</span> A list item that is specified in a declarative <span class="textbf"><span class="texttt">allocate</span></span> directive must not have the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> or
+  <span class="textbf"><span class="texttt">POINTER</span></span> attribute.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item is specified in an <span class="textbf"><span class="texttt">allocate</span></span> directive that is associated with an <span class="textit"><span class="textrm">allocate-stmt</span></span>, it must appear
+  as one of the data objects in the allocation list of that statement.
+<span 
+class="cmsy-10">&#x2219;</span> A list item may not be specified more than once in an <span class="textbf"><span class="texttt">allocate</span></span> directive that is associated with an
+  <span class="textit"><span class="textrm">allocate-stmt</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> If multiple directives are associated with an <span class="textit"><span class="textrm">allocate-stmt</span></span> then at most one directive may specify no list
+  items.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> If a list item has the <span class="textbf"><span class="texttt">SAVE</span></span> attribute, either explicitly or implicitly, or is a common block name then the
+  <span class="textbf"><span class="texttt">allocator</span></span> clause must be specified and only predefined memory allocator parameters can be used in
+  the clause.
+<span 
+class="cmsy-10">&#x2219;</span> A variable that is part of a common block may not be specified as a list item in an <span class="textbf"><span class="texttt">allocate</span></span> directive,
+  except implicitly via the named common block.
+<span 
+class="cmsy-10">&#x2219;</span> A named common block may appear as a list item in at most one <span class="textbf"><span class="texttt">allocate</span></span> directive in a given
+  compilation unit.
+<span 
+class="cmsy-10">&#x2219;</span> If a named common block appears as a list item in an <span class="textbf"><span class="texttt">allocate</span></span> directive, it must appear as a list item
+  in an <span class="textbf"><span class="texttt">allocate</span></span> directive that specifies the same allocator in every compilation unit in which the
+  common block is used.
+<span 
+class="cmsy-10">&#x2219;</span> An associate name may not appear as a list item in an <span class="textbf"><span class="texttt">allocate</span></span> directive.
+<span 
+class="cmsy-10">&#x2219;</span> A type parameter inquiry cannot appear in an <span class="textbf"><span class="texttt">allocate</span></span> directive.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-89-345"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">def-allocator-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>.
+  </li>
+  <li class="itemize">
+  Memory
+  allocators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_allocator_handle_t</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_allocator_handle_kind</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu195.html#x245-2780003.13.1">3.13.1<!--tex4ht:ref: subsec:Memory Management Types --></a>.</li></ul>
+<!--l. 442--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu63.html" >next</a>] [<a 
+href="openmpsu61.html" >prev</a>] [<a 
+href="openmpsu61.html#tailopenmpsu61.html" >prev-tail</a>] [<a 
+href="openmpsu62.html" >front</a>] [<a 
+href="openmpse21.html#openmpsu62.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu62.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Environment Display Routine</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch4.html" >next</a>] [<a 
+href="openmpse44.html" >prev</a>] [<a 
+href="openmpse44.html#tailopenmpse44.html" >prev-tail</a>] [<a 
+href="#tailopenmpse45.html">tail</a>] [<a 
+href="openmpch3.html#openmpse45.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.15</span>&#x00A0;&#x00A0;<a 
+ id="x255-2880003.15"></a>Environment Display Routine</h3>
+<a 
+ id="dx255-288001"></a>
+<a 
+ id="dx255-288002"></a>
+<p><p><a 
+ id="Q1-255-1413"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_display_env</span></span> routine displays the OpenMP version number and the initial values of ICVs
+associated with the environment variables described in Chapter&#x00A0;<a 
+href="openmpch6.html#x323-4980006">6<!--tex4ht:ref: chap:Environment Variables --></a>.
+<p><a 
+ id="Q1-255-1414"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288003r1"></a></span></p> 
+<!--l. 14--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288004r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_display_env</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">verbose</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288005r3"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288006r1"></a></span></p> 
+<!--l. 21--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288007r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_display_env</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">verbose</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288008r3"></a></span><span 
+class="pcrb8t-">logical</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">verbose</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288009r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-255-1415"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_display_env</span></span> region is the encountering thread.
+</p> 
+<p><p><a 
+ id="Q1-255-1416"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+Each time the <span class="textbf"><span class="texttt">omp_display_env</span></span> routine is invoked, the runtime system prints the OpenMP version
+number and the initial values of the ICVs associated with the environment variables described in Chapter&#x00A0;<a 
+href="openmpch6.html#x323-4980006">6<!--tex4ht:ref: chap:Environment Variables --></a>.
+The displayed values are the values of the ICVs after they have been modified according to
+the environment variable settings and before the execution of any OpenMP construct or API
+routine.
+</p> 
+<p>The display begins with <span class="texttt">"OPENMP DISPLAY ENVIRONMENT BEGIN"</span>, followed by the <span class="textbf"><span class="texttt">_OPENMP</span></span>
+version macro (or the <span class="textbf"><span class="texttt">openmp_version</span></span> named constant for Fortran) and ICV values, in the format
+<span class="textit"><span class="textrm">NAME</span></span> &#8217;=&#8217; <span class="textit"><span class="textrm">VALUE</span></span>. <span class="textit"><span class="textrm">NAME</span></span> corresponds to the macro or environment variable name, optionally prepended
+with a bracketed <span class="textit"><span class="textrm">DEVICE</span></span>. <span class="textit"><span class="textrm">VALUE</span></span> corresponds to the value of the macro or ICV associated with this
+environment variable. Values are enclosed in single quotes. <span class="textit"><span class="textrm">DEVICE</span></span> corresponds to the device on which the
+value of the ICV is applied. The display is terminated with <span class="texttt">"OPENMP DISPLAY ENVIRONMENT
+END"</span>.
+</p> 
+<p>For the <span class="textbf"><span class="texttt">OMP_NESTED</span></span> environment variable, the printed value is <span class="textit"><span class="textrm">true</span></span> if the <span class="textit"><span class="textrm">max-active-levels-var</span></span> ICV is
+initialized to a value greater than 1; otherwise the printed value is <span class="textit"><span class="textrm">false</span></span>. The <span class="textbf"><span class="texttt">OMP_NESTED</span></span> environment
+variable has been deprecated.
+</p> 
+<p>If the <span class="textit"><span class="textrm">verbose</span></span> argument is set to 0 (or <span class="textit"><span class="textrm">false</span></span> in Fortran), the runtime displays the OpenMP version number
+defined by the <span class="textbf"><span class="texttt">_OPENMP</span></span> version macro (or the <span class="textbf"><span class="texttt">openmp_version</span></span> named constant for Fortran) value and
+the initial ICV values for the environment variables listed in Chapter&#x00A0;<a 
+href="openmpch6.html#x323-4980006">6<!--tex4ht:ref: chap:Environment Variables --></a>. If the <span class="textit"><span class="textrm">verbose</span></span> argument is set to 1
+(or <span class="textit"><span class="textrm">true</span></span> for Fortran), the runtime may also display the values of vendor-specific ICVs that may be modified
+by vendor-specific environment variables.
+</p> 
+<p>Example output:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288010r1"></a></span></p> 
+<!--l. 64--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288011r2"></a></span><span 
+class="pcrb8t-">OPENMP</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">DISPLAY</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ENVIRONMENT</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">BEGIN</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288012r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_OPENMP</span><span 
+class="pcrb8t-">=&#8217;202011&#8217;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288013r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">host</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_SCHEDULE</span><span 
+class="pcrb8t-">=&#8217;</span><span 
+class="pcrb8t-">GUIDED</span><span 
+class="pcrb8t-">,4&#8217;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288014r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">host</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_NUM_THREADS</span><span 
+class="pcrb8t-">=&#8217;4,3,2&#8217;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288015r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_NUM_THREADS</span><span 
+class="pcrb8t-">=&#8217;2&#8217;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288016r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">host</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_DYNAMIC</span><span 
+class="pcrb8t-">=&#8217;</span><span 
+class="pcrb8t-">TRUE</span><span 
+class="pcrb8t-">&#8217;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288017r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">[</span><span 
+class="pcrb8t-">host</span><span 
+class="pcrb8t-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_PLACES</span><span 
+class="pcrb8t-">=&#8217;{0:4},{4:4},{8:4},{12:4}&#8217;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288018r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">...</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288019r10"></a></span><span 
+class="pcrb8t-">OPENMP</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">DISPLAY</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ENVIRONMENT</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">END</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x255-288020r11"></a></span></pre>
+                                                                            
+                                                                            
+<p><p><a 
+ id="Q1-255-1417"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DISPLAY_ENV</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse69.html#x335-5100006.12">6.12<!--tex4ht:ref: sec:OMP_DISPLAY_ENV --></a>.</li></ul>
+<!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch4.html" >next</a>] [<a 
+href="openmpse44.html" >prev</a>] [<a 
+href="openmpse44.html#tailopenmpse44.html" >prev-tail</a>] [<a 
+href="openmpse45.html" >front</a>] [<a 
+href="openmpch3.html#openmpse45.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse45.html"></a> </p> 
+ 
+</body> 
+</html>

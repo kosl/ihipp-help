@@ -1,0 +1,1378 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Worksharing-Loop Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 617--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu49.html" >next</a>] [<a 
+href="openmpsu47.html" >prev</a>] [<a 
+href="openmpsu47.html#tailopenmpsu47.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu48.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu48.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.4</span>&#x00A0;&#x00A0;<a 
+ id="x73-730002.11.4"></a>Worksharing-Loop Construct</h4>
+<a 
+ id="dx73-73001"></a>
+<a 
+ id="dx73-73002"></a>
+<a 
+ id="dx73-73003"></a>
+<a 
+ id="dx73-73004"></a>
+<a 
+ id="dx73-73005"></a>
+<a 
+ id="dx73-73006"></a>
+<p><p><a 
+ id="Q1-73-192"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The worksharing-loop construct specifies that the iterations of one or more associated loops will be
+executed in parallel by threads in the team in the context of their implicit tasks. The iterations are distributed
+across threads that already exist in the team that is executing the <span class="textbf"><span class="texttt">parallel</span></span> region to which the
+worksharing-loop region binds.
+<p><a 
+ id="Q1-73-193"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the worksharing-loop construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73007r1"></a></span></p> 
+<!--l. 636--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73008r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73009r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73010r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73011r1"></a></span></p> 
+<!--l. 645--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73012r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73013r3"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73014r4"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">lastprivate</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73015r5"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73016r6"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73017r7"></a></span><span 
+class="pcrb8t-">schedule</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">kind</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">chunk_size</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73018r8"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73019r9"></a></span><span 
+class="pcrb8t-">ordered</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73020r10"></a></span><span 
+class="pcrb8t-">nowait</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73021r11"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73022r12"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73023r13"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the worksharing-loop construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73024r1"></a></span></p> 
+<!--l. 663--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73025r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73026r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73027r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">nowait</span><span 
+class="ec-qtmri-">]]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73028r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+                                                                            
+                                                                            
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73029r1"></a></span></p> 
+<!--l. 673--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73030r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73031r3"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73032r4"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">lastprivate</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73033r5"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73034r6"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73035r7"></a></span><span 
+class="pcrb8t-">schedule</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">kind</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">chunk_size</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73036r8"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73037r9"></a></span></pre>
+      <!--l. 683--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73038r1"></a></span><span 
+class="pcrb8t-">ordered</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73039r2"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73040r3"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x73-73041r4"></a></span></pre>
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">do</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">do</span></span> directive is assumed at the end of the <span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-73-194"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a worksharing-loop region is the current team. A worksharing-loop region binds
+to the innermost enclosing <span class="textbf"><span class="texttt">parallel</span></span> region. Only the threads of the team executing the binding
+<span class="textbf"><span class="texttt">parallel</span></span> region participate in the execution of the loop iterations and the implied barrier of the
+worksharing-loop region when that barrier is not eliminated by a <span class="textbf"><span class="texttt">nowait</span></span> clause.
+</p> 
+<p><p><a 
+ id="Q1-73-195"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+An implicit barrier occurs at the end of a worksharing-loop region if a <span class="textbf"><span class="texttt">nowait</span></span> clause is not
+specified.
+<a 
+ id="dx73-73042"></a>
+</p> 
+<p>The <span class="textbf"><span class="texttt">collapse</span></span> and <span class="textbf"><span class="texttt">ordered</span></span> clauses may be used to specify the number of loops from the loop nest that
+are associated with the worksharing-loop construct. If specified, their parameters must be constant positive
+integer expressions.
+</p> 
+<p>The <span class="textbf"><span class="texttt">collapse</span></span> clause specifies the number of loops that are collapsed into a logical iteration space that is
+then divided according to the <span class="textbf"><span class="texttt">schedule</span></span> clause. If the <span class="textbf"><span class="texttt">collapse</span></span> clause is omitted, the behavior is as if a
+<span class="textbf"><span class="texttt">collapse</span></span> clause with a parameter value of one was specified.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">ordered</span></span> clause is specified with parameter <span class="textit"><span class="textrm">n</span></span> then the <span class="textit"><span class="textrm">n</span></span> outer loops from the associated loop nest
+form a <span class="emph">doacross loop nest</span>. The parameter of the <span class="textbf"><span class="texttt">ordered</span></span> clause does not affect how the logical iteration
+space is divided.
+<a 
+ id="dx73-73043"></a>
+</p> 
+<p>At the beginning of each logical iteration, the loop iteration variable or the variable declared by <span class="textit"><span class="textrm">range-decl</span></span>
+of each associated loop has the value that it would have if the set of the associated loops was executed
+sequentially. The <span class="textbf"><span class="texttt">schedule</span></span> clause specifies how iterations of these associated loops are divided into
+contiguous non-empty subsets, called chunks, and how these chunks are distributed among threads of the
+team. Each thread executes its assigned chunks in the context of its implicit task. The iterations of a given
+chunk are executed in sequential order by the assigned thread. The <span class="textit"><span class="textrm">chunk_size</span></span> expression is
+evaluated using the original list items of any variables that are made private in the worksharing-loop
+construct. Whether, in what order, or how many times, any side effects of the evaluation of
+                                                                            
+                                                                            
+this expression occur is unspecified. The use of a variable in a <span class="textbf"><span class="texttt">schedule</span></span> clause expression
+of a worksharing-loop construct causes an implicit reference to the variable in all enclosing
+constructs.
+</p> 
+<p>See Section&#x00A0;<a 
+href="#x73-740002.11.4.1">2.11.4.1<!--tex4ht:ref: subsubsec:Determining the Schedule of a Worksharing-Loop --></a> for details of how the schedule for a worksharing-loop region is determined.
+</p> 
+<p>The schedule <span class="textit"><span class="textrm">kind</span></span> can be one of those specified in Table&#x00A0;<a 
+href="#x73-73044r5">2.5<!--tex4ht:ref: tab:Schedule-Values --></a>.
+</p> 
+<p>The schedule <span class="textit"><span class="textrm">modifier</span></span> can be one of those specified in Table&#x00A0;<a 
+href="#x73-73051r6">2.6<!--tex4ht:ref: tab:Schedule Clause Modifier Values --></a>. If the <span class="textbf"><span class="texttt">static</span></span> schedule kind is specified
+or if the <span class="textbf"><span class="texttt">ordered</span></span> clause is specified, and if the <span class="textbf"><span class="texttt">nonmonotonic</span></span> modifier is not specified, the effect is
+as if the <span class="textbf"><span class="texttt">monotonic</span></span> modifier is specified. Otherwise, unless the <span class="textbf"><span class="texttt">monotonic</span></span> modifier is
+specified, the effect is as if the <span class="textbf"><span class="texttt">nonmonotonic</span></span> modifier is specified. If a <span class="textbf"><span class="texttt">schedule</span></span> clause
+specifies a modifier then that modifier overrides any modifier that is specified in the <span class="textit"><span class="textrm">run-sched-var</span></span>
+ICV.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">order</span></span> clause is present then the semantics are as described in Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+</p> 
+<p>The schedule is reproducible if one of the following conditions is true: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  is
+  present
+  and
+  uses
+  the
+  <span class="textbf"><span class="texttt">reproducible</span></span>
+  modifier;
+  or
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  clause
+  is
+  specified
+  with
+  <span class="textbf"><span class="texttt">static</span></span>
+  as
+  the
+  <span class="textit"><span class="textrm">kind</span></span>
+                                                                            
+                                                                            
+  parameter
+  and
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  <span class="textit"><span class="textrm">modifier</span></span>
+  is
+  not
+  present.</li></ul>
+<p>Programs can only depend on which thread executes a particular iteration if the schedule is reproducible.
+Schedule reproducibility is also used for determining its consistency with other schedules (see
+Section&#x00A0;<a 
+href="openmpsu46.html#x71-710002.11.2">2.11.2<!--tex4ht:ref: subsec:Consistent Loop Schedules --></a>).
+<a 
+ id="x73-73044r5"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x73-73045"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.5: </td><td  
+class="content"><span class="textbf"><span class="texttt">schedule</span></span> Clause <span class="textit"><span class="textrm">kind</span></span> Values</td></tr></table></div><!--tex4ht:label?: x73-73044r2.11 -->
+                                                                            
+                                                                            
+ <table id="TBL-11" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-11-1g"><col 
+id="TBL-11-1" /><col 
+id="TBL-11-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-1-1"  
+class="td11">            </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-2-1"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-3-1"  
+class="td11">            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-4-1"  
+class="td11"> <span class="textbf"><span class="texttt">static</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-4-2"  
+class="td11"> When <span class="textit"><span class="textrm">kind</span></span> is <a 
+ id="dx73-73046"></a><span class="textbf"><span class="texttt">static</span></span>, iterations are divided into chunks of size <span class="textit"><span class="textrm">chunk_size</span></span>,
+  and the chunks are assigned to the threads in the team in a round-robin
+  fashion in the order of the thread number. Each chunk contains <span class="textit"><span class="textrm">chunk_size</span></span>
+  iterations, except for the chunk that contains the sequentially last iteration,
+  which may have fewer iterations.                                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-5-1"  
+class="td11">            </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-5-2"  
+class="td11"> When no <span class="textit"><span class="textrm">chunk_size</span></span> is specified, the iteration space is divided into chunks
+  that are approximately equal in size, and at most one chunk is distributed to
+  each thread. The size of the chunks is unspecified in this case.                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">dynamic</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-6-2"  
+class="td11"> When <span class="textit"><span class="textrm">kind</span></span> is <a 
+ id="dx73-73047"></a><span class="textbf"><span class="texttt">dynamic</span></span>, the iterations are distributed to threads in the team
+  in chunks. Each thread executes a chunk of iterations, then requests another
+  chunk, until no chunks remain to be distributed.                                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-7-1"  
+class="td11">            </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-7-2"  
+class="td11"> Each chunk contains <span class="textit"><span class="textrm">chunk_size</span></span> iterations, except for the chunk that contains
+  the sequentially last iteration, which may have fewer iterations.                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-8-1"  
+class="td11">            </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-8-2"  
+class="td11"> When no <span class="textit"><span class="textrm">chunk_size</span></span> is specified, it defaults to 1.                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">guided</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-9-2"  
+class="td11"> When <span class="textit"><span class="textrm">kind</span></span> is <a 
+ id="dx73-73048"></a><span class="textbf"><span class="texttt">guided</span></span>, the iterations are assigned to threads in the team in
+  chunks. Each thread executes a chunk of iterations, then requests another
+  chunk, until no chunks remain to be assigned.                                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-10-1"  
+class="td11">            </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-10-2"  
+class="td11"> For a <span class="textit"><span class="textrm">chunk_size</span></span> of 1, the size of each chunk is proportional to the number
+  of unassigned iterations divided by the number of threads in the team,
+  decreasing to 1. For a <span class="textit"><span class="textrm">chunk_size</span></span> with value <span 
+class="cmmi-10">k </span>(greater than 1), the size
+  of each chunk is determined in the same way, with the restriction that
+  the chunks do not contain fewer than <span 
+class="cmmi-10">k </span>iterations (except for the chunk
+  that contains the sequentially last iteration, which may have fewer than <span 
+class="cmmi-10">k</span>
+  iterations).                                                                                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-11-1"  
+class="td11">            </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-11-2"  
+class="td11"> When no <span class="textit"><span class="textrm">chunk_size</span></span> is specified, it defaults to 1.                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">auto</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-12-2"  
+class="td11"> When <span class="textit"><span class="textrm">kind</span></span> is <a 
+ id="dx73-73049"></a><span class="textbf"><span class="texttt">auto</span></span>, the decision regarding scheduling is delegated to the
+  compiler and/or runtime system. The programmer gives the implementation
+  the freedom to choose any possible mapping of iterations to threads in the
+  team.                                                                                                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-13-1"  
+class="td11"> <span class="textbf"><span class="texttt">runtime</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-11-13-2"  
+class="td11"> When <span class="textit"><span class="textrm">kind</span></span> is <a 
+ id="dx73-73050"></a><span class="textbf"><span class="texttt">runtime</span></span>, the decision regarding scheduling is deferred until
+  run time, and the schedule and chunk size are taken from the <span class="textit"><span class="textrm">run-sched-var</span></span>
+  ICV. If the ICV is set to <span class="textbf"><span class="texttt">auto</span></span>, the schedule is implementation defined.             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-14-1"  
+class="td11">            </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-11-15-1"  
+class="td11">            </td>
+</tr></table></div>
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  For a team of <span 
+class="cmmi-10">p </span>threads and a loop of <span 
+class="cmmi-10">n </span>iterations, let <span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmmi-10">n&#x2215;p</span><span 
+class="cmbsy-10">&#x2309;&#x2309; </span>be the integer <span 
+class="cmmi-10">q </span>that satisfies
+<span 
+class="cmmi-10">n </span><span 
+class="cmr-10">= </span><span 
+class="cmmi-10">p </span><span 
+class="cmsy-10">* </span><span 
+class="cmmi-10">q </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">r</span>, with <span 
+class="cmr-10">0 </span><span 
+class="cmmi-10">&#x003C;</span><span 
+class="cmr-10">= </span><span 
+class="cmmi-10">r &#x003C; p</span>. One compliant implementation of the <span class="textbf"><span class="texttt">static</span></span> schedule (with no
+specified <span class="textit"><span class="textrm">chunk_size</span></span>) would behave as though <span class="textit"><span class="textrm">chunk_size</span></span> had been specified with value <span 
+class="cmmi-10">q</span>. Another
+compliant implementation would assign <span 
+class="cmmi-10">q </span>iterations to the first <span 
+class="cmmi-10">p </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">r </span>threads, and <span 
+class="cmmi-10">q </span><span 
+class="cmsy-10">- </span><span 
+class="cmr-10">1 </span>iterations to the
+remaining <span 
+class="cmmi-10">r </span>threads. This illustrates why a conforming program must not rely on the details of a particular
+implementation.
+                                                                            
+                                                                            
+</p> 
+<p>A compliant implementation of the <span class="textbf"><span class="texttt">guided</span></span> schedule with a <span class="textit"><span class="textrm">chunk_size</span></span> value of <span 
+class="cmmi-10">k </span>would assign <span 
+class="cmmi-10">q </span><span 
+class="cmr-10">= </span><span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmmi-10">n&#x2215;p</span><span 
+class="cmbsy-10">&#x2309;&#x2309;</span>
+iterations to the first available thread and set <span 
+class="cmmi-10">n </span>to the larger of <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">q </span>and <span 
+class="cmmi-10">p </span><span 
+class="cmsy-10">* </span><span 
+class="cmmi-10">k</span>. It would then repeat this
+process until <span 
+class="cmmi-10">q </span>is greater than or equal to the number of remaining iterations, at which time
+the remaining iterations form the final chunk. Another compliant implementation could use
+the same method, except with <span 
+class="cmmi-10">q </span><span 
+class="cmr-10">= </span><span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmmi-10">n&#x2215;</span><span 
+class="cmr-10">(2</span><span 
+class="cmmi-10">p</span><span 
+class="cmr-10">)</span><span 
+class="cmbsy-10">&#x2309;&#x2309;</span>, and set <span 
+class="cmmi-10">n </span>to the larger of <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">q </span>and <span 
+class="cmr-10">2 </span><span 
+class="cmsy-10">* </span><span 
+class="cmmi-10">p </span><span 
+class="cmsy-10">* </span><span 
+class="cmmi-10">k</span>.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+<a 
+ id="x73-73051r6"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x73-73052"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.6: </td><td  
+class="content"><span class="textbf"><span class="texttt">schedule</span></span> Clause <span class="textit"><span class="textrm">modifier</span></span> Values</td></tr></table></div><!--tex4ht:label?: x73-73051r2.11 -->
+ <table id="TBL-13" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-13-1g"><col 
+id="TBL-13-1" /><col 
+id="TBL-13-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-1-1"  
+class="td11">              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-2-1"  
+class="td11">              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-3-1"  
+class="td11">              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-4-1"  
+class="td11"> <span class="textbf"><span class="texttt">monotonic</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-4-2"  
+class="td11"> When the <span class="textbf"><span class="texttt">monotonic</span></span> modifier is specified then each thread executes
+  the chunks that it is assigned in increasing logical iteration order.                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">nonmonotonic</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-5-2"  
+class="td11"> When the <span class="textbf"><span class="texttt">nonmonotonic</span></span> modifier is specified then chunks are
+  assigned to threads in any order and the behavior of an application that
+  depends on any execution order of the chunks is unspecified.                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">simd</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-6-2"  
+class="td11"> When the <span class="textbf"><span class="texttt">simd</span></span> modifier is specified and the loop is associated with a
+  SIMD construct, the <span class="textit"><span class="textrm">chunk_size</span></span> for all chunks except the first and last
+  chunks is <span 
+class="cmmi-10">new</span>_<span 
+class="cmmi-10">chunk</span>_<span 
+class="cmmi-10">size </span><span 
+class="cmr-10">= </span><span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmmi-10">chunk</span>_<span 
+class="cmmi-10">size&#x2215;simd</span>_<span 
+class="cmmi-10">width</span><span 
+class="cmbsy-10">&#x2309;&#x2309;</span><span 
+class="cmsy-10">*</span><span 
+class="cmmi-10">simd</span>_<span 
+class="cmmi-10">width</span>
+  where <span class="textit"><span class="textrm">simd_width</span></span> is an implementation-defined value. The first chunk
+  will have at least <span class="textit"><span class="textrm">new_chunk_size</span></span> iterations except if it is also the last
+  chunk. The last chunk may have fewer iterations than <span class="textit"><span class="textrm">new_chunk_size</span></span>.
+  If the <span class="textbf"><span class="texttt">simd</span></span> modifier is specified and the loop is not associated with a
+  SIMD construct, the modifier is ignored.                                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-7-1"  
+class="td11">              </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-8-1"  
+class="td11">              </td>
+</tr></table></div>
+<p><p><a 
+ id="Q1-73-198"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">ws-loop-begin</span></span> event occurs after an implicit task encounters a worksharing-loop construct but before
+the task starts execution of the structured block of the worksharing-loop region.
+</p> 
+<p>The <span class="textit"><span class="textrm">ws-loop-end</span></span> event occurs after a worksharing-loop region finishes execution but before resuming
+execution of the encountering task.
+</p> 
+<p>The <span class="textit"><span class="textrm">ws-loop-iteration-begin</span></span> event occurs once for each iteration of a worksharing-loop before the iteration
+is executed by an implicit task.
+</p> 
+<p><p><a 
+ id="Q1-73-199"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its
+<span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">work_loop</span></span> as its <span class="textit"><span class="textrm">wstype</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">ws-loop-begin</span></span> event in
+that thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">work_loop</span></span> as its <span class="textit"><span class="textrm">wstype</span></span> argument for each occurrence
+of a <span class="textit"><span class="textrm">ws-loop-end</span></span> event in that thread. The callbacks occur in the context of the implicit task. The callbacks
+have type signature <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>.
+                                                                            
+                                                                            
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_dispatch</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">ws-loop-iteration-begin</span></span> event in that thread. The callback occurs in the context of the implicit task. The
+callback has type signature <span class="textbf"><span class="texttt">ompt_callback_dispatch_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-73-200"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the worksharing-loop construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  with
+  a
+  parameter
+  is
+  present,
+  all
+  associated
+  loops
+  must
+  be
+  perfectly
+  nested.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  modifier
+  is
+  specified,
+  neither
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  nor
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  clause
+  may
+  appear
+  on
+  the
+  worksharing-loop
+  directive.
+  </li>
+  <li class="itemize">
+  The
+  values
+  of
+  the
+  loop
+  control
+  expressions
+  of
+  the
+  loops
+  associated
+  with
+  the
+  worksharing-loop
+  construct
+  must
+  be
+  the
+  same
+  for
+  all
+  threads
+  in
+  the
+  team.
+  </li>
+  <li class="itemize">
+  At
+                                                                            
+                                                                            
+  most
+  one
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  worksharing-loop
+  directive.
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  or
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  is
+  present
+  then
+  none
+  of
+  the
+  associated
+  loops
+  may
+  be
+  non-rectangular
+  loops.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  must
+  not
+  appear
+  on
+  the
+                                                                            
+                                                                            
+  worksharing-loop
+  directive
+  if
+  the
+  associated
+  loops
+  include
+  the
+  generated
+  loops
+  of
+  a
+  <span class="textbf"><span class="texttt">tile</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">collapse</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  worksharing-loop
+  directive.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">chunk_size</span></span>
+  must
+  be
+  a
+  loop
+  invariant
+  integer
+  expression
+  with
+  a
+  positive
+                                                                            
+                                                                            
+  value.
+  </li>
+  <li class="itemize">
+  The
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">chunk_size</span></span>
+  expression
+  must
+  be
+  the
+  same
+  for
+  all
+  threads
+  in
+  the
+  team.
+  </li>
+  <li class="itemize">
+  The
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">run-sched-var</span></span>
+  ICV
+  must
+  be
+  the
+  same
+  for
+  all
+  threads
+  in
+  the
+  team.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  When
+  <span class="textbf"><span class="texttt">schedule(runtime)</span></span>
+  or
+  <span class="textbf"><span class="texttt">schedule(auto)</span></span>
+  is
+  specified,
+  <span class="textit"><span class="textrm">chunk_size</span></span>
+  must
+  not
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">modifier</span></span>
+  may
+  not
+  be
+  specified
+  on
+  a
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  worksharing-loop
+  directive.
+  </li>
+  <li class="itemize">
+  The
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  must
+  be
+  present
+  on
+  the
+  worksharing-loop
+  construct
+  if
+  any
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  ever
+  binds
+  to
+  a
+  worksharing-loop
+  region
+  arising
+  from
+  the
+  worksharing-loop
+  construct.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">nonmonotonic</span></span>
+  modifier
+  cannot
+  be
+  specified
+  if
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  is
+  specified.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  Each
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  clause
+  <span class="textit"><span class="textrm">modifier</span></span>
+  may
+  be
+  specified
+  at
+  most
+  once
+  on
+  the
+  same
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  Either
+  the
+  <span class="textbf"><span class="texttt">monotonic</span></span>
+  modifier
+  or
+  the
+  <span class="textbf"><span class="texttt">nonmonotonic</span></span>
+  modifier
+  can
+  be
+  specified
+  but
+  not
+  both.
+  </li>
+  <li class="itemize">
+  If
+  both
+  the
+  <span class="textbf"><span class="texttt">collapse</span></span>
+  and
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+                                                                            
+                                                                            
+  with
+  a
+  parameter
+  are
+  specified,
+  the
+  parameter
+  of
+  the
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  must
+  be
+  greater
+  than
+  or
+  equal
+  to
+  the
+  parameter
+  of
+  the
+  <span class="textbf"><span class="texttt">collapse</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  The
+  values
+  of
+  the
+  parameters
+  specified
+  by
+  the
+  <span class="textbf"><span class="texttt">collapse</span></span>
+  and
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clauses
+  must
+  not
+  exceed
+  the
+                                                                            
+                                                                            
+  depth
+  of
+  the
+  associated
+  loop
+  nest.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause
+  or
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  with
+  a
+  parameter
+  can
+  be
+  specified
+  on
+  a
+  worksharing-loop
+  directive
+  but
+  not
+  both.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  can
+                                                                            
+                                                                            
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">for</span></span>
+  directive.</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  with
+  a
+  parameter
+  is
+  specified,
+  none
+  of
+  the
+  associated
+  loops
+  may
+  be
+  a
+  range-based
+  <span class="textbf"><span class="texttt">for</span></span>
+  loop.</li></ul>
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-73-201"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">tile</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu53.html#x78-870002.11.9.1">2.11.9.1<!--tex4ht:ref: subsubsec:tile Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu107.html#x140-1510002.19.9">2.19.9<!--tex4ht:ref: subsec:ordered Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_work_loop</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3220004.4.4.15">4.4.4.15<!--tex4ht:ref: sec:ompt_work_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3470004.5.2.5">4.5.2.5<!--tex4ht:ref: sec:ompt_callback_work_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_SCHEDULE</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse58.html#x324-4990006.1">6.1<!--tex4ht:ref: sec:OMP_SCHEDULE --></a>.</li></ul>
+<hr class="figure" /><div class="figure" 
+><a 
+ id="x73-730531"></a><a 
+ id="x80-90055r7"></a><a 
+ id="x87-97002r8"></a><a 
+ id="x88-98002r9"></a><a 
+ id="x88-98004r10"></a><a 
+ id="x152-173001r11"></a><a 
+ id="x152-173003r12"></a> <img 
+src="directives/standalone-worksharing-schedule-loop.svg" alt="PIC"  
+ />
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;2.1: </td><td  
+class="content">Determining the <span class="textbf"><span class="texttt">schedule</span></span> for a Worksharing-Loop</td></tr></table></div><!--tex4ht:label?: x73-730531 -->
+</div><hr class="endfigure" />
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.4.1  </span> <a 
+ id="x73-740002.11.4.1"></a>Determining the Schedule of a Worksharing-Loop</h5>
+<a 
+ id="dx73-74001"></a>
+<p>When execution encounters a worksharing-loop directive, the <span class="textbf"><span class="texttt">schedule</span></span> clause (if any) on the directive,
+and the <span class="textit"><span class="textrm">run-sched-var</span></span> and <span class="textit"><span class="textrm">def-sched-var</span></span> ICVs are used to determine how loop iterations are assigned to
+threads. See Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a> for details of how the values of the ICVs are determined. If the worksharing-loop
+directive does not have a <span class="textbf"><span class="texttt">schedule</span></span> clause then the current value of the <span class="textit"><span class="textrm">def-sched-var</span></span> ICV determines the
+schedule. If the worksharing-loop directive has a <span class="textbf"><span class="texttt">schedule</span></span> clause that specifies the <span class="textbf"><span class="texttt">runtime</span></span> schedule
+kind then the current value of the <span class="textit"><span class="textrm">run-sched-var</span></span> ICV determines the schedule. Otherwise, the value of the
+<span class="textbf"><span class="texttt">schedule</span></span> clause determines the schedule. Figure&#x00A0;<a 
+href="#x73-730531">2.1<!--tex4ht:ref: fig:schedule loop --></a> describes how the schedule for a worksharing-loop
+is determined.
+</p> 
+<p><p><a 
+ id="Q1-73-204"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  ICVs,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.</li></ul>
+<!--l. 1057--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu49.html" >next</a>] [<a 
+href="openmpsu47.html" >prev</a>] [<a 
+href="openmpsu47.html#tailopenmpsu47.html" >prev-tail</a>] [<a 
+href="openmpsu48.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu48.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu48.html"></a> </p> 
+ 
+</body> 
+</html>

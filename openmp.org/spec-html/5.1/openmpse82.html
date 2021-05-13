@@ -1,0 +1,218 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Deprecated Features</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 55--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse83.html" >next</a>] [<a 
+href="openmpap2.html" >prev</a>] [<a 
+href="openmpap2.html#tailopenmpap2.html" >prev-tail</a>] [<a 
+href="#tailopenmpse82.html">tail</a>] [<a 
+href="openmpap2.html#openmpse82.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">B.1</span>&#x00A0;&#x00A0;<a 
+ id="x350-525000B.1"></a>Deprecated Features</h3>
+<a 
+ id="dx350-525001"></a>
+<p>The following features have been deprecated in Version 5.1.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Cray
+  pointer
+  support
+                                                                            
+                                                                            
+  was
+  deprecated.
+  </li>
+  <li class="itemize">
+  The
+  use
+  of
+  clauses
+  supplied
+  to
+  the
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  as
+  context
+  traits
+  was
+  deprecated.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">master</span></span>
+  affinity
+  policy
+  was
+  deprecated.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">master</span></span>
+  construct
+  and
+  all
+  combined
+  and
+  composite
+  constructs
+  of
+  which
+                                                                            
+                                                                            
+  it
+  is
+  a
+  constituent
+  construct
+  were
+  deprecated.
+  </li>
+  <li class="itemize">
+  The
+  constant
+  <span class="textbf"><span class="texttt">omp_atv_sequential</span></span>
+  was
+  deprecated.
+  </li>
+  <li class="itemize">
+  In
+  Fortran,
+  specifying
+  list
+  items
+  that
+  are
+  not
+  of
+  type
+  <span class="textbf"><span class="texttt">C_PTR</span></span>
+  in
+  a
+  <span class="textbf"><span class="texttt">use_device_ptr</span></span>
+  or
+  <span class="textbf"><span class="texttt">is_device_ptr</span></span>
+  clause
+  was
+  deprecated.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier</span></span>
+                                                                            
+                                                                            
+  and
+  <span class="textbf"><span class="texttt">ompt_sync_region_barrier_implicit</span></span>
+  values
+  of
+  the
+  <span class="textbf"><span class="texttt">ompt_sync_region_t</span></span>
+  enum
+  were
+  deprecated.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">ompt_state_wait_barrier</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_state_wait_barrier_implicit</span></span>
+  values
+  of
+  the
+  <span class="textbf"><span class="texttt">ompt_state_t</span></span>
+  enum
+  were
+  deprecated.</li></ul>
+<p>The following features have been deprecated in Version 5.0.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">nest-var</span></span>
+  ICV,
+  the
+  <span class="textbf"><span class="texttt">OMP_NESTED</span></span>
+  environment
+  variable,
+  and
+  the
+  <span class="textbf"><span class="texttt">omp_set_nested</span></span>
+  and
+  <span class="textbf"><span class="texttt">omp_get_nested</span></span>
+  routines
+                                                                            
+                                                                            
+  were
+  deprecated.
+  </li>
+  <li class="itemize">
+  Lock
+  hints
+  were
+  renamed
+  to
+  synchronization
+  hints.
+  The
+  following
+  lock
+  hint
+  type
+  and
+  constants
+  were
+  deprecated:
+    <ul class="itemize2">
+    <li class="itemize">
+    the
+    C/C++
+    type
+    <span class="textbf"><span class="texttt">omp_lock_hint_t</span></span>
+    and
+    the
+    Fortran
+    kind
+    <span class="textbf"><span class="texttt">omp_lock_hint_kind</span></span>;
+    </li>
+    <li class="itemize">
+    the
+    constants
+    <span class="textbf"><span class="texttt">omp_lock_hint_none</span></span>,
+    <span class="textbf"><span class="texttt">omp_lock_hint_uncontended</span></span>,
+                                                                            
+                                                                            
+    <span class="textbf"><span class="texttt">omp_lock_hint_contended</span></span>,
+    <span class="textbf"><span class="texttt">omp_lock_hint_nonspeculative</span></span>,
+    and
+    <span class="textbf"><span class="texttt">omp_lock_hint_speculative</span></span>.</li></ul>
+  </li></ul>
+<!--l. 110--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse83.html" >next</a>] [<a 
+href="openmpap2.html" >prev</a>] [<a 
+href="openmpap2.html#tailopenmpap2.html" >prev-tail</a>] [<a 
+href="openmpse82.html" >front</a>] [<a 
+href="openmpap2.html#openmpse82.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse82.html"></a> </p> 
+ 
+</body> 
+</html>

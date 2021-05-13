@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_initial_device</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 277--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse38.html" >next</a>] [<a 
+href="openmpsu166.html" >prev</a>] [<a 
+href="openmpsu166.html#tailopenmpsu166.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu167.html">tail</a>] [<a 
+href="openmpse37.html#openmpsu167.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.7.7</span>&#x00A0;&#x00A0;<a 
+ id="x211-2440003.7.7"></a><span class="textbf"><span class="texttt">omp_get_initial_device</span></span></h4>
+<a 
+ id="dx211-244001"></a>
+<p><p><a 
+ id="Q1-211-1111"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_initial_device</span></span> routine returns a device number that represents the host
+device.
+<p><a 
+ id="Q1-211-1112"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x211-244002r1"></a></span></p> 
+<!--l. 287--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x211-244003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_initial_device</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x211-244004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents"><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <!--l. 294--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x211-244005r1"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_initial_device</span><span 
+class="pcrb8t-">()</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x211-244006r2"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-211-1113"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_get_initial_device</span></span> region is the generating task.
+</p> 
+<p><p><a 
+ id="Q1-211-1114"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The effect of this routine is to return the device number of the host device. The value of the device number is
+the value returned by the <span class="textbf"><span class="texttt">omp_get_num_devices</span></span> routine. When called from within a <span class="textbf"><span class="texttt">target</span></span> region
+the effect of this routine is unspecified.
+</p> 
+<p><p><a 
+ id="Q1-211-1115"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_is_initial_device</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu166.html#x210-2430003.7.6">3.7.6<!--tex4ht:ref: subsec:omp_is_initial_device --></a>.
+  </li>
+  <li class="itemize">
+  Device
+  memory
+  routines,
+  see
+  Section&#x00A0;<a 
+href="openmpse38.html#x212-2450003.8">3.8<!--tex4ht:ref: sec:Device Memory Routines --></a>.</li></ul>
+<!--l. 2--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse38.html" >next</a>] [<a 
+href="openmpsu166.html" >prev</a>] [<a 
+href="openmpsu166.html#tailopenmpsu166.html" >prev-tail</a>] [<a 
+href="openmpsu167.html" >front</a>] [<a 
+href="openmpse37.html#openmpsu167.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu167.html"></a> </p> 
+ 
+</body> 
+</html>

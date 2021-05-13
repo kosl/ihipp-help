@@ -1,0 +1,365 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Interoperability Routines</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu188.html" >next</a>] [<a 
+href="openmpsu187.html" >prev</a>] [<a 
+href="openmpsu187.html#tailopenmpsu187.html" >prev-tail</a>] [<a 
+href="#tailopenmpse42.html">tail</a>] [<a 
+href="openmpch3.html#openmpse42.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.12</span>&#x00A0;&#x00A0;<a 
+ id="x236-2690003.12"></a>Interoperability Routines</h3>
+<a 
+ id="dx236-269001"></a>
+<p>The interoperability routines provide mechanisms to inspect the properties associated with an
+<span class="textbf"><span class="texttt">omp_interop_t</span></span> object. Such objects may be initialized, destroyed or otherwise used by an <span class="textbf"><span class="texttt">interop</span></span>
+construct. Additionally, an <span class="textbf"><span class="texttt">omp_interop_t</span></span> object can be initialized to <span class="textbf"><span class="texttt">omp_interop_none</span></span>, which is
+defined to be zero. An <span class="textbf"><span class="texttt">omp_interop_t</span></span> object may only be accessed or modified through OpenMP
+directives and API routines.
+</p> 
+<p>An <span class="textbf"><span class="texttt">omp_interop_t</span></span> object can be copied without affecting, or copying, the underlying state.
+Destruction of an <span class="textbf"><span class="texttt">omp_interop_t</span></span> object destroys the state to which all copies of the object
+refer.
+</p> 
+<p><a 
+ id="x236-2690021"></a></p> 
+<hr class="float" /><div class="float" 
+>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;3.1: </td><td  
+class="content">Required Values of the <span class="textbf"><span class="texttt">omp_interop_property_t</span></span> enum Type</td></tr></table></div><!--tex4ht:label?: x236-2690021 -->
+<div class="tabular"> <table id="TBL-29" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-29-1g"><col 
+id="TBL-29-1" /></colgroup><colgroup id="TBL-29-2g"><col 
+id="TBL-29-2" /></colgroup><colgroup id="TBL-29-3g"><col 
+id="TBL-29-3" /></colgroup><colgroup id="TBL-29-4g"><col 
+id="TBL-29-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-1-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-1-1"  
+class="td11"> <p><span class="textbf"><span class="textsf">enum name</span></span>                                 </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-1-2"  
+class="td11"> <p><span class="textbf"><span class="textsf">contexts</span></span>  </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-1-3"  
+class="td11"> <p><span class="textbf"><span class="textsf">name</span></span>                      </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-1-4"  
+class="td11"> <p><span class="textbf"><span class="textsf">property</span></span>                                   </p> 
+</td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-2-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-2-1"  
+class="td
+11"> <p><span class="textbf"><span class="texttt">omp_ipr_fr_id = -1</span></span>       </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-2-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">all</span>               </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-2-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">fr_id</span></span>         </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-2-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">An </span><span class="textbf"><span class="texttt">intptr_t</span></span> <span 
+class="ec-qtmr-x-x-90">value that</span>
+   <span 
+class="ec-qtmr-x-x-90">represents the foreign runtime id</span>
+   <span 
+class="ec-qtmr-x-x-90">of context</span>                                        </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-3-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-3-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_fr_name = -2</span></span>     </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-3-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">all</span>               </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-3-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">fr_name</span></span>       </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-3-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">C string value that represents the</span>
+   <span 
+class="ec-qtmr-x-x-90">foreign runtime name of context</span>    </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-4-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-4-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_vendor = -3</span></span>      </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-4-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">all</span>               </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-4-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">vendor</span></span>        </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-4-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">An </span><span class="textbf"><span class="texttt">intptr_t</span></span> <span 
+class="ec-qtmr-x-x-90">that represents</span>
+   <span 
+class="ec-qtmr-x-x-90">the vendor of context</span>                      </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-5-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-5-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_vendor_name =
+ -4</span></span>                       </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-5-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">all</span>               </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-5-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">vendor_name</span></span>   </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-5-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">C string value that represents the</span>
+   <span 
+class="ec-qtmr-x-x-90">vendor of context</span>                            </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-6-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-6-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_device_num = -5</span></span>  </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-6-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">all</span>               </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-6-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">device_num</span></span>    </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-6-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">The OpenMP device ID for</span>
+   <span 
+class="ec-qtmr-x-x-90">the device in the range 0 to</span>
+   <span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>
+ <span 
+class="ec-qtmr-x-x-90">inclusive</span>                                         </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-7-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-7-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_platform = -6</span></span>    </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-7-2"  
+class="td11"> <p><span class="textit"><span class="textrm">target</span></span>         </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-7-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">platform</span></span>      </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-7-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">A foreign platform handle</span>
+   <span 
+class="ec-qtmr-x-x-90">usually spanning multiple</span>
+   <span 
+class="ec-qtmr-x-x-90">devices</span>                                            </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-8-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-8-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_device = -7</span></span>      </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-8-2"  
+class="td11"> <p><span class="textit"><span class="textrm">target</span></span>         </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-8-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">device</span></span>        </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-8-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">A foreign device handle</span>                 </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-9-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-9-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_device_context
+ = -8</span></span>                     </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-9-2"  
+class="td11"> <p><span class="textit"><span class="textrm">target</span></span>         </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-9-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">device_context</span></span></p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-9-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">A handle to an instance of a</span>
+   <span 
+class="ec-qtmr-x-x-90">foreign device context</span>                    </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-10-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-10-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_targetsync = -9</span></span>  </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-10-2"  
+class="td11"> <p><span class="textit"><span class="textrm">targetsync</span></span>  </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-10-3"  
+class="td11"> <p><span class="textbf"><span class="texttt">targetsync</span></span>    </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-10-4"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">A handle to a synchronization</span>
+   <span 
+class="ec-qtmr-x-x-90">object of a foreign execution</span>
+   <span 
+class="ec-qtmr-x-x-90">context</span>                                            </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-11-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-11-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_ipr_first = -9</span></span>       </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-11-2"  
+class="td11"> <p>        </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-11-3"  
+class="td11"> <p>              </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-11-4"  
+class="td11"> <p>                       </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-29-12-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-29-12-1"  
+class="td11">                          </td></tr></table>
+</div>
+</div><hr class="endfloat" />
+<p>OpenMP reserves all negative values for properties, as listed in Table&#x00A0;<a 
+href="#x236-2690021">3.1<!--tex4ht:ref: table:ompt_interop_property_t_enum --></a>; implementation-defined
+properties may use zero and positive values. The special property, <span class="textbf"><span class="texttt">omp_ipr_first</span></span>, will always have the
+lowest property value which may change in future versions of this specification. Valid values and types for
+the properties that Table&#x00A0;<a 
+href="#x236-2690021">3.1<!--tex4ht:ref: table:ompt_interop_property_t_enum --></a> lists are specified in the <span class="emph">OpenMP Additional Definitions</span> document or are
+implementation defined unless otherwise specified.
+</p> 
+<p><a 
+ id="x236-2690032"></a><a 
+ id="x254-287028r3"></a></p> 
+<hr class="float" /><div class="float" 
+>
+                                                                            
+                                                                            
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;3.2: </td><td  
+class="content">Required Values for the <span class="textbf"><span class="texttt">omp_interop_rc_t</span></span> enum Type</td></tr></table></div><!--tex4ht:label?: x236-2690032 -->
+<div class="tabular"> <table id="TBL-30" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-30-1g"><col 
+id="TBL-30-1" /></colgroup><colgroup id="TBL-30-2g"><col 
+id="TBL-30-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-1-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-1-1"  
+class="td11"> <p><span class="textbf"><span class="textsf">enum name</span></span>                                        </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-1-2"  
+class="td11"> <p><span class="textbf"><span class="textsf">description</span></span>                                                                                    </p> 
+</td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-2-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-2-1"  
+class="td
+11"> <p><span class="textbf"><span class="texttt">omp_irc_no_value = 1</span></span>        </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-2-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">Parameters valid, no meaningful value available</span>                                      </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-3-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-3-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_irc_success = 0</span></span>         </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-3-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">Successful, value is usable</span>                                                                         </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-4-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-4-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_irc_empty = -1</span></span>          </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-4-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">The object provided is equal to </span><span class="textbf"><span class="texttt">omp_interop_none</span></span>           </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-5-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-5-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_irc_out_of_range = -2</span></span>   </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-5-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">Property ID is out of range, see Table</span><span 
+class="ec-qtmr-x-x-90">&#x00A0;</span><a 
+href="#x236-2690021"><span 
+class="ec-qtmr-x-x-90">3.1</span><!--tex4ht:ref: table:ompt_interop_property_t_enum --></a>                                                </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-6-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-6-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_irc_type_int = -3</span></span>       </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-6-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">Property type is int; use </span><span class="textbf"><span class="texttt">omp_get_interop_int</span></span>             </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-7-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-7-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_irc_type_ptr = -4</span></span>       </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-7-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">Property type is pointer; use </span><span class="textbf"><span class="texttt">omp_get_interop_ptr</span></span>          </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-8-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-8-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_irc_type_str = -5</span></span>       </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-8-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">Property type is string; use </span><span class="textbf"><span class="texttt">omp_get_interop_str</span></span>           </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-9-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-9-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">omp_irc_other = -6</span></span>          </p> 
+</td><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-9-2"  
+class="td11"> <p><span 
+class="ec-qtmr-x-x-90">Other error; use </span><span class="textbf"><span class="texttt">omp_get_interop_rc_desc</span></span>              </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-30-10-"><td  style="white-space:nowrap; text-align:left; vertical-align:middle;" id="TBL-30-10-1"  
+class="td11">                             </td></tr></table></div></div><hr class="endfloat" />
+<p>Table&#x00A0;<a 
+href="#x236-2690032">3.2<!--tex4ht:ref: table:ompt_interop_rc_t_enum --></a> lists the return codes used by routines that take an <span class="textbf"><span class="texttt">int*</span></span><span class="textit"><span class="textrm">ret_code</span></span> argument.
+</p> 
+<p><p><a 
+ id="Q1-236-1299"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for all interoperability routine regions is the generating task.
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.1&#x00A0;&#x00A0;<a 
+href="openmpsu188.html#x237-2700003.12.1"><span class="textbf"><span class="texttt">omp_get_num_interop_properties</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.2&#x00A0;&#x00A0;<a 
+href="openmpsu189.html#x238-2710003.12.2"><span class="textbf"><span class="texttt">omp_get_interop_int</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.3&#x00A0;&#x00A0;<a 
+href="openmpsu190.html#x239-2720003.12.3"><span class="textbf"><span class="texttt">omp_get_interop_ptr</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.4&#x00A0;&#x00A0;<a 
+href="openmpsu191.html#x240-2730003.12.4"><span class="textbf"><span class="texttt">omp_get_interop_str</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.5&#x00A0;&#x00A0;<a 
+href="openmpsu192.html#x241-2740003.12.5"><span class="textbf"><span class="texttt">omp_get_interop_name</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.6&#x00A0;&#x00A0;<a 
+href="openmpsu193.html#x242-2750003.12.6"><span class="textbf"><span class="texttt">omp_get_interop_type_desc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.7&#x00A0;&#x00A0;<a 
+href="openmpsu194.html#x243-2760003.12.7"><span class="textbf"><span class="texttt">omp_get_interop_rc_desc</span></span></a></span>
+</div>
+
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu188.html" >next</a>] [<a 
+href="openmpsu187.html" >prev</a>] [<a 
+href="openmpsu187.html#tailopenmpsu187.html" >prev-tail</a>] [<a 
+href="openmpse42.html" >front</a>] [<a 
+href="openmpch3.html#openmpse42.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse42.html"></a> </p> 
+ 
+</body> 
+</html>

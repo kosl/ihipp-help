@@ -1,0 +1,200 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_set_teams_thread_limit</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 198--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu156.html" >next</a>] [<a 
+href="openmpsu154.html" >prev</a>] [<a 
+href="openmpsu154.html#tailopenmpsu154.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu155.html">tail</a>] [<a 
+href="openmpse34.html#openmpsu155.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.4.5</span>&#x00A0;&#x00A0;<a 
+ id="x196-2290003.4.5"></a><span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span></h4>
+<a 
+ id="dx196-229001"></a>
+<p><p><a 
+ id="Q1-196-1028"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span> routine defines the maximum number of OpenMP threads that
+can participate in each contention group created by a <span class="textbf"><span class="texttt">teams</span></span> construct.
+<p><a 
+ id="Q1-196-1029"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x196-229002r1"></a></span></p> 
+<!--l. 208--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x196-229003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_set_teams_thread_limit</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">thread_limit</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x196-229004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+                                                                            
+                                                                            
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x196-229005r1"></a></span></p> 
+<!--l. 216--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x196-229006r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_set_teams_thread_limit</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">thread_limit</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x196-229007r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">thread_limit</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x196-229008r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-196-1030"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The value of the argument passed to this routine must evaluate to a positive integer, or else the behavior of
+this routine is implementation defined.
+</p> 
+<p><p><a 
+ id="Q1-196-1031"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span> region is the generating
+task.
+</p> 
+<p><p><a 
+ id="Q1-196-1032"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span> routine sets the value of the <span class="textit"><span class="textrm">teams-thread-limit-var</span></span> ICV to the
+value of the <span class="textit"><span class="textrm">thread_limit</span></span> argument.
+</p> 
+<p>If the value of <span class="textit"><span class="textrm">thread_limit</span></span> exceeds the number of OpenMP threads that an implementation supports for
+each contention group created by a <span class="textbf"><span class="texttt">teams</span></span> construct, the value of the <span class="textit"><span class="textrm">teams-thread-limit-var</span></span> ICV will be set
+to the number that is supported by the implementation.
+</p> 
+<p><p><a 
+ id="Q1-196-1033"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span> routine are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  routine
+  may
+  not
+  be
+  called
+  from
+  within
+                                                                            
+                                                                            
+  a
+  parallel
+  region
+  other
+  than
+  the
+  implicit
+  parallel
+  region
+  that
+  surrounds
+  the
+  whole
+  OpenMP
+  program.</li></ul>
+<p><p><a 
+ id="Q1-196-1034"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">teams_thread-limit-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  and
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse15.html#x62-620002.7">2.7<!--tex4ht:ref: sec:teams Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_teams_thread_limit</span></span>
+  routine,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu156.html#x197-2300003.4.6">3.4.6<!--tex4ht:ref: subsec:omp_get_teams_thread_limit --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse81.html#x347-5220006.24">6.24<!--tex4ht:ref: sec:OMP_TEAMS_THREAD_LIMIT --></a>.</li></ul>
+<!--l. 263--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu156.html" >next</a>] [<a 
+href="openmpsu154.html" >prev</a>] [<a 
+href="openmpsu154.html#tailopenmpsu154.html" >prev-tail</a>] [<a 
+href="openmpsu155.html" >front</a>] [<a 
+href="openmpse34.html#openmpsu155.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu155.html"></a> </p> 
+ 
+</body> 
+</html>

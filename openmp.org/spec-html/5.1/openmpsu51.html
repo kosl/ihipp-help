@@ -1,0 +1,677 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>loop Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2004--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu52.html" >next</a>] [<a 
+href="openmpsu50.html" >prev</a>] [<a 
+href="openmpsu50.html#tailopenmpsu50.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu51.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu51.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.7</span>&#x00A0;&#x00A0;<a 
+ id="x76-840002.11.7"></a><span class="textbf"><span class="texttt">loop</span></span> Construct</h4>
+<a 
+ id="dx76-84001"></a>
+<a 
+ id="dx76-84002"></a>
+<p><p><a 
+ id="Q1-76-262"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A <span class="textbf"><span class="texttt">loop</span></span> construct specifies that the logical iterations of the associated loops may execute concurrently and
+permits the encountering threads to execute the loop accordingly.
+<p><a 
+ id="Q1-76-263"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">loop</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84003r1"></a></span></p> 
+<!--l. 2017--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">loop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84007r1"></a></span></p> 
+<!--l. 2025--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84008r2"></a></span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">binding</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84009r3"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84010r4"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84011r5"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84012r6"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84013r7"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84014r8"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">binding</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84015r1"></a></span></p> 
+<!--l. 2035--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84016r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">teams</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84017r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84018r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">thread</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84019r5"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents"><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+The syntax of the <span class="textbf"><span class="texttt">loop</span></span> construct is as follows:
+ <!--l. 2046--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84020r1"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">loop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84021r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84022r3"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">loop</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84023r4"></a></span></pre>
+where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <!--l. 2056--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84024r1"></a></span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">binding</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84025r2"></a></span><span 
+class="pcrb8t-">collapse</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">n</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84026r3"></a></span><span 
+class="pcrb8t-">order</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">concurrent</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84027r4"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84028r5"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84029r6"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84030r7"></a></span></pre>
+where <span class="textit"><span class="textrm">binding</span></span> is one of the following:
+      <!--l. 2067--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84031r1"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">teams</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84032r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84033r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">thread</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x76-84034r4"></a></span></pre>
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">loop</span></span> directive is assumed at the end of the
+<span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><a 
+ id="Q1-76-264"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+If the <span class="textbf"><span class="texttt">bind</span></span> clause is present on the construct, the binding region is determined by <span class="textit"><span class="textrm">binding</span></span>. Specifically, if
+<span class="textit"><span class="textrm">binding</span></span> is <span class="textbf"><span class="texttt">teams</span></span> and an innermost enclosing <span class="textbf"><span class="texttt">teams</span></span> region exists then the binding region is that
+<span class="textbf"><span class="texttt">teams</span></span> region; if <span class="textit"><span class="textrm">binding</span></span> is <span class="textbf"><span class="texttt">parallel</span></span> then the binding region is the innermost enclosing
+parallel region, which may be an implicit parallel region; and if <span class="textit"><span class="textrm">binding</span></span> is <span class="textbf"><span class="texttt">thread</span></span> then the
+binding region is not defined. If the <span class="textbf"><span class="texttt">bind</span></span> clause is not present on the construct and the <span class="textbf"><span class="texttt">loop</span></span>
+construct is closely nested inside a <span class="textbf"><span class="texttt">teams</span></span> or <span class="textbf"><span class="texttt">parallel</span></span> construct, the binding region is the
+corresponding <span class="textbf"><span class="texttt">teams</span></span> or <span class="textbf"><span class="texttt">parallel</span></span> region. If none of those conditions hold, the binding region is not
+defined.
+</p> 
+<p>If the binding region is a <span class="textbf"><span class="texttt">teams</span></span> region, then the binding thread set is the set of initial threads that are
+executing that region. If the binding region is a parallel region, then the binding thread set is the team of
+threads that are executing that region. If the binding region is not defined, then the binding thread set is the
+encountering thread.
+</p> 
+<p><p><a 
+ id="Q1-76-265"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">loop</span></span> construct is associated with a loop nest that consists of one or more loops that follow the
+directive. The directive asserts that the iterations may execute in any order, including concurrently.
+</p> 
+<p>The <span class="textbf"><span class="texttt">collapse</span></span> clause may be used to specify how many loops are associated with the <span class="textbf"><span class="texttt">loop</span></span> construct.
+The parameter of the <span class="textbf"><span class="texttt">collapse</span></span> clause must be a constant positive integer expression. If the <span class="textbf"><span class="texttt">collapse</span></span>
+clause is omitted, the behavior is as if a <span class="textbf"><span class="texttt">collapse</span></span> clause with a parameter value of one was specified.
+The <span class="textbf"><span class="texttt">collapse</span></span> clause specifies the number of loops that are collapsed into a logical iteration
+space.
+</p> 
+<p>At the beginning of each logical iteration, the loop iteration variable or the variable declared by <span class="textit"><span class="textrm">range-decl</span></span>
+of each associated loop has the value that it would have if the set of the associated loops was executed
+sequentially.
+</p> 
+<p>Each logical iteration is executed once per instance of the <span class="textbf"><span class="texttt">loop</span></span> region that is encountered by the binding
+thread set.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">order</span></span> clause is present then the semantics are as described in Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>. If the <span class="textbf"><span class="texttt">order</span></span> clause is
+not present, the behavior is as if an <span class="textbf"><span class="texttt">order</span></span> clause that specifies <span class="textbf"><span class="texttt">concurrent</span></span> appeared on the
+construct.
+</p> 
+<p>The set of threads that may execute the iterations of the <span class="textbf"><span class="texttt">loop</span></span> region is the binding thread set. Each iteration
+is executed by one thread from this set.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">loop</span></span> region binds to a <span class="textbf"><span class="texttt">teams</span></span> region, the threads in the binding thread set may continue execution
+after the <span class="textbf"><span class="texttt">loop</span></span> region without waiting for all logical iterations of the associated loops to complete. The
+iterations are guaranteed to complete before the end of the <span class="textbf"><span class="texttt">teams</span></span> region.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">loop</span></span> region does not bind to a <span class="textbf"><span class="texttt">teams</span></span> region, all logical iterations of the associated loops must
+complete before the encountering threads continue execution after the <span class="textbf"><span class="texttt">loop</span></span> region.
+</p> 
+<p>For the purpose of determining its consistency with other schedules (see Section&#x00A0;<a 
+href="openmpsu46.html#x71-710002.11.2">2.11.2<!--tex4ht:ref: subsec:Consistent Loop Schedules --></a>), the schedule is
+defined by the implicit <span class="textbf"><span class="texttt">order</span></span> clause.
+</p> 
+<p>The schedule is reproducible if the schedule specified through the implicit <span class="textbf"><span class="texttt">order</span></span> clause is
+reproducible.
+</p> 
+<p><p><a 
+ id="Q1-76-266"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">loop</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  At
+  most
+  one
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">collapse</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">loop</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause
+  unless
+  it
+  is
+  the
+  loop
+  iteration
+  variable
+  of
+  a
+  loop
+  that
+  is
+  associated
+  with
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  If
+  a
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct
+  is
+  not
+  nested
+  inside
+  another
+  OpenMP
+  construct
+  and
+  it
+  appears
+  in
+  a
+  procedure,
+  the
+  <span class="textbf"><span class="texttt">bind</span></span>
+  clause
+  must
+  be
+  present.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">loop</span></span>
+  region
+  binds
+  to
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  or
+  parallel
+  region,
+  it
+  must
+  be
+  encountered
+  by
+  all
+  threads
+  in
+                                                                            
+                                                                            
+  the
+  binding
+  thread
+  set
+  or
+  by
+  none
+  of
+  them.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">bind</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">loop</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">bind</span></span>
+  clause
+  is
+  present
+  on
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct
+  and
+  <span class="textit"><span class="textrm">binding</span></span>
+  is
+  <span class="textbf"><span class="texttt">teams</span></span>
+  then
+  the
+                                                                            
+                                                                            
+  corresponding
+  <span class="textbf"><span class="texttt">loop</span></span>
+  region
+  must
+  be
+  strictly
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">bind</span></span>
+  clause,
+  with
+  <span class="textbf"><span class="texttt">teams</span></span>
+  specified
+  as
+  <span class="textit"><span class="textrm">binding</span></span>,
+  is
+  present
+  on
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct
+  and
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">loop</span></span>
+  region
+  executes
+  on
+  a
+  non-host
+  device
+  then
+  the
+  behavior
+  of
+                                                                            
+                                                                            
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  that
+  appears
+  on
+  the
+  construct
+  is
+  unspecified
+  if
+  the
+  construct
+  is
+  not
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">bind</span></span>
+  clause
+  is
+  present
+  on
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct
+  and
+  <span class="textit"><span class="textrm">binding</span></span>
+  is
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  then
+  the
+  behavior
+  is
+  unspecified
+  if
+                                                                            
+                                                                            
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">loop</span></span>
+  region
+  is
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  region.</li></ul>
+<p><p><a 
+ id="Q1-76-267"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">single</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu43.html#x67-670002.10.2">2.10.2<!--tex4ht:ref: subsec:single Construct --></a>.
+  </li>
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3">2.11.3<!--tex4ht:ref: subsec:Order Clause --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  The
+  Worksharing-Loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  SIMD
+  directives,
+  see
+  Section&#x00A0;<a 
+href="openmpsu49.html#x74-750002.11.5">2.11.5<!--tex4ht:ref: subsec:SIMD Directives --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu50.html#x75-800002.11.6.1">2.11.6.1<!--tex4ht:ref: subsec:distribute Construct --></a>.</li></ul>
+<!--l. 2184--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu52.html" >next</a>] [<a 
+href="openmpsu50.html" >prev</a>] [<a 
+href="openmpsu50.html#tailopenmpsu50.html" >prev-tail</a>] [<a 
+href="openmpsu51.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu51.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu51.html"></a> </p> 
+ 
+</body> 
+</html>

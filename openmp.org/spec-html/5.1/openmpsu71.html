@@ -1,0 +1,658 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>interop Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 40--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu72.html" >next</a>] [<a 
+href="openmpse23.html" >prev</a>] [<a 
+href="openmpse23.html#tailopenmpse23.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu71.html">tail</a>] [<a 
+href="openmpse23.html#openmpsu71.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.15.1</span>&#x00A0;&#x00A0;<a 
+ id="x100-1100002.15.1"></a><span class="textbf"><span class="texttt">interop</span></span> Construct</h4>
+<a 
+ id="dx100-110001"></a>
+<p><p><a 
+ id="Q1-100-414"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">interop</span></span> construct retrieves interoperability properties from the OpenMP implementation to
+enable interoperability with foreign execution contexts. The <span class="textbf"><span class="texttt">interop</span></span> construct is a stand-alone
+directive.
+<p><a 
+ id="Q1-100-415"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+In the following syntax, <span class="textit"><span class="textrm">interop-type</span></span> is the type of interoperability information being requested or used by
+the <span class="textbf"><span class="texttt">interop</span></span> construct, and <span class="textit"><span class="textrm">action-clause</span></span> is a clause that indicates the action to take with respect to that
+interop object.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">interop</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110002r1"></a></span></p> 
+<!--l. 57--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110003r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">interop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110004r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is <span class="textit"><span class="textrm">action-clause</span></span> or one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110005r1"></a></span></p> 
+<!--l. 63--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110006r2"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110007r3"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110008r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">action-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110009r1"></a></span></p> 
+<!--l. 69--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110010r2"></a></span><span 
+class="pcrb8t-">init</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110011r3"></a></span><span 
+class="pcrb8t-">destroy</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110012r4"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110013r5"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110014r6"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">interop-var</span></span> is a variable of type <span class="textbf"><span class="texttt">omp_interop_t</span></span>, and <span class="textit"><span class="textrm">interop-type</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110015r1"></a></span></p> 
+<!--l. 78--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110016r2"></a></span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110017r3"></a></span><span 
+class="pcrb8t-">targetsync</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110018r4"></a></span></pre>
+                                                                            
+                                                                            
+<p>and <span class="textit"><span class="textrm">interop-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110019r1"></a></span></p> 
+<!--l. 86--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110020r2"></a></span><span 
+class="pcrb8t-">prefer_type</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">preference</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110021r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">preference-list</span></span> is a comma separated list for which each item is a <span class="textit"><span class="textrm">foreign-runtime-id</span></span>, which is a base
+language string literal or a compile-time constant integral expression. Allowed values for <span class="textit"><span class="textrm">foreign-runtime-id</span></span>
+include the names (as string literals) and integer values specified in the <span class="emph">OpenMP Additional Definitions</span>
+document and the corresponding <span class="textbf"><span class="texttt">omp_ifr_<span class="textit"><span class="textrm">name</span></span></span></span> constants of <span class="textbf"><span class="texttt">omp_interop_fr_t</span></span> type;
+implementation-defined values may also be supported.
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">interop</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110022r1"></a></span></p> 
+<!--l. 106--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110023r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">interop</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110024r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is <span class="textit"><span class="textrm">action-clause</span></span> or one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110025r1"></a></span></p> 
+<!--l. 111--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110026r2"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110027r3"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110028r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">action-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110029r1"></a></span></p> 
+<!--l. 117--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110030r2"></a></span><span 
+class="pcrb8t-">init</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110031r3"></a></span><span 
+class="pcrb8t-">destroy</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110032r4"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110033r5"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110034r6"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">interop-var</span></span> is a scalar integer variable of kind <span class="textbf"><span class="texttt">omp_interop_kind</span></span>, and <span class="textit"><span class="textrm">interop-type</span></span> is one of the
+following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110035r1"></a></span></p> 
+<!--l. 126--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110036r2"></a></span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110037r3"></a></span><span 
+class="pcrb8t-">targetsync</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110038r4"></a></span></pre>
+<p>and <span class="textit"><span class="textrm">interop-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110039r1"></a></span></p> 
+<!--l. 134--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110040r2"></a></span><span 
+class="pcrb8t-">prefer_type</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">preference</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x100-110041r3"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">preference-list</span></span> is a comma separated list for which each item is a <span class="textit"><span class="textrm">foreign-runtime-id</span></span>, which is a
+base language string literal or a compile-time constant integral expression. Allowed values
+for <span class="textit"><span class="textrm">foreign-runtime-id</span></span> include the names (as string literals) and integer values specified in the
+<span class="emph">OpenMP Additional Definitions</span> document and the corresponding <span class="textbf"><span class="texttt">omp_ifr_<span class="textit"><span class="textrm">name</span></span></span></span> integer
+constants of kind <span class="textbf"><span class="texttt">omp_interop_fr_kind</span></span>; implementation-defined values may also be
+supported.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-100-416"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">interop</span></span> region is the generating task. The <span class="textbf"><span class="texttt">interop</span></span> region binds to the
+region of the generating task.
+</p> 
+<p><p><a 
+ id="Q1-100-417"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+When an <span class="textbf"><span class="texttt">interop</span></span> construct is encountered, the encountering task executes the region. If no <span class="textbf"><span class="texttt">device</span></span>
+clause is present, the behavior is as if the <span class="textbf"><span class="texttt">device</span></span> clause appears with an expression equal to the value of
+the <span class="textit"><span class="textrm">default-device-var</span></span> ICV.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">init</span></span><span class="textit"><span class="textrm">action-clause</span></span> is specified, the <span class="textit"><span class="textrm">interop-var</span></span> is initialized to refer to the list of properties
+associated with the given <span class="textit"><span class="textrm">interop-type</span></span>. For any <span class="textit"><span class="textrm">interop-type</span></span>, the properties <span class="textbf"><span class="texttt">type</span></span>, <span class="textbf"><span class="texttt">type_name</span></span>, <span class="textbf"><span class="texttt">vendor</span></span>,
+<span class="textbf"><span class="texttt">vendor_name</span></span> and <span class="textbf"><span class="texttt">device_num</span></span> will be available. If the implementation is unable to initialize the
+<span class="textit"><span class="textrm">interop-var</span></span>, it will be initialized to the value of <span class="textbf"><span class="texttt">omp_interop_none</span></span>, which is defined to be
+zero.
+</p> 
+<p>The <span class="textbf"><span class="texttt">targetsync</span></span><span class="textit"><span class="textrm">interop-type</span></span> will additionally provide the <span class="textbf"><span class="texttt">targetsync</span></span> property, which is the handle
+to a foreign synchronization object for enabling synchronization between OpenMP tasks and foreign tasks
+that execute in the foreign execution context.
+</p> 
+<p>The <span class="textbf"><span class="texttt">target</span></span><span class="textit"><span class="textrm">interop-type</span></span> will additionally provide the following properties:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">device</span></span>,
+  which
+  will
+  be
+  a
+  foreign
+  device
+  handle;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">device_context</span></span>,
+  which
+  will
+  be
+  a
+  foreign
+  device
+  context
+  handle;
+  and
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">platform</span></span>,
+  which
+  will
+  be
+  a
+  handle
+  to
+  a
+  foreign
+  platform
+  of
+  the
+  device.</li></ul>
+<p>If the <span class="textbf"><span class="texttt">destroy</span></span><span class="textit"><span class="textrm">action-clause</span></span> is specified, the <span class="textit"><span class="textrm">interop-var</span></span> is set to the value of <span class="textbf"><span class="texttt">omp_interop_none</span></span>
+after resources associated with <span class="textit"><span class="textrm">interop-var</span></span> are released. The object referred to by the <span class="textit"><span class="textrm">interop-var</span></span> will be
+unusable after destruction and the effect of using values associated with it is unspecified until <span class="textit"><span class="textrm">interop-var</span></span> is
+initialized again by another <span class="textbf"><span class="texttt">interop</span></span> construct.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">use</span></span><span class="textit"><span class="textrm">action-clause</span></span> is specified, the <span class="textit"><span class="textrm">interop-var</span></span> is used for other effects of this directive but is not
+initialized, destroyed or otherwise modified.
+</p> 
+<p>For the <span class="textbf"><span class="texttt">destroy</span></span> or <span class="textbf"><span class="texttt">use</span></span><span class="textit"><span class="textrm">action-clause</span></span>, the <span class="textit"><span class="textrm">interop-type</span></span> is inferred based on the <span class="textit"><span class="textrm">interop-type</span></span> used to
+initialize the <span class="textit"><span class="textrm">interop-var</span></span>.
+</p> 
+<p>If the <span class="textit"><span class="textrm">interop-type</span></span> specified is <span class="textbf"><span class="texttt">targetsync</span></span>, or the <span class="textit"><span class="textrm">interop-var</span></span> was initialized with <span class="textbf"><span class="texttt">targetsync</span></span>, an
+empty <span class="textit"><span class="textrm">mergeable task</span></span> is generated. If the <span class="textbf"><span class="texttt">nowait</span></span> clause is not present on the construct then the task is also
+an <span class="textit"><span class="textrm">included task</span></span>. Any <span class="textbf"><span class="texttt">depend</span></span> clauses that are present on the construct apply to the generated task. The
+<span class="textbf"><span class="texttt">interop</span></span> construct ensures an ordered execution of the generated task relative to foreign tasks executed in
+                                                                            
+                                                                            
+the foreign execution context through the foreign synchronization object accessible through the
+<span class="textbf"><span class="texttt">targetsync</span></span> property of <span class="textit"><span class="textrm">interop-var</span></span>. When the creation of the foreign task precedes the encountering of
+an <span class="textbf"><span class="texttt">interop</span></span> construct in happens before order (see Section&#x00A0;<a 
+href="openmpsu13.html#x22-210001.4.5">1.4.5<!--tex4ht:ref: subsec:happens-before --></a>), the foreign task must complete
+execution before the generated task begins execution. Similarly, when the creation of a foreign task
+follows the encountering of an <span class="textbf"><span class="texttt">interop</span></span> construct in happens before order, the foreign task
+must not begin execution until the generated task completes execution. No ordering is imposed
+between the encountering thread and either foreign tasks or OpenMP tasks by the <span class="textbf"><span class="texttt">interop</span></span>
+construct.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">prefer_type</span></span><span class="textit"><span class="textrm">interop-modifier</span></span> clause is specified, the first supported <span class="textit"><span class="textrm">foreign-runtime-id</span></span> in
+<span class="textit"><span class="textrm">preference-list</span></span> in left-to-right order is used. The <span class="textit"><span class="textrm">foreign-runtime-id</span></span> that is used if the implementation does
+not support any of the items in <span class="textit"><span class="textrm">preference-list</span></span> is implementation defined.
+</p> 
+<p><p><a 
+ id="Q1-100-418"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">interop</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  At
+  least
+  one
+  <span class="textit"><span class="textrm">action-clause</span></span>
+  must
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  Each
+  <span class="textit"><span class="textrm">interop-type</span></span>
+  may
+  be
+  specified
+  on
+  an
+  <span class="textit"><span class="textrm">action-clause</span></span>
+  at
+  most
+                                                                            
+                                                                            
+  once.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">interop-var</span></span>
+  passed
+  to
+  <span class="textbf"><span class="texttt">init</span></span>
+  or
+  <span class="textbf"><span class="texttt">destroy</span></span>
+  must
+  be
+  non-const.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  can
+  only
+  appear
+  on
+  the
+  directive
+  if
+  a
+  <span class="textbf"><span class="texttt">targetsync</span></span>
+  <span class="textit"><span class="textrm">interop-type</span></span>
+  is
+  present
+  or
+  the
+  <span class="textit"><span class="textrm">interop-var</span></span>
+  was
+  initialized
+  with
+  the
+  <span class="textbf"><span class="texttt">targetsync</span></span>
+  <span class="textit"><span class="textrm">interop-type</span></span>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  Each
+  <span class="textit"><span class="textrm">interop-var</span></span>
+  may
+  be
+  specified
+  for
+  at
+  most
+  one
+  <span class="textit"><span class="textrm">action-clause</span></span>
+  of
+  each
+  <span class="textbf"><span class="texttt">interop</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  The
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  expression
+  must
+  evaluate
+  to
+  a
+  non-negative
+  integer
+  value
+  less
+  than
+  or
+                                                                            
+                                                                            
+  equal
+  to
+  the
+  value
+  returned
+  by
+  <span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-100-419"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>.
+  </li>
+  <li class="itemize">
+  Interoperability
+  routines,
+  see
+  Section&#x00A0;<a 
+href="openmpse42.html#x236-2690003.12">3.12<!--tex4ht:ref: sec:Interoperability Routines --></a>.</li></ul>
+<!--l. 254--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu72.html" >next</a>] [<a 
+href="openmpse23.html" >prev</a>] [<a 
+href="openmpse23.html#tailopenmpse23.html" >prev-tail</a>] [<a 
+href="openmpsu71.html" >front</a>] [<a 
+href="openmpse23.html#openmpsu71.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<p><a 
+ id="tailopenmpsu71.html"></a> </p> 
+ 
+</body> 
+</html>

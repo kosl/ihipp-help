@@ -1,0 +1,170 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Implementation Terminology</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1606--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu8.html" >next</a>] [<a 
+href="openmpsu6.html" >prev</a>] [<a 
+href="openmpsu6.html#tailopenmpsu6.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu7.html">tail</a>] [<a 
+href="openmpse2.html#openmpsu7.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.2.7</span>&#x00A0;&#x00A0;<a 
+ id="x14-130001.2.7"></a>Implementation Terminology</h4>
+<a 
+ id="dx14-13001"></a>
+<p><div class="glossaryterm">supported active levels of parallelism</div> <div class="glossarydefstart">An implementation-defined maximum number of <span class="emph">active parallel
+regions</span> that may enclose any region of code in the program. </div>
+</p> 
+<p><div class="glossaryterm">OpenMP API support</div> <div class="glossarydefstart">Support of at least one active level of parallelism. </div>
+</p> 
+<p><div class="glossaryterm">nested parallelism support</div> <div class="glossarydefstart">Support of more than one active level of parallelism. </div>
+</p> 
+<p><div class="glossaryterm">internal control variable</div> <div class="glossarydefstart">A conceptual variable that specifies runtime behavior of a set of <span class="emph">threads</span> or <span class="emph">tasks</span> in
+an <span class="emph">OpenMP program</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     The
+     acronym
+     ICV
+     is
+     used
+     interchangeably
+     with
+     the
+     term
+     <span class="emph">internal
+     control
+     variable</span>
+     in
+     the
+     remainder
+     of
+     this
+                                                                            
+                                                                            
+     specification.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm"><span class="emph">OpenMP</span> <span class="emph">Additional</span> <span class="emph">Definitions</span> document</div> <div class="glossarydefstart">A document that exists outside of the OpenMP specification and
+defines additional values that may be used in a <span class="emph">conforming program</span>. The <span class="emph">OpenMP Additional Definitions
+document</span> is available at <a 
+href="http://www.openmp.org/" class="url" ><span 
+class="pcrr8t-">http://www.openmp.org/</span></a>. </div>
+</p> 
+<p><div class="glossaryterm">compliant implementation</div> <div class="glossarydefstart">An implementation of the OpenMP specification that compiles and executes any
+<span class="emph">conforming program</span> as defined by the specification.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     A
+     <span class="emph">compliant
+     implementation</span>
+     may
+     exhibit
+     <span class="emph">unspecified
+     behavior</span>
+     when
+     compiling
+     or
+     executing
+     a
+     <span class="emph">non-conforming
+     program</span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">unspecified behavior</div> <div class="glossarydefstart">A behavior or result that is not specified by the OpenMP specification or not known
+prior to the compilation or execution of an <span class="emph">OpenMP program</span>.
+</p> 
+<p>Such <span class="emph">unspecified behavior</span> may result from:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Issues
+  documented
+  by
+                                                                            
+                                                                            
+  the
+  OpenMP
+  specification
+  as
+  having
+  <span class="emph">unspecified
+  behavior</span>.
+  </li>
+  <li class="itemize">
+  A
+  <span class="emph">non-conforming
+  program</span>.
+  </li>
+  <li class="itemize">
+  A
+  <span class="emph">conforming
+  program</span>
+  exhibiting
+  an
+  <span class="emph">implementation-defined</span>
+  behavior.</li></ul>
+<p></div>
+</p> 
+<p><div class="glossaryterm">implementation defined</div> <div class="glossarydefstart">Behavior that must be documented by the implementation, and is allowed to vary
+among different <span class="emph">compliant implementations</span>. An implementation is allowed to define this behavior as
+<span class="emph">unspecified</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     All
+     features
+     that
+     have
+     <span class="emph">implementation-defined</span>
+     behavior
+     are
+                                                                            
+                                                                            
+     documented
+     in
+     Appendix&#x00A0;<a 
+href="openmpap1.html#x348-523000A">A<!--tex4ht:ref: chap:OpenMP Implementation-Defined Behaviors --></a>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">deprecated</div> <div class="glossarydefstart">For a construct, clause, or other feature, the property that it is normative in the current
+specification but is considered obsolescent and will be removed in the future. </div>
+</p> 
+<!--l. 1697--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu8.html" >next</a>] [<a 
+href="openmpsu6.html" >prev</a>] [<a 
+href="openmpsu6.html#tailopenmpsu6.html" >prev-tail</a>] [<a 
+href="openmpsu7.html" >front</a>] [<a 
+href="openmpse2.html#openmpsu7.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu7.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Determining the Number of Threads for a parallel Region</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 323--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu41.html" >next</a>] [<a 
+href="openmpse14.html" >prev</a>] [<a 
+href="openmpse14.html#tailopenmpse14.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu40.html">tail</a>] [<a 
+href="openmpse14.html#openmpsu40.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.6.1</span>&#x00A0;&#x00A0;<a 
+ id="x60-600002.6.1"></a>Determining the Number of Threads for a <span class="textbf"><span class="texttt">parallel</span></span> Region</h4>
+<p>When execution encounters a <span class="textbf"><span class="texttt">parallel</span></span> directive, the value of the <span class="textbf"><span class="texttt">if</span></span> clause or <span class="textbf"><span class="texttt">num_threads</span></span> clause (if
+any) on the directive, the current parallel context, and the values of the <span class="textit"><span class="textrm">nthreads-var</span></span>, <span class="textit"><span class="textrm">dyn-var</span></span>,
+<span class="textit"><span class="textrm">thread-limit-var</span></span>, and <span class="textit"><span class="textrm">max-active-levels-var</span></span> ICVs are used to determine the number of threads to use in the
+region.
+                                                                            
+                                                                            
+</p> 
+<p>Using a variable in an <span class="textbf"><span class="texttt">if</span></span> or <span class="textbf"><span class="texttt">num_threads</span></span> clause expression of a <span class="textbf"><span class="texttt">parallel</span></span> construct causes an
+implicit reference to the variable in all enclosing constructs. The <span class="textbf"><span class="texttt">if</span></span> clause expression and
+the <span class="textbf"><span class="texttt">num_threads</span></span> clause expression are evaluated in the context outside of the <span class="textbf"><span class="texttt">parallel</span></span>
+construct, and no ordering of those evaluations is specified. In what order or how many times any
+side effects of the evaluation of the <span class="textbf"><span class="texttt">num_threads</span></span> or <span class="textbf"><span class="texttt">if</span></span> clause expressions occur is also
+unspecified.
+</p> 
+<p>When a thread encounters a <span class="textbf"><span class="texttt">parallel</span></span> construct, the number of threads is determined according to
+Algorithm 2.1.
+</p> 
+<p>____________________________________________________________________________<br 
+class="newline" /> &#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;                                              <span class="textbf">Algorithm 2.1</span>_________________________________
+</p> 
+<p><span class="textbf">let</span> <span class="textit"><span class="textrm">ThreadsBusy</span></span> be the number of OpenMP threads currently executing in this contention group;
+</p> 
+<p><span class="textbf">if</span> an <span class="textbf"><span class="texttt">if</span></span> clause exists
+</p> 
+<p><span class="textbf">then let</span> <span class="textit"><span class="textrm">IfClauseValue</span></span> be the value of the <span class="textbf"><span class="texttt">if</span></span> clause expression;
+</p> 
+<p><span class="textbf">else let</span> <span class="textit"><span class="textrm">IfClauseValue</span></span> = <span class="textit"><span class="textrm">true</span></span>;
+</p> 
+<p><span class="textbf">if</span> a <span class="textbf"><span class="texttt">num_threads</span></span> clause exists
+</p> 
+<p><span class="textbf">then let</span> <span class="textit"><span class="textrm">ThreadsRequested</span></span> be the value of the <span class="textbf"><span class="texttt">num_threads</span></span> clause expression;
+</p> 
+<p><span class="textbf">else let</span> <span class="textit"><span class="textrm">ThreadsRequested</span></span> = value of the first element of <span class="textit"><span class="textrm">nthreads-var</span></span>;
+</p> 
+<p><span class="textbf">let</span> <span class="textit"><span class="textrm">ThreadsAvailable</span></span> = (<span class="textit"><span class="textrm">thread-limit-var</span></span> - <span class="textit"><span class="textrm">ThreadsBusy</span></span> + 1);
+</p> 
+<p><span class="textbf">if</span> (<span class="textit"><span class="textrm">IfClauseValue</span></span> = <span class="textit"><span class="textrm">false</span></span>)
+</p> 
+<p><span class="textbf">then</span> number of threads = 1;
+</p> 
+<p><span class="textbf">else if</span> (<span class="textit"><span class="textrm">active-levels-var</span></span> <span 
+class="cmsy-10">&#x2265;</span><span class="textit"><span class="textrm">max-active-levels-var</span></span>)
+</p> 
+<p><span class="textbf">then</span> number of threads = 1;
+</p> 
+<p><span class="textbf">else if</span> (<span class="textit"><span class="textrm">dyn-var</span></span> = <span class="textit"><span class="textrm">true</span></span>) <span class="textbf">and</span> (<span class="textit"><span class="textrm">ThreadsRequested</span></span> <span 
+class="cmsy-10">&#x2264;</span><span class="textit"><span class="textrm">ThreadsAvailable</span></span>)
+</p> 
+<p><span class="textbf">then</span> 1 <span 
+class="cmsy-10">&#x2264; </span>number of threads <span 
+class="cmsy-10">&#x2264;</span><span class="textit"><span class="textrm">ThreadsRequested</span></span>;
+</p> 
+<p><span class="textbf">else if</span> (<span class="textit"><span class="textrm">dyn-var</span></span> = <span class="textit"><span class="textrm">true</span></span>) <span class="textbf">and</span> (<span class="textit"><span class="textrm">ThreadsRequested</span></span> <span 
+class="cmmi-10">&#x003E; </span><span class="textit"><span class="textrm">ThreadsAvailable</span></span>)
+</p> 
+<p><span class="textbf">then</span> 1 <span 
+class="cmsy-10">&#x2264; </span>number of threads <span 
+class="cmsy-10">&#x2264;</span><span class="textit"><span class="textrm">ThreadsAvailable</span></span>;
+</p> 
+<p><span class="textbf">else if</span> (<span class="textit"><span class="textrm">dyn-var</span></span> = <span class="textit"><span class="textrm">false</span></span>) <span class="textbf">and</span> (<span class="textit"><span class="textrm">ThreadsRequested</span></span> <span 
+class="cmsy-10">&#x2264;</span><span class="textit"><span class="textrm">ThreadsAvailable</span></span>)
+</p> 
+<p><span class="textbf">then</span> number of threads = <span class="textit"><span class="textrm">ThreadsRequested</span></span>;
+</p> 
+<p><span class="textbf">else if</span> (<span class="textit"><span class="textrm">dyn-var</span></span> = <span class="textit"><span class="textrm">false</span></span>) <span class="textbf">and</span> (<span class="textit"><span class="textrm">ThreadsRequested</span></span> <span 
+class="cmmi-10">&#x003E; </span><span class="textit"><span class="textrm">ThreadsAvailable</span></span>)
+</p> 
+<p><span class="textbf">then</span> behavior is implementation defined;
+                                                                            
+                                                                            
+</p> 
+<p>____________________________________________________________________________
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Since the initial value of the <span class="textit"><span class="textrm">dyn-var</span></span> ICV is implementation defined, programs that depend on a specific
+number of threads for correct execution should explicitly disable dynamic adjustment of the number of
+threads. <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-60-123"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">nthreads-var</span></span>,
+  <span class="textit"><span class="textrm">dyn-var</span></span>,
+  <span class="textit"><span class="textrm">thread-limit-var</span></span>,
+  and
+  <span class="textit"><span class="textrm">max-active-levels-var</span></span>
+  ICVs,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">num_threads</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.</li></ul>
+<!--l. 417--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu41.html" >next</a>] [<a 
+href="openmpse14.html" >prev</a>] [<a 
+href="openmpse14.html#tailopenmpse14.html" >prev-tail</a>] [<a 
+href="openmpsu40.html" >front</a>] [<a 
+href="openmpse14.html#openmpsu40.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu40.html"></a> </p> 
+ 
+</body> 
+</html>

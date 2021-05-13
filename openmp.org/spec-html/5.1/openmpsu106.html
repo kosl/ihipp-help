@@ -1,0 +1,1931 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>flush Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1237--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu107.html" >next</a>] [<a 
+href="openmpsu105.html" >prev</a>] [<a 
+href="openmpsu105.html#tailopenmpsu105.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu106.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu106.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.8</span>&#x00A0;&#x00A0;<a 
+ id="x139-1490002.19.8"></a><span class="textbf"><span class="texttt">flush</span></span> Construct</h4>
+<a 
+ id="dx139-149001"></a>
+<a 
+ id="dx139-149002"></a>
+<p><p><a 
+ id="Q1-139-635"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">flush</span></span> construct executes the OpenMP flush operation. This operation makes a thread&#8217;s temporary
+view of memory consistent with memory and enforces an order on the memory operations of the variables
+explicitly specified or implied. See the memory model description in Section&#x00A0;<a 
+href="openmpse4.html#x17-160001.4">1.4<!--tex4ht:ref: sec:Memory Model --></a> for more details. The
+<span class="textbf"><span class="texttt">flush</span></span> construct is a stand-alone directive.
+<p><a 
+ id="Q1-139-636"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">flush</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149003r1"></a></span></p> 
+<!--l. 1252--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">flush</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">memory</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">memory-order-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149006r1"></a></span></p> 
+<!--l. 1258--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149007r2"></a></span><span 
+class="pcrb8t-">seq_cst</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149008r3"></a></span><span 
+class="pcrb8t-">acq_rel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149009r4"></a></span><span 
+class="pcrb8t-">release</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149010r5"></a></span><span 
+class="pcrb8t-">acquire</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149011r6"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">flush</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149012r1"></a></span></p> 
+<!--l. 1270--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149013r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">flush</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">memory</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">order</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149014r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">memory-order-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149015r1"></a></span></p> 
+<!--l. 1276--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149016r2"></a></span><span 
+class="pcrb8t-">seq_cst</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149017r3"></a></span><span 
+class="pcrb8t-">acq_rel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149018r4"></a></span><span 
+class="pcrb8t-">release</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149019r5"></a></span><span 
+class="pcrb8t-">acquire</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x139-149020r6"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-139-637"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">flush</span></span> region is all threads in the <span class="emph">device-set</span> of its flush operation. Execution of
+a <span class="textbf"><span class="texttt">flush</span></span> region affects the memory and it affects the temporary view of memory of the encountering
+thread. It does not affect the temporary view of other threads. Other threads on devices in the <span class="emph">device-set</span>
+must themselves execute a flush operation in order to be guaranteed to observe the effects of the flush
+operation of the encountering thread.
+</p> 
+<p><p><a 
+ id="Q1-139-638"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+If neither <span class="textit"><span class="textrm">memory-order-clause</span></span> nor a list appears on the <span class="textbf"><span class="texttt">flush</span></span> construct then the behavior is as if
+<span class="textit"><span class="textrm">memory-order-clause</span></span> is <span class="textbf"><span class="texttt">seq_cst</span></span>.
+</p> 
+<p>A <span class="textbf"><span class="texttt">flush</span></span> construct with the <span class="textbf"><span class="texttt">seq_cst</span></span> clause, executed on a given thread, operates as if all data storage
+blocks that are accessible to the thread are flushed by a strong flush operation. A <span class="textbf"><span class="texttt">flush</span></span> construct with a list
+applies a strong flush operation to the items in the list, and the flush operation does not complete until the
+operation is complete for all specified list items. An implementation may implement a <span class="textbf"><span class="texttt">flush</span></span> construct
+with a list by ignoring the list and treating it the same as a <span class="textbf"><span class="texttt">flush</span></span> construct with the <span class="textbf"><span class="texttt">seq_cst</span></span>
+clause.
+</p> 
+<p>If no list items are specified, the flush operation has the release and/or acquire flush properties:
+</p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">memory-order-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">seq_cst</span></span>
+  or
+  <span class="textbf"><span class="texttt">acq_rel</span></span>,
+  the
+  flush
+  operation
+  is
+  both
+  a
+  release
+  flush
+  and
+  an
+  acquire
+  flush.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">memory-order-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">release</span></span>,
+  the
+  flush
+  operation
+  is
+  a
+  release
+  flush.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">memory-order-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">acquire</span></span>,
+                                                                            
+                                                                            
+  the
+  flush
+  operation
+  is
+  an
+  acquire
+  flush.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a pointer is present in the list, the pointer itself is flushed, not the memory block to which the pointer
+refers.
+</p> 
+<p>A <span class="textbf"><span class="texttt">flush</span></span> construct without a list corresponds to a call to <span class="textbf"><span class="texttt">atomic_thread_fence</span></span>, where the argument
+is given by the identifier that results from prefixing <span class="textbf"><span class="texttt">memory_order_</span></span> to <span class="textit"><span class="textrm">memory-order-clause</span></span>.
+</p> 
+<p>For a <span class="textbf"><span class="texttt">flush</span></span> construct without a list, the generated <span class="textbf"><span class="texttt">flush</span></span> region implicitly performs the corresponding
+call to <span class="textbf"><span class="texttt">atomic_thread_fence</span></span>. The behavior of an explicit call to <span class="textbf"><span class="texttt">atomic_thread_fence</span></span> that
+occurs in the program and does not have the argument <span class="textbf"><span class="texttt">memory_order_consume</span></span> is as if the call is
+replaced by its corresponding <span class="textbf"><span class="texttt">flush</span></span> construct.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the list item or a subobject of the list item has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, the allocation or association status
+of the <span class="textbf"><span class="texttt">POINTER</span></span> item is flushed, but the pointer target is not. If the list item is a Cray pointer, the pointer is
+flushed, but the object to which it points is not. Cray pointer support has been deprecated. If the list item is
+of type <span class="textbf"><span class="texttt">C_PTR</span></span>, the variable is flushed, but the storage that corresponds to that address is not flushed.
+If the list item or the subobject of the list item has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute and has an
+allocation status of allocated, the allocated variable is flushed; otherwise the allocation status is
+flushed.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Use of a <span class="textbf"><span class="texttt">flush</span></span> construct with a list is extremely error prone and users are strongly
+discouraged from attempting it. The following examples illustrate the ordering properties of the flush
+operation. In the following incorrect pseudocode example, the programmer intends to prevent
+simultaneous execution of the protected section by the two threads, but the program does not
+work properly because it does not enforce the proper ordering of the operations on variables <span class="textbf"><span class="texttt">a</span></span>
+and <span class="textbf"><span class="texttt">b</span></span>. Any shared data accessed in the protected section is not guaranteed to be current or
+consistent during or after the protected section. The atomic notation in the pseudocode in the
+following two examples indicates that the accesses to <span class="textbf"><span class="texttt">a</span></span> and <span class="textbf"><span class="texttt">b</span></span> are atomic write and atomic
+read operations. Otherwise both examples would contain data races and automatically result in
+unspecified behavior. The <span class="textit"><span class="textrm">flush</span></span> operations are strong flushes that are applied to the specified flush
+lists
+</p> 
+<p></p> 
+<div class="framedenv" id="framed-1">
+<span class="emph">Incorrect example:</span>
+&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;                                                <span class="textbf"><span class="texttt">a = b = 0</span></span>
+<!--tex4ht:inline--><div class="tabular"><table id="TBL-22" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-22-1g"><col 
+id="TBL-22-1" /><col 
+id="TBL-22-2" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-22-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-1-1"  
+class="td11"> <p>                                  </p> 
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-2-1"  
+class="td11"> <p> &#x00A0;&#x00A0;&#x00A0; <span class="textit"><span class="textrm">thread 1</span></span></p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-2-2"  
+class="td11"> <p>&#x00A0;&#x00A0;&#x00A0;                <span class="textit"><span class="textrm">thread 2</span></span>                                               </p> 
+</td>
+</tr><tr 
+class="vspace" style="font-size:10.0pt"><td 
+>&nbsp;</td><td 
+>&nbsp;</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-3-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(b = 1)</span></span>                      </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-3-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(a = 1)</span></span>                     </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-4-1"  
+class="td11"> <p><span class="textit"><span class="textrm">flush</span></span><span class="textbf"><span class="texttt">(b)</span></span>                            </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-4-2"  
+class="td11"> <p><span class="textit"><span class="textrm">flush</span></span><span class="textbf"><span class="texttt">(a)</span></span>                            </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-5-1"  
+class="td11"> <p><span class="textit"><span class="textrm">flush</span></span><span class="textbf"><span class="texttt">(a)</span></span>                            </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-5-2"  
+class="td11"> <p><span class="textit"><span class="textrm">flush</span></span><span class="textbf"><span class="texttt">(b)</span></span>                            </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-6-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(tmp = a)</span></span>                    </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-6-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(tmp = b)</span></span>                   </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-7-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">if (tmp == 0) then</span></span>                 </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-7-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">if (tmp == 0) then</span></span>                </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-8-1"  
+class="td11"> <p>&#x00A0;     <span class="textit"><span class="textrm">protected section</span></span>                                                 </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-8-2"  
+class="td11"> <p>&#x00A0;     <span class="textit"><span class="textrm">protected section</span></span>                                                </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-9-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">end if</span></span>                             </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-22-9-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">end if</span></span>                            </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-22-10-1"  
+class="td11">                                    </td></tr></table></div></div>
+<p>The problem with this example is that operations on variables <span class="textbf"><span class="texttt">a</span></span> and <span class="textbf"><span class="texttt">b</span></span> are not ordered with respect to each
+other. For instance, nothing prevents the compiler from moving the flush of <span class="textbf"><span class="texttt">b</span></span> on thread 1 or the
+flush of <span class="textbf"><span class="texttt">a</span></span> on thread 2 to a position completely after the protected section (assuming that the
+protected section on thread 1 does not reference <span class="textbf"><span class="texttt">b</span></span> and the protected section on thread 2 does not
+reference <span class="textbf"><span class="texttt">a</span></span>). If either re-ordering happens, both threads can simultaneously execute the protected
+section.
+</p> 
+<p>The following pseudocode example correctly ensures that the protected section is executed by only
+one thread at a time. Execution of the protected section by neither thread is considered correct
+in this example. This occurs if both flushes complete prior to either thread executing its <span class="textbf"><span class="texttt">if</span></span>
+statement.
+</p> 
+<p></p> 
+<div class="framedenv" id="framed-1">
+<span class="emph">Correct example:</span>
+&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;                                                <span class="textbf"><span class="texttt">a = b = 0</span></span>
+<!--tex4ht:inline--><div class="tabular"><table id="TBL-23" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-23-1g"><col 
+id="TBL-23-1" /><col 
+id="TBL-23-2" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-23-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-1-1"  
+class="td11"> <p>                                  </p> 
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-2-1"  
+class="td11"> <p> &#x00A0;&#x00A0;&#x00A0; <span class="textit"><span class="textrm">thread 1</span></span></p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-23-2-2"  
+class="td11"> <p>&#x00A0;&#x00A0;&#x00A0;                <span class="textit"><span class="textrm">thread 2</span></span>                                               </p> 
+</td>
+</tr><tr 
+class="vspace" style="font-size:10.0pt"><td 
+>&nbsp;</td><td 
+>&nbsp;</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-3-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(b = 1)</span></span>                      </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-23-3-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(a = 1)</span></span>                     </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-4-1"  
+class="td11"> <p><span class="textit"><span class="textrm">flush</span></span><span class="textbf"><span class="texttt">(a,b)</span></span>                          </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-23-4-2"  
+class="td11"> <p><span class="textit"><span class="textrm">flush</span></span><span class="textbf"><span class="texttt">(a,b)</span></span>                          </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-5-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(tmp = a)</span></span>                    </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-23-5-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">atomic(tmp = b)</span></span>                   </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-6-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">if (tmp == 0) then</span></span>                 </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-23-6-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">if (tmp == 0) then</span></span>                </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-7-1"  
+class="td11"> <p>&#x00A0;     <span class="textit"><span class="textrm">protected section</span></span>                                                 </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-23-7-2"  
+class="td11"> <p>&#x00A0;     <span class="textit"><span class="textrm">protected section</span></span>                                                </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-8-1"  
+class="td11"> <p><span class="textbf"><span class="texttt">end if</span></span>                             </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-23-8-2"  
+class="td11"> <p><span class="textbf"><span class="texttt">end if</span></span>                            </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-23-9-1"  
+class="td11">                                    </td></tr></table></div></div>
+<p>The compiler is prohibited from moving the flush at all for either thread, ensuring that the
+respective assignment is complete and the data is flushed before the <span class="textbf"><span class="texttt">if</span></span> statement is executed.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-139-639"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">flush</span></span> event occurs in a thread that encounters the <span class="textbf"><span class="texttt">flush</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-139-640"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_flush</span></span> callback for each occurrence of a <span class="textit"><span class="textrm">flush</span></span> event in
+that thread. This callback has the type signature <span class="textbf"><span class="texttt">ompt_callback_flush_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-139-641"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">flush</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  a
+  <span class="textit"><span class="textrm">memory-order-clause</span></span>
+  is
+  specified,
+  list
+  items
+  must
+  not
+  be
+  specified
+  on
+  the
+  <span class="textbf"><span class="texttt">flush</span></span>
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-139-642"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_flush_t</span></span>,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3590004.5.2.17">4.5.2.17<!--tex4ht:ref: sec:ompt_callback_flush_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.19.8.1  </span> <a 
+ id="x139-1500002.19.8.1"></a>Implicit Flushes</h5>
+<a 
+ id="dx139-150001"></a>
+<p>Flush operations implied when executing an <span class="textbf"><span class="texttt">atomic</span></span> region are described in Section <a 
+href="openmpsu105.html#x138-1480002.19.7">2.19.7<!--tex4ht:ref: subsec:atomic Construct --></a>.
+</p> 
+<p>A <span class="textbf"><span class="texttt">flush</span></span> region that corresponds to a <span class="textbf"><span class="texttt">flush</span></span> directive with the <span class="textbf"><span class="texttt">release</span></span> clause present is implied at the
+following locations:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  During
+  a
+  barrier
+  region;
+  </li>
+  <li class="itemize">
+  At
+  entry
+  to
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  At
+  entry
+  to
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  At
+  exit
+                                                                            
+                                                                            
+  from
+  a
+  <span class="textbf"><span class="texttt">critical</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  During
+  an
+  <span class="textbf"><span class="texttt">omp_unset_lock</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  During
+  an
+  <span class="textbf"><span class="texttt">omp_unset_nest_lock</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  Immediately
+  before
+  every
+  task
+  scheduling
+  point;
+  </li>
+  <li class="itemize">
+  At
+  exit
+  from
+  the
+  task
+  region
+  of
+  each
+  implicit
+  task;
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  At
+  exit
+  from
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region,
+  if
+  a
+  <span class="textbf"><span class="texttt">threads</span></span>
+  clause
+  or
+  a
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  with
+  a
+  <span class="textbf"><span class="texttt">source</span></span>
+  dependence
+  type
+  is
+  present,
+  or
+  if
+  no
+  clauses
+  are
+  present;
+  and
+  </li>
+  <li class="itemize">
+  During
+  a
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  region,
+  if
+  the
+  <span class="textit"><span class="textrm">cancel-var</span></span>
+  ICV
+  is
+  <span class="textit"><span class="textrm">true</span></span>.</li></ul>
+                                                                            
+                                                                            
+<p>For a <span class="textbf"><span class="texttt">target</span></span> construct, the <span class="emph">device-set</span> of an implicit release flush that is performed in a target task during
+the generation of the <span class="textbf"><span class="texttt">target</span></span> region and that is performed on exit from the initial task region that implicitly
+encloses the <span class="textbf"><span class="texttt">target</span></span> region consists of the devices that execute the target task and the <span class="textbf"><span class="texttt">target</span></span>
+region.
+</p> 
+<p>A <span class="textbf"><span class="texttt">flush</span></span> region that corresponds to a <span class="textbf"><span class="texttt">flush</span></span> directive with the <span class="textbf"><span class="texttt">acquire</span></span> clause present is implied at the
+following locations:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  During
+  a
+  barrier
+  region;
+  </li>
+  <li class="itemize">
+  At
+  exit
+  from
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  At
+  entry
+  to
+  a
+  <span class="textbf"><span class="texttt">critical</span></span>
+  region;
+  </li>
+  <li class="itemize">If the region causes the lock to be set, during:
+    <ul class="itemize2">
+    <li class="itemize">
+    an
+    <span class="textbf"><span class="texttt">omp_set_lock</span></span>
+    region;
+                                                                            
+                                                                            
+    </li>
+    <li class="itemize">
+    an
+    <span class="textbf"><span class="texttt">omp_test_lock</span></span>
+    region;
+    </li>
+    <li class="itemize">
+    an
+    <span class="textbf"><span class="texttt">omp_set_nest_lock</span></span>
+    region;
+    and
+    </li>
+    <li class="itemize">
+    an
+    <span class="textbf"><span class="texttt">omp_test_nest_lock</span></span>
+    region;</li></ul>
+  </li>
+  <li class="itemize">Immediately after every task scheduling point;
+  </li>
+  <li class="itemize">At entry to the task region of each implicit task;
+  </li>
+  <li class="itemize">At entry to an <span class="textbf"><span class="texttt">ordered</span></span> region, if a <span class="textbf"><span class="texttt">threads</span></span> clause or a <span class="textbf"><span class="texttt">depend</span></span> clause with a <span class="textbf"><span class="texttt">sink</span></span> dependence
+  type is present, or if no clauses are present; and
+  </li>
+  <li class="itemize">Immediately before a cancellation point, if the <span class="textit"><span class="textrm">cancel-var</span></span> ICV is <span class="textit"><span class="textrm">true</span></span> and cancellation has been
+  activated.</li></ul>
+<p>For a <span class="textbf"><span class="texttt">target</span></span> construct, the <span class="emph">device-set</span> of an implicit acquire flush that is performed in a target task
+following the generation of the <span class="textbf"><span class="texttt">target</span></span> region or that is performed on entry to the initial task region that
+implicitly encloses the <span class="textbf"><span class="texttt">target</span></span> region consists of the devices that execute the target task and the <span class="textbf"><span class="texttt">target</span></span>
+region.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  A <span class="textbf"><span class="texttt">flush</span></span> region is not implied at the following locations: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+                                                                            
+                                                                            
+  At
+  entry
+  to
+  worksharing
+  regions;
+  and
+  </li>
+  <li class="itemize">
+  At
+  entry
+  to
+  or
+  exit
+  from
+  <span class="textbf"><span class="texttt">masked</span></span>
+  regions.</li></ul>
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p>The synchronization behavior of implicit flushes is as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  region
+  for
+  which
+  the
+  corresponding
+  construct
+  has
+  the
+  <span class="textbf"><span class="texttt">release</span></span>,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">acq_rel</span></span>,
+  or
+  <span class="textbf"><span class="texttt">seq_cst</span></span>
+  clause
+  and
+  specifies
+  an
+  atomic
+  operation
+  that
+  starts
+  a
+  given
+  release
+  sequence,
+  the
+  release
+  flush
+  that
+  is
+  performed
+  on
+  entry
+  to
+  the
+  atomic
+  operation
+  synchronizes
+  with
+  an
+  acquire
+  flush
+  that
+  is
+  performed
+  by
+  a
+  different
+  thread
+  and
+  has
+  an
+  associated
+                                                                            
+                                                                            
+  atomic
+  operation
+  that
+  reads
+  a
+  value
+  written
+  by
+  a
+  modification
+  in
+  the
+  release
+  sequence.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  region
+  for
+  which
+  the
+  corresponding
+  construct
+  has
+  the
+  <span class="textbf"><span class="texttt">acquire</span></span>,
+  <span class="textbf"><span class="texttt">acq_rel</span></span>,
+  or
+  <span class="textbf"><span class="texttt">seq_cst</span></span>
+  clause
+  and
+  specifies
+  an
+  atomic
+  operation
+  that
+  reads
+                                                                            
+                                                                            
+  a
+  value
+  written
+  by
+  a
+  given
+  modification,
+  a
+  release
+  flush
+  that
+  is
+  performed
+  by
+  a
+  different
+  thread
+  and
+  has
+  an
+  associated
+  release
+  sequence
+  that
+  contains
+  that
+  modification
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  that
+  is
+  performed
+  on
+  exit
+  from
+  the
+  atomic
+  operation.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  a
+  <span class="textbf"><span class="texttt">critical</span></span>
+  region
+  that
+  has
+  a
+  given
+  name,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  on
+  exit
+  from
+  the
+  region
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  on
+  entry
+  to
+  the
+  next
+  <span class="textbf"><span class="texttt">critical</span></span>
+  region
+  with
+  the
+  same
+                                                                            
+                                                                            
+  name
+  that
+  is
+  performed
+  by
+  a
+  different
+  thread,
+  if
+  it
+  exists.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  team
+  executes
+  a
+  <span class="textbf"><span class="texttt">barrier</span></span>
+  region,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  by
+  each
+  thread
+  within
+  the
+  region
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+                                                                            
+                                                                            
+  by
+  all
+  other
+  threads
+  within
+  the
+  region.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  a
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  region
+  that
+  does
+  not
+  result
+  in
+  the
+  creation
+  of
+  a
+  dependent
+  task
+  and
+  the
+  task
+  that
+  encounters
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  construct
+  has
+  at
+  least
+  one
+  child
+  task,
+                                                                            
+                                                                            
+  the
+  behavior
+  is
+  as
+  if
+  each
+  thread
+  that
+  executes
+  a
+  child
+  task
+  that
+  is
+  generated
+  before
+  the
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  region
+  performs
+  a
+  release
+  flush
+  upon
+  completion
+  of
+  the
+  child
+  task
+  that
+  synchronizes
+  with
+  an
+  acquire
+  flush
+  performed
+  in
+  the
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  region.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  When
+  a
+  thread
+  executes
+  a
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  region,
+  the
+  behavior
+  is
+  as
+  if
+  each
+  thread
+  that
+  executes
+  a
+  remaining
+  descendant
+  task
+  performs
+  a
+  release
+  flush
+  upon
+  completion
+  of
+  the
+  descendant
+  task
+  that
+  synchronizes
+  with
+  an
+  acquire
+  flush
+  performed
+  on
+  exit
+  from
+  the
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  region.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  does
+  not
+  arise
+  from
+  a
+  stand-alone
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  directive,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  on
+  exit
+  from
+  the
+  region
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  on
+  entry
+  to
+  an
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  encountered
+  in
+  the
+  next
+  logical
+  iteration
+  to
+  be
+  executed
+  by
+  a
+  different
+  thread,
+  if
+  it
+  exists.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  arises
+  from
+  a
+  stand-alone
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  directive,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+                                                                            
+                                                                            
+  performed
+  in
+  the
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  from
+  a
+  given
+  source
+  iteration
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  in
+  all
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  regions
+  executed
+  by
+  a
+  different
+  thread
+  that
+  are
+  waiting
+  for
+  dependences
+  on
+  that
+  iteration
+  to
+  be
+  satisfied.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  team
+                                                                            
+                                                                            
+  begins
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  by
+  the
+  primary
+  thread
+  on
+  entry
+  to
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  on
+  entry
+  to
+  each
+  implicit
+  task
+  that
+  is
+  assigned
+  to
+  a
+  different
+                                                                            
+                                                                            
+  thread.
+  </li>
+  <li class="itemize">
+  When
+  an
+  initial
+  thread
+  begins
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  that
+  is
+  generated
+  by
+  a
+  different
+  thread
+  from
+  a
+  target
+  task,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  by
+  the
+  generating
+  thread
+  in
+  the
+  target
+  task
+  synchronizes
+                                                                            
+                                                                            
+  with
+  the
+  acquire
+  flush
+  performed
+  by
+  the
+  initial
+  thread
+  on
+  entry
+  to
+  its
+  initial
+  task
+  region.
+  </li>
+  <li class="itemize">
+  When
+  an
+  initial
+  thread
+  completes
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  that
+  is
+  generated
+  by
+  a
+  different
+  thread
+  from
+  a
+  target
+  task,
+  the
+  behavior
+  is
+                                                                            
+                                                                            
+  as
+  if
+  the
+  release
+  flush
+  performed
+  by
+  the
+  initial
+  thread
+  on
+  exit
+  from
+  its
+  initial
+  task
+  region
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  by
+  the
+  generating
+  thread
+  in
+  the
+  target
+  task.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  encounters
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct,
+  the
+  behavior
+                                                                            
+                                                                            
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  by
+  the
+  thread
+  on
+  entry
+  to
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  on
+  entry
+  to
+  each
+  initial
+  task
+  that
+  is
+  executed
+  by
+  a
+  different
+  initial
+  thread
+  that
+  participates
+  in
+  the
+  execution
+  of
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  that
+  encounters
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  reaches
+  the
+  end
+  of
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  by
+  each
+  different
+  participating
+  initial
+  thread
+  at
+  exit
+  from
+  its
+  initial
+  task
+  synchronizes
+  with
+                                                                            
+                                                                            
+  the
+  acquire
+  flush
+  performed
+  by
+  the
+  thread
+  at
+  exit
+  from
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  When
+  a
+  task
+  generates
+  an
+  explicit
+  task
+  that
+  begins
+  execution
+  on
+  a
+  different
+  thread,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  thread
+  that
+  is
+  executing
+  the
+  generating
+  task
+                                                                            
+                                                                            
+  performs
+  a
+  release
+  flush
+  that
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  by
+  the
+  thread
+  that
+  begins
+  to
+  execute
+  the
+  explicit
+  task.
+  </li>
+  <li class="itemize">
+  When
+  an
+  undeferred
+  task
+  completes
+  execution
+  on
+  a
+  given
+  thread
+  that
+  is
+  different
+  from
+  the
+  thread
+  on
+  which
+  its
+                                                                            
+                                                                            
+  generating
+  task
+  is
+  suspended,
+  the
+  behavior
+  is
+  as
+  if
+  a
+  release
+  flush
+  performed
+  by
+  the
+  thread
+  that
+  completes
+  execution
+  of
+  the
+  undeferred
+  task
+  synchronizes
+  with
+  an
+  acquire
+  flush
+  performed
+  by
+  the
+  thread
+  that
+  resumes
+  execution
+  of
+  the
+  generating
+  task.
+  </li>
+  <li class="itemize">
+  When
+                                                                            
+                                                                            
+  a
+  dependent
+  task
+  with
+  one
+  or
+  more
+  predecessor
+  tasks
+  begins
+  execution
+  on
+  a
+  given
+  thread,
+  the
+  behavior
+  is
+  as
+  if
+  each
+  release
+  flush
+  performed
+  by
+  a
+  different
+  thread
+  on
+  completion
+  of
+  a
+  predecessor
+  task
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  by
+  the
+  thread
+                                                                            
+                                                                            
+  that
+  begins
+  to
+  execute
+  the
+  dependent
+  task.
+  </li>
+  <li class="itemize">
+  When
+  a
+  task
+  begins
+  execution
+  on
+  a
+  given
+  thread
+  and
+  it
+  is
+  mutually
+  exclusive
+  with
+  respect
+  to
+  another
+  sibling
+  task
+  that
+  is
+  executed
+  by
+  a
+  different
+  thread,
+  the
+  behavior
+  is
+  as
+  if
+  each
+                                                                            
+                                                                            
+  release
+  flush
+  performed
+  on
+  completion
+  of
+  the
+  sibling
+  task
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  by
+  the
+  thread
+  that
+  begins
+  to
+  execute
+  the
+  task.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  a
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  region,
+  the
+  <span class="textit"><span class="textrm">cancel-var</span></span>
+  ICV
+  is
+  <span class="textit"><span class="textrm">true</span></span>,
+  and
+  cancellation
+  is
+  not
+                                                                            
+                                                                            
+  already
+  activated
+  for
+  the
+  specified
+  region,
+  the
+  behavior
+  is
+  as
+  if
+  the
+  release
+  flush
+  performed
+  during
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  region
+  synchronizes
+  with
+  the
+  acquire
+  flush
+  performed
+  by
+  a
+  different
+  thread
+  immediately
+  before
+  a
+  cancellation
+  point
+  in
+  which
+  that
+  thread
+  observes
+  cancellation
+  was
+  activated
+  for
+                                                                            
+                                                                            
+  the
+  region.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  an
+  <span class="textbf"><span class="texttt">omp_unset_lock</span></span>
+  region
+  that
+  causes
+  the
+  specified
+  lock
+  to
+  be
+  unset,
+  the
+  behavior
+  is
+  as
+  if
+  a
+  release
+  flush
+  is
+  performed
+  during
+  the
+  <span class="textbf"><span class="texttt">omp_unset_lock</span></span>
+  region
+  that
+  synchronizes
+  with
+  an
+  acquire
+  flush
+  that
+  is
+  performed
+                                                                            
+                                                                            
+  during
+  the
+  next
+  <span class="textbf"><span class="texttt">omp_set_lock</span></span>
+  or
+  <span class="textbf"><span class="texttt">omp_test_lock</span></span>
+  region
+  to
+  be
+  executed
+  by
+  a
+  different
+  thread
+  that
+  causes
+  the
+  specified
+  lock
+  to
+  be
+  set.
+  </li>
+  <li class="itemize">
+  When
+  a
+  thread
+  executes
+  an
+  <span class="textbf"><span class="texttt">omp_unset_nest_lock</span></span>
+  region
+  that
+  causes
+  the
+  specified
+  nested
+  lock
+  to
+  be
+  unset,
+  the
+  behavior
+                                                                            
+                                                                            
+  is
+  as
+  if
+  a
+  release
+  flush
+  is
+  performed
+  during
+  the
+  <span class="textbf"><span class="texttt">omp_unset_nest_lock</span></span>
+  region
+  that
+  synchronizes
+  with
+  an
+  acquire
+  flush
+  that
+  is
+  performed
+  during
+  the
+  next
+  <span class="textbf"><span class="texttt">omp_set_nest_lock</span></span>
+  or
+  <span class="textbf"><span class="texttt">omp_test_nest_lock</span></span>
+  region
+  to
+  be
+  executed
+  by
+  a
+  different
+  thread
+  that
+  causes
+  the
+  specified
+  nested
+  lock
+  to
+  be
+                                                                            
+                                                                            
+  set.</li></ul>
+                                                                            
+                                                                            
+<!--l. 1626--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu107.html" >next</a>] [<a 
+href="openmpsu105.html" >prev</a>] [<a 
+href="openmpsu105.html#tailopenmpsu105.html" >prev-tail</a>] [<a 
+href="openmpsu106.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu106.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu106.html"></a> </p> 
+ 
+</body> 
+</html>

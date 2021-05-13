@@ -1,0 +1,151 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>ompt_start_tool</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 86--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu205.html" >next</a>] [<a 
+href="openmpse47.html" >prev</a>] [<a 
+href="openmpse47.html#tailopenmpse47.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu204.html">tail</a>] [<a 
+href="openmpse47.html#openmpsu204.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.1</span>&#x00A0;&#x00A0;<a 
+ id="x259-2920004.2.1"></a><span class="textbf"><span class="texttt">ompt_start_tool</span></span></h4>
+<p><p><a 
+ id="Q1-259-1422"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+In order to use the OMPT interface provided by an OpenMP implementation, a tool must implement the
+<span class="textbf"><span class="texttt">ompt_start_tool</span></span> function, through which the OpenMP implementation initializes the
+tool.
+<p><a 
+ id="Q1-259-1423"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x259-292001r1"></a></span></p> 
+<!--l. 96--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x259-292002r2"></a></span><span 
+class="pcrb8t-">ompt_start_tool_result_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">ompt_start_tool</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x259-292003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">unsigned</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">omp_version</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x259-292004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">runtime_version</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x259-292005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x259-292006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-259-1424"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+For a tool to use the OMPT interface that an OpenMP implementation provides, the tool must define a
+globally-visible implementation of the function <span class="textbf"><span class="texttt">ompt_start_tool</span></span>. The tool indicates that it will use the
+OMPT interface that an OpenMP implementation provides by returning a non-null pointer to an
+<span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure from the <span class="textbf"><span class="texttt">ompt_start_tool</span></span> implementation that it
+provides. The <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure contains pointers to tool initialization and
+finalization callbacks as well as a tool data word that an OpenMP implementation must pass by reference to
+these callbacks. A tool may return <span class="textbf"><span class="texttt">NULL</span></span> from <span class="textbf"><span class="texttt">ompt_start_tool</span></span> to indicate that it will not use the
+OMPT interface in a particular execution.
+</p> 
+<p>A tool may use the <span class="textit"><span class="textrm">omp_version</span></span> argument to determine if it is compatible with the OMPT interface that the
+OpenMP implementation provides.
+</p> 
+<p><p><a 
+ id="Q1-259-1425"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The argument <span class="textit"><span class="textrm">omp_version</span></span> is the value of the <span class="textbf"><span class="texttt">_OPENMP</span></span> version macro associated with the OpenMP API
+implementation. This value identifies the OpenMP API version that an OpenMP implementation supports,
+which specifies the version of the OMPT interface that it supports.
+</p> 
+<p>The argument <span class="textit"><span class="textrm">runtime_version</span></span> is a version string that unambiguously identifies the OpenMP
+implementation.
+</p> 
+<p><p><a 
+ id="Q1-259-1426"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The argument <span class="textit"><span class="textrm">runtime_version</span></span> must be an immutable string that is defined for the lifetime of a program
+execution.
+</p> 
+<p><p><a 
+ id="Q1-259-1427"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+If a tool returns a non-null pointer to an <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure, an OpenMP
+implementation will call the tool initializer specified by the <span class="textit"><span class="textrm">initialize</span></span> field in this structure before beginning
+execution of any OpenMP construct or completing execution of any environment routine invocation; the
+OpenMP implementation will call the tool finalizer specified by the <span class="textit"><span class="textrm">finalize</span></span> field in this structure when the
+OpenMP implementation shuts down.
+</p> 
+<p><p><a 
+ id="Q1-259-1428"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1">4.4.1<!--tex4ht:ref: sec:ompt_start_tool_result_t --></a>.</li></ul><!--l. 152--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu205.html" >next</a>] [<a 
+href="openmpse47.html" >prev</a>] [<a 
+href="openmpse47.html#tailopenmpse47.html" >prev-tail</a>] [<a 
+href="openmpsu204.html" >front</a>] [<a 
+href="openmpse47.html#openmpsu204.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<p><a 
+ id="tailopenmpsu204.html"></a> </p> 
+ 
+</body> 
+</html>

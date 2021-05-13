@@ -1,0 +1,230 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Free Source Form Conditional Compilation Sentinel</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 797--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse11.html" >next</a>] [<a 
+href="openmpsu23.html" >prev</a>] [<a 
+href="openmpsu23.html#tailopenmpsu23.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu24.html">tail</a>] [<a 
+href="openmpse10.html#openmpsu24.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.2.2</span>&#x00A0;&#x00A0;<a 
+ id="x40-390002.2.2"></a>Free Source Form Conditional Compilation Sentinel</h4>
+<a 
+ id="dx40-39001"></a>
+<a 
+ id="dx40-39002"></a>
+<p>The following conditional compilation sentinel is recognized in free form source files:
+                                                                            
+                                                                            
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39003r1"></a></span></p> 
+<!--l. 803--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39004r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39005r3"></a></span></pre>
+<p>To enable conditional compilation, a line with a conditional compilation sentinel must satisfy the following
+criteria:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  sentinel
+  can
+  appear
+  in
+  any
+  column
+  but
+  must
+  be
+  preceded
+  only
+  by
+  white
+  space;
+  </li>
+  <li class="itemize">
+  The
+  sentinel
+  must
+  appear
+  as
+  a
+  single
+  word
+  with
+  no
+  intervening
+  white
+  space;
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  Initial
+  lines
+  must
+  have
+  a
+  space
+  after
+  the
+  sentinel;
+  </li>
+  <li class="itemize">
+  Continued
+  lines
+  must
+  have
+  an
+  ampersand
+  as
+  the
+  last
+  non-blank
+  character
+  on
+  the
+  line,
+  prior
+  to
+  any
+  comment
+  appearing
+  on
+  the
+  conditionally
+  compiled
+  line.</li></ul>
+<p>Continuation lines can have an ampersand after the sentinel, with optional white space before and after the
+ampersand. If these criteria are met, the sentinel is replaced by two spaces. If these criteria are not met, the
+line is left unchanged.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  In the following example, the two forms for specifying conditional compilation in free source form
+are equivalent (the first line represents the position of the first 9 columns):
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39006r1"></a></span></p> 
+<!--l. 827--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39007r2"></a></span><span 
+class="pcrb8t-">c23456789</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iam</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_thread_num</span><span 
+class="pcrb8t-">()</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">+</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39009r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">index</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39010r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39011r6"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">ifdef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_OPENMP</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39012r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iam</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_thread_num</span><span 
+class="pcrb8t-">()</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">+</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39013r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">index</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39014r9"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">endif</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x40-39015r10"></a></span></pre>
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<!--l. 842--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse11.html" >next</a>] [<a 
+href="openmpsu23.html" >prev</a>] [<a 
+href="openmpsu23.html#tailopenmpsu23.html" >prev-tail</a>] [<a 
+href="openmpsu24.html" >front</a>] [<a 
+href="openmpse10.html#openmpsu24.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu24.html"></a> </p> 
+ 
+</body> 
+</html>

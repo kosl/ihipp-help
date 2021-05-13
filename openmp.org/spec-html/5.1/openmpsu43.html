@@ -1,0 +1,475 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>single Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 239--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu44.html" >next</a>] [<a 
+href="openmpsu42.html" >prev</a>] [<a 
+href="openmpsu42.html#tailopenmpsu42.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu43.html">tail</a>] [<a 
+href="openmpse18.html#openmpsu43.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.10.2</span>&#x00A0;&#x00A0;<a 
+ id="x67-670002.10.2"></a><span class="textbf"><span class="texttt">single</span></span> Construct</h4>
+<a 
+ id="dx67-67001"></a>
+<a 
+ id="dx67-67002"></a>
+<p><p><a 
+ id="Q1-67-164"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">single</span></span> construct specifies that the associated structured block is executed by only one of the threads
+in the team (not necessarily the primary thread), in the context of its implicit task. The other threads in the
+team, which do not execute the block, wait at an implicit barrier at the end of a <span class="textbf"><span class="texttt">single</span></span> region unless a
+<span class="textbf"><span class="texttt">nowait</span></span> clause is specified.
+<p><a 
+ id="Q1-67-165"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">single</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67003r1"></a></span></p> 
+<!--l. 254--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">single</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67007r1"></a></span></p> 
+<!--l. 262--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67008r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67009r3"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67010r4"></a></span><span 
+class="pcrb8t-">copyprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67011r5"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67012r6"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67013r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">single</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67014r1"></a></span></p> 
+<!--l. 275--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67015r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">single</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67016r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67017r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">single</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">end_clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">end_clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67018r5"></a></span></pre>
+<p>or
+                                                                            
+                                                                            
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67019r1"></a></span></p> 
+<!--l. 281--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67020r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">single</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67021r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67022r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">single</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">end_clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">end_clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67023r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67024r1"></a></span></p> 
+<!--l. 289--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67025r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67026r3"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67027r4"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67028r5"></a></span></pre>
+                                                                            
+                                                                            
+<p>and <span class="textit"><span class="textrm">end_clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67029r1"></a></span></p> 
+<!--l. 299--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67030r2"></a></span><span 
+class="pcrb8t-">copyprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67031r3"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x67-67032r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-67-166"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">single</span></span> region is the current team. A <span class="textbf"><span class="texttt">single</span></span> region binds to the innermost
+enclosing <span class="textbf"><span class="texttt">parallel</span></span> region. Only the threads of the team that executes the binding <span class="textbf"><span class="texttt">parallel</span></span> region
+participate in the execution of the structured block and the implied barrier of the <span class="textbf"><span class="texttt">single</span></span> region if the
+barrier is not eliminated by a <span class="textbf"><span class="texttt">nowait</span></span> clause.
+</p> 
+<p><p><a 
+ id="Q1-67-167"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Only one of the encountering threads will execute the structured block associated with the <span class="textbf"><span class="texttt">single</span></span>
+construct. The method of choosing a thread to execute the structured block each time the team encounters
+the construct is implementation defined. An implicit barrier occurs at the end of a <span class="textbf"><span class="texttt">single</span></span> region if the
+<span class="textbf"><span class="texttt">nowait</span></span> clause is not specified.
+</p> 
+<p><p><a 
+ id="Q1-67-168"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">single-begin</span></span> event occurs after an implicit task encounters a <span class="textbf"><span class="texttt">single</span></span> construct but before the task
+starts to execute the structured block of the <span class="textbf"><span class="texttt">single</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">single-end</span></span> event occurs after an implicit task finishes execution of a <span class="textbf"><span class="texttt">single</span></span> region but before it
+resumes execution of the enclosing region.
+</p> 
+<p><p><a 
+ id="Q1-67-169"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its
+<span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">single-begin</span></span> event in that thread. Similarly, a thread dispatches a
+registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument for each
+occurrence of a <span class="textit"><span class="textrm">single-end</span></span> event in that thread. For each of these callbacks, the <span class="textit"><span class="textrm">wstype</span></span> argument is
+<span class="textbf"><span class="texttt">ompt_work_single_executor</span></span> if the thread executes the structured block associated with the
+<span class="textbf"><span class="texttt">single</span></span> region; otherwise, the <span class="textit"><span class="textrm">wstype</span></span> argument is <span class="textbf"><span class="texttt">ompt_work_single_other</span></span>. The callback has type
+signature <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-67-170"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">single</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">copyprivate</span></span>
+  clause
+  must
+  not
+  be
+  used
+  with
+  the
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">single</span></span>
+  construct.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A throw executed inside a <span class="textbf"><span class="texttt">single</span></span> region must cause execution to resume within the same <span class="textbf"><span class="texttt">single</span></span>
+  region, and the same thread that threw the exception must catch it.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-67-171"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu63.html#x90-1000002.13.4">2.13.4<!--tex4ht:ref: subsec:allocate Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">private</span></span>
+  and
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">copyprivate</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu118.html#x153-1820002.21.6.2">2.21.6.2<!--tex4ht:ref: subsubsec:copyprivate clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_work_single_executor</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_work_single_other</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3220004.4.4.15">4.4.4.15<!--tex4ht:ref: sec:ompt_work_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>,
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3470004.5.2.5">4.5.2.5<!--tex4ht:ref: sec:ompt_callback_work_t --></a>.
+  </li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<!--l. 382--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu44.html" >next</a>] [<a 
+href="openmpsu42.html" >prev</a>] [<a 
+href="openmpsu42.html#tailopenmpsu42.html" >prev-tail</a>] [<a 
+href="openmpsu43.html" >front</a>] [<a 
+href="openmpse18.html#openmpsu43.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu43.html"></a> </p> 
+ 
+</body> 
+</html>

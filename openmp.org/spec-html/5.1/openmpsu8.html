@@ -1,0 +1,199 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Tool Terminology</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1697--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse3.html" >next</a>] [<a 
+href="openmpsu7.html" >prev</a>] [<a 
+href="openmpsu7.html#tailopenmpsu7.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu8.html">tail</a>] [<a 
+href="openmpse2.html#openmpsu8.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.2.8</span>&#x00A0;&#x00A0;<a 
+ id="x15-140001.2.8"></a>Tool Terminology</h4>
+<p><div class="glossaryterm">tool</div> <div class="glossarydefstart">Code that can observe and/or modify the execution of an application. </div>
+</p> 
+<p><div class="glossaryterm">first-party tool</div> <div class="glossarydefstart">A tool that executes in the address space of the program that it is monitoring.
+</div>
+</p> 
+<p><div class="glossaryterm">third-party tool</div> <div class="glossarydefstart">A tool that executes as a separate process from the process that it is monitoring and
+potentially controlling. </div>
+</p> 
+<p><div class="glossaryterm">activated tool</div> <div class="glossarydefstart">A <span class="emph">first-party tool</span> that successfully completed its initialization. </div>
+</p> 
+<p><div class="glossaryterm">event</div> <div class="glossarydefstart">A point of interest in the execution of a thread. </div>
+</p> 
+<p><div class="glossaryterm">native thread</div> <div class="glossarydefstart">A thread defined by an underlying thread implementation. </div>
+</p> 
+<p><div class="glossaryterm">tool callback</div> <div class="glossarydefstart">A function that a tool provides to an OpenMP implementation to invoke when an associated
+event occurs. </div>
+</p> 
+<p><div class="glossaryterm">registering a callback</div> <div class="glossarydefstart">Providing a <span class="emph">tool callback</span> to an OpenMP implementation. </div>
+</p> 
+<p><div class="glossaryterm">dispatching a callback at an event</div> <div class="glossarydefstart">Processing a callback when an associated <span class="emph">event</span> occurs in a
+manner consistent with the return code provided when a <span class="emph">first-party tool</span> registered the callback.
+</div>
+</p> 
+<p><div class="glossaryterm">thread state</div> <div class="glossarydefstart">An enumeration type that describes the current OpenMP activity of a <span class="emph">thread</span>. A <span class="emph">thread</span> can be in
+only one state at any time. </div>
+</p> 
+<p><div class="glossaryterm">wait identifier</div> <div class="glossarydefstart">A unique opaque handle associated with each data object (for example, a lock) that the
+OpenMP runtime uses to enforce mutual exclusion and potentially to cause a thread to wait actively or
+passively. </div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">frame</div> <div class="glossarydefstart">A storage area on a thread&#8217;s stack associated with a procedure invocation. A frame includes space for
+one or more saved registers and often also includes space for saved arguments, local variables, and padding
+for alignment. </div>
+</p> 
+<p><div class="glossaryterm">canonical frame address</div> <div class="glossarydefstart">An address associated with a procedure <span class="emph">frame</span> on a call stack that was the value of
+the stack pointer immediately prior to calling the procedure for which the frame represents the invocation.
+</div>
+</p> 
+<p><div class="glossaryterm">runtime entry point</div> <div class="glossarydefstart">A function interface provided by an OpenMP runtime for use by a tool. A runtime entry
+point is typically not associated with a global function symbol. </div>
+</p> 
+<p><div class="glossaryterm">trace record</div> <div class="glossarydefstart">A data structure in which to store information associated with an occurrence of an <span class="emph">event</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">native trace record</div> <div class="glossarydefstart">A <span class="emph">trace record</span> for an OpenMP device that is in a device-specific format.
+</div>
+</p> 
+<p><div class="glossaryterm">signal</div> <div class="glossarydefstart">A software interrupt delivered to a <span class="emph">thread</span>. </div>
+</p> 
+<p><div class="glossaryterm">signal handler</div> <div class="glossarydefstart">A function called asynchronously when a <span class="emph">signal</span> is delivered to a <span class="emph">thread</span>. </div>
+</p> 
+<p><div class="glossaryterm">async signal safe</div> <div class="glossarydefstart">The guarantee that interruption by <span class="emph">signal</span> delivery will not interfere with a set
+of operations. An async signal safe <span class="emph">runtime entry point</span> is safe to call from a <span class="emph">signal handler</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">code block</div> <div class="glossarydefstart">A contiguous region of memory that contains code of an OpenMP program to be executed on a
+device. </div>
+</p> 
+<p><div class="glossaryterm">OMPT</div> <div class="glossarydefstart">An interface that helps a <span class="emph">first-party tool</span> monitor the execution of an OpenMP program.
+</div>
+</p> 
+<p><div class="glossaryterm">OMPT interface state</div> <div class="glossarydefstart">A state that indicates the permitted interactions between a first-party tool and the
+OpenMP implementation. </div>
+</p> 
+<p><div class="glossaryterm">OMPT active</div> <div class="glossarydefstart">An <span class="emph">OMPT interface state</span> in which the OpenMP implementation is prepared to accept runtime
+calls from a <span class="emph">first party tool</span> and will dispatch any registered callbacks and in which a first-party tool can
+invoke <span class="emph">runtime entry points</span> if not otherwise restricted. </div>
+</p> 
+<p><div class="glossaryterm">OMPT pending</div> <div class="glossarydefstart">An <span class="emph">OMPT interface state</span> in which the OpenMP implementation can only call functions to
+initialize a <span class="emph">first party tool</span> and in which a <span class="emph">first-party tool</span> cannot invoke <span class="emph">runtime entry points</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">OMPT inactive</div> <div class="glossarydefstart">An <span class="emph">OMPT interface state</span> in which the OpenMP implementation will not make any
+callbacks and in which a <span class="emph">first-party tool</span> cannot invoke <span class="emph">runtime entry points</span>. </div>
+</p> 
+<p><div class="glossaryterm">OMPD</div> <div class="glossarydefstart">An interface that helps a <span class="emph">third-party tool</span> inspect the OpenMP state of a program that has begun
+execution. </div>
+</p> 
+<p><div class="glossaryterm">OMPD library</div> <div class="glossarydefstart">A dynamically loadable library that implements the <span class="emph">OMPD</span> interface. </div>
+</p> 
+<p><div class="glossaryterm">image file</div> <div class="glossarydefstart">An executable or shared library. </div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">address space</div> <div class="glossarydefstart">A collection of logical, virtual, or physical memory address ranges that contain code, stack,
+and/or data. Address ranges within an address space need not be contiguous. An address space consists of
+one or more <span class="emph">segments</span>. </div>
+</p> 
+<p><div class="glossaryterm">segment</div> <div class="glossarydefstart">A portion of an address space associated with a set of address ranges. </div>
+</p> 
+<p><div class="glossaryterm">OpenMP architecture</div> <div class="glossarydefstart">The architecture on which an OpenMP <span class="emph">region</span> executes. </div>
+</p> 
+<p><div class="glossaryterm">tool architecture</div> <div class="glossarydefstart">The architecture on which an <span class="emph">OMPD</span> tool executes. </div>
+</p> 
+<p><div class="glossaryterm">OpenMP process</div> <div class="glossarydefstart">A collection of one or more <span class="emph">threads</span> and <span class="emph">address spaces</span>. A process may contain <span class="emph">threads</span>
+and <span class="emph">address spaces</span> for multiple <span class="emph">OpenMP architectures</span>. At least one thread in an OpenMP process is an
+OpenMP <span class="emph">thread</span>. A process may be live or a core file. </div>
+</p> 
+<p><div class="glossaryterm">address space handle</div> <div class="glossarydefstart">A <span class="emph">handle</span> that refers to an <span class="emph">address space</span> within an OpenMP process. </div>
+</p> 
+<p><div class="glossaryterm">thread handle</div> <div class="glossarydefstart">A <span class="emph">handle</span> that refers to an OpenMP <span class="emph">thread</span>. </div>
+</p> 
+<p><div class="glossaryterm">parallel handle</div> <div class="glossarydefstart">A <span class="emph">handle</span> that refers to an OpenMP parallel <span class="emph">region</span>. </div>
+</p> 
+<p><div class="glossaryterm">task handle</div> <div class="glossarydefstart">A <span class="emph">handle</span> that refers to an OpenMP task <span class="emph">region</span>. </div>
+</p> 
+<p><div class="glossaryterm">descendent handle</div> <div class="glossarydefstart">An output <span class="emph">handle</span> that is returned from the <span class="emph">OMPD</span> library in a function that accepts an
+input <span class="emph">handle</span>: the output <span class="emph">handle</span> is a descendent of the input <span class="emph">handle</span>. </div>
+</p> 
+<p><div class="glossaryterm">ancestor handle</div> <div class="glossarydefstart">An input <span class="emph">handle</span> that is passed to the <span class="emph">OMPD</span> library in a function that returns an output
+<span class="emph">handle</span>: the input <span class="emph">handle</span> is an ancestor of the output <span class="emph">handle</span>. For a given <span class="emph">handle</span>, the ancestors of the <span class="emph">handle</span>
+are also the ancestors of the handle&#8217;s descendent.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     A
+     tool
+     cannot
+     use
+     a
+     <span class="emph">handle</span>
+     in
+     an
+     <span class="emph">OMPD</span>
+     call
+     if
+     any
+     ancestor
+                                                                            
+                                                                            
+     of
+     the
+     <span class="emph">handle</span>
+     has
+     been
+     released,
+     except
+     for
+     <span class="emph">OMPD</span>
+     calls
+     that
+     release
+     it.</p> 
+</div>
+<p></div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">tool context</div> <div class="glossarydefstart">An opaque reference provided by a tool to an <span class="emph">OMPD</span> library. A <span class="emph">tool context</span> uniquely identifies
+an abstraction. </div>
+</p> 
+<p><div class="glossaryterm">address space context</div> <div class="glossarydefstart">A <span class="emph">tool context</span> that refers to an <span class="emph">address space</span> within a process. </div>
+</p> 
+<p><div class="glossaryterm">thread context</div> <div class="glossarydefstart">A <span class="emph">tool context</span> that refers to a <span class="emph">native thread</span>. </div>
+</p> 
+<p><div class="glossaryterm">native thread identifier</div> <div class="glossarydefstart">An identifier for a <span class="emph">native thread</span> defined by a thread implementation. </div> </p> 
+<!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse3.html" >next</a>] [<a 
+href="openmpsu7.html" >prev</a>]
+[<a 
+href="openmpsu7.html#tailopenmpsu7.html" >prev-tail</a>] [<a 
+href="openmpsu8.html" >front</a>] [<a 
+href="openmpse2.html#openmpsu8.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu8.html"></a> </p> 
+ 
+</body> 
+</html>

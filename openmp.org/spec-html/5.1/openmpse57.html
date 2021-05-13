@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Runtime Entry Points for OMPD</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu249.html" >next</a>] [<a 
+href="openmpsu248.html" >prev</a>] [<a 
+href="openmpsu248.html#tailopenmpsu248.html" >prev-tail</a>] [<a 
+href="#tailopenmpse57.html">tail</a>] [<a 
+href="openmpch5.html#openmpse57.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.6</span>&#x00A0;&#x00A0;<a 
+ id="x314-4890005.6"></a>Runtime Entry Points for OMPD</h3>
+<p>The OpenMP implementation must define several entry point symbols through which execution must pass
+when particular events occur <span class="emph">and</span> data collection for OMPD is enabled. A tool can enable notification of an
+event by setting a breakpoint at the address of the entry point symbol.
+</p> 
+<p>Entry point symbols have external <span class="textbf"><span class="texttt">C</span></span> linkage and do not require demangling or other transformations to
+look up their names to obtain the address in the OpenMP program. While each entry point
+symbol conceptually has a function type signature, it may not be a function. It may be a labeled
+location
+</p> 
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu249.html#x315-4900005.6.1">Beginning Parallel Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu250.html#x316-4910005.6.2">Ending Parallel Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.3&#x00A0;&#x00A0;<a 
+href="openmpsu251.html#x317-4920005.6.3">Beginning Task Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.4&#x00A0;&#x00A0;<a 
+href="openmpsu252.html#x318-4930005.6.4">Ending Task Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.5&#x00A0;&#x00A0;<a 
+href="openmpsu253.html#x319-4940005.6.5">Beginning OpenMP Threads</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.6&#x00A0;&#x00A0;<a 
+href="openmpsu254.html#x320-4950005.6.6">Ending OpenMP Threads</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.7&#x00A0;&#x00A0;<a 
+href="openmpsu255.html#x321-4960005.6.7">Initializing OpenMP Devices</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.8&#x00A0;&#x00A0;<a 
+href="openmpsu256.html#x322-4970005.6.8">Finalizing OpenMP Devices</a></span>
+</div>
+
+
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu249.html" >next</a>] [<a 
+href="openmpsu248.html" >prev</a>] [<a 
+href="openmpsu248.html#tailopenmpsu248.html" >prev-tail</a>] [<a 
+href="openmpse57.html" >front</a>] [<a 
+href="openmpch5.html#openmpse57.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse57.html"></a> </p> 
+ 
+</body> 
+</html>

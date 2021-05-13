@@ -1,0 +1,166 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Tool Initialization and Finalization</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 737--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu210.html" >next</a>] [<a 
+href="openmpse49.html" >prev</a>] [<a 
+href="openmpse49.html#tailopenmpse49.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu209.html">tail</a>] [<a 
+href="openmpse49.html#openmpsu209.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.4.1</span>&#x00A0;&#x00A0;<a 
+ id="x266-3000004.4.1"></a>Tool Initialization and Finalization</h4>
+<p><p><a 
+ id="Q1-266-1449"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A tool&#8217;s implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> returns a pointer to an <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>
+structure, which contains pointers to the tool&#8217;s initialization and finalization callbacks as well as an
+<span class="textbf"><span class="texttt">ompt_data_t</span></span> object for use by the tool.
+<p><a 
+ id="Q1-266-1450"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x266-300001r1"></a></span></p> 
+<!--l. 748--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x266-300002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_start_tool_result_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x266-300003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_initialize_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">initialize</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x266-300004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_finalize_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">finalize</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x266-300005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_data_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">tool_data</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x266-300006r6"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_start_tool_result_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x266-300007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-266-1451"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> type are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">initialize</span></span>
+  and
+  <span class="textit"><span class="textrm">finalize</span></span>
+  callback
+  pointer
+  values
+  in
+  an
+  <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>
+  structure
+  that
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  returns
+  must
+  be
+  non-null.</li></ul>
+<p><p><a 
+ id="Q1-266-1452"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  function,
+  see
+  Section&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1">4.2.1<!--tex4ht:ref: sec:ompt_start_tool --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4">4.4.4.4<!--tex4ht:ref: sec:ompt_data_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_initialize_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu213.html#x271-3400004.5.1.1">4.5.1.1<!--tex4ht:ref: sec:ompt_initialize_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_finalize_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu213.html#x271-3410004.5.1.2">4.5.1.2<!--tex4ht:ref: sec:ompt_finalize_t --></a>.</li></ul>
+<!--l. 776--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu210.html" >next</a>] [<a 
+href="openmpse49.html" >prev</a>] [<a 
+href="openmpse49.html#tailopenmpse49.html" >prev-tail</a>] [<a 
+href="openmpsu209.html" >front</a>] [<a 
+href="openmpse49.html#openmpsu209.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu209.html"></a> </p> 
+ 
+</body> 
+</html>

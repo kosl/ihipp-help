@@ -1,0 +1,430 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>workshare Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 382--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse19.html" >next</a>] [<a 
+href="openmpsu43.html" >prev</a>] [<a 
+href="openmpsu43.html#tailopenmpsu43.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu44.html">tail</a>] [<a 
+href="openmpse18.html#openmpsu44.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.10.3</span>&#x00A0;&#x00A0;<a 
+ id="x68-680002.10.3"></a><span class="textbf"><span class="texttt">workshare</span></span> Construct</h4>
+<a 
+ id="dx68-68001"></a>
+<a 
+ id="dx68-68002"></a>
+<p><p><a 
+ id="Q1-68-173"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">workshare</span></span> construct divides the execution of the enclosed structured block into separate units of
+work, and causes the threads of the team to share the work such that each unit is executed only once by one
+thread, in the context of its implicit task.
+<p><a 
+ id="Q1-68-174"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">workshare</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68003r1"></a></span></p> 
+<!--l. 395--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68004r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68006r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">nowait</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68007r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68008r1"></a></span></p> 
+<!--l. 401--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68009r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68010r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68011r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">workshare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">nowait</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x68-68012r5"></a></span></pre>
+<p><p><a 
+ id="Q1-68-175"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">workshare</span></span> region is the current team. A <span class="textbf"><span class="texttt">workshare</span></span> region binds to the
+innermost enclosing <span class="textbf"><span class="texttt">parallel</span></span> region. Only the threads of the team that executes the binding <span class="textbf"><span class="texttt">parallel</span></span>
+region participate in the execution of the units of work and the implied barrier of the <span class="textbf"><span class="texttt">workshare</span></span> region if
+the barrier is not eliminated by a <span class="textbf"><span class="texttt">nowait</span></span> clause.
+</p> 
+<p><p><a 
+ id="Q1-68-176"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+An implicit barrier occurs at the end of a <span class="textbf"><span class="texttt">workshare</span></span> region if a <span class="textbf"><span class="texttt">nowait</span></span> clause is not specified.
+</p> 
+<p>An implementation of the <span class="textbf"><span class="texttt">workshare</span></span> construct must insert any synchronization that is required to
+maintain standard Fortran semantics. For example, the effects of one statement within the structured block
+must appear to occur before the execution of succeeding statements, and the evaluation of the right hand
+side of an assignment must appear to complete prior to the effects of assigning to the left hand
+side.
+</p> 
+<p>The statements in the <span class="textbf"><span class="texttt">workshare</span></span> construct are divided into units of work as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  For
+  array
+  expressions
+  within
+  each
+  statement,
+  including
+  transformational
+  array
+  intrinsic
+  functions
+  that
+  compute
+  scalar
+  values
+  from
+  arrays:
+    <ul class="itemize2">
+    <li class="itemize">
+    Evaluation
+    of
+                                                                            
+                                                                            
+    each
+    element
+    of
+    the
+    array
+    expression,
+    including
+    any
+    references
+    to
+    elemental
+    functions,
+    is
+    a
+    unit
+    of
+    work.
+    </li>
+    <li class="itemize">
+    Evaluation
+    of
+    transformational
+    array
+    intrinsic
+    functions
+    may
+    be
+    freely
+    subdivided
+    into
+    any
+    number
+    of
+    units
+    of
+    work.</li></ul>
+  </li>
+  <li class="itemize">For an array assignment statement, the assignment of each element is a unit of work.
+  </li>
+  <li class="itemize">For a scalar assignment statement, the assignment operation is a unit of work.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">For a <span class="textbf"><span class="texttt">WHERE</span></span> statement or construct, the evaluation of the mask expression and the masked assignments
+  are each a unit of work.
+  </li>
+  <li class="itemize">For a <span class="textbf"><span class="texttt">FORALL</span></span> statement or construct, the evaluation of the mask expression, expressions occurring
+  in the specification of the iteration space, and the masked assignments are each a unit of
+  work.
+  </li>
+  <li class="itemize">For an <span class="textbf"><span class="texttt">atomic</span></span> construct, the atomic operation on the storage location designated as <span class="textit"><span class="textrm">x</span></span> is a unit of
+  work.
+  </li>
+  <li class="itemize">For a <span class="textbf"><span class="texttt">critical</span></span> construct, the construct is a single unit of work.
+  </li>
+  <li class="itemize">For a <span class="textbf"><span class="texttt">parallel</span></span> construct, the construct is a unit of work with respect to the <span class="textbf"><span class="texttt">workshare</span></span>
+  construct. The statements contained in the <span class="textbf"><span class="texttt">parallel</span></span> construct are executed by a new thread
+  team.
+  </li>
+  <li class="itemize">If none of the rules above apply to a portion of a statement in the structured block, then that portion is a
+  unit of work.</li></ul>
+<p>The transformational array intrinsic functions are <span class="textbf"><span class="texttt">MATMUL</span></span>, <span class="textbf"><span class="texttt">DOT_PRODUCT</span></span>, <span class="textbf"><span class="texttt">SUM</span></span>, <span class="textbf"><span class="texttt">PRODUCT</span></span>, <span class="textbf"><span class="texttt">MAXVAL</span></span>,
+<span class="textbf"><span class="texttt">MINVAL</span></span>, <span class="textbf"><span class="texttt">COUNT</span></span>, <span class="textbf"><span class="texttt">ANY</span></span>, <span class="textbf"><span class="texttt">ALL</span></span>, <span class="textbf"><span class="texttt">SPREAD</span></span>, <span class="textbf"><span class="texttt">PACK</span></span>, <span class="textbf"><span class="texttt">UNPACK</span></span>, <span class="textbf"><span class="texttt">RESHAPE</span></span>, <span class="textbf"><span class="texttt">TRANSPOSE</span></span>, <span class="textbf"><span class="texttt">EOSHIFT</span></span>, <span class="textbf"><span class="texttt">CSHIFT</span></span>,
+<span class="textbf"><span class="texttt">MINLOC</span></span>, and <span class="textbf"><span class="texttt">MAXLOC</span></span>.
+</p> 
+<p>It is unspecified how the units of work are assigned to the threads that execute a <span class="textbf"><span class="texttt">workshare</span></span>
+region.
+</p> 
+<p>If an array expression in the block references the value, association status, or allocation status of private
+variables, the value of the expression is undefined, unless the same value would be computed by every
+thread.
+</p> 
+<p>If an array assignment, a scalar assignment, a masked array assignment, or a <span class="textbf"><span class="texttt">FORALL</span></span> assignment assigns to
+a private variable in the block, the result is unspecified.
+</p> 
+<p>The <span class="textbf"><span class="texttt">workshare</span></span> directive causes the sharing of work to occur only in the <span class="textbf"><span class="texttt">workshare</span></span> construct, and not
+in the remainder of the <span class="textbf"><span class="texttt">workshare</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-68-177"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">workshare-begin</span></span> event occurs after an implicit task encounters a <span class="textbf"><span class="texttt">workshare</span></span> construct but before the
+task starts to execute the structured block of the <span class="textbf"><span class="texttt">workshare</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">workshare-end</span></span> event occurs after an implicit task finishes execution of a <span class="textbf"><span class="texttt">workshare</span></span> region but before
+it resumes execution of the enclosing context.
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-68-178"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its
+<span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_work_workshare</span></span> as its <span class="textit"><span class="textrm">wstype</span></span> argument for each occurrence of a
+<span class="textit"><span class="textrm">workshare-begin</span></span> event in that thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_work</span></span>
+callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_work_workshare</span></span> as its <span class="textit"><span class="textrm">wstype</span></span>
+argument for each occurrence of a <span class="textit"><span class="textrm">workshare-end</span></span> event in that thread. The callbacks occur in the context of
+the implicit task. The callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-68-179"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">workshare</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  only
+  OpenMP
+  constructs
+  that
+  may
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">workshare</span></span>
+  construct
+  are
+  the
+  <span class="textbf"><span class="texttt">atomic</span></span>,
+  <span class="textbf"><span class="texttt">critical</span></span>,
+  and
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  constructs.
+  </li>
+  <li class="itemize">
+  Base
+  language
+                                                                            
+                                                                            
+  statements
+  that
+  are
+  encountered
+  inside
+  a
+  <span class="textbf"><span class="texttt">workshare</span></span>
+  construct
+  but
+  that
+  are
+  not
+  enclosed
+  within
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct
+  that
+  is
+  nested
+  inside
+  the
+  <span class="textbf"><span class="texttt">workshare</span></span>
+  construct
+  must
+  consist
+  of
+  only
+  the
+  following:
+    <ul class="itemize2">
+    <li class="itemize">
+    array
+    assignments
+    </li>
+    <li class="itemize">
+    scalar
+    assignments
+    </li>
+                                                                            
+                                                                            
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">FORALL</span></span>
+    statements
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">FORALL</span></span>
+    constructs
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">WHERE</span></span>
+    statements
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">WHERE</span></span>
+    constructs</li></ul>
+  </li>
+  <li class="itemize">All array assignments, scalar assignments, and masked array assignments that are encountered inside a
+  <span class="textbf"><span class="texttt">workshare</span></span> construct but are not nested inside a <span class="textbf"><span class="texttt">parallel</span></span> construct that is nested inside the
+  <span class="textbf"><span class="texttt">workshare</span></span> construct must be intrinsic assignments.
+  </li>
+  <li class="itemize">The construct must not contain any user-defined function calls unless the function is <span class="textbf"><span class="texttt">ELEMENTAL</span></span> or the
+  function call is contained inside a <span class="textbf"><span class="texttt">parallel</span></span> construct that is nested inside the <span class="textbf"><span class="texttt">workshare</span></span>
+  construct.</li></ul>
+<p><p><a 
+ id="Q1-68-180"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">critical</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu99.html#x132-1420002.19.1">2.19.1<!--tex4ht:ref: subsec:critical Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu105.html#x138-1480002.19.7">2.19.7<!--tex4ht:ref: subsec:atomic Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_work_workshare</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3220004.4.4.15">4.4.4.15<!--tex4ht:ref: sec:ompt_work_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_work_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3470004.5.2.5">4.5.2.5<!--tex4ht:ref: sec:ompt_callback_work_t --></a>.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div> </p> 
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse19.html" >next</a>] [<a 
+href="openmpsu43.html" >prev</a>] [<a 
+href="openmpsu43.html#tailopenmpsu43.html" >prev-tail</a>] [<a 
+href="openmpsu44.html" >front</a>] [<a 
+href="openmpse18.html#openmpsu44.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu44.html"></a> </p> 
+ 
+</body> 
+</html>

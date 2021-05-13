@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Device Data Environments</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 125--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu11.html" >next</a>] [<a 
+href="openmpsu9.html" >prev</a>] [<a 
+href="openmpsu9.html#tailopenmpsu9.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu10.html">tail</a>] [<a 
+href="openmpse4.html#openmpsu10.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.4.2</span>&#x00A0;&#x00A0;<a 
+ id="x19-180001.4.2"></a>Device Data Environments</h4>
+<a 
+ id="dx19-18001"></a>
+<p>When an OpenMP program begins, an implicit <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region for each device surrounds the whole
+program. Each device has a device data environment that is defined by its implicit <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region.
+Any declare target directives and directives that accept data-mapping attribute clauses determine how an
+original variable in a data environment is mapped to a corresponding variable in a device data
+environment.
+</p> 
+<p>When an original variable is mapped to a device data environment and a corresponding variable is not
+present in the device data environment, a new corresponding variable (of the same type and size as the
+original variable) is created in the device data environment. Conversely, the original variable becomes the
+new variable&#8217;s corresponding variable in the device data environment of the device that performs a mapping
+operation.
+</p> 
+<p>The corresponding variable in the device data environment may share storage with the original variable.
+Writes to the corresponding variable may alter the value of the original variable. The impact of this
+possibility on memory consistency is discussed in Section&#x00A0;<a 
+href="openmpsu14.html#x23-220001.4.6">1.4.6<!--tex4ht:ref: subsec:OpenMP Memory Consistency --></a>. When a task executes in the context of a
+device data environment, references to the original variable refer to the corresponding variable in the device
+                                                                            
+                                                                            
+data environment. If an original variable is not currently mapped and a corresponding variable does not
+exist in the device data environment then accesses to the original variable result in unspecified behavior
+unless the <span class="textbf"><span class="texttt">unified_shared_memory</span></span> clause is specified on a <span class="textbf"><span class="texttt">requires</span></span> directive for the compilation
+unit.
+</p> 
+<p>The relationship between the value of the original variable and the initial or final value of the corresponding
+variable depends on the <span class="textit"><span class="textrm">map-type</span></span>. Details of this issue, as well as other issues with mapping a variable, are
+provided in Section&#x00A0;<a 
+href="openmpsu119.html#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>.
+</p> 
+<p>The original variable in a data environment and a corresponding variable in a device data environment may
+share storage. Without intervening synchronization data races can occur.
+</p> 
+<p>If a variable has a corresponding variable with which it does not share storage, a write to a storage location
+designated by the variable causes the value at the corresponding storage location to become
+undefined.
+</p> 
+<!--l. 170--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu11.html" >next</a>] [<a 
+href="openmpsu9.html" >prev</a>] [<a 
+href="openmpsu9.html#tailopenmpsu9.html" >prev-tail</a>] [<a 
+href="openmpsu10.html" >front</a>] [<a 
+href="openmpse4.html#openmpsu10.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu10.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>6 Environment Variables</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse58.html" >next</a>] [<a 
+href="openmpsu256.html" >prev</a>] [<a 
+href="openmpsu256.html#tailopenmpsu256.html" >prev-tail</a>] [<a 
+href="#tailopenmpch6.html">tail</a>] [<a 
+href="openmp.html#openmpch6.html" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">6</span>&#x00A0;&#x00A0;<a 
+ id="x323-4980006"></a>Environment Variables</h2>
+<a 
+ id="dx323-498001"></a>
+<a 
+ id="dx323-498002"></a>
+<p>This chapter describes the OpenMP environment variables that specify the settings of the ICVs that affect
+the execution of OpenMP programs (see Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>). The names of the environment variables must be
+upper case. Unless otherwise specified, the values assigned to the environment variables are case
+insensitive and may have leading and trailing white space. Modifications to the environment
+variables after the program has started, even if modified by the program itself, are ignored by the
+OpenMP implementation. However, the settings of some of the ICVs can be modified during the
+execution of the OpenMP program by the use of the appropriate directive clauses or OpenMP API
+routines.
+</p> 
+<p>The following examples demonstrate how the OpenMP environment variables can be set in different
+environments:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  csh-like
+  shells:</li></ul>
+ <!--l. 24--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x323-498003r1"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_SCHEDULE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">dynamic</span><span 
+class="pcrb8t-">"</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x323-498004r2"></a></span></pre>
+  <ul class="itemize1">
+  <li class="itemize">
+  bash-like
+  shells:</li></ul>
+ <!--l. 32--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x323-498005r1"></a></span><span 
+class="pcrb8t-">export</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_SCHEDULE</span><span 
+class="pcrb8t-">="</span><span 
+class="pcrb8t-">dynamic</span><span 
+class="pcrb8t-">"</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x323-498006r2"></a></span></pre>
+  <ul class="itemize1">
+  <li class="itemize">
+  Windows
+  Command
+  Line:</li></ul>
+ <!--l. 40--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x323-498007r1"></a></span><span 
+class="pcrb8t-">set</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_SCHEDULE</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">dynamic</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x323-498008r2"></a></span></pre>
+                                                                            
+                                                                            
+<p>As defined following Table&#x00A0;<a 
+href="openmpsu32.html#x50-49002r1">2.1<!--tex4ht:ref: tab:ICV Initial Values --></a> in Section&#x00A0;<a 
+href="openmpsu32.html#x50-490002.4.2">2.4.2<!--tex4ht:ref: subsec:ICV Initialization --></a>, device-specific environment variables extend many of the
+environment variables defined in this chapter. If the corresponding environment variable for a specific
+device number, including the host device, is set, then the setting for that environment variable is used to set
+the value of the associated ICV of the device with the corresponding device number. If the
+corresponding environment variable that includes the <span class="textbf"><span class="texttt">_DEV</span></span> suffix but no device number is set, then the
+setting of that environment variable is used to set the value of the associated ICV of any non-host
+device for which the device-number-specific corresponding environment variable is not set. In
+all cases the setting of an environment variable for which a device number is specified takes
+precedence.
+</p> 
+<p><p><a 
+ id="Q1-323-2445"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to device-specific environment variables are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Device-specific
+  environment
+  variables
+  must
+  not
+  correspond
+  to
+  environment
+  variables
+  that
+  initialize
+  ICVs
+  with
+  global
+  scope.</li></ul>
+<div class="sectionTOCS">
+&#x00A0;<span class="sectionToc" >6.1&#x00A0;&#x00A0;<a 
+href="openmpse58.html#x324-4990006.1"><span class="textbf"><span class="texttt">OMP_SCHEDULE</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.2&#x00A0;&#x00A0;<a 
+href="openmpse59.html#x325-5000006.2"><span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.3&#x00A0;&#x00A0;<a 
+href="openmpse60.html#x326-5010006.3"><span class="textbf"><span class="texttt">OMP_DYNAMIC</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.4&#x00A0;&#x00A0;<a 
+href="openmpse61.html#x327-5020006.4"><span class="textbf"><span class="texttt">OMP_PROC_BIND</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.5&#x00A0;&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5"><span class="textbf"><span class="texttt">OMP_PLACES</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >6.6&#x00A0;&#x00A0;<a 
+href="openmpse63.html#x329-5040006.6"><span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.7&#x00A0;&#x00A0;<a 
+href="openmpse64.html#x330-5050006.7"><span class="textbf"><span class="texttt">OMP_WAIT_POLICY</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.8&#x00A0;&#x00A0;<a 
+href="openmpse65.html#x331-5060006.8"><span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.9&#x00A0;&#x00A0;<a 
+href="openmpse66.html#x332-5070006.9"><span class="textbf"><span class="texttt">OMP_NESTED</span></span> (Deprecated)</a></span>
+<br />&#x00A0;<span class="sectionToc" >6.10&#x00A0;&#x00A0;<a 
+href="openmpse67.html#x333-5080006.10"><span class="textbf"><span class="texttt">OMP_THREAD_LIMIT</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.11&#x00A0;&#x00A0;<a 
+href="openmpse68.html#x334-5090006.11"><span class="textbf"><span class="texttt">OMP_CANCELLATION</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.12&#x00A0;&#x00A0;<a 
+href="openmpse69.html#x335-5100006.12"><span class="textbf"><span class="texttt">OMP_DISPLAY_ENV</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.13&#x00A0;&#x00A0;<a 
+href="openmpse70.html#x336-5110006.13"><span class="textbf"><span class="texttt">OMP_DISPLAY_AFFINITY</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.14&#x00A0;&#x00A0;<a 
+href="openmpse71.html#x337-5120006.14"><span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.15&#x00A0;&#x00A0;<a 
+href="openmpse72.html#x338-5130006.15"><span class="textbf"><span class="texttt">OMP_DEFAULT_DEVICE</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.16&#x00A0;&#x00A0;<a 
+href="openmpse73.html#x339-5140006.16"><span class="textbf"><span class="texttt">OMP_MAX_TASK_PRIORITY</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.17&#x00A0;&#x00A0;<a 
+href="openmpse74.html#x340-5150006.17"><span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.18&#x00A0;&#x00A0;<a 
+href="openmpse75.html#x341-5160006.18"><span class="textbf"><span class="texttt">OMP_TOOL</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.19&#x00A0;&#x00A0;<a 
+href="openmpse76.html#x342-5170006.19"><span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.20&#x00A0;&#x00A0;<a 
+href="openmpse77.html#x343-5180006.20"><span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.21&#x00A0;&#x00A0;<a 
+href="openmpse78.html#x344-5190006.21"><span class="textbf"><span class="texttt">OMP_DEBUG</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.22&#x00A0;&#x00A0;<a 
+href="openmpse79.html#x345-5200006.22"><span class="textbf"><span class="texttt">OMP_ALLOCATOR</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.23&#x00A0;&#x00A0;<a 
+href="openmpse80.html#x346-5210006.23"><span class="textbf"><span class="texttt">OMP_NUM_TEAMS</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >6.24&#x00A0;&#x00A0;<a 
+href="openmpse81.html#x347-5220006.24"><span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span></a></span>
+</div>
+
+
+
+
+
+
+
+                                                                            
+                                                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--l. 113--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse58.html" >next</a>] [<a 
+href="openmpsu256.html" >prev</a>] [<a 
+href="openmpsu256.html#tailopenmpsu256.html" >prev-tail</a>] [<a 
+href="openmpch6.html" >front</a>] [<a 
+href="openmp.html#openmpch6.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpch6.html"></a> </p> 
+ 
+</body> 
+</html>

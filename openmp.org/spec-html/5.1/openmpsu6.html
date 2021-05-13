@@ -1,0 +1,660 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Data Terminology</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1218--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu7.html" >next</a>] [<a 
+href="openmpsu5.html" >prev</a>] [<a 
+href="openmpsu5.html#tailopenmpsu5.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu6.html">tail</a>] [<a 
+href="openmpse2.html#openmpsu6.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.2.6</span>&#x00A0;&#x00A0;<a 
+ id="x13-120001.2.6"></a>Data Terminology</h4>
+<a 
+ id="dx13-12001"></a>
+<p><div class="glossaryterm">variable</div> <div class="glossarydefstart">A named data storage block, for which the value can be defined and redefined during the execution
+of a program.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     An
+     array
+     element
+     or
+     structure
+     element
+     is
+     a
+     variable
+     that
+     is
+     part
+     of
+     another
+     variable.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">scalar variable</div> <div class="glossarydefstart">For C/C++, a scalar variable, as defined by the base language.
+</p> 
+<p>For Fortran, a scalar variable with intrinsic type, as defined by the base language, excluding character type.
+</div>
+</p> 
+<p><div class="glossaryterm">aggregate variable</div> <div class="glossarydefstart">A variable, such as an array or structure, composed of other variables. </div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">array section</div> <div class="glossarydefstart">A designated subset of the elements of an array that is specified using a subscript notation that
+can select more than one element. </div>
+</p> 
+<p><div class="glossaryterm">array item</div> <div class="glossarydefstart">An array, an array section, or an array element. </div>
+</p> 
+<p><div class="glossaryterm">shape-operator</div> <div class="glossarydefstart">For C/C++, an array shaping operator that reinterprets a pointer expression as an array with
+one or more specified dimensions. </div>
+</p> 
+<p><div class="glossaryterm">implicit array</div> <div class="glossarydefstart">For C/C++, the set of array elements of non-array type <span class="emph">T</span> that may be accessed by applying a
+sequence of [] operators to a given pointer that is either a pointer to type <span class="emph">T</span> or a pointer to a
+multidimensional array of elements of type <span class="emph">T</span>.
+</p> 
+<p>For Fortran, the set of array elements for a given array pointer.
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     For
+     C/C++,
+     the
+     implicit
+     array
+     for
+     pointer
+     p
+     with
+     type
+     <span class="emph">T</span>
+     (*)[10]
+     consists
+     of
+     all
+     accessible
+     elements
+     p[<span class="emph">i</span>][<span class="emph">j</span>],
+     for
+     all
+     <span class="emph">i</span>
+     and
+     <span class="emph">j</span>=0,1,...,9.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">base pointer</div> <div class="glossarydefstart">For C/C++, an lvalue pointer expression that is used by a given lvalue expression or array
+                                                                            
+                                                                            
+section to refer indirectly to its storage, where the lvalue expression or array section is part of the implicit
+array for that lvalue pointer expression.
+</p> 
+<p>For Fortran, a data pointer that appears last in the designator for a given variable or array section, where the
+variable or array section is part of the pointer target for that data pointer.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     For
+     the
+     array
+     section
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2[4][0:n],
+     where
+     identifiers
+     p<span class="emph">i</span>
+     have
+     a
+     pointer
+     type
+     declaration
+     and
+     identifiers
+     x<span class="emph">i</span>
+     have
+     an
+     array
+     type
+     declaration,
+     the
+     <span class="emph">base
+     pointer</span>
+     is:
+     (*p0).x0[k1].p1-&#x003E;p2.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">named pointer</div> <div class="glossarydefstart">For C/C++, the <span class="emph">base pointer</span> of a given lvalue expression or array section, or the <span class="emph">base pointer</span>
+of one of its <span class="emph">named pointers</span>.
+</p> 
+<p>For Fortran, the <span class="emph">base pointer</span> of a given variable or array section, or the <span class="emph">base pointer</span> of one of its <span class="emph">named
+                                                                            
+                                                                            
+pointers</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     For
+     the
+     array
+     section
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2[4][0:n],
+     where
+     identifiers
+     p<span class="emph">i</span>
+     have
+     a
+     pointer
+     type
+     declaration
+     and
+     identifiers
+     x<span class="emph">i</span>
+     have
+     an
+     array
+     type
+     declaration,
+     the
+     <span class="emph">named
+     pointers</span>
+     are:
+     p0,
+     (*p0).x0[k1].p1,
+     and
+     (*p0).x0[k1].p1-&#x003E;p2.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">containing array</div> <div class="glossarydefstart">For C/C++, a non-subscripted array (a <span class="emph">containing array</span>) that appears in a given lvalue
+expression or array section, where the lvalue expression or array section is part of that <span class="emph">containing
+array</span>.
+                                                                            
+                                                                            
+</p> 
+<p>For Fortran, an array (a <span class="emph">containing array</span>) without the <span class="textbf"><span class="texttt">POINTER</span></span> attribute and without a subscript list that
+appears in the designator of a given variable or array section, where the variable or array section is part of
+that <span class="emph">containing array</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     For
+     the
+     array
+     section
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2[4][0:n],
+     where
+     identifiers
+     p<span class="emph">i</span>
+     have
+     a
+     pointer
+     type
+     declaration
+     and
+     identifiers
+     x<span class="emph">i</span>
+     have
+     an
+     array
+     type
+     declaration,
+     the
+     <span class="emph">containing
+     arrays</span>
+     are:
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1
+     and
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">base array</div> <div class="glossarydefstart">For C/C++, a <span class="emph">containing array</span> of a given lvalue expression or array section that does not appear
+in the expression of any of its other <span class="emph">containing arrays</span>.
+                                                                            
+                                                                            
+</p> 
+<p>For Fortran, a <span class="emph">containing array</span> of a given variable or array section that does not appear in the designator of
+any of its other <span class="emph">containing arrays</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     For
+     the
+     array
+     section
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2[4][0:n],
+     where
+     identifiers
+     p<span class="emph">i</span>
+     have
+     a
+     pointer
+     type
+     declaration
+     and
+     identifiers
+     x<span class="emph">i</span>
+     have
+     an
+     array
+     type
+     declaration,
+     the
+     <span class="emph">base
+     array</span>
+     is:
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">named array</div> <div class="glossarydefstart">For C/C++, a <span class="emph">containing array</span> of a given lvalue expression or array section, or a <span class="emph">containing
+array</span> of one of its <span class="emph">named pointers</span>.
+</p> 
+<p>For Fortran, a <span class="emph">containing array</span> of a given variable or array section, or a <span class="emph">containing array</span> of one of its
+<span class="emph">named pointers</span>.
+</p> 
+<p>
+                                                                            
+                                                                            
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     For
+     the
+     array
+     section
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2[4][0:n],
+     where
+     identifiers
+     p<span class="emph">i</span>
+     have
+     a
+     pointer
+     type
+     declaration
+     and
+     identifiers
+     x<span class="emph">i</span>
+     have
+     an
+     array
+     type
+     declaration,
+     the
+     <span class="emph">named
+     arrays</span>
+     are:
+     (*p0).x0,
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1,
+     and
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">base expression</div> <div class="glossarydefstart">The <span class="emph">base array</span> of a given array section or array element, if it exists; otherwise, the <span class="emph">base
+pointer</span> of the array section or array element.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+                                                                            
+                                                                            
+     <p>COMMENT:
+     For
+     the
+     array
+     section
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2[4][0:n],
+     where
+     identifiers
+     p<span class="emph">i</span>
+     have
+     a
+     pointer
+     type
+     declaration
+     and
+     identifiers
+     x<span class="emph">i</span>
+     have
+     an
+     array
+     type
+     declaration,
+     the
+     <span class="emph">base
+     expression</span>
+     is:
+     (*p0).x0[k1].p1-&#x003E;p2[k2].x1[k3].x2.
+     </p> 
+<p>More examples for C/C++: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="emph">base
+  expression</span>
+  for
+  x[i]
+  and
+  for
+  x[i:n]
+  is
+  x,
+                                                                            
+                                                                            
+  if
+  x
+  is
+  an
+  array
+  or
+  pointer.
+  </li>
+  <li class="itemize">
+  The
+  <span class="emph">base
+  expression</span>
+  for
+  x[5][i]
+  and
+  for
+  x[5][i:n]
+  is
+  x,
+  if
+  x
+  is
+  a
+  pointer
+  to
+  an
+  array
+  or
+  x
+  is
+  2-dimensional
+  array.
+  </li>
+  <li class="itemize">
+  The
+  <span class="emph">base
+  expression</span>
+  for
+  y[5][i]
+  and
+                                                                            
+                                                                            
+  for
+  y[5][i:n]
+  is
+  y[5],
+  if
+  y
+  is
+  an
+  array
+  of
+  pointers
+  or
+  y
+  is
+  a
+  pointer
+  to
+  a
+  pointer.</li></ul>
+     <p>Examples for Fortran: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="emph">base
+  expression</span>
+  for
+  x(i)
+  and
+  for
+  x(i:j)
+  is
+  x.</li></ul>
+     </div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">attached pointer</div> <div class="glossarydefstart">A pointer variable in a device data environment to which the effect of a <span class="textbf"><span class="texttt">map</span></span> clause assigns
+the address of an object, minus some offset, that is created in the device data environment. The
+pointer is an attached pointer for the remainder of its lifetime in the device data environment.
+</div>
+</p> 
+<p><div class="glossaryterm">simply contiguous array section</div> <div class="glossarydefstart">An array section that statically can be determined to have contiguous
+                                                                            
+                                                                            
+storage or that, in Fortran, has the <span class="textbf"><span class="texttt">CONTIGUOUS</span></span> attribute. </div>
+</p> 
+<p><div class="glossaryterm">structure</div> <div class="glossarydefstart">A structure is a variable that contains one or more variables.
+</p> 
+<p>For C/C++: Implemented using struct types.
+</p> 
+<p>For C++: Implemented using class types.
+</p> 
+<p>For Fortran: Implemented using derived types. </div>
+</p> 
+<p><div class="glossaryterm">string literal</div> <div class="glossarydefstart">For C/C++, a string literal.
+</p> 
+<p>For Fortran, a character literal constant. </div>
+</p> 
+<p><div class="glossaryterm">private variable</div> <div class="glossarydefstart">With respect to a given set of <span class="emph">task regions</span> or <span class="emph">SIMD lanes</span> that bind to the same <span class="textbf"><span class="texttt">parallel</span></span>
+<span class="emph">region</span>, a <span class="emph">variable</span> for which the name provides access to a different block of storage for each <span class="emph">task region</span> or
+<span class="emph">SIMD lane</span>.
+</p> 
+<p>A <span class="emph">variable</span> that is part of another variable (as an array or structure element) cannot be made private
+independently of other components. If a <span class="emph">variable</span> is privatized, its components are also private.
+</div>
+</p> 
+<p><div class="glossaryterm">shared variable</div> <div class="glossarydefstart">With respect to a given set of <span class="emph">task regions</span> that bind to the same <span class="textbf"><span class="texttt">parallel</span></span>
+<span class="emph">region</span>, a <span class="emph">variable</span> for which the name provides access to the same block of storage for each <span class="emph">task
+region</span>.
+</p> 
+<p>A <span class="emph">variable</span> that is part of another variable (as an array or structure element) cannot be <span class="emph">shared</span> independently
+of the other components, except for static data members of C++ classes. </div>
+</p> 
+<p><div class="glossaryterm">threadprivate variable</div> <div class="glossarydefstart">A <span class="emph">variable</span> that is replicated, one instance per <span class="emph">thread</span>, by the OpenMP
+implementation. Its name then provides access to a different block of storage for each <span class="emph">thread</span>.
+</p> 
+<p>A <span class="emph">variable</span> that is part of another variable (as an array or structure element) cannot be made <span class="emph">threadprivate</span>
+independently of the other components, except for static data members of C++ classes. If a <span class="emph">variable</span> is made
+<span class="emph">threadprivate</span>, its components are also <span class="emph">threadprivate</span>. </div>
+</p> 
+<p><div class="glossaryterm">threadprivate memory</div> <div class="glossarydefstart">The set of <span class="emph">threadprivate variables</span> associated with each <span class="emph">thread</span>. </div>
+</p> 
+<p><div class="glossaryterm">data environment</div> <div class="glossarydefstart">The <span class="emph">variables</span> associated with the execution of a given <span class="emph">region</span>. </div>
+</p> 
+<p><div class="glossaryterm">device data environment</div> <div class="glossarydefstart">The initial <span class="emph">data environment</span> associated with a device. </div>
+</p> 
+<p><div class="glossaryterm">device address</div> <div class="glossarydefstart">An address of an object that may be referenced on a <span class="emph">target device</span>. </div>
+</p> 
+<p><div class="glossaryterm">device pointer</div> <div class="glossarydefstart">An <span class="emph">implementation defined</span> <span class="emph">handle</span> that refers to a <span class="emph">device address</span>. </div>
+</p> 
+<p><div class="glossaryterm">mapped variable</div> <div class="glossarydefstart">An original <span class="emph">variable</span> in a <span class="emph">data environment</span> with a corresponding <span class="emph">variable</span> in a device <span class="emph">data
+environment</span>.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+                                                                            
+                                                                            
+     <p>COMMENT:
+     The
+     original
+     and
+     corresponding
+     <span class="emph">variables</span>
+     may
+     share
+     storage.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">mapper</div> <div class="glossarydefstart">An operation that defines how variables of given type are to be mapped or updated with respect to a
+device data environment. </div>
+</p> 
+<p><div class="glossaryterm">user-defined mapper</div> <div class="glossarydefstart">A <span class="emph">mapper</span> that is defined by a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span> directive. </div>
+</p> 
+<p><div class="glossaryterm">map-type decay</div> <div class="glossarydefstart">The process that determines the final map types of the map operations that result from
+mapping a variable with a <span class="emph">user-defined mapper</span>. </div>
+</p> 
+<p><div class="glossaryterm">mappable type</div> <div class="glossarydefstart">A type that is valid for a <span class="emph">mapped variable</span>. If a type is composed from other types (such as
+the type of an array or structure element) and any of the other types are not mappable then the type is not
+mappable.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     Pointer
+     types
+     are
+     <span class="emph">mappable</span>
+     but
+     the
+     memory
+     block
+     to
+     which
+     the
+     pointer
+     refers
+                                                                            
+                                                                            
+     is
+     not
+     <span class="emph">mapped</span>.</p> 
+</div>
+<p>For C, the type must be a complete type.
+</p> 
+<p>For C++, the type must be a complete type.
+</p> 
+<p>In addition, for class types: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+  member
+  functions
+  accessed
+  in
+  any
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  must
+  appear
+  in
+  a
+  declare
+  target
+  directive.</li></ul>
+<p>For Fortran, no restrictions on the type except that for derived types:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+  type-bound
+  procedures
+  accessed
+  in
+  any
+  target
+  region
+  must
+  appear
+  in
+                                                                            
+                                                                            
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive.</li></ul>
+<p></div>
+</p> 
+<p><div class="glossaryterm">defined</div> <div class="glossarydefstart">For <span class="emph">variables</span>, the property of having a valid value.
+</p> 
+<p>For C, for the contents of <span class="emph">variables</span>, the property of having a valid value.
+</p> 
+<p>For C++, for the contents of <span class="emph">variables</span> of POD (plain old data) type, the property of having a valid
+value.
+</p> 
+<p>For <span class="emph">variables</span> of non-POD class type, the property of having been constructed but not subsequently
+destructed.
+</p> 
+<p>For Fortran, for the contents of <span class="emph">variables</span>, the property of having a valid value. For the allocation or
+association status of <span class="emph">variables</span>, the property of having a valid status.
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     Programs
+     that
+     rely
+     upon
+     <span class="emph">variables</span>
+     that
+     are
+     not
+     <span class="emph">defined</span>
+     are
+     <span class="emph">non-conforming
+     programs</span>.</p> 
+</div>
+<p></div>
+</p> 
+<p><div class="glossaryterm">class type</div> <div class="glossarydefstart">For C++, <span class="emph">variables</span> declared with one of the <span class="textbf"><span class="texttt">class</span></span>, <span class="textbf"><span class="texttt">struct</span></span>, or <span class="textbf"><span class="texttt">union</span></span> keywords.
+</div>
+</p> 
+<p><div class="glossaryterm">static storage duration</div> <div class="glossarydefstart">For C/C++, the lifetime of an object with static storage duration, as defined by the
+base language.
+</p> 
+<p>For Fortran, the lifetime of a variable with a <span class="textbf"><span class="texttt">SAVE</span></span> attribute, implicit or explicit, a common block object or a
+variable declared in a module. </div>
+                                                                            
+                                                                            
+</p> 
+<!--l. 1606--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu7.html" >next</a>] [<a 
+href="openmpsu5.html" >prev</a>] [<a 
+href="openmpsu5.html#tailopenmpsu5.html" >prev-tail</a>] [<a 
+href="openmpsu6.html" >front</a>] [<a 
+href="openmpse2.html#openmpsu6.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu6.html"></a> </p> 
+ 
+</body> 
+</html>

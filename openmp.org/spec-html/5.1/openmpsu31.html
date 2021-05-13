@@ -1,0 +1,915 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>ICV Descriptions</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1878--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu32.html" >next</a>] [<a 
+href="openmpse12.html" >prev</a>] [<a 
+href="openmpse12.html#tailopenmpse12.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu31.html">tail</a>] [<a 
+href="openmpse12.html#openmpsu31.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.4.1</span>&#x00A0;&#x00A0;<a 
+ id="x49-480002.4.1"></a>ICV Descriptions</h4>
+<p>The following ICVs store values that affect the operation of <span class="textbf"><span class="texttt">parallel</span></span> regions.
+</p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">dyn-var</span></span>
+  -
+  controls
+  whether
+  dynamic
+  adjustment
+  of
+  the
+  number
+  of
+  threads
+  is
+  enabled
+  for
+  encountered
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  -
+  controls
+  the
+  number
+  of
+  threads
+  requested
+  for
+  encountered
+  <span class="textbf"><span class="texttt">parallel</span></span>
+                                                                            
+                                                                            
+  regions.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">thread-limit-var</span></span>
+  -
+  controls
+  the
+  maximum
+  number
+  of
+  threads
+  that
+  participate
+  in
+  the
+  contention
+  group.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">max-active-levels-var</span></span>
+  -
+  controls
+                                                                            
+                                                                            
+  the
+  maximum
+  number
+  of
+  nested
+  active
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  when
+  the
+  innermost
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  is
+  generated
+  by
+  a
+  given
+  task.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">place-partition-var</span></span>
+  -
+  controls
+  the
+  place
+  partition
+  available
+  to
+  the
+  execution
+  environment
+  for
+                                                                            
+                                                                            
+  encountered
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  implicit
+  task.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">active-levels-var</span></span>
+  -
+  the
+  number
+  of
+  nested
+  active
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  that
+  enclose
+  a
+  given
+  task
+  such
+  that
+  all
+  of
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  are
+  enclosed
+  by
+  the
+  outermost
+  initial
+  task
+                                                                            
+                                                                            
+  region
+  on
+  the
+  device
+  on
+  which
+  the
+  task
+  executes.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">levels-var</span></span>
+  -
+  the
+  number
+  of
+  nested
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  that
+  enclose
+  a
+  given
+  task
+  such
+  that
+  all
+  of
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  are
+  enclosed
+                                                                            
+                                                                            
+  by
+  the
+  outermost
+  initial
+  task
+  region
+  on
+  the
+  device
+  on
+  which
+  the
+  task
+  executes.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">bind-var</span></span>
+  -
+  controls
+  the
+  binding
+  of
+  OpenMP
+  threads
+  to
+  places.
+  When
+  binding
+  is
+  requested,
+  the
+  variable
+  indicates
+                                                                            
+                                                                            
+  that
+  the
+  execution
+  environment
+  is
+  advised
+  not
+  to
+  move
+  threads
+  between
+  places.
+  The
+  variable
+  can
+  also
+  provide
+  default
+  thread
+  affinity
+  policies.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.</li></ul>
+<p>The following ICVs store values that affect the operation of worksharing-loop regions.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">run-sched-var</span></span>
+  -
+  controls
+  the
+  schedule
+  that
+  is
+                                                                            
+                                                                            
+  used
+  for
+  worksharing-loop
+  regions
+  when
+  the
+  <span class="textbf"><span class="texttt">runtime</span></span>
+  schedule
+  kind
+  is
+  specified.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">def-sched-var</span></span>
+  -
+  controls
+  the
+  implementation
+  defined
+  default
+  scheduling
+  of
+  worksharing-loop
+  regions.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  device.</li></ul>
+                                                                            
+                                                                            
+<p>The following ICVs store values that affect program execution.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">stacksize-var</span></span>
+  -
+  controls
+  the
+  stack
+  size
+  for
+  threads
+  that
+  the
+  OpenMP
+  implementation
+  creates.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  device.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">wait-policy-var</span></span>
+  -
+  controls
+  the
+  desired
+  behavior
+  of
+  waiting
+  threads.
+  One
+  copy
+  of
+  this
+                                                                            
+                                                                            
+  ICV
+  exists
+  per
+  device.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">display-affinity-var</span></span>
+  -
+  controls
+  whether
+  to
+  display
+  thread
+  affinity.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+  the
+  whole
+  program.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">affinity-format-var</span></span>
+  -
+  controls
+  the
+  thread
+  affinity
+  format
+  when
+  displaying
+  thread
+  affinity.
+  One
+  copy
+  of
+                                                                            
+                                                                            
+  this
+  ICV
+  exists
+  per
+  device.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">cancel-var</span></span>
+  -
+  controls
+  the
+  desired
+  behavior
+  of
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct
+  and
+  cancellation
+  points.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+  the
+  whole
+  program.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">default-device-var</span></span>
+  -
+  controls
+  the
+  default
+  target
+  device.
+  One
+                                                                            
+                                                                            
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">target-offload-var</span></span>
+  -
+  controls
+  the
+  offloading
+  behavior.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+  the
+  whole
+  program.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">max-task-priority-var</span></span>
+  -
+  controls
+  the
+  maximum
+  priority
+  value
+  that
+  can
+  be
+  specified
+  in
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">priority</span></span>
+  clause
+  of
+  the
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+  the
+  whole
+  program.</li></ul>
+<p>The following ICVs store values that affect the operation of the OMPT tool interface.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">tool-var</span></span>
+  -
+  controls
+  whether
+  an
+  OpenMP
+  implementation
+  will
+  try
+  to
+  register
+  a
+  tool.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+                                                                            
+                                                                            
+  the
+  whole
+  program.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">tool-libraries-var</span></span>
+  -
+  specifies
+  a
+  list
+  of
+  absolute
+  paths
+  to
+  tool
+  libraries
+  for
+  OpenMP
+  devices.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+  the
+  whole
+  program.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">tool-verbose-init-var</span></span>
+  -
+  controls
+  whether
+  an
+  OpenMP
+  implementation
+  will
+  verbosely
+                                                                            
+                                                                            
+  log
+  the
+  registration
+  of
+  a
+  tool.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+  the
+  whole
+  program.</li></ul>
+<p>The following ICVs store values that affect the operation of the OMPD tool interface.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">debug-var</span></span>
+  -
+  controls
+  whether
+  an
+  OpenMP
+  implementation
+  will
+  collect
+  information
+  that
+  an
+  OMPD
+  library
+  can
+  access
+  to
+  satisfy
+  requests
+  from
+  a
+                                                                            
+                                                                            
+  tool.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  for
+  the
+  whole
+  program.</li></ul>
+<p>The following ICVs store values that may be queried by interface routines.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">num-procs-var</span></span>
+  -
+  the
+  number
+  of
+  processors
+  that
+  are
+  available
+  to
+  the
+  device.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  device.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">thread-num-var</span></span>
+  -
+                                                                            
+                                                                            
+  the
+  thread
+  number
+  of
+  an
+  implicit
+  task
+  within
+  its
+  binding
+  team.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">final-task-var</span></span>
+  -
+  whether
+  a
+  given
+  task
+  is
+  a
+  final
+  task.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">implicit-task-var</span></span>
+  -
+  whether
+  a
+  given
+  task
+  is
+  an
+  implicit
+  task.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">team-size-var</span></span>
+  -
+  the
+  size
+  of
+  the
+  current
+  team.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  data
+  environment.</li></ul>
+                                                                            
+                                                                            
+<p>The following ICV stores values that affect default memory allocation.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">def-allocator-var</span></span>
+  -
+  controls
+  the
+  memory
+  allocator
+  to
+  be
+  used
+  by
+  memory
+  allocation
+  routines,
+  directives
+  and
+  clauses
+  when
+  a
+  memory
+  allocator
+  is
+  not
+  specified
+  by
+  the
+  user.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  implicit
+  task.</li></ul>
+<p>The following ICVs store values that affect the operation of <span class="textbf"><span class="texttt">teams</span></span> regions.
+                                                                            
+                                                                            
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">nteams-var</span></span>
+  -
+  controls
+  the
+  number
+  of
+  teams
+  requested
+  for
+  encountered
+  <span class="textbf"><span class="texttt">teams</span></span>
+  regions.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  device.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>
+  -
+  controls
+  the
+  maximum
+  number
+  of
+  threads
+  that
+  participate
+  in
+  each
+  contention
+  group
+  created
+                                                                            
+                                                                            
+  by
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct.
+  One
+  copy
+  of
+  this
+  ICV
+  exists
+  per
+  device.</li></ul>
+<!--l. 2012--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu32.html" >next</a>] [<a 
+href="openmpse12.html" >prev</a>] [<a 
+href="openmpse12.html#tailopenmpse12.html" >prev-tail</a>] [<a 
+href="openmpsu31.html" >front</a>] [<a 
+href="openmpse12.html#openmpsu31.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu31.html"></a> </p> 
+ 
+</body> 
+</html>

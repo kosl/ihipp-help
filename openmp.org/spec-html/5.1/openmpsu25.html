@@ -1,0 +1,457 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OpenMP Context</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 847--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu26.html" >next</a>] [<a 
+href="openmpse11.html" >prev</a>] [<a 
+href="openmpse11.html#tailopenmpse11.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu25.html">tail</a>] [<a 
+href="openmpse11.html#openmpsu25.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.1</span>&#x00A0;&#x00A0;<a 
+ id="x42-410002.3.1"></a>OpenMP Context</h4>
+<p>At any point in a program, an OpenMP context exists that defines traits that describe the active OpenMP
+constructs, the execution devices, functionality supported by the implementation and available dynamic
+values. The traits are grouped into trait sets. The following trait sets exist: <span class="textit"><span class="textrm">construct</span></span>, <span class="textit"><span class="textrm">device</span></span>, <span class="textit"><span class="textrm">target_device</span></span>,
+<span class="textit"><span class="textrm">implementation</span></span> and <span class="textit"><span class="textrm">dynamic</span></span>. Traits are categorized as name-list traits, clause-list traits, non-property traits
+and extension traits. This categorization determines the syntax that is used to match the trait, as defined in
+Section&#x00A0;<a 
+href="openmpsu26.html#x43-420002.3.2">2.3.2<!--tex4ht:ref: subsec:Context Selectors --></a>.
+</p> 
+<p>The <span class="textit"><span class="textrm">construct</span></span> set is composed of the directive names, each being a trait, of all enclosing constructs at that
+point in the program up to a <span class="textbf"><span class="texttt">target</span></span> construct. Combined and composite constructs are added to the set as
+distinct constructs in the same nesting order specified by the original construct. Whether the <span class="textbf"><span class="texttt">dispatch</span></span>
+construct is added to the <span class="textit"><span class="textrm">construct</span></span> set is implementation defined. If it is added, it will only be added for
+the <span class="textit"><span class="textrm">target-call</span></span> of the associated code. The set is ordered by nesting level in ascending order.
+Specifically, the ordering of the set of constructs is <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub>,&#x00A0;&#x2026;,&#x00A0;<span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">N</span></sub>, where <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub> is the construct at the
+outermost nesting level and <span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">N</span></sub> is the construct at the innermost nesting level. In addition, if the
+point in the program is not enclosed by a <span class="textbf"><span class="texttt">target</span></span> construct, the following rules are applied in
+order:
+</p> 
+<p>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  For
+  procedures
+  with
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span>
+  directive,
+  the
+  <span class="textit"><span class="textrm">simd</span></span>
+  trait
+  is
+  added
+  to
+  the
+  beginning
+  of
+  the
+  set
+                                                                            
+                                                                            
+  as
+  <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub>
+  for
+  any
+  generated
+  SIMD
+  versions
+  so
+  the
+  total
+  size
+  of
+  the
+  set
+  is
+  increased
+  by
+  1.
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  For
+  procedures
+  that
+  are
+  determined
+  to
+  be
+  function
+  variants
+  by
+  a
+  declare
+  variant
+  directive,
+  the
+  selectors
+  <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub>,&#x00A0;&#x2026;,&#x00A0;<span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">M</span></sub>
+  of
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>
+  selector
+  set
+                                                                            
+                                                                            
+  are
+  added
+  in
+  the
+  same
+  order
+  to
+  the
+  beginning
+  of
+  the
+  set
+  as
+  <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub>,&#x00A0;&#x2026;,&#x00A0;<span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">M</span></sub>
+  so
+  the
+  total
+  size
+  of
+  the
+  set
+  is
+  increased
+  by
+  <span 
+class="cmmi-10">M</span>.
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">
+  For
+  <span class="textit"><span class="textrm">device</span></span>&#x00A0;<span class="textit"><span class="textrm">routines</span></span>,
+  the
+  <span class="textit"><span class="textrm">target</span></span>
+  trait
+  is
+  added
+  to
+  the
+  beginning
+  of
+  the
+  set
+  as
+  <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub>
+                                                                            
+                                                                            
+  for
+  any
+  versions
+  of
+  the
+  procedure
+  that
+  are
+  generated
+  for
+  <span class="textbf"><span class="texttt">target</span></span>
+  regions
+  so
+  the
+  total
+  size
+  of
+  the
+  set
+  is
+  increased
+  by
+  1.</dd></dl>
+<p>The <span class="textit"><span class="textrm">simd</span></span> trait is a clause-list trait that is defined with properties that match the clauses accepted by the
+<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive with the same name and semantics. The <span class="textit"><span class="textrm">simd</span></span> trait defines at least the <span class="textit"><span class="textrm">simdlen</span></span>
+property and one of the <span class="textit"><span class="textrm">inbranch</span></span> or <span class="textit"><span class="textrm">notinbranch</span></span> properties. Traits in the <span class="textit"><span class="textrm">construct</span></span> set other than <span class="textit"><span class="textrm">simd</span></span> are
+non-property traits.
+</p> 
+<p>The <span class="textit"><span class="textrm">device</span></span> set includes traits that define the characteristics of the device being targeted by the compiler at
+that point in the program. For each <span class="textit"><span class="textrm">target device</span></span> that the implementation supports, a <span class="textit"><span class="textrm">target_device</span></span> set exists
+that defines the characteristics of that device. At least the following traits must be defined for the <span class="textit"><span class="textrm">device</span></span> and
+all <span class="textit"><span class="textrm">target_device</span></span> sets:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">kind(kind-name-list)</span></span>
+  trait
+  specifies
+  the
+  general
+                                                                            
+                                                                            
+  kind
+  of
+  the
+  device.
+  The
+  following
+  <span class="textit"><span class="textrm">kind-name</span></span>
+  values
+  are
+  defined:
+    <ul class="itemize2">
+    <li class="itemize">
+    <span class="textit"><span class="textrm">host</span></span>,
+    which
+    specifies
+    that
+    the
+    device
+    is
+    the
+    host
+    device;
+    </li>
+    <li class="itemize">
+    <span class="textit"><span class="textrm">nohost</span></span>,
+    which
+    specifies
+    that
+    the
+    devices
+    is
+    not
+    the
+    host
+    device;
+    and
+    </li>
+                                                                            
+                                                                            
+    <li class="itemize">
+    the
+    values
+    defined
+    in
+    the
+    <span class="emph">OpenMP
+    Additional
+    Definitions</span>
+    document.</li></ul>
+  </li>
+  <li class="itemize">The <span class="textit"><span class="textrm">isa(isa-name-list)</span></span> trait specifies the Instruction Set Architectures supported by the device. The
+  accepted <span class="textit"><span class="textrm">isa-name</span></span> values are implementation defined.
+  </li>
+  <li class="itemize">The <span class="textit"><span class="textrm">arch(arch-name-list)</span></span> trait specifies the architectures supported by the device. The accepted
+  <span class="textit"><span class="textrm">arch-name</span></span> values are implementation defined.</li></ul>
+<p>The <span class="textit"><span class="textrm">kind</span></span>, <span class="textit"><span class="textrm">isa</span></span> and <span class="textit"><span class="textrm">arch</span></span> traits in the <span class="textit"><span class="textrm">device</span></span> and <span class="textit"><span class="textrm">target_device</span></span> sets are name-list traits.
+</p> 
+<p>Additionally, the <span class="textit"><span class="textrm">target_device</span></span> set defines the following trait: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">device_num</span></span>
+  trait
+  specifies
+  the
+  <span class="textit"><span class="textrm">device
+  number</span></span>
+  of
+  the
+  device.</li></ul>
+<p>The <span class="textit"><span class="textrm">implementation</span></span> set includes traits that describe the functionality supported by the OpenMP
+implementation at that point in the program. At least the following traits can be defined:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">vendor(vendor-name-list)</span></span>
+                                                                            
+                                                                            
+  trait,
+  which
+  specifies
+  the
+  vendor
+  identifiers
+  of
+  the
+  implementation.
+  OpenMP
+  defined
+  values
+  for
+  <span class="textit"><span class="textrm">vendor-name</span></span>
+  are
+  defined
+  in
+  the
+  <span class="emph">OpenMP
+  Additional
+  Definitions</span>
+  document.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">extension(extension-name-list)</span></span>
+  trait,
+  which
+  specifies
+  vendor
+  specific
+  extensions
+  to
+  the
+  OpenMP
+  specification.
+  The
+  accepted
+  <span class="textit"><span class="textrm">extension-name</span></span>
+  values
+  are
+  implementation
+                                                                            
+                                                                            
+  defined.
+  </li>
+  <li class="itemize">
+  A
+  trait
+  with
+  a
+  name
+  that
+  is
+  identical
+  to
+  the
+  name
+  of
+  any
+  clause
+  that
+  was
+  supplied
+  to
+  the
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  prior
+  to
+  the
+  program
+  point.
+  Such
+  traits
+  other
+  than
+  the
+  <span class="textit"><span class="textrm">atomic_default_mem_order</span></span>
+  trait
+  are
+  non-property
+  traits.
+  The
+  presence
+  of
+                                                                            
+                                                                            
+  these
+  traits
+  has
+  been
+  deprecated.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">requires(requires-clause-list)</span></span>
+  trait,
+  which
+  is
+  a
+  clause-list
+  trait
+  for
+  which
+  the
+  properties
+  are
+  the
+  clauses
+  that
+  have
+  been
+  supplied
+  to
+  the
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  prior
+  to
+  the
+  program
+  point
+  as
+  well
+  as
+  implementation
+  defined
+  implicit
+  requirements.</li></ul>
+                                                                            
+                                                                            
+<p>The <span class="textit"><span class="textrm">vendor</span></span> and <span class="textit"><span class="textrm">extension</span></span> traits in the <span class="textit"><span class="textrm">implementation</span></span> set are name-list traits.
+</p> 
+<p>Implementations can define additional traits in the <span class="textit"><span class="textrm">device</span></span>, <span class="textit"><span class="textrm">target_device</span></span> and <span class="textit"><span class="textrm">implementation</span></span> sets; these
+traits are extension traits.
+</p> 
+<p>The <span class="textit"><span class="textrm">dynamic</span></span> trait set includes traits that define the dynamic properties of a program at a point in its
+execution. The <span class="textit"><span class="textrm">data state</span></span> trait in the <span class="textit"><span class="textrm">dynamic</span></span> trait set refers to the complete data state of the program that
+may be accessed at runtime.
+</p> 
+<!--l. 962--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu26.html" >next</a>] [<a 
+href="openmpse11.html" >prev</a>] [<a 
+href="openmpse11.html#tailopenmpse11.html" >prev-tail</a>] [<a 
+href="openmpsu25.html" >front</a>] [<a 
+href="openmpse11.html#openmpsu25.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu25.html"></a> </p> 
+ 
+</body> 
+</html>

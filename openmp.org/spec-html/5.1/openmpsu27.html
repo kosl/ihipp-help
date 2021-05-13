@@ -1,0 +1,482 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Matching and Scoring Context Selectors</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1134--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu28.html" >next</a>] [<a 
+href="openmpsu26.html" >prev</a>] [<a 
+href="openmpsu26.html#tailopenmpsu26.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu27.html">tail</a>] [<a 
+href="openmpse11.html#openmpsu27.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.3</span>&#x00A0;&#x00A0;<a 
+ id="x44-430002.3.3"></a>Matching and Scoring Context Selectors</h4>
+<p>A given context selector is compatible with a given OpenMP context if the following conditions are
+satisfied:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  All
+  selectors
+  in
+  the
+  <span class="textbf"><span class="texttt">user</span></span>
+  set
+  of
+  the
+  context
+  selector
+  are
+  true;
+  </li>
+  <li class="itemize">
+  All
+  traits
+  and
+  trait
+  properties
+  that
+  are
+  defined
+  by
+  selectors
+                                                                            
+                                                                            
+  in
+  the
+  <span class="textbf"><span class="texttt">target_device</span></span>
+  set
+  of
+  the
+  context
+  selector
+  are
+  active
+  in
+  the
+  <span class="textit"><span class="textrm">target_device</span></span>
+  trait
+  set
+  for
+  the
+  device
+  that
+  is
+  identified
+  by
+  the
+  <span class="textbf"><span class="texttt">device_num</span></span>
+  selector;
+  </li>
+  <li class="itemize">
+  All
+  traits
+  and
+  trait
+  properties
+  that
+  are
+  defined
+  by
+  selectors
+  in
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>,
+  <span class="textbf"><span class="texttt">device</span></span>
+  and
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">implementation</span></span>
+  sets
+  of
+  the
+  context
+  selector
+  are
+  active
+  in
+  the
+  corresponding
+  trait
+  sets
+  of
+  the
+  OpenMP
+  context;
+  </li>
+  <li class="itemize">
+  For
+  each
+  selector
+  in
+  the
+  context
+  selector,
+  its
+  properties
+  are
+  a
+  subset
+  of
+  the
+  properties
+  of
+  the
+  corresponding
+  trait
+  of
+  the
+  OpenMP
+  context;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Selectors
+  in
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>
+  set
+  of
+  the
+  context
+  selector
+  appear
+  in
+  the
+  same
+  relative
+  order
+  as
+  their
+  corresponding
+  traits
+  in
+  the
+  <span class="textit"><span class="textrm">construct</span></span>
+  trait
+  set
+  of
+  the
+  OpenMP
+  context;
+  and
+  </li>
+  <li class="itemize">
+  No
+  specified
+  implementation-defined
+  selector
+  is
+  ignored
+  by
+  the
+                                                                            
+                                                                            
+  implementation.
+  </li></ul>
+<p>Some properties of the <span class="textbf"><span class="texttt">simd</span></span> selector have special rules to match the properties of the <span class="textit"><span class="textrm">simd</span></span>
+trait:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">simdlen(</span></span><span class="textit"><span class="textrm">N</span></span><span class="textbf"><span class="texttt">)</span></span>
+  property
+  of
+  the
+  selector
+  matches
+  the
+  <span class="textit"><span class="textrm">simdlen(M)</span></span>
+  trait
+  of
+  the
+  OpenMP
+  context
+  if
+  <span 
+class="cmmi-10">M</span><span 
+class="cmr-10">%</span><span 
+class="cmmi-10">N</span>
+  equals
+  zero;
+  and
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">aligned(</span></span><span class="textit"><span class="textrm">list:N</span></span><span class="textbf"><span class="texttt">)</span></span>
+  property
+  of
+  the
+  selector
+  matches
+  the
+  <span class="textit"><span class="textrm">aligned(list:M)</span></span>
+  trait
+  of
+                                                                            
+                                                                            
+  the
+  OpenMP
+  context
+  if
+  <span 
+class="cmmi-10">N</span><span 
+class="cmr-10">%</span><span 
+class="cmmi-10">M</span>
+  equals
+  zero.</li></ul>
+<p>Among compatible context selectors, a score is computed using the following algorithm:
+</p> 
+<p>
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  Each
+  trait
+  selector
+  for
+  which
+  the
+  corresponding
+  trait
+  appears
+  in
+  the
+  <span class="textit"><span class="textrm">construct</span></span>
+  trait
+  set
+  in
+  the
+  OpenMP
+  context
+  is
+  given
+  the
+  value
+  <span 
+class="cmr-10">2</span><sup><span 
+class="cmmi-7">p</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>
+  where
+  <span 
+class="cmmi-10">p</span>
+  is
+  the
+  position
+  of
+  the
+                                                                            
+                                                                            
+  corresponding
+  trait,
+  <span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">p</span></sub>,
+  in
+  the
+  context
+  <span class="textit"><span class="textrm">construct</span></span>
+  trait
+  set;
+  if
+  the
+  traits
+  that
+  correspond
+  to
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>
+  selector
+  set
+  appear
+  multiple
+  times
+  in
+  the
+  OpenMP
+  context,
+  the
+  highest
+  valued
+  subset
+  of
+  context
+  traits
+  that
+  contains
+  all
+  selectors
+  in
+  the
+  same
+  order
+  are
+  used;
+                                                                            
+                                                                            
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  The
+  <span class="textbf"><span class="texttt">kind</span></span>,
+  <span class="textbf"><span class="texttt">arch</span></span>,
+  and
+  <span class="textbf"><span class="texttt">isa</span></span>
+  selectors,
+  if
+  specified,
+  are
+  given
+  the
+  values
+  <span 
+class="cmr-10">2</span><sup><span 
+class="cmmi-7">l</span></sup>,
+  <span 
+class="cmr-10">2</span><sup><span 
+class="cmmi-7">l</span><span 
+class="cmr-7">+1</span></sup>
+  and
+  <span 
+class="cmr-10">2</span><sup><span 
+class="cmmi-7">l</span><span 
+class="cmr-7">+2</span></sup>,
+  respectively,
+  where
+  <span 
+class="cmmi-10">l</span>
+  is
+  the
+  number
+  of
+  traits
+  in
+  the
+  <span class="textit"><span class="textrm">construct</span></span>
+  set;
+  </dd><dt class="enumerate-enumitem">
+3. </dt><dd 
+class="enumerate-enumitem">
+  Trait
+  selectors
+  for
+  which
+  a
+  <span class="textit"><span class="textrm">trait-score</span></span>
+  is
+  specified
+  are
+                                                                            
+                                                                            
+  given
+  the
+  value
+  specified
+  by
+  the
+  <span class="textit"><span class="textrm">trait-score</span></span>
+  <span class="textit"><span class="textrm">score-expression</span></span>;
+  </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">
+  The
+  values
+  given
+  to
+  any
+  additional
+  selectors
+  allowed
+  by
+  the
+  implementation
+  are
+  implementation
+  defined;
+  </dd><dt class="enumerate-enumitem">
+5. </dt><dd 
+class="enumerate-enumitem">
+  Other
+  selectors
+  are
+  given
+  a
+  value
+  of
+  zero;
+  and
+  </dd><dt class="enumerate-enumitem">
+6. </dt><dd 
+class="enumerate-enumitem">
+  A
+  context
+                                                                            
+                                                                            
+  selector
+  that
+  is
+  a
+  strict
+  subset
+  of
+  another
+  context
+  selector
+  has
+  a
+  score
+  of
+  zero.
+  For
+  other
+  context
+  selectors,
+  the
+  final
+  score
+  is
+  the
+  sum
+  of
+  the
+  values
+  of
+  all
+  specified
+  selectors
+  plus
+  <span 
+class="cmr-10">1</span>.</dd></dl>
+                                                                            
+                                                                            
+<!--l. 1195--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu28.html" >next</a>] [<a 
+href="openmpsu26.html" >prev</a>] [<a 
+href="openmpsu26.html#tailopenmpsu26.html" >prev-tail</a>] [<a 
+href="openmpsu27.html" >front</a>] [<a 
+href="openmpse11.html#openmpsu27.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu27.html"></a> </p> 
+ 
+</body> 
+</html>

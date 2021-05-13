@@ -1,0 +1,618 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>depend Clause</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1958--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu110.html" >next</a>] [<a 
+href="openmpsu108.html" >prev</a>] [<a 
+href="openmpsu108.html#tailopenmpsu108.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu109.html">tail</a>] [<a 
+href="openmpse27.html#openmpsu109.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.19.11</span>&#x00A0;&#x00A0;<a 
+ id="x142-1540002.19.11"></a><span class="textbf"><span class="texttt">depend</span></span> Clause</h4>
+<a 
+ id="dx142-154001"></a>
+<a 
+ id="dx142-154002"></a>
+<p><p><a 
+ id="Q1-142-662"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">depend</span></span> clause enforces additional constraints on the scheduling of tasks or loop iterations. These
+constraints establish dependences only between sibling tasks or between loop iterations.
+<p><a 
+ id="Q1-142-663"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">depend</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154003r1"></a></span></p> 
+<!--l. 1970--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154004r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">dependence-type</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154006r1"></a></span></p> 
+<!--l. 1975--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154007r2"></a></span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154008r3"></a></span><span 
+class="pcrb8t-">out</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154009r4"></a></span><span 
+class="pcrb8t-">inout</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154010r5"></a></span><span 
+class="pcrb8t-">mutexinoutset</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154011r6"></a></span><span 
+class="pcrb8t-">inoutset</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154012r7"></a></span><span 
+class="pcrb8t-">depobj</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154013r8"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">depend-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154014r1"></a></span></p> 
+<!--l. 1985--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154015r2"></a></span><span 
+class="pcrb8t-">iterator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154016r3"></a></span></pre>
+                                                                            
+                                                                            
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154017r1"></a></span></p> 
+<!--l. 1993--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154018r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154019r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">dependence-type</span></span> is:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154020r1"></a></span></p> 
+<!--l. 1998--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154021r2"></a></span><span 
+class="pcrb8t-">source</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154022r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154023r1"></a></span></p> 
+<!--l. 2004--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154024r2"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">vec</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154025r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">dependence-type</span></span> is:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154026r1"></a></span></p> 
+<!--l. 2009--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154027r2"></a></span><span 
+class="pcrb8t-">sink</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x142-154028r3"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">vec</span></span> is the iteration vector, which has the form:
+</p> 
+<p>x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub> [<span 
+class="cmsy-10">± </span>d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">1</span></sub>], x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">2</span></sub> [<span 
+class="cmsy-10">± </span>d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">2</span></sub>], &#x2026;, x<sub class="textsubscript"><span class="textit"><span class="textrm">n</span></span></sub> [<span 
+class="cmsy-10">± </span>d<sub class="textsubscript"><span class="textit"><span class="textrm">n</span></span></sub>]
+</p> 
+<p>where <span class="textit"><span class="textrm">n</span></span> is the value specified by the <span class="textbf"><span class="texttt">ordered</span></span> clause in the worksharing-loop directive, x<sub class="textsubscript"><span class="textit"><span class="textrm">i</span></span></sub> denotes the loop
+iteration variable of the <span class="textit"><span class="textrm">i</span></span>-th nested loop associated with the worksharing-loop directive, and d<sub class="textsubscript"><span class="textit"><span class="textrm">i</span></span></sub> is a constant
+non-negative integer.
+</p> 
+<p><p><a 
+ id="Q1-142-664"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Task dependences are derived from the <span class="textit"><span class="textrm">dependence-type</span></span> of a <span class="textbf"><span class="texttt">depend</span></span> clause and its list items when
+<span class="textit"><span class="textrm">dependence-type</span></span> is <span class="textbf"><span class="texttt">in</span></span>, <span class="textbf"><span class="texttt">out</span></span>, <span class="textbf"><span class="texttt">inout</span></span>, <span class="textbf"><span class="texttt">mutexinoutset</span></span> or <span class="textbf"><span class="texttt">inoutset</span></span>. When the <span class="textit"><span class="textrm">dependence-type</span></span> is
+<span class="textbf"><span class="texttt">depobj</span></span>, the task dependences are derived from the dependences represented by the depend objects
+specified in the <span class="textbf"><span class="texttt">depend</span></span> clause as if the <span class="textbf"><span class="texttt">depend</span></span> clauses of the <span class="textbf"><span class="texttt">depobj</span></span> constructs were specified in the
+current construct.
+</p> 
+<p>The storage location of a list item matches the storage location of another list item if they have the same
+storage location, or if any of the list items is <span class="textbf"><span class="texttt">omp_all_memory</span></span>.
+</p> 
+<p>For the <span class="textbf"><span class="texttt">in</span></span><span class="textit"><span class="textrm">dependence-type</span></span>, if the storage location of at least one of the list items matches the storage
+location of a list item appearing in a <span class="textbf"><span class="texttt">depend</span></span> clause with an <span class="textbf"><span class="texttt">out</span></span>, <span class="textbf"><span class="texttt">inout</span></span>, <span class="textbf"><span class="texttt">mutexinoutset</span></span>, or
+<span class="textbf"><span class="texttt">inoutset</span></span><span class="textit"><span class="textrm">dependence-type</span></span> on a construct from which a sibling task was previously generated, then the
+generated task will be a dependent task of that sibling task.
+</p> 
+<p>For the <span class="textbf"><span class="texttt">out</span></span> and <span class="textbf"><span class="texttt">inout</span></span><span class="textit"><span class="textrm">dependence-types</span></span>, if the storage location of at least one of the list items
+matches the storage location of a list item appearing in a <span class="textbf"><span class="texttt">depend</span></span> clause with an <span class="textbf"><span class="texttt">in</span></span>, <span class="textbf"><span class="texttt">out</span></span>,
+<span class="textbf"><span class="texttt">inout</span></span>, <span class="textbf"><span class="texttt">mutexinoutset</span></span>, or <span class="textbf"><span class="texttt">inoutset</span></span><span class="textit"><span class="textrm">dependence-type</span></span> on a construct from which a sibling
+task was previously generated, then the generated task will be a dependent task of that sibling
+task.
+                                                                            
+                                                                            
+</p> 
+<p>For the <span class="textbf"><span class="texttt">mutexinoutset</span></span><span class="textit"><span class="textrm">dependence-type</span></span>, if the storage location of at least one of the list items matches
+the storage location of a list item appearing in a <span class="textbf"><span class="texttt">depend</span></span> clause with an <span class="textbf"><span class="texttt">in</span></span>, <span class="textbf"><span class="texttt">out</span></span>, <span class="textbf"><span class="texttt">inout</span></span>, or <span class="textbf"><span class="texttt">inoutset</span></span>
+<span class="textit"><span class="textrm">dependence-type</span></span> on a construct from which a sibling task was previously generated, then the generated task
+will be a dependent task of that sibling task.
+</p> 
+<p>If a list item appearing in a <span class="textbf"><span class="texttt">depend</span></span> clause with a <span class="textbf"><span class="texttt">mutexinoutset</span></span><span class="textit"><span class="textrm">dependence-type</span></span> on a task generating
+construct matches a list item appearing in a <span class="textbf"><span class="texttt">depend</span></span> clause with a <span class="textbf"><span class="texttt">mutexinoutset</span></span><span class="textit"><span class="textrm">dependence-type</span></span> on
+a different task generating construct, and both constructs generate sibling tasks, the sibling tasks will be
+mutually exclusive tasks.
+</p> 
+<p>For the <span class="textbf"><span class="texttt">inoutset</span></span><span class="textit"><span class="textrm">dependence-type</span></span>, if the storage location of at least one of the list items matches
+the storage location of a list item appearing in a <span class="textbf"><span class="texttt">depend</span></span> clause with an <span class="textbf"><span class="texttt">in</span></span>, <span class="textbf"><span class="texttt">out</span></span>, <span class="textbf"><span class="texttt">inout</span></span>, or
+<span class="textbf"><span class="texttt">mutexinoutset</span></span><span class="textit"><span class="textrm">dependence-type</span></span> on a construct from which a sibling task was previously generated,
+then the generated task will be a dependent task of that sibling task.
+</p> 
+<p>The list items that appear in the <span class="textbf"><span class="texttt">depend</span></span> clause may reference iterators defined by an <span class="textit"><span class="textrm">iterators-definition</span></span>
+appearing on an <span class="textbf"><span class="texttt">iterator</span></span> modifier.
+</p> 
+<p>The list items that appear in the <span class="textbf"><span class="texttt">depend</span></span> clause may include array sections or the <span class="textbf"><span class="texttt">omp_all_memory</span></span>
+reserved locator.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a list item has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute and its allocation status is unallocated, the behavior is
+unspecified. If a list item has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute and its association status is disassociated or undefined,
+the behavior is unspecified.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The list items that appear in a <span class="textbf"><span class="texttt">depend</span></span> clause may use shape-operators.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  The enforced task dependence establishes a synchronization of memory accesses performed by a
+dependent task with respect to accesses performed by the predecessor tasks. However, it is the responsibility
+of the programmer to synchronize properly with respect to other concurrent accesses that occur outside of those
+tasks. <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">source</span></span><span class="textit"><span class="textrm">dependence-type</span></span> specifies the satisfaction of cross-iteration dependences that arise from the
+current iteration.
+</p> 
+<p>The <span class="textbf"><span class="texttt">sink</span></span><span class="textit"><span class="textrm">dependence-type</span></span> specifies a cross-iteration dependence, where the iteration vector <span class="textit"><span class="textrm">vec</span></span> indicates
+the iteration that satisfies the dependence.
+</p> 
+<p>If the iteration vector <span class="textit"><span class="textrm">vec</span></span> does not occur in the iteration space, the <span class="textbf"><span class="texttt">depend</span></span> clause is ignored. If all
+<span class="textbf"><span class="texttt">depend</span></span> clauses on an <span class="textbf"><span class="texttt">ordered</span></span> construct are ignored then the construct is ignored.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  An iteration vector <span class="textit"><span class="textrm">vec</span></span> that does not indicate a lexicographically earlier iteration may cause a deadlock.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-142-665"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">task-dependences</span></span> event occurs in a thread that encounters a task generating construct or a <span class="textbf"><span class="texttt">taskwait</span></span>
+construct with a <span class="textbf"><span class="texttt">depend</span></span> clause immediately after the <span class="textit"><span class="textrm">task-create</span></span> event for the new task or the <span class="textit"><span class="textrm">taskwait-init</span></span>
+event.
+</p> 
+<p>The <span class="textit"><span class="textrm">task-dependence</span></span> event indicates an unfulfilled dependence for the generated task. This event occurs in a
+thread that observes the unfulfilled dependence before it is satisfied.
+</p> 
+<p><p><a 
+ id="Q1-142-666"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches the <span class="textbf"><span class="texttt">ompt_callback_dependences</span></span> callback for each occurrence of the
+<span class="textit"><span class="textrm">task-dependences</span></span> event to announce its dependences with respect to the list items in the <span class="textbf"><span class="texttt">depend</span></span> clause.
+This callback has type signature <span class="textbf"><span class="texttt">ompt_callback_dependences_t</span></span>.
+</p> 
+<p>A thread dispatches the <span class="textbf"><span class="texttt">ompt_callback_task_dependence</span></span> callback for a <span class="textit"><span class="textrm">task-dependence</span></span> event to
+report a dependence between a predecessor task (<span class="textit"><span class="textrm">src_task_data</span></span>) and a dependent task (<span class="textit"><span class="textrm">sink_task_data</span></span>).
+This callback has type signature <span class="textbf"><span class="texttt">ompt_callback_task_dependence_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-142-667"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">depend</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  List
+  items,
+  other
+  than
+  reserved
+  locators,
+  used
+  in
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clauses
+  of
+  the
+  same
+  task
+  or
+  sibling
+  tasks
+  must
+  indicate
+  identical
+  storage
+  locations
+  or
+  disjoint
+  storage
+  locations.
+  </li>
+  <li class="itemize">
+  List
+  items
+  used
+  in
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clauses
+  cannot
+                                                                            
+                                                                            
+  be
+  zero-length
+  array
+  sections.
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_all_memory</span></span>
+  reserved
+  locator
+  can
+  only
+  be
+  used
+  in
+  a
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  with
+  an
+  <span class="textbf"><span class="texttt">out</span></span>
+  or
+  <span class="textbf"><span class="texttt">inout</span></span>
+  <span class="textit"><span class="textrm">dependence-type</span></span>.
+  </li>
+  <li class="itemize">
+  Array
+  sections
+  cannot
+  be
+  specified
+  in
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clauses
+  with
+  the
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  dependence
+  type.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  List
+  items
+  used
+  in
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clauses
+  with
+  the
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  dependence
+  type
+  must
+  be
+  depend
+  objects
+  in
+  the
+  initialized
+  state.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> List items used in <span class="textbf"><span class="texttt">depend</span></span> clauses with the <span class="textbf"><span class="texttt">depobj</span></span> dependence type must be expressions of the
+  <span class="textbf"><span class="texttt">omp_depend_t</span></span> type.
+<span 
+class="cmsy-10">&#x2219;</span> List items that are expressions of the <span class="textbf"><span class="texttt">omp_depend_t</span></span> type can only be used in <span class="textbf"><span class="texttt">depend</span></span> clauses with
+  the <span class="textbf"><span class="texttt">depobj</span></span> dependence type.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A common block name cannot appear in a <span class="textbf"><span class="texttt">depend</span></span> clause.
+<span 
+class="cmsy-10">&#x2219;</span> List items used in <span class="textbf"><span class="texttt">depend</span></span> clauses with the <span class="textbf"><span class="texttt">depobj</span></span> dependence type must be integer expressions of the
+  <span class="textbf"><span class="texttt">omp_depend_kind</span></span><span class="textit"><span class="textrm">kind</span></span>.
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li>
+  <li class="itemize">For a <span class="textit"><span class="textrm">vec</span></span> element of <span class="textbf"><span class="texttt">sink</span></span><span class="textit"><span class="textrm">dependence-type</span></span> of the form x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> <span 
+class="cmr-10">+ </span>d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> or x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> <span 
+class="cmsy-10">- </span>d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> if the loop iteration variable x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>
+  has an integral or pointer type, the expression x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> <span 
+class="cmr-10">+ </span>d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> or x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> <span 
+class="cmsy-10">- </span>d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> for any value of the loop iteration variable
+  x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> that can encounter the <span class="textbf"><span class="texttt">ordered</span></span> construct must be computable without overflow in the type of the
+  loop iteration variable.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> For a <span class="textit"><span class="textrm">vec</span></span> element of <span class="textbf"><span class="texttt">sink</span></span><span class="textit"><span class="textrm">dependence-type</span></span> of the form x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> or x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>&#x00A0;<span 
+class="cmsy-10">-</span>&#x00A0;d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> if the loop iteration variable
+  x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> is of a random access iterator type other than pointer type, the expression <span 
+class="cmr-10">(</span>&#x00A0;x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>&#x00A0;<span 
+class="cmsy-10">-</span>&#x00A0;lb<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>&#x00A0;<span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> or
+  <span 
+class="cmr-10">(</span>&#x00A0;x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>&#x00A0;<span 
+class="cmsy-10">-</span>&#x00A0;lb<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>&#x00A0;<span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmsy-10">-</span>&#x00A0;d<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> for any value of the loop iteration variable x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub> that can encounter the <span class="textbf"><span class="texttt">ordered</span></span>
+  construct must be computable without overflow in the type that would be used by <span class="textbf"><span class="texttt">std::distance</span></span>
+  applied to variables of the type of x<sub class="textsubscript"><span 
+class="ec-qtmr-x-x-90">i</span></sub>.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A bit-field cannot appear in a <span class="textbf"><span class="texttt">depend</span></span> clause.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-142-668"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Array
+  shaping,
+  see
+  Section&#x00A0;<a 
+href="openmpsu20.html#x35-340002.1.4">2.1.4<!--tex4ht:ref: subsec:Array Shaping --></a>.
+  </li>
+  <li class="itemize">
+  Array
+  sections,
+  see
+  Section&#x00A0;<a 
+href="openmpsu21.html#x36-350002.1.5">2.1.5<!--tex4ht:ref: subsec:Array Sections --></a>.
+  </li>
+  <li class="itemize">
+  Iterators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu22.html#x37-360002.1.6">2.1.6<!--tex4ht:ref: subsec:iterators --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+  </li>
+  <li class="itemize">
+  Task
+  scheduling
+  constraints,
+  see
+  Section&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">2.12.6<!--tex4ht:ref: subsec:Task Scheduling --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu66.html#x94-1040002.14.3">2.14.3<!--tex4ht:ref: subsec:target enter data Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu67.html#x95-1050002.14.4">2.14.4<!--tex4ht:ref: subsec:target exit data Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu69.html#x97-1070002.14.6">2.14.6<!--tex4ht:ref: subsec:target update Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu107.html#x140-1510002.19.9">2.19.9<!--tex4ht:ref: subsec:ordered Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">depobj</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu108.html#x141-1530002.19.10.1">2.19.10.1<!--tex4ht:ref: subsubsec:depobj Construct --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_dependences_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3500004.5.2.8">4.5.2.8<!--tex4ht:ref: sec:ompt_callback_dependences_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_task_dependence_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3510004.5.2.9">4.5.2.9<!--tex4ht:ref: sec:ompt_callback_task_dependence_t --></a>.</li></ul>
+<!--l. 2230--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu110.html" >next</a>] [<a 
+href="openmpsu108.html" >prev</a>] [<a 
+href="openmpsu108.html#tailopenmpsu108.html" >prev-tail</a>] [<a 
+href="openmpsu109.html" >front</a>] [<a 
+href="openmpse27.html#openmpsu109.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu109.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_free</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 450--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu202.html" >next</a>] [<a 
+href="openmpsu200.html" >prev</a>] [<a 
+href="openmpsu200.html#tailopenmpsu200.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu201.html">tail</a>] [<a 
+href="openmpse43.html#openmpsu201.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.13.7</span>&#x00A0;&#x00A0;<a 
+ id="x251-2840003.13.7"></a><span class="textbf"><span class="texttt">omp_free</span></span></h4>
+                                                                            
+                                                                            
+<a 
+ id="dx251-284001"></a>
+<p><p><a 
+ id="Q1-251-1380"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_free</span></span> routine deallocates previously allocated memory.
+<p><a 
+ id="Q1-251-1381"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284002r1"></a></span></p> 
+<!--l. 460--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_free</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284004r3"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+                                                                            
+                                                                            
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284005r1"></a></span></p> 
+<!--l. 468--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284006r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_free</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284007r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284008r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_null_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284009r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284010r6"></a></span></pre>
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284011r1"></a></span></p> 
+<!--l. 477--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284012r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_free</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284013r3"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">intrinsic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iso_c_binding</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">only</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284014r4"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ptr</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284015r5"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_allocator_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">allocator</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x251-284016r6"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-251-1382"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_free</span></span> region is the generating task.
+</p> 
+<p><p><a 
+ id="Q1-251-1383"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_free</span></span> routine deallocates the memory to which <span class="textit"><span class="textrm">ptr</span></span> points. The <span class="textit"><span class="textrm">ptr</span></span> argument must have been
+returned by an OpenMP allocation routine. If the <span class="textit"><span class="textrm">allocator</span></span> argument is specified it must be the memory
+allocator to which the allocation request was made. If the <span class="textit"><span class="textrm">allocator</span></span> argument is <span class="textbf"><span class="texttt">omp_null_allocator</span></span>
+the implementation will determine that value automatically.
+</p> 
+<p>If <span class="textit"><span class="textrm">ptr</span></span> is <span class="textbf"><span class="texttt">NULL</span></span> (or, <span class="textbf"><span class="texttt">C_NULL_PTR</span></span>, for Fortran), no operation is performed.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp_free</span></span> routine requires an explicit interface and so might not be provided in <span class="textbf"><span class="texttt">omp_lib.h</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-251-1384"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The restrictions to the <span class="textbf"><span class="texttt">omp_free</span></span> routine are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Using
+  <span class="textbf"><span class="texttt">omp_free</span></span>
+  on
+  memory
+  that
+  was
+  already
+  deallocated
+  or
+  that
+  was
+  allocated
+  by
+  an
+  allocator
+  that
+  has
+  already
+  been
+  destroyed
+  with
+  <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span>
+  results
+  in
+  unspecified
+  behavior.</li></ul>
+<p><p><a 
+ id="Q1-251-1385"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Memory
+  allocators,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>.</li></ul>
+<!--l. 519--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu202.html" >next</a>] [<a 
+href="openmpsu200.html" >prev</a>] [<a 
+href="openmpsu200.html#tailopenmpsu200.html" >prev-tail</a>] [<a 
+href="openmpsu201.html" >front</a>] [<a 
+href="openmpse43.html#openmpsu201.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu201.html"></a> </p> 
+ 
+</body> 
+</html>

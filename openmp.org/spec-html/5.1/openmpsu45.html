@@ -1,0 +1,1446 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Canonical Loop Nest Form</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 4--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu46.html" >next</a>] [<a 
+href="openmpse19.html" >prev</a>] [<a 
+href="openmpse19.html#tailopenmpse19.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu45.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu45.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h4 class="subsectionHead"><span class="titlemark">2.11.1</span>&#x00A0;&#x00A0;<a 
+ id="x70-700002.11.1"></a>Canonical Loop Nest Form</h4>
+<a 
+ id="dx70-70001"></a>
+<p>A loop nest has <span class="emph">canonical loop nest form</span> if it conforms to <span class="textit"><span class="textrm">loop-nest</span></span> in the following grammar:
+</p> 
+<p><!--tex4ht:inline--></p> 
+<div class="tabular"> <table id="TBL-9" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-9-1g"><col 
+id="TBL-9-1" /><col 
+id="TBL-9-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-1-1"  
+class="td11"> <p>       </p> 
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-2-1"  
+class="td11"> </td></tr><tr><td colspan="2"></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-09-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-09-2-1"  
+class="td11">
+ <p>       </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-09-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-09-3-1"  
+class="td11"> <p>       </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-09-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-09-4-1"  
+class="td11"> <p>Symbol     </p> 
+</td><td  style="white-space:wrap; text-align:left;" id="TBL-09-4-2"  
+class="td11"> <p>Meaning                                                                                                                         </p> 
+</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr 
+class="vspace" style="font-size:3.59999pt"><td 
+>&nbsp;</td><td 
+>&nbsp;</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-09-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-09-5-1"  
+class="td11">        </td>
+</tr></table></div>
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">loop-nest</span></span></div> <div class="glossarydefstart">One of the following: </div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart">
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70002r1"></a></span></p> 
+<!--l. 35--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70003r2"></a></span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">init</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">test</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">incr</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">body</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70005r4"></a></span></pre>
+<p></div>
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><div class="glossarydefstart">or </div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart">
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70006r1"></a></span></p> 
+<!--l. 48--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70007r2"></a></span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">range</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">decl</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">range</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">body</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70009r4"></a></span></pre>
+<p>A range-based <span class="textbf"><span class="texttt">for</span></span> loop is equivalent to a regular <span class="textbf"><span class="texttt">for</span></span> loop using iterators, as defined in the base language.
+A range-based <span class="textbf"><span class="texttt">for</span></span> loop has no iteration variable. </div>
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><div class="glossarydefstart">or </div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart">
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70010r1"></a></span></p> 
+<!--l. 65--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70011r2"></a></span><span 
+class="pcrb8t-">DO</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">label</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">var</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">lb</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ub</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">incr</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70012r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">intervening</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">code</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70013r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">body</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70014r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">intervening</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">code</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70015r6"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">label</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">END</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">DO</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70016r7"></a></span></pre>
+<p>If the <span class="textit"><span class="textrm">loop-nest</span></span> is a <span class="textit"><span class="textrm">nonblock-do-construct</span></span>, it is treated as a <span class="textit"><span class="textrm">block-do-construct</span></span> for each <span class="textbf"><span class="texttt">DO</span></span>
+construct.
+</p> 
+<p>The value of <span class="textit"><span class="textrm">incr</span></span> is the increment of the loop. If not specified, its value is assumed to be 1.
+</div>
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><div class="glossarydefstart">or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70017r1"></a></span></p> 
+<!--l. 83--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70018r2"></a></span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">transformation</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">construct</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70019r3"></a></span></pre>
+<p></div>
+</p> 
+<p><div class="glossarydefstart">or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70020r1"></a></span></p> 
+<!--l. 91--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70021r2"></a></span><span 
+class="ec-qtmri-">generated</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">canonical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">loop</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70022r3"></a></span></pre>
+<p></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">loop-body</span></span></div> <div class="glossarydefstart">One of the following:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70023r1"></a></span></p> 
+<!--l. 101--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70024r2"></a></span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70025r3"></a></span></pre>
+<p>or </div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart">
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70026r1"></a></span></p> 
+<!--l. 110--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70027r2"></a></span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70028r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">intervening</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">code</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70029r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">body</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70030r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">intervening</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">code</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70031r6"></a></span><span 
+class="pcrb8t-">}</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70032r7"></a></span></pre>
+<p></div>
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossarydefstart">or </div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart">
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70033r1"></a></span></p> 
+<!--l. 128--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70034r2"></a></span><span 
+class="pcrb8t-">BLOCK</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70035r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">intervening</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">code</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70036r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">body</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70037r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">intervening</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">code</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70038r6"></a></span><span 
+class="pcrb8t-">END</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">BLOCK</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70039r7"></a></span></pre>
+<p></div>
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><div class="glossarydefstart">or if none of the previous productions match
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70040r1"></a></span></p> 
+<!--l. 141--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70041r2"></a></span><span 
+class="ec-qtmri-">final</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">body</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x70-70042r3"></a></span></pre>
+<p></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">loop-transformation-construct</span></span></div> <div class="glossarydefstart">A loop transformation construct. </div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">generated-canonical-loop</span></span></div> <div class="glossarydefstart">A generated loop from a loop transformation construct that has canonical loop
+nest form and for which the loop body matches <span class="textit"><span class="textrm">loop-body</span></span>. </div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">intervening-code</span></span></div> <div class="glossarydefstart">A structured block sequence that does not contain OpenMP directives or calls to the
+OpenMP runtime API in its corresponding region, referred to as intervening code. If intervening code
+is present, then a loop at the same depth within the loop nest is not a perfectly nested loop.
+</div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart">It must not contain iteration statements, <span class="textbf"><span class="texttt">continue</span></span> statements or <span class="textbf"><span class="texttt">break</span></span> statements that apply to the
+enclosing loop. </div>
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart">It must not contain loops, array expressions, <span class="textbf"><span class="texttt">CYCLE</span></span> statements or <span class="textbf"><span class="texttt">EXIT</span></span> statements. </div>
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p></div></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">final-loop-body</span></span></div> <div class="glossarydefstart">A structured block that terminates the scope of loops in the loop nest. If the loop nest is
+associated with a loop-associated directive, loops in this structured block cannot be associated with that
+directive. </div>
+                                                                            
+                                                                            
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">init-expr</span></span></div> <div class="glossarydefstart">One of the following: </p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   =
+   <span class="textit"><span class="textrm">lb</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">integer-type</span></span>
+   <span class="textit"><span class="textrm">var</span></span>
+   =
+   <span class="textit"><span class="textrm">lb</span></span></li></ul>
+<p></div> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart"></p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   <span class="textit"><span class="textrm">pointer-type</span></span>
+   <span class="textit"><span class="textrm">var</span></span>
+   =
+   <span class="textit"><span class="textrm">lb</span></span></li></ul>
+<p></div>
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart"></p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   <span class="textit"><span class="textrm">random-access-iterator-type</span></span>
+   <span class="textit"><span class="textrm">var</span></span>
+   =
+   <span class="textit"><span class="textrm">lb</span></span></li></ul>
+<p></div>
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p></div></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">test-expr</span></span></div> <div class="glossarydefstart">One of the following: </p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   <span class="textit"><span class="textrm">relational-op</span></span>
+   <span class="textit"><span class="textrm">ub</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">ub</span></span>
+   <span class="textit"><span class="textrm">relational-op</span></span>
+   <span class="textit"><span class="textrm">var</span></span></li></ul>
+<p></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">relational-op</span></span></div> <div class="glossarydefstart">One of the following: </p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   <span class="textbf"><span class="texttt">&#x003C;</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textbf"><span class="texttt">&#x003C;=</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textbf"><span class="texttt">&#x003E;</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textbf"><span class="texttt">&#x003E;=</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textbf"><span class="texttt">!=</span></span></li></ul>
+<p></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">incr-expr</span></span></div> <div class="glossarydefstart">One of the following: </p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   ++<span class="textit"><span class="textrm">var</span></span>
+                                                                            
+                                                                            
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>++
+   </li>
+   <li class="itemize">
+   -
+   -
+   <span class="textit"><span class="textrm">var</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   -
+   -
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   +=
+   <span class="textit"><span class="textrm">incr</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   -
+   =
+   <span class="textit"><span class="textrm">incr</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   =
+   <span class="textit"><span class="textrm">var</span></span>
+   +
+   <span class="textit"><span class="textrm">incr</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   =
+   <span class="textit"><span class="textrm">incr</span></span>
+                                                                            
+                                                                            
+   +
+   <span class="textit"><span class="textrm">var</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var</span></span>
+   =
+   <span class="textit"><span class="textrm">var</span></span>
+   -
+   <span class="textit"><span class="textrm">incr</span></span></li></ul>
+<p>The value of <span class="textit"><span class="textrm">incr</span></span>, respectively 1 and -1 for the increment and decrement operators, is the increment of the
+loop. </div>
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">var</span></span></div> <div class="glossarydefstart">One of the following: </div> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart"></p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   A
+   variable
+   of
+   a
+   signed
+   or
+   unsigned
+   integer
+   type.</li></ul>
+<p></div>
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div> <div class="glossarydefstart"> </div> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart"></p> 
+
+                                                                            
+                                                                            
+   <ul class="itemize1">
+   <li class="itemize">
+   A
+   variable
+   of
+   a
+   pointer
+   type.</li></ul>
+<p></div>
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div> <div class="glossarydefstart"> </div> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart"></p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   A
+   variable
+   of
+   a
+   random
+   access
+   iterator
+   type.</li></ul>
+<p></div>
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div> <div class="glossarydefstart"> </div> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossarydefstart"></p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   A
+   variable
+   of
+   integer
+   type.</li></ul>
+<p></div>
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p></div></div> <div class="glossarydefstart"><span class="textit"><span class="textrm">var</span></span> is the iteration variable of the loop. It must not be modified during the execution of <span class="textit"><span class="textrm">intervening-code</span></span> or
+<span class="textit"><span class="textrm">loop-body</span></span> in the loop. </div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">lb</span></span>, <span class="textit"><span class="textrm">ub</span></span></div> <div class="glossarydefstart">One of the following:
+</p> 
+<p>Expressions of a type compatible with the type of <span class="textit"><span class="textrm">var</span></span> that are loop invariant with respect to the outermost
+loop.
+</p> 
+<p>or
+</p> 
+<p>One of the following: </p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   +
+   <span class="textit"><span class="textrm">a2</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a2</span></span>
+   +
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   -
+   <span class="textit"><span class="textrm">a2</span></span></li></ul>
+<p>where <span class="textit"><span class="textrm">var-outer</span></span> is of a type compatible with the type of <span class="textit"><span class="textrm">var</span></span>.
+</p> 
+<p>or
+</p> 
+<p>If <span class="textit"><span class="textrm">var</span></span> is of an integer type, one of the following: </p> 
+
+   <ul class="itemize1">
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a2</span></span>
+   -
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   </li>
+                                                                            
+                                                                            
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a1</span></span>
+   *
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a1</span></span>
+   *
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   +
+   <span class="textit"><span class="textrm">a2</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a2</span></span>
+   +
+   <span class="textit"><span class="textrm">a1</span></span>
+   *
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a1</span></span>
+   *
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   -
+   <span class="textit"><span class="textrm">a2</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a2</span></span>
+   -
+   <span class="textit"><span class="textrm">a1</span></span>
+   *
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   *
+   <span class="textit"><span class="textrm">a1</span></span>
+   </li>
+                                                                            
+                                                                            
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   *
+   <span class="textit"><span class="textrm">a1</span></span>
+   +
+   <span class="textit"><span class="textrm">a2</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a2</span></span>
+   +
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   *
+   <span class="textit"><span class="textrm">a1</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   *
+   <span class="textit"><span class="textrm">a1</span></span>
+   -
+   <span class="textit"><span class="textrm">a2</span></span>
+   </li>
+   <li class="itemize">
+   <span class="textit"><span class="textrm">a2</span></span>
+   -
+   <span class="textit"><span class="textrm">var-outer</span></span>
+   *
+   <span class="textit"><span class="textrm">a1</span></span></li></ul>
+<p>where <span class="textit"><span class="textrm">var-outer</span></span> is of an integer type.
+</p> 
+<p><span class="textit"><span class="textrm">lb</span></span> and <span class="textit"><span class="textrm">ub</span></span> are loop bounds. A loop for which <span class="textit"><span class="textrm">lb</span></span> or <span class="textit"><span class="textrm">ub</span></span> refers to <span class="textit"><span class="textrm">var-outer</span></span> is a non-rectangular loop. If <span class="textit"><span class="textrm">var</span></span> is of
+an integer type, <span class="textit"><span class="textrm">var-outer</span></span> must be of an integer type with the same signedness and bit precision as the type
+of <span class="textit"><span class="textrm">var</span></span>.
+</p> 
+<p>The coefficient in a loop bound is <span 
+class="cmr-10">0 </span>if the bound does not refer to <span class="textit"><span class="textrm">var-outer</span></span>. If a loop bound
+matches a form in which <span class="textit"><span class="textrm">a1</span></span> appears, the coefficient is <span class="textit"><span class="textrm">-a1</span></span> if the product of <span class="textit"><span class="textrm">var-outer</span></span> and <span class="textit"><span class="textrm">a1</span></span> is
+subtracted from <span class="textit"><span class="textrm">a2</span></span>, and otherwise the coefficient is <span class="textit"><span class="textrm">a1</span></span>. For other matched forms where <span class="textit"><span class="textrm">a1</span></span> does not
+appear, the coefficient is <span 
+class="cmsy-10">-</span><span 
+class="cmr-10">1 </span>if <span class="textit"><span class="textrm">var-outer</span></span> is subtracted from <span class="textit"><span class="textrm">a2</span></span>, and otherwise the coefficient is <span 
+class="cmr-10">1</span>.
+</div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">a1</span></span>, <span class="textit"><span class="textrm">a2</span></span>, <span class="textit"><span class="textrm">incr</span></span></div> <div class="glossarydefstart">Integer expressions that are loop invariant with respect to the outermost loop of the loop
+nest.
+                                                                            
+                                                                            
+</p> 
+<p>If the loop is associated with a loop-associated directive, the expressions are evaluated before the construct
+formed from that directive. </div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">var-outer</span></span></div> <div class="glossarydefstart">The loop iteration variable of a surrounding loop in the loop nest. </div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">range-decl</span></span></div> <div class="glossarydefstart">A declaration of a variable as defined by the base language for range-based <span class="textbf"><span class="texttt">for</span></span>
+loops.
+</p> 
+<p></div>
+</p> 
+<p><div class="glossaryterm"><span class="textit"><span class="textrm">range-expr</span></span></div> <div class="glossarydefstart">An expression that is valid as defined by the base language for range-based <span class="textbf"><span class="texttt">for</span></span> loops. It must
+be invariant with respect to the outermost loop of the loop nest and the iterator derived from it must be a
+random access iterator. </div>
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>A loop transformation construct that appears inside a loop nest is replaced according to its semantics before
+any loop can be associated with a loop-associated directive that is applied to the loop nest. The depth of the
+loop nest is determined according to the loops in the loop nest, after any such replacements have taken
+place. A loop counts towards the depth of the loop nest if it is a base language loop statement or generated
+loop and it matches <span class="textit"><span class="textrm">loop-nest</span></span> while applying the production rules for canonical loop nest form to the loop
+nest.
+</p> 
+<p>A loop-associated directive controls some number of the outermost loops of an associated loop nest, called
+the associated loops, in accordance with its specified clauses. The canonical loop nest form
+allows the iteration count of all associated loops to be computed before executing the outermost
+loop.
+</p> 
+<p>For any associated loop, the iteration count is computed as follows:  <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">var</span></span>
+  has
+  a
+  signed
+  integer
+  type
+  and
+  the
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">var</span></span>
+  operand
+  of
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  after
+  usual
+  arithmetic
+  conversions
+  has
+  an
+  unsigned
+  integer
+  type
+  then
+  the
+  loop
+  iteration
+  count
+  is
+  computed
+  from
+  <span class="textit"><span class="textrm">lb</span></span>,
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  and
+  <span class="textit"><span class="textrm">incr</span></span>
+  using
+  an
+  unsigned
+  integer
+  type
+  corresponding
+  to
+  the
+  type
+  of
+  <span class="textit"><span class="textrm">var</span></span>.
+  </li>
+  <li class="itemize">
+  Otherwise,
+  if
+  <span class="textit"><span class="textrm">var</span></span>
+  has
+                                                                            
+                                                                            
+  an
+  integer
+  type
+  then
+  the
+  loop
+  iteration
+  count
+  is
+  computed
+  from
+  <span class="textit"><span class="textrm">lb</span></span>,
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  and
+  <span class="textit"><span class="textrm">incr</span></span>
+  using
+  the
+  type
+  of
+  <span class="textit"><span class="textrm">var</span></span>.</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">var</span></span>
+  has
+  a
+  pointer
+  type
+  then
+  the
+  loop
+  iteration
+  count
+  is
+  computed
+  from
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">lb</span></span>,
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  and
+  <span class="textit"><span class="textrm">incr</span></span>
+  using
+  the
+  type
+  <span class="textbf"><span class="texttt">ptrdiff_t</span></span>.</li></ul><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">var</span></span>
+  has
+  a
+  random
+  access
+  iterator
+  type
+  then
+  the
+  loop
+  iteration
+  count
+  is
+  computed
+  from
+  <span class="textit"><span class="textrm">lb</span></span>,
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  and
+  <span class="textit"><span class="textrm">incr</span></span>
+  using
+  the
+  type
+  <span class="textbf"><span class="texttt">std::iterator_traits&#x003C;</span></span><span class="textit"><span class="textrm">random-access-iterator-type</span></span><span class="textbf"><span class="texttt">&#x003E;::difference_type</span></span>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  For
+  range-based
+  <span class="textbf"><span class="texttt">for</span></span>
+  loops,
+  the
+  loop
+  iteration
+  count
+  is
+  computed
+  from
+  <span class="textit"><span class="textrm">range-expr</span></span>
+  using
+  the
+  type
+  <span class="textbf"><span class="texttt">std::iterator_traits&#x003C;</span></span><span class="textit"><span class="textrm">random-access-iterator-type</span></span><span class="textbf"><span class="texttt">&#x003E;::difference_type</span></span>
+  where
+  <span class="textit"><span class="textrm">random-access-iterator-type</span></span>
+  is
+  the
+  iterator
+  type
+  derived
+  from
+  <span class="textit"><span class="textrm">range-expr</span></span>.</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  loop
+  iteration
+  count
+  is
+  computed
+                                                                            
+                                                                            
+  from
+  <span class="textit"><span class="textrm">lb</span></span>,
+  <span class="textit"><span class="textrm">ub</span></span>
+  and
+  <span class="textit"><span class="textrm">incr</span></span>
+  using
+  the
+  type
+  of
+  <span class="textit"><span class="textrm">var</span></span>.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>The behavior is unspecified if any intermediate result required to compute the iteration count cannot be
+represented in the type determined above.
+</p> 
+<p>No synchronization is implied during the evaluation of the <span class="textit"><span class="textrm">lb</span></span>, <span class="textit"><span class="textrm">ub</span></span>, <span class="textit"><span class="textrm">incr</span></span> or <span class="textit"><span class="textrm">range-expr</span></span> expressions. Whether,
+in what order, or how many times any side effects within the <span class="textit"><span class="textrm">lb</span></span>, <span class="textit"><span class="textrm">ub</span></span>, <span class="textit"><span class="textrm">incr</span></span>, or <span class="textit"><span class="textrm">range-expr</span></span> expressions occur is
+unspecified.
+</p> 
+<p>The iterations of some number of associated loops can be collapsed into one larger iteration space that is
+called the logical iteration space. The particular integer type used to compute the iteration count for the
+collapsed loop is implementation defined.
+</p> 
+<p>For directives that result in the execution of a collapsed logical iteration space, the number of times that any
+intervening code between any two loops of the same logical iteration space will be executed is unspecified
+but will be the same for all intervening code at the same depth, at least once per iteration of
+the loop enclosing the intervening code and at most once per logical iteration. If the iteration
+count of any loop is zero and that loop does not enclose the intervening code, the behavior is
+unspecified.
+</p> 
+<p><p><a 
+ id="Q1-70-183"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to canonical loop nests are as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">test-expr</span></span>
+                                                                            
+                                                                            
+  is
+  of
+  the
+  form
+  <span class="textit"><span class="textrm">var</span></span>
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  <span class="textit"><span class="textrm">b</span></span>
+  and
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  is
+  &#x003C;
+  or
+  &#x003C;=
+  then
+  <span class="textit"><span class="textrm">incr-expr</span></span>
+  must
+  cause
+  <span class="textit"><span class="textrm">var</span></span>
+  to
+  increase
+  on
+  each
+  iteration
+  of
+  the
+  loop.
+  If
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  is
+  of
+  the
+  form
+  <span class="textit"><span class="textrm">var</span></span>
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  <span class="textit"><span class="textrm">b</span></span>
+  and
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  is
+  &#x003E;
+  or
+  &#x003E;=
+  then
+  <span class="textit"><span class="textrm">incr-expr</span></span>
+                                                                            
+                                                                            
+  must
+  cause
+  <span class="textit"><span class="textrm">var</span></span>
+  to
+  decrease
+  on
+  each
+  iteration
+  of
+  the
+  loop.
+  Increase
+  and
+  decrease
+  are
+  using
+  the
+  order
+  induced
+  by
+  <span class="textit"><span class="textrm">relational-op</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  is
+  of
+  the
+  form
+  <span class="textit"><span class="textrm">ub</span></span>
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  <span class="textit"><span class="textrm">var</span></span>
+  and
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  is
+  &#x003C;
+  or
+  &#x003C;=
+  then
+  <span class="textit"><span class="textrm">incr-expr</span></span>
+  must
+  cause
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">var</span></span>
+  to
+  decrease
+  on
+  each
+  iteration
+  of
+  the
+  loop.
+  If
+  <span class="textit"><span class="textrm">test-expr</span></span>
+  is
+  of
+  the
+  form
+  <span class="textit"><span class="textrm">ub</span></span>
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  <span class="textit"><span class="textrm">var</span></span>
+  and
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  is
+  &#x003E;
+  or
+  &#x003E;=
+  then
+  <span class="textit"><span class="textrm">incr-expr</span></span>
+  must
+  cause
+  <span class="textit"><span class="textrm">var</span></span>
+  to
+  increase
+  on
+  each
+  iteration
+  of
+  the
+  loop.
+  Increase
+  and
+  decrease
+  are
+  using
+  the
+                                                                            
+                                                                            
+  order
+  induced
+  by
+  <span class="textit"><span class="textrm">relational-op</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">relational-op</span></span>
+  is
+  <span class="textbf"><span class="texttt">!=</span></span>
+  then
+  <span class="textit"><span class="textrm">incr-expr</span></span>
+  must
+  cause
+  <span class="textit"><span class="textrm">var</span></span>
+  to
+  always
+  increase
+  by
+  1
+  or
+  always
+  decrease
+  by
+  1
+  and
+  the
+  increment
+  must
+  be
+  a
+  constant
+  expression.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">final-loop-body</span></span>
+  must
+  not
+  contain
+  any
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">break</span></span>
+  statement
+  that
+  would
+  cause
+  the
+  termination
+  of
+  the
+  innermost
+  loop.</li></ul>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">final-loop-body</span></span>
+  must
+  not
+  contain
+  any
+  <span class="textbf"><span class="texttt">EXIT</span></span>
+  statement
+  that
+  would
+  cause
+  the
+  termination
+  of
+  the
+  innermost
+  loop.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">loop-nest</span></span>
+  must
+  also
+  be
+  a
+  structured
+  block.
+  </li>
+  <li class="itemize">
+  For
+  a
+  non-rectangular
+  loop,
+  if
+  <span class="textit"><span class="textrm">var-outer</span></span>
+  is
+  referenced
+  in
+  <span class="textit"><span class="textrm">lb</span></span>
+  and
+  <span class="textit"><span class="textrm">ub</span></span>
+  then
+  they
+  must
+  both
+  refer
+  to
+  the
+  same
+  iteration
+  variable.
+  </li>
+  <li class="itemize">
+  For
+  a
+  non-rectangular
+                                                                            
+                                                                            
+  loop,
+  let
+  <span 
+class="cmmi-10">a</span><span 
+class="cmr-10">1</span><sub><span class="mathrm"><span 
+class="cmr-7">lb</span></span></sub>
+  and
+  <span 
+class="cmmi-10">a</span><span 
+class="cmr-10">1</span><sub><span class="mathrm"><span 
+class="cmr-7">ub</span></span></sub>
+  be
+  the
+  respective
+  coefficients
+  in
+  <span class="textit"><span class="textrm">lb</span></span>
+  and
+  <span class="textit"><span class="textrm">ub</span></span>,
+  <span 
+class="cmmi-10">incr</span><sub><span class="mathrm"><span 
+class="cmr-7">inner</span></span></sub>
+  the
+  increment
+  of
+  the
+  non-rectangular
+  loop
+  and
+  <span 
+class="cmmi-10">incr</span><sub><span class="mathrm"><span 
+class="cmr-7">outer</span></span></sub>
+  the
+  increment
+  of
+  the
+  loop
+  referenced
+  by
+  <span class="textit"><span class="textrm">var-outer</span></span>.
+  <span 
+class="cmmi-10">incr</span><sub><span class="mathrm"><span 
+class="cmr-7">inner</span></span></sub><span 
+class="cmr-10">(</span><span 
+class="cmmi-10">a</span><span 
+class="cmr-10">1</span><sub><span class="mathrm"><span 
+class="cmr-7">ub</span></span></sub> <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">a</span><span 
+class="cmr-10">1</span><sub><span class="mathrm"><span 
+class="cmr-7">lb</span></span></sub><span 
+class="cmr-10">)</span>
+  must
+  be
+  a
+  multiple
+  of
+  <span 
+class="cmmi-10">incr</span><sub><span class="mathrm"><span 
+class="cmr-7">outer</span></span></sub>.
+  </li>
+  <li class="itemize">
+  The
+  loop
+  iteration
+                                                                            
+                                                                            
+  variable
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-70-184"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Loop
+  transformation
+  constructs,
+  see
+  Section&#x00A0;<a 
+href="openmpsu53.html#x78-860002.11.9">2.11.9<!--tex4ht:ref: subsec:Loop Transformation Constructs --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">threadprivate</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu114.html#x149-1630002.21.2">2.21.2<!--tex4ht:ref: subsec:threadprivate Directive --></a>.</li></ul>
+<!--l. 534--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu46.html" >next</a>] [<a 
+href="openmpse19.html" >prev</a>] [<a 
+href="openmpse19.html#tailopenmpse19.html" >prev-tail</a>] [<a 
+href="openmpsu45.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu45.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu45.html"></a> </p> 
+ 
+</body> 
+</html>

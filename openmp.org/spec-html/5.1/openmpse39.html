@@ -1,0 +1,342 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Lock Routines</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu179.html" >next</a>] [<a 
+href="openmpsu178.html" >prev</a>] [<a 
+href="openmpsu178.html#tailopenmpsu178.html" >prev-tail</a>] [<a 
+href="#tailopenmpse39.html">tail</a>] [<a 
+href="openmpch3.html#openmpse39.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.9</span>&#x00A0;&#x00A0;<a 
+ id="x224-2570003.9"></a>Lock Routines</h3>
+<a 
+ id="dx224-257001"></a>
+<p>The OpenMP runtime library includes a set of general-purpose lock routines that can be used
+for synchronization. These general-purpose lock routines operate on OpenMP locks that are
+represented by OpenMP lock variables. OpenMP lock variables must be accessed only through the
+routines described in this section; programs that otherwise access OpenMP lock variables are
+non-conforming.
+</p> 
+<p>An OpenMP lock can be in one of the following states: <span class="emph">uninitialized</span>; <span class="emph">unlocked</span>; or <span class="emph">locked</span>. If a lock is in the
+<span class="emph">unlocked</span> state, a task can <span class="emph">set</span> the lock, which changes its state to <span class="emph">locked</span>. The task that sets the
+lock is then said to <span class="emph">own</span> the lock. A task that owns a lock can <span class="emph">unset</span> that lock, returning it to
+the <span class="emph">unlocked</span> state. A program in which a task unsets a lock that is owned by another task is
+non-conforming.
+</p> 
+<p>Two types of locks are supported: <span class="emph">simple locks</span> and <span class="emph">nestable locks</span>. A <span class="emph">nestable lock</span> can be set multiple times
+by the same task before being unset; a <span class="emph">simple lock</span> cannot be set if it is already owned by the task trying to
+set it. <span class="emph">Simple lock</span> variables are associated with <span class="emph">simple locks</span> and can only be passed to <span class="emph">simple lock</span> routines.
+<span class="emph">Nestable lock</span> variables are associated with <span class="emph">nestable locks</span> and can only be passed to <span class="emph">nestable lock</span>
+routines.
+</p> 
+<p>Each type of lock can also have a <span class="emph">synchronization hint</span> that contains information about the intended
+usage of the lock by the application code. The effect of the hint is implementation defined. An
+OpenMP implementation can use this hint to select a usage-specific lock, but hints do not change
+the mutual exclusion semantics of locks. A conforming implementation can safely ignore the
+hint.
+</p> 
+<p>Constraints on the state and ownership of the lock accessed by each of the lock routines are described with
+the routine. If these constraints are not met, the behavior of the routine is unspecified.
+</p> 
+<p>The OpenMP lock routines access a lock variable such that they always read and update the most current
+value of the lock variable. An OpenMP program does not need to include explicit <span class="textbf"><span class="texttt">flush</span></span> directives to
+ensure that the lock variable&#8217;s value is consistent among different tasks.
+</p> 
+<p><p><a 
+ id="Q1-224-1223"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for all lock routine regions is all threads in the contention group. As a
+consequence, for each OpenMP lock, the lock routine effects relate to all tasks that call the routines,
+without regard to which teams in the contention group the threads that are executing the tasks
+belong.
+<p><a 
+ id="Q1-224-1224"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Simple Lock Routines</span><a 
+ id="dx224-257002"></a>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The type <span class="textbf"><span class="texttt">omp_lock_t</span></span> represents a simple lock. For the following routines, a simple lock variable must be
+of <span class="textbf"><span class="texttt">omp_lock_t</span></span> type. All simple lock routines require an argument that is a pointer to a variable of type
+<span class="textbf"><span class="texttt">omp_lock_t</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For the following routines, a simple lock variable must be an integer variable of <span class="textbf"><span class="texttt">kind=omp_lock_kind</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The simple lock routines are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_init_lock</span></span>
+  routine
+  initializes
+  a
+  simple
+  lock;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_init_lock_with_hint</span></span>
+  routine
+  initializes
+  a
+  simple
+  lock
+  and
+  attaches
+                                                                            
+                                                                            
+  a
+  hint
+  to
+  it;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_destroy_lock</span></span>
+  routine
+  uninitializes
+  a
+  simple
+  lock;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_set_lock</span></span>
+  routine
+  waits
+  until
+  a
+  simple
+  lock
+  is
+  available
+  and
+  then
+  sets
+  it;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_unset_lock</span></span>
+  routine
+  unsets
+  a
+  simple
+  lock;
+  and
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_test_lock</span></span>
+  routine
+  tests
+  a
+  simple
+  lock
+  and
+  sets
+  it
+  if
+  it
+  is
+  available.</li></ul>
+<p><p><a 
+ id="Q1-224-1225"></a>
+<span 
+class="phvb8t-x-x-110">Nestable Lock Routines</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The type <span class="textbf"><span class="texttt">omp_nest_lock_t</span></span> represents a nestable lock. For the following routines, a nestable lock
+variable must be of <span class="textbf"><span class="texttt">omp_nest_lock_t</span></span> type. All nestable lock routines require an argument that is a
+pointer to a variable of type <span class="textbf"><span class="texttt">omp_nest_lock_t</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For the following routines, a nestable lock variable must be an integer variable of
+<span class="textbf"><span class="texttt">kind=omp_nest_lock_kind</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The nestable lock routines are as follows:
+</p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_init_nest_lock</span></span>
+  routine
+  initializes
+  a
+  nestable
+  lock;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_init_nest_lock_with_hint</span></span>
+  routine
+  initializes
+  a
+  nestable
+  lock
+  and
+  attaches
+  a
+  hint
+  to
+  it;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_destroy_nest_lock</span></span>
+  routine
+  uninitializes
+  a
+  nestable
+  lock;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_set_nest_lock</span></span>
+  routine
+                                                                            
+                                                                            
+  waits
+  until
+  a
+  nestable
+  lock
+  is
+  available
+  and
+  then
+  sets
+  it;
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_unset_nest_lock</span></span>
+  routine
+  unsets
+  a
+  nestable
+  lock;
+  and
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">omp_test_nest_lock</span></span>
+  routine
+  tests
+  a
+  nestable
+  lock
+  and
+  sets
+  it
+  if
+  it
+  is
+  available.</li></ul>
+<p><p><a 
+ id="Q1-224-1226"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to OpenMP lock routines are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  use
+  of
+  the
+  same
+  OpenMP
+  lock
+  in
+  different
+  contention
+  groups
+  results
+  in
+  unspecified
+  behavior.</li></ul>
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.1&#x00A0;&#x00A0;<a 
+href="openmpsu179.html#x225-2580003.9.1"><span class="textbf"><span class="texttt">omp_init_lock</span></span> and <span class="textbf"><span class="texttt">omp_init_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.2&#x00A0;&#x00A0;<a 
+href="openmpsu180.html#x226-2590003.9.2"><span class="textbf"><span class="texttt">omp_init_lock_with_hint</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">omp_init_nest_lock_with_hint</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.3&#x00A0;&#x00A0;<a 
+href="openmpsu181.html#x227-2600003.9.3"><span class="textbf"><span class="texttt">omp_destroy_lock</span></span> and <span class="textbf"><span class="texttt">omp_destroy_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.4&#x00A0;&#x00A0;<a 
+href="openmpsu182.html#x228-2610003.9.4"><span class="textbf"><span class="texttt">omp_set_lock</span></span> and <span class="textbf"><span class="texttt">omp_set_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.5&#x00A0;&#x00A0;<a 
+href="openmpsu183.html#x229-2620003.9.5"><span class="textbf"><span class="texttt">omp_unset_lock</span></span> and <span class="textbf"><span class="texttt">omp_unset_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.6&#x00A0;&#x00A0;<a 
+href="openmpsu184.html#x230-2630003.9.6"><span class="textbf"><span class="texttt">omp_test_lock</span></span> and <span class="textbf"><span class="texttt">omp_test_nest_lock</span></span></a></span>
+</div>
+
+
+
+
+<!--l. 634--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu179.html" >next</a>] [<a 
+href="openmpsu178.html" >prev</a>] [<a 
+href="openmpsu178.html#tailopenmpsu178.html" >prev-tail</a>] [<a 
+href="openmpse39.html" >front</a>] [<a 
+href="openmpch3.html#openmpse39.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse39.html"></a> </p> 
+ 
+</body> 
+</html>

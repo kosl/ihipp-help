@@ -1,0 +1,184 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_display_affinity</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 533--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu150.html" >next</a>] [<a 
+href="openmpsu148.html" >prev</a>] [<a 
+href="openmpsu148.html#tailopenmpsu148.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu149.html">tail</a>] [<a 
+href="openmpse33.html#openmpsu149.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.3.10</span>&#x00A0;&#x00A0;<a 
+ id="x189-2220003.3.10"></a><span class="textbf"><span class="texttt">omp_display_affinity</span></span></h4>
+<a 
+ id="dx189-222001"></a>
+<p><p><a 
+ id="Q1-189-989"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_display_affinity</span></span> routine prints the OpenMP thread affinity information using the format
+specification provided.
+<p><a 
+ id="Q1-189-990"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x189-222002r1"></a></span></p> 
+<!--l. 543--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x189-222003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_display_affinity</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">format</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x189-222004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x189-222005r1"></a></span></p> 
+<!--l. 550--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x189-222006r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_display_affinity</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">format</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x189-222007r3"></a></span><span 
+class="pcrb8t-">character</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">len</span><span 
+class="pcrb8t-">=*)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">format</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x189-222008r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-189-991"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_display_affinity</span></span> region is the encountering thread.
+</p> 
+<p><p><a 
+ id="Q1-189-992"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_display_affinity</span></span> routine prints the thread affinity information of the current thread in the
+format specified by the <span class="textit"><span class="textrm">format</span></span> argument, followed by a <span class="textit"><span class="textrm">new-line</span></span>. If the <span class="textit"><span class="textrm">format</span></span> is <span class="textbf"><span class="texttt">NULL</span></span> (for C/C++) or a
+zero-length string (for Fortran and C/C++), the value of the <span class="textit"><span class="textrm">affinity-format-var</span></span> ICV is used. If the
+<span class="textit"><span class="textrm">format</span></span> argument does not conform to the specified format then the result is implementation
+defined.
+</p> 
+<p><p><a 
+ id="Q1-189-993"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Controlling
+  OpenMP
+  thread
+  affinity,
+  see
+  Section&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">2.6.2<!--tex4ht:ref: subsec:Controlling OpenMP Thread Affinity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_affinity_format</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu147.html#x187-2200003.3.8">3.3.8<!--tex4ht:ref: subsec:omp_set_affinity_format --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_affinity_format</span></span>
+                                                                            
+                                                                            
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu148.html#x188-2210003.3.9">3.3.9<!--tex4ht:ref: subsec:omp_get_affinity_format --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_capture_affinity</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu150.html#x190-2230003.3.11">3.3.11<!--tex4ht:ref: subsec:omp_capture_affinity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DISPLAY_AFFINITY</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse70.html#x336-5110006.13">6.13<!--tex4ht:ref: sec:OMP_DISPLAY_AFFINITY --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse71.html#x337-5120006.14">6.14<!--tex4ht:ref: sec:OMP_AFFINITY_FORMAT --></a>.</li></ul>
+<!--l. 590--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu150.html" >next</a>] [<a 
+href="openmpsu148.html" >prev</a>] [<a 
+href="openmpsu148.html#tailopenmpsu148.html" >prev-tail</a>] [<a 
+href="openmpsu149.html" >front</a>] [<a 
+href="openmpse33.html#openmpsu149.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu149.html"></a> </p> 
+ 
+</body> 
+</html>

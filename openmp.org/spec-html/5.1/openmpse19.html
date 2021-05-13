@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Loop-Related Directives</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu45.html" >next</a>] [<a 
+href="openmpsu44.html" >prev</a>] [<a 
+href="openmpsu44.html#tailopenmpsu44.html" >prev-tail</a>] [<a 
+href="#tailopenmpse19.html">tail</a>] [<a 
+href="openmpch2.html#openmpse19.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h3 class="sectionHead"><span class="titlemark">2.11</span>&#x00A0;&#x00A0;<a 
+ id="x69-690002.11"></a>Loop-Related Directives</h3>
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.1&#x00A0;&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">Canonical Loop Nest Form</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.2&#x00A0;&#x00A0;<a 
+href="openmpsu46.html#x71-710002.11.2">Consistent Loop Schedules</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.3&#x00A0;&#x00A0;<a 
+href="openmpsu47.html#x72-720002.11.3"><span class="textbf"><span class="texttt">order</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.4&#x00A0;&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu48.html#x73-740002.11.4.1">Determining the Schedule of a Worksharing-Loop</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.5&#x00A0;&#x00A0;<a 
+href="openmpsu49.html#x74-750002.11.5">SIMD Directives</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu49.html#x74-760002.11.5.1"><span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu49.html#x74-770002.11.5.2">Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.5.3&#x00A0;&#x00A0;<a 
+href="openmpsu49.html#x74-780002.11.5.3"><span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.6&#x00A0;&#x00A0;<a 
+href="openmpsu50.html#x75-790002.11.6"><span class="textbf"><span class="texttt">distribute</span></span> Loop Constructs</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu50.html#x75-800002.11.6.1"><span class="textbf"><span class="texttt">distribute</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu50.html#x75-810002.11.6.2"><span class="textbf"><span class="texttt">distribute</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.6.3&#x00A0;&#x00A0;<a 
+href="openmpsu50.html#x75-820002.11.6.3">Distribute Parallel Worksharing-Loop Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.6.4&#x00A0;&#x00A0;<a 
+href="openmpsu50.html#x75-830002.11.6.4">Distribute Parallel Worksharing-Loop SIMD Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.7&#x00A0;&#x00A0;<a 
+href="openmpsu51.html#x76-840002.11.7"><span class="textbf"><span class="texttt">loop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.8&#x00A0;&#x00A0;<a 
+href="openmpsu52.html#x77-850002.11.8"><span class="textbf"><span class="texttt">scan</span></span> Directive</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.11.9&#x00A0;&#x00A0;<a 
+href="openmpsu53.html#x78-860002.11.9">Loop Transformation Constructs</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.9.1&#x00A0;&#x00A0;<a 
+href="openmpsu53.html#x78-870002.11.9.1"><span class="textbf"><span class="texttt">tile</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.11.9.2&#x00A0;&#x00A0;<a 
+href="openmpsu53.html#x78-880002.11.9.2"><span class="textbf"><span class="texttt">unroll</span></span> Construct</a></span>
+</div>
+
+
+
+
+
+
+
+<!--l. 47--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu45.html" >next</a>] [<a 
+href="openmpsu44.html" >prev</a>] [<a 
+href="openmpsu44.html#tailopenmpsu44.html" >prev-tail</a>] [<a 
+href="openmpse19.html" >front</a>] [<a 
+href="openmpch2.html#openmpse19.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse19.html"></a> </p> 
+ 
+</body> 
+</html>

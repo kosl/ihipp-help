@@ -1,0 +1,563 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_target_memcpy_rect_async</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 684--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu176.html" >next</a>] [<a 
+href="openmpsu174.html" >prev</a>] [<a 
+href="openmpsu174.html#tailopenmpsu174.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu175.html">tail</a>] [<a 
+href="openmpse38.html#openmpsu175.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.8.8</span>&#x00A0;&#x00A0;<a 
+ id="x220-2530003.8.8"></a><span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span></h4>
+<a 
+ id="dx220-253001"></a>
+<p><p><a 
+ id="Q1-220-1184"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span> routine asynchronously performs a copy between any
+combination of host and device pointers.
+<p><a 
+ id="Q1-220-1185"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253002r1"></a></span></p> 
+<!--l. 693--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_target_memcpy_rect_async</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">dst</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">src</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253006r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">element_size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253007r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">num_dims</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253008r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">volume</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253009r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">dst_offsets</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253010r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">src_offsets</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253011r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">dst_dimensions</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253012r11"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">src_dimensions</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253013r12"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253014r13"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253015r14"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">depobj_count</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253016r15"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_depend_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">depobj_list</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253017r16"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253018r17"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253019r1"></a></span></p> 
+<!--l. 715--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253020r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_target_memcpy_rect_async</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dst</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253021r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">element_size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">num_dims</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">volume</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_offsets</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_offsets</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253022r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_dimensions</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_dimensions</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253023r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">depobj_count</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">depobj_list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253024r6"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">intrinsic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iso_c_binding</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">only</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253025r7"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253026r8"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">element_size</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253027r9"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">num_dims</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253028r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">depobj_count</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253029r11"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">volume</span><span 
+class="pcrb8t-">(*)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_offsets</span><span 
+class="pcrb8t-">(*)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253030r12"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_offsets</span><span 
+class="pcrb8t-">(*)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_dimensions</span><span 
+class="pcrb8t-">(*)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_dimensions</span><span 
+class="pcrb8t-">(*)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253031r13"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_depobj_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">optional</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">depobj_list</span><span 
+class="pcrb8t-">(*)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x220-253032r14"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><a 
+ id="Q1-220-1186"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+Each device pointer specified must be valid for the device on the same side of the copy. The <span class="textit"><span class="textrm">dst_device_num</span></span>
+and <span class="textit"><span class="textrm">src_device_num</span></span> arguments must be greater than or equal to zero and less than or equal to the result of
+<span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+<p>The length of the offset and dimension arrays must be at least the value of <span class="textit"><span class="textrm">num_dims</span></span>. The value of
+<span class="textit"><span class="textrm">num_dims</span></span> must be between 1 and the implementation-defined limit, which must be at least
+three.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Because the interface binds directly to a C language function the function assumes C memory
+ordering.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-220-1187"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span> region is the generating task,
+which is the <span class="textit"><span class="textrm">target task</span></span> generated by the call to the <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span>
+routine.
+</p> 
+<p><p><a 
+ id="Q1-220-1188"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+This routine copies a rectangular subvolume of <span class="textit"><span class="textrm">src</span></span>, in the device data environment of device
+<span class="textit"><span class="textrm">src_device_num</span></span>, to <span class="textit"><span class="textrm">dst</span></span>, in the device data environment of device <span class="textit"><span class="textrm">dst_device_num</span></span>. The volume is specified
+in terms of the size of an element, number of dimensions, and constant arrays of length <span class="textit"><span class="textrm">num_dims</span></span>. The
+maximum number of dimensions supported is at least three; support for higher dimensionality is
+implementation defined. The volume array specifies the length, in number of elements, to copy in each
+dimension from <span class="textit"><span class="textrm">src</span></span> to <span class="textit"><span class="textrm">dst</span></span>. The <span class="textit"><span class="textrm">dst_offsets</span></span> (<span class="textit"><span class="textrm">src_offsets</span></span>) parameter specifies the number of elements from the
+origin of <span class="textit"><span class="textrm">dst</span></span> (<span class="textit"><span class="textrm">src</span></span>) in elements. The <span class="textit"><span class="textrm">dst_dimensions</span></span> (<span class="textit"><span class="textrm">src_dimensions</span></span>) parameter specifies the length of each
+dimension of <span class="textit"><span class="textrm">dst</span></span> (<span class="textit"><span class="textrm">src</span></span>).
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span> routine executes as if part of a target task that is generated by
+the call to the routine and for which execution may be deferred.
+</p> 
+<p>Task dependences are expressed with zero or more <span class="textbf"><span class="texttt">omp_depend_t</span></span> objects. The dependences are
+specified by passing the number of <span class="textbf"><span class="texttt">omp_depend_t</span></span> objects followed by an array of <span class="textbf"><span class="texttt">omp_depend_t</span></span>
+objects. The generated target task is not a dependent task if the program passes in a count of zero for
+<span class="textit"><span class="textrm">depobj_count</span></span>. <span class="textit"><span class="textrm">depobj_list</span></span> is ignored if the value of <span class="textit"><span class="textrm">depobj_count</span></span> is zero.
+</p> 
+<p>The routine returns zero if successful. Otherwise, it returns a non-zero value. The routine contains a task
+scheduling point.
+</p> 
+<p>An application can determine the number of inclusive dimensions supported by an implementation by
+passing <span class="textbf"><span class="texttt">NULL</span></span> pointers (or <span class="textbf"><span class="texttt">C_NULL_PTR</span></span>, for Fortran) for both <span class="textit"><span class="textrm">dst</span></span> and <span class="textit"><span class="textrm">src</span></span>. The routine returns the number
+of dimensions supported by the implementation for the specified device numbers. No copy operation is
+performed.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span> routine requires an explicit interface and so might not be
+provided in <span class="textbf"><span class="texttt">omp_lib.h</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-220-1189"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">target-data-op-begin</span></span> event occurs before a thread initiates a data transfer.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-data-op-end</span></span> event occurs after a thread initiated a data transfer.
+</p> 
+<p><p><a 
+ id="Q1-220-1190"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-data-op-begin</span></span> event in that
+thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> callback
+with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-data-op-end</span></span> event in that
+thread. These callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">target-data-op-end</span></span> event in that thread. The callback occurs in the context of the target task and has type
+signature <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-220-1191"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span> routine are as follows.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  When
+  called
+  from
+  within
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  the
+  effect
+  is
+  unspecified.</li></ul>
+<p><p><a 
+ id="Q1-220-1192"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+                                                                            
+                                                                            
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  Depend
+  objects,
+  see
+  Section&#x00A0;<a 
+href="openmpsu108.html#x141-1520002.19.10">2.19.10<!--tex4ht:ref: subsec:Depend Object --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4">3.7.4<!--tex4ht:ref: subsec:omp_get_num_devices --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3670004.5.2.25">4.5.2.25<!--tex4ht:ref: sec:ompt_callback_target_data_op_emi_t --></a>.</li></ul>
+<!--l. 832--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu176.html" >next</a>] [<a 
+href="openmpsu174.html" >prev</a>] [<a 
+href="openmpsu174.html#tailopenmpsu174.html" >prev-tail</a>] [<a 
+href="openmpsu175.html" >front</a>] [<a 
+href="openmpse38.html#openmpsu175.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu175.html"></a> </p> 
+ 
+</body> 
+</html>

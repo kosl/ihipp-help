@@ -1,0 +1,2203 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Entry Points in the OMPT Callback Interface</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 48--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu216.html" >next</a>] [<a 
+href="openmpse51.html" >prev</a>] [<a 
+href="openmpse51.html#tailopenmpse51.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu215.html">tail</a>] [<a 
+href="openmpse51.html#openmpsu215.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.6.1</span>&#x00A0;&#x00A0;<a 
+ id="x274-3740004.6.1"></a>Entry Points in the OMPT Callback Interface</h4>
+<p>Entry points in the OMPT callback interface enable a tool to register callbacks for OpenMP events and to
+inspect the state of an OpenMP thread while executing in a tool callback or a signal handler. Pointers to
+these runtime entry points are obtained through the lookup function that is provided through the OMPT
+initializer.
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.1  </span> <a 
+ id="x274-3750004.6.1.1"></a><span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1792"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_enumerate_states</span></span>
+runtime entry point, which enumerates the thread states that an OpenMP implementation supports.
+<p><a 
+ id="Q1-274-1793"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-375001r1"></a></span></p> 
+<!--l. 68--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-375002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_enumerate_states_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-375003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current_state</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-375004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">next_state</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-375005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">next_state_name</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-375006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-375007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1794"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+An OpenMP implementation may support only a subset of the states defined by the <span class="textbf"><span class="texttt">ompt_state_t</span></span>
+enumeration type. An OpenMP implementation may also support implementation-specific
+states. The <span class="textbf"><span class="texttt">ompt_enumerate_states</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span>, enables a tool to enumerate the supported thread states.
+</p> 
+<p>When a supported thread state is passed as <span class="textit"><span class="textrm">current_state</span></span>, the runtime entry point assigns the next thread
+state in the enumeration to the variable passed by reference in <span class="textit"><span class="textrm">next_state</span></span> and assigns the name associated
+with that state to the character pointer passed by reference in <span class="textit"><span class="textrm">next_state_name</span></span>.
+</p> 
+<p>Whenever one or more states are left in the enumeration, the <span class="textbf"><span class="texttt">ompt_enumerate_states</span></span>
+runtime entry point returns <span 
+class="cmr-10">1</span>. When the last state in the enumeration is passed as <span class="textit"><span class="textrm">current_state</span></span>,
+<span class="textbf"><span class="texttt">ompt_enumerate_states</span></span> returns <span 
+class="cmr-10">0</span>, which indicates that the enumeration is complete.
+</p> 
+<p><p><a 
+ id="Q1-274-1795"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">current_state</span></span> argument must be a thread state that the OpenMP implementation supports. To begin
+enumerating the supported states, a tool should pass <span class="textbf"><span class="texttt">ompt_state_undefined</span></span> as <span class="textit"><span class="textrm">current_state</span></span>.
+Subsequent invocations of <span class="textbf"><span class="texttt">ompt_enumerate_states</span></span> should pass the value assigned to the variable
+that was passed by reference in <span class="textit"><span class="textrm">next_state</span></span> to the previous call.
+                                                                            
+                                                                            
+</p> 
+<p>The value <span class="textbf"><span class="texttt">ompt_state_undefined</span></span> is reserved to indicate an invalid thread state.
+<span class="textbf"><span class="texttt">ompt_state_undefined</span></span> is defined as an integer with the value 0.
+</p> 
+<p>The <span class="textit"><span class="textrm">next_state</span></span> argument is a pointer to an integer in which <span class="textbf"><span class="texttt">ompt_enumerate_states</span></span> returns the value
+of the next state in the enumeration.
+</p> 
+<p>The <span class="textit"><span class="textrm">next_state_name</span></span> argument is a pointer to a character string pointer through which
+<span class="textbf"><span class="texttt">ompt_enumerate_states</span></span> returns a string that describes the next state.
+</p> 
+<p><p><a 
+ id="Q1-274-1796"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+Any string returned through the <span class="textit"><span class="textrm">next_state_name</span></span> argument must be immutable and defined for the lifetime
+of program execution.
+</p> 
+<p><p><a 
+ id="Q1-274-1797"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_state_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3340004.4.4.27">4.4.4.27<!--tex4ht:ref: sec:thread-states --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.2  </span> <a 
+ id="x274-3760004.6.1.2"></a><span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1799"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span>
+runtime entry point, which enumerates the kinds of mutual exclusion implementations that an OpenMP
+implementation employs.
+<p><a 
+ id="Q1-274-1800"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-376001r1"></a></span></p> 
+<!--l. 138--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-376002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_enumerate_mutex_impls_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-376003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">current_impl</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-376004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">next_impl</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-376005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">next_impl_name</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-376006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-376007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1801"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Mutual exclusion for locks, <span class="textbf"><span class="texttt">critical</span></span> sections, and <span class="textbf"><span class="texttt">atomic</span></span> regions may be implemented in several
+ways. The <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls_t</span></span>, enables a tool to enumerate the supported mutual exclusion
+implementations.
+</p> 
+<p>When a supported mutex implementation is passed as <span class="textit"><span class="textrm">current_impl</span></span>, the runtime entry point assigns the next
+mutex implementation in the enumeration to the variable passed by reference in <span class="textit"><span class="textrm">next_impl</span></span> and assigns the
+name associated with that mutex implementation to the character pointer passed by reference in
+<span class="textit"><span class="textrm">next_impl_name</span></span>.
+</p> 
+<p>Whenever one or more mutex implementations are left in the enumeration, the <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span>
+runtime entry point returns <span 
+class="cmr-10">1</span>. When the last mutex implementation in the enumeration is passed as
+<span class="textit"><span class="textrm">current_impl</span></span>, the runtime entry point returns <span 
+class="cmr-10">0</span>, which indicates that the enumeration is complete.
+</p> 
+<p><p><a 
+ id="Q1-274-1802"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">current_impl</span></span> argument must be a mutex implementation that an OpenMP implementation supports. To
+begin enumerating the supported mutex implementations, a tool should pass <span class="textbf"><span class="texttt">ompt_mutex_impl_none</span></span>
+as <span class="textit"><span class="textrm">current_impl</span></span>. Subsequent invocations of <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span> should pass the value
+assigned to the variable that was passed in <span class="textit"><span class="textrm">next_impl</span></span> to the previous call.
+</p> 
+<p>The value <span class="textbf"><span class="texttt">ompt_mutex_impl_none</span></span> is reserved to indicate an invalid mutex implementation.
+<span class="textbf"><span class="texttt">ompt_mutex_impl_none</span></span> is defined as an integer with the value 0.
+</p> 
+<p>The <span class="textit"><span class="textrm">next_impl</span></span> argument is a pointer to an integer in which <span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span> returns
+the value of the next mutex implementation in the enumeration.
+</p> 
+<p>The <span class="textit"><span class="textrm">next_impl_name</span></span> argument is a pointer to a character string pointer in which
+<span class="textbf"><span class="texttt">ompt_enumerate_mutex_impls</span></span> returns a string that describes the next mutex implementation.
+</p> 
+<p><p><a 
+ id="Q1-274-1803"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+Any string returned through the <span class="textit"><span class="textrm">next_impl_name</span></span> argument must be immutable and defined for the lifetime
+of a program execution.
+</p> 
+<p><p><a 
+ id="Q1-274-1804"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_mutex_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3230004.4.4.16">4.4.4.16<!--tex4ht:ref: sec:ompt_mutex_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.3  </span> <a 
+ id="x274-3770004.6.1.3"></a><span class="textbf"><span class="texttt">ompt_set_callback_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1806"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_set_callback</span></span> runtime entry
+point, which registers a pointer to a tool callback that an OpenMP implementation invokes when a host
+OpenMP event occurs.
+<p><a 
+ id="Q1-274-1807"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-377001r1"></a></span></p> 
+<!--l. 206--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-377002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_set_result_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_set_callback_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-377003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callbacks_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">event</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-377004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">callback</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-377005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-377006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1808"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+OpenMP implementations can use callbacks to indicate the occurrence of events during the execution
+of an OpenMP program. The <span class="textbf"><span class="texttt">ompt_set_callback</span></span> runtime entry point, which has type
+signature <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span>, registers a callback for an OpenMP event on the current
+device, The return value of <span class="textbf"><span class="texttt">ompt_set_callback</span></span> indicates the outcome of registering the
+callback.
+</p> 
+<p><p><a 
+ id="Q1-274-1809"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">event</span></span> argument indicates the event for which the callback is being registered.
+</p> 
+<p>The <span class="textit"><span class="textrm">callback</span></span> argument is a tool callback function. If <span class="textit"><span class="textrm">callback</span></span> is <span class="textbf"><span class="texttt">NULL</span></span> then callbacks associated
+with <span class="textit"><span class="textrm">event</span></span> are disabled. If callbacks are successfully disabled then <span class="textbf"><span class="texttt">ompt_set_always</span></span> is
+returned.
+</p> 
+<p><p><a 
+ id="Q1-274-1810"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+When a tool registers a callback for an event, the type signature for the callback must match the type
+signature appropriate for the event.
+</p> 
+<p><p><a 
+ id="Q1-274-1811"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on the <span class="textbf"><span class="texttt">ompt_set_callback</span></span> runtime entry point are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  entry
+  point
+  must
+  not
+  return
+  <span class="textbf"><span class="texttt">ompt_set_impossible</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-274-1812"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Monitoring
+  activity
+  on
+  the
+  host
+  with
+  OMPT,
+  see
+  Section&#x00A0;<a 
+href="openmpsu207.html#x262-2960004.2.4">4.2.4<!--tex4ht:ref: sec:ompt-register-callbacks --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callbacks_t</span></span>
+  enumeration
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu210.html#x267-3010004.4.2">4.4.2<!--tex4ht:ref: sec:ompt_callbacks_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3080004.4.4.1">4.4.4.1<!--tex4ht:ref: sec:ompt_callback_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_result_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3090004.4.4.2">4.4.4.2<!--tex4ht:ref: sec:ompt_set_result_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_callback_t</span></span>
+  host
+  callback
+  type
+  signature,
+  see
+  Section&#x00A0;<a 
+href="#x274-3780004.6.1.4">4.6.1.4<!--tex4ht:ref: sec:ompt_get_callback_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.4  </span> <a 
+ id="x274-3780004.6.1.4"></a><span class="textbf"><span class="texttt">ompt_get_callback_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1814"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_callback_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_callback</span></span> runtime entry
+point, which retrieves a pointer to a registered tool callback routine (if any) that an OpenMP implementation
+invokes when a host OpenMP event occurs.
+<p><a 
+ id="Q1-274-1815"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-378001r1"></a></span></p> 
+<!--l. 281--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-378002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_callback_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-378003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callbacks_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">event</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-378004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_callback_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">callback</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-378005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-378006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1816"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_callback</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_callback_t</span></span>,
+retrieves a pointer to the tool callback that an OpenMP implementation may invoke when a host OpenMP
+event occurs. If a non-null tool callback is registered for the specified event, the pointer to the tool callback
+is assigned to the variable passed by reference in <span class="textit"><span class="textrm">callback</span></span> and <span class="textbf"><span class="texttt">ompt_get_callback</span></span> returns 1;
+otherwise, it returns 0. If <span class="textbf"><span class="texttt">ompt_get_callback</span></span> returns 0, the value of the variable passed by reference
+as <span class="textit"><span class="textrm">callback</span></span> is undefined.
+</p> 
+<p><p><a 
+ id="Q1-274-1817"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">event</span></span> argument indicates the event for which the callback would be invoked.
+</p> 
+<p>The <span class="textit"><span class="textrm">callback</span></span> argument returns a pointer to the callback associated with <span class="textit"><span class="textrm">event</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1818"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The <span class="textit"><span class="textrm">callback</span></span> argument cannot be NULL and must point to valid storage.
+</p> 
+<p><p><a 
+ id="Q1-274-1819"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callbacks_t</span></span>
+  enumeration
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu210.html#x267-3010004.4.2">4.4.2<!--tex4ht:ref: sec:ompt_callbacks_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3080004.4.4.1">4.4.4.1<!--tex4ht:ref: sec:ompt_callback_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_callback_t</span></span>
+  type
+  signature,
+  see
+  Section&#x00A0;<a 
+href="#x274-3770004.6.1.3">4.6.1.3<!--tex4ht:ref: sec:ompt_set_callback_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.5  </span> <a 
+ id="x274-3790004.6.1.5"></a><span class="textbf"><span class="texttt">ompt_get_thread_data_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1821"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_thread_data_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_thread_data</span></span>
+runtime entry point, which returns the address of the thread data object for the current thread.
+<p><a 
+ id="Q1-274-1822"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-379001r1"></a></span></p> 
+<!--l. 339--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-379002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_data_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*(*</span><span 
+class="pcrb8t-">ompt_get_thread_data_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-379003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1823"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+Each OpenMP thread can have an associated thread data object of type <span class="textbf"><span class="texttt">ompt_data_t</span></span>. The
+<span class="textbf"><span class="texttt">ompt_get_thread_data</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_thread_data_t</span></span>,
+retrieves a pointer to the thread data object, if any, that is associated with the current thread. A tool may use
+a pointer to an OpenMP thread&#8217;s data object that <span class="textbf"><span class="texttt">ompt_get_thread_data</span></span> retrieves to inspect or to
+modify the value of the data object. When an OpenMP thread is created, its data object is initialized with
+value <span class="textbf"><span class="texttt">ompt_data_none</span></span>.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1824"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4">4.4.4.4<!--tex4ht:ref: sec:ompt_data_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.6  </span> <a 
+ id="x274-3800004.6.1.6"></a><span class="textbf"><span class="texttt">ompt_get_num_procs_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1826"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_num_procs_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_num_procs</span></span> runtime
+entry point, which returns the number of processors currently available to the execution environment on the
+host device.
+<p><a 
+ id="Q1-274-1827"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-380001r1"></a></span></p> 
+<!--l. 375--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-380002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_num_procs_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-380003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1828"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set is all threads on the host device.
+</p> 
+<p><p><a 
+ id="Q1-274-1829"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_num_procs</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_num_procs_t</span></span>,
+returns the number of processors that are available on the host device at the time the routine is called. This
+value may change between the time that it is determined and the time that it is read in the calling context due
+to system actions outside the control of the OpenMP implementation.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.7  </span> <a 
+ id="x274-3810004.6.1.7"></a><span class="textbf"><span class="texttt">ompt_get_num_places_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1831"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_num_places_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_num_places</span></span> runtime
+entry point, which returns the number of places currently available to the execution environment in the place
+list.
+<p><a 
+ id="Q1-274-1832"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-381001r1"></a></span></p> 
+<!--l. 407--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-381002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_num_places_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-381003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1833"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set is all threads on a device.
+</p> 
+<p><p><a 
+ id="Q1-274-1834"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_num_places</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_num_places_t</span></span>,
+returns the number of places in the place list. This value is equivalent to the number of places in the
+<span class="textit"><span class="textrm">place-partition-var</span></span> ICV in the execution environment of the initial task.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-274-1835"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">place-partition-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5">6.5<!--tex4ht:ref: sec:OMP_PLACES --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.8  </span> <a 
+ id="x274-3820004.6.1.8"></a><span class="textbf"><span class="texttt">ompt_get_place_proc_ids_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1837"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_place_procs_ids_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_num_place_procs_ids</span></span>
+runtime entry point, which returns the numerical identifiers of the processors that are available to the
+execution environment in the specified place.
+<p><a 
+ id="Q1-274-1838"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-382001r1"></a></span></p> 
+<!--l. 448--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-382002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_place_proc_ids_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-382003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">place_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-382004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ids_size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-382005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">ids</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-382006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-382007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1839"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set is all threads on a device.
+</p> 
+<p><p><a 
+ id="Q1-274-1840"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_place_proc_ids</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_get_place_proc_ids_t</span></span>, returns the numerical identifiers of each processor that is associated
+with the specified place. These numerical identifiers are non-negative, and their meaning is implementation
+defined.
+</p> 
+<p><p><a 
+ id="Q1-274-1841"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">place_num</span></span> argument specifies the place that is being queried.
+</p> 
+<p>The <span class="textit"><span class="textrm">ids</span></span> argument is an array in which the routine can return a vector of processor identifiers in the specified
+place.
+</p> 
+<p>The <span class="textit"><span class="textrm">ids_size</span></span> argument indicates the size of the result array that is specified by <span class="textit"><span class="textrm">ids</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1842"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+If the <span class="textit"><span class="textrm">ids</span></span> array of size <span class="textit"><span class="textrm">ids_size</span></span> is large enough to contain all identifiers then they are returned in <span class="textit"><span class="textrm">ids</span></span> and their
+order in the array is implementation defined. Otherwise, if the <span class="textit"><span class="textrm">ids</span></span> array is too small, the values in <span class="textit"><span class="textrm">ids</span></span>
+when the function returns are unspecified. The routine always returns the number of numerical
+identifiers of the processors that are available to the execution environment in the specified
+place.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.9  </span> <a 
+ id="x274-3830004.6.1.9"></a><span class="textbf"><span class="texttt">ompt_get_place_num_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1844"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_place_num_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_place_num</span></span>
+runtime entry point, which returns the place number of the place to which the current thread is
+bound.
+<p><a 
+ id="Q1-274-1845"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-383001r1"></a></span></p> 
+<!--l. 497--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-383002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_place_num_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-383003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1846"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+When the current thread is bound to a place, <span class="textbf"><span class="texttt">ompt_get_place_num</span></span> returns the place number
+associated with the thread. The returned value is between 0 and one less than the value returned by
+<span class="textbf"><span class="texttt">ompt_get_num_places</span></span>, inclusive. When the current thread is not bound to a place, the routine returns
+-1.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.10  </span> <a 
+ id="x274-3840004.6.1.10"></a><span class="textbf"><span class="texttt">ompt_get_partition_place_nums_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1848"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+ The <span class="textbf"><span class="texttt">ompt_get_partition_place_nums_t</span></span> type is the type signature of the
+<span class="textbf"><span class="texttt">ompt_get_partition_place_nums</span></span> runtime entry point, which returns a list of place
+numbers that correspond to the places in the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV of the innermost implicit
+task.
+<p><a 
+ id="Q1-274-1849"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-384001r1"></a></span></p> 
+<!--l. 524--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-384002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_partition_place_nums_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-384003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">place_nums_size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-384004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">place_nums</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-384005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-384006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1850"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_partition_place_nums</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_get_partition_place_nums_t</span></span>, returns a list of place numbers that correspond to the places
+in the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV of the innermost implicit task.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1851"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">place_nums</span></span> argument is an array in which the routine can return a vector of place identifiers.
+</p> 
+<p>The <span class="textit"><span class="textrm">place_nums_size</span></span> argument indicates the size of the result array that the <span class="textit"><span class="textrm">place_nums</span></span> argument
+specifies.
+</p> 
+<p><p><a 
+ id="Q1-274-1852"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+If the <span class="textit"><span class="textrm">place_nums</span></span> array of size <span class="textit"><span class="textrm">place_nums_size</span></span> is large enough to contain all identifiers then they are
+returned in <span class="textit"><span class="textrm">place_nums</span></span> and their order in the array is implementation defined. Otherwise, if the <span class="textit"><span class="textrm">place_nums</span></span>
+array is too small, the values in <span class="textit"><span class="textrm">place_nums</span></span> when the function returns are unspecified. The routine
+always returns the number of places in the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV of the innermost implicit
+task.
+</p> 
+<p><p><a 
+ id="Q1-274-1853"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">place-partition-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5">6.5<!--tex4ht:ref: sec:OMP_PLACES --></a>.</li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.11  </span> <a 
+ id="x274-3850004.6.1.11"></a><span class="textbf"><span class="texttt">ompt_get_proc_id_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1855"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_proc_id_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_proc_id</span></span> runtime entry
+point, which returns the numerical identifier of the processor of the current thread.
+<p><a 
+ id="Q1-274-1856"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-385001r1"></a></span></p> 
+<!--l. 576--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-385002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_proc_id_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-385003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1857"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_proc_id</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_proc_id_t</span></span>,
+returns the numerical identifier of the processor of the current thread. A defined numerical identifier is
+non-negative, and its meaning is implementation defined. A negative number indicates a failure to retrieve
+the numerical identifier.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.12  </span> <a 
+ id="x274-3860004.6.1.12"></a><span class="textbf"><span class="texttt">ompt_get_state_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1859"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_state_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_state</span></span> runtime entry point,
+which returns the state and the wait identifier of the current thread.
+<p><a 
+ id="Q1-274-1860"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-386001r1"></a></span></p> 
+<!--l. 603--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-386002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_state_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-386003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_wait_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">wait_id</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-386004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-386005r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1861"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Each OpenMP thread has an associated state and a wait identifier. If a thread&#8217;s state indicates that the thread
+is waiting for mutual exclusion then its wait identifier contains an opaque handle that indicates the data
+object upon which the thread is waiting. The <span class="textbf"><span class="texttt">ompt_get_state</span></span> runtime entry point, which has type
+signature <span class="textbf"><span class="texttt">ompt_get_state_t</span></span>, retrieves the state and wait identifier of the current thread. The returned
+value may be any one of the states predefined by <span class="textbf"><span class="texttt">ompt_state_t</span></span> or a value that represents an
+implementation-specific state. The tool may obtain a string representation for each state with the
+<span class="textbf"><span class="texttt">ompt_enumerate_states</span></span> function.
+</p> 
+<p>If the returned state indicates that the thread is waiting for a lock, nest lock, <span class="textbf"><span class="texttt">critical</span></span> region, <span class="textbf"><span class="texttt">atomic</span></span>
+region, or <span class="textbf"><span class="texttt">ordered</span></span> region then the value of the thread&#8217;s wait identifier is assigned to a non-null wait
+identifier passed as the <span class="textit"><span class="textrm">wait_id</span></span> argument.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1862"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">wait_id</span></span> argument is a pointer to an opaque handle that is available to receive the value of the wait
+identifier of the thread. If <span class="textit"><span class="textrm">wait_id</span></span> is not <span class="textbf"><span class="texttt">NULL</span></span> then the entry point assigns the value of the wait
+identifier of the thread to the object to which <span class="textit"><span class="textrm">wait_id</span></span> points. If the returned state is not one of the
+specified wait states then the value of opaque object to which <span class="textit"><span class="textrm">wait_id</span></span> points is undefined after the
+call.
+</p> 
+<p><p><a 
+ id="Q1-274-1863"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The argument passed to the entry point must be a reference to a variable of the specified type or
+<span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1864"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_state_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3340004.4.4.27">4.4.4.27<!--tex4ht:ref: sec:ompt_state_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_wait_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3370004.4.4.30">4.4.4.30<!--tex4ht:ref: sec:ompt_wait_id_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_enumerate_states_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="#x274-3750004.6.1.1">4.6.1.1<!--tex4ht:ref: sec:ompt_enumerate_states_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.13  </span> <a 
+ id="x274-3870004.6.1.13"></a><span class="textbf"><span class="texttt">ompt_get_parallel_info_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1866"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_parallel_info_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_parallel_info</span></span>
+runtime entry point, which returns information about the parallel region, if any, at the specified ancestor
+level for the current execution context.
+<p><a 
+ id="Q1-274-1867"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-387001r1"></a></span></p> 
+<!--l. 664--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-387002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_parallel_info_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-387003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ancestor_level</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-387004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_data_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">parallel_data</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-387005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">team_size</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-387006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-387007r7"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1868"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+During execution, an OpenMP program may employ nested parallel regions. The <span class="textbf"><span class="texttt">ompt_get_parallel_info</span></span>
+runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_parallel_info_t</span></span>, retrieves information,
+about the current parallel region and any enclosing parallel regions for the current execution context. The
+entry point returns 2 if a parallel region exists at the specified ancestor level and the information is available,
+1 if a parallel region exists at the specified ancestor level but the information is currently unavailable, and 0
+otherwise.
+</p> 
+<p>A tool may use the pointer to the data object of a parallel region that it obtains from this runtime entry point
+to inspect or to modify the value of the data object. When a parallel region is created, its data object will be
+initialized with the value <span class="textbf"><span class="texttt">ompt_data_none</span></span>.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+<p>Between a <span class="emph">parallel-begin</span> event and an <span class="emph">implicit-task-begin</span> event, a call to <span class="textbf"><span class="texttt">ompt_get_parallel_info(0,...)</span></span>
+may return information about the outer parallel team, the new parallel team or an inconsistent
+state.
+</p> 
+<p>If a thread is in the state <span class="textbf"><span class="texttt">ompt_state_wait_barrier_implicit_parallel</span></span> then a call to
+<span class="textbf"><span class="texttt">ompt_get_parallel_info</span></span> may return a pointer to a copy of the specified parallel region&#8217;s
+<span class="textit"><span class="textrm">parallel_data</span></span> rather than a pointer to the data word for the region itself. This convention enables the
+primary thread for a parallel region to free storage for the region immediately after the region ends, yet
+avoid having some other thread in the team that is executing the region potentially reference the
+<span class="textit"><span class="textrm">parallel_data</span></span> object for the region after it has been freed.
+</p> 
+<p><p><a 
+ id="Q1-274-1869"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">ancestor_level</span></span> argument specifies the parallel region of interest by its ancestor level. Ancestor level 0
+refers to the innermost parallel region; information about enclosing parallel regions may be obtained using
+larger values for <span class="textit"><span class="textrm">ancestor_level</span></span>.
+</p> 
+<p>The <span class="textit"><span class="textrm">parallel_data</span></span> argument returns the parallel data if the argument is not <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p>The <span class="textit"><span class="textrm">team_size</span></span> argument returns the team size if the argument is not <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1870"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Effect</span>
+If the runtime entry point returns 0 or 1, no argument is modified. Otherwise, <span class="textbf"><span class="texttt">ompt_get_parallel_info</span></span>
+has the following effects:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  a
+  non-null
+  value
+  was
+  passed
+  for
+  <span class="textit"><span class="textrm">parallel_data</span></span>,
+  the
+  value
+  returned
+  in
+  <span class="textit"><span class="textrm">parallel_data</span></span>
+  is
+  a
+  pointer
+  to
+  a
+  data
+  word
+  that
+  is
+  associated
+  with
+  the
+  parallel
+  region
+  at
+  the
+  specified
+  level;
+  and
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  If
+  a
+  non-null
+  value
+  was
+  passed
+  for
+  <span class="textit"><span class="textrm">team_size</span></span>,
+  the
+  value
+  returned
+  in
+  the
+  integer
+  to
+  which
+  <span class="textit"><span class="textrm">team_size</span></span>
+  point
+  is
+  the
+  number
+  of
+  threads
+  in
+  the
+  team
+  that
+  is
+  associated
+  with
+  the
+  parallel
+  region.</li></ul>
+<p><p><a 
+ id="Q1-274-1871"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+While argument <span class="textit"><span class="textrm">ancestor_level</span></span> is passed by value, all other arguments to the entry point must be pointers to
+variables of the specified types or <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1872"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4">4.4.4.4<!--tex4ht:ref: sec:ompt_data_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.14  </span> <a 
+ id="x274-3880004.6.1.14"></a><span class="textbf"><span class="texttt">ompt_get_task_info_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1874"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_task_info_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_task_info</span></span> runtime
+entry point, which returns information about the task, if any, at the specified ancestor level in the current
+execution context.
+<p><a 
+ id="Q1-274-1875"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388001r1"></a></span></p> 
+<!--l. 751--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_task_info_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ancestor_level</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">flags</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_data_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">task_data</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_frame_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">task_frame</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_data_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">parallel_data</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388008r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_num</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388009r9"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-388010r10"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1876"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+During execution, an OpenMP thread may be executing an OpenMP task. Additionally, the stack of
+the thread may contain procedure frames that are associated with suspended OpenMP tasks or
+OpenMP runtime system routines. To obtain information about any task on the stack of the current
+thread, a tool uses the <span class="textbf"><span class="texttt">ompt_get_task_info</span></span> runtime entry point, which has type signature
+<span class="textbf"><span class="texttt">ompt_get_task_info_t</span></span>.
+</p> 
+<p>Ancestor level 0 refers to the active task; information about other tasks with associated frames present on
+the stack in the current execution context may be queried at higher ancestor levels.
+                                                                            
+                                                                            
+</p> 
+<p>The <span class="textbf"><span class="texttt">ompt_get_task_info</span></span> runtime entry point returns 2 if a task region exists at the specified ancestor
+level and the information is available, 1 if a task region exists at the specified ancestor level but the
+information is currently unavailable, and 0 otherwise.
+</p> 
+<p>If a task exists at the specified ancestor level and the information is available then information is returned in
+the variables passed by reference to the entry point. If no task region exists at the specified ancestor level or
+the information is unavailable then the values of variables passed by reference to the entry point are
+undefined when <span class="textbf"><span class="texttt">ompt_get_task_info</span></span> returns.
+</p> 
+<p>A tool may use a pointer to a data object for a task or parallel region that it obtains from
+<span class="textbf"><span class="texttt">ompt_get_task_info</span></span> to inspect or to modify the value of the data object. When either
+a parallel region or a task region is created, its data object will be initialized with the value
+<span class="textbf"><span class="texttt">ompt_data_none</span></span>.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1877"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">ancestor_level</span></span> argument specifies the task region of interest by its ancestor level. Ancestor level 0 refers
+to the active task; information about ancestor tasks found in the current execution context may be queried at
+higher ancestor levels.
+</p> 
+<p>The <span class="textit"><span class="textrm">flags</span></span> argument returns the task type if the argument is not <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p>The <span class="textit"><span class="textrm">task_data</span></span> argument returns the task data if the argument is not <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p>The <span class="textit"><span class="textrm">task_frame</span></span> argument returns the task frame pointer if the argument is not <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p>The <span class="textit"><span class="textrm">parallel_data</span></span> argument returns the parallel data if the argument is not <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p>The <span class="textit"><span class="textrm">thread_num</span></span> argument returns the thread number if the argument is not <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1878"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+If the runtime entry point returns 0 or 1, no argument is modified. Otherwise, <span class="textbf"><span class="texttt">ompt_get_task_info</span></span>
+has the following effects:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  a
+  non-null
+  value
+  was
+  passed
+                                                                            
+                                                                            
+  for
+  <span class="textit"><span class="textrm">flags</span></span>
+  then
+  the
+  value
+  returned
+  in
+  the
+  integer
+  to
+  which
+  <span class="textit"><span class="textrm">flags</span></span>
+  points
+  represents
+  the
+  type
+  of
+  the
+  task
+  at
+  the
+  specified
+  level;
+  possible
+  task
+  types
+  include
+  initial,
+  implicit,
+  explicit,
+  and
+  target
+  tasks;
+  </li>
+  <li class="itemize">
+  If
+  a
+  non-null
+  value
+  was
+  passed
+  for
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">task_data</span></span>
+  then
+  the
+  value
+  that
+  is
+  returned
+  in
+  the
+  object
+  to
+  which
+  it
+  points
+  is
+  a
+  pointer
+  to
+  a
+  data
+  word
+  that
+  is
+  associated
+  with
+  the
+  task
+  at
+  the
+  specified
+  level;
+  </li>
+  <li class="itemize">
+  If
+  a
+  non-null
+  value
+  was
+  passed
+  for
+  <span class="textit"><span class="textrm">task_frame</span></span>
+  then
+                                                                            
+                                                                            
+  the
+  value
+  that
+  is
+  returned
+  in
+  the
+  object
+  to
+  which
+  <span class="textit"><span class="textrm">task_frame</span></span>
+  points
+  is
+  a
+  pointer
+  to
+  the
+  <span class="textbf"><span class="texttt">ompt_frame_t</span></span>
+  structure
+  that
+  is
+  associated
+  with
+  the
+  task
+  at
+  the
+  specified
+  level;
+  </li>
+  <li class="itemize">
+  If
+  a
+  non-null
+  value
+  was
+  passed
+  for
+  <span class="textit"><span class="textrm">parallel_data</span></span>
+  then
+  the
+  value
+                                                                            
+                                                                            
+  that
+  is
+  returned
+  in
+  the
+  object
+  to
+  which
+  <span class="textit"><span class="textrm">parallel_data</span></span>
+  points
+  is
+  a
+  pointer
+  to
+  a
+  data
+  word
+  that
+  is
+  associated
+  with
+  the
+  parallel
+  region
+  that
+  contains
+  the
+  task
+  at
+  the
+  specified
+  level
+  or,
+  if
+  the
+  task
+  at
+  the
+  specified
+  level
+  is
+  an
+  initial
+                                                                            
+                                                                            
+  task,
+  <span class="textbf"><span class="texttt">NULL</span></span>;
+  and
+  </li>
+  <li class="itemize">
+  If
+  a
+  non-null
+  value
+  was
+  passed
+  for
+  <span class="textit"><span class="textrm">thread_num</span></span>,
+  then
+  the
+  value
+  that
+  is
+  returned
+  in
+  the
+  object
+  to
+  which
+  <span class="textit"><span class="textrm">thread_num</span></span>
+  points
+  indicates
+  the
+  number
+  of
+  the
+  thread
+  in
+  the
+  parallel
+  region
+  that
+  is
+  executing
+  the
+  task
+  at
+                                                                            
+                                                                            
+  the
+  specified
+  level.</li></ul>
+<p><p><a 
+ id="Q1-274-1879"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+While argument <span class="textit"><span class="textrm">ancestor_level</span></span> is passed by value, all other arguments to <span class="textbf"><span class="texttt">ompt_get_task_info</span></span> must
+be pointers to variables of the specified types or <span class="textbf"><span class="texttt">NULL</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1880"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4">4.4.4.4<!--tex4ht:ref: sec:ompt_data_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_task_flag_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3250004.4.4.18">4.4.4.18<!--tex4ht:ref: sec:ompt_task_flag_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_frame_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3350004.4.4.28">4.4.4.28<!--tex4ht:ref: sec:ompt_frame_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.15  </span> <a 
+ id="x274-3890004.6.1.15"></a><span class="textbf"><span class="texttt">ompt_get_task_memory_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1882"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_task_memory_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_task_memory</span></span>
+runtime entry point, which returns information about memory ranges that are associated with the
+task.
+<p><a 
+ id="Q1-274-1883"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-389001r1"></a></span></p> 
+<!--l. 869--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-389002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_task_memory_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-389003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">addr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-389004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">size</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-389005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-389006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-389007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1884"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+During execution, an OpenMP thread may be executing an OpenMP task. The OpenMP implementation
+must preserve the data environment from the creation of the task for the execution of the task. The
+<span class="textbf"><span class="texttt">ompt_get_task_memory</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_task_memory_t</span></span>,
+provides information about the memory ranges used to store the data environment for the current
+task.
+</p> 
+<p>Multiple memory ranges may be used to store these data. The <span class="textit"><span class="textrm">block</span></span> argument supports iteration over these
+memory ranges.
+</p> 
+<p>The <span class="textbf"><span class="texttt">ompt_get_task_memory</span></span> runtime entry point returns 1 if more memory ranges are
+available, and 0 otherwise. If no memory is used for a task, <span class="textit"><span class="textrm">size</span></span> is set to 0. In this case, addr is
+unspecified.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1885"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">addr</span></span> argument is a pointer to a void pointer return value to provide the start address of a memory
+block.
+</p> 
+<p>The <span class="textit"><span class="textrm">size</span></span> argument is a pointer to a size type return value to provide the size of the memory
+block.
+</p> 
+<p>The <span class="textit"><span class="textrm">block</span></span> argument is an integer value to specify the memory block of interest.
+</p> 
+
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.16  </span> <a 
+ id="x274-3900004.6.1.16"></a><span class="textbf"><span class="texttt">ompt_get_target_info_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1887"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_target_info_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_target_info</span></span>
+runtime entry point, which returns identifiers that specify a thread&#8217;s current <span class="textbf"><span class="texttt">target</span></span> region and target
+operation ID, if any.
+<p><a 
+ id="Q1-274-1888"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-390001r1"></a></span></p> 
+<!--l. 918--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-390002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_target_info_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-390003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">uint64_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-390004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">target_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-390005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_id_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">host_op_id</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-390006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-390007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1889"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_target_info</span></span> entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_target_info_t</span></span>,
+returns 1 if the current thread is in a <span class="textbf"><span class="texttt">target</span></span> region and 0 otherwise. If the entry point returns 0 then the
+values of the variables passed by reference as its arguments are undefined.
+</p> 
+<p>If the current thread is in a <span class="textbf"><span class="texttt">target</span></span> region then <span class="textbf"><span class="texttt">ompt_get_target_info</span></span> returns information about
+the current device, active <span class="textbf"><span class="texttt">target</span></span> region, and active host operation, if any.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1890"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">device_num</span></span> argument returns the device number if the current thread is in a <span class="textbf"><span class="texttt">target</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">target_id</span></span> argument returns the <span class="textbf"><span class="texttt">target</span></span> region identifier if the current thread is in a <span class="textbf"><span class="texttt">target</span></span>
+region.
+</p> 
+<p>If the current thread is in the process of initiating an operation on a target device (for example, copying data
+to or from an accelerator or launching a kernel), then <span class="textit"><span class="textrm">host_op_id</span></span> returns the identifier for the operation;
+otherwise, <span class="textit"><span class="textrm">host_op_id</span></span> returns <span class="textbf"><span class="texttt">ompt_id_none</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-274-1891"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+Arguments passed to the entry point must be valid references to variables of the specified types.
+</p> 
+<p><p><a 
+ id="Q1-274-1892"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_id_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3100004.4.4.3">4.4.4.3<!--tex4ht:ref: sec:ompt_id_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.17  </span> <a 
+ id="x274-3910004.6.1.17"></a><span class="textbf"><span class="texttt">ompt_get_num_devices_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1894"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_num_devices_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_num_devices</span></span>
+runtime entry point, which returns the number of available devices.
+<p><a 
+ id="Q1-274-1895"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-391001r1"></a></span></p> 
+<!--l. 972--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-391002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_num_devices_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-391003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1896"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_num_devices</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_num_devices_t</span></span>,
+returns the number of devices available to an OpenMP program.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.18  </span> <a 
+ id="x274-3920004.6.1.18"></a><span class="textbf"><span class="texttt">ompt_get_unique_id_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1898"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_get_unique_id_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_get_unique_id</span></span> runtime
+entry point, which returns a unique number.
+<p><a 
+ id="Q1-274-1899"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-392001r1"></a></span></p> 
+<!--l. 996--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-392002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">uint64_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_get_unique_id_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-392003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1900"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompt_get_unique_id</span></span> runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_get_unique_id_t</span></span>,
+returns a number that is unique for the duration of an OpenMP program. Successive invocations may not
+result in consecutive or even increasing numbers.
+</p> 
+<p>This runtime entry point is <span class="emph">async signal safe</span>.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">4.6.1.19  </span> <a 
+ id="x274-3930004.6.1.19"></a><span class="textbf"><span class="texttt">ompt_finalize_tool_t</span></span></h5>
+<p><p><a 
+ id="Q1-274-1902"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompt_finalize_tool_t</span></span> type is the type signature of the <span class="textbf"><span class="texttt">ompt_finalize_tool</span></span> runtime
+entry point, which enables a tool to finalize itself.
+<p><a 
+ id="Q1-274-1903"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-393001r1"></a></span></p> 
+<!--l. 1024--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-393002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_finalize_tool_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x274-393003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-274-1904"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A tool may detect that the execution of an OpenMP program is ending before the OpenMP implementation
+does. To facilitate clean termination of the tool, the tool may invoke the <span class="textbf"><span class="texttt">ompt_finalize_tool</span></span>
+runtime entry point, which has type signature <span class="textbf"><span class="texttt">ompt_finalize_tool_t</span></span>. Upon completion of
+<span class="textbf"><span class="texttt">ompt_finalize_tool</span></span>, no OMPT callbacks are dispatched.
+</p> 
+<p><p><a 
+ id="Q1-274-1905"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">ompt_finalize_tool</span></span> routine detaches the tool from the runtime, unregisters all callbacks and
+invalidates all OMPT entry points passed to the tool in the <span class="textit"><span class="textrm">lookup-function</span></span>. Upon completion of
+<span class="textbf"><span class="texttt">ompt_finalize_tool</span></span>, no further callbacks will be issued on any thread.
+</p> 
+<p>Before the callbacks are unregistered, the OpenMP runtime should attempt to dispatch all outstanding
+registered callbacks as well as the callbacks that would be encountered during shutdown of the runtime, if
+possible in the current execution context.
+</p> 
+<!--l. 1055--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu216.html" >next</a>] [<a 
+href="openmpse51.html" >prev</a>] [<a 
+href="openmpse51.html#tailopenmpse51.html" >prev-tail</a>] [<a 
+href="openmpsu215.html" >front</a>] [<a 
+href="openmpse51.html#openmpsu215.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu215.html"></a> </p> 
+ 
+</body> 
+</html>

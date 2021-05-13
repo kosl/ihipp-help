@@ -1,0 +1,486 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Task Scheduling</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 810--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse21.html" >next</a>] [<a 
+href="openmpsu58.html" >prev</a>] [<a 
+href="openmpsu58.html#tailopenmpsu58.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu59.html">tail</a>] [<a 
+href="openmpse20.html#openmpsu59.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.12.6</span>&#x00A0;&#x00A0;<a 
+ id="x85-950002.12.6"></a>Task Scheduling</h4>
+<a 
+ id="dx85-95001"></a>
+<a 
+ id="dx85-95002"></a>
+<p>Whenever a thread reaches a task scheduling point, the implementation may cause it to perform a task
+switch, beginning or resuming execution of a different task bound to the current team. Task scheduling
+points are implied at the following locations:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  during
+  the
+  generation
+  of
+  an
+  explicit
+  task;
+  </li>
+  <li class="itemize">
+  the
+  point
+  immediately
+  following
+  the
+  generation
+  of
+  an
+  explicit
+                                                                            
+                                                                            
+  task;
+  </li>
+  <li class="itemize">
+  after
+  the
+  point
+  of
+  completion
+  of
+  the
+  structured
+  block
+  associated
+  with
+  a
+  task;
+  </li>
+  <li class="itemize">
+  in
+  a
+  <span class="textbf"><span class="texttt">taskyield</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  in
+  a
+  <span class="textbf"><span class="texttt">taskwait</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  at
+  the
+  end
+  of
+  a
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  region;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  in
+  an
+  implicit
+  barrier
+  region;
+  </li>
+  <li class="itemize">
+  in
+  an
+  explicit
+  <span class="textbf"><span class="texttt">barrier</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  during
+  the
+  generation
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  the
+  point
+  immediately
+  following
+  the
+  generation
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region;
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  at
+  the
+  beginning
+  and
+  end
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  region;
+  </li>
+  <li class="itemize">
+  in
+  the
+  <span class="textbf"><span class="texttt">omp_target_memcpy</span></span>
+  routine;
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  in
+  the
+  <span class="textbf"><span class="texttt">omp_target_memcpy_async</span></span>
+  routine;
+  </li>
+  <li class="itemize">
+  in
+  the
+  <span class="textbf"><span class="texttt">omp_target_memcpy_rect</span></span>
+  routine;
+  and
+  </li>
+  <li class="itemize">
+  in
+  the
+  <span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span>
+  routine.</li></ul>
+<p>When a thread encounters a task scheduling point it may do one of the following, subject to the <span class="emph">Task
+Scheduling Constraints</span> (below):
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  begin
+  execution
+  of
+  a
+  tied
+  task
+  bound
+  to
+  the
+  current
+  team;
+  </li>
+  <li class="itemize">
+  resume
+                                                                            
+                                                                            
+  any
+  suspended
+  task
+  region,
+  bound
+  to
+  the
+  current
+  team,
+  to
+  which
+  it
+  is
+  tied;
+  </li>
+  <li class="itemize">
+  begin
+  execution
+  of
+  an
+  untied
+  task
+  bound
+  to
+  the
+  current
+  team;
+  or
+  </li>
+  <li class="itemize">
+  resume
+  any
+  suspended
+  untied
+  task
+  region
+  bound
+  to
+  the
+  current
+                                                                            
+                                                                            
+  team.</li></ul>
+<p>If more than one of the above choices is available, which one is chosen is unspecified.
+                                                                            
+                                                                            
+</p> 
+<p><span class="emph">Task Scheduling Constraints</span> are as follows:
+  </p> 
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+1. </dt><dd 
+class="enumerate-enumitem">
+  Scheduling
+  of
+  new
+  tied
+  tasks
+  is
+  constrained
+  by
+  the
+  set
+  of
+  task
+  regions
+  that
+  are
+  currently
+  tied
+  to
+  the
+  thread
+  and
+  that
+  are
+  not
+  suspended
+  in
+  a
+  barrier
+  region.
+  If
+  this
+  set
+  is
+  empty,
+  any
+  new
+  tied
+  task
+  may
+                                                                            
+                                                                            
+  be
+  scheduled.
+  Otherwise,
+  a
+  new
+  tied
+  task
+  may
+  be
+  scheduled
+  only
+  if
+  it
+  is
+  a
+  descendant
+  task
+  of
+  every
+  task
+  in
+  the
+  set.
+  </dd><dt class="enumerate-enumitem">
+2. </dt><dd 
+class="enumerate-enumitem">
+  A
+  dependent
+  task
+  shall
+  not
+  start
+  its
+  execution
+  until
+  its
+  task
+  dependences
+  are
+  fulfilled.
+  </dd><dt class="enumerate-enumitem">
+                                                                            
+                                                                            
+3. </dt><dd 
+class="enumerate-enumitem">
+  A
+  task
+  shall
+  not
+  be
+  scheduled
+  while
+  any
+  task
+  with
+  which
+  it
+  is
+  mutually
+  exclusive
+  has
+  been
+  scheduled
+  but
+  has
+  not
+  yet
+  completed.
+  </dd><dt class="enumerate-enumitem">
+4. </dt><dd 
+class="enumerate-enumitem">
+  When
+  an
+  explicit
+  task
+  is
+  generated
+  by
+  a
+  construct
+  that
+  contains
+  an
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  for
+  which
+                                                                            
+                                                                            
+  the
+  expression
+  evaluated
+  to
+  <span class="textit"><span class="textrm">false</span></span>,
+  and
+  the
+  previous
+  constraints
+  are
+  already
+  met,
+  the
+  task
+  is
+  executed
+  immediately
+  after
+  generation
+  of
+  the
+  task.</dd></dl>
+<p>A program that relies on any other assumption about task scheduling is non-conforming.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Task scheduling points dynamically divide task regions into parts. Each part is executed
+uninterrupted from start to end. Different parts of the same task region are executed in the order in which
+they are encountered. In the absence of task synchronization constructs, the order in which a thread executes
+parts of different schedulable tasks is unspecified.
+</p> 
+<p>A program must behave correctly and consistently with all conceivable scheduling sequences that are
+compatible with the rules above.
+</p> 
+<p>For example, if <span class="textbf"><span class="texttt">threadprivate</span></span> storage is accessed (explicitly in the source code or implicitly in calls to
+library routines) in one part of a task region, its value cannot be assumed to be preserved into the next part
+of the same task region if another schedulable task exists that modifies it.
+</p> 
+<p>As another example, if a lock acquire and release happen in different parts of a task region, no attempt
+should be made to acquire the same lock in any part of another task that the executing thread may schedule.
+Otherwise, a deadlock is possible. A similar situation can occur when a <span class="textbf"><span class="texttt">critical</span></span> region spans
+multiple parts of a task and another schedulable task contains a <span class="textbf"><span class="texttt">critical</span></span> region with the same
+name.
+</p> 
+<p>The use of threadprivate variables and the use of locks or critical sections in an explicit
+                                                                            
+                                                                            
+task with an <span class="textbf"><span class="texttt">if</span></span> clause must take into account that when the <span class="textbf"><span class="texttt">if</span></span> clause evaluates to <span class="textit"><span class="textrm">false</span></span>,
+the task is executed immediately, without regard to <span class="emph">Task Scheduling Constraint</span>&#x00A0;2.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-85-328"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">task-schedule</span></span> event occurs in a thread when the thread switches tasks at a task scheduling point; no
+event occurs when switching to or from a merged task.
+</p> 
+<p><p><a 
+ id="Q1-85-329"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_task_schedule</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">task-schedule</span></span> event in the context of the task that begins or resumes. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_task_schedule_t</span></span>. The argument <span class="textit"><span class="textrm">prior_task_status</span></span> is used to indicate the
+cause for suspending the prior task. This cause may be the completion of the prior task region,
+the encountering of a <span class="textbf"><span class="texttt">taskyield</span></span> construct, or the encountering of an active cancellation
+point.
+</p> 
+<p><p><a 
+ id="Q1-85-330"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_task_schedule_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3520004.5.2.10">4.5.2.10<!--tex4ht:ref: sec:ompt_callback_task_schedule_t --></a>.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse21.html" >next</a>] [<a 
+href="openmpsu58.html" >prev</a>] [<a 
+href="openmpsu58.html#tailopenmpsu58.html" >prev-tail</a>] [<a 
+href="openmpsu59.html" >front</a>] [<a 
+href="openmpse20.html#openmpsu59.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu59.html"></a> </p> 
+ 
+</body> 
+</html>

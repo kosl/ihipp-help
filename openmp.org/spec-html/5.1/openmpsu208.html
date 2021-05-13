@@ -1,0 +1,794 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Tracing Activity on Target Devices with OMPT</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 505--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse48.html" >next</a>] [<a 
+href="openmpsu207.html" >prev</a>] [<a 
+href="openmpsu207.html#tailopenmpsu207.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu208.html">tail</a>] [<a 
+href="openmpse47.html#openmpsu208.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.5</span>&#x00A0;&#x00A0;<a 
+ id="x263-2970004.2.5"></a>Tracing Activity on Target Devices with OMPT</h4>
+                                                                            
+                                                                            
+<a 
+ id="dx263-297001"></a>
+<p>A target device may or may not initialize a full OpenMP runtime system. Unless it does, monitoring activity
+on a device using a tool interface based on callbacks may not be possible. To accommodate such cases, the
+OMPT interface defines a monitoring interface for tracing activity on target devices. Tracing activity on a
+target device involves the following steps:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  To
+  prepare
+  to
+  trace
+  activity
+  on
+  a
+  target
+  device,
+  a
+  tool
+  must
+  register
+  for
+  an
+  <span class="textbf"><span class="texttt">ompt_callback_device_initialize</span></span>
+  callback.
+  A
+  tool
+  may
+  also
+  register
+  for
+  an
+  <span class="textbf"><span class="texttt">ompt_callback_device_load</span></span>
+  callback
+  to
+  be
+  notified
+  when
+  code
+  is
+  loaded
+                                                                            
+                                                                            
+  onto
+  a
+  target
+  device
+  or
+  an
+  <span class="textbf"><span class="texttt">ompt_callback_device_unload</span></span>
+  callback
+  to
+  be
+  notified
+  when
+  code
+  is
+  unloaded
+  from
+  a
+  target
+  device.
+  A
+  tool
+  may
+  also
+  optionally
+  register
+  an
+  <span class="textbf"><span class="texttt">ompt_callback_device_finalize</span></span>
+  callback.
+  </li>
+  <li class="itemize">
+  When
+  an
+  OpenMP
+  implementation
+  initializes
+  a
+  target
+  device,
+  the
+  OpenMP
+  implementation
+  dispatches
+                                                                            
+                                                                            
+  the
+  device
+  initialization
+  callback
+  of
+  the
+  tool
+  on
+  the
+  host
+  device.
+  If
+  the
+  OpenMP
+  implementation
+  or
+  target
+  device
+  does
+  not
+  support
+  tracing,
+  the
+  OpenMP
+  implementation
+  passes
+  <span class="textbf"><span class="texttt">NULL</span></span>
+  to
+  the
+  device
+  initializer
+  of
+  the
+  tool
+  for
+  its
+  <span class="textit"><span class="textrm">lookup</span></span>
+  argument;
+  otherwise,
+  the
+  OpenMP
+  implementation
+  passes
+                                                                            
+                                                                            
+  a
+  pointer
+  to
+  a
+  device-specific
+  runtime
+  entry
+  point
+  with
+  type
+  signature
+  <span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span>
+  to
+  the
+  device
+  initializer
+  of
+  the
+  tool.
+  </li>
+  <li class="itemize">
+  If
+  a
+  non-null
+  <span class="textit"><span class="textrm">lookup</span></span>
+  pointer
+  is
+  provided
+  to
+  the
+  device
+  initializer
+  of
+  the
+  tool,
+  the
+  tool
+  may
+  use
+  it
+  to
+  determine
+                                                                            
+                                                                            
+  the
+  runtime
+  entry
+  points
+  in
+  the
+  tracing
+  interface
+  that
+  are
+  available
+  for
+  the
+  device
+  and
+  may
+  bind
+  the
+  returned
+  function
+  pointers
+  to
+  tool
+  variables.
+  Table&#x00A0;<a 
+href="#x263-2970024">4.4<!--tex4ht:ref: table:ompt-tracing-interface-functions --></a>
+  indicates
+  the
+  names
+  of
+  runtime
+  entry
+  points
+  that
+  may
+  be
+  available
+  for
+  a
+  device;
+  an
+  implementations
+  may
+  provide
+                                                                            
+                                                                            
+  additional
+  implementation-defined
+  names
+  and
+  corresponding
+  entry
+  points.
+  The
+  driver
+  for
+  the
+  device
+  provides
+  the
+  runtime
+  entry
+  points
+  that
+  enable
+  a
+  tool
+  to
+  control
+  the
+  trace
+  collection
+  interface
+  of
+  the
+  device.
+  The
+  <span class="emph">native</span>
+  trace
+  format
+  that
+  the
+  interface
+  uses
+  may
+  be
+  device
+  specific
+  and
+                                                                            
+                                                                            
+  the
+  available
+  kinds
+  of
+  trace
+  records
+  are
+  implementation
+  defined.
+  Some
+  devices
+  may
+  allow
+  a
+  tool
+  to
+  collect
+  traces
+  of
+  records
+  in
+  a
+  standard
+  format
+  known
+  as
+  OMPT
+  trace
+  records.
+  Each
+  OMPT
+  trace
+  record
+  serves
+  as
+  a
+  substitute
+  for
+  an
+  OMPT
+  callback
+  that
+  cannot
+                                                                            
+                                                                            
+  be
+  made
+  on
+  the
+  device.
+  The
+  fields
+  in
+  each
+  trace
+  record
+  type
+  are
+  defined
+  in
+  the
+  description
+  of
+  the
+  callback
+  that
+  the
+  record
+  represents.
+  If
+  this
+  type
+  of
+  record
+  is
+  provided
+  then
+  the
+  <span class="textit"><span class="textrm">lookup</span></span>
+  function
+  returns
+  values
+  for
+  the
+  runtime
+  entry
+  points
+  <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span>
+                                                                            
+                                                                            
+  and
+  <span class="textbf"><span class="texttt">ompt_get_record_ompt</span></span>,
+  which
+  support
+  collecting
+  and
+  decoding
+  OMPT
+  traces.
+  If
+  the
+  native
+  tracing
+  format
+  for
+  a
+  device
+  is
+  the
+  OMPT
+  format
+  then
+  tracing
+  can
+  be
+  controlled
+  using
+  the
+  runtime
+  entry
+  points
+  for
+  native
+  or
+  OMPT
+  tracing.
+  <p><a 
+ id="x263-2970024"></a></p> 
+<hr class="float" /><div class="float" 
+>
+ <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;4.4: </td><td  
+class="content">OMPT Tracing Interface Runtime Entry Point Names and Their Type Signatures</td></tr></table></div><!--tex4ht:label?: x263-2970024 -->
+                                                                            
+                                                                            
+  <div class="tabular"> <table id="TBL-36" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-36-1g"><col 
+id="TBL-36-1" /><col 
+id="TBL-36-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-1-1"  
+class="td11"> <span class="textbf"><span class="textsf">Entry Point String Name</span></span>                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-1-2"  
+class="td11"> <span class="textbf"><span class="textsf">Type Signature</span></span>                                     </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-2-1"  
+class="td
+11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_get_device_num_procs</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;     </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-2-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_device_num_procs_t</span></span>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-3-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_get_device_time</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                 </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-3-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_device_time_t</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-4-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_translate_time</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                   </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-4-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_translate_time_t</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-5-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                   </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_set_trace_ompt_t</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-6-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_set_trace_native</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;               </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_set_trace_native_t</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-7-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_start_trace</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_start_trace_t</span></span>           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-8-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_pause_trace</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-8-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_pause_trace_t</span></span>           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-9-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_flush_trace</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_flush_trace_t</span></span>           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-10-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_stop_trace</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                             </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_stop_trace_t</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-11-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_advance_buffer_cursor</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;   </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_advance_buffer_cursor_t</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-12-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_get_record_type</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                 </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-12-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_record_type_t</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-13-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_get_record_ompt</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;                 </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-13-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_record_ompt_t</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-14-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_get_record_native</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;            </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-14-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_record_native_t</span></span>     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-15-1"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">&#8220;</span><span class="textbf"><span class="texttt">ompt_get_record_abstract</span></span><span 
+class="ec-qtmr-x-x-90">&#8221;       </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-36-15-2"  
+class="td11"> <span class="textbf"><span class="texttt">ompt_get_record_abstract_t</span></span>   </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-36-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-16-1"  
+class="td11">                              </td></tr></table>
+  </div>
+  </div><hr class="endfloat" />
+  </li>
+  <li class="itemize">The tool uses the <span class="textbf"><span class="texttt">ompt_set_trace_native</span></span> and/or the <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span> runtime entry
+  point to specify what types of events or activities to monitor on the device. The return codes for
+  <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span> and <span class="textbf"><span class="texttt">ompt_set_trace_native</span></span> use the <span class="textbf"><span class="texttt">ompt_set_result_t</span></span>
+  enumeration type. If the <span class="textbf"><span class="texttt">ompt_set_trace_native</span></span> or the <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span> runtime
+  entry point is called outside a device initializer, registration of supported callbacks may fail with a return
+  code of <span class="textbf"><span class="texttt">ompt_set_error</span></span>.
+  </li>
+  <li class="itemize">The tool initiates tracing on the device by invoking <span class="textbf"><span class="texttt">ompt_start_trace</span></span>. Arguments to
+  <span class="textbf"><span class="texttt">ompt_start_trace</span></span> include two tool callbacks through which the OpenMP implementation can
+  manage traces associated with the device. One callback allocates a buffer in which the device
+  can deposit trace events. The second callback processes a buffer of trace events from the
+  device.
+  </li>
+  <li class="itemize">If the device requires a trace buffer, the OpenMP implementation invokes the tool-supplied callback
+  function on the host device to request a new buffer.
+  </li>
+  <li class="itemize">The OpenMP implementation monitors the execution of OpenMP constructs on the device and
+  records a trace of events or activities into a trace buffer. If possible, device trace records
+  are marked with a <span class="textit"><span class="textrm">host_op_id</span></span>&#8212;an identifier that associates device activities with the target
+  operation that the host initiated to cause these activities. To correlate activities on the host with
+  activities on a device, a tool can register a <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi</span></span>
+  callback. Before and after the host initiates creation of an initial task on a device associated
+  with a structured block for a <span class="textbf"><span class="texttt">target</span></span> construct, the OpenMP implementation dispatches the
+  <span class="textbf"><span class="texttt">ompt_callback_target_submit_emi</span></span> callback on the host in the thread that is executing the task
+  that encounters the <span class="textbf"><span class="texttt">target</span></span> construct. This callback provides the tool with a pair of identifiers: one that
+  identifies the <span class="textbf"><span class="texttt">target</span></span> region and a second that uniquely identifies the initial task associated with that
+  region. These identifiers help the tool correlate activities on the target device with their <span class="textbf"><span class="texttt">target</span></span>
+  region.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">When appropriate, for example, when a trace buffer fills or needs to be flushed, the OpenMP
+  implementation invokes the tool-supplied buffer completion callback to process a non-empty sequence of
+  records in a trace buffer that is associated with the device.
+  </li>
+  <li class="itemize">The tool-supplied buffer completion callback may return immediately, ignoring records in the
+  trace buffer, or it may iterate through them using the <span class="textbf"><span class="texttt">ompt_advance_buffer_cursor</span></span>
+  entry point to inspect each record. A tool may use the <span class="textbf"><span class="texttt">ompt_get_record_type</span></span>
+  runtime entry point to inspect the type of the record at the current cursor position. Three
+  runtime entry points (<span class="textbf"><span class="texttt">ompt_get_record_ompt</span></span>, <span class="textbf"><span class="texttt">ompt_get_record_native</span></span>, and
+  <span class="textbf"><span class="texttt">ompt_get_record_abstract</span></span>) allow tools to inspect the contents of some or all records in a trace
+  buffer. The <span class="textbf"><span class="texttt">ompt_get_record_native</span></span> runtime entry point uses the native trace format of the
+  device. The <span class="textbf"><span class="texttt">ompt_get_record_abstract</span></span> runtime entry point decodes the contents of a
+  native trace record and summarizes them as an <span class="textbf"><span class="texttt">ompt_record_abstract_t</span></span> record. The
+  <span class="textbf"><span class="texttt">ompt_get_record_ompt</span></span> runtime entry point can only be used to retrieve records in OMPT
+  format.
+  </li>
+  <li class="itemize">Once tracing has been started on a device, a tool may pause or resume tracing on the device at any time
+  by invoking <span class="textbf"><span class="texttt">ompt_pause_trace</span></span> with an appropriate flag value as an argument.
+  </li>
+  <li class="itemize">A tool may invoke the <span class="textbf"><span class="texttt">ompt_flush_trace</span></span> runtime entry point for a device at any time between
+  device initialization and finalization to cause the device to flush pending trace records.
+  </li>
+  <li class="itemize">At any time, a tool may use the <span class="textbf"><span class="texttt">ompt_start_trace</span></span> runtime entry point to start tracing or the
+  <span class="textbf"><span class="texttt">ompt_stop_trace</span></span> runtime entry point to stop tracing on a device. When tracing is stopped on a
+  device, the OpenMP implementation eventually gathers all trace records already collected on the device
+  and presents them to the tool using the buffer completion callback.
+  </li>
+  <li class="itemize">An OpenMP implementation can be shut down while device tracing is in progress.
+  </li>
+  <li class="itemize">When an OpenMP implementation is shut down, it finalizes each device. Device finalization occurs in
+  three steps. First, the OpenMP implementation halts any tracing in progress for the device. Second, the
+  OpenMP implementation flushes all trace records collected for the device and uses the buffer
+  completion callback associated with that device to present them to the tool. Finally, the OpenMP
+  implementation dispatches any <span class="textbf"><span class="texttt">ompt_callback_device_finalize</span></span> callback registered for the
+  device.</li></ul>
+<p><p><a 
+ id="Q1-263-1443"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on tracing activity on devices are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Implementation-defined
+  names
+  must
+  not
+  start
+  with
+  the
+  prefix
+  <span class="textbf"><span class="texttt">ompt_</span></span>,
+  which
+  is
+  reserved
+  for
+  the
+  OpenMP
+  specification.</li></ul>
+<p><p><a 
+ id="Q1-263-1444"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_device_initialize_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3610004.5.2.19">4.5.2.19<!--tex4ht:ref: sec:ompt_callback_device_initialize_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_device_finalize_t</span></span>
+  callback
+  type,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3620004.5.2.20">4.5.2.20<!--tex4ht:ref: sec:ompt_callback_device_finalize_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_device_num_procs</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-3950004.6.2.1">4.6.2.1<!--tex4ht:ref: sec:ompt_get_device_num_procs_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_device_time</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-3960004.6.2.2">4.6.2.2<!--tex4ht:ref: sec:ompt_get_device_time_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_translate_time</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-3970004.6.2.3">4.6.2.3<!--tex4ht:ref: sec:ompt_translate_time_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_set_trace_ompt</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-3980004.6.2.4">4.6.2.4<!--tex4ht:ref: sec:ompt_set_trace_ompt_t --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompt_set_trace_native</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-3990004.6.2.5">4.6.2.5<!--tex4ht:ref: sec:ompt_set_trace_native_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_trace</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4000004.6.2.6">4.6.2.6<!--tex4ht:ref: sec:ompt_start_trace_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_pause_trace</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4010004.6.2.7">4.6.2.7<!--tex4ht:ref: sec:ompt_pause_trace_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_flush_trace</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4020004.6.2.8">4.6.2.8<!--tex4ht:ref: sec:ompt_flush_trace_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_stop_trace</span></span>
+  runtime
+  entry
+  point,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4030004.6.2.9">4.6.2.9<!--tex4ht:ref: sec:ompt_stop_trace_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_advance_buffer_cursor</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4040004.6.2.10">4.6.2.10<!--tex4ht:ref: sec:ompt_advance_buffer_cursor_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_record_type</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4050004.6.2.11">4.6.2.11<!--tex4ht:ref: sec:ompt_get_record_type_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_record_ompt</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4060004.6.2.12">4.6.2.12<!--tex4ht:ref: sec:ompt_get_record_ompt_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_record_native</span></span>
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4070004.6.2.13">4.6.2.13<!--tex4ht:ref: sec:ompt_get_record_native_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_get_record_abstract</span></span>
+                                                                            
+                                                                            
+  runtime
+  entry
+  point,
+  see
+  Section&#x00A0;<a 
+href="openmpsu216.html#x275-4080004.6.2.14">4.6.2.14<!--tex4ht:ref: sec:ompt_get_record_abstract_t --></a>.</li></ul>
+<!--l. 715--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse48.html" >next</a>] [<a 
+href="openmpsu207.html" >prev</a>] [<a 
+href="openmpsu207.html#tailopenmpsu207.html" >prev-tail</a>] [<a 
+href="openmpsu208.html" >front</a>] [<a 
+href="openmpse47.html#openmpsu208.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu208.html"></a> </p> 
+ 
+</body> 
+</html>

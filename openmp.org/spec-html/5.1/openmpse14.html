@@ -1,0 +1,803 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>parallel Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 48--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu40.html" >next</a>] [<a 
+href="openmpsu39.html" >prev</a>] [<a 
+href="openmpsu39.html#tailopenmpsu39.html" >prev-tail</a>] [<a 
+href="#tailopenmpse14.html">tail</a>] [<a 
+href="openmpch2.html#openmpse14.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.6</span>&#x00A0;&#x00A0;<a 
+ id="x59-590002.6"></a><span class="textbf"><span class="texttt">parallel</span></span> Construct</h3>
+<a 
+ id="dx59-59001"></a>
+<a 
+ id="dx59-59002"></a>
+<p><p><a 
+ id="Q1-59-114"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">parallel</span></span> construct creates a team of OpenMP threads that execute the region.
+<p><a 
+ id="Q1-59-115"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">parallel</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59003r1"></a></span></p> 
+<!--l. 58--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59007r1"></a></span></p> 
+<!--l. 66--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59008r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59009r3"></a></span><span 
+class="pcrb8t-">num_threads</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59010r4"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">data</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sharing</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attribute</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59011r5"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59012r6"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59013r7"></a></span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59014r8"></a></span><span 
+class="pcrb8t-">copyin</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59015r9"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59016r10"></a></span><span 
+class="pcrb8t-">proc_bind</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">affinity</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">policy</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59017r11"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59018r12"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">affinity-policy</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59019r1"></a></span></p> 
+<!--l. 81--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59020r2"></a></span><span 
+class="pcrb8t-">primary</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59021r3"></a></span><span 
+class="pcrb8t-">master</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">deprecated</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59022r4"></a></span><span 
+class="pcrb8t-">close</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59023r5"></a></span><span 
+class="pcrb8t-">spread</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59024r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">parallel</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59025r1"></a></span></p> 
+<!--l. 93--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59026r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59027r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59028r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59029r5"></a></span></pre>
+                                                                            
+                                                                            
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59030r1"></a></span></p> 
+<!--l. 101--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59031r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59032r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59033r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59034r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59035r1"></a></span></p> 
+<!--l. 111--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59036r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59037r3"></a></span><span 
+class="pcrb8t-">num_threads</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59038r4"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">data</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sharing</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attribute</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59039r5"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59040r6"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59041r7"></a></span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59042r8"></a></span><span 
+class="pcrb8t-">copyin</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59043r9"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59044r10"></a></span><span 
+class="pcrb8t-">proc_bind</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">affinity</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">policy</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59045r11"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59046r12"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">affinity-policy</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59047r1"></a></span></p> 
+<!--l. 126--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59048r2"></a></span><span 
+class="pcrb8t-">primary</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59049r3"></a></span><span 
+class="pcrb8t-">master</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">deprecated</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59050r4"></a></span><span 
+class="pcrb8t-">close</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59051r5"></a></span><span 
+class="pcrb8t-">spread</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x59-59052r6"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-59-116"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">parallel</span></span> region is the encountering thread. The encountering thread
+becomes the primary thread of the new team.
+</p> 
+<p><p><a 
+ id="Q1-59-117"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+When a thread encounters a <span class="textbf"><span class="texttt">parallel</span></span> construct, a team of threads is created to execute the <span class="textbf"><span class="texttt">parallel</span></span>
+region (see Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a> for more information about how the number of threads in the team is determined,
+including the evaluation of the <span class="textbf"><span class="texttt">if</span></span> and <span class="textbf"><span class="texttt">num_threads</span></span> clauses). The thread that encountered the
+<span class="textbf"><span class="texttt">parallel</span></span> construct becomes the primary thread of the new team, with a thread number of zero for the
+duration of the new <span class="textbf"><span class="texttt">parallel</span></span> region. All threads in the new team, including the primary thread, execute
+the region. Once the team is created, the number of threads in the team remains constant for the duration of
+that <span class="textbf"><span class="texttt">parallel</span></span> region.
+</p> 
+<p>The optional <span class="textbf"><span class="texttt">proc_bind</span></span> clause, described in Section&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">2.6.2<!--tex4ht:ref: subsec:Controlling OpenMP Thread Affinity --></a>, specifies the mapping of OpenMP threads to
+places within the current place partition, that is, within the places listed in the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV for
+the implicit task of the encountering thread.
+</p> 
+<p>Within a <span class="textbf"><span class="texttt">parallel</span></span> region, thread numbers uniquely identify each thread. Thread numbers are consecutive
+whole numbers ranging from zero for the primary thread up to one less than the number of threads in the
+team. A thread may obtain its own thread number by a call to the <span class="textbf"><span class="texttt">omp_get_thread_num</span></span> library
+routine.
+</p> 
+<p>A set of implicit tasks, equal in number to the number of threads in the team, is generated by the
+encountering thread. The structured block of the <span class="textbf"><span class="texttt">parallel</span></span> construct determines the code that will be
+executed in each implicit task. Each task is assigned to a different thread in the team and becomes tied. The
+task region of the task that the encountering thread is executing is suspended and each thread in the team
+                                                                            
+                                                                            
+executes its implicit task. Each thread can execute a path of statements that is different from that of the other
+threads.
+</p> 
+<p>The implementation may cause any thread to suspend execution of its implicit task at a task scheduling
+point, and to switch to execution of any explicit task generated by any of the threads in the team, before
+eventually resuming execution of the implicit task (for more details see Section&#x00A0;<a 
+href="openmpse20.html#x79-890002.12">2.12<!--tex4ht:ref: sec:Tasking Constructs --></a>).
+</p> 
+<p>An implicit barrier occurs at the end of a <span class="textbf"><span class="texttt">parallel</span></span> region. After the end of a <span class="textbf"><span class="texttt">parallel</span></span> region, only the
+primary thread of the team resumes execution of the enclosing task region.
+</p> 
+<p>If a thread in a team that is executing a <span class="textbf"><span class="texttt">parallel</span></span> region encounters another <span class="textbf"><span class="texttt">parallel</span></span> directive, it
+creates a new team, according to the rules in Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a>, and it becomes the primary thread of that new
+team.
+</p> 
+<p>If execution of a thread terminates while inside a <span class="textbf"><span class="texttt">parallel</span></span> region, execution of all threads in all
+teams terminates. The order of termination of threads is unspecified. All work done by a team
+prior to any barrier that the team has passed in the program is guaranteed to be complete. The
+amount of work done by each thread after the last barrier that it passed and before it terminates is
+unspecified.
+</p> 
+<p><p><a 
+ id="Q1-59-118"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">parallel-begin</span></span> event occurs in a thread that encounters a <span class="textbf"><span class="texttt">parallel</span></span> construct before any implicit task
+is created for the corresponding <span class="textbf"><span class="texttt">parallel</span></span> region.
+</p> 
+<p>Upon creation of each implicit task, an <span class="textit"><span class="textrm">implicit-task-begin</span></span> event occurs in the thread that executes the
+implicit task after the implicit task is fully initialized but before the thread begins to execute the structured
+block of the <span class="textbf"><span class="texttt">parallel</span></span> construct.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">parallel</span></span> region creates a native thread, a <span class="textit"><span class="textrm">native-thread-begin</span></span> event occurs as the first event in the
+context of the new thread prior to the <span class="textit"><span class="textrm">implicit-task-begin</span></span> event.
+</p> 
+<p>Events associated with implicit barriers occur at the end of a <span class="textbf"><span class="texttt">parallel</span></span> region. Section&#x00A0;<a 
+href="openmpsu101.html#x134-1440002.19.3">2.19.3<!--tex4ht:ref: subsec:implicit-barrier --></a> describes
+events associated with implicit barriers.
+</p> 
+<p>When a thread finishes an implicit task, an <span class="textit"><span class="textrm">implicit-task-end</span></span> event occurs in the thread after events
+associated with implicit barrier synchronization in the implicit task.
+</p> 
+<p>The <span class="textit"><span class="textrm">parallel-end</span></span> event occurs in the thread that encounters the <span class="textbf"><span class="texttt">parallel</span></span> construct after the thread
+executes its <span class="textit"><span class="textrm">implicit-task-end</span></span> event but before the thread resumes execution of the encountering
+task.
+</p> 
+<p>If a native thread is destroyed at the end of a <span class="textbf"><span class="texttt">parallel</span></span> region, a <span class="textit"><span class="textrm">native-thread-end</span></span> event occurs in the
+thread as the last event prior to destruction of the thread.
+</p> 
+<p><p><a 
+ id="Q1-59-119"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_parallel_begin</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">parallel-begin</span></span> event in that thread. The callback occurs in the task that encounters the <span class="textbf"><span class="texttt">parallel</span></span>
+construct. This callback has the type signature <span class="textbf"><span class="texttt">ompt_callback_parallel_begin_t</span></span>. In the
+dispatched callback, <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_parallel_team)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_implicit_task</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+as its <span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of an <span class="textit"><span class="textrm">implicit-task-begin</span></span> event in that thread. Similarly, a
+thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_implicit_task</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span>
+as its <span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of an <span class="textit"><span class="textrm">implicit-task-end</span></span> event in that thread. The callbacks
+occur in the context of the implicit task and have type signature <span class="textbf"><span class="texttt">ompt_callback_implicit_task_t</span></span>.
+In the dispatched callback, <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_implicit)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_parallel_end</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">parallel-end</span></span> event in that thread. The callback occurs in the task that encounters the <span class="textbf"><span class="texttt">parallel</span></span> construct.
+This callback has the type signature <span class="textbf"><span class="texttt">ompt_callback_parallel_end_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_thread_begin</span></span> callback for the <span class="textit"><span class="textrm">native-thread-begin</span></span>
+event in that thread. The callback occurs in the context of the thread. The callback has type signature
+<span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_thread_end</span></span> callback for the <span class="textit"><span class="textrm">native-thread-end</span></span>
+event in that thread. The callback occurs in the context of the thread. The callback has type signature
+<span class="textbf"><span class="texttt">ompt_callback_thread_end_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-59-120"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">parallel</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  program
+  must
+  not
+  depend
+  on
+  any
+  ordering
+  of
+  the
+  evaluations
+  of
+                                                                            
+                                                                            
+  the
+  clauses
+  of
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  directive,
+  or
+  on
+  any
+  side
+  effects
+  of
+  the
+  evaluations
+  of
+  the
+  clauses.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">proc_bind</span></span>
+  clause
+  can
+  appear
+  on
+  the
+                                                                            
+                                                                            
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">num_threads</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  The
+  <span class="textbf"><span class="texttt">num_threads</span></span>
+  expression
+  must
+  evaluate
+  to
+  a
+  positive
+  integer
+  value.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textbf"><span class="texttt">throw</span></span> executed inside a <span class="textbf"><span class="texttt">parallel</span></span> region must cause execution to resume within the same
+  <span class="textbf"><span class="texttt">parallel</span></span> region, and the same thread that threw the exception must catch it.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-59-121"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  OpenMP
+  execution
+  model,
+  see
+  Section&#x00A0;<a 
+href="openmpse3.html#x16-150001.3">1.3<!--tex4ht:ref: sec:Execution Model --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">num_threads</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">proc_bind</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">2.6.2<!--tex4ht:ref: subsec:Controlling OpenMP Thread Affinity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu63.html#x90-1000002.13.4">2.13.4<!--tex4ht:ref: subsec:allocate Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">default</span></span>,
+  <span class="textbf"><span class="texttt">shared</span></span>,
+  <span class="textbf"><span class="texttt">private</span></span>,
+  <span class="textbf"><span class="texttt">firstprivate</span></span>,
+  and
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">copyin</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu118.html#x153-1800002.21.6">2.21.6<!--tex4ht:ref: subsec:Data Copying Clauses --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_thread_num</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu123.html#x162-1950003.2.4">3.2.4<!--tex4ht:ref: subsec:omp_get_thread_num --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3430004.5.2.1">4.5.2.1<!--tex4ht:ref: sec:ompt_callback_thread_begin_t --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompt_callback_thread_end_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3440004.5.2.2">4.5.2.2<!--tex4ht:ref: sec:ompt_callback_thread_end_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_parallel_begin_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3450004.5.2.3">4.5.2.3<!--tex4ht:ref: sec:ompt_callback_parallel_begin_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_parallel_end_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3460004.5.2.4">4.5.2.4<!--tex4ht:ref: sec:ompt_callback_parallel_end_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_implicit_task_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3530004.5.2.11">4.5.2.11<!--tex4ht:ref: sec:ompt_callback_implicit_task_t --></a>.
+  </li></ul>
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">Determining the Number of Threads for a <span class="textbf"><span class="texttt">parallel</span></span> Region</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">Controlling OpenMP Thread Affinity</a></span>
+</div>
+<!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu40.html" >next</a>] [<a 
+href="openmpsu39.html" >prev</a>] [<a 
+href="openmpsu39.html#tailopenmpsu39.html" >prev-tail</a>] [<a 
+href="openmpse14.html" >front</a>] [<a 
+href="openmpch2.html#openmpse14.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse14.html"></a> </p> 
+ 
+</body> 
+</html>

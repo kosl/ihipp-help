@@ -1,0 +1,328 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>3 Runtime Library Routines</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse31.html" >next</a>] [<a 
+href="openmpse30.html" >prev</a>] [<a 
+href="openmpse30.html#tailopenmpse30.html" >prev-tail</a>] [<a 
+href="#tailopenmpch3.html">tail</a>] [<a 
+href="openmp.html#openmpch3.html" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">3</span>&#x00A0;&#x00A0;<a 
+ id="x156-1890003"></a>Runtime Library Routines</h2>
+<a 
+ id="dx156-189001"></a>
+<p>This chapter describes the OpenMP API runtime library routines and queryable runtime states. In this
+chapter, <span class="textit"><span class="textrm">true</span></span> and <span class="textit"><span class="textrm">false</span></span> are used as generic terms to simplify the description of the routines.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textit"><span class="textrm">true</span></span> means a non-zero integer value and <span class="textit"><span class="textrm">false</span></span> means an integer value of zero.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textit"><span class="textrm">true</span></span> means a logical value of <span class="textbf"><span class="texttt">.TRUE.</span></span> and <span class="textit"><span class="textrm">false</span></span> means a logical value of <span class="textbf"><span class="texttt">.FALSE.</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-156-806"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The following restrictions apply to all OpenMP runtime library routines:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  OpenMP
+  runtime
+  library
+  routines
+  may
+  not
+  be
+  called
+  from
+  <span class="textbf"><span class="texttt">PURE</span></span>
+  or
+  <span class="textbf"><span class="texttt">ELEMENTAL</span></span>
+  procedures.
+  </li>
+  <li class="itemize">
+  OpenMP
+  runtime
+  library
+  routines
+  may
+  not
+  be
+  called
+  in
+  <span class="textbf"><span class="texttt">DO</span></span>&#x00A0;<span class="textbf"><span class="texttt">CONCURRENT</span></span>
+  constructs.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<div class="sectionTOCS">
+&#x00A0;<span class="sectionToc" >3.1&#x00A0;&#x00A0;<a 
+href="openmpse31.html#x157-1900003.1">Runtime Library Definitions</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >3.2&#x00A0;&#x00A0;<a 
+href="openmpse32.html#x158-1910003.2">Thread Team Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu120.html#x159-1920003.2.1"><span class="textbf"><span class="texttt">omp_set_num_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu121.html#x160-1930003.2.2"><span class="textbf"><span class="texttt">omp_get_num_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu122.html#x161-1940003.2.3"><span class="textbf"><span class="texttt">omp_get_max_threads</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.4&#x00A0;&#x00A0;<a 
+href="openmpsu123.html#x162-1950003.2.4"><span class="textbf"><span class="texttt">omp_get_thread_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.5&#x00A0;&#x00A0;<a 
+href="openmpsu124.html#x163-1960003.2.5"><span class="textbf"><span class="texttt">omp_in_parallel</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.6&#x00A0;&#x00A0;<a 
+href="openmpsu125.html#x164-1970003.2.6"><span class="textbf"><span class="texttt">omp_set_dynamic</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.7&#x00A0;&#x00A0;<a 
+href="openmpsu126.html#x165-1980003.2.7"><span class="textbf"><span class="texttt">omp_get_dynamic</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.8&#x00A0;&#x00A0;<a 
+href="openmpsu127.html#x166-1990003.2.8"><span class="textbf"><span class="texttt">omp_get_cancellation</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.9&#x00A0;&#x00A0;<a 
+href="openmpsu128.html#x167-2000003.2.9"><span class="textbf"><span class="texttt">omp_set_nested</span></span> (Deprecated)</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.10&#x00A0;&#x00A0;<a 
+href="openmpsu129.html#x168-2010003.2.10"><span class="textbf"><span class="texttt">omp_get_nested</span></span> (Deprecated)</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.11&#x00A0;&#x00A0;<a 
+href="openmpsu130.html#x169-2020003.2.11"><span class="textbf"><span class="texttt">omp_set_schedule</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.12&#x00A0;&#x00A0;<a 
+href="openmpsu131.html#x170-2030003.2.12"><span class="textbf"><span class="texttt">omp_get_schedule</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.13&#x00A0;&#x00A0;<a 
+href="openmpsu132.html#x171-2040003.2.13"><span class="textbf"><span class="texttt">omp_get_thread_limit</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.14&#x00A0;&#x00A0;<a 
+href="openmpsu133.html#x172-2050003.2.14"><span class="textbf"><span class="texttt">omp_get_supported_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.15&#x00A0;&#x00A0;<a 
+href="openmpsu134.html#x173-2060003.2.15"><span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.16&#x00A0;&#x00A0;<a 
+href="openmpsu135.html#x174-2070003.2.16"><span class="textbf"><span class="texttt">omp_get_max_active_levels</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.17&#x00A0;&#x00A0;<a 
+href="openmpsu136.html#x175-2080003.2.17"><span class="textbf"><span class="texttt">omp_get_level</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.18&#x00A0;&#x00A0;<a 
+href="openmpsu137.html#x176-2090003.2.18"><span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.19&#x00A0;&#x00A0;<a 
+href="openmpsu138.html#x177-2100003.2.19"><span class="textbf"><span class="texttt">omp_get_team_size</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.2.20&#x00A0;&#x00A0;<a 
+href="openmpsu139.html#x178-2110003.2.20"><span class="textbf"><span class="texttt">omp_get_active_level</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.3&#x00A0;&#x00A0;<a 
+href="openmpse33.html#x179-2120003.3">Thread Affinity Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.1&#x00A0;&#x00A0;<a 
+href="openmpsu140.html#x180-2130003.3.1"><span class="textbf"><span class="texttt">omp_get_proc_bind</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.2&#x00A0;&#x00A0;<a 
+href="openmpsu141.html#x181-2140003.3.2"><span class="textbf"><span class="texttt">omp_get_num_places</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.3&#x00A0;&#x00A0;<a 
+href="openmpsu142.html#x182-2150003.3.3"><span class="textbf"><span class="texttt">omp_get_place_num_procs</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.4&#x00A0;&#x00A0;<a 
+href="openmpsu143.html#x183-2160003.3.4"><span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.5&#x00A0;&#x00A0;<a 
+href="openmpsu144.html#x184-2170003.3.5"><span class="textbf"><span class="texttt">omp_get_place_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.6&#x00A0;&#x00A0;<a 
+href="openmpsu145.html#x185-2180003.3.6"><span class="textbf"><span class="texttt">omp_get_partition_num_places</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.7&#x00A0;&#x00A0;<a 
+href="openmpsu146.html#x186-2190003.3.7"><span class="textbf"><span class="texttt">omp_get_partition_place_nums</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.8&#x00A0;&#x00A0;<a 
+href="openmpsu147.html#x187-2200003.3.8"><span class="textbf"><span class="texttt">omp_set_affinity_format</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.9&#x00A0;&#x00A0;<a 
+href="openmpsu148.html#x188-2210003.3.9"><span class="textbf"><span class="texttt">omp_get_affinity_format</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.10&#x00A0;&#x00A0;<a 
+href="openmpsu149.html#x189-2220003.3.10"><span class="textbf"><span class="texttt">omp_display_affinity</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.3.11&#x00A0;&#x00A0;<a 
+href="openmpsu150.html#x190-2230003.3.11"><span class="textbf"><span class="texttt">omp_capture_affinity</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.4&#x00A0;&#x00A0;<a 
+href="openmpse34.html#x191-2240003.4">Teams Region Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu151.html#x192-2250003.4.1"><span class="textbf"><span class="texttt">omp_get_num_teams</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu152.html#x193-2260003.4.2"><span class="textbf"><span class="texttt">omp_get_team_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu153.html#x194-2270003.4.3"><span class="textbf"><span class="texttt">omp_set_num_teams</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu154.html#x195-2280003.4.4"><span class="textbf"><span class="texttt">omp_get_max_teams</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu155.html#x196-2290003.4.5"><span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.4.6&#x00A0;&#x00A0;<a 
+href="openmpsu156.html#x197-2300003.4.6"><span class="textbf"><span class="texttt">omp_get_teams_thread_limit</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.5&#x00A0;&#x00A0;<a 
+href="openmpse35.html#x198-2310003.5">Tasking Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu157.html#x199-2320003.5.1"><span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu158.html#x200-2330003.5.2"><span class="textbf"><span class="texttt">omp_in_final</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.6&#x00A0;&#x00A0;<a 
+href="openmpse36.html#x201-2340003.6">Resource Relinquishing Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu159.html#x202-2350003.6.1"><span class="textbf"><span class="texttt">omp_pause_resource</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu160.html#x203-2360003.6.2"><span class="textbf"><span class="texttt">omp_pause_resource_all</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.7&#x00A0;&#x00A0;<a 
+href="openmpse37.html#x204-2370003.7">Device Information Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.1&#x00A0;&#x00A0;<a 
+href="openmpsu161.html#x205-2380003.7.1"><span class="textbf"><span class="texttt">omp_get_num_procs</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.2&#x00A0;&#x00A0;<a 
+href="openmpsu162.html#x206-2390003.7.2"><span class="textbf"><span class="texttt">omp_set_default_device</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.3&#x00A0;&#x00A0;<a 
+href="openmpsu163.html#x207-2400003.7.3"><span class="textbf"><span class="texttt">omp_get_default_device</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.4&#x00A0;&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4"><span class="textbf"><span class="texttt">omp_get_num_devices</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.5&#x00A0;&#x00A0;<a 
+href="openmpsu165.html#x209-2420003.7.5"><span class="textbf"><span class="texttt">omp_get_device_num</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.6&#x00A0;&#x00A0;<a 
+href="openmpsu166.html#x210-2430003.7.6"><span class="textbf"><span class="texttt">omp_is_initial_device</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.7.7&#x00A0;&#x00A0;<a 
+href="openmpsu167.html#x211-2440003.7.7"><span class="textbf"><span class="texttt">omp_get_initial_device</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.8&#x00A0;&#x00A0;<a 
+href="openmpse38.html#x212-2450003.8">Device Memory Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.1&#x00A0;&#x00A0;<a 
+href="openmpsu168.html#x213-2460003.8.1"><span class="textbf"><span class="texttt">omp_target_alloc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.2&#x00A0;&#x00A0;<a 
+href="openmpsu169.html#x214-2470003.8.2"><span class="textbf"><span class="texttt">omp_target_free</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.3&#x00A0;&#x00A0;<a 
+href="openmpsu170.html#x215-2480003.8.3"><span class="textbf"><span class="texttt">omp_target_is_present</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.4&#x00A0;&#x00A0;<a 
+href="openmpsu171.html#x216-2490003.8.4"><span class="textbf"><span class="texttt">omp_target_is_accessible</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.5&#x00A0;&#x00A0;<a 
+href="openmpsu172.html#x217-2500003.8.5"><span class="textbf"><span class="texttt">omp_target_memcpy</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.6&#x00A0;&#x00A0;<a 
+href="openmpsu173.html#x218-2510003.8.6"><span class="textbf"><span class="texttt">omp_target_memcpy_rect</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.7&#x00A0;&#x00A0;<a 
+href="openmpsu174.html#x219-2520003.8.7"><span class="textbf"><span class="texttt">omp_target_memcpy_async</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.8&#x00A0;&#x00A0;<a 
+href="openmpsu175.html#x220-2530003.8.8"><span class="textbf"><span class="texttt">omp_target_memcpy_rect_async</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.9&#x00A0;&#x00A0;<a 
+href="openmpsu176.html#x221-2540003.8.9"><span class="textbf"><span class="texttt">omp_target_associate_ptr</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.10&#x00A0;&#x00A0;<a 
+href="openmpsu177.html#x222-2550003.8.10"><span class="textbf"><span class="texttt">omp_target_disassociate_ptr</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.8.11&#x00A0;&#x00A0;<a 
+href="openmpsu178.html#x223-2560003.8.11"><span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.9&#x00A0;&#x00A0;<a 
+href="openmpse39.html#x224-2570003.9">Lock Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.1&#x00A0;&#x00A0;<a 
+href="openmpsu179.html#x225-2580003.9.1"><span class="textbf"><span class="texttt">omp_init_lock</span></span> and <span class="textbf"><span class="texttt">omp_init_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.2&#x00A0;&#x00A0;<a 
+href="openmpsu180.html#x226-2590003.9.2"><span class="textbf"><span class="texttt">omp_init_lock_with_hint</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">omp_init_nest_lock_with_hint</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.3&#x00A0;&#x00A0;<a 
+href="openmpsu181.html#x227-2600003.9.3"><span class="textbf"><span class="texttt">omp_destroy_lock</span></span> and <span class="textbf"><span class="texttt">omp_destroy_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.4&#x00A0;&#x00A0;<a 
+href="openmpsu182.html#x228-2610003.9.4"><span class="textbf"><span class="texttt">omp_set_lock</span></span> and <span class="textbf"><span class="texttt">omp_set_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.5&#x00A0;&#x00A0;<a 
+href="openmpsu183.html#x229-2620003.9.5"><span class="textbf"><span class="texttt">omp_unset_lock</span></span> and <span class="textbf"><span class="texttt">omp_unset_nest_lock</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.9.6&#x00A0;&#x00A0;<a 
+href="openmpsu184.html#x230-2630003.9.6"><span class="textbf"><span class="texttt">omp_test_lock</span></span> and <span class="textbf"><span class="texttt">omp_test_nest_lock</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.10&#x00A0;&#x00A0;<a 
+href="openmpse40.html#x231-2640003.10">Timing Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.10.1&#x00A0;&#x00A0;<a 
+href="openmpsu185.html#x232-2650003.10.1"><span class="textbf"><span class="texttt">omp_get_wtime</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.10.2&#x00A0;&#x00A0;<a 
+href="openmpsu186.html#x233-2660003.10.2"><span class="textbf"><span class="texttt">omp_get_wtick</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.11&#x00A0;&#x00A0;<a 
+href="openmpse41.html#x234-2670003.11">Event Routine</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.11.1&#x00A0;&#x00A0;<a 
+href="openmpsu187.html#x235-2680003.11.1"><span class="textbf"><span class="texttt">omp_fulfill_event</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.12&#x00A0;&#x00A0;<a 
+href="openmpse42.html#x236-2690003.12">Interoperability Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.1&#x00A0;&#x00A0;<a 
+href="openmpsu188.html#x237-2700003.12.1"><span class="textbf"><span class="texttt">omp_get_num_interop_properties</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.2&#x00A0;&#x00A0;<a 
+href="openmpsu189.html#x238-2710003.12.2"><span class="textbf"><span class="texttt">omp_get_interop_int</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.3&#x00A0;&#x00A0;<a 
+href="openmpsu190.html#x239-2720003.12.3"><span class="textbf"><span class="texttt">omp_get_interop_ptr</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.4&#x00A0;&#x00A0;<a 
+href="openmpsu191.html#x240-2730003.12.4"><span class="textbf"><span class="texttt">omp_get_interop_str</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.5&#x00A0;&#x00A0;<a 
+href="openmpsu192.html#x241-2740003.12.5"><span class="textbf"><span class="texttt">omp_get_interop_name</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.6&#x00A0;&#x00A0;<a 
+href="openmpsu193.html#x242-2750003.12.6"><span class="textbf"><span class="texttt">omp_get_interop_type_desc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.12.7&#x00A0;&#x00A0;<a 
+href="openmpsu194.html#x243-2760003.12.7"><span class="textbf"><span class="texttt">omp_get_interop_rc_desc</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >3.13&#x00A0;&#x00A0;<a 
+href="openmpse43.html#x244-2770003.13">Memory Management Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.1&#x00A0;&#x00A0;<a 
+href="openmpsu195.html#x245-2780003.13.1">Memory Management Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.2&#x00A0;&#x00A0;<a 
+href="openmpsu196.html#x246-2790003.13.2"><span class="textbf"><span class="texttt">omp_init_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.3&#x00A0;&#x00A0;<a 
+href="openmpsu197.html#x247-2800003.13.3"><span class="textbf"><span class="texttt">omp_destroy_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.4&#x00A0;&#x00A0;<a 
+href="openmpsu198.html#x248-2810003.13.4"><span class="textbf"><span class="texttt">omp_set_default_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.5&#x00A0;&#x00A0;<a 
+href="openmpsu199.html#x249-2820003.13.5"><span class="textbf"><span class="texttt">omp_get_default_allocator</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.6&#x00A0;&#x00A0;<a 
+href="openmpsu200.html#x250-2830003.13.6"><span class="textbf"><span class="texttt">omp_alloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_alloc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.7&#x00A0;&#x00A0;<a 
+href="openmpsu201.html#x251-2840003.13.7"><span class="textbf"><span class="texttt">omp_free</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.8&#x00A0;&#x00A0;<a 
+href="openmpsu202.html#x252-2850003.13.8"><span class="textbf"><span class="texttt">omp_calloc</span></span> and <span class="textbf"><span class="texttt">omp_aligned_calloc</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >3.13.9&#x00A0;&#x00A0;<a 
+href="openmpsu203.html#x253-2860003.13.9"><span class="textbf"><span class="texttt">omp_realloc</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >3.14&#x00A0;&#x00A0;<a 
+href="openmpse44.html#x254-2870003.14">Tool Control Routine</a></span>
+<br />&#x00A0;<span class="sectionToc" >3.15&#x00A0;&#x00A0;<a 
+href="openmpse45.html#x255-2880003.15">Environment Display Routine</a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse31.html" >next</a>] [<a 
+href="openmpse30.html" >prev</a>] [<a 
+href="openmpse30.html#tailopenmpse30.html" >prev-tail</a>] [<a 
+href="openmpch3.html" >front</a>] [<a 
+href="openmp.html#openmpch3.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpch3.html"></a> </p> 
+ 
+</body> 
+</html>

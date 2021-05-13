@@ -1,0 +1,636 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Assume Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2707--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu38.html" >next</a>] [<a 
+href="openmpsu36.html" >prev</a>] [<a 
+href="openmpsu36.html#tailopenmpsu36.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu37.html">tail</a>] [<a 
+href="openmpse13.html#openmpsu37.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.5.2</span>&#x00A0;&#x00A0;<a 
+ id="x56-560002.5.2"></a>Assume Directive</h4>
+<a 
+ id="dx56-56001"></a>
+<a 
+ id="dx56-56002"></a>
+<p><p><a 
+ id="Q1-56-96"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The assume directive provides invariants to the implementation that may be used for optimization purposes.
+If the invariants do not hold at runtime, the behavior is unspecified. The assume directive is an informational
+directive.
+<p><a 
+ id="Q1-56-97"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the assume directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56003r1"></a></span></p> 
+<!--l. 2724--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assumes</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56005r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56006r1"></a></span></p> 
+<!--l. 2728--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56007r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">begin</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assumes</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">declaration</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">seq</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56009r4"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assumes</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56010r5"></a></span></pre>
+<p>or
+                                                                            
+                                                                            
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56011r1"></a></span></p> 
+<!--l. 2734--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56012r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assume</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56013r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56014r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is either <span class="textit"><span class="textrm">assumption-clause</span></span> or a clause of the form <span class="textbf"><span class="texttt">ext_</span></span><span class="textit"><span class="textrm">implementation-defined-assumption</span></span>
+for an implementation-defined assumption clause, and where <span class="textit"><span class="textrm">assumption-clause</span></span> is one of the
+following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56015r1"></a></span></p> 
+<!--l. 2743--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56016r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">absent</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56017r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">contains</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56018r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">holds</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56019r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">no_openmp</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56020r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">no_openmp_routines</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56021r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">no_parallelism</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56022r8"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the assume directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56023r1"></a></span></p> 
+<!--l. 2757--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56024r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assumes</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56025r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56026r1"></a></span></p> 
+<!--l. 2761--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56027r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assume</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56028r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56029r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assume</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56030r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56031r1"></a></span></p> 
+<!--l. 2767--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56032r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assume</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56033r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56034r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">assume</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56035r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is either <span class="textit"><span class="textrm">assumption-clause</span></span> or a clause of the form <span class="textbf"><span class="texttt">ext_</span></span><span class="textit"><span class="textrm">implementation-defined-assumption</span></span>
+for an implementation-defined assumption clause,
+</p> 
+<p>where <span class="textit"><span class="textrm">assumption-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56036r1"></a></span></p> 
+<!--l. 2778--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56037r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">absent</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56038r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">contains</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56039r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">holds</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56040r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">no_openmp</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56041r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">no_openmp_routines</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56042r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">no_parallelism</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x56-56043r8"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-56-98"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The assume directive gives the implementation additional information about the expected properties of the
+program that can optionally be used to optimize the implementation. An implementation may ignore this
+information without altering the behavior of the program.
+</p> 
+<p>The scope of the <span class="textbf"><span class="texttt">assumes</span></span> directive is the code executed and reached from the current compilation unit.
+The scope of the <span class="textbf"><span class="texttt">assume</span></span> directive is the code executed in the corresponding region or in any region that is
+nested in the corresponding region.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The scope of the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">assumes</span></span> directive is the code that is executed and reached from any of the
+declared functions in <span class="textit"><span class="textrm">declaration-definition-seq</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The <span class="textbf"><span class="texttt">absent</span></span> and <span class="textbf"><span class="texttt">contains</span></span> clauses accept a list of one or more directive names that may match a
+construct that is encountered within the scope of the directive. An encountered construct matches the
+directive name if it has the same name as one of the specified directive names or if it is a combined or
+composite construct for which a constituent construct has the same name as one of the specified directive
+names.
+</p> 
+<p>When the <span class="textbf"><span class="texttt">absent</span></span> clause appears on an assume directive, the application guarantees that no constructs that
+match a listed directive name are encountered in the scope of the assume directive.
+</p> 
+<p>When the <span class="textbf"><span class="texttt">contains</span></span> clause appears on an assume directive, the application provides a hint that constructs
+that match the listed directive names are likely to be encountered in the scope of the assume
+directive.
+</p> 
+<p>When the <span class="textbf"><span class="texttt">holds</span></span> clause appears on an assume directive, the application guarantees that the listed
+expression evaluates to <span class="textit"><span class="textrm">true</span></span> in the scope of the directive. The effect of the clause does not include an
+evaluation of the expression that is observable.
+</p> 
+<p>The <span class="textbf"><span class="texttt">no_openmp</span></span> clause guarantees that no OpenMP related code is executed in the scope of the
+directive.
+</p> 
+<p>The <span class="textbf"><span class="texttt">no_openmp_routines</span></span> clause guarantees that no explicit OpenMP runtime library calls are
+executed in the scope of the directive.
+</p> 
+<p>The <span class="textbf"><span class="texttt">no_parallelism</span></span> clause guarantees that no OpenMP tasks (explicit or implicit) will be generated
+and that no SIMD constructs will be executed in the scope of the directive.
+</p> 
+<p>Implementers are allowed to include additional implementation-defined assumption clauses. All
+implementation-defined assumptions should begin with <span class="textbf"><span class="texttt">ext_</span></span>. Assumption names that do not start with
+<span class="textbf"><span class="texttt">ext_</span></span> are reserved.
+</p> 
+<p><p><a 
+ id="Q1-56-99"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The restrictions to the assume directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Each
+  clause
+  except
+  the
+  <span class="textbf"><span class="texttt">absent</span></span>,
+  <span class="textbf"><span class="texttt">contains</span></span>
+  or
+  <span class="textbf"><span class="texttt">holds</span></span>
+  clause
+  can
+  appear
+  at
+  most
+  once
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  Each
+  <span class="textit"><span class="textrm">directive-name</span></span>
+  listed
+  in
+  the
+  clauses
+  can
+  appear
+  at
+  most
+  once
+  on
+  the
+  directive.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">directive-name</span></span>
+  that
+  appears
+  in
+  an
+  <span class="textbf"><span class="texttt">absent</span></span>
+  or
+  <span class="textbf"><span class="texttt">contains</span></span>
+  clause
+  may
+  not
+  be
+  a
+  combined
+  or
+  composite
+  directive
+  name.
+  </li>
+  <li class="itemize">A <span class="textit"><span class="textrm">directive-name</span></span> that appears in an <span class="textbf"><span class="texttt">absent</span></span> or <span class="textbf"><span class="texttt">contains</span></span> clause may not be a directive that is not
+  associated with the execution of user or implementation code, i.e., a <span class="textbf"><span class="texttt">nothing</span></span> directive, a declarative
+  directive, a metadirective, or a loop transformation directive.  <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">assumes</span></span> directive may only appear at file scope.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">assumes</span></span> directive may only appear at file or namespace scope.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">assumes</span></span> directive may only appear in the specification part of a module or subprogram, after any
+  <span class="textbf"><span class="texttt">USE</span></span> statement, any <span class="textbf"><span class="texttt">IMPORT</span></span> statement, and any <span class="textbf"><span class="texttt">IMPLICIT</span></span> statement.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<!--l. 2872--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu38.html" >next</a>] [<a 
+href="openmpsu36.html" >prev</a>] [<a 
+href="openmpsu36.html#tailopenmpsu36.html" >prev-tail</a>] [<a 
+href="openmpsu37.html" >front</a>] [<a 
+href="openmpse13.html#openmpsu37.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu37.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,1554 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Data-Sharing Attribute Clauses</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 744--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu117.html" >next</a>] [<a 
+href="openmpsu115.html" >prev</a>] [<a 
+href="openmpsu115.html#tailopenmpsu115.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu116.html">tail</a>] [<a 
+href="openmpse29.html#openmpsu116.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.21.4</span>&#x00A0;&#x00A0;<a 
+ id="x151-1650002.21.4"></a>Data-Sharing Attribute Clauses</h4>
+<a 
+ id="dx151-165001"></a>
+<a 
+ id="dx151-165002"></a>
+<a 
+ id="dx151-165003"></a>
+<a 
+ id="dx151-165004"></a>
+<p>Several constructs accept clauses that allow a user to control the data-sharing attributes of variables
+referenced in the construct. Not all of the clauses listed in this section are valid on all directives. The set of
+clauses that is valid on a particular directive is described with the directive.
+</p> 
+<p>Most of the clauses accept a comma-separated list of list items (see Section&#x00A0;<a 
+href="openmpse9.html#x31-300002.1">2.1<!--tex4ht:ref: sec:Directive Format --></a>). All list items that appear
+in a clause must be visible, according to the scoping rules of the base language. With the exception of the
+<span class="textbf"><span class="texttt">default</span></span> clause, clauses may be repeated as needed. A list item may not appear in more than one clause on
+the same directive, except that it may be specified in both <span class="textbf"><span class="texttt">firstprivate</span></span> and <span class="textbf"><span class="texttt">lastprivate</span></span>
+clauses.
+</p> 
+<p>The reduction data-sharing attribute clauses are explained in Section&#x00A0;<a 
+href="openmpsu117.html#x152-1720002.21.5">2.21.5<!--tex4ht:ref: subsec:Reduction Clauses and Directives --></a>.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a variable referenced in a data-sharing attribute clause has a type derived from a template, and the
+program does not otherwise reference that variable then any behavior related to that variable is
+unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If individual members of a common block appear in a data-sharing attribute clause other than the
+<span class="textbf"><span class="texttt">shared</span></span> clause, the variables no longer have a Fortran storage association with the common
+block.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.4.1  </span> <a 
+ id="x151-1660002.21.4.1"></a><span class="textbf"><span class="texttt">default</span></span> Clause</h5>
+<a 
+ id="dx151-166001"></a>
+<a 
+ id="dx151-166002"></a>
+<p><p><a 
+ id="Q1-151-705"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">default</span></span> clause explicitly determines the data-sharing attributes of variables that are referenced in a
+<span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">teams</span></span>, or task generating construct and would otherwise be implicitly determined (see
+Section&#x00A0;<a 
+href="openmpsu113.html#x148-1610002.21.1.1">2.21.1.1<!--tex4ht:ref: subsubsec:Variables Referenced in a Construct --></a>).
+<p><a 
+ id="Q1-151-706"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">default</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166003r1"></a></span></p> 
+<!--l. 792--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166004r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">data</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sharing</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attribute</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">data-sharing-attribute</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166006r1"></a></span></p> 
+<!--l. 797--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166007r2"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166009r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166010r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">none</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-166011r6"></a></span></pre>
+<p><p><a 
+ id="Q1-151-707"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+If <span class="textit"><span class="textrm">data-sharing-attribute</span></span> is <span class="textbf"><span class="texttt">shared</span></span> or, for Fortran, <span class="textbf"><span class="texttt">firstprivate</span></span> or <span class="textbf"><span class="texttt">private</span></span>, the data-sharing
+attribute of all variables referenced in the construct that have implicitly determined data-sharing attributes
+will be <span class="textit"><span class="textrm">data-sharing-attribute</span></span>.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If <span class="textit"><span class="textrm">data-sharing-attribute</span></span> is <span class="textbf"><span class="texttt">firstprivate</span></span> or <span class="textbf"><span class="texttt">private</span></span>, each variable with static storage duration that is
+declared in a namespace or global scope and referenced in the construct, and that does not have a
+predetermined data-sharing attribute, must have its data-sharing attribute explicitly determined by being
+listed in a data-sharing attribute clause. The data-sharing attribute of all other variables that are
+referenced in the construct and that have implicitly determined data-sharing attributes will be
+<span class="textit"><span class="textrm">data-sharing-attribute</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The <span class="textbf"><span class="texttt">default(none)</span></span> clause requires that each variable that is referenced in the construct, and that does
+not have a predetermined data-sharing attribute, must have its data-sharing attribute explicitly determined
+by being listed in a data-sharing attribute clause.
+</p> 
+<p><p><a 
+ id="Q1-151-708"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">default</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Only
+  a
+  single
+  <span class="textbf"><span class="texttt">default</span></span>
+                                                                            
+                                                                            
+  clause
+  may
+  be
+  specified
+  on
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>,
+  <span class="textbf"><span class="texttt">task</span></span>,
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  or
+  <span class="textbf"><span class="texttt">teams</span></span>
+  directive.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.4.2  </span> <a 
+ id="x151-1670002.21.4.2"></a><span class="textbf"><span class="texttt">shared</span></span> Clause</h5>
+<a 
+ id="dx151-167001"></a>
+<a 
+ id="dx151-167002"></a>
+<p><p><a 
+ id="Q1-151-710"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">shared</span></span> clause declares one or more list items to be shared by tasks generated by a <span class="textbf"><span class="texttt">parallel</span></span>,
+<span class="textbf"><span class="texttt">teams</span></span>, or task generating construct.
+<p><a 
+ id="Q1-151-711"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">shared</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-167003r1"></a></span></p> 
+<!--l. 848--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-167004r2"></a></span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-167005r3"></a></span></pre>
+<p><p><a 
+ id="Q1-151-712"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+All references to a list item within a task refer to the storage area of the original variable at the point the
+directive was encountered.
+</p> 
+<p>The programmer must ensure, by adding proper synchronization, that storage shared by an explicit
+task region does not reach the end of its lifetime before the explicit task region completes its
+execution.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The association status of a shared pointer becomes undefined upon entry to and exit from a <span class="textbf"><span class="texttt">parallel</span></span>,
+<span class="textbf"><span class="texttt">teams</span></span>, or task generating construct if it is associated with a target or a subobject of a target that appears as
+a privatized list item in a data-sharing attribute clause on the construct.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Passing a shared variable to a procedure may result in the use of temporary storage in place of the
+actual argument when the corresponding dummy argument does not have the <span class="textbf"><span class="texttt">VALUE</span></span> or <span class="textbf"><span class="texttt">CONTIGUOUS</span></span>
+attribute and its data-sharing attribute is implementation-defined as per the rules in Section&#x00A0;<a 
+href="openmpsu113.html#x148-1620002.21.1.2">2.21.1.2<!--tex4ht:ref: subsubsec:Variables Referenced in a Region but not in a Construct --></a>.
+These conditions effectively result in references to, and definitions of, the temporary storage
+during the procedure reference. Furthermore, the value of the shared variable is copied into
+the intervening temporary storage before the procedure reference when the dummy argument
+does not have the <span class="textbf"><span class="texttt">INTENT(OUT)</span></span> attribute, and is copied out of the temporary storage into the
+shared variable when the dummy argument does not have the <span class="textbf"><span class="texttt">INTENT(IN)</span></span> attribute. Any
+references to (or definitions of) the shared storage that is associated with the dummy argument by
+any other task must be synchronized with the procedure reference to avoid possible data races.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-151-713"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">shared</span></span> clause are as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  variable
+  that
+  is
+  part
+  of
+  another
+  variable
+                                                                            
+                                                                            
+  (as
+  an
+  array
+  or
+  structure
+  element)
+  cannot
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">shared</span></span>
+  clause.</li></ul><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  variable
+  that
+  is
+  part
+  of
+  another
+  variable
+  (as
+  an
+  array
+  or
+  structure
+  element)
+  cannot
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">shared</span></span>
+  clause
+  except
+                                                                            
+                                                                            
+  if
+  the
+  <span class="textbf"><span class="texttt">shared</span></span>
+  clause
+  is
+  associated
+  with
+  a
+  construct
+  within
+  a
+  class
+  non-static
+  member
+  function
+  and
+  the
+  variable
+  is
+  an
+  accessible
+  data
+  member
+  of
+  the
+  object
+  for
+  which
+  the
+  non-static
+  member
+  function
+  is
+  invoked.</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  variable
+  that
+  is
+  part
+  of
+  another
+  variable
+  (as
+  an
+  array,
+  structure
+  element
+  or
+  type
+  parameter
+  inquiry)
+  cannot
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">shared</span></span>
+  clause.</li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+                                                                            
+                                                                            
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.4.3  </span> <a 
+ id="x151-1680002.21.4.3"></a><span class="textbf"><span class="texttt">private</span></span> Clause</h5>
+<a 
+ id="dx151-168001"></a>
+<a 
+ id="dx151-168002"></a>
+<p><p><a 
+ id="Q1-151-715"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">private</span></span> clause declares one or more list items to be private to a task or to a SIMD lane.
+<p><a 
+ id="Q1-151-716"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">private</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-168003r1"></a></span></p> 
+<!--l. 928--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-168004r2"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-168005r3"></a></span></pre>
+<p><p><a 
+ id="Q1-151-717"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">private</span></span> clause specifies that its list items are to be privatized according to Section&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">2.21.3<!--tex4ht:ref: subsec:List Item Privatization --></a>. Each task
+or SIMD lane that references a list item in the construct receives only one new list item, unless the construct
+has one or more associated loops and an <span class="textbf"><span class="texttt">order</span></span> clause that specifies <span class="textbf"><span class="texttt">concurrent</span></span> is also
+present.
+</p> 
+<p><p><a 
+ id="Q1-151-718"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">private</span></span> clause are as specified in Section&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">2.21.3<!--tex4ht:ref: subsec:List Item Privatization --></a>.
+</p> 
+<p><p><a 
+ id="Q1-151-719"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  List
+  Item
+  Privatization,
+  see
+  Section&#x00A0;<a 
+href="openmpsu115.html#x150-1640002.21.3">2.21.3<!--tex4ht:ref: subsec:List Item Privatization --></a>.</li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.4.4  </span> <a 
+ id="x151-1690002.21.4.4"></a><span class="textbf"><span class="texttt">firstprivate</span></span> Clause</h5>
+<a 
+ id="dx151-169001"></a>
+<a 
+ id="dx151-169002"></a>
+<p><p><a 
+ id="Q1-151-721"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">firstprivate</span></span> clause declares one or more list items to be private to a task, and initializes each of
+them with the value that the corresponding original item has when the construct is encountered.
+<p><a 
+ id="Q1-151-722"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">firstprivate</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-169003r1"></a></span></p> 
+<!--l. 961--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-169004r2"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-169005r3"></a></span></pre>
+<p><p><a 
+ id="Q1-151-723"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">firstprivate</span></span> clause provides a superset of the functionality provided by the <span class="textbf"><span class="texttt">private</span></span>
+clause.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The list items that appear in a <span class="textbf"><span class="texttt">firstprivate</span></span> clause may include <span class="textit"><span class="textrm">named</span></span>&#x00A0;<span class="textit"><span class="textrm">constants</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>A list item that appears in a <span class="textbf"><span class="texttt">firstprivate</span></span> clause is subject to the <span class="textbf"><span class="texttt">private</span></span> clause semantics described
+in Section&#x00A0;<a 
+href="#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>, except as noted. In addition, the new list item is initialized from the original list item
+that exists before the construct. The initialization of the new list item is done once for each task that
+references the list item in any statement in the construct. The initialization is done prior to the execution of
+the construct.
+</p> 
+<p>For a <span class="textbf"><span class="texttt">firstprivate</span></span> clause on a <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">task</span></span>, <span class="textbf"><span class="texttt">taskloop</span></span>, <span class="textbf"><span class="texttt">target</span></span>, or <span class="textbf"><span class="texttt">teams</span></span> construct, the
+initial value of the new list item is the value of the original list item that exists immediately prior to the
+construct in the task region where the construct is encountered unless otherwise specified. For a
+<span class="textbf"><span class="texttt">firstprivate</span></span> clause on a worksharing construct, the initial value of the new list item for each implicit
+task of the threads that execute the worksharing construct is the value of the original list item that exists in
+the implicit task immediately prior to the point in time that the worksharing construct is encountered unless
+otherwise specified.
+</p> 
+<p>To avoid data races, concurrent updates of the original list item must be synchronized with the read of the
+original list item that occurs as a result of the <span class="textbf"><span class="texttt">firstprivate</span></span> clause.
+                                                                            
+                                                                            
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For variables of non-array type, the initialization occurs by copy assignment. For an array of elements of
+non-array type, each element is initialized as if by assignment from an element of the original array to the
+corresponding element of the new array.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For each variable of class type:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  is
+  not
+  on
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  then
+  a
+  copy
+  constructor
+  is
+  invoked
+  to
+  perform
+  the
+  initialization;
+  and
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  is
+  on
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  then
+  how
+  many
+  copy
+  constructors,
+  if
+  any,
+  are
+  invoked
+  is
+  unspecified.</li></ul>
+<p>If copy constructors are called, the order in which copy constructors for different variables of class type are
+called is unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the original list item does not have the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, initialization of the new list items occurs as if
+by intrinsic assignment unless the original list item has a compatible type-bound defined assignment, in
+which case initialization of the new list items occurs as if by the defined assignment. If the original list item
+that does not have the <span class="textbf"><span class="texttt">POINTER</span></span> attribute has the allocation status of unallocated, the new list items will
+have the same status.
+</p> 
+<p>If the original list item has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, the new list items receive the same association status of
+the original list item as if by pointer assignment.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-151-724"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">firstprivate</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  is
+  private
+  within
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  must
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  on
+  a
+  worksharing
+  construct
+  if
+  any
+  of
+  the
+  worksharing
+  regions
+  that
+  arise
+  from
+  the
+  worksharing
+  construct
+  ever
+  bind
+  to
+                                                                            
+                                                                            
+  any
+  of
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  that
+  arise
+  from
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  is
+  private
+  within
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region
+  must
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  if
+  any
+  of
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  regions
+  that
+  arise
+                                                                            
+                                                                            
+  from
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  ever
+  bind
+  to
+  any
+  of
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  regions
+  that
+  arise
+  from
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct
+  must
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  on
+  a
+                                                                            
+                                                                            
+  worksharing,
+  <span class="textbf"><span class="texttt">task</span></span>,
+  or
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct
+  if
+  any
+  of
+  the
+  worksharing
+  or
+  <span class="textbf"><span class="texttt">task</span></span>
+  regions
+  that
+  arise
+  from
+  the
+  worksharing,
+  <span class="textbf"><span class="texttt">task</span></span>,
+  or
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct
+  ever
+  bind
+  to
+  any
+  of
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  that
+  arise
+  from
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+                                                                            
+                                                                            
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  must
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  on
+  a
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  if
+  any
+  of
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  regions
+  that
+  arise
+  from
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  ever
+  bind
+  to
+  any
+  of
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  regions
+  that
+  arise
+  from
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  a
+  worksharing
+  construct
+  must
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  clause
+  in
+  a
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct
+  encountered
+  during
+  execution
+  of
+  any
+  of
+  the
+  worksharing
+  regions
+  that
+  arise
+  from
+  the
+                                                                            
+                                                                            
+  worksharing
+  construct.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable of class type (or array thereof) that appears in a <span class="textbf"><span class="texttt">firstprivate</span></span> clause requires an
+  accessible, unambiguous copy constructor for the class type.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If a list item in a <span class="textbf"><span class="texttt">firstprivate</span></span> clause on a worksharing construct has a reference type then it must
+  bind to the same object for all threads of the team.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the list item is a polymorphic variable with the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute, the behavior is
+  unspecified.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.4.5  </span> <a 
+ id="x151-1700002.21.4.5"></a><span class="textbf"><span class="texttt">lastprivate</span></span> Clause</h5>
+<a 
+ id="dx151-170001"></a>
+<a 
+ id="dx151-170002"></a>
+<p><p><a 
+ id="Q1-151-726"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">lastprivate</span></span> clause declares one or more list items to be private to an implicit task or to a
+SIMD lane, and causes the corresponding original list item to be updated after the end of the
+region.
+<p><a 
+ id="Q1-151-727"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+The syntax of the <span class="textbf"><span class="texttt">lastprivate</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-170003r1"></a></span></p> 
+<!--l. 1100--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-170004r2"></a></span><span 
+class="pcrb8t-">lastprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">lastprivate</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-170005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">lastprivate-modifier</span></span> is:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-170006r1"></a></span></p> 
+<!--l. 1105--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-170007r2"></a></span><span 
+class="pcrb8t-">conditional</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-170008r3"></a></span></pre>
+<p><p><a 
+ id="Q1-151-728"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">lastprivate</span></span> clause provides a superset of the functionality provided by the <span class="textbf"><span class="texttt">private</span></span>
+clause.
+</p> 
+<p>A list item that appears in a <span class="textbf"><span class="texttt">lastprivate</span></span> clause is subject to the <span class="textbf"><span class="texttt">private</span></span> clause semantics described
+in Section&#x00A0;<a 
+href="#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>. In addition, when a <span class="textbf"><span class="texttt">lastprivate</span></span> clause without the <span class="textbf"><span class="texttt">conditional</span></span> modifier
+appears on a directive and the list item is not an iteration variable of one of the associated loops, the value of
+each new list item from the sequentially last iteration of the associated loops, or the lexically last
+<span class="textbf"><span class="texttt">section</span></span> construct, is assigned to the original list item. When the <span class="textbf"><span class="texttt">conditional</span></span> modifier
+appears on the clause or the list item is an iteration variable of one of the associated loops, if
+sequential execution of the loop nest would assign a value to the list item then the original list
+item is assigned the value that the list item would have after sequential execution of the loop
+nest.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For an array of elements of non-array type, each element is assigned to the corresponding element of the
+original array.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If the original list item does not have the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, its update occurs as if by intrinsic assignment
+unless it has a type bound procedure as a defined assignment.
+</p> 
+<p>If the original list item has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute, its update occurs as if by pointer assignment.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>When the <span class="textbf"><span class="texttt">conditional</span></span> modifier does not appear on the <span class="textbf"><span class="texttt">lastprivate</span></span> clause, any list
+item that is not an iteration variable of the associated loops and that is not assigned a value by
+the sequentially last iteration of the loops, or by the lexically last <span class="textbf"><span class="texttt">section</span></span> construct, has an
+unspecified value after the construct. When the <span class="textbf"><span class="texttt">conditional</span></span> modifier does not appear on the
+<span class="textbf"><span class="texttt">lastprivate</span></span> clause, a list item that is the iteration variable of an associated loop and that
+would not be assigned a value during sequential execution of the loop nest has an unspecified
+value after the construct. Unassigned subcomponents also have unspecified values after the
+construct.
+                                                                            
+                                                                            
+</p> 
+<p>If the <span class="textbf"><span class="texttt">lastprivate</span></span> clause is used on a construct to which neither the <span class="textbf"><span class="texttt">nowait</span></span> nor the <span class="textbf"><span class="texttt">nogroup</span></span> clauses
+are applied, the original list item becomes defined at the end of the construct. To avoid data races,
+concurrent reads or updates of the original list item must be synchronized with the update of the original list
+item that occurs as a result of the <span class="textbf"><span class="texttt">lastprivate</span></span> clause.
+</p> 
+<p>Otherwise, If the <span class="textbf"><span class="texttt">lastprivate</span></span> clause is used on a construct to which the <span class="textbf"><span class="texttt">nowait</span></span> or the <span class="textbf"><span class="texttt">nogroup</span></span>
+clauses are applied, accesses to the original list item may create a data race. To avoid this data race, if an
+assignment to the original list item occurs then synchronization must be inserted to ensure that the
+assignment completes and the original list item is flushed to memory.
+</p> 
+<p>If a list item that appears in a <span class="textbf"><span class="texttt">lastprivate</span></span> clause with the <span class="textbf"><span class="texttt">conditional</span></span> modifier is modified in the
+region by an assignment outside the construct or not to the list item then the value assigned to the original
+list item is unspecified.
+</p> 
+<p><p><a 
+ id="Q1-151-729"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">lastprivate</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  is
+  private
+  within
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region,
+  or
+  that
+  appears
+  in
+  the
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  of
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  must
+                                                                            
+                                                                            
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause
+  on
+  a
+  worksharing
+  construct
+  if
+  any
+  of
+  the
+  corresponding
+  worksharing
+  regions
+  ever
+  binds
+  to
+  any
+  of
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">conditional</span></span>
+  modifier
+  must
+                                                                            
+                                                                            
+  be
+  a
+  scalar
+  variable.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable of class type (or array thereof) that appears in a <span class="textbf"><span class="texttt">lastprivate</span></span> clause requires an accessible,
+  unambiguous default constructor for the class type, unless the list item is also specified in a
+  <span class="textbf"><span class="texttt">firstprivate</span></span> clause.
+<span 
+class="cmsy-10">&#x2219;</span> A variable of class type (or array thereof) that appears in a <span class="textbf"><span class="texttt">lastprivate</span></span> clause requires an accessible,
+  unambiguous copy assignment operator for the class type. The order in which copy assignment operators
+  for different variables of class type are called is unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If a list item in a <span class="textbf"><span class="texttt">lastprivate</span></span> clause on a worksharing construct has a reference type then it must
+  bind to the same object for all threads of the team.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A variable that appears in a <span class="textbf"><span class="texttt">lastprivate</span></span> clause must be definable.
+<span 
+class="cmsy-10">&#x2219;</span> If the original list item has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute, the corresponding list item of which the value is
+  assigned to the original item must have an allocation status of allocated upon exit from the sequentially
+  last iteration or lexically last <span class="textbf"><span class="texttt">section</span></span> construct.
+<span 
+class="cmsy-10">&#x2219;</span> If the list item is a polymorphic variable with the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute, the behavior is
+  unspecified.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">2.21.4.6  </span> <a 
+ id="x151-1710002.21.4.6"></a><span class="textbf"><span class="texttt">linear</span></span> Clause</h5>
+<a 
+ id="dx151-171001"></a>
+<a 
+ id="dx151-171002"></a>
+<p><p><a 
+ id="Q1-151-731"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">linear</span></span> clause declares one or more list items to be private and to have a linear relationship
+with respect to the iteration space of a loop associated with the construct on which the clause
+appears.
+<p><a 
+ id="Q1-151-732"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">linear</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171003r1"></a></span></p> 
+<!--l. 1239--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171004r2"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">linear-list</span></span> is one of the following
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171006r1"></a></span></p> 
+<!--l. 1244--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171007r2"></a></span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171008r3"></a></span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171009r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171010r1"></a></span></p> 
+<!--l. 1250--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171011r2"></a></span><span 
+class="pcrb8t-">val</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171012r3"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">linear</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171013r1"></a></span></p> 
+<!--l. 1257--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171014r2"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171015r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">linear-list</span></span> is one of the following
+                                                                            
+                                                                            
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171016r1"></a></span></p> 
+<!--l. 1262--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171017r2"></a></span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171018r3"></a></span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171019r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171020r1"></a></span></p> 
+<!--l. 1268--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171021r2"></a></span><span 
+class="pcrb8t-">ref</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171022r3"></a></span><span 
+class="pcrb8t-">val</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171023r4"></a></span><span 
+class="pcrb8t-">uval</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171024r5"></a></span></pre>
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">linear</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171025r1"></a></span></p> 
+<!--l. 1277--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171026r2"></a></span><span 
+class="pcrb8t-">linear</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">linear</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">step</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171027r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">linear-list</span></span> is one of the following
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171028r1"></a></span></p> 
+<!--l. 1282--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171029r2"></a></span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171030r3"></a></span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171031r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171032r1"></a></span></p> 
+<!--l. 1288--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171033r2"></a></span><span 
+class="pcrb8t-">ref</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171034r3"></a></span><span 
+class="pcrb8t-">val</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171035r4"></a></span><span 
+class="pcrb8t-">uval</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x151-171036r5"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-151-733"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">linear</span></span> clause provides a superset of the functionality provided by the <span class="textbf"><span class="texttt">private</span></span> clause. A list item
+that appears in a <span class="textbf"><span class="texttt">linear</span></span> clause is subject to the <span class="textbf"><span class="texttt">private</span></span> clause semantics described in Section&#x00A0;<a 
+href="#x151-1680002.21.4.3">2.21.4.3<!--tex4ht:ref: subsubsec:private clause --></a>
+except as noted. If <span class="textit"><span class="textrm">linear-step</span></span> is not specified, it is assumed to be 1.
+</p> 
+<p>When a <span class="textbf"><span class="texttt">linear</span></span> clause is specified on a construct, the value of the new list item on each logical iteration
+of the associated loops corresponds to the value of the original list item before entering the
+construct plus the logical number of the iteration times <span class="textit"><span class="textrm">linear-step</span></span>. The value corresponding
+to the sequentially last logical iteration of the associated loops is assigned to the original list
+item.
+                                                                            
+                                                                            
+</p> 
+<p>When a <span class="textbf"><span class="texttt">linear</span></span> clause is specified on a declarative directive, all list items must be formal parameters (or,
+in Fortran, dummy arguments) of a function that will be invoked concurrently on each SIMD lane. If no
+<span class="textit"><span class="textrm">modifier</span></span> is specified or the <span class="textbf"><span class="texttt">val</span></span> or <span class="textbf"><span class="texttt">uval</span></span> modifier is specified, the value of each list item on each lane
+corresponds to the value of the list item upon entry to the function plus the logical number of the lane times
+<span class="textit"><span class="textrm">linear-step</span></span>. If the <span class="textbf"><span class="texttt">uval</span></span> modifier is specified, each invocation uses the same storage location for each SIMD
+lane; this storage location is updated with the final value of the logically last lane. If the <span class="textbf"><span class="texttt">ref</span></span> modifier
+is specified, the storage location of each list item on each lane corresponds to an array at the
+storage location upon entry to the function indexed by the logical number of the lane times
+<span class="textit"><span class="textrm">linear-step</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-151-734"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">linear</span></span> clause are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">linear-step</span></span>
+  expression
+  must
+  be
+  invariant
+  during
+  the
+  execution
+  of
+  the
+  region
+  that
+  corresponds
+  to
+  the
+  construct.
+  </li>
+  <li class="itemize">
+  Only
+  a
+  loop
+  iteration
+  variable
+                                                                            
+                                                                            
+  of
+  a
+  loop
+  that
+  is
+  associated
+  with
+  the
+  construct
+  may
+  appear
+  as
+  a
+  <span class="textit"><span class="textrm">list-item</span></span>
+  in
+  a
+  <span class="textbf"><span class="texttt">linear</span></span>
+  clause
+  if
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  modifier
+  also
+  appears
+  on
+  the
+  construct.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textit"><span class="textrm">list-item</span></span> that appears in a <span class="textbf"><span class="texttt">linear</span></span> clause must be of integral or pointer type.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textit"><span class="textrm">list-item</span></span> that appears in a <span class="textbf"><span class="texttt">linear</span></span> clause without the <span class="textbf"><span class="texttt">ref</span></span> modifier must be of integral or pointer type,
+  or must be a reference to an integral or pointer type.
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">ref</span></span> or <span class="textbf"><span class="texttt">uval</span></span> modifier can only be used if the <span class="textit"><span class="textrm">list-item</span></span> is of a reference type.
+<span 
+class="cmsy-10">&#x2219;</span> If a list item in a <span class="textbf"><span class="texttt">linear</span></span> clause on a worksharing construct has a reference type then it must bind to the
+  same object for all threads of the team.
+<span 
+class="cmsy-10">&#x2219;</span> If the list item is of a reference type and the <span class="textbf"><span class="texttt">ref</span></span> modifier is not specified and if any write to the list item
+  occurs before any read of the list item then the result is unspecified.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textit"><span class="textrm">list-item</span></span> that appears in a <span class="textbf"><span class="texttt">linear</span></span> clause without the <span class="textbf"><span class="texttt">ref</span></span> modifier must be of type <span class="textbf"><span class="texttt">integer</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">ref</span></span> or <span class="textbf"><span class="texttt">uval</span></span> modifier can only be used if the <span class="textit"><span class="textrm">list-item</span></span> is a dummy argument without the <span class="textbf"><span class="texttt">VALUE</span></span>
+  attribute.
+<span 
+class="cmsy-10">&#x2219;</span> Variables that have the <span class="textbf"><span class="texttt">POINTER</span></span> attribute and Cray pointers may not appear in a <span class="textbf"><span class="texttt">linear</span></span> clause. Cray
+  pointer support has been deprecated.
+<span 
+class="cmsy-10">&#x2219;</span> If the list item has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute and the <span class="textbf"><span class="texttt">ref</span></span> modifier is not specified, the allocation
+  status of the list item in the sequentially last iteration must be allocated upon exit from that
+  iteration.
+<span 
+class="cmsy-10">&#x2219;</span> If the <span class="textbf"><span class="texttt">ref</span></span> modifier is specified, variables with the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute, assumed-shape arrays and
+  polymorphic variables may not appear in the <span class="textbf"><span class="texttt">linear</span></span> clause.
+<span 
+class="cmsy-10">&#x2219;</span> If the list item is a dummy argument without the <span class="textbf"><span class="texttt">VALUE</span></span> attribute and the <span class="textbf"><span class="texttt">ref</span></span> modifier is not specified,
+  any read of the list item must occur before any write to the list item.
+<span 
+class="cmsy-10">&#x2219;</span> A common block name cannot appear in a <span class="textbf"><span class="texttt">linear</span></span> clause.
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<!--l. 1374--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu117.html" >next</a>] [<a 
+href="openmpsu115.html" >prev</a>] [<a 
+href="openmpsu115.html#tailopenmpsu115.html" >prev-tail</a>] [<a 
+href="openmpsu116.html" >front</a>] [<a 
+href="openmpse29.html#openmpsu116.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu116.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>How ICVs are Scoped</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2319--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu35.html" >next</a>] [<a 
+href="openmpsu33.html" >prev</a>] [<a 
+href="openmpsu33.html#tailopenmpsu33.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu34.html">tail</a>] [<a 
+href="openmpse12.html#openmpsu34.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.4.4</span>&#x00A0;&#x00A0;<a 
+ id="x52-510002.4.4"></a>How ICVs are Scoped</h4>
+<p>Table&#x00A0;<a 
+href="#x52-51001r3">2.3<!--tex4ht:ref: tab:Scopes of ICVs --></a> shows the ICVs and their scope.
+<a 
+ id="x52-51001r3"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x52-51002"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.3: </td><td  
+class="content">Scopes of ICVs</td></tr></table></div><!--tex4ht:label?: x52-51001r2.4 -->
+                                                                            
+                                                                            
+<p></p> 
+ <table id="TBL-6" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1" /><col 
+id="TBL-6-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">ICV</span></span>                                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Scope</span></span>                                                        </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-2-1"  
+class="td
+11">                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-3-1"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-4-1"  
+class="td11">                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-5-1"  
+class="td11"> <span class="textit"><span class="textrm">dyn-var</span></span></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-5-2"  
+class="td11"> data environment                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-6-1"  
+class="td11"> <span class="textit"><span class="textrm">nthreads-var</span></span>                          </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-6-2"  
+class="td11"> data environment                                               </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-7-1"  
+class="td11"> <span class="textit"><span class="textrm">run-sched-var</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-7-2"  
+class="td11"> data environment</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-8-1"  
+class="td11"> <span class="textit"><span class="textrm">def-sched-var</span></span>                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-8-2"  
+class="td11"> device                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-9-1"  
+class="td11"> <span class="textit"><span class="textrm">bind-var</span></span>                                 </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-9-2"  
+class="td11"> data environment                                               </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-10-1"  
+class="td11"> <span class="textit"><span class="textrm">stacksize-var</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-10-2"  
+class="td11"> device</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-11-1"  
+class="td11"> <span class="textit"><span class="textrm">wait-policy-var</span></span>                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-11-2"  
+class="td11"> device                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-12-1"  
+class="td11"> <span class="textit"><span class="textrm">thread-limit-var</span></span>                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-12-2"  
+class="td11"> data environment                                               </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-13-1"  
+class="td11"> <span class="textit"><span class="textrm">max-active-levels-var</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-13-2"  
+class="td11"> data environment</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-14-1"  
+class="td11"> <span class="textit"><span class="textrm">active-levels-var</span></span>                    </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-14-2"  
+class="td11"> data environment                                               </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-15-1"  
+class="td11"> <span class="textit"><span class="textrm">levels-var</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-15-2"  
+class="td11"> data environment</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-16-1"  
+class="td11"> <span class="textit"><span class="textrm">place-partition-var</span></span>                </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-16-2"  
+class="td11"> implicit task                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-17-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-17-1"  
+class="td11"> <span class="textit"><span class="textrm">cancel-var</span></span>                              </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-17-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-18-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-18-1"  
+class="td11"> <span class="textit"><span class="textrm">display-affinity-var</span></span>                </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-18-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-19-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-19-1"  
+class="td11"> <span class="textit"><span class="textrm">affinity-format-var</span></span>                 </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-19-2"  
+class="td11"> device                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-20-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-20-1"  
+class="td11"> <span class="textit"><span class="textrm">default-device-var</span></span>                  </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-20-2"  
+class="td11"> data environment                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-21-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-21-1"  
+class="td11"> <span class="textit"><span class="textrm">target-offload-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-21-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-22-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-22-1"  
+class="td11"> <span class="textit"><span class="textrm">max-task-priority-var</span></span>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-22-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-23-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-23-1"  
+class="td11"> <span class="textit"><span class="textrm">tool-var</span></span>                                  </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-23-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-24-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-24-1"  
+class="td11"> <span class="textit"><span class="textrm">tool-libraries-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-24-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-25-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-25-1"  
+class="td11"> <span class="textit"><span class="textrm">tool-verbose-init-var</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-25-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-26-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-26-1"  
+class="td11"> <span class="textit"><span class="textrm">debug-var</span></span>                              </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-26-2"  
+class="td11"> global                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-27-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-27-1"  
+class="td11"> <span class="textit"><span class="textrm">num-procs-var</span></span>                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-27-2"  
+class="td11"> device                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-28-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-28-1"  
+class="td11"> <span class="textit"><span class="textrm">thread-num-var</span></span>                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-28-2"  
+class="td11"> implicit task                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-29-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-29-1"  
+class="td11"> <span class="textit"><span class="textrm">final-task-var</span></span>                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-29-2"  
+class="td11"> data environment                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-30-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-30-1"  
+class="td11"> <span class="textit"><span class="textrm">implicit-task-var</span></span>                    </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-30-2"  
+class="td11"> data environment                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-31-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-31-1"  
+class="td11"> <span class="textit"><span class="textrm">team-size-var</span></span>                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-31-2"  
+class="td11"> team                                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-32-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-32-1"  
+class="td11"> <span class="textit"><span class="textrm">def-allocator-var</span></span>                    </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-32-2"  
+class="td11"> implicit task                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-33-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-33-1"  
+class="td11"> <span class="textit"><span class="textrm">nteams-var</span></span>                             </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-33-2"  
+class="td11"> device                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-34-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-34-1"  
+class="td11"> <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-6-34-2"  
+class="td11"> device                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-35-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-35-1"  
+class="td11">                    </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-36-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-36-1"  
+class="td11">                    </td>
+</tr></table></div>
+<p><p><a 
+ id="Q1-52-83"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  One
+  copy
+  of
+  each
+  ICV
+  with
+  device
+  scope
+  exists
+  per
+                                                                            
+                                                                            
+  device.
+  </li>
+  <li class="itemize">
+  Each
+  data
+  environment
+  has
+  its
+  own
+  copies
+  of
+  ICVs
+  with
+  data
+  environment
+  scope.
+  </li>
+  <li class="itemize">
+  Each
+  implicit
+  task
+  has
+  its
+  own
+  copy
+  of
+  ICVs
+  with
+  implicit
+  task
+  scope.</li></ul>
+<p>Calls to OpenMP API routines retrieve or modify data environment scoped ICVs in the data environment of
+their binding tasks.
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">2.4.4.1  </span> <a 
+ id="x52-520002.4.4.1"></a>How the Per-Data Environment ICVs Work</h5>
+<p>When a <span class="textbf"><span class="texttt">task</span></span> construct, a <span class="textbf"><span class="texttt">parallel</span></span> construct or a <span class="textbf"><span class="texttt">teams</span></span> construct is encountered, each generated
+task inherits the values of the data environment scoped ICVs from each generating task&#8217;s ICV
+                                                                            
+                                                                            
+values.
+</p> 
+<p>When a <span class="textbf"><span class="texttt">parallel</span></span> construct is encountered, the value of each ICV with implicit task scope is inherited
+from the implicit binding task of the generating task unless otherwise specified.
+</p> 
+<p>When a <span class="textbf"><span class="texttt">task</span></span> construct is encountered, the generated task inherits the value of <span class="textit"><span class="textrm">nthreads-var</span></span> from the
+generating task&#8217;s <span class="textit"><span class="textrm">nthreads-var</span></span> value. When a <span class="textbf"><span class="texttt">parallel</span></span> construct is encountered, and the
+generating task&#8217;s <span class="textit"><span class="textrm">nthreads-var</span></span> list contains a single element, the generated implicit tasks inherit
+that list as the value of <span class="textit"><span class="textrm">nthreads-var</span></span>. When a <span class="textbf"><span class="texttt">parallel</span></span> construct is encountered, and the
+generating task&#8217;s <span class="textit"><span class="textrm">nthreads-var</span></span> list contains multiple elements, the generated implicit tasks inherit the
+value of <span class="textit"><span class="textrm">nthreads-var</span></span> as the list obtained by deletion of the first element from the generating
+task&#8217;s <span class="textit"><span class="textrm">nthreads-var</span></span> value. The <span class="textit"><span class="textrm">bind-var</span></span> ICV is handled in the same way as the <span class="textit"><span class="textrm">nthreads-var</span></span>
+ICV.
+</p> 
+<p>When a <span class="textit"><span class="textrm">target task</span></span> executes an active <span class="textbf"><span class="texttt">target</span></span> region, the generated initial task uses the values of the data
+environment scoped ICVs from the device data environment ICV values of the device that will execute the
+region.
+</p> 
+<p>When a <span class="textit"><span class="textrm">target task</span></span> executes an inactive <span class="textbf"><span class="texttt">target</span></span> region, the generated initial task uses the values of the data
+environment scoped ICVs from the data environment of the task that encountered the <span class="textbf"><span class="texttt">target</span></span>
+construct.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">target</span></span> construct with a <span class="textbf"><span class="texttt">thread_limit</span></span> clause is encountered, the <span class="textit"><span class="textrm">thread-limit-var</span></span> ICV from the
+data environment of the generated initial task is instead set to an implementation defined value between one
+and the value specified in the clause.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">target</span></span> construct with no <span class="textbf"><span class="texttt">thread_limit</span></span> clause is encountered, the <span class="textit"><span class="textrm">thread-limit-var</span></span> ICV from the
+data environment of the generated initial task is set to an implementation defined value that is greater than
+zero.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">teams</span></span> construct with a <span class="textbf"><span class="texttt">thread_limit</span></span> clause is encountered, the <span class="textit"><span class="textrm">thread-limit-var</span></span> ICV from the
+data environment of the initial task for each team is instead set to an implementation defined value between
+one and the value specified in the clause.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">teams</span></span> construct with no <span class="textbf"><span class="texttt">thread_limit</span></span> clause is encountered, the <span class="textit"><span class="textrm">thread-limit-var</span></span> ICV from the
+data environment of the initial task of each team is set to an implementation defined value that is greater
+than zero and does not exceed <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>, if <span class="textit"><span class="textrm">teams-thread-limit-var</span></span> is greater than
+zero.
+</p> 
+<p>When encountering a worksharing-loop region for which the <span class="textbf"><span class="texttt">runtime</span></span> schedule kind is specified, all
+implicit task regions that constitute the binding parallel region must have the same value for <span class="textit"><span class="textrm">run-sched-var</span></span>
+in their data environments. Otherwise, the behavior is unspecified.
+</p> 
+<!--l. 2445--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu35.html" >next</a>] [<a 
+href="openmpsu33.html" >prev</a>] [<a 
+href="openmpsu33.html#tailopenmpsu33.html" >prev-tail</a>] [<a 
+href="openmpsu34.html" >front</a>] [<a 
+href="openmpse12.html#openmpsu34.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu34.html"></a> </p> 
+ 
+</body> 
+</html>

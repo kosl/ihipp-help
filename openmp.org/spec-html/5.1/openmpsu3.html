@@ -1,0 +1,236 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Loop Terminology</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 754--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu4.html" >next</a>] [<a 
+href="openmpsu2.html" >prev</a>] [<a 
+href="openmpsu2.html#tailopenmpsu2.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu3.html">tail</a>] [<a 
+href="openmpse2.html#openmpsu3.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.2.3</span>&#x00A0;&#x00A0;<a 
+ id="x10-90001.2.3"></a>Loop Terminology</h4>
+<a 
+ id="dx10-9001"></a>
+<p><div class="glossaryterm">canonical loop nest</div> <div class="glossarydefstart">A loop nest that complies with the rules and restrictions defined in Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+</div>
+</p> 
+<p><div class="glossaryterm">loop-associated directive</div> <div class="glossarydefstart">An OpenMP <span class="emph">executable directive</span> for which the associated user code must be a
+<span class="emph">canonical loop nest</span>. </div>
+</p> 
+<p><div class="glossaryterm">associated loop</div> <div class="glossarydefstart">A loop from a <span class="emph">canonical loop nest</span> that is controlled by a given <span class="emph">loop-associated directive</span>.
+</div>
+</p> 
+<p><div class="glossaryterm">loop nest depth</div> <div class="glossarydefstart">For a <span class="emph">canonical loop nest</span>, the maximal number of loops, including the outermost loop, that
+can be associated with a <span class="emph">loop-associated directive</span>. </div>
+</p> 
+<p><div class="glossaryterm">logical iteration space</div> <div class="glossarydefstart">For a <span class="emph">loop-associated directive</span>, the sequence <span 
+class="cmr-10">0</span>,&#x2026;,<span 
+class="cmmi-10">N </span><span 
+class="cmsy-10">- </span><span 
+class="cmr-10">1 </span>where <span 
+class="cmmi-10">N </span>is the number of
+iterations of the loops associated with the directive. The logical numbering denotes the sequence in
+which the iterations would be executed if the set of associated loops were executed sequentially.
+</div>
+</p> 
+<p><div class="glossaryterm">logical iteration</div> <div class="glossarydefstart">An iteration from the associated loops of a <span class="emph">loop-associated directive</span>, designated by a
+logical number from the <span class="emph">logical iteration space</span> of the associated loops. </div>
+</p> 
+<p><div class="glossaryterm">logical iteration vector space</div> <div class="glossarydefstart">For a <span class="emph">loop-associated directive</span> with <span 
+class="cmmi-10">n </span>associated nested loops, the set of
+<span 
+class="cmmi-10">n</span>-tuples <span 
+class="cmr-10">(</span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,i</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">)</span>. For the <span 
+class="cmmi-10">k</span><sup><span class="mathrm"><span 
+class="cmr-7">th</span></span></sup> associated loop, from outermost to innermost, <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">k</span></sub> is its <span class="emph">logical iteration</span>
+number as if it was the only associated loop. </div>
+</p> 
+<p><div class="glossaryterm">logical iteration vector</div> <div class="glossarydefstart">An iteration from the associated nested loops of a <span class="emph">loop-associated directive</span>, where <span 
+class="cmmi-10">n</span>
+is the number of associated loops, designated by an <span 
+class="cmmi-10">n</span>-tuple from the <span class="emph">logical iteration vector space</span> of the
+associated loops. </div>
+</p> 
+<p><div class="glossaryterm">lexicographic order</div> <div class="glossarydefstart">The total order of two <span class="emph">logical iteration vectors</span> <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">a</span></sub> <span 
+class="cmr-10">= (</span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,i</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">) </span>and <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">b</span></sub> <span 
+class="cmr-10">= (</span><span 
+class="cmmi-10">j</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,j</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">)</span>,
+denoted by <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">a</span></sub> <span 
+class="cmsy-10">&#x2264;</span><sub><span class="mathrm"><span 
+class="cmr-7">lex</span></span></sub><span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">b</span></sub>, where either <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">a</span></sub> <span 
+class="cmr-10">= </span><span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">b</span></sub> or <span 
+class="cmsy-10">&#x2203;</span><span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">&#x2208;{</span><span 
+class="cmr-10">1</span><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,n</span><span 
+class="cmsy-10">} </span>such that <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">m</span></sub> <span 
+class="cmmi-10">&#x003C; j</span><sub><span 
+class="cmmi-7">m</span></sub> and <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">k</span></sub> <span 
+class="cmr-10">= </span><span 
+class="cmmi-10">j</span><sub><span 
+class="cmmi-7">k</span></sub> for all
+<span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">&#x2208;{</span><span 
+class="cmr-10">1</span><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,m </span><span 
+class="cmsy-10">- </span><span 
+class="cmr-10">1</span><span 
+class="cmsy-10">}</span>. </div>
+</p> 
+<p><div class="glossaryterm">product order</div> <div class="glossarydefstart">The partial order of two <span class="emph">logical iteration vectors</span> <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">a</span></sub> <span 
+class="cmr-10">= (</span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,i</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">) </span>and <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">b</span></sub> <span 
+class="cmr-10">= (</span><span 
+class="cmmi-10">j</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,j</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">)</span>,
+denoted by <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">a</span></sub> <span 
+class="cmsy-10">&#x2264;</span><sub><span class="mathrm"><span 
+class="cmr-7">product</span></span></sub><span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmmi-7">b</span></sub>, where <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">k</span></sub> <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">j</span><sub><span 
+class="cmmi-7">k</span></sub> for all <span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">&#x2208;{</span><span 
+class="cmr-10">1</span><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,n</span><span 
+class="cmsy-10">}</span>. </div>
+</p> 
+<p><div class="glossaryterm">loop transformation construct</div> <div class="glossarydefstart">A construct that is replaced by the loops that result from applying the
+transformation as defined by its directive to its associated loops. </div>
+</p> 
+<p><div class="glossaryterm">generated loop</div> <div class="glossarydefstart">A loop that is generated by a <span class="emph">loop transformation construct</span> and is one of the resulting loops
+that replace the construct. </div>
+</p> 
+<p><div class="glossaryterm">SIMD loop</div> <div class="glossarydefstart">A loop that includes at least one <span class="emph">SIMD chunk</span>. </div>
+</p> 
+<p><div class="glossaryterm">non-rectangular loop</div> <div class="glossarydefstart">For a loop nest, a loop for which a loop bound references the iteration variable of a
+surrounding loop in the loop nest. </div>
+                                                                            
+                                                                            
+</p> 
+<p><div class="glossaryterm">perfectly nested loop</div> <div class="glossarydefstart">A loop that has no intervening code between it and the body of its surrounding loop.
+The outermost loop of a loop nest is always perfectly nested. </div>
+</p> 
+<p><div class="glossaryterm">doacross loop nest</div> <div class="glossarydefstart">A loop nest, consisting of loops that may be associated with the same <span class="emph">loop-associated
+directive</span>, that has cross-iteration dependences. An iteration is dependent on one or more lexicographically
+earlier iterations.
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     The
+     <span class="textbf"><span class="texttt">ordered</span></span>
+     clause
+     parameter
+     on
+     a
+     worksharing-loop
+     directive
+     identifies
+     the
+     loops
+     associated
+     with
+     the
+     <span class="emph">doacross
+     loop
+     nest</span>.</p> 
+</div>
+<p></div>
+</p> 
+<!--l. 879--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu4.html" >next</a>] [<a 
+href="openmpsu2.html" >prev</a>] [<a 
+href="openmpsu2.html#tailopenmpsu2.html" >prev-tail</a>] [<a 
+href="openmpsu3.html" >front</a>] [<a 
+href="openmpse2.html#openmpsu3.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu3.html"></a> </p> 
+ 
+</body> 
+</html>

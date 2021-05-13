@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Initial Task</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 740--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu59.html" >next</a>] [<a 
+href="openmpsu57.html" >prev</a>] [<a 
+href="openmpsu57.html#tailopenmpsu57.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu58.html">tail</a>] [<a 
+href="openmpse20.html#openmpsu58.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.12.5</span>&#x00A0;&#x00A0;<a 
+ id="x84-940002.12.5"></a>Initial Task</h4>
+<p><p><a 
+ id="Q1-84-324"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+No events are associated with the implicit parallel region in each initial thread.
+The <span class="textit"><span class="textrm">initial-thread-begin</span></span> event occurs in an initial thread after the OpenMP runtime invokes the tool
+initializer but before the initial thread begins to execute the first OpenMP region in the initial
+task.
+The <span class="textit"><span class="textrm">initial-task-begin</span></span> event occurs after an <span class="textit"><span class="textrm">initial-thread-begin</span></span> event but before the first OpenMP region in
+the initial task begins to execute.
+The <span class="textit"><span class="textrm">initial-task-end</span></span> event occurs before an <span class="textit"><span class="textrm">initial-thread-end</span></span> event but after the last OpenMP region in the
+initial task finishes execution.
+The <span class="textit"><span class="textrm">initial-thread-end</span></span> event occurs as the final event in an initial thread at the end of an initial task
+immediately prior to invocation of the tool finalizer.
+<p><a 
+ id="Q1-84-325"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_thread_begin</span></span> callback for the <span class="textit"><span class="textrm">initial-thread-begin</span></span>
+event in an initial thread. The callback occurs in the context of the initial thread. The callback has type
+signature <span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span>. The callback receives <span class="textbf"><span class="texttt">ompt_thread_initial</span></span> as
+its <span class="textit"><span class="textrm">thread_type</span></span> argument.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_implicit_task</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+as its <span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of an <span class="textit"><span class="textrm">initial-task-begin</span></span> event in that thread. Similarly, a thread
+dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_implicit_task</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its
+<span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of an <span class="textit"><span class="textrm">initial-task-end</span></span> event in that thread. The callbacks occur in the
+context of the initial task and have type signature <span class="textbf"><span class="texttt">ompt_callback_implicit_task_t</span></span>. In the
+dispatched callback, <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flag</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_initial)</span></span> always evaluates to <span class="textit"><span class="textrm">true</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_thread_end</span></span> callback for the <span class="textit"><span class="textrm">initial-thread-end</span></span>
+event in that thread. The callback occurs in the context of the thread. The callback has type
+signature <span class="textbf"><span class="texttt">ompt_callback_thread_end_t</span></span>. The implicit parallel region does not dispatch a
+<span class="textbf"><span class="texttt">ompt_callback_parallel_end</span></span> callback; however, the implicit parallel region can be finalized
+within this <span class="textbf"><span class="texttt">ompt_callback_thread_end</span></span> callback.
+</p> 
+<p><p><a 
+ id="Q1-84-326"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_thread_initial</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3170004.4.4.10">4.4.4.10<!--tex4ht:ref: sec:ompt_thread_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_task_initial</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3250004.4.4.18">4.4.4.18<!--tex4ht:ref: sec:ompt_task_flag_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3430004.5.2.1">4.5.2.1<!--tex4ht:ref: sec:ompt_callback_thread_begin_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_thread_end_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3440004.5.2.2">4.5.2.2<!--tex4ht:ref: sec:ompt_callback_thread_end_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_parallel_begin_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3450004.5.2.3">4.5.2.3<!--tex4ht:ref: sec:ompt_callback_parallel_begin_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_parallel_end_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3460004.5.2.4">4.5.2.4<!--tex4ht:ref: sec:ompt_callback_parallel_end_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_implicit_task_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3530004.5.2.11">4.5.2.11<!--tex4ht:ref: sec:ompt_callback_implicit_task_t --></a>.</li></ul>
+<!--l. 810--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu59.html" >next</a>] [<a 
+href="openmpsu57.html" >prev</a>] [<a 
+href="openmpsu57.html#tailopenmpsu57.html" >prev-tail</a>] [<a 
+href="openmpsu58.html" >front</a>] [<a 
+href="openmpse20.html#openmpsu58.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu58.html"></a> </p> 
+ 
+</body> 
+</html>

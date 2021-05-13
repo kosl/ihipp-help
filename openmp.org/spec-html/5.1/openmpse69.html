@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_DISPLAY_ENV</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 674--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse70.html" >next</a>] [<a 
+href="openmpse68.html" >prev</a>] [<a 
+href="openmpse68.html#tailopenmpse68.html" >prev-tail</a>] [<a 
+href="#tailopenmpse69.html">tail</a>] [<a 
+href="openmpch6.html#openmpse69.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.12</span>&#x00A0;&#x00A0;<a 
+ id="x335-5100006.12"></a><span class="textbf"><span class="texttt">OMP_DISPLAY_ENV</span></span></h3>
+<a 
+ id="dx335-510001"></a>
+<a 
+ id="dx335-510002"></a>
+<a 
+ id="dx335-510003"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_DISPLAY_ENV</span></span> environment variable instructs the runtime to display the information as
+described in the <span class="textbf"><span class="texttt">omp_display_env</span></span> routine section (Section&#x00A0;<a 
+href="openmpse45.html#x255-2880003.15">3.15<!--tex4ht:ref: sec:omp_display_env --></a>).
+</p> 
+<p>The value of the <span class="textbf"><span class="texttt">OMP_DISPLAY_ENV</span></span> environment variable may be set to one of these values:
+</p> 
+<p><span class="textbf"><span class="texttt">true </span></span>|<span class="textbf"><span class="texttt">  false </span></span>|<span class="textbf"><span class="texttt">  verbose</span></span>
+                                                                            
+                                                                            
+</p> 
+<p>If the environment variable is set to <span class="textbf"><span class="texttt">true</span></span>, the effect is as if the <span class="textbf"><span class="texttt">omp_display_env</span></span> routine is
+called with the <span class="textit"><span class="textrm">verbose</span></span> argument set to <span class="textit"><span class="textrm">false</span></span> at the beginning of the program. If the environment
+variable is set to <span class="textbf"><span class="texttt">verbose</span></span>, the effect is as if the <span class="textbf"><span class="texttt">omp_display_env</span></span> routine is called with the
+<span class="textit"><span class="textrm">verbose</span></span> argument set to <span class="textit"><span class="textrm">true</span></span> at the beginning of the program. If the environment variable is
+undefined or set to <span class="textbf"><span class="texttt">false</span></span>, the runtime does not display any information. For all values of the
+environment variable other than <span class="textbf"><span class="texttt">true</span></span>, <span class="textbf"><span class="texttt">false</span></span>, and <span class="textbf"><span class="texttt">verbose</span></span>, the displayed information is
+unspecified.
+</p> 
+<p>Example:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x335-510004r1"></a></span></p> 
+<!--l. 699--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x335-510005r2"></a></span><span 
+class="pcrb8t-">%</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_DISPLAY_ENV</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">true</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x335-510006r3"></a></span></pre>
+<p>For the output of the above example, see Section&#x00A0;<a 
+href="openmpse45.html#x255-2880003.15">3.15<!--tex4ht:ref: sec:omp_display_env --></a>.
+</p> 
+<p><p><a 
+ id="Q1-335-2470"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_display_env</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpse45.html#x255-2880003.15">3.15<!--tex4ht:ref: sec:omp_display_env --></a>.</li></ul>
+<!--l. 710--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse70.html" >next</a>] [<a 
+href="openmpse68.html" >prev</a>] [<a 
+href="openmpse68.html#tailopenmpse68.html" >prev-tail</a>] [<a 
+href="openmpse69.html" >front</a>] [<a 
+href="openmpch6.html#openmpse69.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse69.html"></a> </p> 
+ 
+</body> 
+</html>

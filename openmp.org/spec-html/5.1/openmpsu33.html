@@ -1,0 +1,568 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Modifying and Retrieving ICV Values</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2151--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu34.html" >next</a>] [<a 
+href="openmpsu32.html" >prev</a>] [<a 
+href="openmpsu32.html#tailopenmpsu32.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu33.html">tail</a>] [<a 
+href="openmpse12.html#openmpsu33.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.4.3</span>&#x00A0;&#x00A0;<a 
+ id="x51-500002.4.3"></a>Modifying and Retrieving ICV Values</h4>
+<a 
+ id="dx51-50001"></a>
+<p>Table&#x00A0;<a 
+href="#x51-50002r2">2.2<!--tex4ht:ref: tab:Ways to Modify and to Retrieve ICV Values --></a> shows the method for modifying and retrieving the values of ICVs through OpenMP API
+routines. If an ICV is not listed in this table, no OpenMP API routine modifies or retrieves this
+ICV.
+<a 
+ id="x51-50002r2"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x51-50003"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.2: </td><td  
+class="content">Ways to Modify and to Retrieve ICV Values</td></tr></table></div><!--tex4ht:label?: x51-50002r2.4 -->
+ <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1" /><col 
+id="TBL-4-2" /><col 
+id="TBL-4-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">ICV</span></span>                              </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Ways to Modify Value</span></span>                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-1-3"  
+class="td11"> <span class="textsf"><span class="textbf">Ways to Retrieve Value</span></span>                 </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-2-1"  
+class="td11">                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-3-1"  
+class="td11">                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-4-1"  
+class="td11">                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-5-1"  
+class="td11"> <span class="textit"><span class="textrm">dyn-var</span></span>                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_dynamic</span></span>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-5-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_dynamic</span></span>           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-6-1"  
+class="td11"> <span class="textit"><span class="textrm">nthreads-var</span></span>                    </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_num_threads</span></span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-6-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_max_threads</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-7-1"  
+class="td11"> <span class="textit"><span class="textrm">run-sched-var</span></span>                  </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_schedule</span></span>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-7-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_schedule</span></span>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-8-1"  
+class="td11"> <span class="textit"><span class="textrm">bind-var</span></span>                           </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-8-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-8-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_proc_bind</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-9-1"  
+class="td11"> <span class="textit"><span class="textrm">thread-limit-var</span></span>               </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">target</span></span> <span 
+class="ec-qtmr-x-x-90">construct, </span><span class="textbf"><span class="texttt">teams</span></span> <span 
+class="ec-qtmr-x-x-90">construct</span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-9-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_thread_limit</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-10-1"  
+class="td11"> <span class="textit"><span class="textrm">max-active-levels-var</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span><span 
+class="ec-qtmr-x-x-90">,</span>
+   <span class="textbf"><span class="texttt">omp_set_nested</span></span>             </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-10-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_max_active_levels</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-11-1"  
+class="td11"> <span class="textit"><span class="textrm">active-levels-var</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-11-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-11-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_active_level</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-12-1"  
+class="td11"> <span class="textit"><span class="textrm">levels-var</span></span>                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-12-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-12-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_level</span></span>             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-13-1"  
+class="td11"> <span class="textit"><span class="textrm">place-partition-var</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-13-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-13-3"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">See description below</span>                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-14-1"  
+class="td11"> <span class="textit"><span class="textrm">cancel-var</span></span>                        </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-14-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-14-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_cancellation</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-15-1"  
+class="td11"> <span class="textit"><span class="textrm">affinity-format-var</span></span>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-15-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_affinity_format</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-15-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_affinity_format</span></span>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-16-1"  
+class="td11"> <span class="textit"><span class="textrm">default-device-var</span></span>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-16-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_default_device</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-16-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_default_device</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-17-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-17-1"  
+class="td11"> <span class="textit"><span class="textrm">max-task-priority-var</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-17-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-17-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-18-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-18-1"  
+class="td11"> <span class="textit"><span class="textrm">num-procs-var</span></span>                 </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-18-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-18-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_num_procs</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-19-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-19-1"  
+class="td11"> <span class="textit"><span class="textrm">thread-num-var</span></span>                </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-19-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-19-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_thread_num</span></span>        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-20-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-20-1"  
+class="td11"> <span class="textit"><span class="textrm">final-task-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-20-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-20-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_in_final</span></span>              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-21-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-21-1"  
+class="td11"> <span class="textit"><span class="textrm">team-size-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-21-2"  
+class="td11"> <span 
+class="ec-qtmr-x-x-90">(none)</span>                                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-21-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_num_threads</span></span>       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-22-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-22-1"  
+class="td11"> <span class="textit"><span class="textrm">def-allocator-var</span></span>             </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-22-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_default_allocator</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-22-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_default_allocator</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-23-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-23-1"  
+class="td11"> <span class="textit"><span class="textrm">nteams-var</span></span>                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-23-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_num_teams </span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-23-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_max_teams</span></span>         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-24-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-24-1"  
+class="td11"> <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-24-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-24-3"  
+class="td11"> <span class="textbf"><span class="texttt">omp_get_teams_thread_limit</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-25-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-25-1"  
+class="td11">                  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-26-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-26-1"  
+class="td11">                  </td>
+</tr></table></div>
+<p><p><a 
+ id="Q1-51-79"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  ICV
+  is
+  a
+  list.
+  The
+  runtime
+  call
+  <span class="textbf"><span class="texttt">omp_set_num_threads</span></span>
+  sets
+  the
+  value
+  of
+  the
+  first
+  element
+  of
+  this
+  list,
+  and
+  <span class="textbf"><span class="texttt">omp_get_max_threads</span></span>
+  retrieves
+  the
+  value
+  of
+  the
+  first
+  element
+  of
+  this
+  list.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  The
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">bind-var</span></span>
+  ICV
+  is
+  a
+  list.
+  The
+  runtime
+  call
+  <span class="textbf"><span class="texttt">omp_get_proc_bind</span></span>
+  retrieves
+  the
+  value
+  of
+  the
+  first
+  element
+  of
+  this
+  list.
+  </li>
+  <li class="itemize">
+  Detailed
+  values
+  in
+  the
+  <span class="textit"><span class="textrm">place-partition-var</span></span>
+  ICV
+  are
+  retrieved
+  using
+  the
+  runtime
+  calls
+  <span class="textbf"><span class="texttt">omp_get_partition_num_places</span></span>,
+  <span class="textbf"><span class="texttt">omp_get_partition_place_nums</span></span>,
+  <span class="textbf"><span class="texttt">omp_get_place_num_procs</span></span>,
+  and
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-51-80"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause
+  of
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse15.html#x62-620002.7">2.7<!--tex4ht:ref: sec:teams Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause
+  of
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_num_threads</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu120.html#x159-1920003.2.1">3.2.1<!--tex4ht:ref: subsec:omp_set_num_threads --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_threads</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu121.html#x160-1930003.2.2">3.2.2<!--tex4ht:ref: subsec:omp_get_num_threads --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_max_threads</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu122.html#x161-1940003.2.3">3.2.3<!--tex4ht:ref: subsec:omp_get_max_threads --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_thread_num</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu123.html#x162-1950003.2.4">3.2.4<!--tex4ht:ref: subsec:omp_get_thread_num --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_dynamic</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu125.html#x164-1970003.2.6">3.2.6<!--tex4ht:ref: subsec:omp_set_dynamic --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_dynamic</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu126.html#x165-1980003.2.7">3.2.7<!--tex4ht:ref: subsec:omp_get_dynamic --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_cancellation</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu127.html#x166-1990003.2.8">3.2.8<!--tex4ht:ref: subsec:omp_get_cancellation --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_nested</span></span>
+  routine,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu128.html#x167-2000003.2.9">3.2.9<!--tex4ht:ref: subsec:omp_set_nested --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_schedule</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu130.html#x169-2020003.2.11">3.2.11<!--tex4ht:ref: subsec:omp_set_schedule --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_schedule</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu131.html#x170-2030003.2.12">3.2.12<!--tex4ht:ref: subsec:omp_get_schedule --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_thread_limit</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu132.html#x171-2040003.2.13">3.2.13<!--tex4ht:ref: subsec:omp_get_thread_limit --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_supported_active_levels</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu133.html#x172-2050003.2.14">3.2.14<!--tex4ht:ref: subsec:omp_get_supported_active_levels --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_max_active_levels</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu134.html#x173-2060003.2.15">3.2.15<!--tex4ht:ref: subsec:omp_set_max_active_levels --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_max_active_levels</span></span>
+  routine,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu135.html#x174-2070003.2.16">3.2.16<!--tex4ht:ref: subsec:omp_get_max_active_levels --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_level</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu136.html#x175-2080003.2.17">3.2.17<!--tex4ht:ref: subsec:omp_get_level --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_active_level</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu139.html#x178-2110003.2.20">3.2.20<!--tex4ht:ref: subsec:omp_get_active_level --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_proc_bind</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu140.html#x180-2130003.3.1">3.3.1<!--tex4ht:ref: subsec:omp_get_proc_bind --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_place_num_procs</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu142.html#x182-2150003.3.3">3.3.3<!--tex4ht:ref: subsec:omp_get_place_num_procs --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu143.html#x183-2160003.3.4">3.3.4<!--tex4ht:ref: subsec:omp_get_place_proc_ids --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">omp_get_partition_num_places</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu145.html#x185-2180003.3.6">3.3.6<!--tex4ht:ref: subsec:omp_get_partition_num_places --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_partition_place_nums</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu146.html#x186-2190003.3.7">3.3.7<!--tex4ht:ref: subsec:omp_get_partition_place_nums --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_affinity_format</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu147.html#x187-2200003.3.8">3.3.8<!--tex4ht:ref: subsec:omp_set_affinity_format --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_affinity_format</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu148.html#x188-2210003.3.9">3.3.9<!--tex4ht:ref: subsec:omp_get_affinity_format --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_num_teams</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu153.html#x194-2270003.4.3">3.4.3<!--tex4ht:ref: subsec:omp_set_num_teams --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_max_teams</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu154.html#x195-2280003.4.4">3.4.4<!--tex4ht:ref: subsec:omp_get_max_teams --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_teams_thread_limit</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu155.html#x196-2290003.4.5">3.4.5<!--tex4ht:ref: subsec:omp_set_teams_thread_limit --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_teams_thread_limit</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu156.html#x197-2300003.4.6">3.4.6<!--tex4ht:ref: subsec:omp_get_teams_thread_limit --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_max_task_priority</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu157.html#x199-2320003.5.1">3.5.1<!--tex4ht:ref: subsec:omp_get_max_task_priority --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_in_final</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu158.html#x200-2330003.5.2">3.5.2<!--tex4ht:ref: subsec:omp_in_final --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_procs</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu161.html#x205-2380003.7.1">3.7.1<!--tex4ht:ref: subsec:omp_get_num_procs --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_default_device</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu162.html#x206-2390003.7.2">3.7.2<!--tex4ht:ref: subsec:omp_set_default_device --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_default_device</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu163.html#x207-2400003.7.3">3.7.3<!--tex4ht:ref: subsec:omp_get_default_device --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_default_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu198.html#x248-2810003.13.4">3.13.4<!--tex4ht:ref: subsec:omp_set_default_allocator --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_default_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu199.html#x249-2820003.13.5">3.13.5<!--tex4ht:ref: subsec:omp_get_default_allocator --></a>.
+  </li></ul>
+<!--l. 2319--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu34.html" >next</a>] [<a 
+href="openmpsu32.html" >prev</a>] [<a 
+href="openmpsu32.html#tailopenmpsu32.html" >prev-tail</a>] [<a 
+href="openmpsu33.html" >front</a>] [<a 
+href="openmpse12.html#openmpsu33.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu33.html"></a> </p> 
+ 
+</body> 
+</html>

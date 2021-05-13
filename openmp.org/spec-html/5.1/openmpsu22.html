@@ -1,0 +1,490 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Iterators</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 590--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse10.html" >next</a>] [<a 
+href="openmpsu21.html" >prev</a>] [<a 
+href="openmpsu21.html#tailopenmpsu21.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu22.html">tail</a>] [<a 
+href="openmpse9.html#openmpsu22.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.1.6</span>&#x00A0;&#x00A0;<a 
+ id="x37-360002.1.6"></a>Iterators</h4>
+<a 
+ id="dx37-36001"></a>
+<p>Iterators are identifiers that expand to multiple values in the clause on which they appear.
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">iterator</span></span> modifier is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36002r1"></a></span></p> 
+<!--l. 598--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36003r2"></a></span><span 
+class="pcrb8t-">iterator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36004r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">iterators-definition</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36005r1"></a></span></p> 
+<!--l. 603--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36006r2"></a></span><span 
+class="ec-qtmri-">iterator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">specifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36007r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">iterator-specifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36008r1"></a></span></p> 
+<!--l. 608--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36009r2"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">iterator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">range</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">specification</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x37-36010r3"></a></span></pre>
+<p>where: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">identifier</span></span>
+  is
+  a
+  base
+  language
+  identifier.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> <span class="textit"><span class="textrm">iterator-type</span></span> is a type name.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> <span class="textit"><span class="textrm">iterator-type</span></span> is a type specifier.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li>
+  <li class="itemize"><span class="textit"><span class="textrm">range-specification</span></span> is of the form <span class="textit"><span class="textrm">begin</span></span><span class="textbf"><span class="texttt">:</span></span><span class="textit"><span class="textrm">end[</span></span><span class="textbf"><span class="texttt">:</span></span><span class="textit"><span class="textrm">step]</span></span>, where <span class="textit"><span class="textrm">begin</span></span> and <span class="textit"><span class="textrm">end</span></span> are expressions for which their
+  types can be converted to <span class="textit"><span class="textrm">iterator-type</span></span> and <span class="textit"><span class="textrm">step</span></span> is an integral expression.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>In an <span class="textit"><span class="textrm">iterator-specifier</span></span>, if the <span class="textit"><span class="textrm">iterator-type</span></span> is not specified then that iterator is of <span class="textbf"><span class="texttt">int</span></span> type.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>In an <span class="textit"><span class="textrm">iterator-specifier</span></span>, if the <span class="textit"><span class="textrm">iterator-type</span></span> is not specified then that iterator has default integer
+type.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>In a <span class="textit"><span class="textrm">range-specification</span></span>, if the <span class="textit"><span class="textrm">step</span></span> is not specified its value is implicitly defined to be 1.
+</p> 
+<p>An iterator only exists in the context of the clause in which it appears. An iterator also hides all accessible
+symbols with the same name in the context of the clause.
+</p> 
+<p>The use of a variable in an expression that appears in the <span class="textit"><span class="textrm">range-specification</span></span> causes an implicit reference to
+the variable in all enclosing constructs.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The values of the iterator are the set of values <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">0</span></sub>,&#x00A0;&#x2026;,&#x00A0;<span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub> where: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">0</span></sub>&#x00A0;<span 
+class="cmr-10">=</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmmi-10">begin</span>,
+  </li>
+  <li class="itemize">
+  <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">j</span></sub>&#x00A0;<span 
+class="cmr-10">=</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmr-10">(</span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step</span><span 
+class="cmr-10">)</span>,
+  where
+  <span 
+class="cmmi-10">j</span>&#x00A0;<span 
+class="cmsy-10">&#x2265;</span>&#x00A0;<span 
+class="cmr-10">1</span>
+  and
+  </li>
+  <li class="itemize">if <span 
+class="cmmi-10">step</span>&#x00A0;<span 
+class="cmmi-10">&#x003E;</span>&#x00A0;<span 
+class="cmr-10">0</span>,
+    <ul class="itemize2">
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">0</span></sub>&#x00A0;<span 
+class="cmmi-10">&#x003C;</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+    </li>
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmmi-10">&#x003C;</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+    and
+    </li>
+    <li class="itemize">
+    <span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmr-10">(</span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step</span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmsy-10">&#x2265;</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmmi-10">end</span>;</li></ul>
+  </li>
+  <li class="itemize">if <span 
+class="cmmi-10">step</span>&#x00A0;<span 
+class="cmmi-10">&#x003C;</span>&#x00A0;<span 
+class="cmr-10">0</span>,
+    <ul class="itemize2">
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">0</span></sub>&#x00A0;<span 
+class="cmmi-10">&#x003E;</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+    </li>
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmmi-10">&#x003E;</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+                                                                            
+                                                                            
+    and
+    </li>
+    <li class="itemize">
+    <span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmr-10">(</span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step</span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmsy-10">&#x2264;</span>&#x00A0;<span 
+class="cmr-10">(</span><span class="textit"><span class="textrm">iterator-type</span></span><span 
+class="cmr-10">)</span>&#x00A0;<span 
+class="cmmi-10">end</span>.</li></ul>
+  </li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The values of the iterator are the set of values <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub>,&#x00A0;&#x2026;,&#x00A0;<span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span></sub> where: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmr-10">=</span>&#x00A0;<span 
+class="cmmi-10">begin</span>,
+  </li>
+  <li class="itemize">
+  <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">j</span></sub>&#x00A0;<span 
+class="cmr-10">=</span>&#x00A0;<span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step</span>,
+  where
+  <span 
+class="cmmi-10">j</span>&#x00A0;<span 
+class="cmsy-10">&#x2265;</span>&#x00A0;<span 
+class="cmr-10">2</span>
+  and
+  </li>
+  <li class="itemize">if <span 
+class="cmmi-10">step</span>&#x00A0;<span 
+class="cmmi-10">&#x003E;</span>&#x00A0;<span 
+class="cmr-10">0</span>,
+    <ul class="itemize2">
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmsy-10">&#x2264;</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+    </li>
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span></sub>&#x00A0;<span 
+class="cmsy-10">&#x2264;</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+    and
+    </li>
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step</span>&#x00A0;<span 
+class="cmmi-10">&#x003E;</span>&#x00A0;<span 
+class="cmmi-10">end</span>;</li></ul>
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">if <span 
+class="cmmi-10">step</span>&#x00A0;<span 
+class="cmmi-10">&#x003C;</span>&#x00A0;<span 
+class="cmr-10">0</span>,
+    <ul class="itemize2">
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub>&#x00A0;<span 
+class="cmsy-10">&#x2265;</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+    </li>
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span></sub>&#x00A0;<span 
+class="cmsy-10">&#x2265;</span>&#x00A0;<span 
+class="cmmi-10">end</span>,
+    and
+    </li>
+    <li class="itemize">
+    <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">N</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step</span>&#x00A0;<span 
+class="cmmi-10">&#x003C;</span>&#x00A0;<span 
+class="cmmi-10">end</span>.</li></ul>
+  </li></ul><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>The set of values will be empty if no possible value complies with the conditions above.
+</p> 
+<p>For those clauses that contain expressions that contain iterator identifiers, the effect is as if the list item is
+instantiated within the clause for each value of the iterator in the set defined above, substituting each
+occurrence of the iterator identifier in the expression with the iterator value. If the set of values of the
+iterator is empty then the effect is as if the clause was not specified.
+</p> 
+<p>The behavior is unspecified if <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">j</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step </span>cannot be represented in <span class="textit"><span class="textrm">iterator-type</span></span> in any of the <span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">j</span></sub>&#x00A0;<span 
+class="cmr-10">+</span>&#x00A0;<span 
+class="cmmi-10">step</span>
+computations for any <span 
+class="cmr-10">0</span>&#x00A0;<span 
+class="cmsy-10">&#x2264;</span>&#x00A0;<span 
+class="cmmi-10">j</span>&#x00A0;<span 
+class="cmmi-10">&#x003C;</span>&#x00A0;<span 
+class="cmmi-10">N </span>in C/C++ or <span 
+class="cmr-10">0</span>&#x00A0;<span 
+class="cmmi-10">&#x003C;</span>&#x00A0;<span 
+class="cmmi-10">j</span>&#x00A0;<span 
+class="cmsy-10">&#x2264;</span>&#x00A0;<span 
+class="cmmi-10">N </span>in Fortran.
+</p> 
+<p><p><a 
+ id="Q1-37-44"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to iterators are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  An
+  expression
+  that
+  contains
+                                                                            
+                                                                            
+  an
+  iterator
+  identifier
+  can
+  only
+  appear
+  in
+  clauses
+  that
+  explicitly
+  allow
+  expressions
+  that
+  contain
+  iterators.
+  </li>
+  <li class="itemize">The <span class="textit"><span class="textrm">iterator-type</span></span> must not declare a new type.  <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textit"><span class="textrm">iterator-type</span></span> must be an integral or pointer type.
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textit"><span class="textrm">iterator-type</span></span> must not be <span class="textbf"><span class="texttt">const</span></span> qualified.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textit"><span class="textrm">iterator-type</span></span> must be an integer type.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li>
+  <li class="itemize">If the <span class="textit"><span class="textrm">step</span></span> expression of a <span class="textit"><span class="textrm">range-specification</span></span> equals zero, the behavior is unspecified.
+  </li>
+  <li class="itemize">Each iterator identifier can only be defined once in an <span class="textit"><span class="textrm">iterators-definition</span></span>.
+  </li>
+  <li class="itemize">Iterators cannot appear in the <span class="textit"><span class="textrm">range-specification</span></span>.</li></ul>
+                                                                            
+                                                                            
+<!--l. 725--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse10.html" >next</a>] [<a 
+href="openmpsu21.html" >prev</a>] [<a 
+href="openmpsu21.html#tailopenmpsu21.html" >prev-tail</a>] [<a 
+href="openmpsu22.html" >front</a>] [<a 
+href="openmpse9.html#openmpsu22.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu22.html"></a> </p> 
+ 
+</body> 
+</html>

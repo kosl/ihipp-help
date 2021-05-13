@@ -1,0 +1,166 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMPT</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 59--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu16.html" >next</a>] [<a 
+href="openmpse5.html" >prev</a>] [<a 
+href="openmpse5.html#tailopenmpse5.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu15.html">tail</a>] [<a 
+href="openmpse5.html#openmpsu15.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">1.5.1</span>&#x00A0;&#x00A0;<a 
+ id="x25-240001.5.1"></a>OMPT</h4>
+<p>The OMPT interface, which is intended for <span class="emph">first-party</span> tools, provides the following: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  mechanism
+  to
+  initialize
+  a
+  first-party
+  tool;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Routines
+  that
+  enable
+  a
+  tool
+  to
+  determine
+  the
+  capabilities
+  of
+  an
+  OpenMP
+  implementation;
+  </li>
+  <li class="itemize">
+  Routines
+  that
+  enable
+  a
+  tool
+  to
+  examine
+  OpenMP
+  state
+  information
+  associated
+  with
+  a
+  thread;
+  </li>
+  <li class="itemize">
+  Mechanisms
+  that
+  enable
+  a
+  tool
+  to
+                                                                            
+                                                                            
+  map
+  implementation-level
+  calling
+  contexts
+  back
+  to
+  their
+  source-level
+  representations;
+  </li>
+  <li class="itemize">
+  A
+  callback
+  interface
+  that
+  enables
+  a
+  tool
+  to
+  receive
+  notification
+  of
+  OpenMP
+  <span class="emph">events</span>;
+  </li>
+  <li class="itemize">
+  A
+  tracing
+  interface
+  that
+  enables
+  a
+  tool
+  to
+  trace
+  activity
+  on
+  OpenMP
+  target
+  devices;
+                                                                            
+                                                                            
+  and
+  </li>
+  <li class="itemize">
+  A
+  runtime
+  library
+  routine
+  that
+  an
+  application
+  can
+  use
+  to
+  control
+  a
+  tool.</li></ul>
+<p>OpenMP implementations may differ with respect to the <span class="emph">thread states</span> that they support, the mutual
+exclusion implementations that they employ, and the OpenMP events for which tool callbacks are invoked.
+For some OpenMP events, OpenMP implementations must guarantee that a registered callback will be
+invoked for each occurrence of the event. For other OpenMP events, OpenMP implementations are
+permitted to invoke a registered callback for some or no occurrences of the event; for such OpenMP
+events, however, OpenMP implementations are encouraged to invoke tool callbacks on as many
+occurrences of the event as is practical. Section&#x00A0;<a 
+href="openmpsu207.html#x262-2960004.2.4">4.2.4<!--tex4ht:ref: sec:ompt-register-callbacks --></a> specifies the subset of OMPT callbacks
+that an OpenMP implementation must support for a minimal implementation of the OMPT
+interface.
+</p> 
+<p>With the exception of the <span class="textbf"><span class="texttt">omp_control_tool</span></span> runtime library routine for tool control, all other routines
+in the OMPT interface are intended for use only by tools and are not visible to applications. For that reason,
+a Fortran binding is provided only for <span class="textbf"><span class="texttt">omp_control_tool</span></span>; all other OMPT functionality is described
+with C syntax only.
+</p> 
+<!--l. 98--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu16.html" >next</a>] [<a 
+href="openmpse5.html" >prev</a>] [<a 
+href="openmpse5.html#tailopenmpse5.html" >prev-tail</a>] [<a 
+href="openmpsu15.html" >front</a>] [<a 
+href="openmpse5.html#openmpsu15.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu15.html"></a> </p> 
+ 
+</body> 
+</html>

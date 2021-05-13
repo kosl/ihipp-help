@@ -1,0 +1,262 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_init_lock_with_hint and
+omp_init_nest_lock_with_hint</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 221--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu181.html" >next</a>] [<a 
+href="openmpsu179.html" >prev</a>] [<a 
+href="openmpsu179.html#tailopenmpsu179.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu180.html">tail</a>] [<a 
+href="openmpse39.html#openmpsu180.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.9.2</span>&#x00A0;&#x00A0;<a 
+ id="x226-2590003.9.2"></a><span class="textbf"><span class="texttt">omp_init_lock_with_hint</span></span> and <br 
+class="newline" /><span class="textbf"><span class="texttt">omp_init_nest_lock_with_hint</span></span></h4>
+<a 
+ id="dx226-259001"></a>
+<a 
+ id="dx226-259002"></a>
+<p><p><a 
+ id="Q1-226-1236"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+These routines initialize an OpenMP lock with a hint. The effect of the hint is implementation-defined. The
+OpenMP implementation can ignore the hint without changing program semantics.
+<p><a 
+ id="Q1-226-1237"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259003r1"></a></span></p> 
+<!--l. 232--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259004r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_init_lock_with_hint</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_lock_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">lock</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259006r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_sync_hint_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">hint</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259007r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259008r6"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_init_nest_lock_with_hint</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259009r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_nest_lock_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">lock</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259010r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_sync_hint_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">hint</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259011r9"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259012r10"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259013r1"></a></span></p> 
+<!--l. 246--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259014r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_init_lock_with_hint</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">svar</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">hint</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259015r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_lock_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">svar</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259016r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_sync_hint_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">hint</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259017r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259018r6"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_init_nest_lock_with_hint</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">nvar</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">hint</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259019r7"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_nest_lock_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nvar</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259020r8"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_sync_hint_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">hint</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x226-259021r9"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-226-1238"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+A program that accesses a lock that is not in the uninitialized state through either routine is
+non-conforming.
+</p> 
+<p>The second argument passed to these routines (<span class="textit"><span class="textrm">hint</span></span>) is a hint as described in Section&#x00A0;<a 
+href="openmpsu110.html#x143-1550002.19.12">2.19.12<!--tex4ht:ref: subsec:Synchronization Hints --></a>.
+</p> 
+<p><p><a 
+ id="Q1-226-1239"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The effect of these routines is to initialize the lock to the unlocked state and, optionally, to choose a specific
+lock implementation based on the hint. After initialization no task owns the lock. In addition, the nesting
+count for a nestable lock is set to zero.
+</p> 
+<p><p><a 
+ id="Q1-226-1240"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">lock-init-with-hint</span></span> event occurs in a thread that executes an <span class="textbf"><span class="texttt">omp_init_lock_with_hint</span></span> region
+after initialization of the lock, but before it finishes the region. The <span class="textit"><span class="textrm">nest-lock-init-with-hint</span></span> event occurs in a
+thread that executes an <span class="textbf"><span class="texttt">omp_init_nest_lock</span></span> region after initialization of the lock, but before it
+finishes the region.
+</p> 
+<p><p><a 
+ id="Q1-226-1241"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_lock_init</span></span> callback with the same value for its <span class="textit"><span class="textrm">hint</span></span>
+argument as the <span class="textit"><span class="textrm">hint</span></span> argument of the call to <span class="textbf"><span class="texttt">omp_init_lock_with_hint</span></span> and <span class="textbf"><span class="texttt">ompt_mutex_lock</span></span>
+as the <span class="textit"><span class="textrm">kind</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">lock-init-with-hint</span></span> event in that thread. Similarly, a thread
+dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_lock_init</span></span> callback with the same value for its <span class="textit"><span class="textrm">hint</span></span>
+argument as the <span class="textit"><span class="textrm">hint</span></span> argument of the call to <span class="textbf"><span class="texttt">omp_init_nest_lock_with_hint</span></span> and
+<span class="textbf"><span class="texttt">ompt_mutex_nest_lock</span></span> as the <span class="textit"><span class="textrm">kind</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">nest-lock-init-with-hint</span></span> event in
+that thread. These callbacks have the type signature <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire_t</span></span> and occur
+in the task that encounters the routine.
+</p> 
+<p><p><a 
+ id="Q1-226-1242"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Synchronization
+  Hints,
+  see
+  Section&#x00A0;<a 
+href="openmpsu110.html#x143-1550002.19.12">2.19.12<!--tex4ht:ref: subsec:Synchronization Hints --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_mutex_acquire_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3560004.5.2.14">4.5.2.14<!--tex4ht:ref: sec:ompt_callback_mutex_acquire_t --></a>.</li></ul>
+<!--l. 300--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu181.html" >next</a>] [<a 
+href="openmpsu179.html" >prev</a>] [<a 
+href="openmpsu179.html#tailopenmpsu179.html" >prev-tail</a>] [<a 
+href="openmpsu180.html" >front</a>] [<a 
+href="openmpse39.html#openmpsu180.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu180.html"></a> </p> 
+ 
+</body> 
+</html>

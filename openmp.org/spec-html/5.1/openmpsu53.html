@@ -1,0 +1,681 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Loop Transformation Constructs</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2366--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse20.html" >next</a>] [<a 
+href="openmpsu52.html" >prev</a>] [<a 
+href="openmpsu52.html#tailopenmpsu52.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu53.html">tail</a>] [<a 
+href="openmpse19.html#openmpsu53.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.11.9</span>&#x00A0;&#x00A0;<a 
+ id="x78-860002.11.9"></a>Loop Transformation Constructs</h4>
+<a 
+ id="dx78-86001"></a>
+<p>A loop transformation construct replaces itself, including its associated loop nest, with a structured block
+that may be another loop nest. If the loop transformation construct is nested inside another loop nest, its
+replacement becomes part of that loop nest and therefore its generated loops may become associated with
+another loop-associated directive that forms an enclosing construct. A loop transformation construct that is
+closely nested within another loop transformation construct applies before the enclosing loop transformation
+construct.
+</p> 
+<p>The associated loop nest of a loop transformation construct must have <span class="emph">canonical loop nest form</span> (see
+Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>). All generated loops have canonical loop nest form, unless otherwise specified. Loop
+iteration variables of generated loops are always private in the enclosing <span class="textbf"><span class="texttt">teams</span></span>, <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">simd</span></span>, or
+task generating construct.
+</p> 
+<p><p><a 
+ id="Q1-78-275"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.9.1  </span> <a 
+ id="x78-870002.11.9.1"></a><span class="textbf"><span class="texttt">tile</span></span> Construct</h5>
+<a 
+ id="dx78-87001"></a>
+<a 
+ id="dx78-87002"></a>
+<p><p><a 
+ id="Q1-78-277"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">tile</span></span> construct tiles one or more loops.
+<p><a 
+ id="Q1-78-278"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">tile</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87003r1"></a></span></p> 
+<!--l. 2402--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">tile</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">sizes</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">size</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">size-list</span></span> is a list <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,s</span><sub><span 
+class="cmmi-7">n</span></sub> of positive integer expressions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">tile</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87007r1"></a></span></p> 
+<!--l. 2415--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87008r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">tile</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">sizes</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">size</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87009r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87010r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">tile</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-87011r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">size-list</span></span> is a list <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,s</span><sub><span 
+class="cmmi-7">n</span></sub> of positive integer expressions.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">tile</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">tile</span></span> directive is assumed at the end of the
+<span class="textit"><span class="textrm">do-loops</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-78-279"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">tile</span></span> construct controls the outer <span 
+class="cmmi-10">n </span>loops of the associated loop nest, where <span 
+class="cmmi-10">n </span>is the number of items
+in <span class="textit"><span class="textrm">size-list</span></span>. Let <span 
+class="cmmi-10">&#x2113;</span><sub><span 
+class="cmr-7">1</span></sub>, &#x2026;<span 
+class="cmmi-10">&#x2113;</span><sub><span 
+class="cmmi-7">n</span></sub> be the associated loops, from outermost to innermost, which the construct replaces
+with a loop nest that consists of <span 
+class="cmr-10">2</span><span 
+class="cmmi-10">n </span>perfectly nested loops. Let <span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,f</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmmi-10">,t</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,t</span><sub><span 
+class="cmmi-7">n</span></sub> be the generated loops,
+from outermost to innermost. The loops <span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,f</span><sub><span 
+class="cmmi-7">n</span></sub> are the <span class="emph">floor loops</span> and the loops <span 
+class="cmmi-10">t</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,t</span><sub><span 
+class="cmmi-7">n</span></sub> are the <span class="emph">tile
+loops</span>. The tile loops do not have canonical loop nest form.
+</p> 
+<p>Let <span 
+class="cmr-10">&#x03A9; </span>be the <span class="emph">logical iteration vector space</span> of the associated loops. For any <span 
+class="cmr-10">(</span><span 
+class="cmmi-10">&#x03B1;</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,&#x03B1;</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">) </span><span 
+class="cmsy-10">&#x2208; </span><span 
+class="msbm-10">&#x2115;</span><sup><span 
+class="cmmi-7">n</span></sup>, define a tile
+<span 
+class="cmmi-10">T</span><sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmmi-7">,</span><span 
+class="cmmi-7">&#x2026;</span><span 
+class="cmmi-7">,&#x03B1;</span><sub><span 
+class="cmmi-5">n</span></sub></sub> as the set of iterations <span 
+class="cmsy-10">{</span><span 
+class="cmr-10">(</span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,i</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">) </span><span 
+class="cmsy-10">&#x2208; </span><span 
+class="cmr-10">&#x03A9;</span><span style="margin-left:2.77695pt" class="tmspace"></span><span 
+class="cmsy-10">&#x2223;</span><span style="margin-left:2.77695pt" class="tmspace"></span><span 
+class="cmsy-10">&#x2200;</span><span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">&#x2208;{</span><span 
+class="cmr-10">1</span><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,n</span><span 
+class="cmsy-10">} </span><span 
+class="cmr-10">: </span><span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">k</span></sub><span 
+class="cmmi-10">&#x03B1;</span><sub><span 
+class="cmmi-7">k</span></sub> <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i</span><sub><span 
+class="cmmi-7">k</span></sub> <span 
+class="cmmi-10">&#x003C; s</span><sub><span 
+class="cmmi-7">k</span></sub><span 
+class="cmmi-10">&#x03B1;</span><sub><span 
+class="cmmi-7">k</span></sub> <span 
+class="cmr-10">+ </span><span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">k</span></sub><span 
+class="cmsy-10">} </span>and
+<span 
+class="cmmi-10">F </span><span 
+class="cmr-10">= </span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">T</span><sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmmi-7">,</span><span 
+class="cmmi-7">&#x2026;</span><span 
+class="cmmi-7">,&#x03B1;</span><sub><span 
+class="cmmi-5">n</span></sub></sub><span style="margin-left:2.77695pt" class="tmspace"></span><span 
+class="cmsy-10">&#x2223;</span><span style="margin-left:2.77695pt" class="tmspace"></span><span 
+class="cmmi-10">T</span><sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmmi-7">,</span><span 
+class="cmmi-7">&#x2026;</span><span 
+class="cmmi-7">,&#x03B1;</span><sub><span 
+class="cmmi-5">n</span></sub></sub><span 
+class="cmmi-10">&#x2260;</span><span 
+class="cmsy-10">&#x2205;} </span>as the set of tiles with at least one iteration. Tiles that contain <span 
+class="cmex-10">&#x220F;</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">k</span></sub>
+iterations are complete tiles. Otherwise, they are partial tiles.
+</p> 
+<p>The floor loops iterate over all tiles <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">T</span><sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmmi-7">,</span><span 
+class="cmmi-7">&#x2026;</span><span 
+class="cmmi-7">,&#x03B1;</span><sub><span 
+class="cmmi-5">n</span></sub></sub> <span 
+class="cmsy-10">&#x2208; </span><span 
+class="cmmi-10">F</span><span 
+class="cmsy-10">} </span>in lexicographic order with respect to their indices
+<span 
+class="cmr-10">(</span><span 
+class="cmmi-10">&#x03B1;</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,&#x03B1;</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmr-10">) </span>and the tile loops iterate over the iterations in <span 
+class="cmmi-10">T</span><sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmmi-7">,</span><span 
+class="cmmi-7">&#x2026;</span><span 
+class="cmmi-7">,&#x03B1;</span><sub><span 
+class="cmmi-5">n</span></sub></sub> in the lexicographic order of the
+corresponding iteration vectors. An implementation may reorder the sequential execution of two iterations if
+at least one is from a partial tile and if their respective logical iteration vectors in <span class="textit"><span class="textrm">loop-nest</span></span> do not have a
+product order relation.
+</p> 
+<p><p><a 
+ id="Q1-78-280"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">tile</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  depth
+  of
+  the
+  associated
+  loop
+  nest
+  must
+  be
+  greater
+  than
+  or
+  equal
+  to
+  <span 
+class="cmmi-10">n</span>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  All
+  loops
+  that
+  are
+  associated
+  with
+  the
+  construct
+  must
+  be
+  perfectly
+  nested.
+  </li>
+  <li class="itemize">
+  No
+  loop
+  that
+  is
+  associated
+  with
+  the
+  construct
+  may
+  be
+  a
+  non-rectangular
+  loop.
+  </li></ul>
+<p><p><a 
+ id="Q1-78-281"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu45.html#x70-700002.11.1">2.11.1<!--tex4ht:ref: subsec:Canonical Loop Nest Form --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Worksharing-loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu50.html#x75-800002.11.6.1">2.11.6.1<!--tex4ht:ref: subsec:distribute Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu55.html#x81-910002.12.2">2.12.2<!--tex4ht:ref: subsec:taskloop Construct --></a>.
+  </li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">2.11.9.2  </span> <a 
+ id="x78-880002.11.9.2"></a><span class="textbf"><span class="texttt">unroll</span></span> Construct</h5>
+<a 
+ id="dx78-88001"></a>
+<a 
+ id="dx78-88002"></a>
+<p><p><a 
+ id="Q1-78-283"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">unroll</span></span> construct fully or partially unrolls a loop.
+<p><a 
+ id="Q1-78-284"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">unroll</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88003r1"></a></span></p> 
+<!--l. 2502--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">unroll</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88007r1"></a></span></p> 
+<!--l. 2508--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88008r2"></a></span><span 
+class="pcrb8t-">full</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88009r3"></a></span><span 
+class="pcrb8t-">partial</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">unroll</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">factor</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88010r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">unroll-factor</span></span> is a positive integer expression that is a compile-time constant.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">unroll</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88011r1"></a></span></p> 
+<!--l. 2520--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88012r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">unroll</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88013r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">nest</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88014r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">unroll</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88015r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">loop-nest</span></span> is a canonical loop nest and <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88016r1"></a></span></p> 
+<!--l. 2528--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88017r2"></a></span><span 
+class="pcrb8t-">full</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88018r3"></a></span><span 
+class="pcrb8t-">partial</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">unroll</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">factor</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x78-88019r4"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">unroll-factor</span></span> is a positive integer expression that is a compile-time constant.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">unroll</span></span> directive is not specified, an <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">unroll</span></span> directive is assumed at the end of the
+<span class="textit"><span class="textrm">do-loop</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-78-285"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">unroll</span></span> construct controls the outermost loop of the loop nest.
+</p> 
+<p>When the <span class="textbf"><span class="texttt">full</span></span> clause is specified, the associated loop is <span class="emph">fully unrolled</span> &#8211; it is replaced with <span 
+class="cmmi-10">n </span>instances of
+its loop body, one for each logical iteration of the associated loop and in the order of its logical
+iterations. The construct is replaced by a structured block that only contains the <span 
+class="cmmi-10">n </span>loop body
+instances.
+                                                                            
+                                                                            
+</p> 
+<p>When the <span class="textbf"><span class="texttt">partial</span></span> clause is specified, the associated loop is first tiled with a tile size of <span class="textit"><span class="textrm">unroll-factor</span></span>.
+Then, the generated tile loop is fully unrolled. If the <span class="textbf"><span class="texttt">partial</span></span> clause is used without an <span class="textit"><span class="textrm">unroll-factor</span></span>
+argument then the unroll factor is a positive integer that is implementation defined.
+</p> 
+<p>When neither the <span class="textbf"><span class="texttt">full</span></span> nor the <span class="textbf"><span class="texttt">partial</span></span> clauses are specified, if and how the loop is unrolled is
+implementation defined.
+</p> 
+<p>The <span class="textbf"><span class="texttt">unroll</span></span> construct results in a generated loop that has canonical loop nest form if and only if the
+<span class="textbf"><span class="texttt">partial</span></span> clause is specified.
+</p> 
+<p><p><a 
+ id="Q1-78-286"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">unroll</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  <span class="textbf"><span class="texttt">full</span></span>
+  clause
+  is
+  specified,
+  the
+  iteration
+  count
+  of
+  the
+  loop
+  must
+  be
+  a
+  compile-time
+  constant.</li></ul>
+<p><p><a 
+ id="Q1-78-287"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Canonical
+                                                                            
+                                                                            
+  loop
+  nest
+  form,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">tile</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="#x78-870002.11.9.1">2.11.9.1<!--tex4ht:ref: subsubsec:tile Construct --></a>.
+  </li></ul>
+<!--l. 47--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse20.html" >next</a>] [<a 
+href="openmpsu52.html" >prev</a>] [<a 
+href="openmpsu52.html#tailopenmpsu52.html" >prev-tail</a>] [<a 
+href="openmpsu53.html" >front</a>] [<a 
+href="openmpse19.html#openmpsu53.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu53.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,813 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>teams Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse16.html" >next</a>] [<a 
+href="openmpsu41.html" >prev</a>] [<a 
+href="openmpsu41.html#tailopenmpsu41.html" >prev-tail</a>] [<a 
+href="#tailopenmpse15.html">tail</a>] [<a 
+href="openmpch2.html#openmpse15.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.7</span>&#x00A0;&#x00A0;<a 
+ id="x62-620002.7"></a><span class="textbf"><span class="texttt">teams</span></span> Construct</h3>
+<a 
+ id="dx62-62001"></a>
+<a 
+ id="dx62-62002"></a>
+<a 
+ id="dx62-62003"></a>
+<p><p><a 
+ id="Q1-62-126"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">teams</span></span> construct creates a league of initial teams and the initial thread in each team executes the
+region.
+<p><a 
+ id="Q1-62-127"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">teams</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62004r1"></a></span></p> 
+<!--l. 16--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">teams</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62006r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62007r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62008r1"></a></span></p> 
+<!--l. 23--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62009r2"></a></span><span 
+class="pcrb8t-">num_teams</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">upper</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62010r3"></a></span><span 
+class="pcrb8t-">thread_limit</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62011r4"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">data</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sharing</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attribute</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62012r5"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62013r6"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62014r7"></a></span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62015r8"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62016r9"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62017r10"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">lower-bound</span></span> and <span class="textit"><span class="textrm">upper-bound</span></span> are scalar integer expressions.
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">teams</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62018r1"></a></span></p> 
+<!--l. 41--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62019r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">teams</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62020r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62021r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">teams</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62022r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62023r1"></a></span></p> 
+<!--l. 47--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62024r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">teams</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62025r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62026r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">teams</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62027r5"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62028r1"></a></span></p> 
+<!--l. 57--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62029r2"></a></span><span 
+class="pcrb8t-">num_teams</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">lower</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">upper</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">bound</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62030r3"></a></span><span 
+class="pcrb8t-">thread_limit</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62031r4"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">data</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sharing</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attribute</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62032r5"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62033r6"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62034r7"></a></span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62035r8"></a></span><span 
+class="pcrb8t-">reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62036r9"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x62-62037r10"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">lower-bound</span></span> and <span class="textit"><span class="textrm">upper-bound</span></span> are scalar integer expressions.
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-62-128"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">teams</span></span> region is the encountering thread.
+</p> 
+<p><p><a 
+ id="Q1-62-129"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+When a thread encounters a <span class="textbf"><span class="texttt">teams</span></span> construct, a league of teams is created. Each team is an initial team, and
+the initial thread in each team executes the <span class="textbf"><span class="texttt">teams</span></span> region.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">num_teams</span></span> clause is present, <span class="textit"><span class="textrm">lower-bound</span></span> is the specified lower bound and <span class="textit"><span class="textrm">upper-bound</span></span> is the
+specified upper bound on the number of teams requested. If a lower bound is not specified, the
+lower bound is set to the specified upper bound. The number of teams created is implementation
+defined, but it will be greater than or equal to the lower bound and less than or equal to the upper
+bound.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">num_teams</span></span> clause is not specified and the value of the <span class="textit"><span class="textrm">nteams-var</span></span> ICV is greater than zero,
+the number of teams created is less or equal to the value of the <span class="textit"><span class="textrm">nteams-var</span></span> ICV. Otherwise,
+the number of teams created is implementation defined, but it will be greater than or equal to
+1.
+</p> 
+<p>A thread may obtain the number of teams created by the construct with a call to the <span class="textbf"><span class="texttt">omp_get_num_teams</span></span>
+routine.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">thread_limit</span></span> clause is not present on the <span class="textbf"><span class="texttt">teams</span></span> construct, but the construct is closely nested
+inside a <span class="textbf"><span class="texttt">target</span></span> construct on which the <span class="textbf"><span class="texttt">thread_limit</span></span> clause is specified, the behavior is as if that
+<span class="textbf"><span class="texttt">thread_limit</span></span> clause is also specified for the <span class="textbf"><span class="texttt">teams</span></span> construct.
+</p> 
+<p>As described in Section&#x00A0;<a 
+href="openmpsu34.html#x52-520002.4.4.1">2.4.4.1<!--tex4ht:ref: subsubsec:How the Per-Data Environment ICVs Work --></a>, the <span class="textbf"><span class="texttt">teams</span></span> construct limits the number of threads that may participate in a
+contention group initiated by each team by setting the value of the <span class="textit"><span class="textrm">thread-limit-var</span></span> ICV for the initial task to
+an implementation defined value greater than zero. If the <span class="textbf"><span class="texttt">thread_limit</span></span> clause is specified, the
+number of threads will be less than or equal to the value specified in the clause. Otherwise, if the
+<span class="textit"><span class="textrm">teams-thread-limit-var</span></span> ICV is greater than zero, the number of threads will be less than or equal to that
+value.
+                                                                            
+                                                                            
+</p> 
+<p>On a combined or composite construct that includes <span class="textbf"><span class="texttt">target</span></span> and <span class="textbf"><span class="texttt">teams</span></span> constructs, the expressions in
+<span class="textbf"><span class="texttt">num_teams</span></span> and <span class="textbf"><span class="texttt">thread_limit</span></span> clauses are evaluated on the host device on entry to the <span class="textbf"><span class="texttt">target</span></span>
+construct.
+</p> 
+<p>Once the teams are created, the number of initial teams remains constant for the duration of the <span class="textbf"><span class="texttt">teams</span></span>
+region.
+</p> 
+<p>Within a <span class="textbf"><span class="texttt">teams</span></span> region, initial team numbers uniquely identify each initial team. Initial team numbers are
+consecutive whole numbers ranging from zero to one less than the number of initial teams. A
+thread may obtain its own initial team number by a call to the <span class="textbf"><span class="texttt">omp_get_team_num</span></span> library
+routine.
+</p> 
+<p>The place list, given by the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV of the encountering thread, is split into subpartitions in
+an implementation-defined manner, and each team is assigned to a subpartition by setting the
+<span class="textit"><span class="textrm">place-partition-var</span></span> of its initial thread to the subpartition.
+</p> 
+<p>The <span class="textbf"><span class="texttt">teams</span></span> construct sets the <span class="textit"><span class="textrm">default-device-var</span></span> ICV for each initial thread to an implementation-defined
+value.
+</p> 
+<p>After the teams have completed execution of the <span class="textbf"><span class="texttt">teams</span></span> region, the encountering task resumes execution of
+the enclosing task region.
+</p> 
+<p><p><a 
+ id="Q1-62-130"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">teams-begin</span></span> event occurs in a thread that encounters a <span class="textbf"><span class="texttt">teams</span></span> construct before any initial task is
+created for the corresponding <span class="textbf"><span class="texttt">teams</span></span> region.
+</p> 
+<p>Upon creation of each initial task, an <span class="textit"><span class="textrm">initial-task-begin</span></span> event occurs in the thread that executes the initial
+task after the initial task is fully initialized but before the thread begins to execute the structured block of the
+<span class="textbf"><span class="texttt">teams</span></span> construct.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">teams</span></span> region creates a native thread, a <span class="textit"><span class="textrm">native-thread-begin</span></span> event occurs as the first event in the
+context of the new thread prior to the <span class="textit"><span class="textrm">initial-task-begin</span></span> event.
+</p> 
+<p>When a thread finishes an initial task, an <span class="textit"><span class="textrm">initial-task-end</span></span> event occurs in the thread.
+</p> 
+<p>The <span class="textit"><span class="textrm">teams-end</span></span> event occurs in the thread that encounters the <span class="textbf"><span class="texttt">teams</span></span> construct after the thread executes its
+<span class="textit"><span class="textrm">initial-task-end</span></span> event but before it resumes execution of the encountering task.
+</p> 
+<p>If a native thread is destroyed at the end of a <span class="textbf"><span class="texttt">teams</span></span> region, a <span class="textit"><span class="textrm">native-thread-end</span></span> event occurs in the thread
+as the last event prior to destruction of the thread.
+</p> 
+<p><p><a 
+ id="Q1-62-131"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_parallel_begin</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">teams-begin</span></span> event in that thread. The callback occurs in the task that encounters the <span class="textbf"><span class="texttt">teams</span></span> construct. This
+callback has the type signature <span class="textbf"><span class="texttt">ompt_callback_parallel_begin_t</span></span>. In the dispatched callback,
+<span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_parallel_league)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span>.
+                                                                            
+                                                                            
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_implicit_task</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+as its <span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of an <span class="textit"><span class="textrm">initial-task-begin</span></span> in that thread. Similarly, a thread
+dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_implicit_task</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its
+<span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of an <span class="textit"><span class="textrm">initial-task-end</span></span> event in that thread. The callbacks occur in the
+context of the initial task and have type signature <span class="textbf"><span class="texttt">ompt_callback_implicit_task_t</span></span>. In the
+dispatched callback, <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_initial)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_parallel_end</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">teams-end</span></span> event in that thread. The callback occurs in the task that encounters the <span class="textbf"><span class="texttt">teams</span></span> construct. This
+callback has the type signature <span class="textbf"><span class="texttt">ompt_callback_parallel_end_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_thread_begin</span></span> callback for the <span class="textit"><span class="textrm">native-thread-begin</span></span>
+event in that thread. The callback occurs in the context of the thread. The callback has type signature
+<span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_thread_end</span></span> callback for the <span class="textit"><span class="textrm">native-thread-end</span></span>
+event in that thread. The callback occurs in the context of the thread. The callback has type signature
+<span class="textbf"><span class="texttt">ompt_callback_thread_end_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-62-132"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">teams</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  program
+  that
+  branches
+  into
+  or
+  out
+  of
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region
+  is
+  non-conforming.
+  </li>
+  <li class="itemize">
+  A
+                                                                            
+                                                                            
+  program
+  must
+  not
+  depend
+  on
+  any
+  ordering
+  of
+  the
+  evaluations
+  of
+  the
+  clauses
+  of
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  directive,
+  or
+  on
+  any
+  side
+  effects
+  of
+  the
+  evaluation
+  of
+  the
+  clauses.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  The
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+                                                                            
+                                                                            
+  expression
+  must
+  evaluate
+  to
+  a
+  positive
+  integer
+  value.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">num_teams</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  The
+  <span class="textit"><span class="textrm">lower-bound</span></span>
+  and
+  <span class="textit"><span class="textrm">upper-bound</span></span>
+  specified
+  in
+  the
+  <span class="textbf"><span class="texttt">num_teams</span></span>
+  clause
+  must
+  evaluate
+  to
+  positive
+  integer
+  values.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region
+                                                                            
+                                                                            
+  must
+  be
+  strictly
+  nested
+  within
+  the
+  implicit
+  parallel
+  region
+  that
+  surrounds
+  the
+  whole
+  OpenMP
+  program
+  or
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region.
+  If
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region
+  is
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region,
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  must
+  not
+  contain
+  any
+  statements,
+  declarations
+  or
+  directives
+  outside
+  of
+                                                                            
+                                                                            
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute</span></span>,
+  <span class="textbf"><span class="texttt">distribute
+  simd</span></span>,
+  distribute
+  parallel
+  worksharing-loop,
+  distribute
+  parallel
+  worksharing-loop
+  SIMD,
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions,
+  including
+  any
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  arising
+  from
+  combined
+  constructs,
+  <span class="textbf"><span class="texttt">omp_get_num_teams()</span></span>
+  regions,
+  and
+  <span class="textbf"><span class="texttt">omp_get_team_num()</span></span>
+  regions
+  are
+  the
+  only
+  OpenMP
+  regions
+  that
+  may
+  be
+  strictly
+  nested
+  inside
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.</li></ul>
+<p><p><a 
+ id="Q1-62-133"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu50.html#x75-800002.11.6.1">2.11.6.1<!--tex4ht:ref: subsec:distribute Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute
+  simd</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu50.html#x75-810002.11.6.2">2.11.6.2<!--tex4ht:ref: subsec:distribute simd Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu63.html#x90-1000002.13.4">2.13.4<!--tex4ht:ref: subsec:allocate Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  see
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_teams</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu151.html#x192-2250003.4.1">3.4.1<!--tex4ht:ref: subsec:omp_get_num_teams --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_team_num</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu152.html#x193-2260003.4.2">3.4.2<!--tex4ht:ref: subsec:omp_get_team_num --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_thread_begin_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3430004.5.2.1">4.5.2.1<!--tex4ht:ref: sec:ompt_callback_thread_begin_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_thread_end_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3440004.5.2.2">4.5.2.2<!--tex4ht:ref: sec:ompt_callback_thread_end_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_parallel_begin_t</span></span>,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3450004.5.2.3">4.5.2.3<!--tex4ht:ref: sec:ompt_callback_parallel_begin_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_parallel_end_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3460004.5.2.4">4.5.2.4<!--tex4ht:ref: sec:ompt_callback_parallel_end_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_implicit_task_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3530004.5.2.11">4.5.2.11<!--tex4ht:ref: sec:ompt_callback_implicit_task_t --></a>.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse16.html" >next</a>] [<a 
+href="openmpsu41.html" >prev</a>] [<a 
+href="openmpsu41.html#tailopenmpsu41.html" >prev-tail</a>] [<a 
+href="openmpse15.html" >front</a>] [<a 
+href="openmpch2.html#openmpse15.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse15.html"></a> </p> 
+ 
+</body> 
+</html>

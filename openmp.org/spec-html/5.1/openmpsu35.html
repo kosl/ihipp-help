@@ -1,0 +1,241 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>ICV Override Relationships</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2445--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse13.html" >next</a>] [<a 
+href="openmpsu34.html" >prev</a>] [<a 
+href="openmpsu34.html#tailopenmpsu34.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu35.html">tail</a>] [<a 
+href="openmpse12.html#openmpsu35.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.4.5</span>&#x00A0;&#x00A0;<a 
+ id="x53-530002.4.5"></a>ICV Override Relationships</h4>
+<p>Table&#x00A0;<a 
+href="#x53-53001r4">2.4<!--tex4ht:ref: tab:ICV Override Relationships --></a> shows the override relationships among construct clauses and ICVs. The table only lists ICVs that
+can be overwritten by a clause.
+<a 
+ id="x53-53001r4"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x53-53002"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.4: </td><td  
+class="content">ICV Override Relationships</td></tr></table></div><!--tex4ht:label?: x53-53001r2.4 -->
+ <table id="TBL-8" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-8-1g"><col 
+id="TBL-8-1" /><col 
+id="TBL-8-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">ICV</span></span>                              </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">construct clause, if used</span></span>            </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-2-1"  
+class="td11">                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-3-1"  
+class="td11">                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-4-1"  
+class="td11">                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-5-1"  
+class="td11"> <span class="textit"><span class="textrm">nthreads-var</span></span>                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">num_threads</span></span>              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-6-1"  
+class="td11"> <span class="textit"><span class="textrm">run-sched-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">schedule</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-7-1"  
+class="td11"> <span class="textit"><span class="textrm">def-sched-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">schedule</span></span>                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-8-1"  
+class="td11"> <span class="textit"><span class="textrm">bind-var</span></span>                           </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-8-2"  
+class="td11"> <span class="textbf"><span class="texttt">proc_bind</span></span>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-9-1"  
+class="td11"> <span class="textit"><span class="textrm">def-allocator-var</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">allocator</span></span>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-10-1"  
+class="td11"> <span class="textit"><span class="textrm">nteams-var</span></span>                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">num_teams</span></span>                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-11-1"  
+class="td11"> <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">thread_limit</span></span>             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-12-1"  
+class="td11">                  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-8-13-1"  
+class="td11">                  </td>
+</tr></table></div>
+<p><p><a 
+ id="Q1-53-87"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">num_threads</span></span>
+  clause
+  overrides
+  the
+  value
+  of
+  the
+  first
+  element
+  of
+  the
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  ICV.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  clause
+  specifies
+  a
+  modifier
+  then
+  that
+  modifier
+  overrides
+  any
+  modifier
+  that
+  is
+  specified
+  in
+  the
+  <span class="textit"><span class="textrm">run-sched-var</span></span>
+  ICV.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">bind-var</span></span>
+  is
+  not
+  set
+  to
+  <span class="textit"><span class="textrm">false</span></span>
+  then
+  the
+  <span class="textbf"><span class="texttt">proc_bind</span></span>
+  clause
+  overrides
+  the
+  value
+  of
+  the
+  first
+                                                                            
+                                                                            
+  element
+  of
+  the
+  <span class="textit"><span class="textrm">bind-var</span></span>
+  ICV;
+  otherwise,
+  the
+  <span class="textbf"><span class="texttt">proc_bind</span></span>
+  clause
+  has
+  no
+  effect.</li></ul>
+<p><p><a 
+ id="Q1-53-88"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">proc_bind</span></span>
+  clause,
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">num_threads</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">num_teams</span></span>
+  clause,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpse15.html#x62-620002.7">2.7<!--tex4ht:ref: sec:teams Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">thread_limit</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse15.html#x62-620002.7">2.7<!--tex4ht:ref: sec:teams Construct --></a>.
+  </li>
+  <li class="itemize">
+  Worksharing-loop
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-730002.11.4">2.11.4<!--tex4ht:ref: subsec:Worksharing-Loop Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">schedule</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu48.html#x73-740002.11.4.1">2.11.4.1<!--tex4ht:ref: subsubsec:Determining the Schedule of a Worksharing-Loop --></a>.
+  </li></ul>
+<!--l. 2516--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse13.html" >next</a>] [<a 
+href="openmpsu34.html" >prev</a>] [<a 
+href="openmpsu34.html#tailopenmpsu34.html" >prev-tail</a>] [<a 
+href="openmpsu35.html" >front</a>] [<a 
+href="openmpse12.html#openmpsu35.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu35.html"></a> </p> 
+ 
+</body> 
+</html>

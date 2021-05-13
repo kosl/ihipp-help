@@ -1,0 +1,266 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Initialization and Finalization Callback Signature</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 17--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu214.html" >next</a>] [<a 
+href="openmpse50.html" >prev</a>] [<a 
+href="openmpse50.html#tailopenmpse50.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu213.html">tail</a>] [<a 
+href="openmpse50.html#openmpsu213.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.5.1</span>&#x00A0;&#x00A0;<a 
+ id="x271-3390004.5.1"></a>Initialization and Finalization Callback Signature</h4>
+<p>
+</p> 
+
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">4.5.1.1  </span> <a 
+ id="x271-3400004.5.1.1"></a><span class="textbf"><span class="texttt">ompt_initialize_t</span></span></h5>
+<p><p><a 
+ id="Q1-271-1585"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A callback with type signature <span class="textbf"><span class="texttt">ompt_initialize_t</span></span> initializes use of the OMPT interface.
+<p><a 
+ id="Q1-271-1586"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-340001r1"></a></span></p> 
+<!--l. 29--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-340002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_initialize_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-340003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_function_lookup_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">lookup</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-340004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">initial_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-340005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_data_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">tool_data</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-340006r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-340007r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-271-1587"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+To use the OMPT interface, an implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> must return a non-null pointer to
+an <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure that contains a pointer to a tool initializer function with
+type signature <span class="textbf"><span class="texttt">ompt_initialize_t</span></span>. An OpenMP implementation will call the initializer after fully
+initializing itself but before beginning execution of any OpenMP construct or runtime library
+routine.
+</p> 
+<p>The initializer returns a non-zero value if it succeeds; otherwise the OMPT interface state changes to
+<span class="emph">inactive</span> as described in Section&#x00A0;<a 
+href="openmpsu206.html#x261-2940004.2.3">4.2.3<!--tex4ht:ref: sec:tool-initialize --></a>.
+</p> 
+<p><p><a 
+ id="Q1-271-1588"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">lookup</span></span> argument is a callback to an OpenMP runtime routine that must be used to obtain a pointer to
+each runtime entry point in the OMPT interface. The <span class="textit"><span class="textrm">initial_device_num</span></span> argument provides
+the value of <span class="textbf"><span class="texttt">omp_get_initial_device()</span></span>. The <span class="textit"><span class="textrm">tool_data</span></span> argument is a pointer to the
+<span class="textit"><span class="textrm">tool_data</span></span> field in the <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure that <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+returned.
+</p> 
+<p><p><a 
+ id="Q1-271-1589"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_initial_device</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu167.html#x211-2440003.7.7">3.7.7<!--tex4ht:ref: subsec:omp_get_initial_device --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  function,
+  see
+  Section&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1">4.2.1<!--tex4ht:ref: sec:ompt_start_tool --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1">4.4.1<!--tex4ht:ref: sec:ompt_start_tool_result_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4">4.4.4.4<!--tex4ht:ref: sec:ompt_data_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_function_lookup_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu217.html#x276-4090004.6.3">4.6.3<!--tex4ht:ref: sec:ompt_function_lookup_t --></a>.</li></ul>
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">4.5.1.2  </span> <a 
+ id="x271-3410004.5.1.2"></a><span class="textbf"><span class="texttt">ompt_finalize_t</span></span></h5>
+<p><p><a 
+ id="Q1-271-1591"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A tool implements a finalizer with the type signature <span class="textbf"><span class="texttt">ompt_finalize_t</span></span> to finalize its use of the OMPT
+interface.
+<p><a 
+ id="Q1-271-1592"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-341001r1"></a></span></p> 
+<!--l. 86--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-341002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompt_finalize_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-341003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompt_data_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">tool_data</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-341004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x271-341005r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-271-1593"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+To use the OMPT interface, an implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> must return a non-null pointer to
+an <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure that contains a non-null pointer to a tool finalizer with type
+signature <span class="textbf"><span class="texttt">ompt_finalize_t</span></span>. An OpenMP implementation must call the tool finalizer after the last
+OMPT <span class="textit"><span class="textrm">event</span></span> as the OpenMP implementation shuts down.
+</p> 
+<p><p><a 
+ id="Q1-271-1594"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">tool_data</span></span> argument is a pointer to the <span class="textit"><span class="textrm">tool_data</span></span> field in the <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>
+structure returned by <span class="textbf"><span class="texttt">ompt_start_tool</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-271-1595"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  function,
+  see
+  Section&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1">4.2.1<!--tex4ht:ref: sec:ompt_start_tool --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1">4.4.1<!--tex4ht:ref: sec:ompt_start_tool_result_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_data_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4">4.4.4.4<!--tex4ht:ref: sec:ompt_data_t --></a>.</li></ul>
+<!--l. 117--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu214.html" >next</a>] [<a 
+href="openmpse50.html" >prev</a>] [<a 
+href="openmpse50.html#tailopenmpse50.html" >prev-tail</a>] [<a 
+href="openmpsu213.html" >front</a>] [<a 
+href="openmpse50.html#openmpsu213.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu213.html"></a> </p> 
+ 
+</body> 
+</html>

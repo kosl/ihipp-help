@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_wtime</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 643--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu186.html" >next</a>] [<a 
+href="openmpse40.html" >prev</a>] [<a 
+href="openmpse40.html#tailopenmpse40.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu185.html">tail</a>] [<a 
+href="openmpse40.html#openmpsu185.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.10.1</span>&#x00A0;&#x00A0;<a 
+ id="x232-2650003.10.1"></a><span class="textbf"><span class="texttt">omp_get_wtime</span></span></h4>
+<a 
+ id="dx232-265001"></a>
+<p><p><a 
+ id="Q1-232-1277"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_wtime</span></span> routine returns elapsed wall clock time in seconds.
+<p><a 
+ id="Q1-232-1278"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x232-265002r1"></a></span></p> 
+<!--l. 651--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x232-265003r2"></a></span><span 
+class="pcrb8t-">double</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_wtime</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x232-265004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x232-265005r1"></a></span></p> 
+<!--l. 657--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x232-265006r2"></a></span><span 
+class="pcrb8t-">double</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">precision</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_wtime</span><span 
+class="pcrb8t-">()</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x232-265007r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-232-1279"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_get_wtime</span></span> region is the encountering thread. The routine&#8217;s return
+value is not guaranteed to be consistent across any set of threads.
+</p> 
+<p><p><a 
+ id="Q1-232-1280"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_get_wtime</span></span> routine returns a value equal to the elapsed wall clock time in seconds since some
+<span class="emph">time-in-the-past</span>. The actual <span class="emph">time-in-the-past</span> is arbitrary, but it is guaranteed not to change during the
+execution of the application program. The time returned is a <span class="emph">per-thread time</span>, so it is not required to be
+globally consistent across all threads that participate in an application.
+</p> 
+<!--l. 677--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu186.html" >next</a>] [<a 
+href="openmpse40.html" >prev</a>] [<a 
+href="openmpse40.html#tailopenmpse40.html" >prev-tail</a>] [<a 
+href="openmpsu185.html" >front</a>] [<a 
+href="openmpse40.html#openmpsu185.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu185.html"></a> </p> 
+ 
+</body> 
+</html>

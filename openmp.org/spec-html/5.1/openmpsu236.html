@@ -1,0 +1,693 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Accessing Memory in the OpenMP Program or Runtime</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 316--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu237.html" >next</a>] [<a 
+href="openmpsu235.html" >prev</a>] [<a 
+href="openmpsu235.html#tailopenmpsu235.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu236.html">tail</a>] [<a 
+href="openmpse55.html#openmpsu236.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.4.3</span>&#x00A0;&#x00A0;<a 
+ id="x300-4370005.4.3"></a>Accessing Memory in the OpenMP Program or Runtime</h4>
+<p>The OMPD library cannot directly read from or write to memory of the OpenMP program. Instead the
+OMPD library must use callbacks that the third-party tool provides so that the third-party tool performs the
+operation.
+</p> 
+<p>
+</p> 
+
+<h5 class="subsubsectionHead"><span class="titlemark">5.4.3.1  </span> <a 
+ id="x300-4380005.4.3.1"></a><span class="textbf"><span class="texttt">ompd_callback_symbol_addr_fn_t</span></span></h5>
+<a 
+ id="dx300-438001"></a>
+<p><p><a 
+ id="Q1-300-2103"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_callback_symbol_addr_fn_t</span></span> type is the type signature of the callback that the
+third-party tool provides to look up the addresses of symbols in an OpenMP program.
+<p><a 
+ id="Q1-300-2104"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438002r1"></a></span></p> 
+<!--l. 335--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438003r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompd_callback_symbol_addr_fn_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">address_space_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438006r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">symbol_name</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438007r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">symbol_addr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438008r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">char</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">file_name</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438009r8"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-438010r9"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-300-2105"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_callback_symbol_addr_fn_t</span></span> is the type signature of the symbol-address query callback
+routine that the third-party tool provides. This callback looks up addresses of symbols within a specified
+address space.
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-300-2106"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+This callback looks up the symbol provided in the <span class="textit"><span class="textrm">symbol_name</span></span> argument.
+</p> 
+<p>The <span class="textit"><span class="textrm">address_space_context</span></span> argument is the third-party tool&#8217;s representation of the address space of the
+process, core file, or device.
+</p> 
+<p>The <span class="textit"><span class="textrm">thread_context</span></span> argument is NULL for global memory accesses. If <span class="textit"><span class="textrm">thread_context</span></span> is not NULL,
+<span class="textit"><span class="textrm">thread_context</span></span> gives the thread-specific context for the symbol lookup for the purpose of calculating
+thread local storage addresses. In this case, the thread to which <span class="textit"><span class="textrm">thread_context</span></span> refers must be
+associated with either the process or the device that corresponds to the <span class="textit"><span class="textrm">address_space_context</span></span>
+argument.
+</p> 
+<p>The third-party tool uses the <span class="textit"><span class="textrm">symbol_name</span></span> argument that the OMPD library supplies verbatim. In
+particular, no name mangling, demangling or other transformations are performed prior to the lookup. The
+<span class="textit"><span class="textrm">symbol_name</span></span> parameter must correspond to a statically allocated symbol within the specified
+address space. The symbol can correspond to any type of object, such as a variable, thread
+local storage variable, function, or untyped label. The symbol can have a local, global, or weak
+binding.
+</p> 
+<p>The <span class="textit"><span class="textrm">file_name</span></span> argument is an optional input parameter that indicates the name of the shared library in which
+the symbol is defined, and it is intended to help the third-party tool disambiguate symbols that are defined
+multiple times across the executable or shared library files. The shared library name may not be an exact
+match for the name seen by the third-party tool. If <span class="textit"><span class="textrm">file_name</span></span> is NULL then the third-party tool first
+tries to find the symbol in the executable file, and, if the symbol is not found, the third-party
+tool tries to find the symbol in the shared libraries in the order in which the shared libraries
+are loaded into the address space. If <span class="textit"><span class="textrm">file_name</span></span> is non-null then the third-party tool first tries
+to find the symbol in the libraries that match the name in the <span class="textit"><span class="textrm">file_name</span></span> argument, and, if the
+symbol is not found, the third-party tool then uses the same procedure as when <span class="textit"><span class="textrm">file_name</span></span> is
+NULL.
+</p> 
+<p>The callback does not support finding either symbols that are dynamically allocated on the call stack or
+statically allocated symbols that are defined within the scope of a function or subroutine.
+</p> 
+<p>The callback returns the address of the symbol in the location to which <span class="textit"><span class="textrm">symbol_addr</span></span> points.
+</p> 
+<p><p><a 
+ id="Q1-300-2107"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+In addition to the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">5.4<!--tex4ht:ref: subsec:ompd-third-party-tool-callback-interface --></a>, routines that use the
+<span class="textbf"><span class="texttt">ompd_callback_symbol_addr_fn_t</span></span> type may also return the following return codes:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompd_rc_error</span></span>
+  if
+  the
+  requested
+  symbol
+  is
+  not
+  found;
+  or
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_bad_input</span></span>
+  if
+  no
+  symbol
+  name
+  is
+  provided.</li></ul>
+<p><p><a 
+ id="Q1-300-2108"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on routines that use the <span class="textbf"><span class="texttt">ompd_callback_symbol_addr_fn_t</span></span> type are as
+follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textit"><span class="textrm">address_space_context</span></span>
+  argument
+  must
+  be
+  non-null.
+  </li>
+  <li class="itemize">
+  The
+  symbol
+  that
+  the
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">symbol_name</span></span>
+  argument
+  specifies
+  must
+  be
+  defined.</li></ul>
+<p><p><a 
+ id="Q1-300-2109"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu224.html#x287-4200005.3.4">5.3.4<!--tex4ht:ref: subsubsubsec:ompd_address_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_address_space_context_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_thread_context_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">ompd_callbacks_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6">5.4.6<!--tex4ht:ref: subsubsec:ompd_callbacks_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.4.3.2  </span> <a 
+ id="x300-4390005.4.3.2"></a><span class="textbf"><span class="texttt">ompd_callback_memory_read_fn_t</span></span></h5>
+<a 
+ id="dx300-439001"></a>
+<p><p><a 
+ id="Q1-300-2111"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_read_fn_t</span></span> type is the type signature of the callback that the
+third-party tool provides to read data (<span class="textit"><span class="textrm">read_memory</span></span>) or a string (<span class="textit"><span class="textrm">read_string</span></span>) from an OpenMP
+program.
+<p><a 
+ id="Q1-300-2112"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439002r1"></a></span></p> 
+<!--l. 451--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439003r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompd_callback_memory_read_fn_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">address_space_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439006r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">addr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439007r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nbytes</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439008r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">buffer</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439009r8"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-439010r9"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-300-2113"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_read_fn_t</span></span> is the type signature of the read callback routines that the
+third-party tool provides.
+</p> 
+<p>The <span class="textit"><span class="textrm">read_memory</span></span> callback copies a block of data from <span class="textit"><span class="textrm">addr</span></span> within the address space given by
+<span class="textit"><span class="textrm">address_space_context</span></span> to the third-party tool <span class="textit"><span class="textrm">buffer</span></span>.
+</p> 
+<p>The <span class="textit"><span class="textrm">read_string</span></span> callback copies a string to which <span class="textit"><span class="textrm">addr</span></span> points, including the terminating null byte (<span class="textbf"><span class="texttt">&#8217;\0&#8217;</span></span>),
+to the third-party tool <span class="textit"><span class="textrm">buffer</span></span>. At most <span class="textit"><span class="textrm">nbytes</span></span> bytes are copied. If a null byte is not among the first <span class="textit"><span class="textrm">nbytes</span></span>
+bytes, the string placed in <span class="textit"><span class="textrm">buffer</span></span> is not null-terminated.
+</p> 
+<p><p><a 
+ id="Q1-300-2114"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The address from which the data are to be read in the OpenMP program that <span class="textit"><span class="textrm">address_space_context</span></span>
+specifies is given by <span class="textit"><span class="textrm">addr</span></span>. The <span class="textit"><span class="textrm">nbytes</span></span> argument is the number of bytes to be transferred. The <span class="textit"><span class="textrm">thread_context</span></span>
+argument is optional for global memory access, and in that case should be NULL. If it is non-null,
+<span class="textit"><span class="textrm">thread_context</span></span> identifies the thread-specific context for the memory access for the purpose of accessing
+thread local storage.
+                                                                            
+                                                                            
+</p> 
+<p>The data are returned through <span class="textit"><span class="textrm">buffer</span></span>, which is allocated and owned by the OMPD library. The
+contents of the buffer are unstructured, raw bytes. The OMPD library must arrange for any
+transformations such as byte-swapping that may be necessary (see&#x00A0;Section&#x00A0;<a 
+href="openmpsu237.html#x301-4410005.4.4">5.4.4<!--tex4ht:ref: subsubsubsec:ompd_callback_device_host_fn_t --></a>) to interpret the
+data.
+</p> 
+<p><p><a 
+ id="Q1-300-2115"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+In addition to the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">5.4<!--tex4ht:ref: subsec:ompd-third-party-tool-callback-interface --></a>, routines that use the
+<span class="textbf"><span class="texttt">ompd_callback_memory_read_fn_t</span></span> type may also return the following return codes:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_incomplete</span></span>
+  if
+  no
+  terminating
+  null
+  byte
+  is
+  found
+  while
+  reading
+  <span class="textit"><span class="textrm">nbytes</span></span>
+  using
+  the
+  <span class="textit"><span class="textrm">read_string</span></span>
+  callback;
+  or
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_error</span></span>
+  if
+  unallocated
+  memory
+  is
+  reached
+  while
+  reading
+  <span class="textit"><span class="textrm">nbytes</span></span>
+                                                                            
+                                                                            
+  using
+  either
+  the
+  <span class="textit"><span class="textrm">read_memory</span></span>
+  or
+  <span class="textit"><span class="textrm">read_string</span></span>
+  callback.</li></ul>
+<p><p><a 
+ id="Q1-300-2116"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_size_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">5.3.1<!--tex4ht:ref: subsubsubsec:ompd_size_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu224.html#x287-4200005.3.4">5.3.4<!--tex4ht:ref: subsubsubsec:ompd_address_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_address_space_context_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_thread_context_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu237.html#x301-4410005.4.4">5.4.4<!--tex4ht:ref: subsubsubsec:ompd_callback_device_host_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callbacks_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6">5.4.6<!--tex4ht:ref: subsubsec:ompd_callbacks_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.4.3.3  </span> <a 
+ id="x300-4400005.4.3.3"></a><span class="textbf"><span class="texttt">ompd_callback_memory_write_fn_t</span></span></h5>
+<a 
+ id="dx300-440001"></a>
+<p><p><a 
+ id="Q1-300-2118"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_write_fn_t</span></span> type is the type signature of the callback that the
+third-party tool provides to write data to an OpenMP program.
+<p><a 
+ id="Q1-300-2119"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440002r1"></a></span></p> 
+<!--l. 544--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440003r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(*</span><span 
+class="pcrb8t-">ompd_callback_memory_write_fn_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">address_space_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">thread_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440006r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">addr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440007r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">nbytes</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440008r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">buffer</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440009r8"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x300-440010r9"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-300-2120"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">ompd_callback_memory_write_fn_t</span></span> is the type signature of the write callback
+routine that the third-party tool provides. The OMPD library may call this callback to have the
+third-party tool write a block of data to a location within an address space from a provided
+buffer.
+</p> 
+<p><p><a 
+ id="Q1-300-2121"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The address to which the data are to be written in the OpenMP program that <span class="textit"><span class="textrm">address_space_context</span></span>
+specifies is given by <span class="textit"><span class="textrm">addr</span></span>. The <span class="textit"><span class="textrm">nbytes</span></span> argument is the number of bytes to be transferred. The <span class="textit"><span class="textrm">thread_context</span></span>
+argument is optional for global memory access, and in that case should be NULL. If it is non-null then
+<span class="textit"><span class="textrm">thread_context</span></span> identifies the thread-specific context for the memory access for the purpose of accessing
+thread local storage.
+</p> 
+<p>The data to be written are passed through <span class="textit"><span class="textrm">buffer</span></span>, which is allocated and owned by the OMPD library. The
+contents of the buffer are unstructured, raw bytes. The OMPD library must arrange for any transformations
+such as byte-swapping that may be necessary (see&#x00A0;Section&#x00A0;<a 
+href="openmpsu237.html#x301-4410005.4.4">5.4.4<!--tex4ht:ref: subsubsubsec:ompd_callback_device_host_fn_t --></a>) to render the data into a form that is
+compatible with the OpenMP runtime.
+</p> 
+<p><p><a 
+ id="Q1-300-2122"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+Routines that use the <span class="textbf"><span class="texttt">ompd_callback_memory_write_fn_t</span></span> type may return the general return
+codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">5.4<!--tex4ht:ref: subsec:ompd-third-party-tool-callback-interface --></a>.
+</p> 
+<p><p><a 
+ id="Q1-300-2123"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_size_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">5.3.1<!--tex4ht:ref: subsubsubsec:ompd_size_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu224.html#x287-4200005.3.4">5.3.4<!--tex4ht:ref: subsubsubsec:ompd_address_t --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_address_space_context_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_thread_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_thread_context_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu237.html#x301-4410005.4.4">5.4.4<!--tex4ht:ref: subsubsubsec:ompd_callback_device_host_fn_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_callbacks_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6">5.4.6<!--tex4ht:ref: subsubsec:ompd_callbacks_t --></a>.</li></ul>
+<!--l. 607--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu237.html" >next</a>] [<a 
+href="openmpsu235.html" >prev</a>] [<a 
+href="openmpsu235.html#tailopenmpsu235.html" >prev-tail</a>] [<a 
+href="openmpsu236.html" >front</a>] [<a 
+href="openmpse55.html#openmpsu236.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu236.html"></a> </p> 
+ 
+</body> 
+</html>

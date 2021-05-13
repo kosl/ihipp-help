@@ -1,0 +1,221 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_STACKSIZE</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 450--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse64.html" >next</a>] [<a 
+href="openmpse62.html" >prev</a>] [<a 
+href="openmpse62.html#tailopenmpse62.html" >prev-tail</a>] [<a 
+href="#tailopenmpse63.html">tail</a>] [<a 
+href="openmpch6.html#openmpse63.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.6</span>&#x00A0;&#x00A0;<a 
+ id="x329-5040006.6"></a><span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span></h3>
+<a 
+ id="dx329-504001"></a>
+<a 
+ id="dx329-504002"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span> environment variable controls the size of the stack for threads created by the
+OpenMP implementation, by setting the value of the <span class="textit"><span class="textrm">stacksize-var</span></span> ICV. The environment variable does not
+control the size of the stack for an initial thread.
+</p> 
+<p>The value of this environment variable takes the form:
+</p> 
+<p><span class="textit"><span class="textrm">size</span></span> | <span class="textit"><span class="textrm">size</span></span><span class="textbf"><span class="texttt">B</span></span> | <span class="textit"><span class="textrm">size</span></span><span class="textbf"><span class="texttt">K</span></span> | <span class="textit"><span class="textrm">size</span></span><span class="textbf"><span class="texttt">M</span></span> | <span class="textit"><span class="textrm">size</span></span><span class="textbf"><span class="texttt">G</span></span>
+</p> 
+<p>where:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">size</span></span>
+  is
+  a
+  positive
+  integer
+  that
+  specifies
+  the
+  size
+  of
+  the
+  stack
+                                                                            
+                                                                            
+  for
+  threads
+  that
+  are
+  created
+  by
+  the
+  OpenMP
+  implementation.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">B</span></span>,
+  <span class="textbf"><span class="texttt">K</span></span>,
+  <span class="textbf"><span class="texttt">M</span></span>,
+  and
+  <span class="textbf"><span class="texttt">G</span></span>
+  are
+  letters
+  that
+  specify
+  whether
+  the
+  given
+  size
+  is
+  in
+  Bytes,
+  Kilobytes
+  (1024
+  Bytes),
+  Megabytes
+  (1024
+  Kilobytes),
+  or
+  Gigabytes
+  (1024
+  Megabytes),
+  respectively.
+  If
+  one
+  of
+  these
+                                                                            
+                                                                            
+  letters
+  is
+  present,
+  white
+  space
+  may
+  occur
+  between
+  <span class="textit"><span class="textrm">size</span></span>
+  and
+  the
+  letter.</li></ul>
+<p>If only <span class="textit"><span class="textrm">size</span></span> is specified and none of <span class="textbf"><span class="texttt">B</span></span>, <span class="textbf"><span class="texttt">K</span></span>, <span class="textbf"><span class="texttt">M</span></span>, or <span class="textbf"><span class="texttt">G</span></span> is specified, then <span class="textit"><span class="textrm">size</span></span> is assumed to be in
+Kilobytes.
+</p> 
+<p>The behavior of the program is implementation defined if <span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span> does not conform to the above
+format, or if the implementation cannot provide a stack with the requested size.
+</p> 
+<p>Examples:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504003r1"></a></span></p> 
+<!--l. 483--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504004r2"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_STACKSIZE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2000500</span><span 
+class="pcrb8t-">B</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504005r3"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_STACKSIZE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"3000</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">k</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504006r4"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_STACKSIZE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">10</span><span 
+class="pcrb8t-">M</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504007r5"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_STACKSIZE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">10</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">M</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504008r6"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_STACKSIZE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"20</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">m</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504009r7"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_STACKSIZE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span><span 
+class="pcrb8t-">G</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504010r8"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_STACKSIZE</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">20000</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x329-504011r9"></a></span></pre>
+<p><p><a 
+ id="Q1-329-2458"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">stacksize-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.</li></ul>
+<!--l. 503--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse64.html" >next</a>] [<a 
+href="openmpse62.html" >prev</a>] [<a 
+href="openmpse62.html#tailopenmpse62.html" >prev-tail</a>] [<a 
+href="openmpse63.html" >front</a>] [<a 
+href="openmpch6.html#openmpse63.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse63.html"></a> </p> 
+ 
+</body> 
+</html>

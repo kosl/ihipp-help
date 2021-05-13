@@ -1,0 +1,182 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_place_proc_ids</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 197--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu144.html" >next</a>] [<a 
+href="openmpsu142.html" >prev</a>] [<a 
+href="openmpsu142.html#tailopenmpsu142.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu143.html">tail</a>] [<a 
+href="openmpse33.html#openmpsu143.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.3.4</span>&#x00A0;&#x00A0;<a 
+ id="x183-2160003.3.4"></a><span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span></h4>
+<a 
+ id="dx183-216001"></a>
+<p><p><a 
+ id="Q1-183-953"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span> routine returns the numerical identifiers of the processors available to
+the execution environment in the specified place.
+<p><a 
+ id="Q1-183-954"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216002r1"></a></span></p> 
+<!--l. 208--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_place_proc_ids</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">place_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">ids</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+                                                                            
+                                                                            
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216005r1"></a></span></p> 
+<!--l. 216--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216006r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_place_proc_ids</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">place_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ids</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216007r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">place_num</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216008r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ids</span><span 
+class="pcrb8t-">(*)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x183-216009r5"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-183-955"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span> region is all threads on a device. The effect
+of executing this routine is not related to any specific region corresponding to any construct or API
+routine.
+</p> 
+<p><p><a 
+ id="Q1-183-956"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span> routine returns the numerical identifiers of each processor
+associated with the place numbered <span class="textit"><span class="textrm">place_num</span></span>. The numerical identifiers are non-negative and their
+meaning is implementation defined. The numerical identifiers are returned in the array <span class="textit"><span class="textrm">ids</span></span> and their
+order in the array is implementation defined. The array must be sufficiently large to contain
+<span class="textbf"><span class="texttt">omp_get_place_num_procs(</span></span><span class="textit"><span class="textrm">place_num</span></span><span class="textbf"><span class="texttt">)</span></span> integers; otherwise, the behavior is unspecified. The
+routine has no effect when <span class="textit"><span class="textrm">place_num</span></span> has a negative value or a value greater than or equal to
+<span class="textbf"><span class="texttt">omp_get_num_places()</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-183-957"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">place-partition-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  Controlling
+  OpenMP
+  thread
+  affinity,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">2.6.2<!--tex4ht:ref: subsec:Controlling OpenMP Thread Affinity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_places</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu141.html#x181-2140003.3.2">3.3.2<!--tex4ht:ref: subsec:omp_get_num_places --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_place_num_procs</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu142.html#x182-2150003.3.3">3.3.3<!--tex4ht:ref: subsec:omp_get_place_num_procs --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5">6.5<!--tex4ht:ref: sec:OMP_PLACES --></a>.</li></ul>
+<!--l. 259--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu144.html" >next</a>] [<a 
+href="openmpsu142.html" >prev</a>] [<a 
+href="openmpsu142.html#tailopenmpsu142.html" >prev-tail</a>] [<a 
+href="openmpsu143.html" >front</a>] [<a 
+href="openmpse33.html#openmpsu143.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu143.html"></a> </p> 
+ 
+</body> 
+</html>

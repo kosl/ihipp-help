@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_TOOL_LIBRARIES</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1012--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse77.html" >next</a>] [<a 
+href="openmpse75.html" >prev</a>] [<a 
+href="openmpse75.html#tailopenmpse75.html" >prev-tail</a>] [<a 
+href="#tailopenmpse76.html">tail</a>] [<a 
+href="openmpch6.html#openmpse76.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.19</span>&#x00A0;&#x00A0;<a 
+ id="x342-5170006.19"></a><span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span></h3>
+<a 
+ id="dx342-517001"></a>
+<a 
+ id="dx342-517002"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span> environment variable sets the <span class="textit"><span class="textrm">tool-libraries-var</span></span> ICV to a list of tool libraries
+that are considered for use on a device on which an OpenMP implementation is being initialized. The value
+of this environment variable must be a list of names of dynamically-loadable libraries, separated by an
+implementation specific, platform typical separator. Whether the value of this environment variable is case
+sensitive is implementation defined.
+</p> 
+<p>If the <span class="textit"><span class="textrm">tool-var</span></span> ICV is not enabled, the value of <span class="textit"><span class="textrm">tool-libraries-var</span></span> is ignored. Otherwise, if
+<span class="textbf"><span class="texttt">ompt_start_tool</span></span> is not visible in the address space on a device where OpenMP is being initialized or
+if <span class="textbf"><span class="texttt">ompt_start_tool</span></span> returns <span class="textbf"><span class="texttt">NULL</span></span>, an OpenMP implementation will consider libraries in the
+<span class="textit"><span class="textrm">tool-libraries-var</span></span> list in a left to right order. The OpenMP implementation will search the list for a library
+that meets two criteria: it can be dynamically loaded on the current device and it defines the symbol
+<span class="textbf"><span class="texttt">ompt_start_tool</span></span>. If an OpenMP implementation finds a suitable library, no further libraries in the list
+will be considered.
+                                                                            
+                                                                            
+</p> 
+<p>Example:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x342-517003r1"></a></span></p> 
+<!--l. 1038--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x342-517004r2"></a></span><span 
+class="pcrb8t-">%</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_TOOL_LIBRARIES</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">libtoolXY64</span><span 
+class="pcrb8t-">.</span><span 
+class="pcrb8t-">so</span><span 
+class="pcrb8t-">:/</span><span 
+class="pcrb8t-">usr</span><span 
+class="pcrb8t-">/</span><span 
+class="pcrb8t-">local</span><span 
+class="pcrb8t-">/</span><span 
+class="pcrb8t-">lib</span><span 
+class="pcrb8t-">/</span><span 
+class="pcrb8t-">libtoolXY32</span><span 
+class="pcrb8t-">.</span><span 
+class="pcrb8t-">so</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x342-517005r3"></a></span></pre>
+<p><p><a 
+ id="Q1-342-2485"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">tool-libraries-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  OMPT
+  Interface,
+  see
+  Chapter&#x00A0;<a 
+href="openmpch4.html#x256-2890004">4<!--tex4ht:ref: chap:OMPT Interface --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1">4.2.1<!--tex4ht:ref: sec:ompt_start_tool --></a>.</li></ul>
+<!--l. 1051--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse77.html" >next</a>] [<a 
+href="openmpse75.html" >prev</a>] [<a 
+href="openmpse75.html#tailopenmpse75.html" >prev-tail</a>] [<a 
+href="openmpse76.html" >front</a>] [<a 
+href="openmpch6.html#openmpse76.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse76.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>masked Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse17.html" >next</a>] [<a 
+href="openmpse15.html" >prev</a>] [<a 
+href="openmpse15.html#tailopenmpse15.html" >prev-tail</a>] [<a 
+href="#tailopenmpse16.html">tail</a>] [<a 
+href="openmpch2.html#openmpse16.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.8</span>&#x00A0;&#x00A0;<a 
+ id="x63-630002.8"></a><span class="textbf"><span class="texttt">masked</span></span> Construct</h3>
+<a 
+ id="dx63-63001"></a>
+<a 
+ id="dx63-63002"></a>
+<p><p><a 
+ id="Q1-63-135"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">masked</span></span> construct specifies a structured block that is executed by a subset of the threads of the current
+team.
+<p><a 
+ id="Q1-63-136"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">masked</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63003r1"></a></span></p> 
+<!--l. 13--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">masked</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">filter</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63006r4"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">masked</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63007r1"></a></span></p> 
+<!--l. 22--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63008r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">masked</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">filter</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63009r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63010r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">masked</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63011r5"></a></span></pre>
+                                                                            
+                                                                            
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63012r1"></a></span></p> 
+<!--l. 30--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63013r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">masked</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">filter</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63014r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63015r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">masked</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x63-63016r5"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>The <span class="textbf"><span class="texttt">master</span></span> construct, which has been deprecated, has the same syntax as the <span class="textbf"><span class="texttt">masked</span></span> construct other
+than the use of <span class="textbf"><span class="texttt">master</span></span> as the directive name and that the <span class="textbf"><span class="texttt">filter</span></span> clause may not be specified for the
+<span class="textbf"><span class="texttt">master</span></span> construct.
+</p> 
+<p><p><a 
+ id="Q1-63-137"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for a <span class="textbf"><span class="texttt">masked</span></span> region is the current team. A <span class="textbf"><span class="texttt">masked</span></span> region binds to the innermost
+enclosing parallel region.
+</p> 
+<p><p><a 
+ id="Q1-63-138"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+Only the threads of the team that executes the binding parallel region that the <span class="textbf"><span class="texttt">filter</span></span> clause selects
+participate in the execution of the structured block of a <span class="textbf"><span class="texttt">masked</span></span> region. Other threads in the team do not
+execute the associated structured block. No implied barrier occurs either on entry to, or exit from, the
+<span class="textbf"><span class="texttt">masked</span></span> construct.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">filter</span></span> clause is present on the construct and the parameter specifies the thread number of the current
+thread in the current team then the current thread executes the associated structured block. If the <span class="textbf"><span class="texttt">filter</span></span>
+clause is not present, the construct behaves as if the parameter is a constant integer expression that evaluates
+to zero, so that only the primary thread executes the associated structured block. The use of
+a variable in a <span class="textbf"><span class="texttt">filter</span></span> clause expression causes an implicit reference to the variable in all
+enclosing constructs. The result of evaluating the parameter of the <span class="textbf"><span class="texttt">filter</span></span> clause may vary across
+threads.
+</p> 
+<p>If more than one thread in the team executes the structured block of a <span class="textbf"><span class="texttt">masked</span></span> region, the
+structured block must include any synchronization required to ensure that data races do not
+occur.
+</p> 
+<p>The <span class="textbf"><span class="texttt">master</span></span> construct, which has been deprecated, has identical semantics to the <span class="textbf"><span class="texttt">masked</span></span> construct with
+no <span class="textbf"><span class="texttt">filter</span></span> clause present.
+</p> 
+<p><p><a 
+ id="Q1-63-139"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">masked-begin</span></span> event occurs in any thread of a team that executes the <span class="textbf"><span class="texttt">masked</span></span> region on entry to the
+region.
+</p> 
+<p>The <span class="textit"><span class="textrm">masked-end</span></span> event occurs in any thread of a team that executes the <span class="textbf"><span class="texttt">masked</span></span> region on exit from the
+region.
+</p> 
+<p><p><a 
+ id="Q1-63-140"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_masked</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its
+<span class="textit"><span class="textrm">endpoint</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">masked-begin</span></span> event in that thread. Similarly, a thread dispatches
+a registered <span class="textbf"><span class="texttt">ompt_callback_masked</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument for
+each occurrence of a <span class="textit"><span class="textrm">masked-end</span></span> event in that thread. These callbacks occur in the context of the task
+executed by the current thread and have the type signature <span class="textbf"><span class="texttt">ompt_callback_masked_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-63-141"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">masked</span></span> construct are as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  throw
+  executed
+  inside
+  a
+  <span class="textbf"><span class="texttt">masked</span></span>
+  region
+  must
+  cause
+  execution
+  to
+  resume
+  within
+  the
+  same
+  <span class="textbf"><span class="texttt">masked</span></span>
+  region,
+  and
+                                                                            
+                                                                            
+  the
+  same
+  thread
+  that
+  threw
+  the
+  exception
+  must
+  catch
+  it.</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-63-142"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_scope_begin</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_scope_end</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11">4.4.4.11<!--tex4ht:ref: sec:ompt_scope_endpoint_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_masked_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3540004.5.2.12">4.5.2.12<!--tex4ht:ref: sec:ompt_callback_masked_t --></a>.</li></ul>
+<!--l. 47--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse17.html" >next</a>] [<a 
+href="openmpse15.html" >prev</a>] [<a 
+href="openmpse15.html#tailopenmpse15.html" >prev-tail</a>] [<a 
+href="openmpse16.html" >front</a>] [<a 
+href="openmpch2.html#openmpse16.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<p><a 
+ id="tailopenmpse16.html"></a> </p> 
+ 
+</body> 
+</html>

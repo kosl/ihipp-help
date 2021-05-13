@@ -1,0 +1,776 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Nesting of Regions</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch3.html" >next</a>] [<a 
+href="openmpsu119.html" >prev</a>] [<a 
+href="openmpsu119.html#tailopenmpsu119.html" >prev-tail</a>] [<a 
+href="#tailopenmpse30.html">tail</a>] [<a 
+href="openmpch2.html#openmpse30.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.22</span>&#x00A0;&#x00A0;<a 
+ id="x155-1880002.22"></a>Nesting of Regions</h3>
+<a 
+ id="dx155-188001"></a>
+<p>This section describes a set of restrictions on the nesting of regions. The restrictions on nesting are as
+follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">loop</span></span>
+  region
+  that
+  binds
+  to
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region
+  or
+  a
+  worksharing
+  region
+  may
+  not
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing,
+  <span class="textbf"><span class="texttt">loop</span></span>,
+  <span class="textbf"><span class="texttt">task</span></span>,
+  <span class="textbf"><span class="texttt">taskloop</span></span>,
+  <span class="textbf"><span class="texttt">critical</span></span>,
+  <span class="textbf"><span class="texttt">ordered</span></span>,
+  <span class="textbf"><span class="texttt">atomic</span></span>,
+                                                                            
+                                                                            
+  or
+  <span class="textbf"><span class="texttt">masked</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">barrier</span></span>
+  region
+  may
+  not
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing,
+  <span class="textbf"><span class="texttt">loop</span></span>,
+  <span class="textbf"><span class="texttt">task</span></span>,
+  <span class="textbf"><span class="texttt">taskloop</span></span>,
+  <span class="textbf"><span class="texttt">critical</span></span>,
+  <span class="textbf"><span class="texttt">ordered</span></span>,
+  <span class="textbf"><span class="texttt">atomic</span></span>,
+  or
+  <span class="textbf"><span class="texttt">masked</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">masked</span></span>
+  region
+  may
+  not
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing,
+  <span class="textbf"><span class="texttt">loop</span></span>,
+  <span class="textbf"><span class="texttt">atomic</span></span>,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">task</span></span>,
+  or
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  without
+  any
+  clause
+  or
+  with
+  the
+  <span class="textbf"><span class="texttt">threads</span></span>
+  or
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause
+  may
+  not
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">critical</span></span>,
+  <span class="textbf"><span class="texttt">ordered</span></span>,
+  <span class="textbf"><span class="texttt">loop</span></span>,
+  <span class="textbf"><span class="texttt">atomic</span></span>,
+  <span class="textbf"><span class="texttt">task</span></span>,
+  or
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  region.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  without
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause
+  specified
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing-loop
+  region.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause
+  specified
+  must
+  be
+                                                                            
+                                                                            
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  or
+  worksharing-loop
+  SIMD
+  region.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  region
+  that
+  corresponds
+  to
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  construct
+  with
+  both
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  and
+  <span class="textbf"><span class="texttt">threads</span></span>
+  clauses
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing-loop
+  SIMD
+  region
+  or
+  closely
+  nested
+  inside
+  a
+  worksharing-loop
+                                                                            
+                                                                            
+  and
+  <span class="textbf"><span class="texttt">simd</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">critical</span></span>
+  region
+  may
+  not
+  be
+  nested
+  (closely
+  or
+  otherwise)
+  inside
+  a
+  <span class="textbf"><span class="texttt">critical</span></span>
+  region
+  with
+  the
+  same
+  name.
+  This
+  restriction
+  is
+  not
+  sufficient
+  to
+  prevent
+  deadlock.
+  </li>
+  <li class="itemize">
+  OpenMP
+  constructs
+  may
+  not
+  be
+  encountered
+  during
+                                                                            
+                                                                            
+  execution
+  of
+  an
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  The
+  only
+  OpenMP
+  constructs
+  that
+  can
+  be
+  encountered
+  during
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">simd</span></span>
+  (or
+  worksharing-loop
+  SIMD)
+  region
+  are
+  the
+  <span class="textbf"><span class="texttt">atomic</span></span>
+  construct,
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct
+  without
+  a
+  defined
+  binding
+  region,
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct
+  and
+  the
+  <span class="textbf"><span class="texttt">ordered</span></span>
+                                                                            
+                                                                            
+  construct
+  with
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>,
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  or
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct
+  is
+  encountered
+  during
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region,
+  the
+  behavior
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  is
+  encountered
+  during
+  execution
+  of
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+                                                                            
+                                                                            
+  region
+  and
+  a
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  in
+  which
+  the
+  <span class="textbf"><span class="texttt">ancestor</span></span>
+  <span class="textit"><span class="textrm">device-modifier</span></span>
+  appears
+  is
+  not
+  present
+  on
+  the
+  construct,
+  the
+  behavior
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region
+  must
+  be
+  strictly
+  nested
+  either
+  within
+  the
+  implicit
+  parallel
+  region
+  that
+  surrounds
+  the
+  whole
+  OpenMP
+  program
+                                                                            
+                                                                            
+  or
+  within
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region.
+  If
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  is
+  nested
+  within
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  that
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  must
+  contain
+  no
+  statements,
+  declarations
+  or
+  directives
+  outside
+  of
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">distribute</span></span>,
+  <span class="textbf"><span class="texttt">distribute
+  simd</span></span>,
+  distribute
+  parallel
+  worksharing-loop,
+  distribute
+  parallel
+  worksharing-loop
+  SIMD,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">loop</span></span>,
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions,
+  including
+  any
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  regions
+  arising
+  from
+  combined
+  constructs,
+  <span class="textbf"><span class="texttt">omp_get_num_teams()</span></span>
+  regions,
+  and
+  <span class="textbf"><span class="texttt">omp_get_team_num()</span></span>
+  regions
+  are
+  the
+  only
+  OpenMP
+  regions
+  that
+  may
+  be
+  strictly
+  nested
+  inside
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">loop</span></span>
+  region
+  that
+  binds
+  to
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region
+  must
+                                                                            
+                                                                            
+  be
+  strictly
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  region
+  must
+  be
+  strictly
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">teams</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">taskgroup</span></span>,
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct
+  and
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+                                                                            
+                                                                            
+  region
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  region.
+  If
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">sections</span></span>,
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">sections</span></span>
+  or
+  <span class="textbf"><span class="texttt">section</span></span>
+  construct.
+  Otherwise,
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct
+  must
+  be
+  closely
+  nested
+  inside
+  an
+  OpenMP
+  construct
+  that
+  matches
+  the
+  type
+  specified
+                                                                            
+                                                                            
+  in
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  of
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  construct
+  for
+  which
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct,
+  and
+  the
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  region
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  region.
+  A
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  construct
+  for
+  which
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+                                                                            
+                                                                            
+  is
+  <span class="textbf"><span class="texttt">sections</span></span>
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">sections</span></span>
+  or
+  <span class="textbf"><span class="texttt">section</span></span>
+  construct.
+  Otherwise,
+  a
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  construct
+  must
+  be
+  closely
+  nested
+  inside
+  an
+  OpenMP
+  construct
+  that
+  matches
+  the
+  type
+  specified
+  in
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>.
+  </li>
+  <li class="itemize">
+  The
+  only
+  constructs
+  that
+  may
+  be
+  encountered
+  inside
+  a
+                                                                            
+                                                                            
+  region
+  that
+  corresponds
+  to
+  a
+  construct
+  with
+  an
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>
+  are
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+  construct,
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  the
+  <span class="textbf"><span class="texttt">simd</span></span>
+  construct,
+  and
+  combined
+  constructs
+  for
+  which
+  the
+  first
+  construct
+  is
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  region
+  that
+  corresponds
+  to
+                                                                            
+                                                                            
+  a
+  construct
+  with
+  an
+  <span class="textbf"><span class="texttt">order</span></span>
+  clause
+  that
+  specifies
+  <span class="textbf"><span class="texttt">concurrent</span></span>
+  may
+  not
+  contain
+  calls
+  to
+  procedures
+  that
+  contain
+  OpenMP
+  directives
+  or
+  calls
+  to
+  the
+  OpenMP
+  Runtime
+  API.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">scope</span></span>
+  region
+  may
+  not
+  be
+  closely
+  nested
+  inside
+  a
+  worksharing,
+  <span class="textbf"><span class="texttt">loop</span></span>,
+  <span class="textbf"><span class="texttt">task</span></span>,
+  <span class="textbf"><span class="texttt">taskloop</span></span>,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">critical</span></span>,
+  <span class="textbf"><span class="texttt">ordered</span></span>,
+  <span class="textbf"><span class="texttt">atomic</span></span>,
+  or
+  <span class="textbf"><span class="texttt">masked</span></span>
+  region.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch3.html" >next</a>] [<a 
+href="openmpsu119.html" >prev</a>] [<a 
+href="openmpsu119.html#tailopenmpsu119.html" >prev-tail</a>] [<a 
+href="openmpse30.html" >front</a>] [<a 
+href="openmpch2.html#openmpse30.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse30.html"></a> </p> 
+ 
+</body> 
+</html>

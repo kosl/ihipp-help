@@ -1,0 +1,253 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_mapped_ptr</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1040--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse39.html" >next</a>] [<a 
+href="openmpsu177.html" >prev</a>] [<a 
+href="openmpsu177.html#tailopenmpsu177.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu178.html">tail</a>] [<a 
+href="openmpse38.html#openmpsu178.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.8.11</span>&#x00A0;&#x00A0;<a 
+ id="x223-2560003.8.11"></a><span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span></h4>
+<a 
+ id="dx223-256001"></a>
+<p><p><a 
+ id="Q1-223-1214"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span> routine returns the device pointer that is associated with a host pointer for a
+given device.
+<p><a 
+ id="Q1-223-1215"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256002r1"></a></span></p> 
+<!--l. 1049--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_mapped_ptr</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">device_num</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256005r1"></a></span></p> 
+<!--l. 1055--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256006r2"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_mapped_ptr</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256007r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">device_num</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256008r4"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">intrinsic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iso_c_binding</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">only</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256009r5"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ptr</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256010r6"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">device_num</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x223-256011r7"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-223-1216"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The <span class="textit"><span class="textrm">device_num</span></span> argument must be greater than or equal to zero and less than or equal to the result of
+<span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-223-1217"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span> region is the encountering task.
+</p> 
+<p><p><a 
+ id="Q1-223-1218"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span> routine returns the associated device pointer on device <span class="textit"><span class="textrm">device_num</span></span>. A call
+to this routine for a pointer that is not <span class="textbf"><span class="texttt">NULL</span></span> (or <span class="textbf"><span class="texttt">C_NULL_PTR</span></span>, for Fortran) and does not have an associated
+pointer on the given device results in a <span class="textbf"><span class="texttt">NULL</span></span> pointer.
+</p> 
+<p>The routine returns <span class="textbf"><span class="texttt">NULL</span></span> (or <span class="textbf"><span class="texttt">C_NULL_PTR</span></span>, for Fortran) if unsuccessful. Otherwise it returns the device
+pointer, which is <span class="textit"><span class="textrm">ptr</span></span> if <span class="textit"><span class="textrm">device_num</span></span> is the value returned by <span class="textbf"><span class="texttt">omp_get_initial_device()</span></span>.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span> routine requires an explicit interface and so might not be provided in
+<span class="textbf"><span class="texttt">omp_lib.h</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-223-1219"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+No events are associated with this routine.
+</p> 
+<p><p><a 
+ id="Q1-223-1220"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">omp_get_mapped_ptr</span></span> routine are as follows.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  When
+  called
+  from
+  within
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  the
+  effect
+  is
+  unspecified.</li></ul>
+<p><p><a 
+ id="Q1-223-1221"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4">3.7.4<!--tex4ht:ref: subsec:omp_get_num_devices --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_initial_device</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu167.html#x211-2440003.7.7">3.7.7<!--tex4ht:ref: subsec:omp_get_initial_device --></a>.</li></ul>
+<!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse39.html" >next</a>] [<a 
+href="openmpsu177.html" >prev</a>] [<a 
+href="openmpsu177.html#tailopenmpsu177.html" >prev-tail</a>] [<a 
+href="openmpsu178.html" >front</a>] [<a 
+href="openmpse38.html#openmpsu178.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu178.html"></a> </p> 
+ 
+</body> 
+</html>

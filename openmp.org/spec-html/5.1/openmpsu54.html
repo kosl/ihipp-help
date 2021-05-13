@@ -1,0 +1,899 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>task Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 51--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu55.html" >next</a>] [<a 
+href="openmpse20.html" >prev</a>] [<a 
+href="openmpse20.html#tailopenmpse20.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu54.html">tail</a>] [<a 
+href="openmpse20.html#openmpsu54.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.12.1</span>&#x00A0;&#x00A0;<a 
+ id="x80-900002.12.1"></a><span class="textbf"><span class="texttt">task</span></span> Construct</h4>
+<a 
+ id="dx80-90001"></a>
+<a 
+ id="dx80-90002"></a>
+<p><p><a 
+ id="Q1-80-290"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">task</span></span> construct defines an explicit task.
+<p><a 
+ id="Q1-80-291"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">task</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90003r1"></a></span></p> 
+<!--l. 63--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90006r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90007r1"></a></span></p> 
+<!--l. 73--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90008r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90009r3"></a></span><span 
+class="pcrb8t-">final</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90010r4"></a></span><span 
+class="pcrb8t-">untied</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90011r5"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">data</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sharing</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attribute</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90012r6"></a></span><span 
+class="pcrb8t-">mergeable</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90013r7"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90014r8"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90015r9"></a></span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90016r10"></a></span><span 
+class="pcrb8t-">in_reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90017r11"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90018r12"></a></span><span 
+class="pcrb8t-">priority</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">priority</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">value</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90019r13"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90020r14"></a></span><span 
+class="pcrb8t-">affinity</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">aff</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90021r15"></a></span><span 
+class="pcrb8t-">detach</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">event</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90022r16"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">event-handle</span></span> is a variable of <span class="textbf"><span class="texttt">omp_event_handle_t</span></span> type and <span class="textit"><span class="textrm">aff-modifier</span></span> is one of the
+following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90023r1"></a></span></p> 
+<!--l. 93--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90024r2"></a></span><span 
+class="pcrb8t-">iterator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90025r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">task</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90026r1"></a></span></p> 
+<!--l. 102--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90027r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90028r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">loosely</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90029r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">task</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90030r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90031r1"></a></span></p> 
+<!--l. 108--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90032r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90033r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">strictly</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">structured</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">block</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90034r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">task</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90035r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90036r1"></a></span></p> 
+<!--l. 117--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90037r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">task</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90038r3"></a></span><span 
+class="pcrb8t-">final</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90039r4"></a></span><span 
+class="pcrb8t-">untied</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90040r5"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">data</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">sharing</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attribute</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90041r6"></a></span><span 
+class="pcrb8t-">mergeable</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90042r7"></a></span><span 
+class="pcrb8t-">private</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90043r8"></a></span><span 
+class="pcrb8t-">firstprivate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90044r9"></a></span><span 
+class="pcrb8t-">shared</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90045r10"></a></span><span 
+class="pcrb8t-">in_reduction</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">reduction</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90046r11"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90047r12"></a></span><span 
+class="pcrb8t-">priority</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">priority</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">value</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90048r13"></a></span><span 
+class="pcrb8t-">allocate</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">allocator</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90049r14"></a></span><span 
+class="pcrb8t-">affinity</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">aff</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90050r15"></a></span><span 
+class="pcrb8t-">detach</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">event</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90051r16"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">event-handle</span></span> is an integer variable of <span class="textbf"><span class="texttt">omp_event_handle_kind</span></span><span class="textit"><span class="textrm">kind</span></span> and <span class="textit"><span class="textrm">aff-modifier</span></span> is one of
+the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90052r1"></a></span></p> 
+<!--l. 137--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90053r2"></a></span><span 
+class="pcrb8t-">iterator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x80-90054r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-80-292"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set of the <span class="textbf"><span class="texttt">task</span></span> region is the current team. A <span class="textbf"><span class="texttt">task</span></span> region binds to the innermost
+enclosing <span class="textbf"><span class="texttt">parallel</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-80-293"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">task</span></span> construct is a task generating construct. When a thread encounters a <span class="textbf"><span class="texttt">task</span></span> construct, an explicit
+task is generated from the code for the associated structured block. The data environment of the task is
+created according to the data-sharing attribute clauses on the <span class="textbf"><span class="texttt">task</span></span> construct, per-data environment ICVs,
+and any defaults that apply. The data environment of the task is destroyed when the execution code of the
+associated structured block is completed.
+</p> 
+<p>The encountering thread may immediately execute the task, or defer its execution. In the latter case, any
+thread in the team may be assigned the task. Completion of the task can be guaranteed using task
+synchronization constructs and clauses. If a <span class="textbf"><span class="texttt">task</span></span> construct is encountered during execution of an outer
+task, the generated <span class="textbf"><span class="texttt">task</span></span> region that corresponds to this construct is not a part of the outer task region
+unless the generated task is an included task.
+                                                                            
+                                                                            
+</p> 
+<p>If a <span class="textbf"><span class="texttt">detach</span></span> clause is present on a <span class="textbf"><span class="texttt">task</span></span> construct a new <span class="textit"><span class="textrm">allow-completion</span></span> event is created and connected
+to the completion of the associated <span class="textbf"><span class="texttt">task</span></span> region. The original <span class="textit"><span class="textrm">event-handle</span></span> is updated to represent that
+<span class="textit"><span class="textrm">allow-completion</span></span> event before the task data environment is created. The <span class="textit"><span class="textrm">event-handle</span></span> is considered as
+if it was specified on a <span class="textbf"><span class="texttt">firstprivate</span></span> clause. The use of a variable in a <span class="textbf"><span class="texttt">detach</span></span> clause
+expression of a <span class="textbf"><span class="texttt">task</span></span> construct causes an implicit reference to the variable in all enclosing
+constructs.
+</p> 
+<p>If no <span class="textbf"><span class="texttt">detach</span></span> clause is present on a <span class="textbf"><span class="texttt">task</span></span> construct the generated task is completed when the execution of
+its associated structured block is completed. If a <span class="textbf"><span class="texttt">detach</span></span> clause is present on a <span class="textbf"><span class="texttt">task</span></span> construct, the task is
+completed when the execution of its associated structured block is completed and the <span class="textit"><span class="textrm">allow-completion</span></span>
+event is fulfilled.
+</p> 
+<p>When an <span class="textbf"><span class="texttt">if</span></span> clause is present on a <span class="textbf"><span class="texttt">task</span></span> construct and the <span class="textbf"><span class="texttt">if</span></span> clause expression evaluates to <span class="textit"><span class="textrm">false</span></span>, an
+undeferred task is generated, and the encountering thread must suspend the current task region, for which
+execution cannot be resumed until execution of the structured block that is associated with the generated
+task is completed. The use of a variable in an <span class="textbf"><span class="texttt">if</span></span> clause expression of a <span class="textbf"><span class="texttt">task</span></span> construct causes an implicit
+reference to the variable in all enclosing constructs.
+</p> 
+<p>When a <span class="textbf"><span class="texttt">final</span></span> clause is present on a <span class="textbf"><span class="texttt">task</span></span> construct and the <span class="textbf"><span class="texttt">final</span></span> clause expression evaluates to <span class="textit"><span class="textrm">true</span></span>,
+the generated task is a final task. All <span class="textbf"><span class="texttt">task</span></span> constructs that are encountered during execution of a final task
+generate final and included tasks. The use of a variable in a <span class="textbf"><span class="texttt">final</span></span> clause expression of a <span class="textbf"><span class="texttt">task</span></span> construct
+causes an implicit reference to the variable in all enclosing constructs. Encountering a <span class="textbf"><span class="texttt">task</span></span>
+construct with the <span class="textbf"><span class="texttt">detach</span></span> clause during the execution of a final task results in unspecified
+behavior.
+</p> 
+<p>The <span class="textbf"><span class="texttt">if</span></span> clause expression and the <span class="textbf"><span class="texttt">final</span></span> clause expression are evaluated in the context outside of the
+<span class="textbf"><span class="texttt">task</span></span> construct, and no ordering of those evaluations is specified.
+</p> 
+<p>A thread that encounters a task scheduling point within the <span class="textbf"><span class="texttt">task</span></span> region may temporarily suspend the
+<span class="textbf"><span class="texttt">task</span></span> region. By default, a task is tied and its suspended <span class="textbf"><span class="texttt">task</span></span> region can only be resumed by the thread
+that started its execution. If the <span class="textbf"><span class="texttt">untied</span></span> clause is present on a <span class="textbf"><span class="texttt">task</span></span> construct, any thread in the team can
+resume the <span class="textbf"><span class="texttt">task</span></span> region after a suspension. The <span class="textbf"><span class="texttt">untied</span></span> clause is ignored if the task is a final or an
+included task.
+</p> 
+<p>The <span class="textbf"><span class="texttt">task</span></span> construct includes a task scheduling point in the task region of its generating task, immediately
+following the generation of the explicit task. Each explicit <span class="textbf"><span class="texttt">task</span></span> region includes a task scheduling point at
+the end of its associated structured block.
+</p> 
+<p>When the <span class="textbf"><span class="texttt">mergeable</span></span> clause is present on a <span class="textbf"><span class="texttt">task</span></span> construct, the generated task is a <span class="textit"><span class="textrm">mergeable
+task</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">priority</span></span> clause is a hint for the priority of the generated task. The <span class="textit"><span class="textrm">priority-value</span></span> is a non-negative
+integer expression that provides a hint for task execution order. Among all tasks ready to be executed, higher
+priority tasks (those with a higher numerical value in the <span class="textbf"><span class="texttt">priority</span></span> clause expression) are recommended
+to execute before lower priority ones. The default <span class="textit"><span class="textrm">priority-value</span></span> when no <span class="textbf"><span class="texttt">priority</span></span> clause is specified is
+zero (the lowest priority). If a value is specified in the <span class="textbf"><span class="texttt">priority</span></span> clause that is higher than the
+<span class="textit"><span class="textrm">max-task-priority-var</span></span> ICV then the implementation will use the value of that ICV. A program that
+                                                                            
+                                                                            
+relies on the task execution order being determined by the <span class="textit"><span class="textrm">priority-value</span></span> may have unspecified
+behavior.
+</p> 
+<p>The <span class="textbf"><span class="texttt">affinity</span></span> clause is a hint to indicate data affinity of the generated task. The task is recommended to
+execute close to the location of the list items. A program that relies on the task execution location being
+determined by this list may have unspecified behavior.
+</p> 
+<p>The list items that appear in the <span class="textbf"><span class="texttt">affinity</span></span> clause may reference iterators defined by an <span class="textit"><span class="textrm">iterators-definition</span></span>
+that appears in the same clause. The list items that appear in the <span class="textbf"><span class="texttt">affinity</span></span> clause may include array
+sections.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The list items that appear in the <span class="textbf"><span class="texttt">affinity</span></span> clause may use shape-operators.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If a list item appears in an <span class="textbf"><span class="texttt">affinity</span></span> clause then data affinity refers to the original list item.
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  When storage is shared by an explicit <span class="textbf"><span class="texttt">task</span></span> region, the programmer must ensure, by adding proper
+synchronization, that the storage does not reach the end of its lifetime before the explicit <span class="textbf"><span class="texttt">task</span></span> region completes
+its execution. <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-80-294"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">task-create</span></span> event occurs when a thread encounters a construct that causes a new task to be created. The
+event occurs after the task is initialized but before it begins execution or is deferred.
+</p> 
+<p><p><a 
+ id="Q1-80-295"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_task_create</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">task-create</span></span> event in the context of the encountering task. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_task_create_t</span></span> and the <span class="textit"><span class="textrm">flags</span></span> argument indicates the task types shown in
+Table&#x00A0;<a 
+href="openmpsu48.html#x80-90055r7">2.7<!--tex4ht:ref: tab:task create callback flags evaluation --></a>.
+<a 
+ id="x80-90055r7"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x80-90056"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.7: </td><td  
+class="content"><span class="textbf"><span class="texttt">ompt_callback_task_create</span></span> Callback Flags Evaluation</td></tr></table></div><!--tex4ht:label?: x80-90055r2.12 -->
+ <table id="TBL-15" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-15-1g"><col 
+id="TBL-15-1" /><col 
+id="TBL-15-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Operation</span></span>                                        </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Evaluates to true</span></span>                                                   </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-2-1"  
+class="td11">                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-3-1"  
+class="td11">                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-4-1"  
+class="td11">                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_explicit</span></span><span class="textbf"><span class="texttt">)</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-5-2"  
+class="td11"> Always in the dispatched callback                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_undeferred</span></span><span class="textbf"><span class="texttt">)</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-6-2"  
+class="td11"> If the task is an undeferred task                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_final</span></span><span class="textbf"><span class="texttt">)</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-7-2"  
+class="td11"> If the task is a final task                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_untied</span></span><span class="textbf"><span class="texttt">)</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-8-2"  
+class="td11"> If the task is an untied task                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_mergeable</span></span><span class="textbf"><span class="texttt">)</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-9-2"  
+class="td11"> If the task is a mergeable task                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_merged</span></span><span class="textbf"><span class="texttt">)</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-10-2"  
+class="td11"> If the task is a merged task                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-11-1"  
+class="td11">                            </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-12-1"  
+class="td11">                            </td>
+</tr></table></div>
+<p><p><a 
+ id="Q1-80-297"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">task</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+                                                                            
+                                                                            
+  A
+  program
+  must
+  not
+  depend
+  on
+  any
+  ordering
+  of
+  the
+  evaluations
+  of
+  the
+  clauses
+  of
+  the
+  <span class="textbf"><span class="texttt">task</span></span>
+  directive,
+  or
+  on
+  any
+  side
+  effects
+  of
+  the
+  evaluations
+  of
+  the
+  clauses.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">final</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">priority</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">detach</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  If
+  a
+  <span class="textbf"><span class="texttt">detach</span></span>
+  clause
+  appears
+  on
+  the
+  directive,
+  then
+  a
+  <span class="textbf"><span class="texttt">mergeable</span></span>
+  clause
+  cannot
+  appear
+  on
+  the
+  same
+  directive.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> A throw executed inside a <span class="textbf"><span class="texttt">task</span></span> region must cause execution to resume within the same <span class="textbf"><span class="texttt">task</span></span> region,
+  and the same thread that threw the exception must catch it.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-80-298"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Task
+  scheduling
+  constraints,
+  see
+  Section&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">2.12.6<!--tex4ht:ref: subsec:Task Scheduling --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">allocate</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu63.html#x90-1000002.13.4">2.13.4<!--tex4ht:ref: subsec:allocate Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">depend</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11">2.19.11<!--tex4ht:ref: subsec:depend Clause --></a>.
+  </li>
+  <li class="itemize">
+  Data-sharing
+  attribute
+  clauses,
+  Section&#x00A0;<a 
+href="openmpsu116.html#x151-1650002.21.4">2.21.4<!--tex4ht:ref: subsec:Data-Sharing Attribute Clauses --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">in_reduction</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu117.html#x152-1780002.21.5.6">2.21.5.6<!--tex4ht:ref: subsubsec:in_reduction clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_fulfill_event</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu187.html#x235-2680003.11.1">3.11.1<!--tex4ht:ref: subsec:omp_fulfill_event --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_task_create_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3490004.5.2.7">4.5.2.7<!--tex4ht:ref: sec:ompt_callback_task_create_t --></a>.</li></ul>
+<!--l. 337--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu55.html" >next</a>] [<a 
+href="openmpse20.html" >prev</a>] [<a 
+href="openmpse20.html#tailopenmpse20.html" >prev-tail</a>] [<a 
+href="openmpsu54.html" >front</a>] [<a 
+href="openmpse20.html#openmpsu54.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu54.html"></a> </p> 
+ 
+</body> 
+</html>

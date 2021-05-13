@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Internal Control Variables</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1856--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu31.html" >next</a>] [<a 
+href="openmpsu30.html" >prev</a>] [<a 
+href="openmpsu30.html#tailopenmpsu30.html" >prev-tail</a>] [<a 
+href="#tailopenmpse12.html">tail</a>] [<a 
+href="openmpch2.html#openmpse12.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h3 class="sectionHead"><span class="titlemark">2.4</span>&#x00A0;&#x00A0;<a 
+ id="x48-470002.4"></a>Internal Control Variables</h3>
+<a 
+ id="dx48-47001"></a>
+<a 
+ id="dx48-47002"></a>
+<p>An OpenMP implementation must act as if internal control variables (ICVs) control the behavior of an
+OpenMP program. These ICVs store information such as the number of threads to use for future
+<span class="textbf"><span class="texttt">parallel</span></span> regions, the schedule to use for worksharing loops and whether nested parallelism is enabled or
+not. The ICVs are given values at various times (described below) during the execution of the program.
+They are initialized by the implementation itself and may be given values through OpenMP environment
+variables and through calls to OpenMP API routines. The program can retrieve the values of these ICVs
+only through OpenMP API routines.
+</p> 
+<p>For purposes of exposition, this document refers to the ICVs by certain names, but an implementation is not
+required to use these names or to offer any way to access the variables other than through the ways shown in
+Section&#x00A0;<a 
+href="openmpsu32.html#x50-490002.4.2">2.4.2<!--tex4ht:ref: subsec:ICV Initialization --></a>.
+</p> 
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">ICV Descriptions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu32.html#x50-490002.4.2">ICV Initialization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu33.html#x51-500002.4.3">Modifying and Retrieving ICV Values</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu34.html#x52-510002.4.4">How ICVs are Scoped</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.4.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu34.html#x52-520002.4.4.1">How the Per-Data Environment ICVs Work</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu35.html#x53-530002.4.5">ICV Override Relationships</a></span>
+</div>
+
+
+
+<!--l. 2516--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu31.html" >next</a>] [<a 
+href="openmpsu30.html" >prev</a>] [<a 
+href="openmpsu30.html#tailopenmpsu30.html" >prev-tail</a>] [<a 
+href="openmpse12.html" >front</a>] [<a 
+href="openmpch2.html#openmpse12.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse12.html"></a> </p> 
+ 
+</body> 
+</html>

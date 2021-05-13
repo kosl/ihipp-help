@@ -1,0 +1,167 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Organization of this Document</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 45--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch2.html" >next</a>] [<a 
+href="openmpse7.html" >prev</a>] [<a 
+href="openmpse7.html#tailopenmpse7.html" >prev-tail</a>] [<a 
+href="#tailopenmpse8.html">tail</a>] [<a 
+href="openmpch1.html#openmpse8.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">1.8</span>&#x00A0;&#x00A0;<a 
+ id="x29-280001.8"></a>Organization of this Document</h3>
+<p>The remainder of this document is structured as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Chapter
+  <a 
+href="openmpch2.html#x30-290002">2<!--tex4ht:ref: chap:Directives --></a>
+  &#8220;Directives&#8221;
+  </li>
+  <li class="itemize">
+  Chapter
+  <a 
+href="openmpch3.html#x156-1890003">3<!--tex4ht:ref: chap:Runtime Library Routines --></a>
+  &#8220;Runtime
+  Library
+  Routines&#8221;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Chapter
+  <a 
+href="openmpch4.html#x256-2890004">4<!--tex4ht:ref: chap:OMPT Interface --></a>
+  &#8220;OMPT
+  Interface&#8221;
+  </li>
+  <li class="itemize">
+  Chapter
+  <a 
+href="openmpch5.html#x277-4100005">5<!--tex4ht:ref: chap:OMPD Interface --></a>
+  &#8220;OMPD
+  Interface&#8221;
+  </li>
+  <li class="itemize">
+  Chapter
+  <a 
+href="openmpch6.html#x323-4980006">6<!--tex4ht:ref: chap:Environment Variables --></a>
+  &#8220;Environment
+  Variables&#8221;
+  </li>
+  <li class="itemize">
+  Appendix
+  <a 
+href="openmpap1.html#x348-523000A">A<!--tex4ht:ref: chap:OpenMP Implementation-Defined Behaviors --></a>
+  &#8220;OpenMP
+  Implementation-Defined
+  Behaviors&#8221;
+  </li>
+  <li class="itemize">
+  Appendix
+  <a 
+href="openmpap2.html#x349-524000B">B<!--tex4ht:ref: chap:Features History --></a>
+  &#8220;Features
+  History&#8221;</li></ul>
+<p>Some sections of this document only apply to programs written in a certain base language. Text that applies
+only to programs for which the base language is C or C++ is shown as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>C/C++ specific text...
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Text that applies only to programs for which the base language is C only is shown as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>C specific text...
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Text that applies only to programs for which the base language is C++ only is shown as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>C++ specific text...
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Text that applies only to programs for which the base language is Fortran is shown as follows:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Fortran specific text...
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Where an entire page consists of base language specific text, a marker is shown at the top of the page. For
+Fortran-specific text, the marker is:
+<p><object data="openmp-15.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For C/C++-specific text, the marker is:
+<p><object data="openmp-16.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Some text is for information only, and is not part of the normative specification. Such text is designated as a
+note or comment, like this:
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Non-normative text... <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>
+     </p> 
+<div class="quote">
+     <p>COMMENT:
+     Non-normative
+     text...</p> 
+</div>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch2.html" >next</a>] [<a 
+href="openmpse7.html" >prev</a>] [<a 
+href="openmpse7.html#tailopenmpse7.html" >prev-tail</a>] [<a 
+href="openmpse8.html" >front</a>] [<a 
+href="openmpch1.html#openmpse8.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse8.html"></a> </p> 
+ 
+</body> 
+</html>

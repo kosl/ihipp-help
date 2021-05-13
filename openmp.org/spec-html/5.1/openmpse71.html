@@ -1,0 +1,356 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_AFFINITY_FORMAT</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+                                                                            
+                                                                            
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 777--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse72.html" >next</a>] [<a 
+href="openmpse70.html" >prev</a>] [<a 
+href="openmpse70.html#tailopenmpse70.html" >prev-tail</a>] [<a 
+href="#tailopenmpse71.html">tail</a>] [<a 
+href="openmpch6.html#openmpse71.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.14</span>&#x00A0;&#x00A0;<a 
+ id="x337-5120006.14"></a><span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span></h3>
+<a 
+ id="dx337-512001"></a>
+<a 
+ id="dx337-512002"></a>
+<a 
+ id="dx337-512003"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span> environment variable sets the initial value of the <span class="textit"><span class="textrm">affinity-format-var</span></span> ICV
+which defines the format when displaying OpenMP thread affinity information.
+</p> 
+<p>The value of this environment variable is case sensitive and leading and trailing whitespace is
+significant.
+</p> 
+<p>The value of this environment variable is a character string that may contain as substrings one or more field
+specifiers, in addition to other characters. The format of each field specifier is
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512004r1"></a></span></p> 
+<!--l. 794--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512005r2"></a></span><span 
+class="pcrb8t-">%</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">0</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">.</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">size</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">type</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512006r3"></a></span></pre>
+<p>where an individual field specifier must contain the percent symbol (<span class="textbf"><span class="texttt">%</span></span>) and a type. The type can be a single
+character short name or its corresponding long name delimited with curly braces, such as <span class="textbf"><span class="texttt">%n</span></span> or
+<span class="textbf"><span class="texttt">%{thread_num}</span></span>. A literal percent is specified as <span class="textbf"><span class="texttt">%%</span></span>. Field specifiers can be provided in any
+order.
+</p> 
+<p>The <span class="textbf"><span class="texttt">0</span></span> modifier indicates whether or not to add leading zeros to the output, following any indication of sign
+or base. The <span class="textbf"><span class="texttt">.</span></span> modifier indicates the output should be right justified when <span class="textit"><span class="textrm">size</span></span> is specified. By default,
+output is left justified. The minimum field length is <span class="textit"><span class="textrm">size</span></span>, which is a decimal digit string with a non-zero first
+digit. If no <span class="textit"><span class="textrm">size</span></span> is specified, the actual length needed to print the field will be used. If the <span class="textbf"><span class="texttt">0</span></span> modifier is used
+with <span class="textit"><span class="textrm">type</span></span> of <span class="textbf"><span class="texttt">A</span></span>, <span class="textbf"><span class="texttt">{thread_affinity}</span></span>, <span class="textbf"><span class="texttt">H</span></span>, <span class="textbf"><span class="texttt">{host}</span></span>, or a type that is not printed as a number, the result is
+unspecified. Any other characters in the format string that are not part of a field specifier will be included
+literally in the output.
+                                                                            
+                                                                            
+<a 
+ id="x337-512007r2"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x337-512008"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;6.2: </td><td  
+class="content">Available Field Types for Formatting OpenMP Thread Affinity Information </td></tr></table></div><!--tex4ht:label?: x337-512007r6.14 -->
+ <table id="TBL-41" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-41-1g"><col 
+id="TBL-41-1" /><col 
+id="TBL-41-2" /><col 
+id="TBL-41-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Short
+  Name</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Long Name</span></span>                 </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-1-3"  
+class="td11"> <span class="textsf"><span class="textbf">Meaning</span></span>                                                                         </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-2-1"  
+class="td11">      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-3-1"  
+class="td11">      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-4-1"  
+class="td11">      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">t</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">team_num</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-5-3"  
+class="td11"> The value returned by <span class="textbf"><span class="texttt">omp_get_team_num()</span></span>.                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">T</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">num_teams</span></span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-6-3"  
+class="td11"> The value returned by <span class="textbf"><span class="texttt">omp_get_num_teams()</span></span>.               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">L</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">nesting_level</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-7-3"  
+class="td11"> The value returned by <span class="textbf"><span class="texttt">omp_get_level()</span></span>.                         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">n</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-8-2"  
+class="td11"> <span class="textbf"><span class="texttt">thread_num</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-8-3"  
+class="td11"> The value returned by <span class="textbf"><span class="texttt">omp_get_thread_num()</span></span>.             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">N</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">num_threads</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-9-3"  
+class="td11"> The value returned by <span class="textbf"><span class="texttt">omp_get_num_threads()</span></span>.          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">a</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">ancestor_tnum</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-10-3"  
+class="td11"> The value returned
+  by <span class="textbf"><span class="texttt">omp_get_ancestor_thread_num(</span></span><span class="textit"><span class="textrm">level</span></span><span class="textbf"><span class="texttt">)</span></span>, where
+  <span class="textit"><span class="textrm">level</span></span> is <span class="textbf"><span class="texttt">omp_get_level()</span></span> minus 1.                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-11-1"  
+class="td11"> <span class="textbf"><span class="texttt">H</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">host</span></span>             </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-11-3"  
+class="td11"> The name for the host device on which the OpenMP
+  program is running.                                                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">P</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-12-2"  
+class="td11"> <span class="textbf"><span class="texttt">process_id</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-12-3"  
+class="td11"> The process identifier used by the implementation.                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-13-1"  
+class="td11"> <span class="textbf"><span class="texttt">i</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-13-2"  
+class="td11"> <span class="textbf"><span class="texttt">native_thread_id</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-13-3"  
+class="td11"> The native thread identifier used by the implementation.        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-14-1"  
+class="td11"> <span class="textbf"><span class="texttt">A</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-14-2"  
+class="td11"> <span class="textbf"><span class="texttt">thread_affinity</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-41-14-3"  
+class="td11"> The list of numerical identifiers, in the format of a
+  comma-separated list of integers or integer ranges, that
+  represent processors on which a thread may execute,
+  subject to OpenMP thread affinity control and/or other
+  external affinity mechanisms.                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-15-1"  
+class="td11">      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-41-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-41-16-1"  
+class="td11">      </td>
+</tr></table></div>
+<p>Implementations may define additional field types. If an implementation does not have information for a
+field type, "undefined" is printed for this field when displaying the OpenMP thread affinity
+information.
+</p> 
+<p>Example:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512009r1"></a></span></p> 
+<!--l. 874--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512010r2"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_AFFINITY_FORMAT</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512011r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">Thread</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">Affinity</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">%0.3</span><span 
+class="pcrb8t-">L</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">%.8</span><span 
+class="pcrb8t-">n</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">%.15{</span><span 
+class="pcrb8t-">thread_affinity</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">%.12</span><span 
+class="pcrb8t-">H</span><span 
+class="pcrb8t-">"</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512012r4"></a></span></pre>
+<p>The above example causes an OpenMP implementation to display OpenMP thread affinity information in
+the following form:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512013r1"></a></span></p> 
+<!--l. 880--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512014r2"></a></span><span 
+class="pcrb8t-">Thread</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">Affinity</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">001</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">0</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">0-1,16-17</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">nid003</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512015r3"></a></span><span 
+class="pcrb8t-">Thread</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">Affinity</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">001</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2-3,18-19</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">nid003</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x337-512016r4"></a></span></pre>
+<p><p><a 
+ id="Q1-337-2475"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Controlling
+  OpenMP
+  thread
+  affinity,
+  see
+  Section&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">2.6.2<!--tex4ht:ref: subsec:Controlling OpenMP Thread Affinity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_affinity_format</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu147.html#x187-2200003.3.8">3.3.8<!--tex4ht:ref: subsec:omp_set_affinity_format --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_affinity_format</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu148.html#x188-2210003.3.9">3.3.9<!--tex4ht:ref: subsec:omp_get_affinity_format --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_display_affinity</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu149.html#x189-2220003.3.10">3.3.10<!--tex4ht:ref: subsec:omp_display_affinity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_capture_affinity</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu150.html#x190-2230003.3.11">3.3.11<!--tex4ht:ref: subsec:omp_capture_affinity --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DISPLAY_AFFINITY</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse70.html#x336-5110006.13">6.13<!--tex4ht:ref: sec:OMP_DISPLAY_AFFINITY --></a>.</li></ul>
+<!--l. 907--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse72.html" >next</a>] [<a 
+href="openmpse70.html" >prev</a>] [<a 
+href="openmpse70.html#tailopenmpse70.html" >prev-tail</a>] [<a 
+href="openmpse71.html" >front</a>] [<a 
+href="openmpch6.html#openmpse71.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse71.html"></a> </p> 
+ 
+</body> 
+</html>

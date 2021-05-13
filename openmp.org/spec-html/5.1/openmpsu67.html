@@ -1,0 +1,609 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>target exit data Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 448--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu68.html" >next</a>] [<a 
+href="openmpsu66.html" >prev</a>] [<a 
+href="openmpsu66.html#tailopenmpsu66.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu67.html">tail</a>] [<a 
+href="openmpse22.html#openmpsu67.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.14.4</span>&#x00A0;&#x00A0;<a 
+ id="x95-1050002.14.4"></a><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> Construct</h4>
+<a 
+ id="dx95-105001"></a>
+<a 
+ id="dx95-105002"></a>
+<p><p><a 
+ id="Q1-95-377"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> directive specifies that list items are unmapped from a device data environment.
+The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> directive is a stand-alone directive.
+<p><a 
+ id="Q1-95-378"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105003r1"></a></span></p> 
+<!--l. 460--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">exit</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">data</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+                                                                            
+                                                                            
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105006r1"></a></span></p> 
+<!--l. 464--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105007r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">exit</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">data</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105008r3"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105009r4"></a></span><span 
+class="pcrb8t-">map</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105010r5"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105011r6"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105012r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105013r1"></a></span></p> 
+<!--l. 474--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105014r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">exit</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">data</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105015r3"></a></span></pre>
+<p>where clause is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105016r1"></a></span></p> 
+<!--l. 478--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105017r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">exit</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">data</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105018r3"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105019r4"></a></span><span 
+class="pcrb8t-">map</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">map</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105020r5"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105021r6"></a></span><span 
+class="pcrb8t-">nowait</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x95-105022r7"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-95-379"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region is the generating task, which is the <span class="textit"><span class="textrm">target task</span></span>
+generated by the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct. The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region binds to the
+corresponding <span class="textit"><span class="textrm">target task</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-95-380"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+When a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct is encountered, the list items in the <span class="textbf"><span class="texttt">map</span></span> clauses are unmapped
+from the device data environment according to the <span class="textbf"><span class="texttt">map</span></span> clause semantics.
+</p> 
+<p>The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct is a task generating construct. The generated task is a <span class="textit"><span class="textrm">target task</span></span>. The
+generated task region encloses the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region.
+                                                                            
+                                                                            
+</p> 
+<p>All clauses are evaluated when the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct is encountered. The data environment
+of the <span class="textit"><span class="textrm">target task</span></span> is created according to the data-mapping attribute clauses on the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+construct, per-data environment ICVs, and any default data-sharing attribute rules that apply
+to the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct. If a variable or part of a variable is mapped by the
+<span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct, the variable has a default data-sharing attribute of shared in the data
+environment of the <span class="textit"><span class="textrm">target task</span></span>.
+</p> 
+<p>Assignment operations associated with mapping a variable (see Section&#x00A0;<a 
+href="openmpsu119.html#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>) occur when the <span class="textit"><span class="textrm">target
+task</span></span> executes.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">nowait</span></span> clause is present, execution of the <span class="textit"><span class="textrm">target task</span></span> may be deferred. If the <span class="textbf"><span class="texttt">nowait</span></span> clause is not
+present, the <span class="textit"><span class="textrm">target task</span></span> is an included task.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">depend</span></span> clause is present, it is associated with the <span class="textit"><span class="textrm">target task</span></span>.
+</p> 
+<p>If no <span class="textbf"><span class="texttt">device</span></span> clause is present, the behavior is as if the <span class="textbf"><span class="texttt">device</span></span> clause appears with an expression equal to
+the value of the <span class="textit"><span class="textrm">default-device-var</span></span> ICV.
+</p> 
+<p>When an <span class="textbf"><span class="texttt">if</span></span> clause is present and the <span class="textbf"><span class="texttt">if</span></span> clause expression evaluates to <span class="textit"><span class="textrm">false</span></span>, the target device is the
+host.
+</p> 
+<p><p><a 
+ id="Q1-95-381"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+Events associated with a <span class="textit"><span class="textrm">target task</span></span> are the same as for the <span class="textbf"><span class="texttt">task</span></span> construct defined in Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-exit-data-begin</span></span> event occurs when a thread enters a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-exit-data-end</span></span> event occurs when a thread exits a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-95-382"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+Callbacks associated with events for <span class="textit"><span class="textrm">target tasks</span></span> are the same as for the <span class="textbf"><span class="texttt">task</span></span> construct defined in
+Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_target)</span></span> always evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched
+callback.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target</span></span> or <span class="textbf"><span class="texttt">ompt_callback_target_emi</span></span>
+callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_target_exit_data</span></span> or
+<span class="textbf"><span class="texttt">ompt_target_exit_data_nowait</span></span> if the <span class="textbf"><span class="texttt">nowait</span></span> clause is present as its <span class="textit"><span class="textrm">kind</span></span> argument
+for each occurrence of a <span class="textit"><span class="textrm">target-exit-data-begin</span></span> event in that thread in the context of the target
+task on the host. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target</span></span> or
+<span class="textbf"><span class="texttt">ompt_callback_target_emi</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and
+<span class="textbf"><span class="texttt">ompt_target_exit_data</span></span> or <span class="textbf"><span class="texttt">ompt_target_exit_data_nowait</span></span> if the <span class="textbf"><span class="texttt">nowait</span></span> clause is
+present as its <span class="textit"><span class="textrm">kind</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">target-exit-data-end</span></span> event in that thread in the context
+of the target task on the host. These callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_target_t</span></span> or
+<span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span>, respectively.
+</p> 
+<p><p><a 
+ id="Q1-95-383"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  program
+  must
+  not
+  depend
+  on
+  any
+  ordering
+  of
+  the
+  evaluations
+  of
+  the
+  clauses
+  of
+  the
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">exit</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  directive,
+  or
+  on
+  any
+  side
+  effects
+  of
+  the
+  evaluations
+  of
+  the
+  clauses.
+  </li>
+  <li class="itemize">
+  At
+  least
+  one
+  <span class="textbf"><span class="texttt">map</span></span>
+                                                                            
+                                                                            
+  clause
+  must
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  The
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  expression
+  must
+  evaluate
+  to
+  a
+  non-negative
+  integer
+  value
+  that
+  is
+  less
+  than
+  or
+  equal
+  to
+  the
+  value
+  of
+  <span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">map-type</span></span>
+  must
+  be
+  specified
+  in
+  all
+  <span class="textbf"><span class="texttt">map</span></span>
+  clauses
+  and
+  must
+  be
+  either
+  <span class="textbf"><span class="texttt">from</span></span>,
+  <span class="textbf"><span class="texttt">release</span></span>,
+  or
+  <span class="textbf"><span class="texttt">delete</span></span>.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  can
+  appear
+                                                                            
+                                                                            
+  on
+  the
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-95-384"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">default-device-var</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>&#x00A0;<span class="textbf"><span class="texttt">scheduling</span></span>&#x00A0;<span class="textbf"><span class="texttt">constraints</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">2.12.6<!--tex4ht:ref: subsec:Task Scheduling --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu65.html#x93-1030002.14.2">2.14.2<!--tex4ht:ref: subsec:target data Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">enter</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu66.html#x94-1040002.14.3">2.14.3<!--tex4ht:ref: subsec:target enter data Construct --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu119.html#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4">3.7.4<!--tex4ht:ref: subsec:omp_get_num_devices --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_t</span></span>
+  and
+  <span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3680004.5.2.26">4.5.2.26<!--tex4ht:ref: sec:ompt_callback_target_emi_t --></a>.
+  </li></ul>
+                                                                            
+                                                                            
+<!--l. 612--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu68.html" >next</a>] [<a 
+href="openmpsu66.html" >prev</a>] [<a 
+href="openmpsu66.html#tailopenmpsu66.html" >prev-tail</a>] [<a 
+href="openmpsu67.html" >front</a>] [<a 
+href="openmpse22.html#openmpsu67.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu67.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMPT Data Types</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 731--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu209.html" >next</a>] [<a 
+href="openmpse48.html" >prev</a>] [<a 
+href="openmpse48.html#tailopenmpse48.html" >prev-tail</a>] [<a 
+href="#tailopenmpse49.html">tail</a>] [<a 
+href="openmpch4.html#openmpse49.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.4</span>&#x00A0;&#x00A0;<a 
+ id="x265-2990004.4"></a>OMPT Data Types</h3>
+<p>The C/C++ header file (<span class="textbf"><span class="texttt">omp-tools.h</span></span>) provides the definitions of the types that are specified throughout
+this subsection.
+</p> 
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1">Tool Initialization and Finalization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu210.html#x267-3010004.4.2">Callbacks</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu211.html#x268-3020004.4.3">Tracing</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.3.1&#x00A0;&#x00A0;<a 
+href="openmpsu211.html#x268-3030004.4.3.1">Record Type</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.3.2&#x00A0;&#x00A0;<a 
+href="openmpsu211.html#x268-3040004.4.3.2">Native Record Kind</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.3.3&#x00A0;&#x00A0;<a 
+href="openmpsu211.html#x268-3050004.4.3.3">Native Record Abstract Type</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.3.4&#x00A0;&#x00A0;<a 
+href="openmpsu211.html#x268-3060004.4.3.4">Record Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3070004.4.4">Miscellaneous Type Definitions</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3080004.4.4.1"><span class="textbf"><span class="texttt">ompt_callback_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3090004.4.4.2"><span class="textbf"><span class="texttt">ompt_set_result_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3100004.4.4.3"><span class="textbf"><span class="texttt">ompt_id_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3110004.4.4.4"><span class="textbf"><span class="texttt">ompt_data_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3120004.4.4.5"><span class="textbf"><span class="texttt">ompt_device_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.6&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3130004.4.4.6"><span class="textbf"><span class="texttt">ompt_device_time_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.7&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3140004.4.4.7"><span class="textbf"><span class="texttt">ompt_buffer_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.8&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3150004.4.4.8"><span class="textbf"><span class="texttt">ompt_buffer_cursor_t</span></span></a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.9&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3160004.4.4.9"><span class="textbf"><span class="texttt">ompt_dependence_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.10&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3170004.4.4.10"><span class="textbf"><span class="texttt">ompt_thread_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.11&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3180004.4.4.11"><span class="textbf"><span class="texttt">ompt_scope_endpoint_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.12&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3190004.4.4.12"><span class="textbf"><span class="texttt">ompt_dispatch_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.13&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3200004.4.4.13"><span class="textbf"><span class="texttt">ompt_sync_region_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.14&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3210004.4.4.14"><span class="textbf"><span class="texttt">ompt_target_data_op_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.15&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3220004.4.4.15"><span class="textbf"><span class="texttt">ompt_work_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.16&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3230004.4.4.16"><span class="textbf"><span class="texttt">ompt_mutex_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.17&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3240004.4.4.17"><span class="textbf"><span class="texttt">ompt_native_mon_flag_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.18&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3250004.4.4.18"><span class="textbf"><span class="texttt">ompt_task_flag_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.19&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3260004.4.4.19"><span class="textbf"><span class="texttt">ompt_task_status_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.20&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3270004.4.4.20"><span class="textbf"><span class="texttt">ompt_target_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.21&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3280004.4.4.21"><span class="textbf"><span class="texttt">ompt_parallel_flag_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.22&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3290004.4.4.22"><span class="textbf"><span class="texttt">ompt_target_map_flag_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.23&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3300004.4.4.23"><span class="textbf"><span class="texttt">ompt_dependence_type_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.24&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3310004.4.4.24"><span class="textbf"><span class="texttt">ompt_severity_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.25&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3320004.4.4.25"><span class="textbf"><span class="texttt">ompt_cancel_flag_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.26&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3330004.4.4.26"><span class="textbf"><span class="texttt">ompt_hwid_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.27&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3340004.4.4.27"><span class="textbf"><span class="texttt">ompt_state_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.28&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3350004.4.4.28"><span class="textbf"><span class="texttt">ompt_frame_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.29&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3360004.4.4.29"><span class="textbf"><span class="texttt">ompt_frame_flag_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >4.4.4.30&#x00A0;&#x00A0;<a 
+href="openmpsu212.html#x269-3370004.4.4.30"><span class="textbf"><span class="texttt">ompt_wait_id_t</span></span></a></span>
+</div>
+
+
+<!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu209.html" >next</a>] [<a 
+href="openmpse48.html" >prev</a>] [<a 
+href="openmpse48.html#tailopenmpse48.html" >prev-tail</a>] [<a 
+href="openmpse49.html" >front</a>] [<a 
+href="openmpch4.html#openmpse49.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse49.html"></a> </p> 
+ 
+</body> 
+</html>

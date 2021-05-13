@@ -1,0 +1,749 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Directive Format</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu17.html" >next</a>] [<a 
+href="openmpch2.html" >prev</a>] [<a 
+href="openmpch2.html#tailopenmpch2.html" >prev-tail</a>] [<a 
+href="#tailopenmpse9.html">tail</a>] [<a 
+href="openmpch2.html#openmpse9.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h3 class="sectionHead"><span class="titlemark">2.1</span>&#x00A0;&#x00A0;<a 
+ id="x31-300002.1"></a>Directive Format</h3>
+<a 
+ id="dx31-30001"></a>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>OpenMP directives for C/C++ may be specified with <span class="textbf"><span class="texttt">#pragma</span></span> directives as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30002r1"></a></span></p> 
+<!--l. 8--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30003r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30004r3"></a></span></pre>
+<p>Where <span class="textit"><span class="textrm">directive-name</span></span> is the name of the directive and, when specified in the syntax of the directive, any
+directive-level arguments enclosed in parentheses.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  In the following example, <span class="textbf"><span class="texttt">depobj(o)</span></span> is the <span class="textit"><span class="textrm">directive-name</span></span>:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30005r1"></a></span></p> 
+<!--l. 20--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30006r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">depobj</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">o</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">inout</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">d</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30007r3"></a></span></pre>
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p>Each <span class="textbf"><span class="texttt">#pragma</span></span> directive starts with <span class="textbf"><span class="texttt">#pragma</span></span>&#x00A0;<span class="textbf"><span class="texttt">omp</span></span>. The remainder of the directive follows the
+conventions of the C and C++ standards for compiler directives. In particular, white space can be used
+before and after the <span class="textbf"><span class="texttt">#</span></span>, and sometimes white space must be used to separate the words in a directive.
+Preprocessing tokens following <span class="textbf"><span class="texttt">#pragma</span></span>&#x00A0;<span class="textbf"><span class="texttt">omp</span></span> are subject to macro replacement.
+</p> 
+<p>Some OpenMP directives may be composed of consecutive <span class="textbf"><span class="texttt">#pragma</span></span> directives if specified in their
+syntax.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>In C++11 and higher, all OpenMP directives may be specified with C++ attribute specifiers as
+follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30008r1"></a></span></p> 
+<!--l. 39--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30009r2"></a></span><span 
+class="pcrb8t-">[[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">directive</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">]]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30010r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30011r1"></a></span></p> 
+<!--l. 43--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30012r2"></a></span><span 
+class="pcrb8t-">[[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">using</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">directive</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">]]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30013r3"></a></span></pre>
+                                                                            
+                                                                            
+<p>The above two forms are interchangeable for any OpenMP directive. Some OpenMP directives may be
+composed of consecutive attribute specifiers if specified in their syntax. Any two consecutive attribute
+specifiers may be reordered or expressed as a single attribute specifier, as permitted by the base language,
+without changing the behavior of the OpenMP directive.
+</p> 
+<p>Some directives may have additional forms that use the attribute syntax.
+</p> 
+<p>Multiple attributes on the same statement are allowed. A directive that uses the attribute syntax cannot be
+applied to the same statement as a directive that uses the pragma syntax. For any directive that has a paired
+end directive, including those with a begin and end pair, both directives must use either the
+attribute syntax or the pragma syntax. Attribute directives that apply to the same statement are
+unordered. An ordering can be imposed with the <span class="textbf"><span class="texttt">sequence</span></span> attribute, which is specified as
+follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30014r1"></a></span></p> 
+<!--l. 63--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30015r2"></a></span><span 
+class="pcrb8t-">[[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">sequence</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">::</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attr</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">::</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">attr</span><span 
+class="ec-qtmri-">]...</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">]]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30016r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">directive-attr</span></span> is any attribute in the <span class="textbf"><span class="texttt">omp</span></span> namespace, optionally specified with a <span class="textbf"><span class="texttt">omp::</span></span> namespace
+qualifier, which may be another <span class="textbf"><span class="texttt">sequence</span></span> attribute.
+</p> 
+<p>The application of multiple attributes in a <span class="textbf"><span class="texttt">sequence</span></span> attribute is ordered as if each directive had been
+written as a <span class="textbf"><span class="texttt">#pragma</span></span> directive on subsequent lines.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  This is an example of the expected transformation:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30017r1"></a></span></p> 
+<!--l. 78--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30018r2"></a></span><span 
+class="pcrb8t-">[[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">sequence</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">directive</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">directive</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">]]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30019r3"></a></span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">(...)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30020r4"></a></span><span 
+class="pcrb8t-">//</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">becomes</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30021r5"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30022r6"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30023r7"></a></span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">(...)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{}</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30024r8"></a></span></pre>
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Directives are case-sensitive.
+</p> 
+<p>Each of the expressions used in the OpenMP syntax inside of the clauses must be a valid <span class="textit"><span class="textrm">assignment-expression</span></span>
+of the base language unless otherwise specified.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Directives may not appear in <span class="textbf"><span class="texttt">constexpr</span></span> functions or in constant expressions.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>OpenMP directives for Fortran are specified as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30025r1"></a></span></p> 
+<!--l. 105--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30026r2"></a></span><span 
+class="ec-qtmri-">sentinel</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]...]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30027r3"></a></span></pre>
+<p>All OpenMP compiler directives must begin with a directive <span class="emph">sentinel</span>. The format of a sentinel differs
+between fixed form and free form source files, as described in Section&#x00A0;<a 
+href="openmpsu17.html#x32-310002.1.1">2.1.1<!--tex4ht:ref: subsec:Fixed Source Form Directives --></a> and Section&#x00A0;<a 
+href="openmpsu18.html#x33-320002.1.2">2.1.2<!--tex4ht:ref: subsec:Free Source Form Directives --></a>.
+</p> 
+<p>Directives are case insensitive. Directives cannot be embedded within continued statements, and statements
+cannot be embedded within directives.
+</p> 
+<p>Each of the expressions used in the OpenMP syntax inside of the clauses must be a valid <span class="textit"><span class="textrm">expression</span></span> of the
+base language unless otherwise specified.
+</p> 
+<p>In order to simplify the presentation, free form is used for the syntax of OpenMP directives for Fortran in
+the remainder of this document, except as noted.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>A directive may be categorized as one of the following: a metadirective, a declarative directive, an
+executable directive, an informational directive, or a utility directive.
+</p> 
+<p>Only one <span class="emph">directive-name</span> can be specified per directive (note that this includes combined directives, see
+Section&#x00A0;<a 
+href="openmpse24.html#x102-1120002.16">2.16<!--tex4ht:ref: sec:Combined Constructs --></a>). The order in which clauses appear on directives is not significant. Clauses on directives may
+be repeated as needed, subject to the restrictions listed in the description of each clause or the directives on
+which they can appear.
+</p> 
+<p>Some clauses accept a <span class="emph">list</span>, an <span class="textit"><span class="textrm">extended-list</span></span>, or a <span class="textit"><span class="textrm">locator-list</span></span>. A <span class="textit"><span class="textrm">list</span></span> consists of a comma-separated collection
+of one or more <span class="textit"><span class="textrm">list items</span></span>. An <span class="textit"><span class="textrm">extended-list</span></span> consists of a comma-separated collection of one or more
+<span class="textit"><span class="textrm">extended list items</span></span>. A <span class="textit"><span class="textrm">locator-list</span></span> consists of a comma-separated collection of one or more <span class="textit"><span class="textrm">locator list
+items</span></span>.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>A <span class="textit"><span class="textrm">list item</span></span> is a variable or an array section. An <span class="textit"><span class="textrm">extended list item</span></span> is a <span class="textit"><span class="textrm">list item</span></span> or a function name. A
+<span class="textit"><span class="textrm">locator list item</span></span> is any lvalue expression including variables, an array section, or a reserved
+locator.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>A <span class="textit"><span class="textrm">list item</span></span> is a variable that is not coindexed, an array section that is not coindexed, a <span class="textit"><span class="textrm">named constant</span></span>, an
+associate name that may appear in a variable definition context, or a common block name (enclosed in
+slashes). An <span class="textit"><span class="textrm">extended list item</span></span> is a <span class="textit"><span class="textrm">list item</span></span> or a procedure name. A <span class="textit"><span class="textrm">locator list item</span></span> is a <span class="textit"><span class="textrm">list item</span></span>, or a
+reserved locator.
+</p> 
+<p>A <span class="textit"><span class="textrm">named constant</span></span> as a <span class="textit"><span class="textrm">list item</span></span> can appear only in clauses where it is explicitly allowed.
+</p> 
+<p>When a named common block appears in a <span class="textit"><span class="textrm">list</span></span>, it has the same meaning and restrictions as if every explicit
+member of the common block appeared in the list. An explicit member of a common block is a variable that
+is named in a <span class="textbf"><span class="texttt">COMMON</span></span> statement that specifies the common block name and is declared in the same scoping
+unit in which the clause appears. Named common blocks do not include the blank common
+block.
+</p> 
+<p>Although variables in common blocks can be accessed by use association or host association, common
+block names cannot. As a result, a common block name specified in a data-sharing attribute, a data copying,
+or a data-mapping attribute clause must be declared to be a common block in the same scoping unit in
+which the clause appears.
+</p> 
+<p>If a list item that appears in a directive or clause is an optional dummy argument that is not present, the
+directive or clause for that list item is ignored.
+</p> 
+<p>If the variable referenced inside a construct is an optional dummy argument that is not present, any
+explicitly determined, implicitly determined, or predetermined data-sharing and data-mapping attribute
+rules for that variable are ignored. Otherwise, if the variable is an optional dummy argument that is present,
+it is present inside the construct.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>For all base languages, a <span class="textit"><span class="textrm">list item</span></span>, an <span class="textit"><span class="textrm">extended list item</span></span>, or a <span class="textit"><span class="textrm">locator list item</span></span> is subject to the restrictions
+specified in Section&#x00A0;<a 
+href="openmpsu21.html#x36-350002.1.5">2.1.5<!--tex4ht:ref: subsec:Array Sections --></a> and in each of the sections that describe clauses and directives for which the <span class="textit"><span class="textrm">list</span></span>,
+the <span class="textit"><span class="textrm">extended-list</span></span>, or the <span class="textit"><span class="textrm">locator-list</span></span> appears.
+                                                                            
+                                                                            
+</p> 
+<p>Some clauses and directives accept the use of reserved locators as special identifiers that represent system
+storage not necessarily bound to any base language storage item. Reserved locators may only appear in
+clauses and directives where they are explicitly allowed and may not otherwise be referenced in the
+program. The list of reserved locators is:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30028r1"></a></span></p> 
+<!--l. 193--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30029r2"></a></span><span 
+class="pcrb8t-">omp_all_memory</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x31-30030r3"></a></span></pre>
+<p>The reserved locator <span class="textbf"><span class="texttt">omp_all_memory</span></span> is a reserved identifier that denotes a list item treated as having
+storage that corresponds to the storage of all other objects in memory.
+</p> 
+<p>Some directives have an associated structured block or a structured block sequence.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>A structured block sequence that consists of more than one statement may appear only for executable
+directives that explicitly allow it. The corresponding compound statement obtained by enclosing the
+sequence in <span class="textbf"><span class="texttt">{</span></span> and <span class="textbf"><span class="texttt">}</span></span> must be a structured block and the structured block sequence then should be considered
+to be a structured block with all of its restrictions.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>A structured block:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  may
+  contain
+  infinite
+  loops
+  where
+  the
+  point
+  of
+  exit
+  is
+  never
+  reached;
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  may
+  halt
+  due
+  to
+  an
+  IEEE
+  exception;
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> may contain calls to <span class="textbf"><span class="texttt">exit()</span></span>, <span class="textbf"><span class="texttt">_Exit()</span></span>, <span class="textbf"><span class="texttt">quick_exit()</span></span>, <span class="textbf"><span class="texttt">abort()</span></span> or functions with a
+  <span class="textbf"><span class="texttt">_Noreturn</span></span> specifier (in C) or a <span class="textbf"><span class="texttt">noreturn</span></span> attribute (in C/C++);
+<span 
+class="cmsy-10">&#x2219;</span> may be an expression statement, iteration statement, selection statement, or try block, provided that the
+  corresponding compound statement obtained by enclosing it in <span class="textbf"><span class="texttt">{</span></span> and <span class="textbf"><span class="texttt">}</span></span> would be a structured block;
+  and
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> may contain <span class="textbf"><span class="texttt">STOP</span></span> or <span class="textbf"><span class="texttt">ERROR</span></span>&#x00A0;<span class="textbf"><span class="texttt">STOP</span></span> statements.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-31-32"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to structured blocks are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Entry
+  to
+  a
+  structured
+  block
+  must
+  not
+  be
+  the
+  result
+  of
+  a
+  branch.
+  </li>
+  <li class="itemize">
+  The
+  point
+  of
+  exit
+  cannot
+  be
+  a
+  branch
+  out
+  of
+  the
+  structured
+  block.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The point of entry to a structured block must not be a call to <span class="textbf"><span class="texttt">setjmp</span></span>.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> <span class="textbf"><span class="texttt">longjmp</span></span> must not violate the entry/exit criteria.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> <span class="textbf"><span class="texttt">throw</span></span> must not violate the entry/exit criteria.
+<span 
+class="cmsy-10">&#x2219;</span> <span class="textbf"><span class="texttt">co_await</span></span>, <span class="textbf"><span class="texttt">co_yield</span></span> and <span class="textbf"><span class="texttt">co_return</span></span> must not violate the entry/exit criteria.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+                                                                            
+                                                                            
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  When
+  a
+  <span class="textbf"><span class="texttt">BLOCK</span></span>
+  construct
+  appears
+  in
+  a
+  structured
+  block,
+  that
+  <span class="textbf"><span class="texttt">BLOCK</span></span>
+  construct
+  must
+  not
+  contain
+  any
+  <span class="textbf"><span class="texttt">ASYNCHRONOUS</span></span>
+  or
+  <span class="textbf"><span class="texttt">VOLATILE</span></span>
+  statements,
+  nor
+  any
+  specification
+  statements
+  that
+  include
+  the
+  <span class="textbf"><span class="texttt">ASYNCHRONOUS</span></span>
+  or
+  <span class="textbf"><span class="texttt">VOLATILE</span></span>
+  attributes.</li></ul>
+<p>Restrictions on explicit OpenMP regions (that arise from executable directives) are as follows:
+</p> 
+
+  <ul class="itemize1">
+                                                                            
+                                                                            
+  <li class="itemize">
+  If
+  more
+  than
+  one
+  image
+  is
+  executing
+  the
+  program,
+  any
+  image
+  control
+  statement,
+  <span class="textbf"><span class="texttt">ERROR</span></span>&#x00A0;<span class="textbf"><span class="texttt">STOP</span></span>
+  statement,
+  <span class="textbf"><span class="texttt">FAIL</span></span>&#x00A0;<span class="textbf"><span class="texttt">IMAGE</span></span>
+  statement,
+  collective
+  subroutine
+  call
+  or
+  access
+  to
+  a
+  coindexed
+  object
+  that
+  appears
+  in
+  an
+  explicit
+  OpenMP
+  region
+  will
+  result
+  in
+  unspecified
+  behavior.</li></ul>
+<div class="subsectionTOCS">
+                                                                            
+                                                                            
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.1&#x00A0;&#x00A0;<a 
+href="openmpsu17.html#x32-310002.1.1">Fixed Source Form Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.2&#x00A0;&#x00A0;<a 
+href="openmpsu18.html#x33-320002.1.2">Free Source Form Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.3&#x00A0;&#x00A0;<a 
+href="openmpsu19.html#x34-330002.1.3">Stand-Alone Directives</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.4&#x00A0;&#x00A0;<a 
+href="openmpsu20.html#x35-340002.1.4">Array Shaping</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.5&#x00A0;&#x00A0;<a 
+href="openmpsu21.html#x36-350002.1.5">Array Sections</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.1.6&#x00A0;&#x00A0;<a 
+href="openmpsu22.html#x37-360002.1.6">Iterators</a></span>
+</div>
+
+
+
+                                                                            
+                                                                            
+
+                                                                            
+                                                                            
+<!--l. 725--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu17.html" >next</a>] [<a 
+href="openmpch2.html" >prev</a>] [<a 
+href="openmpch2.html#tailopenmpch2.html" >prev-tail</a>] [<a 
+href="openmpse9.html" >front</a>] [<a 
+href="openmpch2.html#openmpse9.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse9.html"></a> </p> 
+ 
+</body> 
+</html>

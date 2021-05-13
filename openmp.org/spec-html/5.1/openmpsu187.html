@@ -1,0 +1,166 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_fulfill_event</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 721--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse42.html" >next</a>] [<a 
+href="openmpse41.html" >prev</a>] [<a 
+href="openmpse41.html#tailopenmpse41.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu187.html">tail</a>] [<a 
+href="openmpse41.html#openmpsu187.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.11.1</span>&#x00A0;&#x00A0;<a 
+ id="x235-2680003.11.1"></a><span class="textbf"><span class="texttt">omp_fulfill_event</span></span></h4>
+<a 
+ id="dx235-268001"></a>
+<p><p><a 
+ id="Q1-235-1289"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+This routine fulfills and destroys an OpenMP event.
+<p><a 
+ id="Q1-235-1290"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x235-268002r1"></a></span></p> 
+<!--l. 729--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x235-268003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_fulfill_event</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_event_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">event</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x235-268004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x235-268005r1"></a></span></p> 
+<!--l. 735--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x235-268006r2"></a></span><span 
+class="pcrb8t-">subroutine</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_fulfill_event</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">event</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x235-268007r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_event_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">event</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x235-268008r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-235-1291"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+A program that calls this routine on an event that was already fulfilled is non-conforming. A
+program that calls this routine with an event handle that was not created by the <span class="textbf"><span class="texttt">detach</span></span> clause is
+non-conforming.
+</p> 
+<p><p><a 
+ id="Q1-235-1292"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The effect of this routine is to fulfill the event associated with the event handle argument. The effect
+of fulfilling the event will depend on how the event was created. The event is destroyed and
+cannot be accessed after calling this routine, and the event handle becomes unassociated with any
+event.
+                                                                            
+                                                                            
+</p> 
+<p><p><a 
+ id="Q1-235-1293"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">task-fulfill</span></span> event occurs in a thread that executes an <span class="textbf"><span class="texttt">omp_fulfill_event</span></span> region before the event is
+fulfilled if the OpenMP event object was created by a <span class="textbf"><span class="texttt">detach</span></span> clause on a task.
+</p> 
+<p><p><a 
+ id="Q1-235-1294"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_task_schedule</span></span> callback with <span class="textbf"><span class="texttt">NULL</span></span> as its
+<span class="textit"><span class="textrm">next_task_data</span></span> argument while the argument <span class="textit"><span class="textrm">prior_task_data</span></span> binds to the detached task for each
+occurrence of a <span class="textit"><span class="textrm">task-fulfill</span></span> event. If the <span class="textit"><span class="textrm">task-fulfill</span></span> event occurs before the detached task finished the
+execution of the associated <span class="textit"><span class="textrm">structured-block</span></span>, the callback has <span class="textbf"><span class="texttt">ompt_task_early_fulfill</span></span> as its
+<span class="textit"><span class="textrm">prior_task_status</span></span> argument; otherwise the callback has <span class="textbf"><span class="texttt">ompt_task_late_fulfill</span></span> as its
+<span class="textit"><span class="textrm">prior_task_status</span></span> argument. This callback has type signature <span class="textbf"><span class="texttt">ompt_callback_task_schedule_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-235-1295"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">detach</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_task_schedule_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3520004.5.2.10">4.5.2.10<!--tex4ht:ref: sec:ompt_callback_task_schedule_t --></a>.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<!--l. 2--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse42.html" >next</a>] [<a 
+href="openmpse41.html" >prev</a>] [<a 
+href="openmpse41.html#tailopenmpse41.html" >prev-tail</a>] [<a 
+href="openmpsu187.html" >front</a>] [<a 
+href="openmpse41.html#openmpsu187.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu187.html"></a> </p> 
+ 
+</body> 
+</html>

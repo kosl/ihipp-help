@@ -1,0 +1,510 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Memory Allocators</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 63--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu62.html" >next</a>] [<a 
+href="openmpsu60.html" >prev</a>] [<a 
+href="openmpsu60.html#tailopenmpsu60.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu61.html">tail</a>] [<a 
+href="openmpse21.html#openmpsu61.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.13.2</span>&#x00A0;&#x00A0;<a 
+ id="x88-980002.13.2"></a>Memory Allocators</h4>
+<a 
+ id="dx88-98001"></a>
+<p>OpenMP memory allocators can be used by a program to make allocation requests. When a memory
+allocator receives a request to allocate storage of a certain size, an allocation of logically consecutive
+<span class="emph">memory</span> in the resources of its associated memory space of at least the size that was requested will be
+returned if possible. This allocation will not overlap with any other existing allocation from an OpenMP
+memory allocator.
+</p> 
+<p>The behavior of the allocation process can be affected by the allocator traits that the user specifies.
+Table&#x00A0;<a 
+href="openmpsu48.html#x88-98002r9">2.9<!--tex4ht:ref: tab:Allocator traits --></a> shows the allowed allocator traits, their possible values and the default value of each
+trait.
+<a 
+ id="x88-98002r9"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x88-98003"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.9: </td><td  
+class="content">Allocator Traits</td></tr></table></div><!--tex4ht:label?: x88-98002r2.13 -->
+ <table id="TBL-19" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-19-1g"><col 
+id="TBL-19-1" /><col 
+id="TBL-19-2" /><col 
+id="TBL-19-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Allocator trait</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Allowed values</span></span>                                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-1-3"  
+class="td11"> <span class="textsf"><span class="textbf">Default value</span></span>           </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-2-1"  
+class="td11">                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-3-1"  
+class="td11">                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-4-1"  
+class="td11">                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">sync_hint</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">contended</span></span>, <span class="textbf"><span class="texttt">uncontended</span></span>,
+  <span class="textbf"><span class="texttt">serialized</span></span>, <span class="textbf"><span class="texttt">private</span></span>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-5-3"  
+class="td11"> <span class="textbf"><span class="texttt">contended</span></span>      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">alignment</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-6-2"  
+class="td11"> A positive integer value that is a power of
+  2                                                                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-6-3"  
+class="td11"> 1 byte                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">access</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">all</span></span>, <span class="textbf"><span class="texttt">cgroup</span></span>, <span class="textbf"><span class="texttt">pteam</span></span>, <span class="textbf"><span class="texttt">thread</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-7-3"  
+class="td11"> <span class="textbf"><span class="texttt">all</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">pool_size</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-8-2"  
+class="td11"> Positive integer value                                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-8-3"  
+class="td11"> Implementation
+  defined                         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">fallback</span></span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">default_mem_fb</span></span>, <span class="textbf"><span class="texttt">null_fb</span></span>,
+  <span class="textbf"><span class="texttt">abort_fb</span></span>, <span class="textbf"><span class="texttt">allocator_fb</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-9-3"  
+class="td11"> <span class="textbf"><span class="texttt">default_mem_fb</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">fb_data</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-10-2"  
+class="td11"> an allocator handle                                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-10-3"  
+class="td11"> (none)                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-11-1"  
+class="td11"> <span class="textbf"><span class="texttt">pinned</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">true</span></span>, <span class="textbf"><span class="texttt">false</span></span>                    </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-11-3"  
+class="td11"> <span class="textbf"><span class="texttt">false</span></span>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">partition</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-12-2"  
+class="td11"> <span class="textbf"><span class="texttt">environment</span></span>, <span class="textbf"><span class="texttt">nearest</span></span>, <span class="textbf"><span class="texttt">blocked</span></span>,
+  <span class="textbf"><span class="texttt">interleaved</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-19-12-3"  
+class="td11"> <span class="textbf"><span class="texttt">environment</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-13-1"  
+class="td11">                 </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-19-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-19-14-1"  
+class="td11">                 </td>
+</tr></table></div>
+<p>The <span class="textbf"><span class="texttt">sync_hint</span></span> trait describes the expected manner in which multiple threads may use the allocator. The
+                                                                            
+                                                                            
+values and their descriptions are:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">contended</span></span>:
+  high
+  contention
+  is
+  expected
+  on
+  the
+  allocator;
+  that
+  is,
+  many
+  threads
+  are
+  expected
+  to
+  request
+  allocations
+  simultaneously.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">uncontended</span></span>:
+  low
+  contention
+  is
+  expected
+  on
+  the
+  allocator;
+  that
+  is,
+  few
+  threads
+  are
+  expected
+  to
+  request
+                                                                            
+                                                                            
+  allocations
+  simultaneously.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">serialized</span></span>:
+  only
+  one
+  thread
+  at
+  a
+  time
+  will
+  request
+  allocations
+  with
+  the
+  allocator.
+  Requesting
+  two
+  allocations
+  simultaneously
+  when
+  specifying
+  <span class="textbf"><span class="texttt">serialized</span></span>
+  results
+  in
+  unspecified
+  behavior.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">private</span></span>:
+  the
+  same
+  thread
+  will
+  request
+  allocations
+  with
+  the
+  allocator
+                                                                            
+                                                                            
+  every
+  time.
+  Requesting
+  an
+  allocation
+  from
+  different
+  threads,
+  simultaneously
+  or
+  not,
+  when
+  specifying
+  <span class="textbf"><span class="texttt">private</span></span>
+  results
+  in
+  unspecified
+  behavior.</li></ul>
+<p>Allocated memory will be byte aligned to at least the value specified for the <span class="textbf"><span class="texttt">alignment</span></span> trait of the
+allocator. Some directives and API routines can specify additional requirements on alignment beyond those
+described in this section.
+</p> 
+<p>Memory allocated by allocators with the <span class="textbf"><span class="texttt">access</span></span> trait defined to be <span class="textbf"><span class="texttt">all</span></span> must be accessible by all threads
+in the device where the allocation was requested. Memory allocated by allocators with the <span class="textbf"><span class="texttt">access</span></span>
+trait defined to be <span class="textbf"><span class="texttt">cgroup</span></span> will be memory accessible by all threads in the same contention
+group as the thread that requested the allocation. Attempts to access the memory returned by an
+allocator with the <span class="textbf"><span class="texttt">access</span></span> trait defined to be <span class="textbf"><span class="texttt">cgroup</span></span> from a thread that is not part of the
+same contention group as the thread that allocated the memory result in unspecified behavior.
+Memory allocated by allocators with the <span class="textbf"><span class="texttt">access</span></span> trait defined to be <span class="textbf"><span class="texttt">pteam</span></span> will be memory
+accessible by all threads that bind to the same <span class="textbf"><span class="texttt">parallel</span></span> region of the thread that requested the
+allocation. Attempts to access the memory returned by an allocator with the <span class="textbf"><span class="texttt">access</span></span> trait defined to
+be <span class="textbf"><span class="texttt">pteam</span></span> from a thread that does not bind to the same <span class="textbf"><span class="texttt">parallel</span></span> region as the thread that
+allocated the memory result in unspecified behavior. Memory allocated by allocators with the
+<span class="textbf"><span class="texttt">access</span></span> trait defined to be <span class="textbf"><span class="texttt">thread</span></span> will be memory accessible by the thread that requested the
+allocation. Attempts to access the memory returned by an allocator with the <span class="textbf"><span class="texttt">access</span></span> trait defined to
+be <span class="textbf"><span class="texttt">thread</span></span> from a thread other than the one that allocated the memory result in unspecified
+behavior.
+</p> 
+<p>The total amount of storage in bytes that an allocator can use is limited by the <span class="textbf"><span class="texttt">pool_size</span></span> trait. For
+allocators with the <span class="textbf"><span class="texttt">access</span></span> trait defined to be <span class="textbf"><span class="texttt">all</span></span>, this limit refers to allocations from all threads that
+access the allocator. For allocators with the <span class="textbf"><span class="texttt">access</span></span> trait defined to be <span class="textbf"><span class="texttt">cgroup</span></span>, this limit
+refers to allocations from threads that access the allocator from the same contention group. For
+allocators with the <span class="textbf"><span class="texttt">access</span></span> trait defined to be <span class="textbf"><span class="texttt">pteam</span></span>, this limit refers to allocations from threads
+that access the allocator from the same parallel team. For allocators with the <span class="textbf"><span class="texttt">access</span></span> trait
+                                                                            
+                                                                            
+defined to be <span class="textbf"><span class="texttt">thread</span></span>, this limit refers to allocations from each thread that accesses the allocator.
+Requests that would result in using more storage than <span class="textbf"><span class="texttt">pool_size</span></span> will not be fulfilled by the
+allocator.
+</p> 
+<p>The <span class="textbf"><span class="texttt">fallback</span></span> trait specifies how the allocator behaves when it cannot fulfill an allocation request. If the
+<span class="textbf"><span class="texttt">fallback</span></span> trait is set to <span class="textbf"><span class="texttt">null_fb</span></span>, the allocator returns the value zero if it fails to allocate the memory. If
+the <span class="textbf"><span class="texttt">fallback</span></span> trait is set to <span class="textbf"><span class="texttt">abort_fb</span></span>, program execution will be terminated if the allocation fails. If the
+<span class="textbf"><span class="texttt">fallback</span></span> trait is set to <span class="textbf"><span class="texttt">allocator_fb</span></span> then when an allocation fails the request will be delegated to the
+allocator specified in the <span class="textbf"><span class="texttt">fb_data</span></span> trait. If the <span class="textbf"><span class="texttt">fallback</span></span> trait is set to <span class="textbf"><span class="texttt">default_mem_fb</span></span> then when an
+allocation fails another allocation will be tried in <span class="textbf"><span class="texttt">omp_default_mem_space</span></span>, which assumes all
+allocator traits to be set to their default values except for <span class="textbf"><span class="texttt">fallback</span></span> trait, which will be set to
+<span class="textbf"><span class="texttt">null_fb</span></span>.
+                                                                            
+                                                                            
+</p> 
+<p>Allocators with the <span class="textbf"><span class="texttt">pinned</span></span> trait defined to be <span class="textbf"><span class="texttt">true</span></span> ensure that their allocations remain in the same
+storage resource at the same location for their entire lifetime.
+</p> 
+<p>The <span class="textbf"><span class="texttt">partition</span></span> trait describes the partitioning of allocated memory over the storage resources
+represented by the memory space associated with the allocator. The partitioning will be done in parts with a
+minimum size that is implementation defined. The values are:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">environment</span></span>:
+  the
+  placement
+  of
+  allocated
+  memory
+  is
+  determined
+  by
+  the
+  execution
+  environment;
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">nearest</span></span>:
+  allocated
+  memory
+  is
+  placed
+  in
+  the
+  storage
+  resource
+  that
+  is
+  nearest
+  to
+  the
+  thread
+  that
+  requests
+                                                                            
+                                                                            
+  the
+  allocation;
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">blocked</span></span>:
+  allocated
+  memory
+  is
+  partitioned
+  into
+  parts
+  of
+  approximately
+  the
+  same
+  size
+  with
+  at
+  most
+  one
+  part
+  per
+  storage
+  resource;
+  and
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">interleaved</span></span>:
+  allocated
+  memory
+  parts
+  are
+  distributed
+  in
+  a
+  round-robin
+  fashion
+  across
+  the
+  storage
+                                                                            
+                                                                            
+  resources.</li></ul>
+<p>Table&#x00A0;<a 
+href="openmpsu48.html#x88-98004r10">2.10<!--tex4ht:ref: tab:Predefined Allocators --></a> shows the list of predefined memory allocators and their associated memory spaces. The
+predefined memory allocators have default values for their allocator traits unless otherwise
+specified.
+<a 
+ id="x88-98004r10"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x88-98005"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.10: </td><td  
+class="content">Predefined Allocators</td></tr></table></div><!--tex4ht:label?: x88-98004r2.13 -->
+ <table id="TBL-21" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-21-1g"><col 
+id="TBL-21-1" /><col 
+id="TBL-21-2" /><col 
+id="TBL-21-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Allocator name</span></span>                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Associated memory space</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-1-3"  
+class="td11"> <span class="textsf"><span class="textbf">Non-default trait
+  values</span></span>                      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-2-1"  
+class="td11">                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-3-1"  
+class="td11">                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-4-1"  
+class="td11">                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_default_mem_alloc</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_default_mem_space</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-5-3"  
+class="td11"> <span class="textbf"><span class="texttt">fallback</span></span>:<span class="textbf"><span class="texttt">null_fb</span></span> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_large_cap_mem_alloc</span></span></td><td  style="white-space:wrap; text-align:left;" id="TBL-21-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_large_cap_mem_space</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-6-3"  
+class="td11"> (none)                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_const_mem_alloc</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_const_mem_space</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-7-3"  
+class="td11"> (none)                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_high_bw_mem_alloc</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-8-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_high_bw_mem_space</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-8-3"  
+class="td11"> (none)                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-9-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_low_lat_mem_alloc</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">omp_low_lat_mem_space</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-9-3"  
+class="td11"> (none)                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-10-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_cgroup_mem_alloc</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-10-2"  
+class="td11"> Implementation defined                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-10-3"  
+class="td11"> <span class="textbf"><span class="texttt">access</span></span>:<span class="textbf"><span class="texttt">cgroup</span></span>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-11-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_pteam_mem_alloc</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-11-2"  
+class="td11"> Implementation defined                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-11-3"  
+class="td11"> <span class="textbf"><span class="texttt">access</span></span>:<span class="textbf"><span class="texttt">pteam</span></span>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-12-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_thread_mem_alloc</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-12-2"  
+class="td11"> Implementation defined                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-21-12-3"  
+class="td11"> <span class="textbf"><span class="texttt">access</span></span>:<span class="textbf"><span class="texttt">thread</span></span>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-13-1"  
+class="td11">                        </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-21-14-1"  
+class="td11">                        </td>
+</tr></table></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If any operation of the base language causes a reallocation of a variable that is allocated with a memory
+allocator then that memory allocator will be used to deallocate the current memory and to allocate the new
+memory. For allocated allocatable components of such variables, the allocator that will be used for the
+deallocation and allocation is unspecified.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-88-339"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_init_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu196.html#x246-2790003.13.2">3.13.2<!--tex4ht:ref: subsec:omp_init_allocator --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu197.html#x247-2800003.13.3">3.13.3<!--tex4ht:ref: subsec:omp_destroy_allocator --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_default_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu198.html#x248-2810003.13.4">3.13.4<!--tex4ht:ref: subsec:omp_set_default_allocator --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_default_allocator</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu199.html#x249-2820003.13.5">3.13.5<!--tex4ht:ref: subsec:omp_get_default_allocator --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_ALLOCATOR</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse79.html#x345-5200006.22">6.22<!--tex4ht:ref: sec:OMP_ALLOCATOR --></a>.</li></ul>
+<!--l. 266--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu62.html" >next</a>] [<a 
+href="openmpsu60.html" >prev</a>] [<a 
+href="openmpsu60.html#tailopenmpsu60.html" >prev-tail</a>] [<a 
+href="openmpsu61.html" >front</a>] [<a 
+href="openmpse21.html#openmpsu61.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<p><a 
+ id="tailopenmpsu61.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Fixed Source Form Conditional Compilation Sentinels</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 747--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu24.html" >next</a>] [<a 
+href="openmpse10.html" >prev</a>] [<a 
+href="openmpse10.html#tailopenmpse10.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu23.html">tail</a>] [<a 
+href="openmpse10.html#openmpsu23.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h4 class="subsectionHead"><span class="titlemark">2.2.1</span>&#x00A0;&#x00A0;<a 
+ id="x39-380002.2.1"></a>Fixed Source Form Conditional Compilation Sentinels</h4>
+<a 
+ id="dx39-38001"></a>
+<a 
+ id="dx39-38002"></a>
+<p>The following conditional compilation sentinels are recognized in fixed form source files:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38003r1"></a></span></p> 
+<!--l. 755--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38004r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">|</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="pcrb8t-">$</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">|</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c$</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38005r3"></a></span></pre>
+<p>To enable conditional compilation, a line with a conditional compilation sentinel must satisfy the following
+criteria:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  sentinel
+  must
+  start
+  in
+  column
+  1
+  and
+  appear
+  as
+  a
+  single
+  word
+  with
+  no
+  intervening
+  white
+  space;
+  </li>
+  <li class="itemize">
+  After
+  the
+  sentinel
+  is
+  replaced
+  with
+  two
+                                                                            
+                                                                            
+  spaces,
+  initial
+  lines
+  must
+  have
+  a
+  space
+  or
+  zero
+  in
+  column
+  6
+  and
+  only
+  white
+  space
+  and
+  numbers
+  in
+  columns
+  1
+  through
+  5;
+  </li>
+  <li class="itemize">
+  After
+  the
+  sentinel
+  is
+  replaced
+  with
+  two
+  spaces,
+  continuation
+  lines
+  must
+  have
+  a
+  character
+  other
+  than
+  a
+                                                                            
+                                                                            
+  space
+  or
+  zero
+  in
+  column
+  6
+  and
+  only
+  white
+  space
+  in
+  columns
+  1
+  through
+  5.</li></ul>
+<p>If these criteria are met, the sentinel is replaced by two spaces. If these criteria are not met, the line is left
+unchanged.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  In the following example, the two forms for specifying conditional compilation in fixed source form
+are equivalent (the first line represents the position of the first 9 columns):
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38006r1"></a></span></p> 
+<!--l. 783--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38007r2"></a></span><span 
+class="pcrb8t-">c23456789</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38008r3"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">10</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iam</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_thread_num</span><span 
+class="pcrb8t-">()</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">+</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38009r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">index</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38010r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38011r6"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">ifdef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_OPENMP</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38012r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">10</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iam</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_thread_num</span><span 
+class="pcrb8t-">()</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">+</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38013r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">index</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38014r9"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">endif</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x39-38015r10"></a></span></pre>
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<!--l. 797--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu24.html" >next</a>] [<a 
+href="openmpse10.html" >prev</a>] [<a 
+href="openmpse10.html#tailopenmpse10.html" >prev-tail</a>] [<a 
+href="openmpsu23.html" >front</a>] [<a 
+href="openmpse10.html#openmpsu23.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu23.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Declare Variant Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1364--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu30.html" >next</a>] [<a 
+href="openmpsu28.html" >prev</a>] [<a 
+href="openmpsu28.html#tailopenmpsu28.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu29.html">tail</a>] [<a 
+href="openmpse11.html#openmpsu29.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.5</span>&#x00A0;&#x00A0;<a 
+ id="x46-450002.3.5"></a>Declare Variant Directive</h4>
+<a 
+ id="dx46-45001"></a>
+<a 
+ id="dx46-45002"></a>
+<p><p><a 
+ id="Q1-46-59"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The declare variant directive declares a specialized variant of a base function and specifies the
+context in which that specialized variant is used. The declare variant directive is a declarative
+directive.
+<p><a 
+ id="Q1-46-60"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the declare variant directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45003r1"></a></span></p> 
+<!--l. 1379--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">variant</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">variant</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">func</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">id</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45005r3"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">variant</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">variant</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">func</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">id</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45006r4"></a></span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45007r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">function</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">definition</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">or</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">declaration</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45008r6"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45009r1"></a></span></p> 
+<!--l. 1386--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45010r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">begin</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">variant</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45011r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">declaration</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">seq</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45012r4"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">variant</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45013r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45014r1"></a></span></p> 
+<!--l. 1396--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45015r2"></a></span><span 
+class="pcrb8t-">match</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">context</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">specification</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45016r3"></a></span><span 
+class="pcrb8t-">adjust_args</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">adjust</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">op</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">argument</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45017r4"></a></span><span 
+class="pcrb8t-">append_args</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">append</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">op</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">append</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">op</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45020r7"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">adjust-op</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45021r1"></a></span></p> 
+<!--l. 1406--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45022r2"></a></span><span 
+class="pcrb8t-">nothing</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45023r3"></a></span><span 
+class="pcrb8t-">need_device_ptr</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45024r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">append-op</span></span> is one of the following:
+                                                                            
+                                                                            
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45025r1"></a></span></p> 
+<!--l. 1414--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45026r2"></a></span><span 
+class="pcrb8t-">interop</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45027r3"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">variant-func-id</span></span> is the name of a function variant that is either a base language identifier or, for
+C++, a <span class="textit"><span class="textrm">template-id</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45028r1"></a></span></p> 
+<!--l. 1426--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45029r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">variant</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">base</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">proc</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">variant</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">proc</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45030r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45031r1"></a></span></p> 
+<!--l. 1433--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45032r2"></a></span><span 
+class="pcrb8t-">match</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">context</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">specification</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45033r3"></a></span><span 
+class="pcrb8t-">adjust_args</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">adjust</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">op</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">argument</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45034r4"></a></span><span 
+class="pcrb8t-">append_args</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">append</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">op</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">append</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">op</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45035r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">adjust-op</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45036r1"></a></span></p> 
+<!--l. 1442--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45037r2"></a></span><span 
+class="pcrb8t-">nothing</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45038r3"></a></span><span 
+class="pcrb8t-">need_device_ptr</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45039r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">append-op</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45040r1"></a></span></p> 
+<!--l. 1450--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45041r2"></a></span><span 
+class="pcrb8t-">interop</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">[[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">interop</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">]...]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x46-45042r3"></a></span></pre>
+<p>and where <span class="textit"><span class="textrm">variant-proc-name</span></span> is the name of a function variant that is a base language identifier.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-46-61"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The declare variant directive declares a <span class="textit">base function</span> to have the specified function variant. The context
+selector in the <span class="textbf"><span class="texttt">match</span></span> clause is associated with the variant.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive associates the context selector in the <span class="textbf"><span class="texttt">match</span></span> clause with each
+function definition in <span class="textit"><span class="textrm">declaration-definition-seq</span></span>.
+</p> 
+<p>For the purpose of call resolution, each function definition that appears between a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+directive and its paired <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive is a function variant for an assumed base
+function, with the same name and a compatible prototype, that is declared elsewhere without an associated
+declare variant directive.
+</p> 
+<p>If a declare variant directive appears between a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive and its paired
+<span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive the effective context selectors of the outer directive are appended to
+the context selector of the inner directive to form the effective context selector of the inner directive. If a
+<span class="textit"><span class="textrm">trait-set-selector</span></span> is present on both directives, the <span class="textit"><span class="textrm">trait-selector</span></span> list of the outer directive is appended to the
+<span class="textit"><span class="textrm">trait-selector</span></span> list of the inner directive after equivalent <span class="textit"><span class="textrm">trait-selectors</span></span> have been removed from the outer list.
+Restrictions that apply to explicitly specified context selectors also apply to effective context selectors
+constructed through this process.
+</p> 
+<p>The symbol name of a function definition that appears between a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive
+and its paired <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive shall be determined through the base language rules
+after the name of the function has been augmented with a string that shall be determined according to the
+effective context selector of the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive. The symbol names of
+two definitions of a function shall be equal if and only if their effective context selectors are
+equivalent.
+</p> 
+<p>If the context selector of a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive contains traits in the <span class="textit"><span class="textrm">device</span></span> or
+<span class="textit"><span class="textrm">implementation</span></span> set that are known never to be compatible with an OpenMP context during the current
+compilation, the preprocessed code that follows the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive up to the
+matching <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive shall be elided.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The OpenMP context for a direct call to a given base function is defined according to Section&#x00A0;<a 
+href="openmpsu25.html#x42-410002.3.1">2.3.1<!--tex4ht:ref: subsec:OpenMP Context --></a>. If a
+declare variant directive for the base function is visible at the call site and the static part of the context
+selector that is associated with the declared function variant is compatible with the OpenMP context of the
+call according to the matching rules defined in Section&#x00A0;<a 
+href="openmpsu27.html#x44-430002.3.3">2.3.3<!--tex4ht:ref: subsec:Matching and Scoring Context Selectors --></a> then the variant is a replacement candidate to
+be called instead of the base function. Replacement candidates are ordered in decreasing order of the score
+associated with the context selector. If two replacement candidates have the same score then their order is
+implementation defined.
+</p> 
+<p>The list of dynamic replacement candidates is the prefix of the sorted list of replacement candidates up to
+and including the first candidate for which the corresponding context selector is static.
+</p> 
+<p>The first dynamic replacement candidate for which the corresponding context selector is compatible,
+according to the matching rules defined in Section&#x00A0;<a 
+href="openmpsu27.html#x44-430002.3.3">2.3.3<!--tex4ht:ref: subsec:Matching and Scoring Context Selectors --></a>, is called instead of the base function. If no
+compatible candidate exists then the base function is called.
+                                                                            
+                                                                            
+</p> 
+<p>Expressions that appear in the context selector of a <span class="textbf"><span class="texttt">match</span></span> clause are evaluated if no prior dynamic
+replacement candidate has a compatible context selector, and the number of times each expression is
+evaluated is implementation defined. All variables referenced by these expressions are considered to be
+referenced at the call site.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For calls to <span class="textbf"><span class="texttt">constexpr</span></span> base functions that are evaluated in constant expressions, whether any variant
+replacement occurs is implementation defined.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>For indirect function calls that can be determined to call a particular base function, whether any variant
+replacement occurs is unspecified.
+</p> 
+<p>For each <span class="textbf"><span class="texttt">adjust_args</span></span> clause that is present on the selected variant the adjustment operation specified by
+<span class="textit"><span class="textrm">adjust-op</span></span> will be applied to each of the arguments specified in the clause before being passed to the selected
+variant.
+</p> 
+<p>If the <span class="textit"><span class="textrm">adjust-op</span></span> modifier is <span class="textbf"><span class="texttt">need_device_ptr</span></span>, the arguments are converted to corresponding device
+pointers of the default device. If an argument has the <span class="textit"><span class="textrm">is_device_ptr</span></span> property in its <span class="textit"><span class="textrm">interoperability</span></span>
+<span class="textit"><span class="textrm">requirement</span></span> <span class="textit"><span class="textrm">set</span></span> then the argument will be passed as is. Otherwise, the argument will be converted in the
+same manner that a <span class="textbf"><span class="texttt">use_device_ptr</span></span> clause on a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span> construct converts its pointer list
+items into device pointers. If the argument cannot be converted into a device pointer then the <span class="textit"><span class="textrm">NULL</span></span> value
+will be passed as the argument.
+</p> 
+<p>If the <span class="textit"><span class="textrm">adjust-op</span></span> modifier is <span class="textbf"><span class="texttt">nothing</span></span>, the argument is passed to the selected variant without being
+modified.
+</p> 
+<p>If an <span class="textbf"><span class="texttt">append_args</span></span> clause is present on the matching directive then additional arguments
+are passed in the call. The arguments are constructed according to any specified <span class="textit"><span class="textrm">append-op</span></span>
+modifiers and are passed in the same order in which they are specified in the <span class="textbf"><span class="texttt">append_args</span></span>
+clause.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">interop</span></span> operation constructs an argument of type <span class="textbf"><span class="texttt">omp_interop_t</span></span> from the <span class="textit"><span class="textrm">interoperability</span></span>
+<span class="textit"><span class="textrm">requirement</span></span> <span class="textit"><span class="textrm">set</span></span> of the encountering task.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">interop</span></span> operation constructs an argument of type <span class="textbf"><span class="texttt">omp_interop_kind</span></span> from the <span class="textit"><span class="textrm">interoperability</span></span>
+<span class="textit"><span class="textrm">requirement</span></span> <span class="textit"><span class="textrm">set</span></span> of the encountering task.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div> The argument is constructed as if an <span class="textbf"><span class="texttt">interop</span></span> construct with an <span class="textbf"><span class="texttt">init</span></span> clause of <span class="textit"><span class="textrm">interop-types</span></span> was
+specified. If the <span class="textit"><span class="textrm">interoperability</span></span> <span class="textit"><span class="textrm">requirement</span></span> <span class="textit"><span class="textrm">set</span></span> contains one or more properties that could be used as
+clauses for an <span class="textbf"><span class="texttt">interop</span></span> construct of the <span class="textit"><span class="textrm">interop-type</span></span> type, the behavior is as if the corresponding clauses
+would also be part of the aforementioned <span class="textbf"><span class="texttt">interop</span></span> construct and those properties will be removed from
+the <span class="textit"><span class="textrm">interoperability</span></span> <span class="textit"><span class="textrm">requirement</span></span> <span class="textit"><span class="textrm">set</span></span>.
+</p> 
+<p>This argument is destroyed after the call to the selected variant returns, as if an <span class="textbf"><span class="texttt">interop</span></span> construct with a
+<span class="textbf"><span class="texttt">destroy</span></span> clause was used with the same clauses that were used to initialize the argument.
+</p> 
+<p>Any differences that the specific OpenMP context requires in the prototype of the variant from the base
+function prototype are implementation defined.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive, any expressions in the <span class="textbf"><span class="texttt">match</span></span> clause are interpreted as if they
+appeared in the scope of arguments of the base function.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Different declare variant directives may be specified for different declarations of the same base
+function.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The function variant is determined by base language standard name lookup rules ([basic.lookup]) of
+<span class="textit"><span class="textrm">variant-func-id</span></span> using the argument types at the call site after implementation-defined changes have been
+made according to the OpenMP context.
+</p> 
+<p>For the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive, the <span class="textit"><span class="textrm">variant-func-id</span></span> and any expressions in the <span class="textbf"><span class="texttt">match</span></span>
+clause are interpreted as if they appeared at the scope of the trailing return type of the base
+function.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>For the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive, any expressions in the <span class="textbf"><span class="texttt">match</span></span> clause are interpreted at the
+location of the directive.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The procedure to which <span class="textit"><span class="textrm">base-proc-name</span></span> refers is resolved at the location of the directive according to the
+establishment rules for procedure names in the base language.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-46-62"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the declare variant directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Calling
+  functions
+  that
+  a
+  declare
+  variant
+  directive
+  determined
+  to
+  be
+  a
+  function
+  variant
+  directly
+  in
+  an
+  OpenMP
+  context
+  that
+  is
+                                                                            
+                                                                            
+  different
+  from
+  the
+  one
+  that
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>
+  selector
+  set
+  of
+  the
+  context
+  selector
+  specifies
+  is
+  non-conforming.
+  </li>
+  <li class="itemize">
+  If
+  a
+  function
+  is
+  determined
+  to
+  be
+  a
+  function
+  variant
+  through
+  more
+  than
+  one
+  declare
+  variant
+  directive
+  then
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>
+  selector
+  set
+  of
+  their
+                                                                            
+                                                                            
+  context
+  selectors
+  must
+  be
+  the
+  same.
+  </li>
+  <li class="itemize">
+  A
+  function
+  determined
+  to
+  be
+  a
+  function
+  variant
+  may
+  not
+  be
+  specified
+  as
+  a
+  base
+  function
+  in
+  another
+  declare
+  variant
+  directive.
+  </li>
+  <li class="itemize">
+  All
+  variables
+  that
+  are
+  referenced
+  in
+  an
+  expression
+  that
+                                                                            
+                                                                            
+  appears
+  in
+  the
+  context
+  selector
+  of
+  a
+  <span class="textbf"><span class="texttt">match</span></span>
+  clause
+  must
+  be
+  accessible
+  at
+  a
+  call
+  site
+  to
+  the
+  base
+  function
+  according
+  to
+  the
+  base
+  language
+  rules.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">match</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+  directive.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">append_args</span></span>
+  clause
+  can
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  Each
+  argument
+  can
+  only
+  appear
+  in
+  a
+  single
+  <span class="textbf"><span class="texttt">adjust_args</span></span>
+  clause
+  for
+  each
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  An
+  <span class="textbf"><span class="texttt">adjust_args</span></span>
+  clause
+  or
+  <span class="textbf"><span class="texttt">append_args</span></span>
+  clause
+  can
+  only
+  be
+  specified
+                                                                            
+                                                                            
+  if
+  the
+  <span class="textbf"><span class="texttt">dispatch</span></span>
+  selector
+  of
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>
+  selector
+  set
+  appears
+  in
+  the
+  <span class="textbf"><span class="texttt">match</span></span>
+  clause.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The type of the function variant must be compatible with the type of the base function after the
+  implementation-defined transformation for its OpenMP context.
+<span 
+class="cmsy-10">&#x2219;</span> Only the <span class="textbf"><span class="texttt">match</span></span> clause can appear on a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive.
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">match</span></span> clause of a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive may not contain a <span class="textbf"><span class="texttt">simd</span></span>
+  <span class="textit"><span class="textrm">trait-selector-name</span></span>.
+<span 
+class="cmsy-10">&#x2219;</span> Matching pairs of <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> and <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directives shall either
+  encompass disjoint source ranges or they shall be perfectly nested.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The declare variant directive cannot be specified for a virtual, defaulted or deleted function.
+<span 
+class="cmsy-10">&#x2219;</span> The declare variant directive cannot be specified for a constructor or destructor.
+<span 
+class="cmsy-10">&#x2219;</span> The declare variant directive cannot be specified for an immediate function.
+                                                                            
+                                                                            
+<span 
+class="cmsy-10">&#x2219;</span> The function that a declare variant directive determined to be a function variant may not be an immediate
+  function.
+<span 
+class="cmsy-10">&#x2219;</span> A <span class="textbf"><span class="texttt">match</span></span> clause that appears on a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive must not contain a dynamic
+  context selector that references the <span class="textbf"><span class="texttt">this</span></span> pointer.
+<span 
+class="cmsy-10">&#x2219;</span> If an expression in the context selector that appears in a <span class="textbf"><span class="texttt">match</span></span> clause references the <span class="textbf"><span class="texttt">this</span></span> pointer, the
+  base function must be a non-static member function.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> <span class="textit"><span class="textrm">base-proc-name</span></span> must not be a generic name, an entry name, the name of a procedure pointer, a dummy
+  procedure or a statement function.
+<span 
+class="cmsy-10">&#x2219;</span> If <span class="textit"><span class="textrm">base-proc-name</span></span> is omitted then the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive must appear in an interface block
+  or the specification part of a procedure.
+<span 
+class="cmsy-10">&#x2219;</span> Any <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive must appear in the specification part of a subroutine subprogram,
+  function subprogram, or interface body to which it applies.
+<span 
+class="cmsy-10">&#x2219;</span> If the directive is specified for a procedure that is declared via a procedure declaration statement, the
+  <span class="textit"><span class="textrm">base-proc-name</span></span> must be specified.
+<span 
+class="cmsy-10">&#x2219;</span> The procedure <span class="textit"><span class="textrm">base-proc-name</span></span> must have an accessible explicit interface at the location of the
+  directive.
+<span 
+class="cmsy-10">&#x2219;</span> Each argument that appears in a <span class="textbf"><span class="texttt">need_device_ptr</span></span><span class="textit"><span class="textrm">adjust-op</span></span> must be of type <span class="textbf"><span class="texttt">C_PTR</span></span> in the dummy
+  argument declaration.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<p><p><a 
+ id="Q1-46-63"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  OpenMP
+  Context
+  Specification,
+  see
+  Section&#x00A0;<a 
+href="openmpsu25.html#x42-410002.3.1">2.3.1<!--tex4ht:ref: subsec:OpenMP Context --></a>.
+  </li>
+  <li class="itemize">
+  Context
+  Selectors,
+  see
+  Section&#x00A0;<a 
+href="openmpsu26.html#x43-420002.3.2">2.3.2<!--tex4ht:ref: subsec:Context Selectors --></a>.</li></ul>
+                                                                            
+                                                                            
+<!--l. 1703--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu30.html" >next</a>] [<a 
+href="openmpsu28.html" >prev</a>] [<a 
+href="openmpsu28.html#tailopenmpsu28.html" >prev-tail</a>] [<a 
+href="openmpsu29.html" >front</a>] [<a 
+href="openmpse11.html#openmpsu29.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu29.html"></a> </p> 
+ 
+</body> 
+</html>

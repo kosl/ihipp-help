@@ -1,0 +1,305 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_init_allocator</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 136--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu197.html" >next</a>] [<a 
+href="openmpsu195.html" >prev</a>] [<a 
+href="openmpsu195.html#tailopenmpsu195.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu196.html">tail</a>] [<a 
+href="openmpse43.html#openmpsu196.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.13.2</span>&#x00A0;&#x00A0;<a 
+ id="x246-2790003.13.2"></a><span class="textbf"><span class="texttt">omp_init_allocator</span></span></h4>
+<a 
+ id="dx246-279001"></a>
+<p><p><a 
+ id="Q1-246-1344"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_init_allocator</span></span> routine initializes an allocator and associates it with a memory
+space.
+<p><a 
+ id="Q1-246-1345"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279002r1"></a></span></p> 
+<!--l. 146--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279003r2"></a></span><span 
+class="pcrb8t-">omp_allocator_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_init_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_memspace_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">memspace</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ntraits</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279006r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_alloctrait_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">traits</span><span 
+class="pcrb8t-">[]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279007r6"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279008r7"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279009r1"></a></span></p> 
+<!--l. 155--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279010r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_allocator_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279011r3"></a></span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_init_allocator</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">memspace</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ntraits</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">traits</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279012r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_memspace_handle_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">memspace</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279013r5"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">ntraits</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279014r6"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">omp_alloctrait</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">intent</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">in</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">traits</span><span 
+class="pcrb8t-">(*)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x246-279015r7"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-246-1346"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The <span class="textit"><span class="textrm">memspace</span></span> argument must be one of the predefined memory spaces defined in Table&#x00A0;<a 
+href="openmpsu48.html#x87-97002r8">2.8<!--tex4ht:ref: tab:Predefined Memory Spaces --></a>.
+</p> 
+<p>If the <span class="textit"><span class="textrm">ntraits</span></span> argument is greater than zero then the <span class="textit"><span class="textrm">traits</span></span> argument must specify at least that many traits. If
+it specifies fewer than <span class="textit"><span class="textrm">ntraits</span></span> traits the behavior is unspecified.
+</p> 
+<p><p><a 
+ id="Q1-246-1347"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_init_allocator</span></span> region is all threads on a device. The effect of
+executing this routine is not related to any specific region that corresponds to any construct or API
+routine.
+</p> 
+<p><p><a 
+ id="Q1-246-1348"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_init_allocator</span></span> routine creates a new allocator that is associated with the <span class="textit"><span class="textrm">memspace</span></span>
+memory space and returns a handle to it. All allocations through the created allocator will behave according
+to the allocator traits specified in the <span class="textit"><span class="textrm">traits</span></span> argument. The number of traits in the <span class="textit"><span class="textrm">traits</span></span> argument is specified
+by the <span class="textit"><span class="textrm">ntraits</span></span> argument. Specifying the same allocator trait more than once results in unspecified behavior.
+The routine returns a handle for the created allocator. If the special <span class="textbf"><span class="texttt">omp_atv_default</span></span> value is used
+for a given trait, then its value will be the default value specified in Table&#x00A0;<a 
+href="openmpsu48.html#x88-98002r9">2.9<!--tex4ht:ref: tab:Allocator traits --></a> for that given
+trait.
+</p> 
+<p>If <span class="textit"><span class="textrm">memspace</span></span> is <span class="textbf"><span class="texttt">omp_default_mem_space</span></span> and the <span class="textbf"><span class="texttt">traits</span></span> argument is an empty set this routine will
+always return a handle to an allocator. Otherwise if an allocator based on the requirements cannot be created
+then the special <span class="textbf"><span class="texttt">omp_null_allocator</span></span> handle is returned.
+</p> 
+<p><p><a 
+ id="Q1-246-1349"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The restrictions to the <span class="textbf"><span class="texttt">omp_init_allocator</span></span> routine are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  use
+  of
+  an
+  allocator
+  returned
+  by
+  this
+  routine
+  on
+  a
+  device
+  other
+  than
+  the
+  one
+  on
+                                                                            
+                                                                            
+  which
+  it
+  was
+  created
+  results
+  in
+  unspecified
+  behavior.
+  </li>
+  <li class="itemize">
+  Unless
+  a
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  with
+  the
+  <span class="textbf"><span class="texttt">dynamic_allocators</span></span>
+  clause
+  is
+  present
+  in
+  the
+  same
+  compilation
+  unit,
+  using
+  this
+  routine
+  in
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  results
+  in
+  unspecified
+  behavior.</li></ul>
+<p><p><a 
+ id="Q1-246-1350"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+                                                                            
+                                                                            
+  <li class="itemize">
+  Memory
+  Spaces,
+  see
+  Section&#x00A0;<a 
+href="openmpsu60.html#x87-970002.13.1">2.13.1<!--tex4ht:ref: subsec:Memory Spaces --></a>.
+  </li>
+  <li class="itemize">
+  Memory
+  Allocators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu61.html#x88-980002.13.2">2.13.2<!--tex4ht:ref: subsec:Memory Allocators --></a>.</li></ul>
+<!--l. 214--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu197.html" >next</a>] [<a 
+href="openmpsu195.html" >prev</a>] [<a 
+href="openmpsu195.html#tailopenmpsu195.html" >prev-tail</a>] [<a 
+href="openmpsu196.html" >front</a>] [<a 
+href="openmpse43.html#openmpsu196.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu196.html"></a> </p> 
+ 
+</body> 
+</html>

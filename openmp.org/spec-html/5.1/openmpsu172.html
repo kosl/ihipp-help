@@ -1,0 +1,377 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_target_memcpy</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 324--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu173.html" >next</a>] [<a 
+href="openmpsu171.html" >prev</a>] [<a 
+href="openmpsu171.html#tailopenmpsu171.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu172.html">tail</a>] [<a 
+href="openmpse38.html#openmpsu172.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.8.5</span>&#x00A0;&#x00A0;<a 
+ id="x217-2500003.8.5"></a><span class="textbf"><span class="texttt">omp_target_memcpy</span></span></h4>
+<a 
+ id="dx217-250001"></a>
+<p><p><a 
+ id="Q1-217-1154"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_target_memcpy</span></span> routine copies memory between any combination of host and device
+pointers.
+<p><a 
+ id="Q1-217-1155"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250002r1"></a></span></p> 
+<!--l. 334--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_target_memcpy</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250004r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">dst</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250005r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">const</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">src</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250006r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250007r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_offset</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250008r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_offset</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250009r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250010r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_device_num</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250011r10"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250012r11"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250013r1"></a></span></p> 
+<!--l. 348--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250014r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_target_memcpy</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">dst</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250015r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_offset</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_offset</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_device_num</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">bind</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250016r4"></a></span><span 
+class="pcrb8t-">use</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">intrinsic</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">iso_c_binding</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">only</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250017r5"></a></span><span 
+class="pcrb8t-">type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_ptr</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250018r6"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_size_t</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">length</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_offset</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_offset</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250019r7"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">c_int</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">value</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">dst_device_num</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">src_device_num</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x217-250020r8"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-217-1156"></a>
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+Each device pointer specified must be valid for the device on the same side of the copy. The <span class="textit"><span class="textrm">dst_device_num</span></span>
+and <span class="textit"><span class="textrm">src_device_num</span></span> arguments must be greater than or equal to zero and less than or equal to the result of
+<span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-217-1157"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_target_memcpy</span></span> region is the generating task, which is the <span class="textit"><span class="textrm">target task</span></span>
+generated by the call to the <span class="textbf"><span class="texttt">omp_target_memcpy</span></span> routine.
+</p> 
+<p><p><a 
+ id="Q1-217-1158"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+This routine copies <span class="textit"><span class="textrm">length</span></span> bytes of memory at offset <span class="textit"><span class="textrm">src_offset</span></span> from <span class="textit"><span class="textrm">src</span></span> in the device data environment of
+device <span class="textit"><span class="textrm">src_device_num</span></span> to <span class="textit"><span class="textrm">dst</span></span> starting at offset <span class="textit"><span class="textrm">dst_offset</span></span> in the device data environment of device
+<span class="textit"><span class="textrm">dst_device_num</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp_target_memcpy</span></span> routine executes as if part of a target task that is generated by the call to the
+routine and that is an included task.
+</p> 
+<p>The return value is zero on success and non-zero on failure. This routine contains a task scheduling
+point.
+                                                                            
+                                                                            
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The <span class="textbf"><span class="texttt">omp_target_memcpy</span></span> routine requires an explicit interface and so might not be provided in
+<span class="textbf"><span class="texttt">omp_lib.h</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-217-1159"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">target-data-op-begin</span></span> event occurs before a thread initiates a data transfer.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-data-op-end</span></span> event occurs after a thread initiated a data transfer.
+</p> 
+<p><p><a 
+ id="Q1-217-1160"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> callback with
+<span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-data-op-begin</span></span> event in that
+thread. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> callback
+with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its endpoint argument for each occurrence of a <span class="textit"><span class="textrm">target-data-op-end</span></span> event in that
+thread. These callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">target-data-op-end</span></span> event in that thread. The callback occurs in the context of the target task and has type
+signature <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-217-1161"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">omp_target_memcpy</span></span> routine are as follows.
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  When
+  called
+  from
+  within
+  a
+  <span class="textbf"><span class="texttt">target</span></span>
+  region
+  the
+  effect
+                                                                            
+                                                                            
+  is
+  unspecified.</li></ul>
+<p><p><a 
+ id="Q1-217-1162"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4">3.7.4<!--tex4ht:ref: subsec:omp_get_num_devices --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3670004.5.2.25">4.5.2.25<!--tex4ht:ref: sec:ompt_callback_target_data_op_emi_t --></a>.</li></ul>
+<!--l. 429--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu173.html" >next</a>] [<a 
+href="openmpsu171.html" >prev</a>] [<a 
+href="openmpsu171.html#tailopenmpsu171.html" >prev-tail</a>] [<a 
+href="openmpsu172.html" >front</a>] [<a 
+href="openmpse38.html#openmpsu172.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu172.html"></a> </p> 
+ 
+</body> 
+</html>

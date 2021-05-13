@@ -1,0 +1,1312 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Declare Target Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1389--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse23.html" >next</a>] [<a 
+href="openmpsu69.html" >prev</a>] [<a 
+href="openmpsu69.html#tailopenmpsu69.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu70.html">tail</a>] [<a 
+href="openmpse22.html#openmpsu70.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.14.7</span>&#x00A0;&#x00A0;<a 
+ id="x98-1080002.14.7"></a>Declare Target Directive</h4>
+<a 
+ id="dx98-108001"></a>
+<a 
+ id="dx98-108002"></a>
+<p><p><a 
+ id="Q1-98-404"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The declare target directive specifies that variables, functions (C, C++ and Fortran), and subroutines
+(Fortran) are mapped to a device. The declare target directive is a declarative directive.
+<p><a 
+ id="Q1-98-405"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the declare target directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108003r1"></a></span></p> 
+<!--l. 1403--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108005r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">declaration</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">seq</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108006r4"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108007r5"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108008r1"></a></span></p> 
+<!--l. 1411--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108009r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">extended</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108010r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108011r1"></a></span></p> 
+<!--l. 1417--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108012r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108013r3"></a></span></pre>
+                                                                            
+                                                                            
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108014r1"></a></span></p> 
+<!--l. 1425--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108015r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">begin</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108016r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">declaration</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">seq</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108017r4"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108018r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108019r1"></a></span></p> 
+<!--l. 1433--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108020r2"></a></span><span 
+class="pcrb8t-">to</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">extended</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108021r3"></a></span><span 
+class="pcrb8t-">link</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108022r4"></a></span><span 
+class="pcrb8t-">device_type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">host</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">|</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">nohost</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">|</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">any</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108023r5"></a></span><span 
+class="pcrb8t-">indirect</span><span 
+class="ec-qtmri-">[(</span><span 
+class="ec-qtmri-">invoked</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">by</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">fptr</span><span 
+class="ec-qtmri-">)</span><span 
+class="ec-qtmri-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108024r6"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">invoked-by-fptr</span></span> is a constant boolean expression that evaluates to true or false at compile
+time.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108025r1"></a></span></p> 
+<!--l. 1447--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108026r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">extended</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108027r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108028r1"></a></span></p> 
+<!--l. 1453--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108029r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">declare</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108030r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108031r1"></a></span></p> 
+<!--l. 1459--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108032r2"></a></span><span 
+class="pcrb8t-">to</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">extended</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108033r3"></a></span><span 
+class="pcrb8t-">link</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108034r4"></a></span><span 
+class="pcrb8t-">device_type</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">host</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">|</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">nohost</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">|</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">any</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108035r5"></a></span><span 
+class="pcrb8t-">indirect</span><span 
+class="ec-qtmri-">[(</span><span 
+class="ec-qtmri-">invoked</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">by</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">fptr</span><span 
+class="ec-qtmri-">)</span><span 
+class="ec-qtmri-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x98-108036r6"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">invoked-by-fptr</span></span> is a constant <span class="textbf"><span class="texttt">logical</span></span> expression that is evaluated at compile time.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-98-406"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The declare target directive ensures that procedures and global variables can be executed or accessed on a
+device. Variables are mapped for all device executions, or for specific device executions through a <span class="textbf"><span class="texttt">link</span></span>
+clause.
+</p> 
+<p>If an <span class="textit"><span class="textrm">extended-list</span></span> is present with no clause then the <span class="textbf"><span class="texttt">to</span></span> clause is assumed.
+</p> 
+<p>The <span class="textbf"><span class="texttt">device_type</span></span> clause specifies if a version of the procedure or variable should be made available on
+the host, device or both. If <span class="textbf"><span class="texttt">host</span></span> is specified only a host version of the procedure or variable is made
+available. If <span class="textbf"><span class="texttt">any</span></span> is specified then both device and host versions of the procedure or variable are made
+available. If <span class="textbf"><span class="texttt">nohost</span></span> is specified for a procedure then only a device version of the procedure is made
+available. If <span class="textbf"><span class="texttt">nohost</span></span> is specified for a variable then that variable is not available on the host. If no
+<span class="textbf"><span class="texttt">device_type</span></span> clause is present then the behavior is as if the <span class="textbf"><span class="texttt">device_type</span></span> clause appears with <span class="textbf"><span class="texttt">any</span></span>
+specified.
+</p> 
+<p>If a variable with static storage duration is declared in a device routine then the named variable is treated as
+if it had appeared in a <span class="textbf"><span class="texttt">to</span></span> clause on a declare target directive.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a function appears in a <span class="textbf"><span class="texttt">to</span></span> clause in the same compilation unit in which the definition of the function
+occurs then a device-specific version of the function is created.
+</p> 
+<p>If a variable appears in a <span class="textbf"><span class="texttt">to</span></span> clause in the same compilation unit in which the definition of the variable
+occurs then the original list item is allocated a corresponding list item in the device data environment of all
+devices.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a procedure appears in a <span class="textbf"><span class="texttt">to</span></span> clause in the same compilation unit in which the definition of the procedure
+occurs then a device-specific version of the procedure is created.
+</p> 
+<p>If a variable that is host associated appears in a <span class="textbf"><span class="texttt">to</span></span> clause then the original list item is allocated a
+corresponding list item in the device data environment of all devices.
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If a variable appears in a <span class="textbf"><span class="texttt">to</span></span> clause then the corresponding list item in the device data environment of each
+device is initialized once, in the manner specified by the program, but at an unspecified point in the program
+prior to the first reference to that list item. The list item is never removed from those device data
+environments as if its reference count was initialized to positive infinity.
+                                                                            
+                                                                            
+</p> 
+<p>Including list items in a <span class="textbf"><span class="texttt">link</span></span> clause supports compilation of functions called in a <span class="textbf"><span class="texttt">target</span></span> region that
+refer to the list items. The list items are not mapped by the declare target directive. Instead, they are mapped
+according to the data mapping rules described in Section&#x00A0;<a 
+href="openmpsu119.html#x154-1830002.21.7">2.21.7<!--tex4ht:ref: subsec:Data-Mapping Attribute Rules, Clauses, and Directives --></a>.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a function is referenced in a function that appears as a list item in a <span class="textbf"><span class="texttt">to</span></span> clause on a declare target directive
+that does not specify a <span class="textbf"><span class="texttt">device_type</span></span> clause with <span class="textbf"><span class="texttt">host</span></span> and the function reference is not enclosed in a
+<span class="textbf"><span class="texttt">target</span></span> construct that specifies a <span class="textbf"><span class="texttt">device</span></span> clause in which the <span class="textbf"><span class="texttt">ancestor</span></span><span class="textit"><span class="textrm">device-modifier</span></span> appears then
+the name of the referenced function is treated as if it had appeared in a <span class="textbf"><span class="texttt">to</span></span> clause on a declare target
+directive.
+</p> 
+<p>If a variable with static storage duration or a function (except <span class="textit"><span class="textrm">lambda</span></span> for C++) is referenced in the initializer
+expression list of a variable with static storage duration that appears as a list item in a <span class="textbf"><span class="texttt">to</span></span> clause on a declare
+target directive then the name of the referenced variable or function is treated as if it had appeared in a <span class="textbf"><span class="texttt">to</span></span>
+clause on a declare target directive.
+</p> 
+<p>The form, preceded by either the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive that has no clauses and no <span class="textit"><span class="textrm">extended-list</span></span> or
+the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive and followed by a matching <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive,
+defines an implicit <span class="textit"><span class="textrm">extended-list</span></span>. The implicit <span class="textit"><span class="textrm">extended-list</span></span> consists of the variable names of
+any variable declarations at file or namespace scope that appear between the two directives
+and of the function names of any function declarations at file, namespace or class scope that
+appear between the two directives. The implicit <span class="textit"><span class="textrm">extended-list</span></span> is converted to an implicit <span class="textbf"><span class="texttt">to</span></span>
+clause.
+</p> 
+<p>The <span class="textit"><span class="textrm">declaration-definition-seq</span></span> preceded by either <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive or
+a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive without any clauses or an <span class="textit"><span class="textrm">extended-list</span></span> and followed by an
+<span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive may contain declare target directives. If a <span class="textbf"><span class="texttt">device_type</span></span> clause is
+present on the contained declare target directive, then its argument determines which versions are made
+available. If a list item appears both in an implicit and explicit list, the explicit list determines which
+versions are made available.<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a procedure is referenced in a procedure that appears as a list item in a <span class="textbf"><span class="texttt">to</span></span> clause on a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+directive that does not specify a <span class="textbf"><span class="texttt">device_type</span></span> clause with <span class="textbf"><span class="texttt">host</span></span> and the procedure reference is not
+enclosed in a <span class="textbf"><span class="texttt">target</span></span> construct that specifies a <span class="textbf"><span class="texttt">device</span></span> clause in which the <span class="textbf"><span class="texttt">ancestor</span></span><span class="textit"><span class="textrm">device-modifier</span></span>
+appears then the name of the referenced procedure is treated as if it had appeared in a <span class="textbf"><span class="texttt">to</span></span> clause on a
+<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive.
+                                                                            
+                                                                            
+</p> 
+<p>If a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> does not have any clauses and does not have an <span class="textit"><span class="textrm">extended-list</span></span> then an implicit <span class="textbf"><span class="texttt">to</span></span>
+clause with one item is formed from the name of the enclosing subroutine subprogram, function
+subprogram or interface body to which it applies.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive has a <span class="textbf"><span class="texttt">device_type</span></span> clause then any enclosed internal procedures
+cannot contain any <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directives. The enclosing <span class="textbf"><span class="texttt">device_type</span></span> clause implicitly applies
+to internal procedures.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If the <span class="textbf"><span class="texttt">indirect</span></span> clause is present and <span class="textit"><span class="textrm">invoked-by-fptr</span></span> is not specified, the effect of the clause is as if
+<span class="textit"><span class="textrm">invoked-by-fptr</span></span> evaluates to true.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">indirect</span></span> clause is present and <span class="textit"><span class="textrm">invoked-by-fptr</span></span> evaluates to true, any procedures that
+appear in a <span class="textbf"><span class="texttt">to</span></span> clause on the directive may be called with an indirect device invocation. If the
+<span class="textbf"><span class="texttt">indirect</span></span> clause is present and <span class="textit"><span class="textrm">invoked-by-fptr</span></span> does not evaluate to true, any procedures that appear
+in a <span class="textbf"><span class="texttt">to</span></span> clause on the directive may not be called with an indirect device invocation. Unless
+otherwise specified by an <span class="textbf"><span class="texttt">indirect</span></span> clause, procedures may not be called with an indirect device
+invocation.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a function appears in the <span class="textbf"><span class="texttt">to</span></span> clause of a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive and in the <span class="textbf"><span class="texttt">to</span></span> clause of a
+declare target directive that is contained in the <span class="textit"><span class="textrm">declaration-definition-seq</span></span> associated with the
+<span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive, and if an <span class="textbf"><span class="texttt">indirect</span></span> clause appears on both directives,
+then the <span class="textbf"><span class="texttt">indirect</span></span> clause on the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span> directive has no effect for that
+function.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-98-407"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">target-global-data-op</span></span> event occurs when an original variable is associated with a corresponding
+variable on a device as a result of a declare target directive; the event occurs before the first access to the
+corresponding variable.
+</p> 
+<p><p><a 
+ id="Q1-98-408"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target_data_op</span></span> callback, or a registered
+<span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_beginend</span></span> as its endpoint
+argument for each occurrence of a <span class="textit"><span class="textrm">target-global-data-op</span></span> event in that thread. These callbacks have type
+signature <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span> or <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>,
+respectively.
+</p> 
+<p><p><a 
+ id="Q1-98-409"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the declare target directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  threadprivate
+  variable
+  cannot
+  appear
+  in
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  variable
+  declared
+  in
+  the
+  directive
+  must
+  have
+  a
+  mappable
+  type.
+  </li>
+  <li class="itemize">
+  The
+  same
+                                                                            
+                                                                            
+  list
+  item
+  must
+  not
+  appear
+  multiple
+  times
+  in
+  clauses
+  on
+  the
+  same
+  directive.
+  </li>
+  <li class="itemize">
+  The
+  same
+  list
+  item
+  must
+  not
+  explicitly
+  appear
+  in
+  both
+  a
+  <span class="textbf"><span class="texttt">to</span></span>
+  clause
+  on
+  one
+  declare
+  target
+  directive
+  and
+  a
+  <span class="textbf"><span class="texttt">link</span></span>
+  clause
+  on
+  another
+  declare
+  target
+  directive.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  If
+  the
+  directive
+  has
+  a
+  clause,
+  it
+  must
+  contain
+  at
+  least
+  one
+  <span class="textbf"><span class="texttt">to</span></span>
+  clause
+  or
+  at
+  least
+  one
+  <span class="textbf"><span class="texttt">link</span></span>
+  clause.
+  </li>
+  <li class="itemize">
+  A
+  variable
+  for
+  which
+  <span class="textbf"><span class="texttt">nohost</span></span>
+  is
+  specified
+  may
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">link</span></span>
+  clause.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">indirect</span></span>
+  clause
+  can
+  be
+  specified
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">device_type</span></span>
+  clause
+  can
+  be
+  specified
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  If
+  an
+  <span class="textbf"><span class="texttt">indirect</span></span>
+  clause
+  is
+  present
+  and
+  <span class="textit"><span class="textrm">invoked-by-fptr</span></span>
+  evaluates
+  to
+  true
+  then
+  the
+                                                                            
+                                                                            
+  only
+  permitted
+  <span class="textbf"><span class="texttt">device_type</span></span>
+  clause
+  is
+  <span class="textbf"><span class="texttt">device_type(any)</span></span>.</li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">to</span></span>
+  clause
+  or
+  a
+  <span class="textbf"><span class="texttt">link</span></span>
+  clause
+  cannot
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  The
+  function
+  names
+  of
+  overloaded
+  functions
+  or
+  template
+  functions
+  may
+  only
+  be
+  specified
+                                                                            
+                                                                            
+  within
+  an
+  implicit
+  <span class="textit"><span class="textrm">extended-list</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textit"><span class="textrm">lambda
+  declaration
+  and
+  definition</span></span>
+  appears
+  between
+  a
+  declare
+  target
+  directive
+  and
+  the
+  paired
+  <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive,
+  all
+  variables
+  that
+  are
+  captured
+  by
+  the
+  <span class="textit"><span class="textrm">lambda</span></span>
+  expression
+  must
+  also
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">to</span></span>
+  clause.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  A
+  module
+  <span class="textit"><span class="textrm">export</span></span>
+  or
+  <span class="textit"><span class="textrm">import</span></span>
+  statement
+  cannot
+  appear
+  between
+  a
+  declare
+  target
+  directive
+  and
+  the
+  paired
+  <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive.</li></ul><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  is
+  a
+  procedure
+  name,
+  it
+  must
+  not
+  be
+  a
+  generic
+                                                                            
+                                                                            
+  name,
+  procedure
+  pointer,
+  entry
+  name,
+  or
+  statement
+  function
+  name.
+  </li>
+  <li class="itemize">
+  If
+  the
+  directive
+  does
+  not
+  have
+  any
+  clause
+  or
+  has
+  a
+  <span class="textbf"><span class="texttt">device_type</span></span>
+  clause
+  it
+  must
+  appear
+  in
+  a
+  specification
+  part
+  of
+  a
+  subroutine
+  subprogram,
+  function
+  subprogram
+  or
+  interface
+  body.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  is
+  a
+  procedure
+  name,
+  the
+  directive
+  must
+  be
+  in
+  the
+  specification
+  part
+  of
+  that
+  subroutine
+  or
+  function
+  subprogram
+  or
+  in
+  the
+  specification
+  part
+  of
+  that
+  subroutine
+  or
+  function
+  in
+  an
+  interface
+  body.
+  </li>
+  <li class="itemize">
+  If
+  the
+                                                                            
+                                                                            
+  directive
+  has
+  a
+  variable
+  name
+  in
+  <span class="textit"><span class="textrm">extended-list</span></span>,
+  it
+  must
+  appear
+  in
+  the
+  specification
+  part
+  of
+  a
+  subroutine
+  subprogram,
+  function
+  subprogram,
+  program
+  or
+  module.
+  </li>
+  <li class="itemize">
+  If
+  the
+  directive
+  is
+  specified
+  in
+  an
+  interface
+  block
+  for
+  a
+  procedure,
+  it
+  must
+  match
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+                                                                            
+                                                                            
+  directive
+  in
+  the
+  definition
+  of
+  the
+  procedure,
+  including
+  the
+  <span class="textbf"><span class="texttt">device_type</span></span>
+  clause
+  if
+  present.
+  </li>
+  <li class="itemize">
+  If
+  an
+  external
+  procedure
+  is
+  a
+  type-bound
+  procedure
+  of
+  a
+  derived
+  type
+  and
+  the
+  directive
+  is
+  specified
+  in
+  the
+  definition
+  of
+  the
+  external
+  procedure,
+  it
+  must
+  appear
+                                                                            
+                                                                            
+  in
+  the
+  interface
+  block
+  that
+  is
+  accessible
+  to
+  the
+  derived-type
+  definition.
+  </li>
+  <li class="itemize">
+  If
+  any
+  procedure
+  is
+  declared
+  via
+  a
+  procedure
+  declaration
+  statement
+  that
+  is
+  not
+  in
+  the
+  type-bound
+  procedure
+  part
+  of
+  a
+  derived-type
+  definition,
+  any
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  with
+  the
+  procedure
+  name
+  must
+                                                                            
+                                                                            
+  appear
+  in
+  the
+  same
+  specification
+  part.
+  </li>
+  <li class="itemize">
+  A
+  variable
+  that
+  is
+  part
+  of
+  another
+  variable
+  (as
+  an
+  array,
+  structure
+  element
+  or
+  type
+  parameter
+  inquiry)
+  cannot
+  appear
+  in
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  The
+  directive
+  must
+  appear
+  in
+  the
+  declaration
+  section
+                                                                            
+                                                                            
+  of
+  a
+  scoping
+  unit
+  in
+  which
+  the
+  common
+  block
+  or
+  variable
+  is
+  declared.
+  </li>
+  <li class="itemize">
+  If
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive
+  that
+  specifies
+  a
+  common
+  block
+  name
+  appears
+  in
+  one
+  program
+  unit,
+  then
+  such
+  a
+  directive
+  must
+  also
+  appear
+  in
+  every
+  other
+  program
+  unit
+                                                                            
+                                                                            
+  that
+  contains
+  a
+  <span class="textbf"><span class="texttt">COMMON</span></span>
+  statement
+  that
+  specifies
+  the
+  same
+  name,
+  after
+  the
+  last
+  such
+  <span class="textbf"><span class="texttt">COMMON</span></span>
+  statement
+  in
+  the
+  program
+  unit.
+  </li>
+  <li class="itemize">
+  If
+  a
+  list
+  item
+  is
+  declared
+  with
+  the
+  <span class="textbf"><span class="texttt">BIND</span></span>
+  attribute,
+  the
+  corresponding
+  C
+  entities
+  must
+  also
+  be
+  specified
+  in
+  a
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive
+  in
+  the
+  C
+  program.
+  </li>
+  <li class="itemize">
+  A
+  variable
+  can
+  only
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive
+  in
+  the
+  scope
+  in
+  which
+  it
+  is
+  declared.
+  It
+  must
+  not
+  be
+  an
+  element
+  of
+  a
+  common
+  block
+  or
+  appear
+  in
+  an
+  <span class="textbf"><span class="texttt">EQUIVALENCE</span></span>
+  statement.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  A
+  variable
+  that
+  appears
+  in
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">target</span></span>
+  directive
+  must
+  be
+  declared
+  in
+  the
+  Fortran
+  scope
+  of
+  a
+  module
+  or
+  have
+  the
+  <span class="textbf"><span class="texttt">SAVE</span></span>
+  attribute,
+  either
+  explicitly
+  or
+  implicitly.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-98-410"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu65.html#x93-1030002.14.2">2.14.2<!--tex4ht:ref: subsec:target data Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu68.html#x96-1060002.14.5">2.14.5<!--tex4ht:ref: subsec:target Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_data_op_emi_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3670004.5.2.25">4.5.2.25<!--tex4ht:ref: sec:ompt_callback_target_data_op_emi_t --></a>.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse23.html" >next</a>] [<a 
+href="openmpsu69.html" >prev</a>] [<a 
+href="openmpsu69.html#tailopenmpsu69.html" >prev-tail</a>] [<a 
+href="openmpsu70.html" >front</a>] [<a 
+href="openmpse22.html#openmpsu70.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu70.html"></a> </p> 
+ 
+</body> 
+</html>

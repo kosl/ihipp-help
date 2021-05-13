@@ -1,0 +1,164 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_ancestor_thread_num</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 943--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu138.html" >next</a>] [<a 
+href="openmpsu136.html" >prev</a>] [<a 
+href="openmpsu136.html#tailopenmpsu136.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu137.html">tail</a>] [<a 
+href="openmpse32.html#openmpsu137.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.2.18</span>&#x00A0;&#x00A0;<a 
+ id="x176-2090003.2.18"></a><span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span></h4>
+<a 
+ id="dx176-209001"></a>
+<p><p><a 
+ id="Q1-176-915"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span> routine returns, for a given nested level of the current thread,
+the thread number of the ancestor of the current thread.
+<p><a 
+ id="Q1-176-916"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x176-209002r1"></a></span></p> 
+<!--l. 953--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x176-209003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_ancestor_thread_num</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">level</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x176-209004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+<p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <!--l. 960--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x176-209005r1"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_ancestor_thread_num</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">level</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x176-209006r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">level</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x176-209007r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-176-917"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set for an <span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span> region is the encountering thread.
+The binding region for an <span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span> region is the innermost enclosing
+<span class="textbf"><span class="texttt">parallel</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-176-918"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span> routine returns the thread number of the ancestor at a given
+nest level of the current thread or the thread number of the current thread. If the requested nest level is
+outside the range of 0 and the nest level of the current thread, as returned by the <span class="textbf"><span class="texttt">omp_get_level</span></span> routine,
+the routine returns -1.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  When the <span class="textbf"><span class="texttt">omp_get_ancestor_thread_num</span></span> routine is called with a value of <span class="textbf"><span class="texttt">level</span></span>=0, the routine
+always returns 0. If <span class="textbf"><span class="texttt">level</span></span>=<span class="textbf"><span class="texttt">omp_get_level()</span></span>, the routine has the same effect as the <span class="textbf"><span class="texttt">omp_get_thread_num</span></span>
+routine. <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-176-919"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_threads</span></span>
+  routine,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu121.html#x160-1930003.2.2">3.2.2<!--tex4ht:ref: subsec:omp_get_num_threads --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_thread_num</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu123.html#x162-1950003.2.4">3.2.4<!--tex4ht:ref: subsec:omp_get_thread_num --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_level</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu136.html#x175-2080003.2.17">3.2.17<!--tex4ht:ref: subsec:omp_get_level --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_team_size</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu138.html#x177-2100003.2.19">3.2.19<!--tex4ht:ref: subsec:omp_get_team_size --></a>.</li></ul>
+<!--l. 1004--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu138.html" >next</a>] [<a 
+href="openmpsu136.html" >prev</a>] [<a 
+href="openmpsu136.html#tailopenmpsu136.html" >prev-tail</a>] [<a 
+href="openmpsu137.html" >front</a>] [<a 
+href="openmpse32.html#openmpsu137.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu137.html"></a> </p> 
+ 
+</body> 
+</html>

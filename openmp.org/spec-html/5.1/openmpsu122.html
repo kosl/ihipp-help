@@ -1,0 +1,186 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_max_threads</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 114--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu123.html" >next</a>] [<a 
+href="openmpsu121.html" >prev</a>] [<a 
+href="openmpsu121.html#tailopenmpsu121.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu122.html">tail</a>] [<a 
+href="openmpse32.html#openmpsu122.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.2.3</span>&#x00A0;&#x00A0;<a 
+ id="x161-1940003.2.3"></a><span class="textbf"><span class="texttt">omp_get_max_threads</span></span></h4>
+<a 
+ id="dx161-194001"></a>
+<p><p><a 
+ id="Q1-161-823"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_max_threads</span></span> routine returns an upper bound on the number of threads that could be
+used to form a new team if a <span class="textbf"><span class="texttt">parallel</span></span> construct without a <span class="textbf"><span class="texttt">num_threads</span></span> clause were encountered after
+execution returns from this routine.
+                                                                            
+                                                                            
+<p><a 
+ id="Q1-161-824"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x161-194002r1"></a></span></p> 
+<!--l. 125--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x161-194003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_max_threads</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x161-194004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x161-194005r1"></a></span></p> 
+<!--l. 131--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x161-194006r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_max_threads</span><span 
+class="pcrb8t-">()</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x161-194007r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-161-825"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_get_max_threads</span></span> region is the generating task.
+</p> 
+<p><p><a 
+ id="Q1-161-826"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The value returned by <span class="textbf"><span class="texttt">omp_get_max_threads</span></span> is the value of the first element of the <span class="textit"><span class="textrm">nthreads-var</span></span> ICV
+of the current task. This value is also an upper bound on the number of threads that could be used to form a
+new team if a parallel region without a <span class="textbf"><span class="texttt">num_threads</span></span> clause were encountered after execution returns
+from this routine.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  The return value of the <span class="textbf"><span class="texttt">omp_get_max_threads</span></span> routine can be used to allocate sufficient
+storage dynamically for all threads in the team formed at the subsequent active <span class="textbf"><span class="texttt">parallel</span></span> region.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-161-827"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct
+  and
+  <span class="textbf"><span class="texttt">num_threads</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse14.html#x59-590002.6">2.6<!--tex4ht:ref: sec:parallel Construct --></a>.
+  </li>
+  <li class="itemize">
+  Determining
+  the
+  number
+  of
+  threads
+  for
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region,
+  see
+  Section&#x00A0;<a 
+href="openmpsu40.html#x60-600002.6.1">2.6.1<!--tex4ht:ref: subsec:Determining the Number of Threads for a parallel Region --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_set_num_threads</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu120.html#x159-1920003.2.1">3.2.1<!--tex4ht:ref: subsec:omp_set_num_threads --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_threads</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu121.html#x160-1930003.2.2">3.2.2<!--tex4ht:ref: subsec:omp_get_num_threads --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_thread_num</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu123.html#x162-1950003.2.4">3.2.4<!--tex4ht:ref: subsec:omp_get_thread_num --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse59.html#x325-5000006.2">6.2<!--tex4ht:ref: sec:OMP_NUM_THREADS --></a>.</li></ul>
+<!--l. 180--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu123.html" >next</a>] [<a 
+href="openmpsu121.html" >prev</a>] [<a 
+href="openmpsu121.html#tailopenmpsu121.html" >prev-tail</a>] [<a 
+href="openmpsu122.html" >front</a>] [<a 
+href="openmpse32.html#openmpsu122.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu122.html"></a> </p> 
+ 
+</body> 
+</html>

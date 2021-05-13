@@ -1,0 +1,756 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Context Selectors</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 962--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu27.html" >next</a>] [<a 
+href="openmpsu25.html" >prev</a>] [<a 
+href="openmpsu25.html#tailopenmpsu25.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu26.html">tail</a>] [<a 
+href="openmpse11.html#openmpsu26.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.2</span>&#x00A0;&#x00A0;<a 
+ id="x43-420002.3.2"></a>Context Selectors</h4>
+<p>Context selectors are used to define the properties that can match an OpenMP context. OpenMP defines
+different sets of selectors, each containing different selectors.
+</p> 
+<p>The syntax for a context selector is <span class="textit"><span class="textrm">context-selector-specification</span></span> as described in the following
+grammar:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42001r1"></a></span></p> 
+<!--l. 972--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42002r2"></a></span><span 
+class="ec-qtmri-">context</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">specification</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">set</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">set</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42005r5"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">set</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">set</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">={</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42008r8"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42009r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">score</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="pcrb8t-">)</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42010r10"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42011r11"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42012r12"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42013r13"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42014r14"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42015r15"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42016r16"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42017r17"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42018r18"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">extension</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42019r19"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42020r20"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42021r21"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42022r22"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42023r23"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42024r24"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42025r25"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42026r26"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">string</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">literal</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42027r27"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42028r28"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42029r29"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">C</span><span 
+class="pcrb8t-">/</span><span 
+class="pcrb8t-">C</span><span 
+class="pcrb8t-">++)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42030r30"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42031r31"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">Fortran</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42032r32"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42033r33"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">Fortran</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42034r34"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42035r35"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">score</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42036r36"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">score</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">score</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42037r37"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42038r38"></a></span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">extension</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42039r39"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42040r40"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42041r41"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">extension</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">trait</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">property</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">extension</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">...]]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42042r42"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">or</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42043r43"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">constant</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">expression</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x43-42046r46"></a></span></pre>
+<p>For trait selectors that correspond to name-list traits, each <span class="textit"><span class="textrm">trait-property</span></span> should be <span class="textit"><span class="textrm">trait-property-name</span></span> and
+for any value that is a valid identifier both the identifier and the corresponding string literal (for C/C++) and
+the corresponding <span class="textit"><span class="textrm">char-literal-constant</span></span> (for Fortran) representation are considered representations of the
+same value.
+</p> 
+<p>For trait selectors that correspond to clause-list traits, each <span class="textit"><span class="textrm">trait-property</span></span> should be <span class="textit"><span class="textrm">trait-property-clause</span></span>.
+The syntax is the same as for the matching OpenMP clause.
+</p> 
+<p>The <span class="textbf"><span class="texttt">construct</span></span> selector set defines the <span class="textit"><span class="textrm">construct</span></span> traits that should be active in the OpenMP context. The
+following selectors can be defined in the <span class="textbf"><span class="texttt">construct</span></span> set: <span class="textbf"><span class="texttt">target</span></span>; <span class="textbf"><span class="texttt">teams</span></span>; <span class="textbf"><span class="texttt">parallel</span></span>; <span class="textbf"><span class="texttt">for</span></span> (in
+C/C++); <span class="textbf"><span class="texttt">do</span></span> (in Fortran); <span class="textbf"><span class="texttt">simd</span></span> and <span class="textbf"><span class="texttt">dispatch</span></span>. Each <span class="textit"><span class="textrm">trait-property</span></span> of the <span class="textbf"><span class="texttt">simd</span></span> selector is a
+<span class="textit"><span class="textrm">trait-property-clause</span></span>. The syntax is the same as for a valid clause of the <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">simd</span></span> directive and the
+restrictions on the clauses from that directive apply. The <span class="textbf"><span class="texttt">construct</span></span> selector is an ordered list
+<span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub>,&#x00A0;&#x2026;,&#x00A0;<span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">N</span></sub>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">device</span></span> and <span class="textbf"><span class="texttt">implementation</span></span> selector sets define the traits that should be active in the
+corresponding trait set of the OpenMP context. The <span class="textbf"><span class="texttt">target_device</span></span> selector set defines the traits that
+should be active in the <span class="textit"><span class="textrm">target_device</span></span> trait set for the device that the specified <span class="textbf"><span class="texttt">device_num</span></span> selector
+identifies. The same traits that are defined in the corresponding traits sets can be used as selectors with the
+same properties. The <span class="textbf"><span class="texttt">kind</span></span> selector of the <span class="textbf"><span class="texttt">device</span></span> and <span class="textbf"><span class="texttt">target_device</span></span> selector sets can also specify
+                                                                            
+                                                                            
+the value <span class="textbf"><span class="texttt">any</span></span>, which is as if no <span class="textbf"><span class="texttt">kind</span></span> selector was specified. If a <span class="textbf"><span class="texttt">device_num</span></span> selector does not appear in
+the <span class="textbf"><span class="texttt">target_device</span></span> selector set then a <span class="textbf"><span class="texttt">device_num</span></span> selector that specifies the value of the
+<span class="textit"><span class="textrm">default-device-var</span></span> ICV is implied. For the <span class="textbf"><span class="texttt">device_num</span></span> selector of the <span class="textbf"><span class="texttt">target_device</span></span> selector set, a
+single <span class="textit"><span class="textrm">trait-property-expression</span></span> must be specified. For the <span class="textbf"><span class="texttt">atomic_default_mem_order</span></span> selector of
+the <span class="textbf"><span class="texttt">implementation</span></span> set, a single <span class="textit"><span class="textrm">trait-property</span></span> must be specified as an identifier equal to one of the
+valid arguments to the <span class="textbf"><span class="texttt">atomic_default_mem_order</span></span> clause on the <span class="textbf"><span class="texttt">requires</span></span> directive. For the
+<span class="textbf"><span class="texttt">requires</span></span> selector of the <span class="textbf"><span class="texttt">implementation</span></span> set, each <span class="textit"><span class="textrm">trait-property</span></span> is a <span class="textit"><span class="textrm">trait-property-clause</span></span>. The
+syntax is the same as for a valid clause of the <span class="textbf"><span class="texttt">requires</span></span> directive and the restrictions on the clauses from
+that directive apply.
+</p> 
+<p>The <span class="textbf"><span class="texttt">user</span></span> selector set defines the <span class="textbf"><span class="texttt">condition</span></span> selector that provides additional user-defined
+conditions.
+</p> 
+<p>The <span class="textbf"><span class="texttt">condition</span></span> selector contains a single <span class="textit"><span class="textrm">trait-property-expression</span></span> that must evaluate to <span class="textit"><span class="textrm">true</span></span> for the
+selector to be true.
+</p> 
+<p>Any non-constant expression that is evaluated to determine the suitability of a variant is evaluated according
+to the <span class="textit"><span class="textrm">data state</span></span> trait in the <span class="textit"><span class="textrm">dynamic</span></span> trait set of the OpenMP context.
+</p> 
+<p>The <span class="textbf"><span class="texttt">user</span></span> selector set is dynamic if the <span class="textbf"><span class="texttt">condition</span></span> selector is present and the expression in the
+<span class="textbf"><span class="texttt">condition</span></span> selector is not a constant expression; otherwise, it is static.
+</p> 
+<p>All parts of a context selector define the static part of the context selector except the following parts, which
+define the dynamic part of a context selector: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Its
+  <span class="textbf"><span class="texttt">user</span></span>
+  selector
+  set
+  if
+  it
+  is
+  dynamic;
+  and
+  </li>
+  <li class="itemize">
+  Its
+  <span class="textbf"><span class="texttt">target_device</span></span>
+  selector
+  set.</li></ul>
+<p>For the <span class="textbf"><span class="texttt">match</span></span> clause of a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive, any argument of the base function that is
+                                                                            
+                                                                            
+referenced in an expression that appears in the context selector is treated as a reference to the
+expression that is passed into that argument at the call to the base function. Otherwise, a variable or
+procedure reference in an expression that appears in a context selector is a reference to the variable
+or procedure of that name that is visible at the location of the directive on which the selector
+appears.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>Each occurrence of the <span class="textbf"><span class="texttt">this</span></span> pointer in an expression in a context selector that appears in the <span class="textbf"><span class="texttt">match</span></span>
+clause of a <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> directive is treated as an expression that is the address of the object on
+which the associated base function is invoked.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Implementations can allow further selectors to be specified. Each specified <span class="textit"><span class="textrm">trait-property</span></span> for these
+implementation-defined selectors should be <span class="textit"><span class="textrm">trait-property-extension</span></span>. Implementations can ignore specified
+selectors that are not those described in this section.
+</p> 
+<p><p><a 
+ id="Q1-43-51"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to context selectors are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Each
+  <span class="textit"><span class="textrm">trait-property</span></span>
+  can
+  only
+  be
+  specified
+  once
+  in
+  a
+  <span class="textit"><span class="textrm">trait-selector</span></span>
+  other
+  than
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>
+  selector
+  set.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Each
+  <span class="textit"><span class="textrm">trait-set-selector-name</span></span>
+  can
+  only
+  be
+  specified
+  once.
+  </li>
+  <li class="itemize">
+  Each
+  <span class="textit"><span class="textrm">trait-selector-name</span></span>
+  can
+  only
+  be
+  specified
+  once.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">trait-score</span></span>
+  cannot
+  be
+  specified
+  in
+  traits
+  from
+  the
+  <span class="textbf"><span class="texttt">construct</span></span>,
+  <span class="textbf"><span class="texttt">device</span></span>
+  or
+  <span class="textbf"><span class="texttt">target_device</span></span>
+  <span class="textit"><span class="textrm">trait-selector-sets</span></span>.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textit"><span class="textrm">score-expression</span></span>
+                                                                            
+                                                                            
+  must
+  be
+  a
+  non-negative
+  constant
+  integer
+  expression.
+  </li>
+  <li class="itemize">
+  The
+  expression
+  of
+  a
+  <span class="textbf"><span class="texttt">device_num</span></span>
+  trait
+  must
+  evaluate
+  to
+  a
+  non-negative
+  integer
+  value
+  that
+  is
+  less
+  than
+  or
+  equal
+  to
+  the
+  value
+  of
+  <span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+  </li>
+  <li class="itemize">
+  A
+  variable
+  or
+  procedure
+  that
+                                                                            
+                                                                            
+  is
+  referenced
+  in
+  an
+  expression
+  that
+  appears
+  in
+  a
+  context
+  selector
+  must
+  be
+  visible
+  at
+  the
+  location
+  of
+  the
+  directive
+  on
+  which
+  the
+  selector
+  appears
+  unless
+  the
+  directive
+  is
+  a
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+  directive
+  and
+  the
+  variable
+  is
+  an
+  argument
+  of
+  the
+  associated
+  base
+  function.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">trait-property</span></span>
+  <span class="textbf"><span class="texttt">any</span></span>
+  is
+  specified
+  in
+  the
+  <span class="textbf"><span class="texttt">kind</span></span>
+  <span class="textit"><span class="textrm">trait-selector</span></span>
+  of
+  the
+  <span class="textbf"><span class="texttt">device</span></span>
+  or
+  <span class="textbf"><span class="texttt">target_device</span></span>
+  selector
+  set,
+  no
+  other
+  <span class="textit"><span class="textrm">trait-property</span></span>
+  may
+  be
+  specified
+  in
+  the
+  same
+  selector.
+  </li>
+  <li class="itemize">
+  For
+  a
+  <span class="textit"><span class="textrm">trait-selector</span></span>
+  that
+  corresponds
+  to
+  a
+  name-list
+  trait,
+  at
+  least
+                                                                            
+                                                                            
+  one
+  <span class="textit"><span class="textrm">trait-property</span></span>
+  must
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  For
+  a
+  <span class="textit"><span class="textrm">trait-selector</span></span>
+  that
+  corresponds
+  to
+  a
+  non-property
+  trait,
+  no
+  <span class="textit"><span class="textrm">trait-property</span></span>
+  may
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  For
+  the
+  <span class="textbf"><span class="texttt">requires</span></span>
+  selector
+  of
+  the
+  <span class="textbf"><span class="texttt">implementation</span></span>
+  selector
+  set,
+  at
+  least
+  one
+  <span class="textit"><span class="textrm">trait-property</span></span>
+  must
+  be
+  specified.</li></ul>
+                                                                            
+                                                                            
+<!--l. 1134--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu27.html" >next</a>] [<a 
+href="openmpsu25.html" >prev</a>] [<a 
+href="openmpsu25.html#tailopenmpsu25.html" >prev-tail</a>] [<a 
+href="openmpsu26.html" >front</a>] [<a 
+href="openmpse11.html#openmpsu26.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu26.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Metadirectives</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1195--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu29.html" >next</a>] [<a 
+href="openmpsu27.html" >prev</a>] [<a 
+href="openmpsu27.html#tailopenmpsu27.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu28.html">tail</a>] [<a 
+href="openmpse11.html#openmpsu28.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.4</span>&#x00A0;&#x00A0;<a 
+ id="x45-440002.3.4"></a>Metadirectives</h4>
+<a 
+ id="dx45-44001"></a>
+<a 
+ id="dx45-44002"></a>
+<p><p><a 
+ id="Q1-45-54"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A metadirective is a directive that can specify multiple directive variants of which one may be conditionally
+selected to replace the metadirective based on the enclosing OpenMP context.
+<p><a 
+ id="Q1-45-55"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of a metadirective is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44003r1"></a></span></p> 
+<!--l. 1207--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">metadirective</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44005r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44006r1"></a></span></p> 
+<!--l. 1211--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44007r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">begin</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">metadirective</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44008r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">stmt</span><span 
+class="ec-qtmri-">(</span><span 
+class="ec-qtmri-">s</span><span 
+class="ec-qtmri-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44009r4"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">metadirective</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44010r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44011r1"></a></span></p> 
+<!--l. 1220--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44012r2"></a></span><span 
+class="pcrb8t-">when</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">context</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">specification</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">variant</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44013r3"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">variant</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44014r4"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of a metadirective is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44015r1"></a></span></p> 
+<!--l. 1231--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44016r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">metadirective</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44017r3"></a></span></pre>
+<p>or
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44018r1"></a></span></p> 
+<!--l. 1237--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44019r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">begin</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">metadirective</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44020r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">stmt</span><span 
+class="ec-qtmri-">(</span><span 
+class="ec-qtmri-">s</span><span 
+class="ec-qtmri-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44021r4"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">metadirective</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44022r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44023r1"></a></span></p> 
+<!--l. 1246--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44024r2"></a></span><span 
+class="pcrb8t-">when</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">context</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">selector</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">specification</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">variant</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44025r3"></a></span><span 
+class="pcrb8t-">default</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">variant</span><span 
+class="ec-qtmri-">]</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44026r4"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>In the <span class="textbf"><span class="texttt">when</span></span> clause, <span class="textit"><span class="textrm">context-selector-specification</span></span> specifies a context selector (see Section&#x00A0;<a 
+href="openmpsu26.html#x43-420002.3.2">2.3.2<!--tex4ht:ref: subsec:Context Selectors --></a>).
+</p> 
+<p>In the <span class="textbf"><span class="texttt">when</span></span> and <span class="textbf"><span class="texttt">default</span></span> clauses, <span class="textit"><span class="textrm">directive-variant</span></span> has the following form and specifies a directive
+variant that specifies an OpenMP directive with clauses that apply to it.
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44027r1"></a></span></p> 
+<!--l. 1262--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44028r2"></a></span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x45-44029r3"></a></span></pre>
+<p><p><a 
+ id="Q1-45-56"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A metadirective is replaced by a <span class="textbf"><span class="texttt">nothing</span></span> directive or one of the directive variants specified by the <span class="textbf"><span class="texttt">when</span></span>
+clauses or the <span class="textbf"><span class="texttt">default</span></span> clause.
+</p> 
+<p>If no <span class="textbf"><span class="texttt">default</span></span> clause is specified the effect is as if a <span class="textbf"><span class="texttt">default</span></span> clause without an associated directive
+variant was specified.
+</p> 
+<p>The <span class="textbf"><span class="texttt">default</span></span> clause is treated as a <span class="textbf"><span class="texttt">when</span></span> clause with the specified directive variant, if any, and an always
+compatible static context selector that has a score lower than the scores associated with any other
+clause.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">when</span></span> clause does not explicitly specify a directive variant it implicitly specifies a <span class="textbf"><span class="texttt">nothing</span></span> directive
+as the directive variant.
+</p> 
+<p>The OpenMP context for a given metadirective is defined according to Section&#x00A0;<a 
+href="openmpsu25.html#x42-410002.3.1">2.3.1<!--tex4ht:ref: subsec:OpenMP Context --></a>.
+</p> 
+<p>The directive variant specified by a <span class="textbf"><span class="texttt">when</span></span> clause is a candidate to replace the metadirective if the static part
+of the corresponding context selector is compatible with the OpenMP context according to the matching
+rules defined in Section&#x00A0;<a 
+href="openmpsu27.html#x44-430002.3.3">2.3.3<!--tex4ht:ref: subsec:Matching and Scoring Context Selectors --></a>.
+                                                                            
+                                                                            
+</p> 
+<p>Replacement candidates are ordered according to the following rules in decreasing precedence:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  candidate
+  is
+  before
+  another
+  one
+  if
+  the
+  score
+  associated
+  with
+  the
+  context
+  selector
+  of
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">when</span></span>
+  clause
+  is
+  higher.
+  </li>
+  <li class="itemize">
+  A
+  candidate
+  that
+  was
+  explicitly
+  specified
+  is
+  before
+  one
+  that
+  was
+  implicitly
+  specified.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  Candidates
+  are
+  ordered
+  according
+  to
+  the
+  order
+  in
+  which
+  they
+  lexically
+  appear
+  on
+  the
+  metadirective.</li></ul>
+<p>The list of dynamic replacement candidates is the prefix of the sorted list of replacement candidates up to
+and including the first candidate for which the corresponding <span class="textbf"><span class="texttt">when</span></span> clause has a static context
+selector.
+</p> 
+<p>The first dynamic replacement candidate for which the corresponding <span class="textbf"><span class="texttt">when</span></span> clause has a compatible context
+selector, according to the matching rules defined in Section&#x00A0;<a 
+href="openmpsu27.html#x44-430002.3.3">2.3.3<!--tex4ht:ref: subsec:Matching and Scoring Context Selectors --></a>, replaces the metadirective.
+</p> 
+<p>Expressions that appear in the context selector of a <span class="textbf"><span class="texttt">when</span></span> clause are evaluated if no prior dynamic
+replacement candidate has a compatible context selector, and the number of times each expression is
+evaluated is implementation defined. All variables referenced by these expressions are considered to be
+referenced by the metadirective.
+</p> 
+<p>A directive variant that is associated with a <span class="textbf"><span class="texttt">when</span></span> clause may only affect the program if the directive variant
+is a dynamic replacement candidate.
+</p> 
+<p>The <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span> directive behaves identically to the <span class="textbf"><span class="texttt">metadirective</span></span> directive, except
+that the directive syntax for the specified directive variants other than the <span class="textbf"><span class="texttt">nothing</span></span> directive must accept a
+paired <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textit"><span class="textrm">directive</span></span>. For any directive variant that is selected to replace the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span>
+directive, the <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span> directive will be implicitly replaced by its paired <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textit"><span class="textrm">directive</span></span> to
+demarcate the statements that are affected by or are associated with the directive variant. If the <span class="textbf"><span class="texttt">nothing</span></span>
+directive is selected to replace the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span> directive, its paired <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span>
+directive is ignored.
+</p> 
+<p><p><a 
+ id="Q1-45-57"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to metadirectives are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">The directive variant appearing in a <span class="textbf"><span class="texttt">when</span></span> or <span class="textbf"><span class="texttt">default</span></span> clause must not specify a <span class="textbf"><span class="texttt">metadirective</span></span>,
+  <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span>, or <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span> directive.  <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The directive variant that appears in a <span class="textbf"><span class="texttt">when</span></span> or <span class="textbf"><span class="texttt">default</span></span> clause must not specify a
+  <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span> or <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li>
+  <li class="itemize">The context selector that appears in a <span class="textbf"><span class="texttt">when</span></span> clause must not specify any properties for the <span class="textbf"><span class="texttt">simd</span></span>
+  selector.
+  </li>
+  <li class="itemize">Replacement of the metadirective with the directive variant associated with any of the dynamic
+  replacement candidates must result in a conforming OpenMP program.
+  </li>
+  <li class="itemize">Insertion of user code at the location of a metadirective must be allowed if the first dynamic replacement
+  candidate does not have a static context selector.
+  </li>
+  <li class="itemize">All items must be executable directives if the first dynamic replacement candidate does not have a static
+  context selector.
+  </li>
+  <li class="itemize">Any directive variant that is specified by a <span class="textbf"><span class="texttt">when</span></span> or <span class="textbf"><span class="texttt">default</span></span> clause on a <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span>
+  directive must be an OpenMP directive that has a paired <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textit"><span class="textrm">directive</span></span> or must be the <span class="textbf"><span class="texttt">nothing</span></span>
+  directive, and the <span class="textbf"><span class="texttt">begin</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span> directive must have a paired <span class="textbf"><span class="texttt">end</span></span>&#x00A0;<span class="textbf"><span class="texttt">metadirective</span></span>
+  directive.
+  </li>
+  <li class="itemize">The <span class="textbf"><span class="texttt">default</span></span> clause may appear at most once on a metadirective.</li></ul>
+                                                                            
+                                                                            
+<!--l. 1364--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu29.html" >next</a>] [<a 
+href="openmpsu27.html" >prev</a>] [<a 
+href="openmpsu27.html#tailopenmpsu27.html" >prev-tail</a>] [<a 
+href="openmpsu28.html" >front</a>] [<a 
+href="openmpse11.html#openmpsu28.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu28.html"></a> </p> 
+ 
+</body> 
+</html>

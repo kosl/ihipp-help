@@ -1,0 +1,490 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Controlling OpenMP Thread Affinity</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 417--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse15.html" >next</a>] [<a 
+href="openmpsu40.html" >prev</a>] [<a 
+href="openmpsu40.html#tailopenmpsu40.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu41.html">tail</a>] [<a 
+href="openmpse14.html#openmpsu41.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.6.2</span>&#x00A0;&#x00A0;<a 
+ id="x61-610002.6.2"></a>Controlling OpenMP Thread Affinity</h4>
+<a 
+ id="dx61-61001"></a>
+<a 
+ id="dx61-61002"></a>
+<a 
+ id="dx61-61003"></a>
+<p>When a thread encounters a <span class="textbf"><span class="texttt">parallel</span></span> directive without a <span class="textbf"><span class="texttt">proc_bind</span></span> clause, the <span class="textit"><span class="textrm">bind-var</span></span> ICV is used
+to determine the policy for assigning OpenMP threads to places within the current place partition, that is,
+within the places listed in the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV for the implicit task of the encountering thread. If the
+<span class="textbf"><span class="texttt">parallel</span></span> directive has a <span class="textbf"><span class="texttt">proc_bind</span></span> clause then the binding policy specified by the <span class="textbf"><span class="texttt">proc_bind</span></span>
+clause overrides the policy specified by the first element of the <span class="textit"><span class="textrm">bind-var</span></span> ICV. Once a thread in
+the team is assigned to a place, the OpenMP implementation should not move it to another
+place.
+</p> 
+<p>The <span class="textbf"><span class="texttt">primary</span></span> thread affinity policy instructs the execution environment to assign every thread in the team
+to the same place as the primary thread. The place partition is not changed by this policy, and each implicit
+task inherits the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV of the parent implicit task. The <span class="textbf"><span class="texttt">master</span></span> thread-affinity
+policy, which has been deprecated, has identical semantics to the <span class="textbf"><span class="texttt">primary</span></span> thread affinity
+policy.
+</p> 
+<p>The <span class="textbf"><span class="texttt">close</span></span> thread affinity policy instructs the execution environment to assign the threads in the team to
+places close to the place of the parent thread. The place partition is not changed by this policy, and each
+implicit task inherits the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV of the parent implicit task. If <span 
+class="cmmi-10">T </span>is the number of threads in
+the team, and <span 
+class="cmmi-10">P </span>is the number of places in the parent&#8217;s place partition, then the assignment of threads in the
+team to places is as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span 
+class="cmmi-10">T </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">P </span>:
+  The
+  primary
+  thread
+  executes
+  on
+                                                                            
+                                                                            
+  the
+  place
+  of
+  the
+  parent
+  thread.
+  The
+  thread
+  with
+  the
+  next
+  smallest
+  thread
+  number
+  executes
+  on
+  the
+  next
+  place
+  in
+  the
+  place
+  partition,
+  and
+  so
+  on,
+  with
+  wrap
+  around
+  with
+  respect
+  to
+  the
+  place
+  partition
+  of
+  the
+  primary
+  thread.
+  </li>
+  <li class="itemize">
+  <span 
+class="cmmi-10">T &#x003E; P </span>:
+                                                                            
+                                                                            
+  Each
+  place
+  <span 
+class="cmmi-10">p</span>
+  will
+  contain
+  <span 
+class="cmmi-10">S</span><sub><span 
+class="cmmi-7">p</span></sub>
+  threads
+  with
+  consecutive
+  thread
+  numbers
+  where
+  <span 
+class="cmbsy-10">&#x230A;&#x230A;</span><span 
+class="cmmi-10">T&#x2215;P</span><span 
+class="cmbsy-10">&#x230B;&#x230B;</span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">S</span><sub><span 
+class="cmmi-7">p</span></sub> <span 
+class="cmsy-10">&#x2264;</span><span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmmi-10">T&#x2215;P</span><span 
+class="cmbsy-10">&#x2309;&#x2309;</span>.
+  The
+  first
+  <span 
+class="cmmi-10">S</span><sub><span 
+class="cmr-7">0</span></sub>
+  threads
+  (including
+  the
+  primary
+  thread)
+  are
+  assigned
+  to
+  the
+  place
+  of
+  the
+  parent
+  thread.
+  The
+  next
+  <span 
+class="cmmi-10">S</span><sub><span 
+class="cmr-7">1</span></sub>
+  threads
+  are
+  assigned
+  to
+  the
+  next
+  place
+  in
+  the
+  place
+                                                                            
+                                                                            
+  partition,
+  and
+  so
+  on,
+  with
+  wrap
+  around
+  with
+  respect
+  to
+  the
+  place
+  partition
+  of
+  the
+  primary
+  thread.
+  When
+  <span 
+class="cmmi-10">P</span>
+  does
+  not
+  divide
+  <span 
+class="cmmi-10">T</span>
+  evenly,
+  the
+  exact
+  number
+  of
+  threads
+  in
+  a
+  particular
+  place
+  is
+  implementation
+  defined.</li></ul>
+<p>The purpose of the <span class="textbf"><span class="texttt">spread</span></span> thread affinity policy is to create a sparse distribution for a team of <span 
+class="cmmi-10">T </span>threads
+among the <span 
+class="cmmi-10">P </span>places of the parent&#8217;s place partition. A sparse distribution is achieved by first
+subdividing the parent partition into <span 
+class="cmmi-10">T </span>subpartitions if <span 
+class="cmmi-10">T </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">P </span>, or <span 
+class="cmmi-10">P </span>subpartitions if <span 
+class="cmmi-10">T &#x003E; P </span>.
+Then one thread (<span 
+class="cmmi-10">T </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">P </span>) or a set of threads (<span 
+class="cmmi-10">T &#x003E; P </span>) is assigned to each subpartition. The
+<span class="textit"><span class="textrm">place-partition-var</span></span> ICV of each implicit task is set to its subpartition. The subpartitioning is not only a
+mechanism for achieving a sparse distribution, it also defines a subset of places for a thread
+to use when creating a nested <span class="textbf"><span class="texttt">parallel</span></span> region. The assignment of threads to places is as
+                                                                            
+                                                                            
+follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span 
+class="cmmi-10">T </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">P </span>:
+  The
+  parent
+  thread&#8217;s
+  place
+  partition
+  is
+  split
+  into
+  <span 
+class="cmmi-10">T</span>
+  subpartitions,
+  where
+  each
+  subpartition
+  contains
+  <span 
+class="cmbsy-10">&#x230A;&#x230A;</span><span 
+class="cmmi-10">P&#x2215;T</span><span 
+class="cmbsy-10">&#x230B;&#x230B;</span>
+  or
+  <span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmmi-10">P&#x2215;T</span><span 
+class="cmbsy-10">&#x2309;&#x2309;</span>
+  consecutive
+  places.
+  A
+  single
+  thread
+  is
+  assigned
+  to
+  each
+  subpartition.
+  The
+  primary
+  thread
+  executes
+  on
+  the
+  place
+  of
+  the
+                                                                            
+                                                                            
+  parent
+  thread
+  and
+  is
+  assigned
+  to
+  the
+  subpartition
+  that
+  includes
+  that
+  place.
+  The
+  thread
+  with
+  the
+  next
+  smallest
+  thread
+  number
+  is
+  assigned
+  to
+  the
+  first
+  place
+  in
+  the
+  next
+  subpartition,
+  and
+  so
+  on,
+  with
+  wrap
+  around
+  with
+  respect
+  to
+  the
+  original
+  place
+  partition
+                                                                            
+                                                                            
+  of
+  the
+  primary
+  thread.
+  </li>
+  <li class="itemize">
+  <span 
+class="cmmi-10">T &#x003E; P </span>:
+  The
+  parent
+  thread&#8217;s
+  place
+  partition
+  is
+  split
+  into
+  <span 
+class="cmmi-10">P</span>
+  subpartitions,
+  each
+  consisting
+  of
+  a
+  single
+  place.
+  Each
+  subpartition
+  is
+  assigned
+  <span 
+class="cmmi-10">S</span><sub><span 
+class="cmmi-7">p</span></sub>
+  threads
+  with
+  consecutive
+  thread
+  numbers,
+  where
+  <span 
+class="cmbsy-10">&#x230A;&#x230A;</span><span 
+class="cmmi-10">T&#x2215;P</span><span 
+class="cmbsy-10">&#x230B;&#x230B;</span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">S</span><sub><span 
+class="cmmi-7">p</span></sub> <span 
+class="cmsy-10">&#x2264;</span><span 
+class="cmbsy-10">&#x2308;&#x2308;</span><span 
+class="cmmi-10">T&#x2215;P</span><span 
+class="cmbsy-10">&#x2309;&#x2309;</span>.
+  The
+  first
+  <span 
+class="cmmi-10">S</span><sub><span 
+class="cmr-7">0</span></sub>
+  threads
+  (including
+  the
+  primary
+                                                                            
+                                                                            
+  thread)
+  are
+  assigned
+  to
+  the
+  subpartition
+  that
+  contains
+  the
+  place
+  of
+  the
+  parent
+  thread.
+  The
+  next
+  <span 
+class="cmmi-10">S</span><sub><span 
+class="cmr-7">1</span></sub>
+  threads
+  are
+  assigned
+  to
+  the
+  next
+  subpartition,
+  and
+  so
+  on,
+  with
+  wrap
+  around
+  with
+  respect
+  to
+  the
+  original
+  place
+  partition
+  of
+  the
+  primary
+  thread.
+  When
+  <span 
+class="cmmi-10">P</span>
+                                                                            
+                                                                            
+  does
+  not
+  divide
+  <span 
+class="cmmi-10">T</span>
+  evenly,
+  the
+  exact
+  number
+  of
+  threads
+  in
+  a
+  particular
+  subpartition
+  is
+  implementation
+  defined.</li></ul>
+<p>The determination of whether the affinity request can be fulfilled is implementation defined. If the
+affinity request cannot be fulfilled, then the affinity of threads in the team is implementation
+defined.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Wrap around is needed if the end of a place partition is reached before all thread assignments
+are done. For example, wrap around may be needed in the case of <span class="textbf"><span class="texttt">close</span></span> and <span 
+class="cmmi-10">T </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">P </span>, if the
+primary thread is assigned to a place other than the first place in the place partition. In this case,
+thread 1 is assigned to the place after the place of the primary thread, thread 2 is assigned to the
+place after that, and so on. The end of the place partition may be reached before all threads are
+assigned. In this case, assignment of threads is resumed with the first place in the place partition.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse15.html" >next</a>] [<a 
+href="openmpsu40.html" >prev</a>] [<a 
+href="openmpsu40.html#tailopenmpsu40.html" >prev-tail</a>] [<a 
+href="openmpsu41.html" >front</a>] [<a 
+href="openmpse14.html#openmpsu41.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu41.html"></a> </p> 
+ 
+</body> 
+</html>

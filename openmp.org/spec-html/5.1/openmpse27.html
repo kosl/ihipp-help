@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Synchronization Constructs and Clauses</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu99.html" >next</a>] [<a 
+href="openmpse26.html" >prev</a>] [<a 
+href="openmpse26.html#tailopenmpse26.html" >prev-tail</a>] [<a 
+href="#tailopenmpse27.html">tail</a>] [<a 
+href="openmpch2.html#openmpse27.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.19</span>&#x00A0;&#x00A0;<a 
+ id="x131-1410002.19"></a>Synchronization Constructs and Clauses</h3>
+<a 
+ id="dx131-141001"></a>
+<a 
+ id="dx131-141002"></a>
+<p>A synchronization construct orders the completion of code executed by different threads. This ordering is
+imposed by synchronizing flush operations that are executed as part of the region that corresponds to the
+construct.
+</p> 
+<p>Synchronization through the use of synchronizing flush operations and atomic operations is described in
+Section&#x00A0;<a 
+href="openmpsu12.html#x21-200001.4.4">1.4.4<!--tex4ht:ref: subsec:The Flush Operation --></a> and Section&#x00A0;<a 
+href="openmpsu14.html#x23-220001.4.6">1.4.6<!--tex4ht:ref: subsec:OpenMP Memory Consistency --></a>. Section&#x00A0;<a 
+href="openmpsu106.html#x139-1500002.19.8.1">2.19.8.1<!--tex4ht:ref: subsec:implicit flushes --></a> defines the behavior of synchronizing flush operations
+that are implied at various other locations in an OpenMP program.
+</p> 
+<p>
+</p> 
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.1&#x00A0;&#x00A0;<a 
+href="openmpsu99.html#x132-1420002.19.1"><span class="textbf"><span class="texttt">critical</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.2&#x00A0;&#x00A0;<a 
+href="openmpsu100.html#x133-1430002.19.2"><span class="textbf"><span class="texttt">barrier</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.3&#x00A0;&#x00A0;<a 
+href="openmpsu101.html#x134-1440002.19.3">Implicit Barriers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.4&#x00A0;&#x00A0;<a 
+href="openmpsu102.html#x135-1450002.19.4">Implementation-Specific Barriers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.5&#x00A0;&#x00A0;<a 
+href="openmpsu103.html#x136-1460002.19.5"><span class="textbf"><span class="texttt">taskwait</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.6&#x00A0;&#x00A0;<a 
+href="openmpsu104.html#x137-1470002.19.6"><span class="textbf"><span class="texttt">taskgroup</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.7&#x00A0;&#x00A0;<a 
+href="openmpsu105.html#x138-1480002.19.7"><span class="textbf"><span class="texttt">atomic</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.8&#x00A0;&#x00A0;<a 
+href="openmpsu106.html#x139-1490002.19.8"><span class="textbf"><span class="texttt">flush</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.19.8.1&#x00A0;&#x00A0;<a 
+href="openmpsu106.html#x139-1500002.19.8.1">Implicit Flushes</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.9&#x00A0;&#x00A0;<a 
+href="openmpsu107.html#x140-1510002.19.9"><span class="textbf"><span class="texttt">ordered</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.10&#x00A0;&#x00A0;<a 
+href="openmpsu108.html#x141-1520002.19.10">Depend Objects</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" >2.19.10.1&#x00A0;&#x00A0;<a 
+href="openmpsu108.html#x141-1530002.19.10.1"><span class="textbf"><span class="texttt">depobj</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.11&#x00A0;&#x00A0;<a 
+href="openmpsu109.html#x142-1540002.19.11"><span class="textbf"><span class="texttt">depend</span></span> Clause</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.19.12&#x00A0;&#x00A0;<a 
+href="openmpsu110.html#x143-1550002.19.12">Synchronization Hints</a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu99.html" >next</a>] [<a 
+href="openmpse26.html" >prev</a>] [<a 
+href="openmpse26.html#tailopenmpse26.html" >prev-tail</a>] [<a 
+href="openmpse27.html" >front</a>] [<a 
+href="openmpch2.html#openmpse27.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse27.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMP_PLACES</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 261--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse63.html" >next</a>] [<a 
+href="openmpse61.html" >prev</a>] [<a 
+href="openmpse61.html#tailopenmpse61.html" >prev-tail</a>] [<a 
+href="#tailopenmpse62.html">tail</a>] [<a 
+href="openmpch6.html#openmpse62.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.5</span>&#x00A0;&#x00A0;<a 
+ id="x328-5030006.5"></a><span class="textbf"><span class="texttt">OMP_PLACES</span></span></h3>
+<a 
+ id="dx328-503001"></a>
+<a 
+ id="dx328-503002"></a>
+<p>The <span class="textbf"><span class="texttt">OMP_PLACES</span></span> environment variable sets the initial value of the <span class="textit"><span class="textrm">place-partition-var</span></span> ICV. A list of
+places can be specified in the <span class="textbf"><span class="texttt">OMP_PLACES</span></span> environment variable. The value of <span class="textbf"><span class="texttt">OMP_PLACES</span></span> can be one
+of two types of values: either an abstract name that describes a set of places or an explicit list of places
+described by non-negative numbers.
+</p> 
+<p>The <span class="textbf"><span class="texttt">OMP_PLACES</span></span> environment variable can be defined using an explicit ordered list of comma-separated
+places. A place is defined by an unordered set of comma-separated non-negative numbers enclosed by
+braces, or a non-negative number. The meaning of the numbers and how the numbering is done are
+implementation defined. Generally, the numbers represent the smallest unit of execution exposed by the
+execution environment, typically a hardware thread.
+</p> 
+<p>Intervals may also be used to define places. Intervals can be specified using the &#x003C;<span class="textit"><span class="textrm">lower-bound</span></span>&#x003E; : &#x003C;<span class="textit"><span class="textrm">length</span></span>&#x003E; :
+&#x003C;<span class="textit"><span class="textrm">stride</span></span>&#x003E; notation to represent the following list of numbers: &#8220;&#x003C;<span class="textit"><span class="textrm">lower-bound</span></span>&#x003E;, &#x003C;<span class="textit"><span class="textrm">lower-bound</span></span>&#x003E; + &#x003C;<span class="textit"><span class="textrm">stride</span></span>&#x003E;,
+..., &#x003C;<span class="textit"><span class="textrm">lower-bound</span></span>&#x003E; + (&#x003C;<span class="textit"><span class="textrm">length</span></span>&#x003E; - 1)*&#x003C;<span class="textit"><span class="textrm">stride</span></span>&#x003E;.&#8221; When &#x003C;<span class="textit"><span class="textrm">stride</span></span>&#x003E; is omitted, a unit stride is assumed. Intervals
+can specify numbers within a place as well as sequences of places.
+</p> 
+<p>An exclusion operator &#8220;<span class="textbf"><span class="texttt">!</span></span>&#8221; can also be used to exclude the number or place immediately following the
+operator.
+                                                                            
+                                                                            
+</p> 
+<p>Alternatively, the abstract names listed in Table&#x00A0;<a 
+href="openmpsu229.html#x328-503003r1">6.1<!--tex4ht:ref: tab:Defined Abstract Names for OMP PLACES --></a> should be understood by the execution and runtime
+environment. The precise definitions of the abstract names are implementation defined. An implementation
+may also add abstract names as appropriate for the target platform.
+</p> 
+<p>The abstract name may be appended by a positive number in parentheses to denote the length of the place
+list to be created, that is <span class="textit"><span class="textrm">abstract_name(num-places)</span></span>. When requesting fewer places than available on the
+system, the determination of which resources of type <span class="textit"><span class="textrm">abstract_name</span></span> are to be included in the place list is
+implementation defined. When requesting more resources than available, the length of the place list is
+implementation defined.
+                                                                            
+                                                                            
+<a 
+ id="x328-503003r1"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x328-503004"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;6.1: </td><td  
+class="content">Predefined Abstract Names for <span class="textbf"><span class="texttt">OMP_PLACES</span></span></td></tr></table></div><!--tex4ht:label?: x328-503003r6.5 -->
+<table id="TBL-39" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-39-1g"><col 
+id="TBL-39-1" /><col 
+id="TBL-39-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Abstract Name</span></span>                </td><td  style="white-space:wrap; text-align:left;" id="TBL-39-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Meaning</span></span>                                                                               </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-2-1"  
+class="td11"> <span class="textbf"><span class="texttt">threads</span></span>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-39-2-2"  
+class="td11"> Each place corresponds to a single hardware thread on the
+  device.                                                                                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-3-1"  
+class="td11"> <span class="textbf"><span class="texttt">cores</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-39-3-2"  
+class="td11"> Each place corresponds to a single core (having one or more
+  hardware threads) on the device.                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-4-1"  
+class="td11"> <span class="textbf"><span class="texttt">ll_caches</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-39-4-2"  
+class="td11"> Each place corresponds to a set of cores that share the last
+  level cache on the device.                                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">numa_domains</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-39-5-2"  
+class="td11"> Each place corresponds to a set of cores for which their closest
+  memory on the device is:
+      <ul class="itemize1">
+      <li class="itemize">the same memory; and
+      </li>
+      <li class="itemize">at a similar distance from the cores.</li></ul> <p>                                           </p> 
+</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">sockets</span></span>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-39-6-2"  
+class="td11"> Each place corresponds to a single socket (consisting of one or
+  more cores) on the device.                                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-7-1"  
+class="td11">                    </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-39-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-39-8-1"  
+class="td11">                    </td>
+</tr></table></div>
+<p>The behavior of the program is implementation defined when the execution environment cannot map a
+numerical value (either explicitly defined or implicitly derived from an interval) within the <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+list to a processor on the target platform, or if it maps to an unavailable processor. The behavior is also
+implementation defined when the <span class="textbf"><span class="texttt">OMP_PLACES</span></span> environment variable is defined using an abstract
+name.
+</p> 
+<p>The following grammar describes the values accepted for the <span class="textbf"><span class="texttt">OMP_PLACES</span></span> environment variable.
+</p> 
+<div class="eqnarray">
+<center class="math-display" >
+<img 
+src="openmp0x.png" alt="       &#x27E8;list&#x27E9; |=  &#x27E8;p- list&#x27E9; | &#x27E8;aname &#x27E9;
+     &#x27E8;p- list&#x27E9; |=  &#x27E8;p- interval&#x27E9; | &#x27E8;p-list&#x27E9;,&#x27E8;p-interval&#x27E9;
+
+  &#x27E8;p-interval&#x27E9; |=  &#x27E8;place&#x27E9;:&#x27E8;len&#x27E9;:&#x27E8;stride&#x27E9; | &#x27E8;place&#x27E9;:&#x27E8;len&#x27E9; | &#x27E8;place&#x27E9; | !&#x27E8;place&#x27E9;
+     &#x27E8;place&#x27E9; |=  {&#x27E8;res- list&#x27E9;} | &#x27E8;res&#x27E9;
+    &#x27E8;res- list&#x27E9; |=  &#x27E8;res-interval&#x27E9; | &#x27E8;res- list&#x27E9;,&#x27E8;res- interval&#x27E9;
+&#x27E8;res- interval&#x27E9; |= &#x27E8;res&#x27E9;:&#x27E8;num-places&#x27E9;:&#x27E8;stride&#x27E9; | &#x27E8;res&#x27E9;:&#x27E8;num -places&#x27E9; | &#x27E8;res&#x27E9; | !&#x27E8;res&#x27E9;
+
+    &#x27E8;aname &#x27E9; |=  &#x27E8;word&#x27E9;(&#x27E8;num-places&#x27E9;) | &#x27E8;word&#x27E9;
+     &#x27E8;word&#x27E9; |=  sockets | cores | ll_caches | numa_domains | threads
+                | &#x003C;implementation- definedabstractname &#x003E;
+       &#x27E8;res&#x27E9; |=  non- negativeinteger
+&#x27E8;num-places&#x27E9; |=  positiveinteger
+
+     &#x27E8;stride&#x27E9; |=  integer
+       &#x27E8;len&#x27E9; |=  positiveinteger
+" class="math-display"  /></center>
+</div>
+<p>Examples:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x328-503006r1"></a></span></p> 
+<!--l. 412--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x328-503007r2"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_PLACES</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">threads</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x328-503008r3"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_PLACES</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">threads</span><span 
+class="pcrb8t-">(4)</span><span 
+class="pcrb8t-">"</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x328-503009r4"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_PLACES</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"{0,1,2,3},{4,5,6,7},{8,9,10,11},{12,13,14,15}"</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x328-503010r5"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_PLACES</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"{0:4},{4:4},{8:4},{12:4}"</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x328-503011r6"></a></span><span 
+class="pcrb8t-">setenv</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">OMP_PLACES</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">"{0:4}:4:4"</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x328-503012r7"></a></span></pre>
+<p>where each of the last three definitions corresponds to the same 4 places including the smallest units of
+execution exposed by the execution environment numbered, in turn, 0 to 3, 4 to 7, 8 to 11, and 12 to
+15.
+</p> 
+<p><p><a 
+ id="Q1-328-2456"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">place-partition-var</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  Controlling
+  OpenMP
+  thread
+  affinity,
+  see
+  Section&#x00A0;<a 
+href="openmpsu41.html#x61-610002.6.2">2.6.2<!--tex4ht:ref: subsec:Controlling OpenMP Thread Affinity --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_places</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu141.html#x181-2140003.3.2">3.3.2<!--tex4ht:ref: subsec:omp_get_num_places --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_place_num_procs</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu142.html#x182-2150003.3.3">3.3.3<!--tex4ht:ref: subsec:omp_get_place_num_procs --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_place_proc_ids</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu143.html#x183-2160003.3.4">3.3.4<!--tex4ht:ref: subsec:omp_get_place_proc_ids --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_place_num</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu144.html#x184-2170003.3.5">3.3.5<!--tex4ht:ref: subsec:omp_get_place_num --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_partition_num_places</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu145.html#x185-2180003.3.6">3.3.6<!--tex4ht:ref: subsec:omp_get_partition_num_places --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_partition_place_nums</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu146.html#x186-2190003.3.7">3.3.7<!--tex4ht:ref: subsec:omp_get_partition_place_nums --></a>.</li></ul>
+<!--l. 450--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse63.html" >next</a>] [<a 
+href="openmpse61.html" >prev</a>] [<a 
+href="openmpse61.html#tailopenmpse61.html" >prev-tail</a>] [<a 
+href="openmpse62.html" >front</a>] [<a 
+href="openmpch6.html#openmpse62.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse62.html"></a> </p> 
+ 
+</body> 
+</html>

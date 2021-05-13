@@ -1,0 +1,457 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Per OpenMP Process Initialization and Finalization</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 219--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu242.html" >next</a>] [<a 
+href="openmpsu240.html" >prev</a>] [<a 
+href="openmpsu240.html#tailopenmpsu240.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu241.html">tail</a>] [<a 
+href="openmpse56.html#openmpsu241.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.5.2</span>&#x00A0;&#x00A0;<a 
+ id="x306-4500005.5.2"></a>Per OpenMP Process Initialization and Finalization</h4>
+<p>
+</p> 
+
+                                                                            
+                                                                            
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.2.1  </span> <a 
+ id="x306-4510005.5.2.1"></a><span class="textbf"><span class="texttt">ompd_process_initialize</span></span></h5>
+<p><p><a 
+ id="Q1-306-2175"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A tool calls <span class="textbf"><span class="texttt">ompd_process_initialize</span></span> to obtain an address space handle when it initializes a
+session on a live process or core file.
+<p><a 
+ id="Q1-306-2176"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-451001r1"></a></span></p> 
+<!--l. 231--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-451002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_process_initialize</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-451003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-451004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-451005r5"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-451006r6"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-306-2177"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A tool calls <span class="textbf"><span class="texttt">ompd_process_initialize</span></span> to obtain an address space handle when it initializes a
+session on a live process or core file. On return from <span class="textbf"><span class="texttt">ompd_process_initialize</span></span>, the tool owns the
+address space handle, which it must release with <span class="textbf"><span class="texttt">ompd_rel_address_space_handle</span></span>. The
+initialization function must be called before any OMPD operations are performed on the OpenMP process
+or core file. This call allows the OMPD library to confirm that it can handle the OpenMP process or core file
+that <span class="textit"><span class="textrm">context</span></span> identifies.
+</p> 
+<p><p><a 
+ id="Q1-306-2178"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">context</span></span> argument is an opaque handle that the tool provides to address an address space. On return, the
+<span class="textit"><span class="textrm">handle</span></span> argument provides an opaque handle to the tool for this address space, which the tool must release
+when it is no longer needed.
+</p> 
+<p><p><a 
+ id="Q1-306-2179"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_incompatible</span></span>
+  if
+  the
+  OMPD
+  library
+  is
+  incompatible
+  with
+  the
+  runtime
+  library
+  loaded
+  in
+  the
+  process.</li></ul>
+<p><p><a 
+ id="Q1-306-2180"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_address_space_context_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rel_address_space_handle</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="#x306-4530005.5.2.3">5.5.2.3<!--tex4ht:ref: subsubsubsec:ompd_rel_address_space_handle --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.2.2  </span> <a 
+ id="x306-4520005.5.2.2"></a><span class="textbf"><span class="texttt">ompd_device_initialize</span></span></h5>
+<p><p><a 
+ id="Q1-306-2182"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A tool calls <span class="textbf"><span class="texttt">ompd_device_initialize</span></span> to obtain an address space handle for a device that has at least
+one active target region.
+<p><a 
+ id="Q1-306-2183"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452001r1"></a></span></p> 
+<!--l. 287--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_device_initialize</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">process_handle</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452004r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_context_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">device_context</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452005r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_device_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">kind</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452006r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_size_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">sizeof_id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452007r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">id</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452008r8"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">**</span><span 
+class="ec-qtmri-">device_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452009r9"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-452010r10"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-306-2184"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A tool calls <span class="textbf"><span class="texttt">ompd_device_initialize</span></span> to obtain an address space handle for a device that has at least
+one active target region. On return from <span class="textbf"><span class="texttt">ompd_device_initialize</span></span>, the tool owns the address space
+handle.
+</p> 
+<p><p><a 
+ id="Q1-306-2185"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">process_handle</span></span> argument is an opaque handle that the tool provides to reference the address space of
+the OpenMP process or core file. The <span class="textit"><span class="textrm">device_context</span></span> argument is an opaque handle that the tool provides to
+reference a device address space. The <span class="textit"><span class="textrm">kind</span></span>, <span class="textit"><span class="textrm">sizeof_id</span></span>, and <span class="textit"><span class="textrm">id</span></span> arguments represent a device identifier.
+On return the <span class="textit"><span class="textrm">device_handle</span></span> argument provides an opaque handle to the tool for this address
+space.
+</p> 
+<p><p><a 
+ id="Q1-306-2186"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section <a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a> or the
+following return code: </p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_unsupported</span></span>
+  if
+  the
+  OMPD
+  library
+  has
+  no
+  support
+  for
+  the
+  specific
+  device.</li></ul>
+<p><p><a 
+ id="Q1-306-2187"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_size_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">5.3.1<!--tex4ht:ref: subsubsubsec:ompd_size_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_device_t</span></span>
+  type,
+                                                                            
+                                                                            
+  see
+  Section&#x00A0;<a 
+href="openmpsu226.html#x289-4220005.3.6">5.3.6<!--tex4ht:ref: ompd:omp_device_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_context_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">5.3.11<!--tex4ht:ref: subsubsec:ompd_address_space_context_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<h5 class="subsubsectionHead"><span class="titlemark">5.5.2.3  </span> <a 
+ id="x306-4530005.5.2.3"></a><span class="textbf"><span class="texttt">ompd_rel_address_space_handle</span></span></h5>
+<p><p><a 
+ id="Q1-306-2189"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+A tool calls <span class="textbf"><span class="texttt">ompd_rel_address_space_handle</span></span> to release an address space handle.
+<p><a 
+ id="Q1-306-2190"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-453001r1"></a></span></p> 
+<!--l. 345--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-453002r2"></a></span><span 
+class="pcrb8t-">ompd_rc_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_rel_address_space_handle</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-453003r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">handle</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-453004r4"></a></span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x306-453005r5"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-306-2191"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+When the tool is finished with the OpenMP process address space handle it should call
+<span class="textbf"><span class="texttt">ompd_rel_address_space_handle</span></span> to release the handle, which allows the OMPD library to release
+any resources that it has related to the address space.
+</p> 
+<p><p><a 
+ id="Q1-306-2192"></a>
+<span 
+class="phvb8t-x-x-110">Description of Arguments</span>
+The <span class="textit"><span class="textrm">handle</span></span> argument is an opaque handle for the address space to be released.
+</p> 
+<p><p><a 
+ id="Q1-306-2193"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">ompd_rel_address_space_handle</span></span> routine are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  An
+  address
+  space
+  context
+  must
+  not
+  be
+  used
+  after
+  the
+  corresponding
+  address
+  space
+  handle
+  is
+  released.</li></ul>
+<p><p><a 
+ id="Q1-306-2194"></a>
+<span 
+class="phvb8t-x-x-110">Description of Return Codes</span>
+This routine must return any of the general return codes listed at the beginning of Section&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">5.5<!--tex4ht:ref: subsec:ompd-api --></a>.
+</p> 
+<p><p><a 
+ id="Q1-306-2195"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">5.3.8<!--tex4ht:ref: subsubsec:ompd_address_space_handle_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rc_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">5.3.12<!--tex4ht:ref: subsubsec:ompd_rc_t --></a>.</li></ul>
+<!--l. 382--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu242.html" >next</a>] [<a 
+href="openmpsu240.html" >prev</a>] [<a 
+href="openmpsu240.html#tailopenmpsu240.html" >prev-tail</a>] [<a 
+href="openmpsu241.html" >front</a>] [<a 
+href="openmpse56.html#openmpsu241.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu241.html"></a> </p> 
+ 
+</body> 
+</html>

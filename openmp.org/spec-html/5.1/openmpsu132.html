@@ -1,0 +1,144 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>omp_get_thread_limit</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 700--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu133.html" >next</a>] [<a 
+href="openmpsu131.html" >prev</a>] [<a 
+href="openmpsu131.html#tailopenmpsu131.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu132.html">tail</a>] [<a 
+href="openmpse32.html#openmpsu132.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">3.2.13</span>&#x00A0;&#x00A0;<a 
+ id="x171-2040003.2.13"></a><span class="textbf"><span class="texttt">omp_get_thread_limit</span></span></h4>
+<a 
+ id="dx171-204001"></a>
+<p><p><a 
+ id="Q1-171-884"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_get_thread_limit</span></span> routine returns the maximum number of OpenMP threads available to
+participate in the current contention group.
+<p><a 
+ id="Q1-171-885"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x171-204002r1"></a></span></p> 
+<!--l. 709--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x171-204003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_thread_limit</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x171-204004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x171-204005r1"></a></span></p> 
+<!--l. 715--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x171-204006r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_get_thread_limit</span><span 
+class="pcrb8t-">()</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x171-204007r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-171-886"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_get_thread_limit</span></span> region is the generating task.
+</p> 
+<p><p><a 
+ id="Q1-171-887"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+The <span class="textbf"><span class="texttt">omp_get_thread_limit</span></span> routine returns the value of the <span class="textit"><span class="textrm">thread-limit-var</span></span> ICV.
+</p> 
+<p><p><a 
+ id="Q1-171-888"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">thread-limit-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_threads</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu121.html#x160-1930003.2.2">3.2.2<!--tex4ht:ref: subsec:omp_get_num_threads --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse59.html#x325-5000006.2">6.2<!--tex4ht:ref: sec:OMP_NUM_THREADS --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_THREAD_LIMIT</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse67.html#x333-5080006.10">6.10<!--tex4ht:ref: sec:OMP_THREAD_LIMIT --></a>.</li></ul>
+<!--l. 744--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu133.html" >next</a>] [<a 
+href="openmpsu131.html" >prev</a>] [<a 
+href="openmpsu131.html#tailopenmpsu131.html" >prev-tail</a>] [<a 
+href="openmpsu132.html" >front</a>] [<a 
+href="openmpse32.html#openmpsu132.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu132.html"></a> </p> 
+ 
+</body> 
+</html>

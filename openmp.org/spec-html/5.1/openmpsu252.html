@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Ending Task Regions</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 123--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu253.html" >next</a>] [<a 
+href="openmpsu251.html" >prev</a>] [<a 
+href="openmpsu251.html#tailopenmpsu251.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu252.html">tail</a>] [<a 
+href="openmpse57.html#openmpsu252.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.6.4</span>&#x00A0;&#x00A0;<a 
+ id="x318-4930005.6.4"></a>Ending Task Regions</h4>
+<a 
+ id="dx318-493001"></a>
+<p><p><a 
+ id="Q1-318-2420"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+After finishing the execution of an OpenMP task region, the implementation executes <span class="textbf"><span class="texttt">ompd_bp_task_end</span></span>.
+<p><a 
+ id="Q1-318-2421"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x318-493002r1"></a></span></p> 
+<!--l. 133--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x318-493003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_bp_task_end</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x318-493004r3"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-318-2422"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The OpenMP implementation must execute <span class="textbf"><span class="texttt">ompd_bp_task_end</span></span> immediately after completion of a
+<span class="textit"><span class="textrm">structured-block</span></span> that is associated with a non-merged task. At the point that the implementation reaches
+<span class="textbf"><span class="texttt">ompd_bp_task_end</span></span>, the binding for <span class="textbf"><span class="texttt">ompd_get_curr_task_handle</span></span> is the task that finished
+execution. After execution of <span class="textbf"><span class="texttt">ompd_bp_task_end</span></span>, any <span class="textit"><span class="textrm">task_handle</span></span> that was acquired for the task region
+is invalid and should be released.
+</p> 
+<p><p><a 
+ id="Q1-318-2423"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_get_curr_task_handle</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu246.html#x311-4710005.5.7.1">5.5.7.1<!--tex4ht:ref: subsubsubsec:ompd_get_curr_task_handle --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rel_task_handle</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu246.html#x311-4750005.5.7.5">5.5.7.5<!--tex4ht:ref: subsubsubsec:ompd_rel_task_handle --></a>.</li></ul>
+<!--l. 157--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu253.html" >next</a>] [<a 
+href="openmpsu251.html" >prev</a>] [<a 
+href="openmpsu251.html#tailopenmpsu251.html" >prev-tail</a>] [<a 
+href="openmpsu252.html" >front</a>] [<a 
+href="openmpse57.html#openmpsu252.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu252.html"></a> </p> 
+ 
+</body> 
+</html>

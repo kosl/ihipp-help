@@ -1,0 +1,153 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Device Initialization</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 9--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu65.html" >next</a>] [<a 
+href="openmpse22.html" >prev</a>] [<a 
+href="openmpse22.html#tailopenmpse22.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu64.html">tail</a>] [<a 
+href="openmpse22.html#openmpsu64.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.14.1</span>&#x00A0;&#x00A0;<a 
+ id="x92-1020002.14.1"></a>Device Initialization</h4>
+<p><p><a 
+ id="Q1-92-354"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">device-initialize</span></span> event occurs in a thread that encounters the first <span class="textbf"><span class="texttt">target</span></span>, <span class="textbf"><span class="texttt">target data</span></span>, or
+<span class="textbf"><span class="texttt">target enter data</span></span> construct or a device memory routine that is associated with a particular target
+device after the thread initiates initialization of OpenMP on the device and the device&#8217;s OpenMP
+initialization, which may include device-side tool initialization, completes.
+The <span class="textit"><span class="textrm">device-load</span></span> event for a code block for a target device occurs in some thread before any thread executes
+code from that code block on that target device.
+The <span class="textit"><span class="textrm">device-unload</span></span> event for a target device occurs in some thread whenever a code block is unloaded from
+the device.
+The <span class="textit"><span class="textrm">device-finalize</span></span> event for a target device that has been initialized occurs in some thread before an
+OpenMP implementation shuts down.
+<p><a 
+ id="Q1-92-355"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_device_initialize</span></span> callback for
+each occurrence of a <span class="textit"><span class="textrm">device-initialize</span></span> event in that thread. This callback has type signature
+<span class="textbf"><span class="texttt">ompt_callback_device_initialize_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_device_load</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">device-load</span></span> event in that thread. This callback has type signature <span class="textbf"><span class="texttt">ompt_callback_device_load_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_device_unload</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">device-unload</span></span> event in that thread. This callback has type signature <span class="textbf"><span class="texttt">ompt_callback_device_unload_t</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_device_finalize</span></span> callback for
+each occurrence of a <span class="textit"><span class="textrm">device-finalize</span></span> event in that thread. This callback has type signature
+<span class="textbf"><span class="texttt">ompt_callback_device_finalize_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-92-356"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to OpenMP device initialization are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  No
+  thread
+  may
+  offload
+  execution
+  of
+                                                                            
+                                                                            
+  an
+  OpenMP
+  construct
+  to
+  a
+  device
+  until
+  a
+  dispatched
+  <span class="textbf"><span class="texttt">ompt_callback_device_initialize</span></span>
+  callback
+  completes.
+  </li>
+  <li class="itemize">
+  No
+  thread
+  may
+  offload
+  execution
+  of
+  an
+  OpenMP
+  construct
+  to
+  a
+  device
+  after
+  a
+  dispatched
+  <span class="textbf"><span class="texttt">ompt_callback_device_finalize</span></span>
+  callback
+  occurs.</li></ul>
+<p><p><a 
+ id="Q1-92-357"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_device_initialize_t</span></span>,
+  see
+                                                                            
+                                                                            
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3610004.5.2.19">4.5.2.19<!--tex4ht:ref: sec:ompt_callback_device_initialize_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_device_finalize_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3620004.5.2.20">4.5.2.20<!--tex4ht:ref: sec:ompt_callback_device_finalize_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_device_load_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3630004.5.2.21">4.5.2.21<!--tex4ht:ref: sec:ompt_callback_device_load_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_device_unload_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3640004.5.2.22">4.5.2.22<!--tex4ht:ref: sec:ompt_callback_device_unload_t --></a>.</li></ul>
+<!--l. 77--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu65.html" >next</a>] [<a 
+href="openmpse22.html" >prev</a>] [<a 
+href="openmpse22.html#tailopenmpse22.html" >prev-tail</a>] [<a 
+href="openmpsu64.html" >front</a>] [<a 
+href="openmpse22.html#openmpsu64.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu64.html"></a> </p> 
+ 
+</body> 
+</html>

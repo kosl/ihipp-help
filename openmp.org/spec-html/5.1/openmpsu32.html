@@ -1,0 +1,511 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>ICV Initialization</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2012--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu33.html" >next</a>] [<a 
+href="openmpsu31.html" >prev</a>] [<a 
+href="openmpsu31.html#tailopenmpsu31.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu32.html">tail</a>] [<a 
+href="openmpse12.html#openmpsu32.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.4.2</span>&#x00A0;&#x00A0;<a 
+ id="x50-490002.4.2"></a>ICV Initialization</h4>
+<a 
+ id="dx50-49001"></a>
+<p>Table&#x00A0;<a 
+href="#x50-49002r1">2.1<!--tex4ht:ref: tab:ICV Initial Values --></a> shows the ICVs, associated environment variables, and initial values.
+<a 
+ id="x50-49002r1"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x50-49003"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;2.1: </td><td  
+class="content">ICV Initial Values</td></tr></table></div><!--tex4ht:label?: x50-49002r2.4 -->
+                                                                            
+                                                                            
+ <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1" /><col 
+id="TBL-2-2" /><col 
+id="TBL-2-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">ICV</span></span>                                 </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Environment Variable</span></span>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-1-3"  
+class="td11"> <span class="textsf"><span class="textbf">Initial value</span></span>                      </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-2-1"  
+class="td11"> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-3-1"  
+class="td11">                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-4-1"  
+class="td11">                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-5-1"  
+class="td11"> <span class="textit"><span class="textrm">dyn-var</span></span>                                </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-5-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_DYNAMIC</span></span>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-5-3"  
+class="td11"> See description below          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-6-1"  
+class="td11"> <span class="textit"><span class="textrm">nthreads-var</span></span>                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-6-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-6-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-7-1"  
+class="td11"> <span class="textit"><span class="textrm">run-sched-var</span></span>                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-7-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_SCHEDULE</span></span>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-7-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-8-1"  
+class="td11"> <span class="textit"><span class="textrm">def-sched-var</span></span>                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-8-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-8-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-9-1"  
+class="td11"> <span class="textit"><span class="textrm">bind-var</span></span>                              </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-9-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_PROC_BIND</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-9-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-10-1"  
+class="td11"> <span class="textit"><span class="textrm">stacksize-var</span></span>                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-10-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-10-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-11-1"  
+class="td11"> <span class="textit"><span class="textrm">wait-policy-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-11-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_WAIT_POLICY</span></span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-11-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-12-1"  
+class="td11"> <span class="textit"><span class="textrm">thread-limit-var</span></span>                  </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-12-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_THREAD_LIMIT</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-12-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-13-1"  
+class="td11"> <span class="textit"><span class="textrm">max-active-levels-var</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-13-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span>,
+  <span class="textbf"><span class="texttt">OMP_NESTED</span></span>,
+  <span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span>,
+  <span class="textbf"><span class="texttt">OMP_PROC_BIND</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-13-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-14-1"  
+class="td11"> <span class="textit"><span class="textrm">active-levels-var</span></span>                  </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-14-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-14-3"  
+class="td11"> <span class="textit"><span class="textrm">zero</span></span>                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-15-1"  
+class="td11"> <span class="textit"><span class="textrm">levels-var</span></span>                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-15-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-15-3"  
+class="td11"> <span class="textit"><span class="textrm">zero</span></span>                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-16-1"  
+class="td11"> <span class="textit"><span class="textrm">place-partition-var</span></span>             </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-16-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_PLACES</span></span>             </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-16-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-17-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-17-1"  
+class="td11"> <span class="textit"><span class="textrm">cancel-var</span></span>                           </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-17-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_CANCELLATION</span></span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-17-3"  
+class="td11"> <span class="textit"><span class="textrm">false</span></span>                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-18-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-18-1"  
+class="td11"> <span class="textit"><span class="textrm">display-affinity-var</span></span>             </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-18-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_DISPLAY_AFFINITY</span></span>   </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-18-3"  
+class="td11"> <span class="textit"><span class="textrm">false</span></span>                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-19-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-19-1"  
+class="td11"> <span class="textit"><span class="textrm">affinity-format-var</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-19-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-19-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-20-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-20-1"  
+class="td11"> <span class="textit"><span class="textrm">default-device-var</span></span>               </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-20-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_DEFAULT_DEVICE</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-20-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-21-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-21-1"  
+class="td11"> <span class="textit"><span class="textrm">target-offload-var</span></span>                </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-21-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-21-3"  
+class="td11"> <span class="textbf"><span class="texttt">DEFAULT</span></span>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-22-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-22-1"  
+class="td11"> <span class="textit"><span class="textrm">max-task-priority-var</span></span>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-22-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_MAX_TASK_PRIORITY</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-22-3"  
+class="td11"> <span class="textit"><span class="textrm">zero</span></span>                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-23-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-23-1"  
+class="td11"> <span class="textit"><span class="textrm">tool-var</span></span>                               </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-23-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_TOOL</span></span>               </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-23-3"  
+class="td11"> <span class="textit"><span class="textrm">enabled</span></span>                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-24-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-24-1"  
+class="td11"> <span class="textit"><span class="textrm">tool-libraries-var</span></span>                </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-24-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-24-3"  
+class="td11"> <span class="textit"><span class="textrm">empty string</span></span>                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-25-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-25-1"  
+class="td11"> <span class="textit"><span class="textrm">tool-verbose-init-var</span></span>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-25-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_TOOL_VERBOSE_INIT</span></span>  </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-25-3"  
+class="td11"> <span class="textit"><span class="textrm">disabled</span></span>                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-26-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-26-1"  
+class="td11"> <span class="textit"><span class="textrm">debug-var</span></span>                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-26-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_DEBUG</span></span>              </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-26-3"  
+class="td11"> <span class="textit"><span class="textrm">disabled</span></span>                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-27-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-27-1"  
+class="td11"> <span class="textit"><span class="textrm">num-procs-var</span></span>                    </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-27-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-27-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-28-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-28-1"  
+class="td11"> <span class="textit"><span class="textrm">thread-num-var</span></span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-28-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-28-3"  
+class="td11"> <span class="textit"><span class="textrm">zero</span></span>                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-29-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-29-1"  
+class="td11"> <span class="textit"><span class="textrm">final-task-var</span></span>                       </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-29-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-29-3"  
+class="td11"> <span class="textit"><span class="textrm">false</span></span>                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-30-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-30-1"  
+class="td11"> <span class="textit"><span class="textrm">implicit-task-var</span></span>                 </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-30-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-30-3"  
+class="td11"> <span class="textit"><span class="textrm">true</span></span>                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-31-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-31-1"  
+class="td11"> <span class="textit"><span class="textrm">team-size-var</span></span>                      </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-31-2"  
+class="td11"> (none)                                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-31-3"  
+class="td11"> <span class="textit"><span class="textrm">one</span></span>                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-32-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-32-1"  
+class="td11"> <span class="textit"><span class="textrm">def-allocator-var</span></span>                 </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-32-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_ALLOCATOR</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-32-3"  
+class="td11"> Implementation defined        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-33-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-33-1"  
+class="td11"> <span class="textit"><span class="textrm">nteams-var</span></span>                          </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-33-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_NUM_TEAMS</span></span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-33-3"  
+class="td11"> <span class="textit"><span class="textrm">zero</span></span>                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-34-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-34-1"  
+class="td11"> <span class="textit"><span class="textrm">teams-thread-limit-var</span></span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-34-2"  
+class="td11"> <span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-34-3"  
+class="td11"> <span class="textit"><span class="textrm">zero</span></span>                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-35-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-35-1"  
+class="td11">                   </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-36-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-36-1"  
+class="td11">                   </td>
+</tr></table></div>
+<p>Each ICV that does not have global scope (see Table&#x00A0;<a 
+href="openmpsu34.html#x52-51001r3">2.3<!--tex4ht:ref: tab:Scopes of ICVs --></a>) has a set of device-specific environment variables
+that extend the variables defined in Table&#x00A0;<a 
+href="#x50-49002r1">2.1<!--tex4ht:ref: tab:ICV Initial Values --></a> with the following syntax:
+</p> 
+<p><span class="textit"><span class="textrm">&#x003C;ENVIRONMENT VARIABLE&#x003E;</span></span><span class="textbf"><span class="texttt">_DEV</span></span><span class="textit"><span class="textrm">[</span></span><span class="textbf"><span class="texttt">_</span></span><span class="textit"><span class="textrm">&#x003C;device&#x003E;]</span></span>
+</p> 
+<p>where <span class="textit"><span class="textrm">&#x003C;ENVIRONMENT VARIABLE&#x003E;</span></span> is one of the variables from Table&#x00A0;<a 
+href="#x50-49002r1">2.1<!--tex4ht:ref: tab:ICV Initial Values --></a> and <span class="textit"><span class="textrm">&#x003C;device&#x003E;</span></span> is the device
+number as specified in the <span class="textbf"><span class="texttt">device</span></span> clause (see Section&#x00A0;<a 
+href="openmpse22.html#x91-1010002.14">2.14<!--tex4ht:ref: sec:Device Directives --></a>).
+</p> 
+<p><p><a 
+ id="Q1-50-75"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+</p> 
+
+  <ul class="itemize1">
+                                                                            
+                                                                            
+  <li class="itemize">
+  Each
+  device
+  has
+  its
+  own
+  ICVs.
+  </li>
+  <li class="itemize">
+  The
+  initial
+  value
+  of
+  <span class="textit"><span class="textrm">dyn-var</span></span>
+  is
+  implementation
+  defined
+  if
+  the
+  implementation
+  supports
+  dynamic
+  adjustment
+  of
+  the
+  number
+  of
+  threads;
+  otherwise,
+  the
+  initial
+  value
+  is
+  <span class="textit"><span class="textrm">false</span></span>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  The
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">nthreads-var</span></span>
+  ICV
+  is
+  a
+  list.
+  </li>
+  <li class="itemize">
+  The
+  value
+  of
+  the
+  <span class="textit"><span class="textrm">bind-var</span></span>
+  ICV
+  is
+  a
+  list.</li></ul>
+<p>The host and non-host device ICVs are initialized before any OpenMP API construct or OpenMP API
+routine executes. After the initial values are assigned, the values of any OpenMP environment variables that
+were set by the user are read and the associated ICVs are modified accordingly. If no <span class="textit"><span class="textrm">&#x003C;device&#x003E;</span></span> number is
+specified on the device-specific environment variable then the value is applied to all non-host
+devices.
+</p> 
+<p><p><a 
+ id="Q1-50-76"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_SCHEDULE</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse58.html#x324-4990006.1">6.1<!--tex4ht:ref: sec:OMP_SCHEDULE --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NUM_THREADS</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse59.html#x325-5000006.2">6.2<!--tex4ht:ref: sec:OMP_NUM_THREADS --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DYNAMIC</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse60.html#x326-5010006.3">6.3<!--tex4ht:ref: sec:OMP_DYNAMIC --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_PROC_BIND</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse61.html#x327-5020006.4">6.4<!--tex4ht:ref: sec:OMP_PROC_BIND --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_PLACES</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse62.html#x328-5030006.5">6.5<!--tex4ht:ref: sec:OMP_PLACES --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_STACKSIZE</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse63.html#x329-5040006.6">6.6<!--tex4ht:ref: sec:OMP_STACKSIZE --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_WAIT_POLICY</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse64.html#x330-5050006.7">6.7<!--tex4ht:ref: sec:OMP_WAIT_POLICY --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_MAX_ACTIVE_LEVELS</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse65.html#x331-5060006.8">6.8<!--tex4ht:ref: sec:OMP_MAX_ACTIVE_LEVELS --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NESTED</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse66.html#x332-5070006.9">6.9<!--tex4ht:ref: sec:OMP_NESTED --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_THREAD_LIMIT</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse67.html#x333-5080006.10">6.10<!--tex4ht:ref: sec:OMP_THREAD_LIMIT --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_CANCELLATION</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse68.html#x334-5090006.11">6.11<!--tex4ht:ref: sec:OMP_CANCELLATION --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DISPLAY_AFFINITY</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse70.html#x336-5110006.13">6.13<!--tex4ht:ref: sec:OMP_DISPLAY_AFFINITY --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_AFFINITY_FORMAT</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse71.html#x337-5120006.14">6.14<!--tex4ht:ref: sec:OMP_AFFINITY_FORMAT --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DEFAULT_DEVICE</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse72.html#x338-5130006.15">6.15<!--tex4ht:ref: sec:OMP_DEFAULT_DEVICE --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_MAX_TASK_PRIORITY</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse73.html#x339-5140006.16">6.16<!--tex4ht:ref: sec:OMP_MAX_TASK_PRIORITY --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TARGET_OFFLOAD</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse74.html#x340-5150006.17">6.17<!--tex4ht:ref: sec:OMP_TARGET_OFFLOAD --></a>.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">OMP_TOOL</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse75.html#x341-5160006.18">6.18<!--tex4ht:ref: sec:OMP_TOOL --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TOOL_LIBRARIES</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse76.html#x342-5170006.19">6.19<!--tex4ht:ref: sec:OMP_TOOL_LIBRARIES --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_DEBUG</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse78.html#x344-5190006.21">6.21<!--tex4ht:ref: sec:OMP_DEBUG --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_ALLOCATOR</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse79.html#x345-5200006.22">6.22<!--tex4ht:ref: sec:OMP_ALLOCATOR --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_NUM_TEAMS</span></span>
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse80.html#x346-5210006.23">6.23<!--tex4ht:ref: sec:OMP_NUM_TEAMS --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">OMP_TEAMS_THREAD_LIMIT</span></span>
+                                                                            
+                                                                            
+  environment
+  variable,
+  see
+  Section&#x00A0;<a 
+href="openmpse81.html#x347-5220006.24">6.24<!--tex4ht:ref: sec:OMP_TEAMS_THREAD_LIMIT --></a>.</li></ul>
+<!--l. 2151--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu33.html" >next</a>] [<a 
+href="openmpsu31.html" >prev</a>] [<a 
+href="openmpsu31.html#tailopenmpsu31.html" >prev-tail</a>] [<a 
+href="openmpsu32.html" >front</a>] [<a 
+href="openmpse12.html#openmpsu32.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu32.html"></a> </p> 
+ 
+</body> 
+</html>

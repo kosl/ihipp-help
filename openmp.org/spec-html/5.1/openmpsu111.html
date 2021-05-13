@@ -1,0 +1,953 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>cancel Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 5--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu112.html" >next</a>] [<a 
+href="openmpse28.html" >prev</a>] [<a 
+href="openmpse28.html#tailopenmpse28.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu111.html">tail</a>] [<a 
+href="openmpse28.html#openmpsu111.html" >up</a>] </p></div>
+                                                                            
+                                                                            
+<h4 class="subsectionHead"><span class="titlemark">2.20.1</span>&#x00A0;&#x00A0;<a 
+ id="x145-1570002.20.1"></a><span class="textbf"><span class="texttt">cancel</span></span> Construct</h4>
+<a 
+ id="dx145-157001"></a>
+<a 
+ id="dx145-157002"></a>
+<a 
+ id="dx145-157003"></a>
+<p><p><a 
+ id="Q1-145-674"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">cancel</span></span> construct activates cancellation of the innermost enclosing region of the type specified. The
+<span class="textbf"><span class="texttt">cancel</span></span> construct is a stand-alone directive.
+<p><a 
+ id="Q1-145-675"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">cancel</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157004r1"></a></span></p> 
+<!--l. 18--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">cancel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">construct</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">if</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157006r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">construct-type-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157007r1"></a></span></p> 
+<!--l. 25--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157008r2"></a></span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157009r3"></a></span><span 
+class="pcrb8t-">sections</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157010r4"></a></span><span 
+class="pcrb8t-">for</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157011r5"></a></span><span 
+class="pcrb8t-">taskgroup</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157012r6"></a></span></pre>
+                                                                            
+                                                                            
+<p>and <span class="textit"><span class="textrm">if-clause</span></span> is
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157013r1"></a></span></p> 
+<!--l. 36--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157014r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">cancel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157015r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">cancel</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157016r1"></a></span></p> 
+<!--l. 44--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157017r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">cancel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">construct</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">if</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157018r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">construct-type-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157019r1"></a></span></p> 
+<!--l. 51--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157020r2"></a></span><span 
+class="pcrb8t-">parallel</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157021r3"></a></span><span 
+class="pcrb8t-">sections</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157022r4"></a></span><span 
+class="pcrb8t-">do</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157023r5"></a></span><span 
+class="pcrb8t-">taskgroup</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157024r6"></a></span></pre>
+<p>and <span class="textit"><span class="textrm">if-clause</span></span> is
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157025r1"></a></span></p> 
+<!--l. 60--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157026r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">cancel</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x145-157027r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-145-676"></a>
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding thread set of the <span class="textbf"><span class="texttt">cancel</span></span> region is the current team. The binding region of the <span class="textbf"><span class="texttt">cancel</span></span> region
+is the innermost enclosing region of the type corresponding to the <span class="textit"><span class="textrm">construct-type-clause</span></span> specified in the
+directive (that is, the innermost <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">sections</span></span>, worksharing-loop, or <span class="textbf"><span class="texttt">taskgroup</span></span>
+region).
+</p> 
+<p><p><a 
+ id="Q1-145-677"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">cancel</span></span> construct activates cancellation of the binding region only if the <span class="textit"><span class="textrm">cancel-var</span></span> ICV is <span class="textit"><span class="textrm">true</span></span>, in
+which case the <span class="textbf"><span class="texttt">cancel</span></span> construct causes the encountering task to continue execution at the end of the
+binding region if <span class="textit"><span class="textrm">construct-type-clause</span></span> is <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">for</span></span>, <span class="textbf"><span class="texttt">do</span></span>, or <span class="textbf"><span class="texttt">sections</span></span>. If the <span class="textit"><span class="textrm">cancel-var</span></span> ICV
+is <span class="textit"><span class="textrm">true</span></span> and <span class="textit"><span class="textrm">construct-type-clause</span></span> is <span class="textbf"><span class="texttt">taskgroup</span></span>, the encountering task continues execution
+at the end of the current task region. If the <span class="textit"><span class="textrm">cancel-var</span></span> ICV is <span class="textit"><span class="textrm">false</span></span>, the <span class="textbf"><span class="texttt">cancel</span></span> construct is
+ignored.
+</p> 
+<p>Threads check for active cancellation only at cancellation points that are implied at the following
+locations:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  regions;
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  regions;
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">barrier</span></span>
+  regions;
+  </li>
+  <li class="itemize">
+  at
+  the
+  end
+  of
+  a
+  worksharing-loop
+  construct
+  with
+  a
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  and
+                                                                            
+                                                                            
+  for
+  which
+  the
+  same
+  list
+  item
+  appears
+  in
+  both
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  and
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clauses;
+  and
+  </li>
+  <li class="itemize">
+  implicit
+  barrier
+  regions.</li></ul>
+<p>When a thread reaches one of the above cancellation points and if the <span class="textit"><span class="textrm">cancel-var</span></span> ICV is <span class="textit"><span class="textrm">true</span></span>,
+then:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  If
+  the
+  thread
+  is
+  at
+  a
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  or
+  <span class="textbf"><span class="texttt">cancellation
+  point</span></span>
+  region
+  and
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">parallel</span></span>,
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">for</span></span>,
+  <span class="textbf"><span class="texttt">do</span></span>,
+  or
+  <span class="textbf"><span class="texttt">sections</span></span>,
+  the
+  thread
+  continues
+  execution
+  at
+  the
+  end
+  of
+  the
+  canceled
+  region
+  if
+  cancellation
+  has
+  been
+  activated
+  for
+  the
+  innermost
+  enclosing
+  region
+  of
+  the
+  type
+  specified.
+  </li>
+  <li class="itemize">
+  If
+  the
+  thread
+  is
+  at
+  a
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  or
+  <span class="textbf"><span class="texttt">cancellation
+  point</span></span>
+  region
+                                                                            
+                                                                            
+  and
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">taskgroup</span></span>,
+  the
+  encountering
+  task
+  checks
+  for
+  active
+  cancellation
+  of
+  all
+  of
+  the
+  <span class="textit"><span class="textrm">taskgroup
+  sets</span></span>
+  to
+  which
+  the
+  encountering
+  task
+  belongs,
+  and
+  continues
+  execution
+  at
+  the
+  end
+  of
+  the
+  current
+  task
+  region
+  if
+  cancellation
+  has
+  been
+  activated
+  for
+  any
+  of
+  the
+                                                                            
+                                                                            
+  <span class="textit"><span class="textrm">taskgroup
+  sets</span></span>.
+  </li>
+  <li class="itemize">
+  If
+  the
+  encountering
+  task
+  is
+  at
+  a
+  barrier
+  region
+  or
+  at
+  the
+  end
+  of
+  a
+  worksharing-loop
+  construct
+  with
+  a
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  and
+  for
+  which
+  the
+  same
+  list
+  item
+  appears
+  in
+  both
+  <span class="textbf"><span class="texttt">firstprivate</span></span>
+  and
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  clauses,
+  the
+  encountering
+  task
+                                                                            
+                                                                            
+  checks
+  for
+  active
+  cancellation
+  of
+  the
+  innermost
+  enclosing
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region.
+  If
+  cancellation
+  has
+  been
+  activated,
+  then
+  the
+  encountering
+  task
+  continues
+  execution
+  at
+  the
+  end
+  of
+  the
+  canceled
+  region.</li></ul>
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  If one thread activates cancellation and another thread encounters a cancellation point, the order of
+execution between the two threads is non-deterministic. Whether the thread that encounters a cancellation
+point detects the activated cancellation depends on the underlying hardware and operating system.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>When cancellation of tasks is activated through a <span class="textbf"><span class="texttt">cancel</span></span> construct with the <span class="textbf"><span class="texttt">taskgroup</span></span>
+<span class="textit"><span class="textrm">construct-type-clause</span></span>, the tasks that belong to the <span class="textit"><span class="textrm">taskgroup set</span></span> of the innermost enclosing <span class="textbf"><span class="texttt">taskgroup</span></span>
+region will be canceled. The task that encountered that construct continues execution at the end of its task
+region, which implies completion of that task. Any task that belongs to the innermost enclosing
+<span class="textbf"><span class="texttt">taskgroup</span></span> and has already begun execution must run to completion or until a cancellation point is
+reached. Upon reaching a cancellation point and if cancellation is active, the task continues execution at the
+                                                                            
+                                                                            
+end of its task region, which implies the task&#8217;s completion. Any task that belongs to the innermost
+enclosing <span class="textbf"><span class="texttt">taskgroup</span></span> and that has not begun execution may be discarded, which implies its
+completion.
+</p> 
+<p>When cancellation is active for a <span class="textbf"><span class="texttt">parallel</span></span>, <span class="textbf"><span class="texttt">sections</span></span>, or worksharing-loop region, each thread of the
+binding thread set resumes execution at the end of the canceled region if a cancellation point is encountered.
+If the canceled region is a <span class="textbf"><span class="texttt">parallel</span></span> region, any tasks that have been created by a <span class="textbf"><span class="texttt">task</span></span> or a <span class="textbf"><span class="texttt">taskloop</span></span>
+construct and their descendant tasks are canceled according to the above <span class="textbf"><span class="texttt">taskgroup</span></span> cancellation
+semantics. If the canceled region is a <span class="textbf"><span class="texttt">sections</span></span>, or worksharing-loop region, no task cancellation
+occurs.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The usual C++ rules for object destruction are followed when cancellation is performed.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>All private objects or subobjects with <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute that are allocated inside the canceled
+construct are deallocated.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>If the canceled construct contains a <span class="textbf"><span class="texttt">reduction</span></span>, <span class="textbf"><span class="texttt">task_reduction</span></span> or <span class="textbf"><span class="texttt">lastprivate</span></span> clause, the final
+values of the list items that appeared in those clauses are undefined.
+</p> 
+<p>When an <span class="textbf"><span class="texttt">if</span></span> clause is present on a <span class="textbf"><span class="texttt">cancel</span></span> construct and the <span class="textbf"><span class="texttt">if</span></span> expression evaluates to <span class="textit"><span class="textrm">false</span></span>, the <span class="textbf"><span class="texttt">cancel</span></span>
+construct does not activate cancellation. The cancellation point associated with the <span class="textbf"><span class="texttt">cancel</span></span> construct is
+always encountered regardless of the value of the <span class="textbf"><span class="texttt">if</span></span> expression.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  The programmer is responsible for releasing locks and other synchronization data structures that
+might cause a deadlock when a <span class="textbf"><span class="texttt">cancel</span></span> construct is encountered and blocked threads cannot be canceled.
+The programmer is also responsible for ensuring proper synchronizations to avoid deadlocks that might
+arise from cancellation of OpenMP regions that contain OpenMP synchronization constructs.
+<p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><p><a 
+ id="Q1-145-678"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+If a task encounters a <span class="textbf"><span class="texttt">cancel</span></span> construct that will activate cancellation then a <span class="textit"><span class="textrm">cancel</span></span> event
+occurs.
+</p> 
+<p>A <span class="textit"><span class="textrm">discarded-task</span></span> event occurs for any discarded tasks.
+</p> 
+<p><p><a 
+ id="Q1-145-679"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_cancel</span></span> callback for each occurrence of a <span class="textit"><span class="textrm">cancel</span></span> event in
+the context of the encountering task. This callback has type signature <span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span>;
+<span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_activated)</span></span> always evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched callback;
+<span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_parallel)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched callback if <span class="textit"><span class="textrm">construct-type-clause</span></span> is
+<span class="textbf"><span class="texttt">parallel</span></span>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_sections)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched callback if
+<span class="textit"><span class="textrm">construct-type-clause</span></span> is <span class="textbf"><span class="texttt">sections</span></span>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_loop)</span></span> evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched
+callback if <span class="textit"><span class="textrm">construct-type-clause</span></span> is <span class="textbf"><span class="texttt">for</span></span> or <span class="textbf"><span class="texttt">do</span></span>; and <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_cancel_taskgroup)</span></span> evaluates to
+<span class="textit"><span class="textrm">true</span></span> in the dispatched callback if <span class="textit"><span class="textrm">construct-type-clause</span></span> is <span class="textbf"><span class="texttt">taskgroup</span></span>.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_cancel</span></span> callback with the <span class="textit"><span class="textrm">ompt_data_t</span></span> associated
+with the discarded task as its <span class="textit"><span class="textrm">task_data</span></span> argument and <span class="textbf"><span class="texttt">ompt_cancel_discarded_task</span></span> as its <span class="textit"><span class="textrm">flags</span></span>
+argument for each occurrence of a <span class="textit"><span class="textrm">discarded-task</span></span> event. The callback occurs in the context of the task that
+discards the task and has type signature <span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-145-680"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">cancel</span></span> construct are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  behavior
+  for
+  concurrent
+  cancellation
+  of
+  a
+  region
+  and
+  a
+  region
+  nested
+  within
+  it
+                                                                            
+                                                                            
+  is
+  unspecified.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">taskgroup</span></span>,
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">task</span></span>
+  or
+  a
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct
+  and
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  region
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">taskgroup</span></span>
+  region.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  <span class="textbf"><span class="texttt">sections</span></span>,
+                                                                            
+                                                                            
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct
+  must
+  be
+  closely
+  nested
+  inside
+  a
+  <span class="textbf"><span class="texttt">sections</span></span>
+  or
+  <span class="textbf"><span class="texttt">section</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  If
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  is
+  neither
+  <span class="textbf"><span class="texttt">sections</span></span>
+  nor
+  <span class="textbf"><span class="texttt">taskgroup</span></span>,
+  the
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct
+  must
+  be
+  closely
+  nested
+  inside
+  an
+  OpenMP
+  construct
+  that
+  matches
+  the
+  type
+  specified
+  in
+  <span class="textit"><span class="textrm">construct-type-clause</span></span>
+  of
+  the
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">cancel</span></span>
+  construct.
+  </li>
+  <li class="itemize">
+  A
+  worksharing
+  construct
+  that
+  is
+  canceled
+  must
+  not
+  have
+  a
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  or
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  a
+  user-defined
+  reduction
+  that
+  uses
+  <span class="textbf"><span class="texttt">omp_orig</span></span>
+  in
+  the
+  <span class="textit"><span class="textrm">initializer-expr</span></span>
+  of
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  A
+  worksharing-loop
+  construct
+                                                                            
+                                                                            
+  that
+  is
+  canceled
+  must
+  not
+  have
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause
+  or
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  modifier.
+  </li>
+  <li class="itemize">
+  When
+  cancellation
+  is
+  active
+  for
+  a
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region,
+  a
+  thread
+  in
+  the
+  team
+  that
+  binds
+  to
+  that
+  region
+  may
+  not
+  be
+  executing
+  or
+                                                                            
+                                                                            
+  encounter
+  a
+  worksharing
+  construct
+  with
+  an
+  <span class="textbf"><span class="texttt">ordered</span></span>
+  clause,
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  the
+  <span class="textbf"><span class="texttt">inscan</span></span>
+  modifier
+  or
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  a
+  user-defined
+  reduction
+  that
+  uses
+  <span class="textbf"><span class="texttt">omp_orig</span></span>
+  in
+  the
+  <span class="textit"><span class="textrm">initializer-expr</span></span>
+  of
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+  When
+  cancellation
+  is
+  active
+  for
+  a
+                                                                            
+                                                                            
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  region,
+  a
+  thread
+  in
+  the
+  team
+  that
+  binds
+  to
+  that
+  region
+  may
+  not
+  be
+  executing
+  or
+  encounter
+  a
+  <span class="textbf"><span class="texttt">scope</span></span>
+  construct
+  with
+  a
+  <span class="textbf"><span class="texttt">reduction</span></span>
+  clause
+  with
+  a
+  user-defined
+  reduction
+  that
+  uses
+  <span class="textbf"><span class="texttt">omp_orig</span></span>
+  in
+  the
+  <span class="textit"><span class="textrm">initializer-expr</span></span>
+  of
+  the
+  corresponding
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">reduction</span></span>
+  directive.
+  </li>
+  <li class="itemize">
+                                                                            
+                                                                            
+  During
+  execution
+  of
+  a
+  construct
+  that
+  may
+  be
+  subject
+  to
+  cancellation,
+  a
+  thread
+  must
+  not
+  encounter
+  an
+  orphaned
+  cancellation
+  point.
+  That
+  is,
+  a
+  cancellation
+  point
+  must
+  only
+  be
+  encountered
+  within
+  that
+  construct
+  and
+  must
+  not
+  be
+  encountered
+  elsewhere
+  in
+  its
+  region.</li></ul>
+<p><p><a 
+ id="Q1-145-681"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">cancel-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpsu31.html#x49-480002.4.1">2.4.1<!--tex4ht:ref: subsec:ICV Descriptions --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">cancellation</span></span>&#x00A0;<span class="textbf"><span class="texttt">point</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu112.html#x146-1580002.20.2">2.20.2<!--tex4ht:ref: subsec:cancellation point Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_cancellation</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu127.html#x166-1990003.2.8">3.2.8<!--tex4ht:ref: subsec:omp_get_cancellation --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_cancel_flag_t</span></span>
+  enumeration
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu212.html#x269-3320004.4.4.25">4.4.4.25<!--tex4ht:ref: sec:ompt_cancel_flag_t --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_cancel_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3600004.5.2.18">4.5.2.18<!--tex4ht:ref: sec:ompt_callback_cancel_t --></a>.</li></ul>
+<!--l. 277--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu112.html" >next</a>] [<a 
+href="openmpse28.html" >prev</a>] [<a 
+href="openmpse28.html#tailopenmpse28.html" >prev-tail</a>] [<a 
+href="openmpsu111.html" >front</a>] [<a 
+href="openmpse28.html#openmpsu111.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu111.html"></a> </p> 
+ 
+</body> 
+</html>

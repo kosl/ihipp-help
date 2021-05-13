@@ -1,0 +1,323 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>error Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2914--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse14.html" >next</a>] [<a 
+href="openmpsu38.html" >prev</a>] [<a 
+href="openmpsu38.html#tailopenmpsu38.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu39.html">tail</a>] [<a 
+href="openmpse13.html#openmpsu39.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.5.4</span>&#x00A0;&#x00A0;<a 
+ id="x58-580002.5.4"></a><span class="textbf"><span class="texttt">error</span></span> Directive</h4>
+<a 
+ id="dx58-58001"></a>
+<a 
+ id="dx58-58002"></a>
+<p><p><a 
+ id="Q1-58-106"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">error</span></span> directive instructs the compiler or runtime to display a message and to perform an error action.
+The <span class="textbf"><span class="texttt">error</span></span> directive is a utility directive unless the <span class="textbf"><span class="texttt">at</span></span> clause is specified with the <span class="textbf"><span class="texttt">execution</span></span> value, in
+which case the <span class="textbf"><span class="texttt">error</span></span> directive is a stand-alone directive.
+<p><a 
+ id="Q1-58-107"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">error</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58003r1"></a></span></p> 
+<!--l. 2929--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">error</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58006r1"></a></span></p> 
+<!--l. 2937--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58007r2"></a></span><span 
+class="pcrb8t-">at</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">compilation</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">execution</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58008r3"></a></span><span 
+class="pcrb8t-">severity</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">fatal</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">warning</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58009r4"></a></span><span 
+class="pcrb8t-">message</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">msg</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">string</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58010r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">msg-string</span></span> is a string of const char * type.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">error</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58011r1"></a></span></p> 
+<!--l. 2951--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58012r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">error</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58013r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58014r1"></a></span></p> 
+<!--l. 2959--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58015r2"></a></span><span 
+class="pcrb8t-">at</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">compilation</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">execution</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58016r3"></a></span><span 
+class="pcrb8t-">severity</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">fatal</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">warning</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58017r4"></a></span><span 
+class="pcrb8t-">message</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">msg</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">string</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x58-58018r5"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">msg-string</span></span> is a character string of character(len=*) type
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-58-108"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">error</span></span> directive performs an error action. The error action includes the display of an implementation
+defined message. The <span class="textbf"><span class="texttt">severity</span></span> clause determines whether the error action includes anything other than
+the message display.
+</p> 
+<p>The <span class="textbf"><span class="texttt">at</span></span> clause determines when the implementation performs the error action. When the <span class="textbf"><span class="texttt">at</span></span> clause specifies
+<span class="textbf"><span class="texttt">compilation</span></span>, the error action is performed during compilation if the <span class="textbf"><span class="texttt">error</span></span> directive appears in a
+declarative context or in an executable context that is reachable at runtime. When the <span class="textbf"><span class="texttt">at</span></span> clause specifies
+<span class="textbf"><span class="texttt">compilation</span></span> and the <span class="textbf"><span class="texttt">error</span></span> directive appears in an executable context that is not reachable at runtime,
+the error action may or may not be performed. When the <span class="textbf"><span class="texttt">at</span></span> clause specifies <span class="textbf"><span class="texttt">execution</span></span>, the
+error action is performed during program execution when a thread encounters the directive. If
+the <span class="textbf"><span class="texttt">at</span></span> clause is not specified then the <span class="textbf"><span class="texttt">error</span></span> directive behaves as if the <span class="textbf"><span class="texttt">at</span></span> clause specifies
+<span class="textbf"><span class="texttt">compilation</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">severity</span></span> clause determines the action that the implementation performs. When the <span class="textbf"><span class="texttt">severity</span></span>
+clause specifies <span class="textbf"><span class="texttt">warning</span></span>, the implementation takes no action besides displaying the message. When the
+<span class="textbf"><span class="texttt">severity</span></span> clause specifies <span class="textbf"><span class="texttt">fatal</span></span> and the <span class="textbf"><span class="texttt">at</span></span> clause specifies <span class="textbf"><span class="texttt">compile</span></span> then the message is displayed
+and compilation of the current compilation unit is aborted. When the <span class="textbf"><span class="texttt">severity</span></span> clause specifies <span class="textbf"><span class="texttt">fatal</span></span>
+and the <span class="textbf"><span class="texttt">at</span></span> clause specifies <span class="textbf"><span class="texttt">execution</span></span> then the message is displayed and program execution is aborted. If
+no <span class="textbf"><span class="texttt">severity</span></span> clause is specified then the <span class="textbf"><span class="texttt">error</span></span> directive behaves as if the <span class="textbf"><span class="texttt">severity</span></span> clause specifies
+<span class="textbf"><span class="texttt">fatal</span></span>.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">message</span></span> clause is specified then <span class="textit"><span class="textrm">msg-string</span></span> is included in the implementation defined
+message.
+</p> 
+<p><p><a 
+ id="Q1-58-109"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">runtime-error</span></span> event occurs when a thread encounters an <span class="textbf"><span class="texttt">error</span></span> directive for which the <span class="textbf"><span class="texttt">at</span></span> clause
+specifies <span class="textbf"><span class="texttt">execution</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-58-110"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_error</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">runtime-error</span></span> event in the context of the encountering task. This callback has the type signature
+<span class="textbf"><span class="texttt">ompt_callback_error_t</span></span>.
+</p> 
+<p><p><a 
+ id="Q1-58-111"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">error</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  At
+                                                                            
+                                                                            
+  most
+  one
+  <span class="textbf"><span class="texttt">at</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">severity</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">message</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-58-112"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+                                                                            
+                                                                            
+  Stand-alone
+  directives,
+  see
+  Section&#x00A0;<a 
+href="openmpsu19.html#x34-330002.1.3">2.1.3<!--tex4ht:ref: subsec:Stand-Alone Directives --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_error_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3720004.5.2.30">4.5.2.30<!--tex4ht:ref: sec:ompt_callback_error_t --></a>.</li></ul>
+                                                                            
+                                                                            
+<!--l. 48--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse14.html" >next</a>] [<a 
+href="openmpsu38.html" >prev</a>] [<a 
+href="openmpsu38.html#tailopenmpsu38.html" >prev-tail</a>] [<a 
+href="openmpsu39.html" >front</a>] [<a 
+href="openmpse13.html#openmpsu39.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu39.html"></a> </p> 
+ 
+</body> 
+</html>

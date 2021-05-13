@@ -1,0 +1,707 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Tool Control Routine</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse45.html" >next</a>] [<a 
+href="openmpsu203.html" >prev</a>] [<a 
+href="openmpsu203.html#tailopenmpsu203.html" >prev-tail</a>] [<a 
+href="#tailopenmpse44.html">tail</a>] [<a 
+href="openmpch3.html#openmpse44.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.14</span>&#x00A0;&#x00A0;<a 
+ id="x254-2870003.14"></a>Tool Control Routine</h3>
+<a 
+ id="dx254-287001"></a>
+<p><p><a 
+ id="Q1-254-1402"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">omp_control_tool</span></span> routine enables a program to pass commands to an active tool.
+<p><a 
+ id="Q1-254-1403"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287002r1"></a></span></p> 
+<!--l. 11--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287003r2"></a></span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">command</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">int</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">*</span><span 
+class="ec-qtmri-">arg</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287004r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287005r1"></a></span></p> 
+<!--l. 17--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287006r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">function</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">command</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287007r3"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">command</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287008r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">modifier</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287009r5"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-254-1404"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Constraints on Arguments</span>
+The following enumeration type defines four standard commands. Table&#x00A0;<a 
+href="openmpse42.html#x254-287028r3">3.3<!--tex4ht:ref: table:std-tool-cmds --></a> describes the actions that these
+commands request from a tool.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287010r1"></a></span></p> 
+<!--l. 30--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287011r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">enum</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287012r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_start</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287013r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_pause</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287014r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_flush</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287015r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287016r7"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287017r8"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287018r1"></a></span></p> 
+<!--l. 41--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287019r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287020r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_start</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287021r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287022r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_pause</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">2</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287023r6"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287024r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_flush</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">3</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287025r8"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287026r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_end</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">4</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287027r10"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>Tool-specific values for <span class="textit"><span class="textrm">command</span></span> must be greater or equal to 64. Tools must ignore <span class="textit"><span class="textrm">command</span></span> values that
+they are not explicitly designed to handle. Other values accepted by a tool for <span class="textit"><span class="textrm">command</span></span>, and any values for
+<span class="textit"><span class="textrm">modifier</span></span> and <span class="textit"><span class="textrm">arg</span></span> are tool-defined.
+<a 
+ id="x254-287028r3"></a>
+</p> 
+<div class="supertabular">
+<a 
+ id="x254-287029"></a>
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;3.3: </td><td  
+class="content">Standard Tool Control Commands</td></tr></table></div><!--tex4ht:label?: x254-287028r3.14 -->
+ <table id="TBL-32" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-32-1g"><col 
+id="TBL-32-1" /><col 
+id="TBL-32-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-1-1"  
+class="td11"> <span class="textsf"><span class="textbf">Command</span></span>                                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-32-1-2"  
+class="td11"> <span class="textsf"><span class="textbf">Action</span></span>                                                                     </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-2-1"  
+class="td11">                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-3-1"  
+class="td11">                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-4-1"  
+class="td11">                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-5-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_control_tool_start</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-32-5-2"  
+class="td11"> Start or restart monitoring if it is off. If monitoring
+  is already on, this command is idempotent. If
+  monitoring has already been turned off permanently,
+  this command will have no effect.                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-6-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_control_tool_pause</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-32-6-2"  
+class="td11"> Temporarily turn monitoring off. If monitoring is
+  already off, it is idempotent.                                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-7-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_control_tool_flush</span></span>    </td><td  style="white-space:wrap; text-align:left;" id="TBL-32-7-2"  
+class="td11"> Flush any data buffered by a tool. This command may
+  be applied whether monitoring is on or off.                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-8-1"  
+class="td11"> <span class="textbf"><span class="texttt">omp_control_tool_end</span></span>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-32-8-2"  
+class="td11"> Turn monitoring off permanently; the tool finalizes
+  itself and flushes all output.                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-9-1"  
+class="td11">                           </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-32-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-32-10-1"  
+class="td11">                           </td>
+</tr></table></div>
+<p><p><a 
+ id="Q1-254-1406"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for an <span class="textbf"><span class="texttt">omp_control_tool</span></span> region is the generating task.
+</p> 
+<p><p><a 
+ id="Q1-254-1407"></a>
+<span 
+class="phvb8t-x-x-110">Effect</span>
+An OpenMP program may use <span class="textbf"><span class="texttt">omp_control_tool</span></span> to pass commands to a tool. An application can
+use <span class="textbf"><span class="texttt">omp_control_tool</span></span> to request that a tool starts or restarts data collection when a code
+region of interest is encountered, that a tool pauses data collection when leaving the region of
+interest, that a tool flushes any data that it has collected so far, or that a tool ends data collection.
+Additionally, <span class="textbf"><span class="texttt">omp_control_tool</span></span> can be used to pass tool-specific commands to a particular
+tool.
+</p> 
+<p>The following types correspond to return values from <span class="textbf"><span class="texttt">omp_control_tool</span></span>:
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287030r1"></a></span></p> 
+<!--l. 111--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287031r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">enum</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_result_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">{</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287032r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_notool</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">-2,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287033r4"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_nocallback</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">-1,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287034r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_success</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">0,</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287035r6"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_ignored</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287036r7"></a></span><span 
+class="pcrb8t-">}</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_result_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287037r8"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287038r1"></a></span></p> 
+<!--l. 122--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287039r2"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_result_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287040r3"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_notool</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">-2</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287041r4"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_result_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287042r5"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_nocallback</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">-1</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287043r6"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_result_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287044r7"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_success</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">0</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287045r8"></a></span><span 
+class="pcrb8t-">integer</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">kind</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">omp_control_tool_result_kind</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">,</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&amp;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287046r9"></a></span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">parameter</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">::</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp_control_tool_ignored</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">1</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x254-287047r10"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p>If the OMPT interface state is inactive, the OpenMP implementation returns <span class="textbf"><span class="texttt">omp_control_tool_notool</span></span>.
+If the OMPT interface state is active, but no callback is registered for the <span class="textit"><span class="textrm">tool-control</span></span> event, the OpenMP
+implementation returns <span class="textbf"><span class="texttt">omp_control_tool_nocallback</span></span>. An OpenMP implementation may return
+other implementation-defined negative values strictly smaller than -64; an application may assume that any
+negative return value indicates that a tool has not received the command. A return value of
+<span class="textbf"><span class="texttt">omp_control_tool_success</span></span> indicates that the tool has performed the specified command.
+A return value of <span class="textbf"><span class="texttt">omp_control_tool_ignored</span></span> indicates that the tool has ignored the
+specified command. A tool may return other positive values strictly greater than 64 that are
+tool-defined.
+</p> 
+<p><p><a 
+ id="Q1-254-1408"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+The <span class="textit"><span class="textrm">tool-control</span></span> event occurs in the thread that encounters a call to <span class="textbf"><span class="texttt">omp_control_tool</span></span> at a point inside
+its corresponding OpenMP region.
+</p> 
+<p><p><a 
+ id="Q1-254-1409"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_control_tool</span></span> callback for each occurrence of a
+<span class="textit"><span class="textrm">tool-control</span></span> event. The callback executes in the context of the call that occurs in the user program and has
+type signature <span class="textbf"><span class="texttt">ompt_callback_control_tool_t</span></span>. The callback may return any non-negative value,
+which will be returned to the application by the OpenMP implementation as the return value of the
+<span class="textbf"><span class="texttt">omp_control_tool</span></span> call that triggered the callback.
+</p> 
+<p>Arguments passed to the callback are those passed by the user to <span class="textbf"><span class="texttt">omp_control_tool</span></span>. If the call is made
+in Fortran, the tool will be passed <span class="textbf"><span class="texttt">NULL</span></span> as the third argument to the callback. If any of the four
+standard commands is presented to a tool, the tool will ignore the <span class="textit"><span class="textrm">modifier</span></span> and <span class="textit"><span class="textrm">arg</span></span> argument
+values.
+</p> 
+<p><p><a 
+ id="Q1-254-1410"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions on access to the state of an OpenMP first-party tool are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  An
+  application
+  may
+  access
+  the
+  tool
+  state
+  modified
+  by
+  an
+  OMPT
+  callback
+  only
+  by
+  using
+  <span class="textbf"><span class="texttt">omp_control_tool</span></span>.</li></ul>
+<p><p><a 
+ id="Q1-254-1411"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  OMPT
+  Interface,
+  see
+  Chapter&#x00A0;<a 
+href="openmpch4.html#x256-2890004">4<!--tex4ht:ref: sec:OMPT Interface --></a>
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_control_tool_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3710004.5.2.29">4.5.2.29<!--tex4ht:ref: sec:ompt_callback_control_tool_t --></a>.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse45.html" >next</a>] [<a 
+href="openmpsu203.html" >prev</a>] [<a 
+href="openmpsu203.html#tailopenmpsu203.html" >prev-tail</a>] [<a 
+href="openmpse44.html" >front</a>] [<a 
+href="openmpch3.html#openmpse44.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse44.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Finalizing OpenMP Devices</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 247--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch6.html" >next</a>] [<a 
+href="openmpsu255.html" >prev</a>] [<a 
+href="openmpsu255.html#tailopenmpsu255.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu256.html">tail</a>] [<a 
+href="openmpse57.html#openmpsu256.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.6.8</span>&#x00A0;&#x00A0;<a 
+ id="x322-4970005.6.8"></a>Finalizing OpenMP Devices</h4>
+<a 
+ id="dx322-497001"></a>
+<p><p><a 
+ id="Q1-322-2440"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+When terminating an OpenMP thread, the implementation executes <span class="textbf"><span class="texttt">ompd_bp_device_end</span></span>.
+<p><a 
+ id="Q1-322-2441"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x322-497002r1"></a></span></p> 
+<!--l. 257--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x322-497003r2"></a></span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_bp_device_end</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">void</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x322-497004r3"></a></span></pre>
+<p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-322-2442"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The OpenMP implementation must execute <span class="textbf"><span class="texttt">ompd_bp_device_end</span></span> at every <span class="textit"><span class="textrm">device-finalize</span></span>
+event. This execution occurs after the thread executes all OpenMP regions. After execution of
+<span class="textbf"><span class="texttt">ompd_bp_device_end</span></span>, any <span class="textit"><span class="textrm">address_space_handle</span></span> that was acquired for this device is invalid and
+should be released.
+</p> 
+<p><p><a 
+ id="Q1-322-2443"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Device
+  Initialization,
+  see
+  Section&#x00A0;<a 
+href="openmpsu64.html#x92-1020002.14.1">2.14.1<!--tex4ht:ref: subsec:Device Initialization --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompd_rel_address_space_handle</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu241.html#x306-4530005.5.2.3">5.5.2.3<!--tex4ht:ref: subsubsubsec:ompd_rel_address_space_handle --></a>.</li></ul>
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpch6.html" >next</a>] [<a 
+href="openmpsu255.html" >prev</a>] [<a 
+href="openmpsu255.html#tailopenmpsu255.html" >prev-tail</a>] [<a 
+href="openmpsu256.html" >front</a>] [<a 
+href="openmpse57.html#openmpsu256.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu256.html"></a> </p> 
+ 
+</body> 
+</html>

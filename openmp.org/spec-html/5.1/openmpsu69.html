@@ -1,0 +1,1117 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>target update Construct</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1082--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu70.html" >next</a>] [<a 
+href="openmpsu68.html" >prev</a>] [<a 
+href="openmpsu68.html#tailopenmpsu68.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu69.html">tail</a>] [<a 
+href="openmpse22.html#openmpsu69.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.14.6</span>&#x00A0;&#x00A0;<a 
+ id="x97-1070002.14.6"></a><span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> Construct</h4>
+<a 
+ id="dx97-107001"></a>
+<a 
+ id="dx97-107002"></a>
+<a 
+ id="dx97-107003"></a>
+<p><p><a 
+ id="Q1-97-395"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> directive makes the corresponding list items in the device data environment
+consistent with their original list items, according to the specified motion clauses. The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+construct is a stand-alone directive.
+<p><a 
+ id="Q1-97-396"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107004r1"></a></span></p> 
+<!--l. 1097--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107005r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">update</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107006r3"></a></span></pre>
+                                                                            
+                                                                            
+<p>where <span class="textit"><span class="textrm">clause</span></span> is either <span class="textit"><span class="textrm">motion-clause</span></span> or one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107007r1"></a></span></p> 
+<!--l. 1102--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107008r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">update</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107009r3"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107010r4"></a></span><span 
+class="pcrb8t-">nowait</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107011r5"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107012r6"></a></span></pre>
+<p>and <span class="textit"><span class="textrm">motion-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107013r1"></a></span></p> 
+<!--l. 1111--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107014r2"></a></span><span 
+class="pcrb8t-">to</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107015r3"></a></span><span 
+class="pcrb8t-">from</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107016r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">motion-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107017r1"></a></span></p> 
+<!--l. 1118--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107018r2"></a></span><span 
+class="pcrb8t-">present</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107019r3"></a></span><span 
+class="pcrb8t-">mapper</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">mapper</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107020r4"></a></span><span 
+class="pcrb8t-">iterator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107021r5"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> construct is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107022r1"></a></span></p> 
+<!--l. 1129--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107023r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">update</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107024r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is either <span class="textit"><span class="textrm">motion-clause</span></span> or one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107025r1"></a></span></p> 
+<!--l. 1135--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107026r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">target</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">update</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107027r3"></a></span><span 
+class="pcrb8t-">device</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">integer</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107028r4"></a></span><span 
+class="pcrb8t-">nowait</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107029r5"></a></span><span 
+class="pcrb8t-">depend</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">depend</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">dependence</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">type</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107030r6"></a></span></pre>
+<p>and <span class="textit"><span class="textrm">motion-clause</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107031r1"></a></span></p> 
+<!--l. 1144--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107032r2"></a></span><span 
+class="pcrb8t-">to</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107033r3"></a></span><span 
+class="pcrb8t-">from</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">motion</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...]</span><span 
+class="pcrb8t-">:</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">locator</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">list</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107034r4"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">motion-modifier</span></span> is one of the following:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107035r1"></a></span></p> 
+<!--l. 1151--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107036r2"></a></span><span 
+class="pcrb8t-">present</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107037r3"></a></span><span 
+class="pcrb8t-">mapper</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">mapper</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">identifier</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107038r4"></a></span><span 
+class="pcrb8t-">iterator</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">iterators</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">definition</span><span 
+class="pcrb8t-">)</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x97-107039r5"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-97-397"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Binding</span>
+The binding task set for a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> region is the generating task, which is the <span class="textit"><span class="textrm">target task</span></span>
+generated by the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> construct. The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> region binds to the corresponding
+<span class="textit"><span class="textrm">target task</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-97-398"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+A corresponding list item and an original list item exist for each list item in a <span class="textbf"><span class="texttt">to</span></span> or <span class="textbf"><span class="texttt">from</span></span> clause. If the
+corresponding list item is not present in the device data environment and the <span class="textbf"><span class="texttt">present</span></span> modifier is not
+specified in the clause then no assignment occurs to or from the original list item. Otherwise, each
+corresponding list item in the device data environment has an original list item in the current task&#8217;s data
+environment.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">mapper</span></span><span class="textit"><span class="textrm">motion-modifier</span></span> is not present, the behavior is as if the <span class="textbf"><span class="texttt">mapper(default)</span></span>
+modifier was specified. The effect of a motion clause on a list item is modified by a visible
+user-defined mapper (see Section&#x00A0;<a 
+href="openmpsu119.html#x154-1870002.21.7.4">2.21.7.4<!--tex4ht:ref: subsubsec:declare mapper Directive --></a>) if the mapper has the same <span class="textit"><span class="textrm">mapper-identifier</span></span> as the
+<span class="textbf"><span class="texttt">mapper</span></span><span class="textit"><span class="textrm">motion-modifier</span></span> and is specified for a type that matches the type of the list item. For a <span class="textbf"><span class="texttt">to</span></span>
+clause, each list item is replaced with the list items that the given mapper specifies are to be
+mapped with a <span class="textbf"><span class="texttt">to</span></span> or <span class="textbf"><span class="texttt">tofrom</span></span> map type. For a <span class="textbf"><span class="texttt">from</span></span> clause, each list item is replaced with
+the list items that the given mapper specifies are to be mapped with a <span class="textbf"><span class="texttt">from</span></span> or <span class="textbf"><span class="texttt">tofrom</span></span> map
+type.
+</p> 
+<p>If a list item is an array or array section of a type for which a user-defined mapper exists, each array element
+is updated according to the mapper as if it appeared as a list item in the clause.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">present</span></span> modifier appears in the clause and the corresponding list item is not present in the device
+data environment then an error occurs and the program terminates. For a list item that is replaced with a set
+of list items as a result of a user-defined mapper, the <span class="textbf"><span class="texttt">present</span></span> modifier only applies to those mapper list
+items that share storage with the original list item.
+</p> 
+<p>The list items that appear in a <span class="textbf"><span class="texttt">to</span></span> or <span class="textbf"><span class="texttt">from</span></span> may reference iterators defined by an <span class="textit"><span class="textrm">iterators-definition</span></span>
+appearing on an <span class="textbf"><span class="texttt">iterator</span></span> modifier.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>If a list item or a subobject of a list item in a motion clause has the <span class="textbf"><span class="texttt">ALLOCATABLE</span></span> attribute, its
+update is performed only if its allocation status is allocated and only with respect to the allocated
+storage.
+</p> 
+<p>If a list item in a motion clause has the <span class="textbf"><span class="texttt">POINTER</span></span> attribute and its association status is associated, the effect
+is as if the update is performed with respect to the pointer target.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>For each list item in a <span class="textbf"><span class="texttt">from</span></span> or a <span class="textbf"><span class="texttt">to</span></span> clause:
+                                                                            
+                                                                            
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  For
+  each
+  part
+  of
+  the
+  list
+  item
+  that
+  is
+  an
+  attached
+  pointer:
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+
+    <ul class="itemize2">
+    <li class="itemize">
+    On
+    exit
+    from
+    the
+    region
+    that
+    part
+    of
+    the
+    original
+    list
+    item
+    will
+    have
+    the
+    value
+    it
+    had
+    on
+                                                                            
+                                                                            
+    entry
+    to
+    the
+    region;
+    </li>
+    <li class="itemize">
+    On
+    exit
+    from
+    the
+    region
+    that
+    part
+    of
+    the
+    corresponding
+    list
+    item
+    will
+    have
+    the
+    value
+    it
+    had
+    on
+    entry
+    to
+    the
+    region;</li></ul>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  <p></div></div>  <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+
+    <ul class="itemize2">
+    <li class="itemize">
+    On
+    exit
+    from
+    the
+                                                                            
+                                                                            
+    region
+    that
+    part
+    of
+    the
+    original
+    list
+    item,
+    if
+    associated,
+    will
+    be
+    associated
+    with
+    the
+    same
+    pointer
+    target
+    with
+    which
+    it
+    was
+    associated
+    on
+    entry
+    to
+    the
+    region;
+    </li>
+    <li class="itemize">
+    On
+    exit
+    from
+    the
+    region
+    that
+    part
+    of
+    the
+    corresponding
+    list
+    item,
+                                                                            
+                                                                            
+    if
+    associated,
+    will
+    be
+    associated
+    with
+    the
+    same
+    pointer
+    target
+    with
+    which
+    it
+    was
+    associated
+    on
+    entry
+    to
+    the
+    region.</li></ul>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  <p></div></div>
+  </p> 
+</li>
+  <li class="itemize">For each part of the list item that is not an attached pointer:
+    <ul class="itemize2">
+    <li class="itemize">
+    If
+    the
+    clause
+    is
+    <span class="textbf"><span class="texttt">from</span></span>,
+    the
+    value
+    of
+    that
+    part
+    of
+    the
+    corresponding
+    list
+                                                                            
+                                                                            
+    item
+    is
+    assigned
+    to
+    that
+    part
+    of
+    the
+    original
+    list
+    item;
+    </li>
+    <li class="itemize">
+    If
+    the
+    clause
+    is
+    <span class="textbf"><span class="texttt">to</span></span>,
+    the
+    value
+    of
+    that
+    part
+    of
+    the
+    original
+    list
+    item
+    is
+    assigned
+    to
+    that
+    part
+    of
+    the
+    corresponding
+    list
+    item.</li></ul>
+  </li>
+  <li class="itemize">To avoid data races:
+    <ul class="itemize2">
+                                                                            
+                                                                            
+    <li class="itemize">
+    Concurrent
+    reads
+    or
+    updates
+    of
+    any
+    part
+    of
+    the
+    original
+    list
+    item
+    must
+    be
+    synchronized
+    with
+    the
+    update
+    of
+    the
+    original
+    list
+    item
+    that
+    occurs
+    as
+    a
+    result
+    of
+    the
+    <span class="textbf"><span class="texttt">from</span></span>
+    clause;
+    </li>
+    <li class="itemize">
+    Concurrent
+    reads
+    or
+    updates
+    of
+    any
+                                                                            
+                                                                            
+    part
+    of
+    the
+    corresponding
+    list
+    item
+    must
+    be
+    synchronized
+    with
+    the
+    update
+    of
+    the
+    corresponding
+    list
+    item
+    that
+    occurs
+    as
+    a
+    result
+    of
+    the
+    <span class="textbf"><span class="texttt">to</span></span>
+    clause.</li></ul>
+  </li></ul>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The list items that appear in the <span class="textbf"><span class="texttt">to</span></span> or <span class="textbf"><span class="texttt">from</span></span> clauses may use shape-operators.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>The list items that appear in the <span class="textbf"><span class="texttt">to</span></span> or <span class="textbf"><span class="texttt">from</span></span> clauses may include array sections with <span class="textit"><span class="textrm">stride</span></span>
+expressions.
+</p> 
+<p>The <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> construct is a task generating construct. The generated task is a <span class="textit"><span class="textrm">target task</span></span>. The
+generated task region encloses the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> region.
+</p> 
+<p>All clauses are evaluated when the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> construct is encountered. The data environment of
+the <span class="textit"><span class="textrm">target task</span></span> is created according to the motion clauses on the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> construct, per-data
+environment ICVs, and any default data-sharing attribute rules that apply to the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+                                                                            
+                                                                            
+construct. If a variable or part of a variable is a list item in a motion clause on the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+construct, the variable has a default data-sharing attribute of <span class="textbf"><span class="texttt">shared</span></span> in the data environment of the <span class="textit"><span class="textrm">target
+task</span></span>.
+</p> 
+<p>Assignment operations associated with mapping a variable (see Section&#x00A0;<a 
+href="openmpsu119.html#x154-1840002.21.7.1">2.21.7.1<!--tex4ht:ref: subsec:map Clause --></a>) occur when the <span class="textit"><span class="textrm">target
+task</span></span> executes.
+</p> 
+<p>If the <span class="textbf"><span class="texttt">nowait</span></span> clause is present, execution of the <span class="textit"><span class="textrm">target task</span></span> may be deferred. If the <span class="textbf"><span class="texttt">nowait</span></span> clause is not
+present, the <span class="textit"><span class="textrm">target task</span></span> is an included task.
+</p> 
+<p>If a <span class="textbf"><span class="texttt">depend</span></span> clause is present, it is associated with the <span class="textit"><span class="textrm">target task</span></span>.
+</p> 
+<p>The device is specified in the <span class="textbf"><span class="texttt">device</span></span> clause. If no <span class="textbf"><span class="texttt">device</span></span> clause is present, the device is determined by
+the <span class="textit"><span class="textrm">default-device-var</span></span> ICV. When an <span class="textbf"><span class="texttt">if</span></span> clause is present and the <span class="textbf"><span class="texttt">if</span></span> clause expression evaluates to <span class="textit"><span class="textrm">false</span></span>, no
+assignments occur.
+</p> 
+<p><p><a 
+ id="Q1-97-399"></a>
+<span 
+class="phvb8t-x-x-110">Execution Model Events</span>
+Events associated with a <span class="textit"><span class="textrm">target task</span></span> are the same as for the <span class="textbf"><span class="texttt">task</span></span> construct defined in Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-update-begin</span></span> event occurs when a thread enters a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> region.
+</p> 
+<p>The <span class="textit"><span class="textrm">target-update-end</span></span> event occurs when a thread exits a <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> region.
+</p> 
+<p><p><a 
+ id="Q1-97-400"></a>
+<span 
+class="phvb8t-x-x-110">Tool Callbacks</span>
+Callbacks associated with events for <span class="textit"><span class="textrm">target tasks</span></span> are the same as for the <span class="textbf"><span class="texttt">task</span></span> construct defined in
+Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>; <span class="textbf"><span class="texttt">(</span></span><span class="textit"><span class="textrm">flags</span></span>&#x00A0;<span class="textbf"><span class="texttt">&amp;</span></span>&#x00A0;<span class="textbf"><span class="texttt">ompt_task_target)</span></span> always evaluates to <span class="textit"><span class="textrm">true</span></span> in the dispatched
+callback.
+</p> 
+<p>A thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target</span></span> or <span class="textbf"><span class="texttt">ompt_callback_target_emi</span></span>
+callback with <span class="textbf"><span class="texttt">ompt_scope_begin</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and <span class="textbf"><span class="texttt">ompt_target_update</span></span> or
+<span class="textbf"><span class="texttt">ompt_target_update_nowait</span></span> if the <span class="textbf"><span class="texttt">nowait</span></span> clause is present as its <span class="textit"><span class="textrm">kind</span></span> argument
+for each occurrence of a <span class="textit"><span class="textrm">target-update-begin</span></span> event in that thread in the context of the target
+task on the host. Similarly, a thread dispatches a registered <span class="textbf"><span class="texttt">ompt_callback_target</span></span> or
+<span class="textbf"><span class="texttt">ompt_callback_target_emi</span></span> callback with <span class="textbf"><span class="texttt">ompt_scope_end</span></span> as its <span class="textit"><span class="textrm">endpoint</span></span> argument and
+<span class="textbf"><span class="texttt">ompt_target_update</span></span> or <span class="textbf"><span class="texttt">ompt_target_update_nowait</span></span> if the <span class="textbf"><span class="texttt">nowait</span></span> clause is present as its
+<span class="textit"><span class="textrm">kind</span></span> argument for each occurrence of a <span class="textit"><span class="textrm">target-update-end</span></span> event in that thread in the context of the
+target task on the host. These callbacks have type signature <span class="textbf"><span class="texttt">ompt_callback_target_t</span></span> or
+<span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span>, respectively.
+</p> 
+<p><p><a 
+ id="Q1-97-401"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span> construct are as follows:
+</p> 
+
+                                                                            
+                                                                            
+  <ul class="itemize1">
+  <li class="itemize">
+  A
+  program
+  must
+  not
+  depend
+  on
+  any
+  ordering
+  of
+  the
+  evaluations
+  of
+  the
+  clauses
+  of
+  the
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">update</span></span>
+  directive,
+  or
+  on
+  any
+  side
+  effects
+  of
+  the
+  evaluations
+  of
+  the
+  clauses.
+  </li>
+  <li class="itemize">
+  Each
+  of
+  the
+  <span class="textit"><span class="textrm">motion-modifier</span></span>
+  modifiers
+  can
+  appear
+  at
+                                                                            
+                                                                            
+  most
+  once
+  on
+  a
+  motion
+  clause.
+  </li>
+  <li class="itemize">
+  At
+  least
+  one
+  <span class="textit"><span class="textrm">motion-clause</span></span>
+  must
+  be
+  specified.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  can
+  only
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">to</span></span>
+  or
+  <span class="textbf"><span class="texttt">from</span></span>
+  clause,
+  but
+  not
+  in
+  both.
+  </li>
+  <li class="itemize">
+  A
+  list
+  item
+  in
+                                                                            
+                                                                            
+  a
+  <span class="textbf"><span class="texttt">to</span></span>
+  or
+  <span class="textbf"><span class="texttt">from</span></span>
+  clause
+  must
+  have
+  a
+  mappable
+  type.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  The
+  <span class="textbf"><span class="texttt">device</span></span>
+  clause
+  expression
+  must
+  evaluate
+  to
+  a
+  non-negative
+  integer
+  value
+  that
+  is
+  less
+  than
+  or
+  equal
+  to
+  the
+  value
+                                                                            
+                                                                            
+  of
+  <span class="textbf"><span class="texttt">omp_get_num_devices()</span></span>.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  At
+  most
+  one
+  <span class="textbf"><span class="texttt">nowait</span></span>
+  clause
+  can
+  appear
+  on
+  the
+  directive.</li></ul>
+<p><p><a 
+ id="Q1-97-402"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Array
+  shaping,
+  see
+  Section&#x00A0;<a 
+href="openmpsu20.html#x35-340002.1.4">2.1.4<!--tex4ht:ref: subsec:Array Shaping --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  Array
+  sections,
+  see
+  Section&#x00A0;<a 
+href="openmpsu21.html#x36-350002.1.5">2.1.5<!--tex4ht:ref: subsec:Array Sections --></a>.
+  </li>
+  <li class="itemize">
+  Iterators,
+  see
+  Section&#x00A0;<a 
+href="openmpsu22.html#x37-360002.1.6">2.1.6<!--tex4ht:ref: subsec:iterators --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">default-device-var</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu54.html#x80-900002.12.1">2.12.1<!--tex4ht:ref: subsec:task Construct --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">task</span></span>
+  scheduling
+  constraints,
+  see
+  Section&#x00A0;<a 
+href="openmpsu59.html#x85-950002.12.6">2.12.6<!--tex4ht:ref: subsec:Task Scheduling --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">target</span></span>&#x00A0;<span class="textbf"><span class="texttt">data</span></span>
+  construct,
+  see
+  Section&#x00A0;<a 
+href="openmpsu65.html#x93-1030002.14.2">2.14.2<!--tex4ht:ref: subsec:target data Construct --></a>.
+  </li>
+                                                                            
+                                                                            
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">if</span></span>
+  clause,
+  see
+  Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">mapper</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu119.html#x154-1870002.21.7.4">2.21.7.4<!--tex4ht:ref: subsubsec:declare mapper Directive --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">omp_get_num_devices</span></span>
+  routine,
+  see
+  Section&#x00A0;<a 
+href="openmpsu164.html#x208-2410003.7.4">3.7.4<!--tex4ht:ref: subsec:omp_get_num_devices --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_task_create_t</span></span>,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3490004.5.2.7">4.5.2.7<!--tex4ht:ref: sec:ompt_callback_task_create_t --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_callback_target_t</span></span>
+  or
+  <span class="textbf"><span class="texttt">ompt_callback_target_emi_t</span></span>
+  callback
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu214.html#x272-3680004.5.2.26">4.5.2.26<!--tex4ht:ref: sec:ompt_callback_target_emi_t --></a>.</li></ul>
+<!--l. 1389--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu70.html" >next</a>] [<a 
+href="openmpsu68.html" >prev</a>] [<a 
+href="openmpsu68.html#tailopenmpsu68.html" >prev-tail</a>] [<a 
+href="openmpsu69.html" >front</a>] [<a 
+href="openmpse22.html#openmpsu69.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu69.html"></a> </p> 
+ 
+</body> 
+</html>

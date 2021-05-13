@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Interoperability</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu71.html" >next</a>] [<a 
+href="openmpsu70.html" >prev</a>] [<a 
+href="openmpsu70.html#tailopenmpsu70.html" >prev-tail</a>] [<a 
+href="#tailopenmpse23.html">tail</a>] [<a 
+href="openmpch2.html#openmpse23.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.15</span>&#x00A0;&#x00A0;<a 
+ id="x99-1090002.15"></a>Interoperability</h3>
+<a 
+ id="dx99-109001"></a>
+<p>An OpenMP implementation may interoperate with one or more foreign runtime environments through the
+use of the <span class="textbf"><span class="texttt">interop</span></span> construct that is described in this section, the <span class="textbf"><span class="texttt">interop</span></span> operation for a declared
+variant function and the interoperability routines that are available through the OpenMP Runtime
+API.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The implementation must provide <span class="textit"><span class="textrm">foreign-runtime-id</span></span> values that are enumerators of type
+<span class="textbf"><span class="texttt">omp_interop_fr_t</span></span> and that correspond to the supported foreign runtime environments.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+                                                                            
+                                                                            
+</p> 
+<p></div></div>
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The implementation must provide <span class="textit"><span class="textrm">foreign-runtime-id</span></span> values that are named integer constants
+with kind <span class="textbf"><span class="texttt">omp_interop_fr_kind</span></span> and that correspond to the supported foreign runtime
+environments.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Each <span class="textit"><span class="textrm">foreign-runtime-id</span></span> value provided by an implementation will be available as <span class="textbf"><span class="texttt">omp_ifr_<span class="textit"><span class="textrm">name</span></span></span></span>, where
+<span class="textit"><span class="textrm">name</span></span> is the name of the foreign runtime environment. Available names include those that are listed in the
+<span class="emph">OpenMP Additional Definitions</span> document; implementation-defined names may also be supported. The
+value of <span class="textbf"><span class="texttt">omp_ifr_last</span></span> is defined as one greater than the value of the highest supported
+<span class="textit"><span class="textrm">foreign-runtime-id</span></span> value that is listed in the aforementioned document.
+</p> 
+<p><p><a 
+ id="Q1-99-412"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">declare</span></span>&#x00A0;<span class="textbf"><span class="texttt">variant</span></span>
+  directive,
+  see
+  Section&#x00A0;<a 
+href="openmpsu29.html#x46-450002.3.5">2.3.5<!--tex4ht:ref: subsec:Declare Variant Directive --></a>.
+  </li>
+  <li class="itemize">
+  Interoperability
+  routines,
+  see
+  Section&#x00A0;<a 
+href="openmpse42.html#x236-2690003.12">3.12<!--tex4ht:ref: sec:Interoperability Routines --></a>.</li></ul>
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.15.1&#x00A0;&#x00A0;<a 
+href="openmpsu71.html#x100-1100002.15.1"><span class="textbf"><span class="texttt">interop</span></span> Construct</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.15.2&#x00A0;&#x00A0;<a 
+href="openmpsu72.html#x101-1110002.15.2">Interoperability Requirement Set</a></span>
+                                                                            
+                                                                            
+</div>
+<!--l. 47--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu71.html" >next</a>] [<a 
+href="openmpsu70.html" >prev</a>] [<a 
+href="openmpsu70.html#tailopenmpsu70.html" >prev-tail</a>] [<a 
+href="openmpse23.html" >front</a>] [<a 
+href="openmpch2.html#openmpse23.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse23.html"></a> </p> 
+ 
+</body> 
+</html>

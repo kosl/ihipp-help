@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>OMPD Handle Types</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 383--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu229.html" >next</a>] [<a 
+href="openmpsu227.html" >prev</a>] [<a 
+href="openmpsu227.html#tailopenmpsu227.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu228.html">tail</a>] [<a 
+href="openmpse54.html#openmpsu228.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.3.8</span>&#x00A0;&#x00A0;<a 
+ id="x291-4240005.3.8"></a>OMPD Handle Types</h4>
+<p><p><a 
+ id="Q1-291-2043"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The OMPD library defines handles for referring to address spaces, threads, parallel regions and tasks. The
+internal structure of the handles are opaque to the third-party tool.
+<p><a 
+ id="Q1-291-2044"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x291-424001r1"></a></span></p> 
+<!--l. 396--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x291-424002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_ompd_aspace_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_address_space_handle_t</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x291-424003r3"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_ompd_thread_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_thread_handle_t</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x291-424004r4"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_ompd_parallel_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_parallel_handle_t</span><span 
+class="pcrb8t-">;</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x291-424005r5"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">struct</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">_ompd_task_handle</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_task_handle_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x291-424006r6"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p><p><a 
+ id="Q1-291-2045"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+OMPD uses handles for address spaces (<span class="textbf"><span class="texttt">ompd_address_space_handle_t</span></span>), threads
+(<span class="textbf"><span class="texttt">ompd_thread_handle_t</span></span>), parallel regions (<span class="textbf"><span class="texttt">ompd_parallel_handle_t</span></span>), and tasks
+(<span class="textbf"><span class="texttt">ompd_task_handle_t</span></span>). Each operation of the OMPD interface that applies to a particular address
+space, thread, parallel region or task must explicitly specify a corresponding handle. A handle for an entity
+is constant while the entity itself is alive. Handles are defined by the OMPD library and are opaque to the
+third-party tool.
+                                                                            
+                                                                            
+</p> 
+<p>Defining externally visible type names in this way introduces type safety to the interface, and helps to catch
+instances where incorrect handles are passed by the third-party tool to the OMPD library. The structures do
+not need to be defined; instead, the OMPD library must cast incoming (pointers to) handles to the
+appropriate internal, private types.
+</p> 
+<!--l. 423--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu229.html" >next</a>] [<a 
+href="openmpsu227.html" >prev</a>] [<a 
+href="openmpsu227.html#tailopenmpsu227.html" >prev-tail</a>] [<a 
+href="openmpsu228.html" >front</a>] [<a 
+href="openmpse54.html#openmpsu228.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu228.html"></a> </p> 
+ 
+</body> 
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>requires Directive</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2523--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu37.html" >next</a>] [<a 
+href="openmpse13.html" >prev</a>] [<a 
+href="openmpse13.html#tailopenmpse13.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu36.html">tail</a>] [<a 
+href="openmpse13.html#openmpsu36.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.5.1</span>&#x00A0;&#x00A0;<a 
+ id="x55-550002.5.1"></a><span class="textbf"><span class="texttt">requires</span></span> Directive</h4>
+<a 
+ id="dx55-55001"></a>
+<a 
+ id="dx55-55002"></a>
+<p><p><a 
+ id="Q1-55-91"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">requires</span></span> directive specifies the features that an implementation must provide in order for
+the code to compile and to execute correctly. The <span class="textbf"><span class="texttt">requires</span></span> directive is an informational
+directive.
+<p><a 
+ id="Q1-55-92"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">requires</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55003r1"></a></span></p> 
+<!--l. 2537--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55004r2"></a></span><span 
+class="pcrb8t-">#</span><span 
+class="pcrb8t-">pragma</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">requires</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">new</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">line</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55005r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is either a clause of the form <span class="textbf"><span class="texttt">ext_</span></span><span class="textit"><span class="textrm">implementation-defined-requirement</span></span> for an implementation
+defined requirement clause or one of the requirement clauses listed below:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55006r1"></a></span></p> 
+<!--l. 2545--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55007r2"></a></span><span 
+class="pcrb8t-">reverse_offload</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55008r3"></a></span><span 
+class="pcrb8t-">unified_address</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55009r4"></a></span><span 
+class="pcrb8t-">unified_shared_memory</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55010r5"></a></span><span 
+class="pcrb8t-">atomic_default_mem_order</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">seq_cst</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">acq_rel</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">relaxed</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55011r6"></a></span><span 
+class="pcrb8t-">dynamic_allocators</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55012r7"></a></span></pre>
+                                                                            
+                                                                            
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">requires</span></span> directive is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55013r1"></a></span></p> 
+<!--l. 2557--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55014r2"></a></span><span 
+class="pcrb8t-">!</span><span 
+class="pcrb8t-">$omp</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">requires</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">[</span><span 
+class="pcrb8t-">,</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">clause</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">...</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">]</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55015r3"></a></span></pre>
+<p>where <span class="textit"><span class="textrm">clause</span></span> is either a clause of the form <span class="textbf"><span class="texttt">ext_</span></span><span class="textit"><span class="textrm">implementation-defined-requirement</span></span> for an implementation
+defined requirement clause or one of the requirement clauses listed below:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55016r1"></a></span></p> 
+<!--l. 2565--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55017r2"></a></span><span 
+class="pcrb8t-">reverse_offload</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55018r3"></a></span><span 
+class="pcrb8t-">unified_address</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55019r4"></a></span><span 
+class="pcrb8t-">unified_shared_memory</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55020r5"></a></span><span 
+class="pcrb8t-">atomic_default_mem_order</span><span 
+class="pcrb8t-">(</span><span 
+class="pcrb8t-">seq_cst</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">acq_rel</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">|</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">relaxed</span><span 
+class="pcrb8t-">)</span><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55021r6"></a></span><span 
+class="pcrb8t-">dynamic_allocators</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x55-55022r7"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-55-93"></a>
+<span 
+class="phvb8t-x-x-110">Description</span>
+The <span class="textbf"><span class="texttt">requires</span></span> directive specifies features that an implementation must support for correct execution. The
+behavior that a requirement clause specifies may override the normal behavior specified elsewhere in this
+document. Whether an implementation supports the feature that a given requirement clause specifies is
+implementation defined.
+</p> 
+<p>The <span class="textbf"><span class="texttt">requires</span></span> directive specifies requirements for the execution of all code in the current compilation
+unit.
+</p> 
+<p><p><object data="openmp-13.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p><span class="textrm"><span class="textsf"><span class="textbf"><span class="textup"></span></span>Note </span></span>&#8211;  Use of this directive makes your code less portable. Users should be aware that not all devices or implementations
+support all requirements. <p><object data="openmp-14.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>When the <span class="textbf"><span class="texttt">reverse_offload</span></span> clause appears on a <span class="textbf"><span class="texttt">requires</span></span> directive, the implementation guarantees
+that a <span class="textbf"><span class="texttt">target</span></span> region, for which the <span class="textbf"><span class="texttt">target</span></span> construct specifies a <span class="textbf"><span class="texttt">device</span></span> clause in which
+the <span class="textbf"><span class="texttt">ancestor</span></span> modifier appears, can execute on the parent device of an enclosing <span class="textbf"><span class="texttt">target</span></span>
+region.
+                                                                            
+                                                                            
+</p> 
+<p>When the <span class="textbf"><span class="texttt">unified_address</span></span> clause appears on a <span class="textbf"><span class="texttt">requires</span></span> directive, the implementation guarantees
+that all devices accessible through OpenMP API routines and directives use a unified address space. In this
+address space, a pointer will always refer to the same location in memory from all devices accessible
+through OpenMP. Any OpenMP mechanism that returns a device pointer is guaranteed to return a device
+address that supports pointer arithmetic, and the <span class="textbf"><span class="texttt">is_device_ptr</span></span> clause is not necessary to obtain device
+addresses from device pointers for use inside <span class="textbf"><span class="texttt">target</span></span> regions. Host pointers may be passed as device
+pointer arguments to device memory routines and device pointers may be passed as host pointer arguments
+to device memory routines. Non-host devices may still have discrete memories and dereferencing a
+device pointer on the host device or a host pointer on a non-host device remains unspecified
+behavior.
+</p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>When the <span class="textbf"><span class="texttt">unified_address</span></span> clause appears on a <span class="textbf"><span class="texttt">requires</span></span> directive, the base pointer of a zero-length
+array section that is mapped on a <span class="textbf"><span class="texttt">target</span></span> construct and for which a matching mapped list item cannot be
+found is not initialized to <span class="textit"><span class="textrm">NULL</span></span> but instead retains its original value.
+</p> 
+<p><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p></div></div>
+</p> 
+<p>Memory local to a specific execution context may be exempt from the <span class="textbf"><span class="texttt">unified_address</span></span>
+requirement, following the restrictions of locality to a given execution context, thread or contention
+group.
+</p> 
+<p>The <span class="textbf"><span class="texttt">unified_shared_memory</span></span> clause implies the <span class="textbf"><span class="texttt">unified_address</span></span> requirement, inheriting all of
+its behaviors. Additionally, storage locations in memory are accessible to threads on all available devices
+that are supported by the implementation, except for memory that is local to a specific execution context as
+defined in the description of <span class="textbf"><span class="texttt">unified_address</span></span> above. Every device address that refers to
+storage allocated through OpenMP device memory routines is a valid host pointer that may be
+dereferenced.
+</p> 
+<p>The <span class="textbf"><span class="texttt">unified_shared_memory</span></span> clause makes the <span class="textbf"><span class="texttt">map</span></span> clause optional on <span class="textbf"><span class="texttt">target</span></span> constructs and the
+declare target directive optional for variables with static storage duration that are accessed inside functions
+to which a declare target directive is applied. Scalar variables are still firstprivate by default when referenced
+inside <span class="textbf"><span class="texttt">target</span></span> constructs. Values stored into memory by one device may not be visible to another
+device until those two devices synchronize with each other or both devices synchronize with the
+host.
+</p> 
+<p>The <span class="textbf"><span class="texttt">atomic_default_mem_order</span></span> clause specifies the default memory ordering behavior for
+<span class="textbf"><span class="texttt">atomic</span></span> constructs that must be provided by an implementation. Its parameter appears as a clause on any
+<span class="textbf"><span class="texttt">atomic</span></span> construct that does not already specify a memory order clause.
+</p> 
+<p>The <span class="textbf"><span class="texttt">dynamic_allocators</span></span> clause removes certain restrictions on the use of memory allocators in
+<span class="textbf"><span class="texttt">target</span></span> regions. It makes the <span class="textbf"><span class="texttt">uses_allocators</span></span> clause optional on <span class="textbf"><span class="texttt">target</span></span> constructs for
+the purpose of using allocators in the corresponding <span class="textbf"><span class="texttt">target</span></span> regions. It allows calls to the
+<span class="textbf"><span class="texttt">omp_init_allocator</span></span> and <span class="textbf"><span class="texttt">omp_destroy_allocator</span></span> API routines in <span class="textbf"><span class="texttt">target</span></span> regions. Finally, it
+                                                                            
+                                                                            
+allows default allocators to be used by <span class="textbf"><span class="texttt">allocate</span></span> directives, <span class="textbf"><span class="texttt">allocate</span></span> clauses, and <span class="textbf"><span class="texttt">omp_alloc</span></span> API
+routines in <span class="textbf"><span class="texttt">target</span></span> regions.
+</p> 
+<p>Implementers are allowed to include additional implementation-defined requirement clauses. All
+implementation defined requirements should begin with <span class="textbf"><span class="texttt">ext_</span></span>. Requirement names that do not start with
+<span class="textbf"><span class="texttt">ext_</span></span> are reserved.
+</p> 
+<p>The clauses of a <span class="textbf"><span class="texttt">requires</span></span> directive are added to the <span class="textit"><span class="textrm">requires</span></span> trait in the OpenMP context for all program
+points that follow the directive.
+</p> 
+<p><p><a 
+ id="Q1-55-94"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+The restrictions to the <span class="textbf"><span class="texttt">requires</span></span> directive are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  Each
+  of
+  the
+  clauses
+  can
+  appear
+  at
+  most
+  once
+  on
+  the
+  directive.
+  </li>
+  <li class="itemize">
+  All
+  <span class="textbf"><span class="texttt">atomic_default_mem_order</span></span>
+  clauses
+  that
+  appear
+  on
+  a
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  in
+  the
+                                                                            
+                                                                            
+  same
+  compilation
+  unit
+  must
+  specify
+  the
+  same
+  parameter.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  with
+  a
+  <span class="textbf"><span class="texttt">unified_address</span></span>,
+  <span class="textbf"><span class="texttt">unified_shared_memory</span></span>,
+  or
+  <span class="textbf"><span class="texttt">reverse_offload</span></span>
+  clause
+  must
+  appear
+  lexically
+  before
+  any
+  device
+  constructs
+  or
+  device
+  routines.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  may
+  not
+  appear
+  lexically
+  after
+                                                                            
+                                                                            
+  a
+  context
+  selector
+  in
+  which
+  any
+  clause
+  of
+  the
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  is
+  used.
+  </li>
+  <li class="itemize">
+  A
+  <span class="textbf"><span class="texttt">requires</span></span>
+  directive
+  with
+  any
+  of
+  the
+  following
+  clauses
+  must
+  appear
+  in
+  all
+  <span class="emph">compilation
+  units</span>
+  of
+  a
+  program
+  that
+  contain
+  device
+  constructs
+  or
+  device
+  routines
+  or
+  in
+                                                                            
+                                                                            
+  none
+  of
+  them:
+    <ul class="itemize2">
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">reverse_offload</span></span>
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">unified_address</span></span>
+    </li>
+    <li class="itemize">
+    <span class="textbf"><span class="texttt">unified_shared_memory</span></span></li></ul>
+  </li>
+  <li class="itemize">The <span class="textbf"><span class="texttt">requires</span></span> directive with <span class="textbf"><span class="texttt">atomic_default_mem_order</span></span> clause may not appear lexically after
+  any <span class="textbf"><span class="texttt">atomic</span></span> construct on which <span class="textit"><span class="textrm">memory-order-clause</span></span> is not specified.
+  <p> <div class="section-wrapper"><div class="section-heading"><div class="section-cspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-1.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">requires</span></span> directive may only appear at file scope.
+</p> 
+<p><p><object data="openmp-2.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">requires</span></span> directive may only appear at file or namespace scope.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+                                                                            
+                                                                            
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> The <span class="textbf"><span class="texttt">requires</span></span> directive must appear in the specification part of a <span class="textit"><span class="textrm">program</span></span>&#x00A0;<span class="textit"><span class="textrm">unit</span></span>, after any <span class="textbf"><span class="texttt">USE</span></span>
+  statement, any <span class="textbf"><span class="texttt">IMPORT</span></span> statement, and any <span class="textbf"><span class="texttt">IMPLICIT</span></span> statement, unless the directive appears by
+  referencing a module and each clause already appeared with the same parameters in the specification part
+  of the <span class="textit"><span class="textrm">program</span></span>&#x00A0;<span class="textit"><span class="textrm">unit</span></span>.
+</p> 
+<p><p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div></p> 
+</li></ul>
+<!--l. 2707--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu37.html" >next</a>] [<a 
+href="openmpse13.html" >prev</a>] [<a 
+href="openmpse13.html#tailopenmpse13.html" >prev-tail</a>] [<a 
+href="openmpsu36.html" >front</a>] [<a 
+href="openmpse13.html#openmpsu36.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu36.html"></a> </p> 
+ 
+</body> 
+</html>

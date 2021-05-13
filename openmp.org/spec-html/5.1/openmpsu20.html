@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Array Shaping</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 393--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu21.html" >next</a>] [<a 
+href="openmpsu19.html" >prev</a>] [<a 
+href="openmpsu19.html#tailopenmpsu19.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu20.html">tail</a>] [<a 
+href="openmpse9.html#openmpsu20.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.1.4</span>&#x00A0;&#x00A0;<a 
+ id="x35-340002.1.4"></a>Array Shaping</h4>
+<a 
+ id="dx35-34001"></a>
+<p>If an expression has a type of pointer to <span class="textit"><span class="textrm">T</span></span>, then a shape-operator can be used to specify the extent of that
+pointer. In other words, the shape-operator is used to reinterpret, as an n-dimensional array, the region of
+memory to which that expression points.
+                                                                            
+                                                                            
+</p> 
+<p>Formally, the syntax of the shape-operator is as follows:
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x35-34002r1"></a></span></p> 
+<!--l. 403--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x35-34003r2"></a></span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">shaped</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">:=</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">([</span><span 
+class="ec-qtmri-">s</span><sub class="textsubscript"><span class="textit"><span class="textrm">1</span></span></sub><span 
+class="pcrb8t-">][</span><span 
+class="ec-qtmri-">s</span><sub class="textsubscript"><span class="textit"><span class="textrm">2</span></span></sub><span 
+class="pcrb8t-">]...[</span><span 
+class="ec-qtmri-">s</span><sub class="textsubscript"><span class="textit"><span class="textrm">n</span></span></sub><span 
+class="pcrb8t-">])</span><span 
+class="ec-qtmri-">cast</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span>
+      <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x35-34004r3"></a></span></pre>
+<p>The result of applying the shape-operator to an expression is an lvalue expression with an n-dimensional
+array type with dimensions <span class="textit"><span class="textrm">s</span></span><sub class="textsubscript"><span class="textit"><span class="textrm">1</span></span></sub> <span 
+class="cmsy-10">&#x00D7;</span><span class="textit"><span class="textrm">s</span></span><sub class="textsubscript"><span class="textit"><span class="textrm">2</span></span></sub> &#x2026;<span 
+class="cmsy-10">&#x00D7;</span><span class="textit"><span class="textrm">s</span></span><sub class="textsubscript"><span class="textit"><span class="textrm">n</span></span></sub> and element type <span class="textit"><span class="textrm">T</span></span>.
+</p> 
+<p>The precedence of the shape-operator is the same as a type cast.
+</p> 
+<p>Each <span class="textit"><span class="textrm">s</span></span><sub><span class="textit"><span class="textrm">i</span></span></sub> is an integral type expression that must evaluate to a positive integer.
+</p> 
+<p><p><a 
+ id="Q1-35-40"></a>
+<span 
+class="phvb8t-x-x-110">Restrictions</span>
+Restrictions to the shape-operator are as follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  type
+  <span class="textit"><span class="textrm">T</span></span>
+  must
+  be
+  a
+  complete
+  type.
+  </li>
+  <li class="itemize">
+  The
+  shape-operator
+  can
+  appear
+  only
+  in
+  clauses
+  for
+  which
+  it
+  is
+  explicitly
+  allowed.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  The
+  result
+  of
+  a
+  shape-operator
+  must
+  be
+  a
+  named
+  array
+  of
+  a
+  list
+  item.
+  </li>
+  <li class="itemize">The type of the expression upon which a shape-operator is applied must be a pointer type.
+   <div class="section-wrapper"><div class="section-heading"><div class="section-cppspecific"></div></div><div class="section-contents">
+<p><p><object data="openmp-5.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<span 
+class="cmsy-10">&#x2219;</span> If the type <span class="textit"><span class="textrm">T</span></span> is a reference to a type <span class="textit"><span class="textrm">T&#8217;</span></span>, then the type will be considered to be <span class="textit"><span class="textrm">T&#8217;</span></span> for all purposes of the
+  designated array.
+</p> 
+<p><p><object data="openmp-6.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+  </p> 
+<p></div></div>
+  </p> 
+</li></ul><p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<!--l. 436--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu21.html" >next</a>] [<a 
+href="openmpsu19.html" >prev</a>] [<a 
+href="openmpsu19.html#tailopenmpsu19.html" >prev-tail</a>] [<a 
+href="openmpsu20.html" >front</a>] [<a 
+href="openmpse9.html#openmpsu20.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu20.html"></a> </p> 
+ 
+</body> 
+</html>

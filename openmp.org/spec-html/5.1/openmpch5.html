@@ -1,0 +1,184 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>5 OMPD Interface</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse52.html" >next</a>] [<a 
+href="openmpsu217.html" >prev</a>] [<a 
+href="openmpsu217.html#tailopenmpsu217.html" >prev-tail</a>] [<a 
+href="#tailopenmpch5.html">tail</a>] [<a 
+href="openmp.html#openmpch5.html" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">5</span>&#x00A0;&#x00A0;<a 
+ id="x277-4100005"></a>OMPD Interface</h2>
+<p>This chapter describes OMPD, which is an interface for <span class="emph">third-party tools</span>. Third-party tools exist in separate
+processes from the OpenMP program. To provide OMPD support, an OpenMP implementation must
+provide an OMPD library that the third-party tool can load. An OpenMP implementation does not need to
+maintain any extra information to support OMPD inquiries from third-party tools unless it is explicitly
+instructed to do so.
+</p> 
+<p>OMPD allows third-party tools such as debuggers to inspect the OpenMP state of a live program or core
+file in an implementation-agnostic manner. That is, a third-party tool that uses OMPD should
+work with any conforming OpenMP implementation. An OpenMP implementer provides a
+library for OMPD that a third-party tool can dynamically load. The third-party tool can use the
+interface exported by the OMPD library to inspect the OpenMP state of a program. In order to
+satisfy requests from the third-party tool, the OMPD library may need to read data from the
+OpenMP program, or to find the addresses of symbols in it. The OMPD library provides this
+functionality through a callback interface that the third-party tool must instantiate for the OMPD
+library.
+</p> 
+<p>To use OMPD, the third-party tool loads the OMPD library. The OMPD library exports the API that is
+defined throughout this section, and the third-party tool uses the API to determine OpenMP
+information about the OpenMP program. The OMPD library must look up the symbols and
+read data out of the program. It does not perform these operations directly but instead directs
+the third- party tool to perform them by using the callback interface that the third-party tool
+exports.
+</p> 
+<p>The OMPD design insulates third-party tools from the internal structure of the OpenMP runtime, while the
+OMPD library is insulated from the details of how to access the OpenMP program. This decoupled design
+allows for flexibility in how the OpenMP program and third-party tool are deployed, so that, for
+example, the third-party tool and the OpenMP program are not required to execute on the same
+machine.
+</p> 
+<p>Generally, the third-party tool does not interact directly with the OpenMP runtime but instead interacts with
+the runtime through the OMPD library. However, a few cases require the third-party tool to access the
+OpenMP runtime directly. These cases fall into two broad categories. The first is during initialization where
+the third-party tool must look up symbols and read variables in the OpenMP runtime in order to identify the
+OMPD library that it should use, which is discussed in Section&#x00A0;<a 
+href="openmpsu219.html#x281-4140005.2.2">5.2.2<!--tex4ht:ref: subsubsec:ompd_dll_locations --></a> and Section&#x00A0;<a 
+href="openmpsu220.html#x282-4150005.2.3">5.2.3<!--tex4ht:ref: subsubsec:ompd_dll_locations_valid --></a>. The second
+category relates to arranging for the third-party tool to be notified when certain events occur during the
+execution of the OpenMP program. For this purpose, the OpenMP implementation must define certain
+symbols in the runtime code, as is discussed in Section&#x00A0;<a 
+href="openmpse57.html#x314-4890005.6">5.6<!--tex4ht:ref: subsec:runtime-entry-points-for-ompd --></a>. Each of these symbols corresponds to
+an event type. The OpenMP runtime must ensure that control passes through the appropriate
+named location when events occur. If the third-party tool requires notification of an event, it can
+plant a breakpoint at the matching location. The location can, but may not, be a function. It
+can, for example, simply be a label. However, the names of the locations must have external <span class="textbf"><span class="texttt">C</span></span>
+                                                                            
+                                                                            
+linkage.
+</p> 
+<div class="sectionTOCS">
+&#x00A0;<span class="sectionToc" >5.1&#x00A0;&#x00A0;<a 
+href="openmpse52.html#x278-4110005.1">OMPD Interfaces Definitions</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.2&#x00A0;&#x00A0;<a 
+href="openmpse53.html#x279-4120005.2">Activating a Third-Party Tool</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.2.1&#x00A0;&#x00A0;<a 
+href="openmpsu218.html#x280-4130005.2.1">Enabling Runtime Support for OMPD</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.2.2&#x00A0;&#x00A0;<a 
+href="openmpsu219.html#x281-4140005.2.2"><span class="textbf"><span class="texttt">ompd_dll_locations</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.2.3&#x00A0;&#x00A0;<a 
+href="openmpsu220.html#x282-4150005.2.3"><span class="textbf"><span class="texttt">ompd_dll_locations_valid</span></span></a></span>
+<br />&#x00A0;<span class="sectionToc" >5.3&#x00A0;&#x00A0;<a 
+href="openmpse54.html#x283-4160005.3">OMPD Data Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.1&#x00A0;&#x00A0;<a 
+href="openmpsu221.html#x284-4170005.3.1">Size Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.2&#x00A0;&#x00A0;<a 
+href="openmpsu222.html#x285-4180005.3.2">Wait ID Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.3&#x00A0;&#x00A0;<a 
+href="openmpsu223.html#x286-4190005.3.3">Basic Value Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.4&#x00A0;&#x00A0;<a 
+href="openmpsu224.html#x287-4200005.3.4">Address Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.5&#x00A0;&#x00A0;<a 
+href="openmpsu225.html#x288-4210005.3.5">Frame Information Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.6&#x00A0;&#x00A0;<a 
+href="openmpsu226.html#x289-4220005.3.6">System Device Identifiers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.7&#x00A0;&#x00A0;<a 
+href="openmpsu227.html#x290-4230005.3.7">Native Thread Identifiers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.8&#x00A0;&#x00A0;<a 
+href="openmpsu228.html#x291-4240005.3.8">OMPD Handle Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.9&#x00A0;&#x00A0;<a 
+href="openmpsu229.html#x292-4250005.3.9">OMPD Scope Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.10&#x00A0;&#x00A0;<a 
+href="openmpsu230.html#x293-4260005.3.10">ICV ID Type</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.11&#x00A0;&#x00A0;<a 
+href="openmpsu231.html#x294-4270005.3.11">Tool Context Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.12&#x00A0;&#x00A0;<a 
+href="openmpsu232.html#x295-4280005.3.12">Return Code Types</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.3.13&#x00A0;&#x00A0;<a 
+href="openmpsu233.html#x296-4290005.3.13">Primitive Type Sizes</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.4&#x00A0;&#x00A0;<a 
+href="openmpse55.html#x297-4300005.4">OMPD Third-Party Tool Callback Interface</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.1&#x00A0;&#x00A0;<a 
+href="openmpsu234.html#x298-4310005.4.1">Memory Management of OMPD Library</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.2&#x00A0;&#x00A0;<a 
+href="openmpsu235.html#x299-4340005.4.2">Context Management and Navigation</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.3&#x00A0;&#x00A0;<a 
+href="openmpsu236.html#x300-4370005.4.3">Accessing Memory in the OpenMP Program or Runtime</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.4&#x00A0;&#x00A0;<a 
+href="openmpsu237.html#x301-4410005.4.4">Data Format Conversion: <span class="textbf"><span class="texttt">ompd_callback_device_host_fn_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.5&#x00A0;&#x00A0;<a 
+href="openmpsu238.html#x302-4420005.4.5"><span class="textbf"><span class="texttt">ompd_callback_print_string_fn_t</span></span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.4.6&#x00A0;&#x00A0;<a 
+href="openmpsu239.html#x303-4430005.4.6">The Callback Interface</a></span>
+                                                                            
+                                                                            
+<br />&#x00A0;<span class="sectionToc" >5.5&#x00A0;&#x00A0;<a 
+href="openmpse56.html#x304-4440005.5">OMPD Tool Interface Routines</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.1&#x00A0;&#x00A0;<a 
+href="openmpsu240.html#x305-4450005.5.1">Per OMPD Library Initialization and Finalization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.2&#x00A0;&#x00A0;<a 
+href="openmpsu241.html#x306-4500005.5.2">Per OpenMP Process Initialization and Finalization</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.3&#x00A0;&#x00A0;<a 
+href="openmpsu242.html#x307-4540005.5.3">Thread and Signal Safety</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.4&#x00A0;&#x00A0;<a 
+href="openmpsu243.html#x308-4550005.5.4">Address Space Information</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.5&#x00A0;&#x00A0;<a 
+href="openmpsu244.html#x309-4580005.5.5">Thread Handles</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.6&#x00A0;&#x00A0;<a 
+href="openmpsu245.html#x310-4640005.5.6">Parallel Region Handles</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.7&#x00A0;&#x00A0;<a 
+href="openmpsu246.html#x311-4700005.5.7">Task Handles</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.8&#x00A0;&#x00A0;<a 
+href="openmpsu247.html#x312-4810005.5.8">Display Control Variables</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.5.9&#x00A0;&#x00A0;<a 
+href="openmpsu248.html#x313-4840005.5.9">Accessing Scope-Specific Information</a></span>
+<br />&#x00A0;<span class="sectionToc" >5.6&#x00A0;&#x00A0;<a 
+href="openmpse57.html#x314-4890005.6">Runtime Entry Points for OMPD</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.1&#x00A0;&#x00A0;<a 
+href="openmpsu249.html#x315-4900005.6.1">Beginning Parallel Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.2&#x00A0;&#x00A0;<a 
+href="openmpsu250.html#x316-4910005.6.2">Ending Parallel Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.3&#x00A0;&#x00A0;<a 
+href="openmpsu251.html#x317-4920005.6.3">Beginning Task Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.4&#x00A0;&#x00A0;<a 
+href="openmpsu252.html#x318-4930005.6.4">Ending Task Regions</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.5&#x00A0;&#x00A0;<a 
+href="openmpsu253.html#x319-4940005.6.5">Beginning OpenMP Threads</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.6&#x00A0;&#x00A0;<a 
+href="openmpsu254.html#x320-4950005.6.6">Ending OpenMP Threads</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.7&#x00A0;&#x00A0;<a 
+href="openmpsu255.html#x321-4960005.6.7">Initializing OpenMP Devices</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >5.6.8&#x00A0;&#x00A0;<a 
+href="openmpsu256.html#x322-4970005.6.8">Finalizing OpenMP Devices</a></span>
+</div>
+
+
+
+
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse52.html" >next</a>] [<a 
+href="openmpsu217.html" >prev</a>] [<a 
+href="openmpsu217.html#tailopenmpsu217.html" >prev-tail</a>] [<a 
+href="openmpch5.html" >front</a>] [<a 
+href="openmp.html#openmpch5.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpch5.html"></a> </p> 
+ 
+</body> 
+</html>

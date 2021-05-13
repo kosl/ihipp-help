@@ -1,0 +1,134 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>if Clause</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse27.html" >next</a>] [<a 
+href="openmpse25.html" >prev</a>] [<a 
+href="openmpse25.html#tailopenmpse25.html" >prev-tail</a>] [<a 
+href="#tailopenmpse26.html">tail</a>] [<a 
+href="openmpch2.html#openmpse26.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.18</span>&#x00A0;&#x00A0;<a 
+ id="x130-1400002.18"></a><span class="textbf"><span class="texttt">if</span></span> Clause</h3>
+<a 
+ id="dx130-140001"></a>
+<a 
+ id="dx130-140002"></a>
+<p><p><a 
+ id="Q1-130-580"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The semantics of an <span class="textbf"><span class="texttt">if</span></span> clause are described in the section on the construct to which it applies. The <span class="textbf"><span class="texttt">if</span></span>
+clause <span class="textit"><span class="textrm">directive-name-modifier</span></span> names the associated construct to which an expression applies, and is
+particularly useful for composite and combined constructs.
+<p><a 
+ id="Q1-130-581"></a>
+<span 
+class="phvb8t-x-x-110">Syntax</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">if</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x130-140003r1"></a></span></p> 
+<!--l. 63--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x130-140004r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x130-140005r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div>
+<p> <div class="section-wrapper"><div class="section-heading"><div class="section-fortranspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-11.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</p> 
+<p>The syntax of the <span class="textbf"><span class="texttt">if</span></span> clause is as follows:
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x130-140006r1"></a></span></p> 
+<!--l. 72--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x130-140007r2"></a></span><span 
+class="pcrb8t-">if</span><span 
+class="pcrb8t-">(</span><span 
+class="ec-qtmri-">[</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">directive</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">name</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">modifier</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="pcrb8t-">:</span><span 
+class="ec-qtmri-">]</span><span 
+class="ec-qtmri-">&#x00A0;</span><span 
+class="ec-qtmri-">scalar</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">logical</span><span 
+class="ec-qtmri-">-</span><span 
+class="ec-qtmri-">expression</span><span 
+class="pcrb8t-">)</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x130-140008r3"></a></span></pre>
+<p><object data="openmp-12.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<p></div></div>
+</p> 
+<p><p><a 
+ id="Q1-130-582"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+The effect of the <span class="textbf"><span class="texttt">if</span></span> clause depends on the construct to which it is applied. For combined or
+composite constructs, the <span class="textbf"><span class="texttt">if</span></span> clause only applies to the semantics of the construct named in the
+<span class="textit"><span class="textrm">directive-name-modifier</span></span> if one is specified. If no <span class="textit"><span class="textrm">directive-name-modifier</span></span> is specified for a combined or
+composite construct then the <span class="textbf"><span class="texttt">if</span></span> clause applies to all constructs to which an <span class="textbf"><span class="texttt">if</span></span> clause can
+apply.
+</p> 
+<!--l. 3--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse27.html" >next</a>] [<a 
+href="openmpse25.html" >prev</a>] [<a 
+href="openmpse25.html#tailopenmpse25.html" >prev-tail</a>] [<a 
+href="openmpse26.html" >front</a>] [<a 
+href="openmpch2.html#openmpse26.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse26.html"></a> </p> 
+ 
+</body> 
+</html>

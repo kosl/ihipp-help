@@ -1,0 +1,84 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>System Device Identifiers</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 324--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu227.html" >next</a>] [<a 
+href="openmpsu225.html" >prev</a>] [<a 
+href="openmpsu225.html#tailopenmpsu225.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu226.html">tail</a>] [<a 
+href="openmpse54.html#openmpsu226.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">5.3.6</span>&#x00A0;&#x00A0;<a 
+ id="x289-4220005.3.6"></a>System Device Identifiers</h4>
+<p><p><a 
+ id="Q1-289-2035"></a>
+<span 
+class="phvb8t-x-x-110">Summary</span>
+The <span class="textbf"><span class="texttt">ompd_device_t</span></span> type provides information about OpenMP devices.
+<p><a 
+ id="Q1-289-2036"></a>
+<span 
+class="phvb8t-x-x-110">Format</span>
+ <div class="section-wrapper"><div class="section-heading"><div class="section-ccppspecific"></div></div><div class="section-contents">
+</p> 
+<p><p><object data="openmp-3.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x289-422001r1"></a></span></p> 
+<!--l. 332--><pre class="listings"><span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x289-422002r2"></a></span><span 
+class="pcrb8t-">typedef</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">uint64_t</span><span 
+class="pcrb8t-">&#x00A0;</span><span 
+class="pcrb8t-">ompd_device_t</span><span 
+class="pcrb8t-">;</span>
+ <span 
+class="pcrb8t-">&#x00A0;</span><br /><span class="label"><a 
+ id="x289-422003r3"></a></span></pre>
+<p><object data="openmp-4.svg" width="1.0 " height="2.33333 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+</div></div> <p><a 
+ id="Q1-289-2037"></a>
+                                                                            
+                                                                            
+<span 
+class="phvb8t-x-x-110">Description</span>
+OpenMP runtimes may utilize different underlying devices, each represented by a device identifier. The
+device identifiers can vary in size and format and, thus, are not explicitly represented in the OMPD
+interface. Instead, a device identifier is passed across the interface via its <span class="textbf"><span class="texttt">ompd_device_t</span></span> kind, its size in
+bytes and a pointer to where it is stored. The OMPD library and the third-party tool use the
+<span class="textbf"><span class="texttt">ompd_device_t</span></span> kind to interpret the format of the device identifier that is referenced by the pointer
+argument. Each different device identifier kind is represented by a unique unsigned 64-bit integer
+value.
+<p>Recommended values of <span class="textbf"><span class="texttt">ompd_device_t</span></span> kinds are defined in the <span class="textbf"><span class="texttt">ompd-types.h</span></span> header file, which is
+available on <a 
+href="http://www.openmp.org/" class="url" ><span 
+class="pcrr8t-">http://www.openmp.org/</span></a>.
+</p> 
+<!--l. 353--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu227.html" >next</a>] [<a 
+href="openmpsu225.html" >prev</a>] [<a 
+href="openmpsu225.html#tailopenmpsu225.html" >prev-tail</a>] [<a 
+href="openmpsu226.html" >front</a>] [<a 
+href="openmpse54.html#openmpsu226.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu226.html"></a> </p> 
+ 
+</body> 
+</html>

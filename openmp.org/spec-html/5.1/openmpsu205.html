@@ -1,0 +1,186 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Determining Whether a First-Party Tool Should be Initialized</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 152--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu206.html" >next</a>] [<a 
+href="openmpsu204.html" >prev</a>] [<a 
+href="openmpsu204.html#tailopenmpsu204.html" >prev-tail</a>] [<a 
+href="#tailopenmpsu205.html">tail</a>] [<a 
+href="openmpse47.html#openmpsu205.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.2</span>&#x00A0;&#x00A0;<a 
+ id="x260-2930004.2.2"></a>Determining Whether a First-Party Tool Should be Initialized</h4>
+<hr class="figure" /><div class="figure" 
+><a 
+ id="x260-2930011"></a> <img 
+src="ompt/ompt_flow_chart.svg" alt="PIC"  
+ />
+<br /> <div class="caption"><table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;4.1: </td><td  
+class="content">First-Party Tool Activation Flow Chart</td></tr></table></div><!--tex4ht:label?: x260-2930011 -->
+</div><hr class="endfigure" />
+<p>An OpenMP implementation examines the <span class="textit"><span class="textrm">tool-var</span></span> ICV as one of its first initialization steps. If the value of
+<span class="textit"><span class="textrm">tool-var</span></span> is <span class="textit"><span class="textrm">disabled</span></span>, the initialization continues without a check for the presence of a tool and the
+functionality of the OMPT interface will be unavailable as the program executes. In this case, the OMPT
+interface state remains <span class="emph">inactive</span>.
+</p> 
+<p>Otherwise, the OMPT interface state changes to <span class="emph">pending</span> and the OpenMP implementation activates any
+first-party tool that it finds. A tool can provide a definition of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> to an OpenMP
+implementation in three ways:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  By
+  statically-linking
+  its
+  definition
+  of
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  into
+  an
+  OpenMP
+  application;
+  </li>
+  <li class="itemize">
+  By
+  introducing
+  a
+  dynamically-linked
+  library
+  that
+                                                                            
+                                                                            
+  includes
+  its
+  definition
+  of
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  into
+  the
+  application&#8217;s
+  address
+  space;
+  or
+  </li>
+  <li class="itemize">
+  By
+  providing,
+  in
+  the
+  <span class="textit"><span class="textrm">tool-libraries-var</span></span>
+  ICV,
+  the
+  name
+  of
+  a
+  dynamically-linked
+  library
+  that
+  is
+  appropriate
+  for
+  the
+  architecture
+  and
+  operating
+  system
+  used
+  by
+  the
+  application
+  and
+  that
+  includes
+  a
+                                                                            
+                                                                            
+  definition
+  of
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>.</li></ul>
+<p>If the value of <span class="textit"><span class="textrm">tool-var</span></span> is <span class="textit"><span class="textrm">enabled</span></span>, the OpenMP implementation must check if a tool has provided an
+implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span>. The OpenMP implementation first checks if a tool-provided
+implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> is available in the address space, either statically-linked into the
+application or in a dynamically-linked library loaded in the address space. If multiple implementations of
+<span class="textbf"><span class="texttt">ompt_start_tool</span></span> are available, the OpenMP implementation will use the first tool-provided
+implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> that it finds.
+</p> 
+<p>If the implementation does not find a tool-provided implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> in the address
+space, it consults the <span class="textit"><span class="textrm">tool-libraries-var</span></span> ICV, which contains a (possibly empty) list of dynamically-linked
+libraries. As described in detail in Section&#x00A0;<a 
+href="openmpse76.html#x342-5170006.19">6.19<!--tex4ht:ref: sec:OMP_TOOL_LIBRARIES --></a>, the libraries in <span class="textit"><span class="textrm">tool-libraries-var</span></span> are then searched for
+the first usable implementation of <span class="textbf"><span class="texttt">ompt_start_tool</span></span> that one of the libraries in the list
+provides.
+</p> 
+<p>If the implementation finds a tool-provided definition of <span class="textbf"><span class="texttt">ompt_start_tool</span></span>, it invokes that method; if a
+<span class="textbf"><span class="texttt">NULL</span></span> pointer is returned, the OMPT interface state remains <span class="emph">pending</span> and the implementation
+continues to look for implementations of <span class="textbf"><span class="texttt">ompt_start_tool</span></span>; otherwise a non-null pointer to an
+<span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span> structure is returned, the OMPT interface state changes to <span class="emph">active</span> and
+the OpenMP implementation makes the OMPT interface available as the program executes. In
+this case, as the OpenMP implementation completes its initialization, it initializes the OMPT
+interface.
+</p> 
+<p>If no tool can be found, the OMPT interface state changes to <span class="emph">inactive</span>.
+</p> 
+<p><p><a 
+ id="Q1-260-1431"></a>
+<span 
+class="phvb8t-x-x-110">Cross References</span>
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  <span class="textit"><span class="textrm">tool-libraries-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textit"><span class="textrm">tool-var</span></span>
+  ICV,
+  see
+  Section&#x00A0;<a 
+href="openmpse12.html#x48-470002.4">2.4<!--tex4ht:ref: sec:Internal Control Variables --></a>.
+                                                                            
+                                                                            
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool</span></span>
+  function,
+  see
+  Section&#x00A0;<a 
+href="openmpsu204.html#x259-2920004.2.1">4.2.1<!--tex4ht:ref: sec:ompt_start_tool --></a>.
+  </li>
+  <li class="itemize">
+  <span class="textbf"><span class="texttt">ompt_start_tool_result_t</span></span>
+  type,
+  see
+  Section&#x00A0;<a 
+href="openmpsu209.html#x266-3000004.4.1">4.4.1<!--tex4ht:ref: sec:ompt_start_tool_result_t --></a>.</li></ul>
+<!--l. 227--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpsu206.html" >next</a>] [<a 
+href="openmpsu204.html" >prev</a>] [<a 
+href="openmpsu204.html#tailopenmpsu204.html" >prev-tail</a>] [<a 
+href="openmpsu205.html" >front</a>] [<a 
+href="openmpse47.html#openmpsu205.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpsu205.html"></a> </p> 
+ 
+</body> 
+</html>

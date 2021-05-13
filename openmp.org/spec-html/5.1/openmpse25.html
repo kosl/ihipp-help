@@ -1,0 +1,267 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5385519-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5385519-3');
+</script><title>Clauses on Combined and Composite Constructs</title> 
+<meta  charset="iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="openmp.css" /> 
+<meta name="src" content="openmp.tex" /> 
+</head><body 
+>
+<div class="page-heading-wrapper"><div class="page-heading-home"><a href="./openmp.html">HOME</a></div><div class="page-heading"> | <strong>OPENMP API Specification: Version 5.1 November 2020</strong></div></div> <!--l. 2045--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse26.html" >next</a>] [<a 
+href="openmpsu98.html" >prev</a>] [<a 
+href="openmpsu98.html#tailopenmpsu98.html" >prev-tail</a>] [<a 
+href="#tailopenmpse25.html">tail</a>] [<a 
+href="openmpch2.html#openmpse25.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.17</span>&#x00A0;&#x00A0;<a 
+ id="x129-1390002.17"></a>Clauses on Combined and Composite Constructs</h3>
+<p>This section specifies the handling of clauses on combined or composite constructs and the handling of
+implicit clauses from variables with predetermined data sharing if they are not predetermined only on a
+particular construct. Some clauses are permitted only on a single leaf construct of the combined or
+composite construct, in which case the effect is as if the clause is applied to that specific construct. As
+detailed in this section, other clauses have the effect as if they are applied to one or more leaf
+constructs.
+</p> 
+<p>The <span class="textbf"><span class="texttt">collapse</span></span> clause is applied once to the combined or composite construct.
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">private</span></span> clause is as if it is applied only to the innermost leaf construct that permits
+it.
+                                                                            
+                                                                            
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">firstprivate</span></span> clause is as if it is applied to one or more leaf constructs as
+follows:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  To
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  if
+  it
+  is
+  among
+  the
+  constituent
+  constructs;
+  </li>
+  <li class="itemize">
+  To
+  the
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct
+  if
+  it
+  is
+  among
+  the
+  constituent
+  constructs
+  and
+  the
+  <span class="textbf"><span class="texttt">distribute</span></span>
+  construct
+  is
+  not;
+  </li>
+  <li class="itemize">
+  To
+                                                                            
+                                                                            
+  the
+  worksharing-loop
+  construct
+  if
+  it
+  is
+  among
+  the
+  constituent
+  constructs;
+  </li>
+  <li class="itemize">
+  To
+  the
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct
+  if
+  it
+  is
+  among
+  the
+  constituent
+  constructs;
+  </li>
+  <li class="itemize">
+  To
+  the
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct
+  if
+  it
+  is
+  among
+  the
+  constituent
+  constructs
+  and
+  the
+  worksharing-loop
+  construct
+                                                                            
+                                                                            
+  or
+  the
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct
+  is
+  not;
+  </li>
+  <li class="itemize">
+  To
+  the
+  <span class="textbf"><span class="texttt">target</span></span>
+  construct
+  if
+  it
+  is
+  among
+  the
+  constituent
+  constructs
+  and
+  the
+  same
+  list
+  item
+  does
+  not
+  appear
+  in
+  a
+  <span class="textbf"><span class="texttt">lastprivate</span></span>
+  or
+  <span class="textbf"><span class="texttt">map</span></span>
+  clause.</li></ul>
+<p>If the <span class="textbf"><span class="texttt">parallel</span></span> construct is among the constituent constructs and the effect is not as if the
+<span class="textbf"><span class="texttt">firstprivate</span></span> clause is applied to it by the above rules, then the effect is as if the <span class="textbf"><span class="texttt">shared</span></span> clause with
+the same list item is applied to the <span class="textbf"><span class="texttt">parallel</span></span> construct. If the <span class="textbf"><span class="texttt">teams</span></span> construct is among the constituent
+constructs and the effect is not as if the <span class="textbf"><span class="texttt">firstprivate</span></span> clause is applied to it by the above
+rules, then the effect is as if the <span class="textbf"><span class="texttt">shared</span></span> clause with the same list item is applied to the <span class="textbf"><span class="texttt">teams</span></span>
+construct.
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">lastprivate</span></span> clause is as if it is applied to all leaf constructs that permit the clause.
+If the <span class="textbf"><span class="texttt">parallel</span></span> construct is among the constituent constructs and the list item is not also
+                                                                            
+                                                                            
+specified in the <span class="textbf"><span class="texttt">firstprivate</span></span> clause, then the effect of the <span class="textbf"><span class="texttt">lastprivate</span></span> clause is as
+if the <span class="textbf"><span class="texttt">shared</span></span> clause with the same list item is applied to the <span class="textbf"><span class="texttt">parallel</span></span> construct. If the
+<span class="textbf"><span class="texttt">teams</span></span> construct is among the constituent constructs and the list item is not also specified in the
+<span class="textbf"><span class="texttt">firstprivate</span></span> clause, then the effect of the <span class="textbf"><span class="texttt">lastprivate</span></span> clause is as if the <span class="textbf"><span class="texttt">shared</span></span> clause
+with the same list item is applied to the <span class="textbf"><span class="texttt">teams</span></span> construct. If the <span class="textbf"><span class="texttt">target</span></span> construct is among
+the constituent constructs and the list item is not specified in a <span class="textbf"><span class="texttt">map</span></span> clause, the effect of the
+<span class="textbf"><span class="texttt">lastprivate</span></span> clause is as if the same list item appears in a <span class="textbf"><span class="texttt">map</span></span> clause with a <span class="textit"><span class="textrm">map-type</span></span> of
+<span class="textbf"><span class="texttt">tofrom</span></span>.
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">shared</span></span>, <span class="textbf"><span class="texttt">default</span></span>, <span class="textbf"><span class="texttt">order</span></span>, or <span class="textbf"><span class="texttt">allocate</span></span> clause is as if it is applied to all leaf
+constructs that permit the clause.
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">reduction</span></span> clause is as if it is applied to all leaf constructs that permit the clause, except
+for the following constructs:
+</p> 
+
+  <ul class="itemize1">
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">parallel</span></span>
+  construct,
+  when
+  combined
+  with
+  the
+  <span class="textbf"><span class="texttt">sections</span></span>,
+  worksharing-loop,
+  <span class="textbf"><span class="texttt">loop</span></span>,
+  or
+  <span class="textbf"><span class="texttt">taskloop</span></span>
+  construct;
+  and
+  </li>
+  <li class="itemize">
+  The
+  <span class="textbf"><span class="texttt">teams</span></span>
+  construct,
+  when
+  combined
+  with
+  the
+  <span class="textbf"><span class="texttt">loop</span></span>
+                                                                            
+                                                                            
+  construct.</li></ul>
+<p>For the <span class="textbf"><span class="texttt">parallel</span></span> and <span class="textbf"><span class="texttt">teams</span></span> constructs above, the effect of the <span class="textbf"><span class="texttt">reduction</span></span> clause instead is as if each
+list item or, for any list item that is an array item, its corresponding base array or base pointer appears in a
+<span class="textbf"><span class="texttt">shared</span></span> clause for the construct. If the <span class="textbf"><span class="texttt">task</span></span><span class="textit"><span class="textrm">reduction-modifier</span></span> is specified, the effect is as if it only
+modifies the behavior of the <span class="textbf"><span class="texttt">reduction</span></span> clause on the innermost leaf construct that accepts
+the modifier (see Section&#x00A0;<a 
+href="openmpsu117.html#x152-1760002.21.5.4">2.21.5.4<!--tex4ht:ref: subsubsec:reduction clause --></a>). If the <span class="textbf"><span class="texttt">inscan</span></span><span class="textit"><span class="textrm">reduction-modifier</span></span> is specified, the effect
+is as if it modifies the behavior of the <span class="textbf"><span class="texttt">reduction</span></span> clause on all constructs of the combined
+construct to which the clause is applied and that accept the modifier. If the <span class="textbf"><span class="texttt">target</span></span> construct is
+among the constituent constructs and the list item is not specified in a <span class="textbf"><span class="texttt">map</span></span> clause, the effect of
+the <span class="textbf"><span class="texttt">reduction</span></span> clause is as if the same list item appears in a <span class="textbf"><span class="texttt">map</span></span> clause with a <span class="textit"><span class="textrm">map-type</span></span> of
+<span class="textbf"><span class="texttt">tofrom</span></span>.
+</p> 
+<p>The <span class="textbf"><span class="texttt">in_reduction</span></span> clause applies to the single leaf construct on which it is permitted. If that construct is
+a <span class="textbf"><span class="texttt">target</span></span> construct, the effect is as if the same list item also appears in a <span class="textbf"><span class="texttt">map</span></span> clause with a <span class="textit"><span class="textrm">map-type</span></span> of
+<span class="textbf"><span class="texttt">tofrom</span></span> and a <span class="textit"><span class="textrm">map-type-modifier</span></span> of <span class="textbf"><span class="texttt">always</span></span>.
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">if</span></span> clause is described in Section&#x00A0;<a 
+href="openmpse26.html#x130-1400002.18">2.18<!--tex4ht:ref: sec:if Clause --></a>.
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">linear</span></span> clause is as if it is applied to the innermost leaf construct. Additionally, if the list
+item is not the iteration variable of a <span class="textbf"><span class="texttt">simd</span></span> or worksharing-loop SIMD construct, the effect on the outer leaf
+constructs is as if the list item was specified in <span class="textbf"><span class="texttt">firstprivate</span></span> and <span class="textbf"><span class="texttt">lastprivate</span></span> clauses on the
+combined or composite construct, with the rules specified above applied. If a list item of the <span class="textbf"><span class="texttt">linear</span></span> clause
+is the iteration variable of a <span class="textbf"><span class="texttt">simd</span></span> or worksharing-loop SIMD construct and it is not declared
+in the construct, the effect on the outer leaf constructs is as if the list item was specified in a
+<span class="textbf"><span class="texttt">lastprivate</span></span> clause on the combined or composite construct with the rules specified above
+applied.
+</p> 
+<p>The effect of the <span class="textbf"><span class="texttt">nowait</span></span> clause is as if it is applied to the outermost leaf construct that permits
+it.
+</p> 
+<p>If the clauses have expressions on them, such as for various clauses where the argument of the clause is an
+expression, or <span class="textit"><span class="textrm">lower-bound</span></span>, <span class="textit"><span class="textrm">length</span></span>, or <span class="textit"><span class="textrm">stride</span></span> expressions inside array sections (or <span class="textit"><span class="textrm">subscript</span></span> and <span class="textit"><span class="textrm">stride</span></span>
+expressions in <span class="textit"><span class="textrm">subscript-triplet</span></span> for Fortran), or <span class="textit"><span class="textrm">linear-step</span></span> or <span class="textit"><span class="textrm">alignment</span></span> expressions, the expressions are
+evaluated immediately before the construct to which the clause has been split or duplicated per the
+above rules (therefore inside of the outer leaf constructs). However, the expressions inside the
+<span class="textbf"><span class="texttt">num_teams</span></span> and <span class="textbf"><span class="texttt">thread_limit</span></span> clauses are always evaluated before the outermost leaf
+construct.
+</p> 
+<p>The restriction that a list item may not appear in more than one data sharing clause with the exception of
+specifying a variable in both <span class="textbf"><span class="texttt">firstprivate</span></span> and <span class="textbf"><span class="texttt">lastprivate</span></span> clauses applies after the clauses are
+split or duplicated per the above rules.
+</p> 
+<!--l. 46--><div class="crosslinks"><p class="noindent">[<a 
+href="openmpse26.html" >next</a>] [<a 
+href="openmpsu98.html" >prev</a>] [<a 
+href="openmpsu98.html#tailopenmpsu98.html" >prev-tail</a>] [<a 
+href="openmpse25.html" >front</a>] [<a 
+href="openmpch2.html#openmpse25.html" >up</a>] </p></div>
+<p><a 
+ id="tailopenmpse25.html"></a> </p> 
+ 
+</body> 
+</html>
